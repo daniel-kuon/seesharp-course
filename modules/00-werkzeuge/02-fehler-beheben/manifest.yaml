@@ -1,0 +1,18 @@
+id: werkzeuge-fehler-beheben
+title: { de: "Compilerfehler beheben" }
+reading:
+  section: "3.1.6"
+  title: { de: "Programmfehler" }
+  printedPage: 76
+teaches:
+  - tools.read-compiler-error
+  - basics.console-output
+requires:
+  - tools.build-run
+  - basics.main-method
+items:
+  - type: coding
+    id: reparatur
+    openFile: "Reparatur/Hallo.cs"
+    openLine: 4
+    testProject: "Reparatur.Tests/Reparatur.Tests.csproj"

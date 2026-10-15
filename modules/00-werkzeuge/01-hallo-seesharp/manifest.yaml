@@ -1,0 +1,19 @@
+id: werkzeuge-hallo-seesharp
+title: { de: "Hallo SeeSharp" }
+reading:
+  section: "3.1.4"
+  title: { de: "Quellcode in IL-Code übersetzen und Programm erstellen" }
+  printedPage: 71
+teaches:
+  - tools.seesharp-workflow
+  - tools.build-run
+  - basics.main-method
+  - methods.declare-static
+  - methods.return-value
+requires: []
+items:
+  - type: coding
+    id: hallo
+    openFile: "Hallo/Hallo.cs"
+    openLine: 9
+    testProject: "Hallo.Tests/Hallo.Tests.csproj"

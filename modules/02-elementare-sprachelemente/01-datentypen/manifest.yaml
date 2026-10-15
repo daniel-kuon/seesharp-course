@@ -1,0 +1,21 @@
+id: sprachelemente-datentypen
+title: { de: "Datentypen und Konvertierungen" }
+reading:
+  section: "4.3.4"
+  title: { de: "Elementare Datentypen" }
+  printedPage: 186
+teaches:
+  - types.int
+  - types.double
+  - types.char-int-conversion
+  - types.explicit-cast
+  - operators.integer-division
+requires:
+  - methods.declare-static
+  - methods.return-value
+items:
+  - type: coding
+    id: typen
+    openFile: "Typen/Typen.cs"
+    openLine: 5
+    testProject: "Typen.Tests/Typen.Tests.csproj"

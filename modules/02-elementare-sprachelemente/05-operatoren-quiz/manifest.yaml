@@ -1,0 +1,105 @@
+id: sprachelemente-operatoren-quiz
+title: { de: "Operatoren-Quiz" }
+reading:
+  section: "4.5"
+  title: { de: "Operatoren und Ausdrücke" }
+  printedPage: 215
+teaches:
+  - operators.arithmetic
+  - operators.precedence
+  - operators.increment-compound
+  - operators.conditional
+  - operators.logical
+  - operators.de-morgan
+requires:
+  - types.int
+  - types.double
+  - operators.integer-division
+items:
+  - type: multipleChoice
+    id: gemischt
+    prompt: { de: "Welchen Wert und Typ hat der Ausdruck `7 / 2 * 2.0`?" }
+    options:
+      - { de: "6.0 (double)" }
+      - { de: "7.0 (double)" }
+      - { de: "6 (int)" }
+      - { de: "7 (int)" }
+    correct: [0]
+    explanation: { de: "7 / 2 ist eine Ganzzahldivision mit Ergebnis 3; erst 3 * 2.0 rechnet mit double." }
+  - type: multipleChoice
+    id: cast-rangfolge
+    prompt: { de: "Welchen Wert hat `(int) 7 / 2.0 * 3`, und welchen hat `(int) (7 / 2.0 * 3)`?" }
+    options:
+      - { de: "10.5 und 10" }
+      - { de: "9 und 9" }
+      - { de: "10.5 und 10.5" }
+      - { de: "9 und 10" }
+    correct: [0]
+    explanation: { de: "Der Cast bindet nur an die 7; 7 / 2.0 * 3 = 10.5. Mit Klammern wird 10.5 nach int abgeschnitten." }
+  - type: multipleChoice
+    id: modulo-kette
+    prompt: { de: "Welchen Wert hat `2 * 5 + 9 / 2 % 4 * 5`?" }
+    options:
+      - { de: "10" }
+      - { de: "30" }
+      - { de: "12" }
+      - { de: "35" }
+    correct: [0]
+    explanation: { de: "*, / und % haben gleichen Rang und werden von links ausgewertet: 9 / 2 = 4, 4 % 4 = 0, 0 * 5 = 0; dann 10 + 0." }
+  - type: multipleChoice
+    id: inkrement
+    prompt: { de: "`int i = 4, j = 5; int a = (i++ == j ? 1 : 2); int b = (++i == 6 ? 1 : 2);` Welche Werte haben a und b?" }
+    options:
+      - { de: "a = 2, b = 1" }
+      - { de: "a = 1, b = 1" }
+      - { de: "a = 2, b = 2" }
+      - { de: "a = 1, b = 2" }
+    correct: [0]
+    explanation: { de: "i++ liefert den alten Wert 4 (ungleich 5, also 2) und setzt i auf 5. ++i erhöht zuerst auf 6, der Vergleich ist wahr, also 1." }
+  - type: multipleChoice
+    id: verbund
+    prompt: { de: "`int k = 5; k += 3 * 2; k *= 2 + 1;` Welchen Wert hat k danach?" }
+    options:
+      - { de: "33" }
+      - { de: "23" }
+      - { de: "16" }
+      - { de: "36" }
+    correct: [0]
+    explanation: { de: "k += 3 * 2 macht 11; k *= 2 + 1 bedeutet k = k * (2 + 1) = 33, die rechte Seite wird als Ganzes genommen." }
+  - type: multipleChoice
+    id: logik
+    prompt: { de: "Welchen Wert hat `bool x = 5 > 3 && 2 == 2 ^ 1 == 1;`?" }
+    options:
+      - { de: "false" }
+      - { de: "true" }
+    correct: [0]
+    explanation: { de: "Vergleiche binden stärker als ^, und ^ bindet stärker als &&: true && (true ^ true) = true && false = false." }
+  - type: multipleChoice
+    id: de-morgan
+    prompt: { de: "Welcher Ausdruck ist gleichwertig zu `!(i > 0 || c == 'j')`?" }
+    options:
+      - { de: "i <= 0 && c != 'j'" }
+      - { de: "i <= 0 || c != 'j'" }
+      - { de: "i < 0 && c != 'j'" }
+      - { de: "!(i > 0) || !(c == 'j')" }
+    correct: [0]
+    explanation: { de: "De Morgan: !(a || b) = !a && !b; die Negation von i > 0 ist i <= 0." }
+  - type: multipleChoice
+    id: reihenfolge
+    prompt: { de: "In `a / (b + c) * d` mit numerischen Variablen: Welcher Operator wird zuerst ausgeführt?" }
+    options:
+      - { de: "+" }
+      - { de: "/" }
+      - { de: "*" }
+      - { de: "Das entscheidet der Compiler zufällig." }
+    correct: [0]
+    explanation: { de: "Klammern zuerst, danach / und * von links nach rechts." }
+  - type: multipleChoice
+    id: kurzschluss
+    prompt: { de: "`int n = 0; bool ok = n != 0 && 10 / n > 1;` Was passiert?" }
+    options:
+      - { de: "ok ist false; die Division wird nicht ausgeführt, weil && den rechten Operanden bei false links überspringt." }
+      - { de: "Es kommt zu einer Division durch null." }
+      - { de: "ok ist true." }
+      - { de: "Der Compiler meldet einen Fehler." }
+    correct: [0]

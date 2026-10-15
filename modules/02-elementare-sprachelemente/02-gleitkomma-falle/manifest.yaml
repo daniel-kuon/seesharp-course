@@ -1,0 +1,21 @@
+id: sprachelemente-gleitkomma-falle
+title: { de: "Die Gleitkomma-Falle" }
+reading:
+  section: "4.3.5"
+  title: { de: "Darstellung von Gleitkommazahlen im Arbeitsspeicher" }
+  printedPage: 189
+teaches:
+  - types.float-precision
+  - types.double-vs-decimal
+  - types.literal-suffix
+  - operators.math-class
+  - operators.comparison
+requires:
+  - types.double
+  - types.explicit-cast
+items:
+  - type: coding
+    id: gleitkomma
+    openFile: "Gleitkomma/Gleitkomma.cs"
+    openLine: 4
+    testProject: "Gleitkomma.Tests/Gleitkomma.Tests.csproj"

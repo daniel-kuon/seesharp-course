@@ -1,0 +1,94 @@
+id: sprachelemente-typen-quiz
+title: { de: "Variablen-Quiz" }
+reading:
+  section: "4.3"
+  title: { de: "Variablen und Datentypen" }
+  printedPage: 180
+teaches:
+  - types.var
+  - types.const
+  - scope.block
+  - types.implicit-conversion
+  - types.string-basic
+requires:
+  - types.int
+  - types.explicit-cast
+items:
+  - type: multipleChoice
+    id: scope
+    prompt: { de: "In Main() steht ein Block { int i = 2; } und danach Console.WriteLine(i). Der Compiler meldet, der Name i sei nicht vorhanden. Warum?" }
+    options:
+      - { de: "i gilt nur innerhalb des Blocks, in dem es deklariert wurde; außerhalb existiert es nicht." }
+      - { de: "int-Variablen müssen immer am Anfang der Methode stehen." }
+      - { de: "Der Wert 2 ist für WriteLine zu klein." }
+      - { de: "Variablen dürfen nicht in geschweiften Klammern deklariert werden." }
+    correct: [0]
+  - type: multipleChoice
+    id: var
+    prompt: { de: "Welchen Typ hat x nach `var x = 3.0;`?" }
+    options:
+      - { de: "double" }
+      - { de: "int" }
+      - { de: "float" }
+      - { de: "Keinen festen Typ, var ist dynamisch." }
+    correct: [0]
+    explanation: { de: "var leitet den Typ aus dem Initialisierer ab; das Literal 3.0 ist ein double. Danach ist x fest typisiert." }
+  - type: multipleChoice
+    id: const
+    prompt: { de: "Welche Aussagen über const treffen zu? (mehrere möglich)" }
+    options:
+      - { de: "Der Wert muss bei der Deklaration angegeben werden und zur Übersetzungszeit feststehen." }
+      - { de: "Einer const-Variablen kann später ein neuer Wert zugewiesen werden." }
+      - { de: "const double Pi = 3.14159; ist eine gültige Deklaration." }
+      - { de: "const ist nur für Zeichenketten erlaubt." }
+    correct: [0, 2]
+  - type: multipleChoice
+    id: implizit
+    prompt: { de: "Welche Zuweisungen kompilieren ohne Cast? (mehrere möglich)" }
+    options:
+      - { de: "int i = 'c';" }
+      - { de: "double d = 7;" }
+      - { de: "int i = 7.5;" }
+      - { de: "long l = 7;" }
+      - { de: "char c = 65;" }
+    correct: [0, 1, 3]
+    explanation: { de: "char nach int, int nach double und int nach long sind erweiternd und implizit. double nach int verliert Nachkommastellen, int nach char ist verengend; beide brauchen einen Cast. (Ein konstantes Literal wie 65 ließe der Compiler ausnahmsweise durch, eine int-Variable nicht.)" }
+  - type: multipleChoice
+    id: unicode
+    prompt: { de: "Warum darf ein char-Wert ohne Cast einer int-Variablen zugewiesen werden?" }
+    options:
+      - { de: "Ein char ist intern eine 16-Bit-Zahl (der Unicode-Code); jeder char-Wert passt verlustfrei in ein int." }
+      - { de: "Weil der Compiler Zeichen in ihre Ziffer umrechnet ('7' wird 7)." }
+      - { de: "Das geht nicht, es ist immer ein Cast nötig." }
+      - { de: "Weil char und int derselbe Typ sind." }
+    correct: [0]
+  - type: multipleChoice
+    id: string
+    prompt: { de: "Welche Aussagen über string treffen zu? (mehrere möglich)" }
+    options:
+      - { de: "string s = \"Hallo\"; deklariert eine Zeichenkettenvariable und weist ein Literal zu." }
+      - { de: "Zeichenkettenliterale stehen in doppelten Anführungszeichen, Zeichenliterale in einfachen." }
+      - { de: "'Hallo' ist ein gültiges Zeichenkettenliteral." }
+      - { de: "string ist ein Alias für die BCL-Klasse System.String." }
+    correct: [0, 1, 3]
+  - type: multipleChoice
+    id: bezeichner
+    prompt: { de: "Welche dieser Namen sind als Bezeichner unzulässig? (mehrere möglich)" }
+    options:
+      - { de: "4you" }
+      - { de: "maiLink" }
+      - { de: "else" }
+      - { de: "Lösung" }
+      - { de: "b_3" }
+    correct: [0, 2]
+    explanation: { de: "Bezeichner dürfen nicht mit einer Ziffer beginnen und kein Schlüsselwort sein. Umlaute und Unterstriche sind erlaubt." }
+  - type: multipleChoice
+    id: main-koepfe
+    prompt: { de: "Welche Methodenköpfe taugen als Einstiegspunkt eines Programms? (mehrere möglich)" }
+    options:
+      - { de: "static void main()" }
+      - { de: "public static void Main()" }
+      - { de: "static int Main()" }
+      - { de: "static double Main()" }
+    correct: [1, 2]
+    explanation: { de: "Main muss groß geschrieben sein und void oder int zurückgeben; public ist nicht nötig." }

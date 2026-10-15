@@ -1,0 +1,20 @@
+id: sprachelemente-formatierung
+title: { de: "Zeichenketten und Formatierung" }
+reading:
+  section: "4.2.3"
+  title: { de: "Formatierte Ausgabe" }
+  printedPage: 176
+teaches:
+  - strings.concat
+  - strings.interpolation
+  - strings.format-alignment
+  - strings.escape
+requires:
+  - types.int
+  - types.string-basic
+items:
+  - type: coding
+    id: formatierung
+    openFile: "Formatierung/Formatierung.cs"
+    openLine: 4
+    testProject: "Formatierung.Tests/Formatierung.Tests.csproj"

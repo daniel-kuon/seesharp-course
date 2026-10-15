@@ -341,6 +341,12 @@ skills:
   - id: algo.recursion
     category: algo
     label: { de: "Rekursive Methode mit Abbruchbedingung schreiben", en: "Write a recursive method with a base case" }
+  - id: algo.factorial
+    category: algo
+    label: { de: "Fakultät rekursiv berechnen", en: "Compute the factorial recursively" }
+  - id: algo.fibonacci
+    category: algo
+    label: { de: "Fibonacci-Zahlen rekursiv berechnen", en: "Compute Fibonacci numbers recursively" }
   - id: oop.required-member
     category: oop
     label: { de: "Pflichtmitglieder mit required deklarieren", en: "Declare required members" }

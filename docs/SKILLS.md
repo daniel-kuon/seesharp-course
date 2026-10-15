@@ -12,11 +12,11 @@ them, so review the ids more carefully than the labels.
 | 1 | Konzepte | 12 | concepts |
 | 2 | Elementare Sprachelemente | 31 | types, scope, strings, operators |
 | 3 | Ablaufsteuerung | 22 | control, overflow, methods, algo |
-| 4 | Klassen und Objekte | 27 | oop, statics, algo |
+| 4 | Klassen und Objekte | 29 | oop, statics, algo |
 | 5 | Komposition, Indexer, Schutzstufen | 13 | oop, access |
 | 6 | Weitere Typen | 29 | structs, arrays, algo, strings, enums, tuples, records, types |
 
-148 skills. Level 2 and 6 are above the 25 guideline because they each cover
+150 skills. Level 2 and 6 are above the 25 guideline because they each cover
 five to eight book sections; split the levels rather than coarsening the
 skills if that bothers you.
 
@@ -46,13 +46,15 @@ come from levels 0–3 and only become valid once those levels are authored.
 b10 and b11 (interfaces, generic math) live in level 9 and give `applied`
 credit for the level 4–5 skills.
 
-**Current state in `modules/`.** Only 4.3 (b2) and 4.8 (b7) exist. Because the
-validator rejects a `requires` that no earlier exercise teaches, their
-manifests list only what the other one teaches; the italic entries and the
-b0/b1 prerequisites get added when levels 0–3 and 4.1–4.2 are authored. The
-b7 starter also stubs `Kuerze`, both `Addiere` overloads, `DuplWerte` and
-`Klone`, so the shipped 4.8 exercise teaches `oop.clone-method` and
-`oop.copy-values` itself and requires the b2 skills.
+**Current state in `modules/`.** Levels 0–3 and the level-4 Bruch chain
+b0, b1, b2, b5, b6, b7 are authored (exercises 4.1, 4.2, 4.3, 4.6, 4.7, 4.8
+plus the 4.0 terminology quiz). b3/b4 (4.4, 4.5) are not yet written, so the
+b7 starter still stubs `DuplWerte` and `Klone` and teaches `oop.clone-method`
+and `oop.copy-values` itself. 4.7 (b6) exposes the recursive ggT as a public
+static method and adds factorial and Fibonacci; the two skills
+`algo.factorial` and `algo.fibonacci` were added for it (150 skills in total).
+Level 2 teaches its `types.*`/`operators.*` vocabulary across three coding
+exercises and two quizzes; the `operators.*` quiz carries six skills.
 
 ## Skill graph, levels 0–6
 

@@ -1,0 +1,20 @@
+id: ablauf-ggt-modulo
+title: { de: "ggT mit Modulo" }
+reading:
+  section: "4.7.4"
+  title: { de: "Übungsaufgaben zum Abschnitt 4.7 (Aufgabe 6)" }
+  printedPage: 282
+teaches:
+  - algo.gcd-modulo
+  - control.do-while
+requires:
+  - algo.gcd-subtraction
+  - control.while
+  - operators.integer-division
+  - methods.parameters
+items:
+  - type: coding
+    id: euklid
+    openFile: "GgtModulo/Euklid.cs"
+    openLine: 4
+    testProject: "GgtModulo.Tests/GgtModulo.Tests.csproj"

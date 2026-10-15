@@ -1,0 +1,24 @@
+id: ablauf-primzahl-und-switch
+title: { de: "Primzahltest, switch-Ausdruck, foreach" }
+reading:
+  section: "4.7.3.6"
+  title: { de: "Schleifen(durchgänge) vorzeitig beenden" }
+  printedPage: 278
+teaches:
+  - algo.prime-test
+  - methods.bool-predicate
+  - control.for
+  - control.switch-expression
+  - control.foreach
+requires:
+  - control.while
+  - control.if-else
+  - methods.parameters
+  - operators.integer-division
+  - operators.logical
+items:
+  - type: coding
+    id: schleifen
+    openFile: "Schleifen/Schleifen.cs"
+    openLine: 4
+    testProject: "Schleifen.Tests/Schleifen.Tests.csproj"

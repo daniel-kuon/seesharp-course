@@ -1,0 +1,21 @@
+id: ablauf-ggt-differenz
+title: { de: "ggT per Subtraktion" }
+reading:
+  section: "4.7.3.3"
+  title: { de: "Bedingungsabhängige Schleifen" }
+  printedPage: 275
+teaches:
+  - control.while
+  - control.if-else
+  - methods.parameters
+  - algo.gcd-subtraction
+requires:
+  - operators.arithmetic
+  - operators.comparison
+  - types.float-precision
+items:
+  - type: coding
+    id: euklid
+    openFile: "GgtDifferenz/Euklid.cs"
+    openLine: 4
+    testProject: "GgtDifferenz.Tests/GgtDifferenz.Tests.csproj"

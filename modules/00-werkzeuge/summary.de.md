@@ -3,7 +3,7 @@
 Bevor eine Zeile C# entsteht, muss die Werkzeugkette stehen: das .NET SDK,
 eine Entwicklungsumgebung und ein Gefühl dafür, was beim Bauen und Starten
 eines Programms passiert. Das Buch beschreibt in Kapitel 3 (ab Seite 61) die
-Kommandozeile, Visual Studio und VS Code. Bei CargoNerds arbeiten wir mit
+Kommandozeile, Visual Studio und VS Code. In diesem Kurs arbeiten wir mit
 **JetBrains Rider**; die Konzepte sind dieselben, nur die Menüs heißen anders.
 Lies deshalb vor allem Abschnitt 3.1 (.NET SDK, Seite 61) gründlich und die
 IDE-Abschnitte 3.3 und 3.5 nur zur Orientierung.

@@ -1,0 +1,30 @@
+id: generics-max-serienparameter
+title: { de: "Max<T>() mit generischem Serienparameter" }
+reading:
+  section: "8.5"
+  title: { de: "Generische Methoden" }
+  printedPage: 602
+teaches:
+  - generics.params
+  - generics.constraint-kinds
+requires:
+  - generics.method
+  - generics.constraint-icomparable
+  - generics.nullable-value
+  - methods.parameters
+  - control.for
+items:
+  - type: coding
+    id: serie
+    openFile: "Serie/Serie.cs"
+    openLine: 3
+    testProject: "Serie Tests/Serie.Tests.csproj"
+  - type: multipleChoice
+    id: constraint-arten
+    prompt: { de: "Welche Einschränkung erlaubt new T() innerhalb einer generischen Klasse?" }
+    options:
+      - { de: "where T : new() — T muss einen öffentlichen parameterlosen Konstruktor haben." }
+      - { de: "where T : class — Referenztypen haben immer einen Standardkonstruktor." }
+      - { de: "where T : struct — Strukturen lassen sich immer erzeugen, Klassen nicht." }
+    correct: [0]
+    explanation: { de: "Die Einschränkungsarten aus 8.2.2 (Seite 593): Basisklasse, Interface, class, struct, new(), notnull, unmanaged. Mehrere werden mit Komma kombiniert; class/struct stehen zuerst, new() zuletzt." }

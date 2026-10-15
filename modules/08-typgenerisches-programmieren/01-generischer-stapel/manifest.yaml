@@ -1,0 +1,31 @@
+id: generics-stapel
+title: { de: "Ein generischer Stapel" }
+reading:
+  section: "8.2.1"
+  title: { de: "Generische Klassen: Definition" }
+  printedPage: 591
+teaches:
+  - generics.class-declare
+  - generics.array-of-t
+requires:
+  - oop.class-declare
+  - arrays.declare-init
+  - arrays.index-length
+  - oop.constructor-explicit
+  - oop.constructor-validates
+  - oop.property-computed
+items:
+  - type: coding
+    id: stapel
+    openFile: "SimpleStack/SimpleStack.cs"
+    openLine: 2
+    testProject: "SimpleStack Tests/SimpleStack.Tests.csproj"
+  - type: multipleChoice
+    id: warum-generisch
+    prompt: { de: "Warum ist SimpleStack<T> einem Stapel mit Elementtyp object vorzuziehen?" }
+    options:
+      - { de: "Der Compiler prüft den Elementtyp, Pop() braucht keinen Cast, und Werttypen werden nicht geboxt." }
+      - { de: "Generische Klassen sind immer schneller, weil sie zur Laufzeit interpretiert werden." }
+      - { de: "object-Stapel können keine Strings aufnehmen." }
+    correct: [0]
+    explanation: { de: "Typsicherheit und Performance sind die Motive aus 8.1 (Seite 589); der ArrayList-Vergleich in 8.8 Aufgabe 2 misst den Boxing-Aufwand." }

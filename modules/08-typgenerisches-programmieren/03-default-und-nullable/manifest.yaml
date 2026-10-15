@@ -1,0 +1,30 @@
+id: generics-default-und-nullable
+title: { de: "default(T) und Nullable<T>" }
+reading:
+  section: "8.7"
+  title: { de: "default-Operator" }
+  printedPage: 605
+teaches:
+  - generics.default
+  - generics.method
+  - generics.nullable-value
+requires:
+  - generics.class-declare
+  - control.foreach
+  - operators.conditional
+  - types.int
+items:
+  - type: coding
+    id: werte
+    openFile: "DefaultNullable/Werte.cs"
+    openLine: 3
+    testProject: "DefaultNullable Tests/DefaultNullable.Tests.csproj"
+  - type: multipleChoice
+    id: nullable-struct
+    prompt: { de: "int? ist eine Kurzschreibweise für Nullable<int>. Was gilt für eine Variable int? x = null;?" }
+    options:
+      - { de: "x ist eine Struktur mit HasValue == false; x.Value würde eine InvalidOperationException werfen." }
+      - { de: "x ist eine Referenz auf ein Objekt auf dem Heap." }
+      - { de: "Der Code kompiliert nicht, weil int kein null kennt." }
+    correct: [0]
+    explanation: { de: "Nullable<T> ist eine generische Struktur (8.3, Seite 598); null-Zuweisung setzt HasValue auf false. Mit ?? holt man sich sicher einen Ersatzwert (8.3.2, Seite 600)." }

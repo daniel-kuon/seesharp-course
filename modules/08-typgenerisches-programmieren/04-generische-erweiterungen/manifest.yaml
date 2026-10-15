@@ -1,0 +1,30 @@
+id: generics-erweiterungen
+title: { de: "Generische Erweiterungsmitglieder" }
+reading:
+  section: "8.6"
+  title: { de: "Generische Erweiterungsmitglieder" }
+  printedPage: 604
+teaches:
+  - generics.extension
+  - generics.type-inference
+requires:
+  - extensions.extension-block
+  - extensions.extension-method
+  - generics.method
+  - generics.constraint-icomparable
+  - control.foreach
+items:
+  - type: coding
+    id: arrayext
+    openFile: "GenerischeErweiterungen/ArrayExt.cs"
+    openLine: 3
+    testProject: "GenerischeErweiterungen Tests/GenerischeErweiterungen.Tests.csproj"
+  - type: multipleChoice
+    id: inferenz
+    prompt: { de: "int[] z = [3, 1]; z.LeadingMin(); Woher weiß der Compiler, dass T = int ist?" }
+    options:
+      - { de: "Aus dem Typ des Empfängers z (int[]): Typinferenz für generische Methoden." }
+      - { de: "Aus dem Rückgabetyp bool?." }
+      - { de: "Gar nicht; man muss z.LeadingMin<int>() schreiben." }
+    correct: [0]
+    explanation: { de: "Generische Methoden leiten ihre Typargumente aus den Argumenten ab (8.5, Seite 602); bei Erweiterungsmethoden zählt der Empfänger als erstes Argument." }

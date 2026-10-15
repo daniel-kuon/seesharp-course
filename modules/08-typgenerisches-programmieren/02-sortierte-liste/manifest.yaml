@@ -1,0 +1,30 @@
+id: generics-sortierte-liste
+title: { de: "Sortierte Liste mit where T : IComparable<T>" }
+reading:
+  section: "8.2.2"
+  title: { de: "Restringierte Typformalparameter" }
+  printedPage: 593
+teaches:
+  - generics.constraint-icomparable
+  - algo.insertion-sort
+requires:
+  - generics.class-declare
+  - generics.array-of-t
+  - oop.indexer
+  - control.for
+  - operators.logical
+items:
+  - type: coding
+    id: sortierte-liste
+    openFile: "SimpleSortedList/SimpleSortedList.cs"
+    openLine: 2
+    testProject: "SimpleSortedList Tests/SimpleSortedList.Tests.csproj"
+  - type: multipleChoice
+    id: ohne-constraint
+    prompt: { de: "Ohne die Einschränkung where T : IComparable<T> meldet der Compiler in Add() einen Fehler bei element.CompareTo(...). Warum?" }
+    options:
+      - { de: "Ohne Einschränkung weiß der Compiler über T nur, was jedes object kann; CompareTo gehört nicht dazu." }
+      - { de: "CompareTo ist eine statische Methode und braucht den Klassennamen." }
+      - { de: "Generische Klassen dürfen keine Methoden auf T aufrufen." }
+    correct: [0]
+    explanation: { de: "Einschränkungen (8.2.2, Seite 593) erweitern, was der Compiler über T annimmt, und schließen zugleich ungeeignete Konkretisierungen aus." }

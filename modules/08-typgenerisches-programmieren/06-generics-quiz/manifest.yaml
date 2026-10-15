@@ -1,0 +1,76 @@
+id: generics-quiz
+title: { de: "Generics-Quiz: Werttypen, Varianz, Vererbung" }
+reading:
+  section: "8.8"
+  title: { de: "Übungsaufgaben zum Kapitel 8" }
+  printedPage: 607
+teaches:
+  - generics.invariance
+  - generics.inheritance
+requires:
+  - generics.class-declare
+  - generics.method
+  - generics.default
+  - inheritance.derive-class
+  - structs.boxing
+items:
+  - type: multipleChoice
+    id: werttyp-argument
+    prompt: { de: "Darf ein Typformalparameter durch einen Werttyp konkretisiert werden, z. B. SimpleStack<int>?" }
+    options:
+      - { de: "Ja; für jeden Werttyp erzeugt die Laufzeit eine eigene Konkretisierung ohne Boxing." }
+      - { de: "Nein; Typargumente müssen Klassen sein." }
+      - { de: "Nur, wenn die Klasse where T : struct deklariert." }
+    correct: [0]
+    explanation: { de: "8.8 Aufgabe 1, Aussage 1 ist richtig. Genau das ist der Vorteil gegenüber ArrayList (Aussage 2 in Aufgabe 2)." }
+  - type: multipleChoice
+    id: generische-methode
+    prompt: { de: "Eine Methode einer generischen Klasse verwendet den Typformalparameter T aus dem Klassenkopf als Rückgabetyp (z. B. T Pop()). Ist Pop eine generische Methode?" }
+    options:
+      - { de: "Nein; eine generische Methode hat einen eigenen Typformalparameter in ihrem Kopf, etwa Max<T>(...)." }
+      - { de: "Ja; jede Methode, in der T vorkommt, ist generisch." }
+    correct: [0]
+    explanation: { de: "8.8 Aufgabe 1, Aussage 2 ist falsch. Pop benutzt nur den Parameter seiner Klasse (8.5, Seite 602)." }
+  - type: multipleChoice
+    id: invarianz
+    prompt: { de: "List<object> lo = new List<string>(); Kompiliert das, weil object Basisklasse von string ist?" }
+    options:
+      - { de: "Nein. Generische Klassen sind invariant: List<string> ist keine List<object>, sonst könnte man über lo ein int in die String-Liste legen." }
+      - { de: "Ja; Vererbung überträgt sich auf Typargumente." }
+      - { de: "Ja, aber nur mit einem expliziten Cast." }
+    correct: [0]
+    explanation: { de: "8.8 Aufgabe 1, Aussage 3 ist falsch. Nur Interfaces und Delegaten können ko- oder kontravariant sein (9.1.5, Level 9)." }
+  - type: multipleChoice
+    id: vererbung
+    prompt: { de: "Darf eine generische Klasse von einer nicht-generischen Klasse abstammen, z. B. class Lager<T> : Basis?" }
+    options:
+      - { de: "Ja; umgekehrt darf eine nicht-generische Klasse auch von einer konkretisierten generischen Klasse erben (class IntLager : Lager<int>)." }
+      - { de: "Nein; generische und nicht-generische Klassen bilden getrennte Hierarchien." }
+    correct: [0]
+    explanation: { de: "8.8 Aufgabe 1, Aussage 4 ist richtig; die Regeln stehen in 8.2.3 (Seite 596). Eine offene generische Basis (: Lager<T>) braucht einen eigenen Typformalparameter in der abgeleiteten Klasse." }
+  - type: multipleChoice
+    id: laufzeittyp
+    prompt: { de: "typeof(SimpleStack<int>) == typeof(SimpleStack<string>) — was liefert der Vergleich?" }
+    options:
+      - { de: "false: jede Konkretisierung ist zur Laufzeit ein eigener Typ; nur typeof(SimpleStack<>) bezeichnet die offene Definition." }
+      - { de: "true: beide stammen aus derselben Klassendefinition." }
+    correct: [0]
+    explanation: { de: "8.4 Generische Typen zur Laufzeit (Seite 601). Statische Felder existieren deshalb pro Konkretisierung getrennt." }
+  - type: multipleChoice
+    id: arraylist
+    prompt: { de: "Warum ist List<int> beim Einfügen von einer Million int-Werten deutlich schneller als ArrayList?" }
+    options:
+      - { de: "ArrayList speichert object; jedes int wird beim Einfügen geboxt und beim Lesen entpackt. List<int> speichert die Werte direkt." }
+      - { de: "ArrayList ist nicht threadsicher." }
+      - { de: "List<int> hat eine feste Größe und muss nie wachsen." }
+    correct: [0]
+    explanation: { de: "8.8 Aufgabe 2 misst das mit Stopwatch (Sample Listenwerte); Boxing ist aus 6.1.6 bekannt." }
+  - type: multipleChoice
+    id: default-klasse
+    prompt: { de: "In einer generischen Klasse steht T x = default; Was enthält x, wenn T mit einer Klasse konkretisiert wurde?" }
+    options:
+      - { de: "null" }
+      - { de: "Ein Objekt, das mit dem Standardkonstruktor erzeugt wurde." }
+      - { de: "Compilerfehler ohne where T : new()." }
+    correct: [0]
+    explanation: { de: "default liefert für Referenztypen null, für Werttypen den Nullwert (8.7, Seite 605). Ein Objekt erzeugt nur new T() mit der Einschränkung new()." }

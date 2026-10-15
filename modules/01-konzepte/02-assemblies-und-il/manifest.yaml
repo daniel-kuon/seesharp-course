@@ -1,0 +1,74 @@
+id: konzepte-assemblies-und-il
+title: { de: "Compiler, IL und Assemblies" }
+reading:
+  section: "2.4"
+  title: { de: "Assemblies" }
+  printedPage: 30
+teaches:
+  - concepts.assembly
+  - concepts.namespace-vs-assembly
+  - concepts.il-and-jit
+  - concepts.aot
+requires:
+  - concepts.class-vs-object
+items:
+  - type: multipleChoice
+    id: aussagen
+    prompt: { de: "Welche Aussagen treffen zu? (mehrere möglich)" }
+    options:
+      - { de: "Mit C# lässt sich nur Software für Windows entwickeln." }
+      - { de: "Die BCL ist überwiegend in C# geschrieben." }
+      - { de: "Klassen aus einem in C# erstellten Bibliotheks-Assembly lassen sich auch aus VB.NET verwenden." }
+      - { de: "Eine WPF-Anwendung läuft dank .NET auch unter Linux und macOS." }
+      - { de: "Für ein reines Windows-Programm ist das alte .NET Framework heute die passende Wahl." }
+    correct: [1, 2]
+    explanation: { de: ".NET ist plattformübergreifend, WPF aber nicht. Das .NET Framework wird nicht weiterentwickelt; neue Projekte nutzen .NET (hier Version 10)." }
+  - type: multipleChoice
+    id: assembly
+    prompt: { de: "Was ist ein Assembly?" }
+    options:
+      - { de: "Eine Datei (.dll oder .exe) mit IL-Code und Metadaten; die Einheit, die gebaut, versioniert und ausgeliefert wird." }
+      - { de: "Ein Ordner mit Quellcodedateien." }
+      - { de: "Der Maschinencode, den der C#-Compiler erzeugt." }
+      - { de: "Ein anderes Wort für Namensraum." }
+    correct: [0]
+  - type: multipleChoice
+    id: namensraum
+    prompt: { de: "In welcher Beziehung stehen Assemblies und Namensräume?" }
+    options:
+      - { de: "Ein Namensraum ist ein logisches Namenspräfix für Typen; ein Assembly ist eine physische Datei. Ein Assembly kann viele Namensräume enthalten, ein Namensraum kann sich über mehrere Assemblies erstrecken." }
+      - { de: "Jedes Assembly enthält genau einen Namensraum gleichen Namens." }
+      - { de: "Namensräume sind die ausführbare Form von Assemblies." }
+      - { de: "Die using-Direktive bindet ein Assembly ein." }
+    correct: [0]
+    explanation: { de: "using importiert einen Namensraum. Assemblies werden über Projekt- oder Paketverweise eingebunden." }
+  - type: multipleChoice
+    id: il
+    prompt: { de: "Was erzeugt der C#-Compiler aus dem Quellcode?" }
+    options:
+      - { de: "IL-Code (Intermediate Language), der erst zur Laufzeit in Maschinencode übersetzt wird." }
+      - { de: "Direkt Maschinencode für die CPU des Entwicklungsrechners." }
+      - { de: "Eine Textdatei, die die CLR Zeile für Zeile interpretiert." }
+      - { de: "JavaScript." }
+    correct: [0]
+  - type: multipleChoice
+    id: jit
+    prompt: { de: "Was macht der JIT-Compiler?" }
+    options:
+      - { de: "Er übersetzt IL-Code beim ersten Aufruf einer Methode zur Laufzeit in Maschinencode für die lokale CPU." }
+      - { de: "Er prüft den Quellcode auf Tippfehler." }
+      - { de: "Er übersetzt C# in VB.NET." }
+      - { de: "Er komprimiert das Assembly beim Ausliefern." }
+    correct: [0]
+  - type: multipleChoice
+    id: aot
+    prompt: { de: "Worin unterscheidet sich AOT-Übersetzung (Ahead-Of-Time) von JIT?" }
+    options:
+      - { de: "AOT erzeugt den Maschinencode schon beim Veröffentlichen: schnellerer Start, aber an die Zielplattform gebunden und mit Einschränkungen." }
+      - { de: "AOT ist nur ein anderer Name für den JIT-Compiler." }
+      - { de: "AOT übersetzt den Code erst beim Beenden des Programms." }
+      - { de: "AOT funktioniert nur mit VB.NET." }
+    correct: [0]
+  - type: open
+    id: abkuerzungen
+    prompt: { de: "Erkläre in je einem Satz, wofür IL, BCL und JIT stehen und was sie tun." }

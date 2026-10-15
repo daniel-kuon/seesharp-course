@@ -1,0 +1,58 @@
+id: konzepte-clr-und-bcl
+title: { de: "CLR, Garbage Collection und BCL" }
+reading:
+  section: "2.5"
+  title: { de: "CLR" }
+  printedPage: 42
+teaches:
+  - concepts.clr-managed-code
+  - concepts.garbage-collection
+  - concepts.bcl
+requires:
+  - concepts.il-and-jit
+items:
+  - type: multipleChoice
+    id: clr-aufgaben
+    prompt: { de: "Welche Aufgaben übernimmt die CLR? (mehrere möglich)" }
+    options:
+      - { de: "IL-Code per JIT in Maschinencode übersetzen" }
+      - { de: "Speicher nicht mehr erreichbarer Objekte freigeben" }
+      - { de: "Quellcode auf Rechtschreibfehler in Kommentaren prüfen" }
+      - { de: "Ausnahmebehandlung und Typsicherheit zur Laufzeit" }
+    correct: [0, 1, 3]
+  - type: multipleChoice
+    id: managed
+    prompt: { de: "Warum heißt IL-Code auch verwalteter Code (managed code)?" }
+    options:
+      - { de: "Weil die CLR seine Ausführung betreut: Speicherverwaltung, Typprüfung, Ausnahmen." }
+      - { de: "Weil er von einem Projektmanager freigegeben werden muss." }
+      - { de: "Weil er nur in Verwaltungssoftware verwendet wird." }
+      - { de: "Weil er in einer Datenbank gespeichert wird." }
+    correct: [0]
+  - type: multipleChoice
+    id: gc
+    prompt: { de: "Wann gibt der Garbage Collector den Speicher eines Objekts frei?" }
+    options:
+      - { de: "Wenn im Programm keine Referenz mehr auf das Objekt zeigt; den Zeitpunkt bestimmt die CLR." }
+      - { de: "Sofort, wenn die Methode endet, in der das Objekt erzeugt wurde." }
+      - { de: "Nur, wenn der Programmierer delete aufruft." }
+      - { de: "Beim Beenden des Programms, nie vorher." }
+    correct: [0]
+  - type: multipleChoice
+    id: bcl
+    prompt: { de: "Was ist die BCL?" }
+    options:
+      - { de: "Die mitgelieferte Sammlung von Assemblies mit Grundtypen wie String, Console und Math; Teil der Laufzeitumgebung." }
+      - { de: "Der C#-Compiler." }
+      - { de: "Ein Werkzeug zum Anlegen von Projekten." }
+      - { de: "Die grafische Oberfläche von Visual Studio." }
+    correct: [0]
+  - type: multipleChoice
+    id: bcl-plattform
+    prompt: { de: "Welche Aussage über BCL und GUI-Bibliotheken stimmt?" }
+    options:
+      - { de: "Die BCL ist plattformunabhängig; WPF ist eine Erweiterung, die nur unter Windows läuft." }
+      - { de: "WPF ist Teil der BCL und läuft überall." }
+      - { de: "Die BCL läuft nur unter Linux." }
+      - { de: "Die BCL enthält keine Klasse für Konsolenausgaben." }
+    correct: [0]

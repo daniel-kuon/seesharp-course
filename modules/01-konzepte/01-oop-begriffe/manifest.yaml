@@ -1,0 +1,74 @@
+id: konzepte-oop-begriffe
+title: { de: "OOP-Begriffe" }
+reading:
+  section: "1.3"
+  title: { de: "Objektorientierte Programmierung" }
+  printedPage: 9
+teaches:
+  - concepts.class-vs-object
+  - concepts.encapsulation
+  - concepts.inheritance
+  - concepts.polymorphism
+  - concepts.message-passing
+requires:
+  - tools.seesharp-workflow
+items:
+  - type: multipleChoice
+    id: aussagen
+    prompt: { de: "Welche Aussagen treffen zu? (mehrere möglich)" }
+    options:
+      - { de: "Die Felder einer Klasse sind in der Regel gekapselt, also vor direktem Zugriff fremder Klassen geschützt." }
+      - { de: "Alle Methoden einer Klasse sind grundsätzlich öffentlich." }
+      - { de: "Eine Eigenschaft besteht meist aus einem Paar von Zugriffsmethoden, lässt sich aber wie ein Feld verwenden." }
+      - { de: "Jede Klasse besitzt eine Methode Main()." }
+      - { de: "Fremde Klassen können den Zustand eines Objekts nur über dessen öffentliche Methoden oder Eigenschaften ändern." }
+    correct: [0, 2, 4]
+    explanation: { de: "Methoden können privat sein, und nur die Startklasse braucht Main(). Kapselung heißt: Zugriff von außen nur über die öffentliche Schnittstelle." }
+  - type: multipleChoice
+    id: klasse-objekt
+    prompt: { de: "Was unterscheidet eine Klasse von einem Objekt?" }
+    options:
+      - { de: "Eine Klasse ist der Bauplan; ein Objekt ist ein konkretes Exemplar, das zur Laufzeit mit new entsteht." }
+      - { de: "Ein Objekt ist der Bauplan; eine Klasse ist eine Kopie davon im Speicher." }
+      - { de: "Beide Begriffe bedeuten dasselbe." }
+      - { de: "Eine Klasse existiert nur zur Laufzeit, ein Objekt nur im Quelltext." }
+    correct: [0]
+  - type: multipleChoice
+    id: kapselung
+    prompt: { de: "Was bedeutet Datenkapselung?" }
+    options:
+      - { de: "Felder sind privat; andere Klassen greifen nur über Methoden oder Eigenschaften darauf zu, die Regeln durchsetzen können." }
+      - { de: "Alle Daten eines Programms liegen in einer einzigen Klasse." }
+      - { de: "Felder werden verschlüsselt im Speicher abgelegt." }
+      - { de: "Eine Klasse darf keine Felder haben, nur Methoden." }
+    correct: [0]
+  - type: multipleChoice
+    id: nachricht
+    prompt: { de: "Im Aufruf b.Kuerze() auf einem Bruch-Objekt b: Wer ist in der OOP-Sprechweise Empfänger der Nachricht, und wer entscheidet, wie sie ausgeführt wird?" }
+    options:
+      - { de: "Empfänger ist das Objekt b; wie gekürzt wird, legt die Klasse Bruch in der Methode fest." }
+      - { de: "Empfänger ist die Startklasse; sie führt die Berechnung selbst durch." }
+      - { de: "Empfänger ist die Laufzeitumgebung; sie wählt zufällig einen Algorithmus." }
+      - { de: "Empfänger ist der Aufrufer; er muss die Felder von b selbst ändern." }
+    correct: [0]
+  - type: multipleChoice
+    id: vererbung
+    prompt: { de: "Eine Klasse Kreis ist von einer Klasse Figur abgeleitet. Was bedeutet das?" }
+    options:
+      - { de: "Kreis übernimmt die Felder und Methoden von Figur und kann eigene hinzufügen oder anpassen." }
+      - { de: "Figur übernimmt alle Mitglieder von Kreis." }
+      - { de: "Kreis und Figur teilen sich denselben Speicherbereich." }
+      - { de: "Kreis darf keine eigenen Methoden definieren." }
+    correct: [0]
+  - type: multipleChoice
+    id: polymorphie
+    prompt: { de: "Mehrere Figur-Objekte (Kreise, Rechtecke) liegen in einer Liste. Für jedes wird Flaeche() aufgerufen, und jedes Objekt berechnet seine Fläche nach seiner eigenen Formel. Wie heißt dieses Prinzip?" }
+    options:
+      - { de: "Polymorphie" }
+      - { de: "Kapselung" }
+      - { de: "Garbage Collection" }
+      - { de: "Namensraum" }
+    correct: [0]
+  - type: open
+    id: produktivitaet
+    prompt: { de: "Warum steigert objektorientiertes Programmieren die Produktivität in der Software-Entwicklung? Nenne zwei Gründe in eigenen Worten." }

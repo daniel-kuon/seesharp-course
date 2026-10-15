@@ -12,6 +12,18 @@ Validate with:
 seesharp validate .
 ```
 
+## Musterlösungen
+
+Jede Programmierübung enthält neben `starter/` und `tests/` einen Ordner
+`solution/` mit der Modellantwort im gleichen Projektlayout wie `starter/`.
+Er ist, wie `rubric.md`, nur für die Betreuung gedacht: SeeSharp rendert ihn
+nicht, und beim Bewerten wird ausschließlich `tests/` über die Abgabe gelegt.
+Prüfen lässt sich eine Musterlösung mit
+
+```bash
+seesharp grade <übung>/tests <übung>/solution
+```
+
 ## Licence
 
 CC BY-NC-SA 4.0. Summaries and exercises are condensed derivative works of

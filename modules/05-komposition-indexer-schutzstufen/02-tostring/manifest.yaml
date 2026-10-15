@@ -1,0 +1,30 @@
+id: komposition-tostring
+title: { de: "ToString überschreiben" }
+reading:
+  section: "7.16"
+  title: { de: "Übungsaufgaben zum Kapitel 7, Aufgabe 5" }
+  printedPage: 588
+teaches:
+  - oop.tostring-override
+  - oop.tostring-implicit
+requires:
+  - oop.property-auto
+  - oop.constructor-explicit
+  - strings.interpolation
+  - strings.concat
+items:
+  - type: coding
+    id: bruch
+    openFile: "b9 ToString-Überschreibung/Bruch.cs"
+    openLine: 37
+    testProject: "b9 Tests/b9.Tests.csproj"
+  - type: multipleChoice
+    id: ohne-override
+    prompt: { de: "Was gibt Console.WriteLine(new Bruch(7, 8, \"\")) aus, solange ToString() nicht überschrieben ist?" }
+    options:
+      - { de: "Den Typnamen Bruch, weil die geerbte Object-Implementierung den Typnamen liefert." }
+      - { de: "7/8, weil der Compiler die Eigenschaften zusammenbaut." }
+      - { de: "Einen Compilerfehler, weil Bruch kein string ist." }
+      - { de: "Die Speicheradresse des Objekts." }
+    correct: [0]
+    explanation: { de: "Jede Klasse erbt ToString() von Object; die Standardfassung liefert den voll qualifizierten Typnamen. Erst die Überschreibung macht die Ausgabe nützlich." }

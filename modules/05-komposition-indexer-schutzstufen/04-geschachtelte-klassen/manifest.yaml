@@ -1,0 +1,30 @@
+id: komposition-geschachtelte-klassen
+title: { de: "Geschachtelte Klassen" }
+reading:
+  section: "5.11"
+  title: { de: "Geschachtelte Klassen" }
+  printedPage: 391
+teaches:
+  - oop.nested-class
+  - oop.nested-private-access
+requires:
+  - oop.field-private
+  - oop.constructor-explicit
+  - strings.interpolation
+  - oop.aggregation
+items:
+  - type: coding
+    id: familie
+    openFile: "GeschachtelteKlassen/Familie.cs"
+    openLine: 18
+    testProject: "GeschachtelteKlassen Tests/GeschachtelteKlassen.Tests.csproj"
+  - type: multipleChoice
+    id: zugriff
+    prompt: { de: "Eine Klasse Sohn ist in Familie geschachtelt. Auf welche Mitglieder von Familie darf Sohn zugreifen?" }
+    options:
+      - { de: "Auf alle, auch auf private Felder, sofern eine Familie-Referenz vorliegt." }
+      - { de: "Nur auf öffentliche Mitglieder, wie jede andere Klasse auch." }
+      - { de: "Nur auf statische Mitglieder." }
+      - { de: "Auf gar keine; geschachtelte Klassen sind vollständig getrennt." }
+    correct: [0]
+    explanation: { de: "Eine geschachtelte Klasse gehört zum Rumpf der äußeren Klasse und sieht deren private Mitglieder. Für Instanzmitglieder braucht sie trotzdem eine Referenz auf ein Familie-Objekt." }

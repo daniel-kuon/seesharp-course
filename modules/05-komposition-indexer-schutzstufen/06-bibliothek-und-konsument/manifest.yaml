@@ -1,0 +1,44 @@
+id: komposition-bibliothek-und-konsument
+title: { de: "Bibliothek und Konsument: FractionLib" }
+reading:
+  section: "5.13"
+  title: { de: "Schutzstufen für Klassen und ihre Mitglieder" }
+  printedPage: 398
+teaches:
+  - oop.library-consumer
+  - access.internal
+  - access.public-private
+  - tools.class-library
+  - tools.project-reference
+requires:
+  - tools.solution-anatomy
+  - oop.operator-compound
+  - oop.tostring-override
+  - oop.constructor-explicit
+  - control.foreach
+items:
+  - type: coding
+    id: rechner
+    openFile: "Bruchrechnung/Rechner.cs"
+    openLine: 1
+    testProject: "Bruchrechnung Tests/Bruchrechnung.Tests.csproj"
+  - type: multipleChoice
+    id: internal
+    prompt: { de: "Eine Methode in FractionLib ist als internal deklariert. Wer darf sie aufrufen?" }
+    options:
+      - { de: "Nur Code innerhalb der Assembly FractionLib.dll." }
+      - { de: "Jedes Projekt, das FractionLib referenziert." }
+      - { de: "Nur die Klasse, in der sie steht." }
+      - { de: "Nur abgeleitete Klassen." }
+    correct: [0]
+    explanation: { de: "internal bedeutet assembly-intern. Das Konsolenprojekt ist eine eigene Assembly und sieht die Methode nicht, obwohl es die Bibliothek referenziert." }
+  - type: multipleChoice
+    id: standard-klasse
+    prompt: { de: "Eine Klasse in einer Bibliothek wird ohne Schutzstufe deklariert: class Helfer { … }. Was gilt?" }
+    options:
+      - { de: "Sie ist internal; andere Assemblys können sie nicht verwenden." }
+      - { de: "Sie ist public; das ist der Standard für Klassen." }
+      - { de: "Sie ist private; nicht einmal die eigene Assembly sieht sie." }
+      - { de: "Der Compiler meldet einen Fehler, weil die Schutzstufe fehlt." }
+    correct: [0]
+    explanation: { de: "Nicht geschachtelte Klassen sind standardmäßig internal (Abschnitt 5.13.1). Wer eine Klasse aus einer Bibliothek herausgeben will, muss public hinschreiben." }

@@ -1,0 +1,20 @@
+id: komposition-indexer
+title: { de: "Indexer: eine Personenliste wie ein Array ansprechen" }
+reading:
+  section: "5.12"
+  title: { de: "Indexer" }
+  printedPage: 393
+teaches:
+  - oop.indexer
+  - oop.indexer-overload
+requires:
+  - oop.property-auto
+  - oop.constructor-explicit
+  - oop.method-instance
+  - control.for
+items:
+  - type: coding
+    id: persliste
+    openFile: "Indexer/PersList.cs"
+    openLine: 13
+    testProject: "Indexer Tests/Indexer.Tests.csproj"

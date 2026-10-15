@@ -399,6 +399,12 @@ skills:
   - id: oop.method-chaining-objects
     category: oop
     label: { de: "Mehrere Objekte in einer Berechnung kombinieren", en: "Combine several objects in one computation" }
+  - id: oop.indexer-overload
+    category: oop
+    label: { de: "Indexer überladen (z. B. nach Position und nach Name)", en: "Overload an indexer (e.g. by position and by name)" }
+  - id: algo.vector-geometry
+    category: algo
+    label: { de: "Vektorlänge, Skalarprodukt, Winkel und Drehung berechnen", en: "Compute vector length, dot product, angle and rotation" }
 
   # ---------------------------------------------------------------------------
   # Level 6 — Weitere Typen (6.1–6.8)

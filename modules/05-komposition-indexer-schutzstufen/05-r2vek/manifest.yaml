@@ -1,0 +1,23 @@
+id: komposition-r2vek
+title: { de: "Vektoren in der Ebene (R²)" }
+reading:
+  section: "5.15"
+  title: { de: "Übungsaufgaben zum Kapitel 5, Aufgabe 4" }
+  printedPage: 425
+teaches:
+  - oop.property-computed
+  - oop.pure-method-returns-new
+  - algo.vector-geometry
+requires:
+  - operators.math-class
+  - types.double
+  - oop.constructor-explicit
+  - oop.method-instance
+  - methods.bool-predicate
+  - oop.clone-method
+items:
+  - type: coding
+    id: r2vek
+    openFile: "R2Vek/R2Vek.cs"
+    openLine: 16
+    testProject: "R2Vek Tests/R2Vek.Tests.csproj"

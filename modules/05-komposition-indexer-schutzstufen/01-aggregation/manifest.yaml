@@ -1,0 +1,22 @@
+id: komposition-aggregation
+title: { de: "Aggregation: eine Aufgabe besitzt ihre Brüche" }
+reading:
+  section: "5.10"
+  title: { de: "Aggregation bzw. Komposition" }
+  printedPage: 388
+teaches:
+  - oop.aggregation
+  - oop.delegate-to-member
+  - oop.method-chaining-objects
+requires:
+  - oop.operator-binary
+  - oop.clone-method
+  - oop.constructor-explicit
+  - oop.method-instance
+  - control.switch-expression
+items:
+  - type: coding
+    id: aufgabe
+    openFile: "b8 Aggregation/Aufgabe.cs"
+    openLine: 12
+    testProject: "b8 Tests/b8.Tests.csproj"

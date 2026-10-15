@@ -1,0 +1,82 @@
+id: interfaces-quiz
+title: { de: "Interfaces-Quiz: Deklaration, abstrakte Klassen, Varianz" }
+reading:
+  section: "9.1.5"
+  title: { de: "Ko- und Kontravarianz von Typformalparametern in generischen Interfaces" }
+  printedPage: 634
+teaches:
+  - interfaces.declare
+  - interfaces.vs-abstract-class
+  - interfaces.default-member
+  - generics.covariance
+  - generics.contravariance
+requires:
+  - interfaces.implement
+  - interfaces.icomparable
+  - interfaces.ienumerable
+  - inheritance.abstract-class
+  - generics.invariance
+items:
+  - type: multipleChoice
+    id: deklaration
+    prompt: { de: "Welche Aussage über die Deklaration eines Interfaces ist richtig?" }
+    options:
+      - { de: "Mitglieder sind implizit public und abstrakt; Instanzfelder sind nicht erlaubt; statische Felder und Mitglieder mit Implementierung sind seit C# 8 bzw. 11 möglich." }
+      - { de: "Mitglieder sind implizit private, damit nur implementierende Klassen sie sehen." }
+      - { de: "Ein Interface darf Instanzfelder deklarieren, die jede implementierende Klasse erbt." }
+    correct: [0]
+    explanation: { de: "9.1 (Seite 614) und 9.1.2 (Seite 622). Ein Interface beschreibt Fähigkeiten, keinen Zustand." }
+  - type: multipleChoice
+    id: vs-abstrakt
+    prompt: { de: "Worin unterscheiden sich Interfaces von abstrakten Klassen? (9.6 Aufgabe 2)" }
+    options:
+      - { de: "Eine Klasse erbt von genau einer Basisklasse, kann aber beliebig viele Interfaces implementieren; Interfaces haben keine Instanzfelder und keine Konstruktoren, abstrakte Klassen können Zustand und Implementierung an Erben weitergeben; Strukturen können Interfaces implementieren, aber nicht erben." }
+      - { de: "Es gibt keinen Unterschied; Interfaces sind abstrakte Klassen ohne das Schlüsselwort class." }
+      - { de: "Abstrakte Klassen dürfen keine Implementierung enthalten, Interfaces schon." }
+    correct: [0]
+    explanation: { de: "Faustregel: abstrakte Klasse für eine ist-ein-Hierarchie mit gemeinsamem Code, Interface für eine Fähigkeit, die quer durch Hierarchien geht (IComparable<T>, IEnumerable<T>)." }
+  - type: multipleChoice
+    id: default-member
+    prompt: { de: "interface ILogger { void Log(string s); void LogError(string s) => Log(\"FEHLER: \" + s); } — Muss eine implementierende Klasse LogError implementieren?" }
+    options:
+      - { de: "Nein; LogError hat eine Standardimplementierung. Sie ist aber nur über eine ILogger-Referenz aufrufbar, nicht über die Klasse selbst." }
+      - { de: "Ja; jedes Interface-Mitglied muss implementiert werden." }
+      - { de: "Der Code kompiliert nicht, weil Interfaces keine Rümpfe enthalten dürfen." }
+    correct: [0]
+    explanation: { de: "Konkrete Schnittstellenmitglieder (9.1.1.2, Seite 616) erlauben, ein Interface nachträglich zu erweitern, ohne alle Implementierungen zu brechen." }
+  - type: multipleChoice
+    id: kovarianz
+    prompt: { de: "static double SmallestX(IEnumerable<Figur> li) wird mit einer List<Kreis> aufgerufen. Kreis erbt von Figur. Kompiliert das?" }
+    options:
+      - { de: "Ja: IEnumerable<out T> ist kovariant; eine Folge von Kreisen darf als Folge von Figuren gelesen werden, weil T nur herausgegeben wird." }
+      - { de: "Nein: generische Typen sind invariant, wie bei List<T>." }
+      - { de: "Nur mit einem expliziten Cast (IEnumerable<Figur>)listeK." }
+    correct: [0]
+    explanation: { de: "9.1.5.1 (Seite 637). Das out im Interface erlaubt die Zuweisung; bei List<T> (Klasse, T auch als Eingabe) wäre sie unsicher." }
+  - type: multipleChoice
+    id: kontravarianz
+    prompt: { de: "Figur implementiert IComparable<Figur>; Kreis : Figur hat keine eigene Implementierung. Warum funktioniert listeK.Sort() für eine List<Kreis> trotzdem?" }
+    options:
+      - { de: "IComparable<in T> ist kontravariant: Ein Vergleicher für Figuren kann auch Kreise vergleichen, weil T nur als Eingabe vorkommt; Kreis erbt die Implementierung von Figur." }
+      - { de: "Sort vergleicht nur die Objektadressen." }
+      - { de: "Es funktioniert nicht; der Aufruf wirft InvalidOperationException." }
+    correct: [0]
+    explanation: { de: "9.1.5.2 (Seite 638) und 9.2.2 (Seite 642, Erben von Schnittstellenimplementationen)." }
+  - type: multipleChoice
+    id: in-out-regel
+    prompt: { de: "Warum darf ein Typformalparameter, der sowohl als Parametertyp als auch als Rückgabetyp vorkommt (z. B. in IList<T>), weder in noch out sein?" }
+    options:
+      - { de: "Kovarianz wäre beim Hineinschreiben unsicher (eine Figur in eine Kreis-Liste), Kontravarianz beim Herauslesen; also bleibt nur Invarianz." }
+      - { de: "Weil Klassen keine Varianz unterstützen und IList<T> von List<T> abgeleitet ist." }
+      - { de: "Es dürfte schon, der Compiler erlaubt es nur aus historischen Gründen nicht." }
+    correct: [0]
+    explanation: { de: "out nur für Ausgabepositionen, in nur für Eingabepositionen (9.1.5, Seite 634)." }
+  - type: multipleChoice
+    id: struktur-interface
+    prompt: { de: "struct Punkt : IComparable<Punkt> — warum ist die generische Schnittstelle hier besser als das alte IComparable mit CompareTo(object)?" }
+    options:
+      - { de: "CompareTo(object) würde den Punkt bei jedem Aufruf boxen; die generische Fassung arbeitet typsicher und ohne Boxing." }
+      - { de: "Strukturen können das nicht-generische IComparable nicht implementieren." }
+      - { de: "Es gibt keinen Unterschied außer der Schreibweise." }
+    correct: [0]
+    explanation: { de: "9.2.3 Vorteile generischer Schnittstellen (Seite 642) und 9.3.2 (Seite 645)." }

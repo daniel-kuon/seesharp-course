@@ -603,3 +603,70 @@ skills:
   - id: algo.insertion-sort
     category: algo
     label: { de: "Element sortiert in ein Array einfügen (Einfügeschritt)", en: "Insert an element into an array keeping it sorted (insertion step)" }
+
+  # ---------------------------------------------------------------------------
+  # Level 9 — Interfaces (9)
+  # ---------------------------------------------------------------------------
+  - id: interfaces.declare
+    category: interfaces
+    label: { de: "Interface deklarieren und seine Regeln kennen", en: "Declare an interface and know its rules" }
+  - id: interfaces.implement
+    category: interfaces
+    label: { de: "Interface in einer Klasse oder Struktur implementieren", en: "Implement an interface in a class or struct" }
+  - id: interfaces.as-type
+    category: interfaces
+    label: { de: "Interface als Typ für Variablen, Parameter und Arrays verwenden", en: "Use an interface as the type of variables, parameters and arrays" }
+  - id: interfaces.struct-boxing
+    category: interfaces
+    label: { de: "Erkennen, dass eine Struktur beim Zuweisen an ein Interface geboxt wird", en: "Recognise that a struct is boxed when assigned to an interface" }
+  - id: interfaces.multiple
+    category: interfaces
+    label: { de: "Mehrere Interfaces in einem Typ implementieren", en: "Implement several interfaces in one type" }
+  - id: interfaces.explicit
+    category: interfaces
+    label: { de: "Schnittstellenmitglied explizit implementieren", en: "Implement an interface member explicitly" }
+  - id: interfaces.icomparable
+    category: interfaces
+    label: { de: "IComparable<T> implementieren, damit Sort funktioniert", en: "Implement IComparable<T> so that Sort works" }
+  - id: interfaces.icloneable
+    category: interfaces
+    label: { de: "ICloneable implementieren und Clone() typisieren", en: "Implement ICloneable and type the Clone() result" }
+  - id: oop.memberwise-clone
+    category: oop
+    label: { de: "MemberwiseClone für flache Kopien verwenden", en: "Use MemberwiseClone for shallow copies" }
+  - id: interfaces.ienumerable
+    category: interfaces
+    label: { de: "IEnumerable<T> implementieren, damit foreach funktioniert", en: "Implement IEnumerable<T> so that foreach works" }
+  - id: interfaces.ienumerator-manual
+    category: interfaces
+    label: { de: "IEnumerator<T> von Hand mit Current, MoveNext und Reset schreiben", en: "Write IEnumerator<T> by hand with Current, MoveNext and Reset" }
+  - id: iterators.yield
+    category: iterators
+    label: { de: "Iterator mit yield return schreiben", en: "Write an iterator with yield return" }
+  - id: iterators.yield-break
+    category: iterators
+    label: { de: "Iterator mit yield break vorzeitig beenden", en: "End an iterator early with yield break" }
+  - id: iterators.named
+    category: iterators
+    label: { de: "Benannte Iteratoren als Methode oder Eigenschaft bereitstellen", en: "Provide named iterators as methods or properties" }
+  - id: interfaces.generic-math
+    category: interfaces
+    label: { de: "IAdditionOperators<T,T,T> implementieren und in generischem Code nutzen", en: "Implement IAdditionOperators<T,T,T> and use it in generic code" }
+  - id: interfaces.checked-operator
+    category: interfaces
+    label: { de: "operator checked + für Überlaufprüfung überladen", en: "Overload operator checked + for overflow checking" }
+  - id: interfaces.static-abstract
+    category: interfaces
+    label: { de: "Statische abstrakte Schnittstellenmitglieder deklarieren und implementieren", en: "Declare and implement static abstract interface members" }
+  - id: interfaces.vs-abstract-class
+    category: interfaces
+    label: { de: "Interfaces und abstrakte Klassen unterscheiden", en: "Distinguish interfaces from abstract classes" }
+  - id: interfaces.default-member
+    category: interfaces
+    label: { de: "Konkrete Schnittstellenmitglieder (Standardimplementierung) einordnen", en: "Understand concrete (default) interface members" }
+  - id: generics.covariance
+    category: generics
+    label: { de: "Kovarianz (out) bei generischen Interfaces erkennen", en: "Recognise covariance (out) in generic interfaces" }
+  - id: generics.contravariance
+    category: generics
+    label: { de: "Kontravarianz (in) bei generischen Interfaces erkennen", en: "Recognise contravariance (in) in generic interfaces" }

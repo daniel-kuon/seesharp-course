@@ -1,0 +1,31 @@
+id: interfaces-iteratoren
+title: { de: "Iteratoren mit yield: RangeItUpDown" }
+reading:
+  section: "9.5.2"
+  title: { de: "Algorithmus-Enumeratoren" }
+  printedPage: 651
+teaches:
+  - iterators.yield
+  - iterators.yield-break
+  - iterators.named
+requires:
+  - interfaces.ienumerable
+  - interfaces.ienumerator-manual
+  - control.for
+  - control.foreach
+  - operators.math-class
+items:
+  - type: coding
+    id: iteratoren
+    openFile: "Iteratoren/SimpleSortedList.cs"
+    openLine: 37
+    testProject: "Iteratoren Tests/Iteratoren.Tests.csproj"
+  - type: multipleChoice
+    id: faul
+    prompt: { de: "var r = liste.RangeIt(1, 99); — in RangeIt steht als erste Anweisung eine Bereichsprüfung mit yield break. Wann läuft sie?" }
+    options:
+      - { de: "Erst beim ersten MoveNext(), also wenn jemand über r iteriert; der Aufruf selbst erzeugt nur ein Iterator-Objekt." }
+      - { de: "Sofort beim Aufruf von RangeIt." }
+      - { de: "Nie; yield break ist nur eine Markierung für den Compiler." }
+    correct: [0]
+    explanation: { de: "Iteratoren sind faul (9.5.2, Seite 651): Der Rumpf wird abschnittsweise bei jedem MoveNext ausgeführt. Deshalb wirkt eine Ausnahme im Rumpf erst beim Durchlaufen." }

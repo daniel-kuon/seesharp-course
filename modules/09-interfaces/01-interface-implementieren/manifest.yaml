@@ -1,0 +1,32 @@
+id: interfaces-implementieren
+title: { de: "Ein Interface implementieren" }
+reading:
+  section: "9.2"
+  title: { de: "Interfaces implementieren" }
+  printedPage: 640
+teaches:
+  - interfaces.implement
+  - interfaces.as-type
+  - interfaces.struct-boxing
+requires:
+  - inheritance.abstract-member
+  - inheritance.base-reference
+  - structs.declare
+  - structs.boxing
+  - oop.property-computed
+  - control.foreach
+items:
+  - type: coding
+    id: formen
+    openFile: "Formen/IForm.cs"
+    openLine: 11
+    testProject: "Formen Tests/Formen.Tests.csproj"
+  - type: multipleChoice
+    id: new-interface
+    prompt: { de: "Darf man new IForm() schreiben?" }
+    options:
+      - { de: "Nein; ein Interface hat keine Implementierung. IForm ist aber als Typ für Variablen, Parameter und Arrays erlaubt." }
+      - { de: "Ja, wenn alle Mitglieder Standardimplementierungen haben." }
+      - { de: "Ja; es entsteht ein leeres Objekt." }
+    correct: [0]
+    explanation: { de: "Interfaces sind Verpflichtungserklärungen (9, Seite 609); Instanzen entstehen nur von implementierenden Klassen oder Strukturen (9.3, Seite 644)." }

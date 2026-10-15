@@ -1,0 +1,29 @@
+id: interfaces-explizit
+title: { de: "Explizite Schnittstellenimplementierung" }
+reading:
+  section: "9.4"
+  title: { de: "Explizite Schnittstellenimplementierung" }
+  printedPage: 646
+teaches:
+  - interfaces.explicit
+  - interfaces.multiple
+requires:
+  - interfaces.implement
+  - interfaces.as-type
+  - types.explicit-cast
+  - inheritance.type-test
+items:
+  - type: coding
+    id: sensor
+    openFile: "Explizit/Sensor.cs"
+    openLine: 9
+    testProject: "Explizit Tests/Explizit.Tests.csproj"
+  - type: multipleChoice
+    id: warum-explizit
+    prompt: { de: "Wann ist eine explizite Implementierung (int IMesser.Wert()) nötig oder sinnvoll?" }
+    options:
+      - { de: "Wenn zwei Interfaces gleichnamige Mitglieder mit verschiedener Bedeutung verlangen, oder wenn ein Mitglied nicht in der öffentlichen Schnittstelle der Klasse auftauchen soll." }
+      - { de: "Immer; implizite Implementierungen sind veraltet." }
+      - { de: "Nur bei Strukturen." }
+    correct: [0]
+    explanation: { de: "9.4 (Seite 646). Ein Beispiel aus der BCL: das nicht-generische IEnumerable.GetEnumerator() wird meist explizit implementiert, damit nur die generische Fassung sichtbar ist (9.5)." }

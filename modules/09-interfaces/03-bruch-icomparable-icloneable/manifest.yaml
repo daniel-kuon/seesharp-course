@@ -1,0 +1,31 @@
+id: interfaces-bruch-icomparable-icloneable
+title: { de: "Bruch implementiert IComparable<T> und ICloneable" }
+reading:
+  section: "9.2.1"
+  title: { de: "Beispiel IComparable<T>" }
+  printedPage: 640
+teaches:
+  - interfaces.icomparable
+  - interfaces.icloneable
+  - oop.memberwise-clone
+requires:
+  - interfaces.implement
+  - interfaces.multiple
+  - oop.clone-method
+  - oop.tostring-override
+  - arrays.array-class
+items:
+  - type: coding
+    id: bruch
+    openFile: "b10 IComparable, ICloneable/Bruch.cs"
+    openLine: 3
+    testProject: "b10 Tests/b10.Tests.csproj"
+  - type: multipleChoice
+    id: klone-vs-clone
+    prompt: { de: "Warum bleibt die eigene Methode Bruch Klone() neben object Clone() sinnvoll?" }
+    options:
+      - { de: "Klone() liefert eine Bruch-Referenz; Clone() liefert object und zwingt den Aufrufer zu einem Cast." }
+      - { de: "Clone() darf nur von Array.Sort aufgerufen werden." }
+      - { de: "Klone() ist schneller, weil sie kein Interface benutzt." }
+    correct: [0]
+    explanation: { de: "9.6 Aufgabe 1 (Seite 655) weist genau darauf hin: ICloneable ist alt und nicht generisch; die typsichere Methode spart Casts." }

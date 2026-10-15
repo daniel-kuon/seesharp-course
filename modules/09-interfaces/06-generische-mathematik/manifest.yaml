@@ -1,0 +1,32 @@
+id: interfaces-generische-mathematik
+title: { de: "Generische Mathematik: IAdditionOperators und operator checked +" }
+reading:
+  section: "9.1.3"
+  title: { de: "Generische Mathematik" }
+  printedPage: 625
+teaches:
+  - interfaces.generic-math
+  - interfaces.checked-operator
+  - interfaces.static-abstract
+  - overflow.checked
+requires:
+  - oop.operator-binary
+  - oop.operator-compound
+  - generics.params
+  - generics.constraint-kinds
+  - interfaces.icomparable
+items:
+  - type: coding
+    id: generische-mathematik
+    openFile: "b11 IAdditionOperators/Bruch.cs"
+    openLine: 80
+    testProject: "b11 Tests/b11.Tests.csproj"
+  - type: multipleChoice
+    id: checked-default
+    prompt: { de: "IAdditionOperators definiert operator checked + als statisches virtuelles Mitglied mit der Vorgabe left + right. Was bedeutet das für Bruch ohne eigene checked-Überladung?" }
+    options:
+      - { de: "checked { b1 + b2 } ruft die normale Überladung; ein Überlauf bleibt unbemerkt. Erst die eigene checked-Variante mit checked(...) wirft OverflowException." }
+      - { de: "Der Compiler erzwingt eine eigene checked-Überladung." }
+      - { de: "checked { b1 + b2 } wirft automatisch bei Überlauf, weil checked alle Operatoren prüft." }
+    correct: [0]
+    explanation: { de: "9.6 Aufgabe 3 (Seite 655): Die Vorgabe im Interface kümmert sich nicht um Überlauf; checked wirkt nur auf eingebaute Arithmetik und auf ausdrücklich als checked überladene Operatoren." }

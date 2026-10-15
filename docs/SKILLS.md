@@ -1,4 +1,4 @@
-# Skill vocabulary — levels 0–6
+# Skill vocabulary — levels 0–9
 
 Draft from task 3a. `skills.yaml` is the single source of truth; this file
 explains it for review. Ids are permanent once a trainee database references
@@ -15,10 +15,15 @@ them, so review the ids more carefully than the labels.
 | 4 | Klassen und Objekte | 29 | oop, statics, algo |
 | 5 | Komposition, Indexer, Schutzstufen | 13 | oop, access |
 | 6 | Weitere Typen | 29 | structs, arrays, algo, strings, enums, tuples, records, types |
+| 7 | Vererbung und Polymorphie | 20 | inheritance, extensions, records |
+| 8 | Typgenerisches Programmieren | 13 | generics, algo |
+| 9 | Interfaces | 21 | interfaces, iterators, generics, oop |
 
-150 skills. Level 2 and 6 are above the 25 guideline because they each cover
-five to eight book sections; split the levels rather than coarsening the
-skills if that bothers you.
+206 skills (150 from the levels 0–6 draft, `oop.indexer-overload` and
+`algo.vector-geometry` added for level 5, 54 for levels 7–9). Level 2 and 6
+are above the 25 guideline because they each cover five to eight book
+sections; split the levels rather than coarsening the skills if that bothers
+you.
 
 A skill's level is **not** stored in `skills.yaml`. It is derived from the
 exercises that teach it, so the table above only reflects the drafting order.
@@ -46,17 +51,34 @@ come from levels 0–3 and only become valid once those levels are authored.
 b10 and b11 (interfaces, generic math) live in level 9 and give `applied`
 credit for the level 4–5 skills.
 
-**Current state in `modules/`.** Levels 0–3 and the level-4 Bruch chain
-b0, b1, b2, b5, b6, b7 are authored (exercises 4.1, 4.2, 4.3, 4.6, 4.7, 4.8
-plus the 4.0 terminology quiz). b3/b4 (4.4, 4.5) are not yet written, so the
-b7 starter still stubs `DuplWerte` and `Klone` and teaches `oop.clone-method`
-and `oop.copy-values` itself. 4.7 (b6) exposes the recursive ggT as a public
-static method and adds factorial and Fibonacci; the two skills
-`algo.factorial` and `algo.fibonacci` were added for it (150 skills in total).
-Level 2 teaches its `types.*`/`operators.*` vocabulary across three coding
-exercises and two quizzes; the `operators.*` quiz carries six skills.
+**Current state in `modules/`.** Levels 0–9 are authored. Levels 0–3 and the
+level-4 Bruch chain b0, b1, b2, b5, b6, b7 (exercises 4.1, 4.2, 4.3, 4.6,
+4.7, 4.8 plus the 4.0 terminology quiz) came first; b3/b4 (4.4, 4.5) are not
+written, so the b7 starter still stubs `DuplWerte` and `Klone` and teaches
+`oop.clone-method` and `oop.copy-values` itself. 4.7 (b6) exposes the
+recursive ggT as a public static method and adds factorial and Fibonacci
+(`algo.factorial`, `algo.fibonacci`). Level 2 teaches its
+`types.*`/`operators.*` vocabulary across three coding exercises and two
+quizzes; the `operators.*` quiz carries six skills.
 
-## Skill graph, levels 0–6
+Levels 5–9 follow the exercise plan in the tool repo's `MODULE-MAP.md`:
+
+| Level | Exercises | Notes |
+|---|---|---|
+| 5 | 01 Aggregation (b8), 02 ToString (b9), 03 Indexer, 04 Geschachtelte Klassen, 05 R2Vek, 06 Bibliothek und Konsument (FractionLib) | 5.6 is the first two-project starter (library + console); its test project references both. |
+| 6 | 01 Strukturen und Boxing, 02 Sieb, 03 Matrix, 04 Lotto, 05 Zeichenfolgen, 06 Enums und Tupel, 07 Records und anonyme Typen | 6.1/6.2 and 6.9/6.10 of the map were merged; `control.nested-loops` is taught by the sieve. |
+| 7 | 01 Figurenhierarchie, 02 virtual/override, 03 Abstrakte Klassen, 04 Reparatur (7.16/1–2), 05 Ausblenden-Quiz, 06 Erweiterungsmitglieder, 07 Record-Figuren | The 04 starter does not compile by design (fix-the-error exercise). |
+| 8 | 01 Generischer Stapel, 02 Sortierte Liste, 03 default und Nullable, 04 Generische Erweiterungen, 05 Max mit Serienparameter, 06 Generics-Quiz | `Listenwerte` (8.8/2) appears only as a quiz item. |
+| 9 | 01 Interface implementieren, 02 Explizite Implementation, 03 Bruch IComparable/ICloneable (b10), 04 Enumeratoren (hand-written), 05 Iteratoren (yield), 06 Generische Mathematik (b11), 07 Interfaces-Quiz | b10/b11 give applied credit for the level 4–5 Bruch skills; `overflow.checked` is taught by 9.6 because level 3.6 was never authored. |
+
+Skills in the vocabulary that no exercise teaches yet (left for the missing
+exercises 0.2, 3.6, 4.4, 4.5, 4.9): `oop.reference-semantics`,
+`oop.local-method`, `oop.required-member`, `oop.ref-readonly-param`,
+`overflow.wraparound`, `overflow.min-max-value`, `types.long`, `types.float`,
+`types.bit-pattern`, `strings.escape` and a few `tools.*` ids from level 0.
+Requiring one of them is a validation error, so manifests avoid them.
+
+## Skill graph, levels 0–9
 
 Nodes are skill groups (one per category and level); edges are the
 dependencies the exercises above and the module map imply. The full
@@ -113,6 +135,26 @@ flowchart TB
     records["records.*"]
     types6["types.anonymous<br/>types.using-alias"]
   end
+  subgraph L7["Level 7 — Vererbung und Polymorphie"]
+    inh["inheritance.derive-class<br/>inheritance.base-constructor<br/>inheritance.protected<br/>inheritance.base-reference<br/>inheritance.type-test"]
+    poly["inheritance.virtual-override<br/>inheritance.base-call<br/>inheritance.sealed<br/>inheritance.abstract-*"]
+    hiding["inheritance.hiding-new<br/>inheritance.overload-vs-override<br/>inheritance.static-no-override"]
+    ext["extensions.*"]
+    records7["records.inheritance<br/>records.positional-validation"]
+  end
+  subgraph L8["Level 8 — Typgenerisches Programmieren"]
+    gen["generics.class-declare<br/>generics.array-of-t<br/>generics.constraint-*"]
+    genm["generics.method<br/>generics.params<br/>generics.default<br/>generics.nullable-value<br/>generics.type-inference"]
+    genext["generics.extension"]
+    genq["generics.invariance<br/>generics.inheritance"]
+  end
+  subgraph L9["Level 9 — Interfaces"]
+    ifc["interfaces.implement<br/>interfaces.as-type<br/>interfaces.explicit<br/>interfaces.multiple"]
+    icmp["interfaces.icomparable<br/>interfaces.icloneable<br/>oop.memberwise-clone"]
+    ienum["interfaces.ienumerable<br/>interfaces.ienumerator-manual<br/>iterators.*"]
+    gmath["interfaces.generic-math<br/>interfaces.checked-operator<br/>interfaces.static-abstract"]
+    variance["generics.covariance<br/>generics.contravariance<br/>interfaces.vs-abstract-class"]
+  end
 
   tools --> basics0 --> methods0
   methods0 --> types
@@ -142,6 +184,21 @@ flowchart TB
   methods3 --> tuples
   ctor --> records
   props --> types6
+  ctor --> inh --> poly --> hiding
+  ops --> ext
+  records --> records7
+  inh --> records7
+  poly --> gen --> genm --> genq
+  ext --> genext
+  genm --> genext
+  poly --> ifc --> icmp
+  refs --> icmp
+  ifc --> ienum
+  gen --> ienum
+  ops --> gmath
+  genm --> gmath
+  genq --> variance
+  ifc --> variance
 ```
 
 ### Bruch chain in detail (levels 4–5)
@@ -158,8 +215,11 @@ flowchart LR
   b7["b7<br/>operator-binary<br/>operator-compound"]
   b8["b8<br/>aggregation<br/>delegate-to-member"]
   b9["b9<br/>tostring-override"]
+  b10["b10 (Level 9)<br/>interfaces.icomparable<br/>interfaces.icloneable"]
+  b11["b11 (Level 9)<br/>interfaces.generic-math<br/>interfaces.checked-operator"]
   b0 --> b1 --> b2 --> b3 --> b4 --> b7 --> b8
   b2 --> b5
   b0 --> b6
   b5 --> b9
+  b9 --> b10 --> b11
 ```

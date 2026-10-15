@@ -1,0 +1,22 @@
+id: typen-sieb
+title: { de: "Sieb des Eratosthenes" }
+reading:
+  section: "6.2"
+  title: { de: "Arrays" }
+  printedPage: 455
+teaches:
+  - algo.sieve
+  - arrays.declare-init
+  - arrays.index-length
+  - control.nested-loops
+requires:
+  - control.for
+  - algo.prime-test
+  - methods.parameters
+  - operators.math-class
+items:
+  - type: coding
+    id: sieb
+    openFile: "Eratosthenes/Primzahlen.cs"
+    openLine: 3
+    testProject: "Eratosthenes Tests/Eratosthenes.Tests.csproj"

@@ -1,0 +1,21 @@
+id: typen-matrix
+title: { de: "Eine float-Matrix mit Transponieren" }
+reading:
+  section: "6.2.9"
+  title: { de: "Mehrdimensionale Arrays" }
+  printedPage: 467
+teaches:
+  - arrays.multidim
+  - algo.matrix-transpose
+  - tuples.declare
+requires:
+  - oop.indexer
+  - arrays.index-length
+  - control.nested-loops
+  - oop.constructor-validates
+items:
+  - type: coding
+    id: matrix
+    openFile: "FloatMatrix/FloatMatrix.cs"
+    openLine: 10
+    testProject: "FloatMatrix Tests/FloatMatrix.Tests.csproj"

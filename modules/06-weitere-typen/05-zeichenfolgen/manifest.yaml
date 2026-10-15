@@ -1,0 +1,42 @@
+id: typen-zeichenfolgen
+title: { de: "Zeichenfolgen: Zeilenumbruch, Glückszahl, StringBuilder" }
+reading:
+  section: "6.3"
+  title: { de: "Klassen für Zeichenfolgen" }
+  printedPage: 472
+teaches:
+  - strings.methods
+  - strings.stringbuilder
+  - strings.char-iteration
+  - strings.immutability
+requires:
+  - strings.interpolation
+  - control.while
+  - control.foreach
+  - arrays.index-length
+  - basics.random-seeded
+  - types.char-int-conversion
+items:
+  - type: coding
+    id: stringutil
+    openFile: "StringUtil/StringUtil.cs"
+    openLine: 8
+    testProject: "StringUtil Tests/StringUtil.Tests.csproj"
+  - type: multipleChoice
+    id: immutability
+    prompt: { de: "string s = \"abc\"; s.ToUpper(); Console.WriteLine(s); Was wird ausgegeben?" }
+    options:
+      - { de: "abc, denn Strings sind unveränderlich; ToUpper liefert einen neuen String, der hier verworfen wird." }
+      - { de: "ABC, denn ToUpper ändert den String." }
+      - { de: "Ein Compilerfehler, weil der Rückgabewert nicht verwendet wird." }
+    correct: [0]
+    explanation: { de: "String-Methoden verändern nie das Objekt (6.3.1.1, Seite 473). Richtig wäre s = s.ToUpper();." }
+  - type: multipleChoice
+    id: stringbuilder
+    prompt: { de: "In einer Schleife werden 50 000 Zeichen an einen Text angehängt. Warum ist StringBuilder.Append hier viel schneller als s += c?" }
+    options:
+      - { de: "s += c erzeugt bei jedem Durchlauf einen neuen String und kopiert den alten komplett; StringBuilder schreibt in einen wachsenden Puffer." }
+      - { de: "StringBuilder benutzt mehrere Threads." }
+      - { de: "Der Compiler optimiert Append, += aber nicht." }
+    correct: [0]
+    explanation: { de: "Unveränderliche Strings machen jede Verkettung zu einer Kopie (6.3.2, Seite 479). Das Buch misst den Unterschied im Projekt StringBuilder." }

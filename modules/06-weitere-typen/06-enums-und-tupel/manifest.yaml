@@ -1,0 +1,33 @@
+id: typen-enums-und-tupel
+title: { de: "Enumerationen und Tupel" }
+reading:
+  section: "6.4"
+  title: { de: "Aufzählungstypen" }
+  printedPage: 480
+teaches:
+  - enums.declare
+  - enums.underlying-value
+  - enums.parse-tostring
+  - tuples.return-multiple
+  - tuples.deconstruct
+requires:
+  - oop.property-validated
+  - oop.property-field-keyword
+  - strings.methods
+  - types.explicit-cast
+items:
+  - type: coding
+    id: temperament
+    openFile: "EnumsTupel/Temperament.cs"
+    openLine: 8
+    testProject: "EnumsTupel Tests/EnumsTupel.Tests.csproj"
+  - type: multipleChoice
+    id: enum-cast
+    prompt: { de: "enum Ampel { Rot, Gelb, Gruen } — was ergibt (Ampel)7?" }
+    options:
+      - { de: "Der Cast gelingt und liefert einen Ampel-Wert, hinter dem die 7 steht; Enum.IsDefined meldet ihn als nicht definiert." }
+      - { de: "Eine InvalidCastException zur Laufzeit." }
+      - { de: "Einen Compilerfehler." }
+      - { de: "Ampel.Gruen, weil auf den letzten Wert gerundet wird." }
+    correct: [0]
+    explanation: { de: "Ein Enum ist zur Laufzeit nur eine Ganzzahl (6.4, Seite 480). Deshalb lohnt sich die Validierung im Setter mit Enum.IsDefined." }

@@ -1,0 +1,53 @@
+id: typen-strukturen-und-boxing
+title: { de: "Strukturen, Wertsemantik und Boxing" }
+reading:
+  section: "6.1"
+  title: { de: "Strukturen" }
+  printedPage: 431
+teaches:
+  - structs.declare
+  - structs.value-semantics
+  - structs.boxing
+  - structs.boxed-equality
+  - oop.constructor-chaining
+requires:
+  - oop.property-auto
+  - oop.constructor-explicit
+  - oop.method-instance
+  - oop.clone-method
+  - types.double
+items:
+  - type: coding
+    id: punkt
+    openFile: "Punkt/Punkt.cs"
+    openLine: 2
+    testProject: "Punkt Tests/Punkt.Tests.csproj"
+  - type: multipleChoice
+    id: boxed-equality
+    prompt: { de: "object o1 = 1; object o2 = 1; Console.WriteLine(o1 == o2); gibt False aus. Warum?" }
+    options:
+      - { de: "Beide int-Werte werden geboxt, also in je ein eigenes Objekt auf dem Heap kopiert; == vergleicht bei object die Referenzen, und die sind verschieden." }
+      - { de: "object kann keine Zahlen speichern; der Vergleich ist undefiniert." }
+      - { de: "Der zweite Wert wird als 1.0 (double) gespeichert." }
+      - { de: "== ist für object nicht erlaubt; es wird immer False geliefert." }
+    correct: [0]
+    explanation: { de: "Boxing erzeugt pro Zuweisung ein neues Objekt. o1.Equals(o2) vergleicht dagegen den Inhalt und liefert True (6.1.6, Seite 450; 6.10 Aufgabe 1)." }
+  - type: multipleChoice
+    id: boxing-erkennen
+    prompt: { de: "In welcher Zeile findet Boxing statt? int i = 7; object o = i; int j = (int)o; double d = i;" }
+    options:
+      - { de: "object o = i;" }
+      - { de: "int j = (int)o;" }
+      - { de: "double d = i;" }
+      - { de: "In keiner; alle Zeilen sind einfache Kopien." }
+    correct: [0]
+    explanation: { de: "Die Zuweisung eines Werttyps an object boxt. (int)o ist Unboxing, double d = i ist eine erweiternde Konvertierung ohne Heap-Objekt." }
+  - type: multipleChoice
+    id: parameter-kopie
+    prompt: { de: "Eine Methode static void Bewegen(Punkt p, double hor, double vert) ändert p.X und p.Y. Punkt ist eine Struktur. Was sieht der Aufrufer nach Bewegen(meinPunkt, 1, 1)?" }
+    options:
+      - { de: "meinPunkt ist unverändert; die Methode hat eine Kopie bewegt." }
+      - { de: "meinPunkt wurde um (1; 1) verschoben." }
+      - { de: "Ein Compilerfehler, weil Strukturen nicht als Parameter erlaubt sind." }
+    correct: [0]
+    explanation: { de: "Werttypen werden als Kopie übergeben (6.1.1, Seite 434). Wer das Original ändern will, braucht ref oder eine Instanzmethode auf der Variablen selbst." }

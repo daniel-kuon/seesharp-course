@@ -1,0 +1,24 @@
+id: typen-lotto
+title: { de: "Lotto: Fisher-Yates und Selection Sort" }
+reading:
+  section: "6.2.6"
+  title: { de: "Suchen und Sortieren" }
+  printedPage: 463
+teaches:
+  - algo.fisher-yates
+  - algo.selection-sort
+  - basics.random-seeded
+  - arrays.reference-semantics
+  - arrays.array-class
+requires:
+  - arrays.index-length
+  - arrays.declare-init
+  - control.for
+  - control.nested-loops
+  - methods.parameters
+items:
+  - type: coding
+    id: lotto
+    openFile: "Lotto/Lotto.cs"
+    openLine: 4
+    testProject: "Lotto Tests/Lotto.Tests.csproj"

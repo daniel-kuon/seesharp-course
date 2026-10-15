@@ -1,0 +1,53 @@
+id: typen-records-und-anonyme-typen
+title: { de: "Records, anonyme Klassen, using-Alias" }
+reading:
+  section: "6.7"
+  title: { de: "Record-Datentypen" }
+  printedPage: 495
+teaches:
+  - records.declare
+  - records.value-equality
+  - records.with
+  - types.anonymous
+  - types.using-alias
+requires:
+  - oop.constructor-explicit
+  - oop.property-auto
+  - tuples.deconstruct
+  - structs.value-semantics
+  - oop.pure-method-returns-new
+  - types.var
+items:
+  - type: coding
+    id: artikel
+    openFile: "Records/Artikel.cs"
+    openLine: 1
+    testProject: "Records Tests/Records.Tests.csproj"
+  - type: multipleChoice
+    id: record-gleichheit
+    prompt: { de: "record Punkt(int X, int Y); var a = new Punkt(1, 2); var b = new Punkt(1, 2); Was liefern a == b und ReferenceEquals(a, b)?" }
+    options:
+      - { de: "true und false: Records vergleichen inhaltlich, es sind aber zwei Objekte." }
+      - { de: "false und false: == vergleicht bei Klassen immer Referenzen." }
+      - { de: "true und true: der Compiler legt gleiche Records nur einmal an." }
+    correct: [0]
+    explanation: { de: "Records bekommen vom Compiler Equals, GetHashCode und die Operatoren == und != mit Wertvergleich (6.7.2, Seite 498)." }
+  - type: multipleChoice
+    id: anonym
+    prompt: { de: "var p = new { Name = \"Otto\", Alter = 35 }; Welche Aussage stimmt?" }
+    options:
+      - { de: "p hat einen vom Compiler erzeugten Typ ohne Namen; seine Eigenschaften sind nur lesbar, und var ist für die Variable Pflicht." }
+      - { de: "p ist vom Typ object; auf Name kommt man nur per Cast." }
+      - { de: "p ist ein Record namens Anonymous mit veränderbaren Eigenschaften." }
+      - { de: "Der Code kompiliert nicht, weil der Typname fehlt." }
+    correct: [0]
+    explanation: { de: "Anonyme Klassen (6.5, Seite 483) sind für kurzlebige Datenbündel gedacht, etwa in LINQ-Abfragen; nach außen gibt man sie nicht weiter." }
+  - type: multipleChoice
+    id: using-alias
+    prompt: { de: "Was bewirkt using Koordinate = (double X, double Y); am Dateianfang?" }
+    options:
+      - { de: "Koordinate ist in dieser Datei ein Alias für den Tupeltyp; Koordinate k = (1.0, 2.0); ist erlaubt." }
+      - { de: "Es wird ein neuer Record-Typ Koordinate deklariert." }
+      - { de: "Es importiert einen Namensraum namens Koordinate." }
+    correct: [0]
+    explanation: { de: "Die using-Aliasdirektive (6.8, Seite 504) gibt einem Typ einen kürzeren Namen, seit C# 12 auch Tupeltypen. Es entsteht kein neuer Typ." }

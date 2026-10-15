@@ -1,0 +1,21 @@
+public class Figur {
+    protected double xpos = 100.0, ypos = 100.0;
+
+    public Figur(double x, double y) {
+        if (x >= 0.0 && y >= 0.0) {
+            xpos = x;
+            ypos = y;
+        }
+    }
+    public Figur() { }
+
+    public virtual string Name => "Figur";
+
+    public virtual string Wo() => $"Oben Links: ({xpos:0}; {ypos:0})";
+
+    // Eine allgemeine Figur hat nichts zu skalieren.
+    public virtual void Skaliere(double faktor) { }
+
+    // Nicht virtuell: nutzt die virtuellen Mitglieder und bekommt so automatisch das richtige Verhalten.
+    public string Beschreibe() => $"{Name}: {Wo()}";
+}

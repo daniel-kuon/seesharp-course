@@ -1,0 +1,39 @@
+id: vererbung-abstrakte-klassen
+title: { de: "Abstrakte Klassen und Mitglieder" }
+reading:
+  section: "7.13"
+  title: { de: "Abstrakte Methoden und Klassen" }
+  printedPage: 577
+teaches:
+  - inheritance.abstract-class
+  - inheritance.abstract-member
+requires:
+  - inheritance.virtual-override
+  - inheritance.base-call
+  - oop.property-computed
+  - operators.math-class
+  - control.foreach
+items:
+  - type: coding
+    id: abstrakt
+    openFile: "Abstrakt/Figur.cs"
+    openLine: 1
+    testProject: "Abstrakt Tests/Abstrakt.Tests.csproj"
+  - type: multipleChoice
+    id: new-abstract
+    prompt: { de: "Figur ist abstract. Was passiert bei new Figur(1, 2)?" }
+    options:
+      - { de: "Compilerfehler: von einer abstrakten Klasse können keine Instanzen erzeugt werden." }
+      - { de: "Es entsteht ein Objekt, dessen abstrakte Mitglieder null liefern." }
+      - { de: "Eine Laufzeitausnahme beim ersten Aufruf eines abstrakten Mitglieds." }
+    correct: [0]
+    explanation: { de: "Abstrakte Klassen sind reine Basisklassen (7.13, Seite 577). Variablen und Arrays vom Typ Figur sind trotzdem erlaubt, sie verweisen auf Objekte konkreter Unterklassen." }
+  - type: multipleChoice
+    id: unvollstaendig
+    prompt: { de: "Eine Klasse Dreieck : Figur implementiert Skaliere und Inhalt, aber nicht Breite. Was meldet der Compiler?" }
+    options:
+      - { de: "Einen Fehler: Dreieck muss entweder Breite implementieren oder selbst abstract sein." }
+      - { de: "Nichts; Breite wird mit der Basisfassung ergänzt." }
+      - { de: "Eine Warnung, aber das Programm läuft." }
+    correct: [0]
+    explanation: { de: "Jedes abstrakte Mitglied muss in der ersten konkreten Unterklasse mit override implementiert werden." }

@@ -496,3 +496,110 @@ skills:
   - id: types.using-alias
     category: types
     label: { de: "using-Alias für einen Typ definieren", en: "Define a using alias for a type" }
+
+  # ---------------------------------------------------------------------------
+  # Level 7 — Vererbung und Polymorphie (7)
+  # ---------------------------------------------------------------------------
+  - id: inheritance.derive-class
+    category: inheritance
+    label: { de: "Abgeleitete Klasse mit : Basisklasse deklarieren", en: "Declare a derived class with : Base" }
+  - id: inheritance.base-constructor
+    category: inheritance
+    label: { de: "Basiskonstruktor mit base(...) aufrufen", en: "Call the base constructor with base(...)" }
+  - id: inheritance.protected
+    category: inheritance
+    label: { de: "protected für Mitglieder wählen, die nur Unterklassen brauchen", en: "Use protected for members only subclasses need" }
+  - id: inheritance.base-reference
+    category: inheritance
+    label: { de: "Objekte über Basisklassenreferenzen verwalten", en: "Manage objects through base-class references" }
+  - id: inheritance.type-test
+    category: inheritance
+    label: { de: "Typtest mit is und Musterdeklaration (is Kreis k)", en: "Type test with is and a declaration pattern (is Kreis k)" }
+  - id: inheritance.virtual-override
+    category: inheritance
+    label: { de: "Methode mit virtual und override überschreiben", en: "Override a method with virtual and override" }
+  - id: inheritance.base-call
+    category: inheritance
+    label: { de: "Basisimplementierung mit base.Methode() wiederverwenden", en: "Reuse the base implementation with base.Method()" }
+  - id: inheritance.sealed
+    category: inheritance
+    label: { de: "Methoden und Klassen mit sealed versiegeln", en: "Seal methods and classes with sealed" }
+  - id: inheritance.abstract-class
+    category: inheritance
+    label: { de: "Abstrakte Klasse deklarieren", en: "Declare an abstract class" }
+  - id: inheritance.abstract-member
+    category: inheritance
+    label: { de: "Abstrakte Methode oder Eigenschaft implementieren", en: "Implement an abstract method or property" }
+  - id: inheritance.base-constructor-required
+    category: inheritance
+    label: { de: "Erkennen, dass ohne Standardkonstruktor der Basis ein base(...)-Aufruf nötig ist", en: "Recognise that a base without default constructor requires base(...)" }
+  - id: inheritance.private-base-access
+    category: inheritance
+    label: { de: "Erkennen, dass private Basismitglieder vererbt, aber unzugänglich sind", en: "Recognise that private base members are inherited but inaccessible" }
+  - id: inheritance.hiding-new
+    category: inheritance
+    label: { de: "Mitglied mit new verdecken und die Wirkung über Basisreferenzen kennen", en: "Hide a member with new and know its effect through base references" }
+  - id: inheritance.overload-vs-override
+    category: inheritance
+    label: { de: "Überladen, Verdecken und Überschreiben unterscheiden", en: "Distinguish overloading, hiding and overriding" }
+  - id: inheritance.static-no-override
+    category: inheritance
+    label: { de: "Wissen, dass statische Methoden nicht überschrieben werden können", en: "Know that static methods cannot be overridden" }
+  - id: extensions.extension-method
+    category: extensions
+    label: { de: "Erweiterungsmethode mit this-Parameter schreiben", en: "Write an extension method with a this parameter" }
+  - id: extensions.extension-block
+    category: extensions
+    label: { de: "Erweiterungsblock (extension) mit Methoden und Eigenschaften schreiben (C# 14)", en: "Write an extension block with methods and properties (C# 14)" }
+  - id: extensions.static-extension
+    category: extensions
+    label: { de: "Statische Erweiterungsmitglieder und Operatoren in einem Erweiterungsblock schreiben", en: "Write static extension members and operators in an extension block" }
+  - id: records.inheritance
+    category: records
+    label: { de: "Record-Hierarchie: positionale Parameter an die Basis weiterreichen", en: "Record hierarchy: pass positional parameters to the base" }
+  - id: records.positional-validation
+    category: records
+    label: { de: "Positionale Record-Eigenschaft ausdrücklich deklarieren und validieren", en: "Declare and validate a positional record property explicitly" }
+
+  # ---------------------------------------------------------------------------
+  # Level 8 — Typgenerisches Programmieren (8)
+  # ---------------------------------------------------------------------------
+  - id: generics.class-declare
+    category: generics
+    label: { de: "Generische Klasse mit Typformalparameter deklarieren", en: "Declare a generic class with a type parameter" }
+  - id: generics.array-of-t
+    category: generics
+    label: { de: "Array vom Typ T[] als internen Speicher verwenden", en: "Use a T[] array as internal storage" }
+  - id: generics.constraint-icomparable
+    category: generics
+    label: { de: "Typformalparameter mit where T : IComparable<T> einschränken", en: "Constrain a type parameter with where T : IComparable<T>" }
+  - id: generics.constraint-kinds
+    category: generics
+    label: { de: "Einschränkungsarten struct, class, new(), Basisklasse kennen und kombinieren", en: "Know and combine the constraint kinds struct, class, new(), base class" }
+  - id: generics.method
+    category: generics
+    label: { de: "Generische Methode mit eigenem Typformalparameter schreiben", en: "Write a generic method with its own type parameter" }
+  - id: generics.params
+    category: generics
+    label: { de: "Generischen Serienparameter (params T[]) verwenden", en: "Use a generic params parameter (params T[])" }
+  - id: generics.default
+    category: generics
+    label: { de: "default(T) und das default-Literal einsetzen", en: "Use default(T) and the default literal" }
+  - id: generics.nullable-value
+    category: generics
+    label: { de: "Nullable<T> (int?) mit HasValue, Value und ?? verwenden", en: "Use Nullable<T> (int?) with HasValue, Value and ??" }
+  - id: generics.extension
+    category: generics
+    label: { de: "Generische Erweiterungsmitglieder schreiben", en: "Write generic extension members" }
+  - id: generics.type-inference
+    category: generics
+    label: { de: "Typinferenz beim Aufruf generischer Methoden nutzen", en: "Rely on type inference when calling generic methods" }
+  - id: generics.invariance
+    category: generics
+    label: { de: "Invarianz generischer Klassen erklären (List<string> ist keine List<object>)", en: "Explain invariance of generic classes (List<string> is not a List<object>)" }
+  - id: generics.inheritance
+    category: generics
+    label: { de: "Vererbungsregeln generischer Klassen kennen", en: "Know the inheritance rules of generic classes" }
+  - id: algo.insertion-sort
+    category: algo
+    label: { de: "Element sortiert in ein Array einfügen (Einfügeschritt)", en: "Insert an element into an array keeping it sorted (insertion step)" }

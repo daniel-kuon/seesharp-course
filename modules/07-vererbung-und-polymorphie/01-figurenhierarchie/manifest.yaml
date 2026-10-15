@@ -1,0 +1,35 @@
+id: vererbung-figurenhierarchie
+title: { de: "Eine Figurenhierarchie" }
+reading:
+  section: "7.3"
+  title: { de: "Definition einer abgeleiteten Klasse" }
+  printedPage: 547
+teaches:
+  - inheritance.derive-class
+  - inheritance.base-constructor
+  - inheritance.protected
+  - inheritance.base-reference
+  - inheritance.type-test
+requires:
+  - concepts.inheritance
+  - oop.constructor-explicit
+  - oop.property-full
+  - oop.property-validated
+  - control.foreach
+  - arrays.declare-init
+  - tuples.return-multiple
+items:
+  - type: coding
+    id: figuren
+    openFile: "Figuren/Kreis.cs"
+    openLine: 1
+    testProject: "Figuren Tests/Figuren.Tests.csproj"
+  - type: multipleChoice
+    id: initialisierung
+    prompt: { de: "new Kreis(1, 2, 3) wird ausgeführt. In welcher Reihenfolge laufen die Konstruktoren?" }
+    options:
+      - { de: "Zuerst der Figur-Konstruktor (über base), dann der Rumpf des Kreis-Konstruktors." }
+      - { de: "Zuerst der Kreis-Konstruktor, am Ende automatisch der Figur-Konstruktor." }
+      - { de: "Nur der Kreis-Konstruktor; der Basiskonstruktor läuft nur bei new Figur(...)." }
+    correct: [0]
+    explanation: { de: "Die Basisklasse wird immer zuerst initialisiert (7.4.2, Seite 550). Ohne base(...) wird der parameterlose Basiskonstruktor aufgerufen; fehlt auch der, meldet der Compiler einen Fehler." }

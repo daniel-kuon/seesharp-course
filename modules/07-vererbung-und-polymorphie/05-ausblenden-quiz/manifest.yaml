@@ -1,0 +1,89 @@
+id: vererbung-ausblenden-quiz
+title: { de: "Überladen, Verdecken, Überschreiben (Quiz)" }
+reading:
+  section: "7.6"
+  title: { de: "Erbstücke durch spezialisierte Varianten ausblenden" }
+  printedPage: 555
+teaches:
+  - inheritance.hiding-new
+  - inheritance.overload-vs-override
+  - inheritance.static-no-override
+requires:
+  - inheritance.virtual-override
+  - inheritance.base-reference
+  - oop.method-overload
+  - statics.method
+items:
+  - type: multipleChoice
+    id: drei-begriffe
+    prompt: { de: "Welche Zuordnung stimmt? (a) gleicher Name, andere Parameterliste, dieselbe Klasse; (b) gleiche Signatur, abgeleitete Klasse, Schlüsselwort new; (c) gleiche Signatur, abgeleitete Klasse, virtual/override" }
+    options:
+      - { de: "(a) Überladen, (b) Verdecken, (c) Überschreiben" }
+      - { de: "(a) Überschreiben, (b) Überladen, (c) Verdecken" }
+      - { de: "(a) Verdecken, (b) Überschreiben, (c) Überladen" }
+    correct: [0]
+    explanation: { de: "Überladen ist ein Thema innerhalb einer Klasse (5.3.5); Verdecken und Überschreiben betreffen die Vererbung (7.6 und 7.9)." }
+  - type: multipleChoice
+    id: statisch
+    prompt: { de: "Welche der drei Techniken ist bei statischen Methoden nicht anwendbar?" }
+    options:
+      - { de: "Überschreiben: statische Methoden sind nicht virtuell, es gibt keinen dynamischen Typ, nach dem entschieden werden könnte." }
+      - { de: "Überladen: statische Methoden dürfen nicht denselben Namen tragen." }
+      - { de: "Verdecken: new ist bei static verboten." }
+    correct: [0]
+    explanation: { de: "Statische Methoden lassen sich überladen und mit new verdecken (Beispiel StatAusblenden), aber nicht mit virtual/override überschreiben (7.16 Aufgabe 3)." }
+  - type: multipleChoice
+    id: new-ueber-basisreferenz
+    prompt: { de: "Kreis verdeckt Wo() mit new. var kreis = new Kreis(); Figur figur = kreis; figur.Wo(); Welche Fassung läuft?" }
+    options:
+      - { de: "Die Figur-Fassung: Verdecken wirkt nur, wenn der statische Typ der Variablen Kreis ist." }
+      - { de: "Die Kreis-Fassung: das Objekt ist ein Kreis." }
+      - { de: "Ein Compilerfehler, weil Wo mehrdeutig ist." }
+    correct: [0]
+    explanation: { de: "Beim Verdecken entscheidet der statische Typ (7.6.1.2, Seite 557). Genau deshalb ist override in den meisten Fällen die richtige Wahl." }
+  - type: multipleChoice
+    id: verdeckte-virtualitaet
+    prompt: { de: "class A { public virtual void M() } — class B : A { public new virtual void M() } — class C : B { public override void M() }. C c = new(); A a = c; B b = c; Welche Fassungen laufen bei a.M() und b.M()?" }
+    options:
+      - { de: "a.M() läuft die A-Fassung, b.M() die C-Fassung." }
+      - { de: "Beide laufen die C-Fassung, weil das Objekt ein C ist." }
+      - { de: "a.M() läuft die A-Fassung, b.M() die B-Fassung." }
+      - { de: "Beide laufen die A-Fassung." }
+    correct: [0]
+    explanation: { de: "B.M beginnt mit new virtual eine neue Kette, die C überschreibt. A.M ist eine andere Kette, die niemand überschreibt (Beispiel VerdecktVirtuell, 7.6.1.2)." }
+  - type: multipleChoice
+    id: ohne-new
+    prompt: { de: "Eine abgeleitete Klasse deklariert eine Methode mit derselben Signatur wie die Basisklasse, ohne new und ohne override. Was passiert?" }
+    options:
+      - { de: "Sie verdeckt die Basismethode; der Compiler warnt (CS0108), dass new fehlt." }
+      - { de: "Sie überschreibt die Basismethode automatisch." }
+      - { de: "Compilerfehler: doppelte Definition." }
+    correct: [0]
+    explanation: { de: "Verdecken ist der Standard, new macht es nur ausdrücklich und bringt die Warnung zum Schweigen (7.6.1)." }
+  - type: multipleChoice
+    id: privates-verdecken
+    prompt: { de: "class Basis { public void NenneTyp() … } — class Spezial : Basis { new void NenneTyp() … public void DeinTyp() { NenneTyp(); } }. var s = new Spezial(); Was liefern s.NenneTyp() und s.DeinTyp()?" }
+    options:
+      - { de: "s.NenneTyp() ruft die Basis-Fassung (die private Spezial-Fassung ist von außen unsichtbar); s.DeinTyp() ruft die Spezial-Fassung." }
+      - { de: "Beide rufen die Spezial-Fassung." }
+      - { de: "Beide rufen die Basis-Fassung." }
+    correct: [0]
+    explanation: { de: "Die Sichtbarkeit entscheidet, welche Methode von einer Stelle aus überhaupt gefunden wird (Beispiel PrivAusblenden)." }
+  - type: multipleChoice
+    id: felder-verdecken
+    prompt: { de: "class BK { protected string x = \"BaseString\"; } — class AK : BK { new int x = 333; } Wie kommt eine Methode von AK an den String der Basisklasse?" }
+    options:
+      - { de: "Über base.x; x allein meint das int-Feld 333 von AK." }
+      - { de: "Gar nicht; das Feld ist durch das Verdecken verloren." }
+      - { de: "Über (string)x." }
+    correct: [0]
+    explanation: { de: "Auch Felder lassen sich verdecken (7.6.2, Seite 561). Beide Felder existieren im Objekt; base greift auf das Erbstück zu." }
+  - type: multipleChoice
+    id: vermeintlich
+    prompt: { de: "Basis hat Methode(in int ip), Spezial hat new Methode(ref int ip). int i = 1; s.Methode(in i); s.Methode(ref i); Welche Fassungen laufen?" }
+    options:
+      - { de: "Erst die Basis-, dann die Spezial-Fassung: in und ref sind verschiedene Signaturen, es wird gar nicht verdeckt, sondern überladen." }
+      - { de: "Beide Male die Spezial-Fassung, weil new verdeckt." }
+      - { de: "Compilerfehler, weil in und ref nicht gemischt werden dürfen." }
+    correct: [0]
+    explanation: { de: "Parametermodifikatoren gehören zur Signatur; das new ist hier überflüssig und der Compiler warnt (Beispiel VermAusblenden)." }

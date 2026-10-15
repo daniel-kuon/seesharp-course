@@ -1,0 +1,30 @@
+id: vererbung-record-figuren
+title: { de: "Record-Hierarchie: verlorene Positionswerte" }
+reading:
+  section: "7.16"
+  title: { de: "Übungsaufgaben zum Kapitel 7, Aufgabe 4" }
+  printedPage: 587
+teaches:
+  - records.inheritance
+  - records.positional-validation
+requires:
+  - records.declare
+  - records.value-equality
+  - tuples.deconstruct
+  - inheritance.base-constructor
+  - inheritance.derive-class
+items:
+  - type: coding
+    id: record-figuren
+    openFile: "RecordFiguren/Kreis.cs"
+    openLine: 3
+    testProject: "RecordFiguren Tests/RecordFiguren.Tests.csproj"
+  - type: multipleChoice
+    id: equality-contract
+    prompt: { de: "record Figur(double X, double Y); record Kreis(double X, double Y, double R) : Figur(X, Y). Figur f = new Kreis(1, 2, 3); Ist f == new Figur(1, 2)?" }
+    options:
+      - { de: "Nein: Records vergleichen auch den Laufzeittyp (EqualityContract); ein Kreis ist nie gleich einer reinen Figur." }
+      - { de: "Ja: über eine Figur-Referenz werden nur X und Y verglichen." }
+      - { de: "Compilerfehler, weil die Typen verschieden sind." }
+    correct: [0]
+    explanation: { de: "Die vom Compiler erzeugte Gleichheit prüft zuerst EqualityContract, also den exakten Typ (6.7.4, Seite 502)." }

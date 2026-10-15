@@ -1,0 +1,22 @@
+id: klassen-statische-member
+title: { de: "Statische Member" }
+reading:
+  section: "5.8"
+  title: { de: "Statische Member und Klassen" }
+  printedPage: 373
+teaches:
+  - statics.property
+  - statics.method
+  - statics.constructor
+  - oop.property-auto
+  - oop.property-field-keyword
+requires:
+  - oop.constructor-explicit
+  - oop.constructor-default
+  - oop.property-validated
+items:
+  - type: coding
+    id: bruch
+    openFile: "b5 Statische Member/Bruch.cs"
+    openLine: 4
+    testProject: "b5 Tests/b5.Tests.csproj"

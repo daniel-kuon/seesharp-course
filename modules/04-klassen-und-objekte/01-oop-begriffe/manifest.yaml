@@ -1,0 +1,74 @@
+id: klassen-oop-begriffe
+title: { de: "OOP-Begriffe im Quelltext" }
+reading:
+  section: "5.1"
+  title: { de: "Überblick, historische Wurzeln, Beispiel" }
+  printedPage: 286
+teaches:
+  - oop.terminology
+  - oop.class-declare
+requires:
+  - concepts.class-vs-object
+  - concepts.encapsulation
+  - concepts.message-passing
+items:
+  - type: multipleChoice
+    id: konstruktor
+    prompt: { de: "Welche Markierung zeigt eine Konstruktordefinition?" }
+    options: [{ de: "(1)" }, { de: "(4)" }, { de: "(7)" }, { de: "(10)" }]
+    correct: [1]
+  - type: multipleChoice
+    id: instanzvariablen
+    prompt: { de: "Welche Markierung zeigt die Deklaration von Instanzvariablen?" }
+    options: [{ de: "(2)" }, { de: "(3)" }, { de: "(5)" }, { de: "(11)" }]
+    correct: [0]
+  - type: multipleChoice
+    id: klassenvariable
+    prompt: { de: "Welche Markierung zeigt die Deklaration einer Klassenvariablen (statisches Feld)?" }
+    options: [{ de: "(2)" }, { de: "(3)" }, { de: "(6)" }, { de: "(10)" }]
+    correct: [1]
+  - type: multipleChoice
+    id: instanzeigenschaft
+    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzeigenschaft?" }
+    options: [{ de: "(2)" }, { de: "(5)" }, { de: "(6)" }, { de: "(9)" }]
+    correct: [1]
+  - type: multipleChoice
+    id: statische-eigenschaft
+    prompt: { de: "Welche Markierung zeigt die Definition einer statischen Eigenschaft?" }
+    options: [{ de: "(3)" }, { de: "(5)" }, { de: "(6)" }, { de: "(10)" }]
+    correct: [2]
+  - type: multipleChoice
+    id: instanzmethode-parameter
+    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzmethode mit einem Wertparameter vom Typ einer Klasse?" }
+    options: [{ de: "(4)" }, { de: "(7)" }, { de: "(9)" }, { de: "(10)" }]
+    correct: [1]
+  - type: multipleChoice
+    id: methodenaufruf
+    prompt: { de: "Welche Markierung zeigt einen Methodenaufruf?" }
+    options: [{ de: "(7)" }, { de: "(8)" }, { de: "(9)" }, { de: "(11)" }]
+    correct: [1]
+  - type: multipleChoice
+    id: referenzrueckgabe
+    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzmethode mit Referenzrückgabe?" }
+    options: [{ de: "(7)" }, { de: "(9)" }, { de: "(10)" }, { de: "(12)" }]
+    correct: [1]
+  - type: multipleChoice
+    id: klassenmethode
+    prompt: { de: "Welche Markierung zeigt den Definitionskopf einer Klassenmethode?" }
+    options: [{ de: "(4)" }, { de: "(7)" }, { de: "(10)" }, { de: "(12)" }]
+    correct: [2]
+  - type: multipleChoice
+    id: objekterzeugung
+    prompt: { de: "Welche Markierung zeigt die Deklaration einer lokalen Variablen zusammen mit einer Objekterzeugung?" }
+    options: [{ de: "(2)" }, { de: "(8)" }, { de: "(11)" }, { de: "(12)" }]
+    correct: [2]
+  - type: multipleChoice
+    id: operator
+    prompt: { de: "Welche Markierung zeigt eine Operatorüberladung?" }
+    options: [{ de: "(6)" }, { de: "(10)" }, { de: "(12)" }, { de: "(1)" }]
+    correct: [2]
+  - type: multipleChoice
+    id: klassendefinition
+    prompt: { de: "Welche Markierung zeigt den Kopf der Klassendefinition?" }
+    options: [{ de: "(1)" }, { de: "(4)" }, { de: "(5)" }, { de: "(10)" }]
+    correct: [0]

@@ -1,0 +1,18 @@
+id: klassen-methoden-ueberladung
+title: { de: "Methoden überladen" }
+reading:
+  section: "5.3.5"
+  title: { de: "Methoden überladen" }
+  printedPage: 334
+teaches:
+  - oop.method-overload
+  - methods.bool-predicate
+requires:
+  - oop.method-instance
+  - oop.property-validated
+items:
+  - type: coding
+    id: bruch
+    openFile: "b1 Methoden-Überladung/Bruch.cs"
+    openLine: 55
+    testProject: "b1 Tests/b1.Tests.csproj"

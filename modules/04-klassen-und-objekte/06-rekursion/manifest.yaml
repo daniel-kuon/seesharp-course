@@ -1,0 +1,20 @@
+id: klassen-rekursion
+title: { de: "Rekursion" }
+reading:
+  section: "5.9.2"
+  title: { de: "Rekursive Methoden" }
+  printedPage: 382
+teaches:
+  - algo.recursion
+  - algo.factorial
+  - algo.fibonacci
+requires:
+  - algo.gcd-modulo
+  - control.if-else
+  - statics.method
+items:
+  - type: coding
+    id: bruch
+    openFile: "b6 Rekursion/Bruch.cs"
+    openLine: 36
+    testProject: "b6 Tests/b6.Tests.csproj"

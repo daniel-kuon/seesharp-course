@@ -1,0 +1,36 @@
+id: klassen-felder-und-eigenschaften
+title: { de: "Felder, Eigenschaften, Validierung" }
+reading:
+  section: "5.5"
+  title: { de: "Eigenschaften" }
+  printedPage: 361
+teaches:
+  - oop.field-private
+  - oop.property-full
+  - oop.property-validated
+  - oop.property-backing-field
+  - oop.method-instance
+requires:
+  - oop.terminology
+  - types.int
+  - control.if-else
+  - control.do-while
+  - operators.integer-division
+  - methods.parameters
+  - algo.gcd-modulo
+items:
+  - type: coding
+    id: bruch
+    openFile: "b0 Felder und Eigenschaften/Bruch.cs"
+    openLine: 8
+    testProject: "b0 Tests/b0.Tests.csproj"
+  - type: multipleChoice
+    id: rekursiver-getter
+    prompt: { de: "Eine Eigenschaft ist so definiert: `public int Zaehler { get { return Zaehler; } set { zaehler = value; } }`. Was passiert beim Lesen von Zaehler?" }
+    options:
+      - { de: "Der Getter ruft sich selbst endlos auf, bis der Stack überläuft (Stack overflow). Richtig wäre return zaehler; mit dem Feld." }
+      - { de: "Es wird der Wert des Feldes zaehler geliefert." }
+      - { de: "Der Compiler meldet einen Fehler." }
+      - { de: "Es wird immer 0 geliefert." }
+    correct: [0]
+    explanation: { de: "Der Compiler erkennt den Logikfehler nicht. Erst zur Laufzeit stapeln sich die Aufrufe von get_Zaehler(), bis die Stack-Kapazität erschöpft ist (siehe 5.15 Aufgabe 3)." }

@@ -6,13 +6,15 @@ reading:
   printedPage: 340
 teaches:
   - oop.constructor-explicit
+  - oop.constructor-default
   - oop.constructor-validates
+  - oop.object-initializer
+requires:
+  - oop.property-validated
   - oop.method-instance
   - oop.method-overload
+  - methods.bool-predicate
   - algo.gcd-modulo
-# Levels 0–3 and 4.1–4.2 are not authored yet, so nothing can be required here
-# without a forward reference. See docs/SKILLS.md for the intended list.
-requires: []
 items:
   - type: coding
     id: bruch

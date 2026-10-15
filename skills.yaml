@@ -1,0 +1,486 @@
+# SeeSharp skill vocabulary — levels 0–6 (draft for review, task 3a).
+#
+# Rules (SKILL-MODEL.md §1):
+# - ids are English, namespaced (category.name), lowercase, permanent. Never rename;
+#   retire by adding a new id with `aliases: [old-id]`.
+# - a skill must be teachable (some exercise lists it in `teaches`) and observable
+#   (a unit test or quiz item could fail if the trainee lacked it).
+# - labels are translated, ids are not. `de` is required, `en` optional.
+# - optional `supersedes: <id>` marks a finer skill that replaces a coarser one.
+#
+# The level a skill belongs to is NOT stored here: it is derived from the exercises
+# that teach it. The level comments below only document the drafting order.
+
+skills:
+
+  # ---------------------------------------------------------------------------
+  # Level 0 — Werkzeuge und erstes Projekt (ch. 3, rewritten for Rider)
+  # ---------------------------------------------------------------------------
+  - id: tools.sdk-version
+    category: tools
+    label: { de: "Installierte .NET-SDK-Version prüfen", en: "Check the installed .NET SDK version" }
+  - id: tools.new-console-project
+    category: tools
+    label: { de: "Konsolenprojekt anlegen (Rider oder dotnet new)", en: "Create a console project (Rider or dotnet new)" }
+  - id: tools.solution-anatomy
+    category: tools
+    label: { de: "Aufbau von Solution, Projektdatei, bin und obj erklären", en: "Explain solution, project file, bin and obj" }
+  - id: tools.build-run
+    category: tools
+    label: { de: "Projekt bauen und starten", en: "Build and run a project" }
+  - id: tools.read-compiler-error
+    category: tools
+    label: { de: "Compilerfehler lesen und beheben", en: "Read and fix a compiler error" }
+  - id: tools.breakpoint-debug
+    category: tools
+    label: { de: "Haltepunkt setzen und Variablen im Debugger prüfen", en: "Set a breakpoint and inspect variables" }
+  - id: tools.class-library
+    category: tools
+    label: { de: "Klassenbibliothek anlegen", en: "Create a class library" }
+  - id: tools.project-reference
+    category: tools
+    label: { de: "Projektverweis auf eine Klassenbibliothek setzen", en: "Add a project reference to a class library" }
+  - id: tools.seesharp-workflow
+    category: tools
+    label: { de: "SeeSharp-Ablauf: in Rider öffnen, bearbeiten, abgeben, Testausgabe lesen", en: "SeeSharp workflow: open in Rider, edit, submit, read test output" }
+  - id: basics.top-level-statements
+    category: basics
+    label: { de: "Top-Level-Statements verwenden", en: "Use top-level statements" }
+  - id: basics.main-method
+    category: basics
+    label: { de: "Main-Methode als Einstiegspunkt schreiben", en: "Write a Main method as entry point" }
+  - id: basics.console-output
+    category: basics
+    label: { de: "Text mit Console.WriteLine ausgeben", en: "Print text with Console.WriteLine" }
+  - id: methods.declare-static
+    category: methods
+    label: { de: "Statische Methode deklarieren", en: "Declare a static method" }
+  - id: methods.return-value
+    category: methods
+    label: { de: "Methode mit Rückgabewert schreiben", en: "Write a method that returns a value" }
+
+  # ---------------------------------------------------------------------------
+  # Level 1 — Konzepte (ch. 1–2, quiz only)
+  # ---------------------------------------------------------------------------
+  - id: concepts.class-vs-object
+    category: concepts
+    label: { de: "Klasse und Objekt unterscheiden", en: "Distinguish class and object" }
+  - id: concepts.encapsulation
+    category: concepts
+    label: { de: "Kapselung erklären", en: "Explain encapsulation" }
+  - id: concepts.inheritance
+    category: concepts
+    label: { de: "Vererbung erklären", en: "Explain inheritance" }
+  - id: concepts.polymorphism
+    category: concepts
+    label: { de: "Polymorphie erklären", en: "Explain polymorphism" }
+  - id: concepts.message-passing
+    category: concepts
+    label: { de: "Methodenaufruf als Nachricht an ein Objekt verstehen", en: "Understand a method call as a message to an object" }
+  - id: concepts.assembly
+    category: concepts
+    label: { de: "Assembly erklären", en: "Explain what an assembly is" }
+  - id: concepts.namespace-vs-assembly
+    category: concepts
+    label: { de: "Namensraum und Assembly unterscheiden", en: "Distinguish namespace and assembly" }
+  - id: concepts.il-and-jit
+    category: concepts
+    label: { de: "IL-Code und JIT-Compiler erklären", en: "Explain IL code and the JIT compiler" }
+  - id: concepts.aot
+    category: concepts
+    label: { de: "AOT- und JIT-Kompilierung unterscheiden", en: "Distinguish AOT and JIT compilation" }
+  - id: concepts.clr-managed-code
+    category: concepts
+    label: { de: "CLR und verwalteten Code erklären", en: "Explain the CLR and managed code" }
+  - id: concepts.garbage-collection
+    category: concepts
+    label: { de: "Garbage Collection erklären", en: "Explain garbage collection" }
+  - id: concepts.bcl
+    category: concepts
+    label: { de: "Basisklassenbibliothek (BCL) einordnen", en: "Place the base class library (BCL)" }
+
+  # ---------------------------------------------------------------------------
+  # Level 2 — Elementare Sprachelemente (4.1–4.5)
+  # ---------------------------------------------------------------------------
+  - id: types.int
+    category: types
+    label: { de: "Ganzzahltyp int verwenden", en: "Use the int type" }
+  - id: types.long
+    category: types
+    label: { de: "Ganzzahltyp long verwenden", en: "Use the long type" }
+  - id: types.double
+    category: types
+    label: { de: "Gleitkommatyp double verwenden", en: "Use the double type" }
+  - id: types.float
+    category: types
+    label: { de: "Gleitkommatyp float verwenden", en: "Use the float type" }
+  - id: types.decimal
+    category: types
+    label: { de: "Dezimaltyp decimal verwenden", en: "Use the decimal type" }
+  - id: types.bool
+    category: types
+    label: { de: "Wahrheitswerttyp bool verwenden", en: "Use the bool type" }
+  - id: types.char
+    category: types
+    label: { de: "Zeichentyp char verwenden", en: "Use the char type" }
+  - id: types.string-basic
+    category: types
+    label: { de: "Zeichenketten deklarieren und zuweisen", en: "Declare and assign strings" }
+  - id: types.literal-suffix
+    category: types
+    label: { de: "Literal-Suffixe f, m, L richtig setzen", en: "Use literal suffixes f, m, L" }
+  - id: types.var
+    category: types
+    label: { de: "Typinferenz mit var einsetzen", en: "Use var type inference" }
+  - id: types.const
+    category: types
+    label: { de: "Konstanten mit const deklarieren", en: "Declare constants with const" }
+  - id: types.implicit-conversion
+    category: types
+    label: { de: "Implizite erweiternde Konvertierung erkennen", en: "Recognise implicit widening conversion" }
+  - id: types.explicit-cast
+    category: types
+    label: { de: "Explizit casten und Datenverlust einschätzen", en: "Cast explicitly and judge data loss" }
+  - id: types.char-int-conversion
+    category: types
+    label: { de: "Zwischen char und int umrechnen", en: "Convert between char and int" }
+  - id: types.float-precision
+    category: types
+    label: { de: "Grenzen der Gleitkommagenauigkeit erkennen", en: "Recognise floating-point precision limits" }
+  - id: types.double-vs-decimal
+    category: types
+    label: { de: "double und decimal nach Einsatzzweck wählen", en: "Choose double or decimal by use case" }
+  - id: types.bit-pattern
+    category: types
+    label: { de: "Bitmuster eines Werts mit BitConverter untersuchen", en: "Inspect a value's bit pattern with BitConverter" }
+  - id: scope.block
+    category: scope
+    label: { de: "Gültigkeitsbereich einer lokalen Variablen bestimmen", en: "Determine the scope of a local variable" }
+  - id: strings.concat
+    category: strings
+    label: { de: "Zeichenketten mit + verketten (auch mit Zahlen)", en: "Concatenate strings with + (including numbers)" }
+  - id: strings.interpolation
+    category: strings
+    label: { de: "Interpolierte Zeichenketten verwenden", en: "Use interpolated strings" }
+  - id: strings.format-alignment
+    category: strings
+    label: { de: "Zahlen formatiert und ausgerichtet ausgeben", en: "Print numbers formatted and aligned" }
+  - id: strings.escape
+    category: strings
+    label: { de: "Escape-Sequenzen und verbatim-Strings verwenden", en: "Use escape sequences and verbatim strings" }
+  - id: operators.arithmetic
+    category: operators
+    label: { de: "Arithmetische Operatoren verwenden", en: "Use arithmetic operators" }
+  - id: operators.integer-division
+    category: operators
+    label: { de: "Ganzzahldivision und Modulo verwenden", en: "Use integer division and modulo" }
+  - id: operators.increment-compound
+    category: operators
+    label: { de: "Inkrement und zusammengesetzte Zuweisung verwenden", en: "Use increment and compound assignment" }
+  - id: operators.comparison
+    category: operators
+    label: { de: "Vergleichsoperatoren verwenden", en: "Use comparison operators" }
+  - id: operators.logical
+    category: operators
+    label: { de: "Logische Operatoren &&, ||, ! verwenden", en: "Use logical operators &&, ||, !" }
+  - id: operators.conditional
+    category: operators
+    label: { de: "Bedingungsoperator ?: verwenden", en: "Use the conditional operator ?:" }
+  - id: operators.precedence
+    category: operators
+    label: { de: "Operatorrangfolge anwenden", en: "Apply operator precedence" }
+  - id: operators.de-morgan
+    category: operators
+    label: { de: "Bedingungen mit De Morgan umformen", en: "Rewrite conditions with De Morgan's laws" }
+  - id: operators.math-class
+    category: operators
+    label: { de: "Methoden der Klasse Math verwenden", en: "Use methods of the Math class" }
+
+  # ---------------------------------------------------------------------------
+  # Level 3 — Ablaufsteuerung (4.6–4.7)
+  # ---------------------------------------------------------------------------
+  - id: control.if-else
+    category: control
+    label: { de: "if-else-Anweisung schreiben", en: "Write an if-else statement" }
+  - id: control.else-if-chain
+    category: control
+    label: { de: "Mehrfachverzweigung mit else if schreiben", en: "Write an else-if chain" }
+  - id: control.switch-statement
+    category: control
+    label: { de: "switch-Anweisung schreiben", en: "Write a switch statement" }
+  - id: control.switch-string
+    category: control
+    label: { de: "switch über Zeichenketten verwenden", en: "Switch on strings" }
+  - id: control.switch-expression
+    category: control
+    label: { de: "switch-Ausdruck verwenden", en: "Use a switch expression" }
+  - id: control.while
+    category: control
+    label: { de: "while-Schleife schreiben", en: "Write a while loop" }
+  - id: control.do-while
+    category: control
+    label: { de: "do-while-Schleife schreiben", en: "Write a do-while loop" }
+  - id: control.for
+    category: control
+    label: { de: "for-Schleife schreiben", en: "Write a for loop" }
+  - id: control.foreach
+    category: control
+    label: { de: "foreach-Schleife schreiben", en: "Write a foreach loop" }
+  - id: control.nested-loops
+    category: control
+    label: { de: "Verschachtelte Schleifen schreiben", en: "Write nested loops" }
+  - id: control.break-continue
+    category: control
+    label: { de: "break und continue gezielt einsetzen oder vermeiden", en: "Use or avoid break and continue deliberately" }
+  - id: control.dangling-else
+    category: control
+    label: { de: "Dangling-else-Fehler erkennen", en: "Recognise the dangling-else bug" }
+  - id: control.assignment-in-condition
+    category: control
+    label: { de: "Zuweisung statt Vergleich in Bedingung erkennen", en: "Recognise assignment instead of comparison in a condition" }
+  - id: control.empty-statement
+    category: control
+    label: { de: "Leere Anweisung nach Schleifenkopf erkennen", en: "Recognise an empty statement after a loop header" }
+  - id: overflow.wraparound
+    category: overflow
+    label: { de: "Ganzzahlüberlauf vorhersagen", en: "Predict integer overflow" }
+  - id: overflow.checked
+    category: overflow
+    label: { de: "Überlauf mit checked erkennen lassen", en: "Detect overflow with checked" }
+  - id: overflow.min-max-value
+    category: overflow
+    label: { de: "MinValue und MaxValue eines Typs verwenden", en: "Use a type's MinValue and MaxValue" }
+  - id: methods.parameters
+    category: methods
+    label: { de: "Methode mit Parametern schreiben", en: "Write a method with parameters" }
+  - id: methods.bool-predicate
+    category: methods
+    label: { de: "Methode mit bool-Rückgabe als Prüfung schreiben", en: "Write a bool-returning predicate method" }
+  - id: algo.gcd-subtraction
+    category: algo
+    label: { de: "ggT per Subtraktion berechnen", en: "Compute the GCD by subtraction" }
+  - id: algo.gcd-modulo
+    category: algo
+    label: { de: "ggT mit Euklid (Modulo) berechnen", en: "Compute the GCD with Euclid (modulo)" }
+  - id: algo.prime-test
+    category: algo
+    label: { de: "Primzahltest schreiben", en: "Write a primality test" }
+
+  # ---------------------------------------------------------------------------
+  # Level 4 — Klassen und Objekte (5.1–5.9)
+  # ---------------------------------------------------------------------------
+  - id: oop.terminology
+    category: oop
+    label: { de: "OOP-Begriffe im Quelltext lokalisieren", en: "Locate OOP terms in source code" }
+  - id: oop.class-declare
+    category: oop
+    label: { de: "Klasse deklarieren", en: "Declare a class" }
+  - id: oop.field-private
+    category: oop
+    label: { de: "Privates Feld mit Initialisierung deklarieren", en: "Declare a private field with initialiser" }
+  - id: oop.property-auto
+    category: oop
+    label: { de: "Automatische Eigenschaft deklarieren", en: "Declare an auto-property" }
+  - id: oop.property-full
+    category: oop
+    label: { de: "Eigenschaft mit get und set über ein Backing-Feld schreiben", en: "Write a property with get and set over a backing field" }
+  - id: oop.property-backing-field
+    category: oop
+    label: { de: "Rekursiven Getter-Fehler erkennen und auf Backing-Feld umstellen", en: "Recognise a self-recursing getter and fix it with a backing field" }
+  - id: oop.property-validated
+    category: oop
+    label: { de: "Wert im Setter validieren", en: "Validate a value in the setter" }
+  - id: oop.property-field-keyword
+    category: oop
+    label: { de: "Schlüsselwort field in Eigenschaften verwenden", en: "Use the field keyword in properties" }
+  - id: oop.method-instance
+    category: oop
+    label: { de: "Instanzmethode schreiben, die den Objektzustand ändert", en: "Write an instance method that changes object state" }
+  - id: oop.method-overload
+    category: oop
+    label: { de: "Methode überladen", en: "Overload a method" }
+  - id: oop.object-initializer
+    category: oop
+    label: { de: "Objektinitialisierer verwenden", en: "Use an object initialiser" }
+  - id: oop.constructor-explicit
+    category: oop
+    label: { de: "Expliziten Konstruktor mit Parametern schreiben", en: "Write an explicit constructor with parameters" }
+  - id: oop.constructor-default
+    category: oop
+    label: { de: "Standardkonstruktor neben expliziten Konstruktoren bereitstellen", en: "Provide a default constructor beside explicit ones" }
+  - id: oop.constructor-validates
+    category: oop
+    label: { de: "Im Konstruktor über Eigenschaften zuweisen, damit die Validierung greift", en: "Assign via properties in the constructor so validation applies" }
+  - id: oop.constructor-chaining
+    category: oop
+    label: { de: "Konstruktor mit this(...) an einen anderen delegieren", en: "Chain a constructor with this(...)" }
+  - id: oop.reference-semantics
+    category: oop
+    label: { de: "Referenzsemantik: zwei Variablen zeigen auf dasselbe Objekt", en: "Reference semantics: two variables point to the same object" }
+  - id: oop.copy-values
+    category: oop
+    label: { de: "Werte eines Objekts in ein anderes kopieren", en: "Copy values from one object into another" }
+  - id: oop.clone-method
+    category: oop
+    label: { de: "Unabhängige Kopie eines Objekts erzeugen", en: "Create an independent copy of an object" }
+  - id: statics.property
+    category: statics
+    label: { de: "Statische Eigenschaft (z. B. Instanzzähler) verwenden", en: "Use a static property (e.g. an instance counter)" }
+  - id: statics.method
+    category: statics
+    label: { de: "Statische Methode als Fabrik oder Hilfsfunktion schreiben", en: "Write a static method as factory or helper" }
+  - id: statics.constructor
+    category: statics
+    label: { de: "Statischen Konstruktor schreiben", en: "Write a static constructor" }
+  - id: oop.operator-binary
+    category: oop
+    label: { de: "Binären Operator überladen, der ein neues Objekt liefert", en: "Overload a binary operator that returns a new object" }
+  - id: oop.operator-compound
+    category: oop
+    label: { de: "Zusammengesetzten Operator (+=) als Instanzoperator überladen", en: "Overload a compound operator (+=) as instance operator" }
+  - id: algo.recursion
+    category: algo
+    label: { de: "Rekursive Methode mit Abbruchbedingung schreiben", en: "Write a recursive method with a base case" }
+  - id: oop.required-member
+    category: oop
+    label: { de: "Pflichtmitglieder mit required deklarieren", en: "Declare required members" }
+  - id: oop.local-method
+    category: oop
+    label: { de: "Lokale Methode verwenden", en: "Use a local method" }
+  - id: oop.ref-readonly-param
+    category: oop
+    label: { de: "Parameter als ref readonly übergeben", en: "Pass a parameter as ref readonly" }
+
+  # ---------------------------------------------------------------------------
+  # Level 5 — Komposition, Indexer, Schutzstufen (5.10–5.13)
+  # ---------------------------------------------------------------------------
+  - id: oop.aggregation
+    category: oop
+    label: { de: "Objekt als Mitglied eines anderen Objekts verwenden (Aggregation)", en: "Use an object as a member of another object (aggregation)" }
+  - id: oop.delegate-to-member
+    category: oop
+    label: { de: "Arbeit an ein aggregiertes Objekt delegieren", en: "Delegate work to an aggregated object" }
+  - id: oop.tostring-override
+    category: oop
+    label: { de: "ToString überschreiben", en: "Override ToString" }
+  - id: oop.tostring-implicit
+    category: oop
+    label: { de: "Impliziten ToString-Aufruf in Interpolation nutzen", en: "Rely on implicit ToString in interpolation" }
+  - id: oop.indexer
+    category: oop
+    label: { de: "Indexer mit get und set schreiben", en: "Write an indexer with get and set" }
+  - id: oop.nested-class
+    category: oop
+    label: { de: "Geschachtelte Klasse deklarieren", en: "Declare a nested class" }
+  - id: oop.nested-private-access
+    category: oop
+    label: { de: "Zugriff der geschachtelten Klasse auf private Mitglieder nutzen", en: "Use a nested class's access to private members" }
+  - id: access.public-private
+    category: access
+    label: { de: "public und private bewusst wählen", en: "Choose public and private deliberately" }
+  - id: access.internal
+    category: access
+    label: { de: "internal für assembly-interne Mitglieder verwenden", en: "Use internal for assembly-local members" }
+  - id: oop.library-consumer
+    category: oop
+    label: { de: "Klasse aus einer Bibliothek in einem Konsolenprojekt nutzen", en: "Use a library class from a console project" }
+  - id: oop.pure-method-returns-new
+    category: oop
+    label: { de: "Methode schreiben, die ein neues Objekt liefert statt das eigene zu ändern", en: "Write a method that returns a new object instead of mutating" }
+  - id: oop.property-computed
+    category: oop
+    label: { de: "Berechnete Nur-Lese-Eigenschaft schreiben", en: "Write a computed read-only property" }
+  - id: oop.method-chaining-objects
+    category: oop
+    label: { de: "Mehrere Objekte in einer Berechnung kombinieren", en: "Combine several objects in one computation" }
+
+  # ---------------------------------------------------------------------------
+  # Level 6 — Weitere Typen (6.1–6.8)
+  # ---------------------------------------------------------------------------
+  - id: structs.declare
+    category: structs
+    label: { de: "Struktur deklarieren", en: "Declare a struct" }
+  - id: structs.value-semantics
+    category: structs
+    label: { de: "Wertsemantik: Zuweisung kopiert die Struktur", en: "Value semantics: assignment copies the struct" }
+  - id: structs.boxing
+    category: structs
+    label: { de: "Boxing und Unboxing erkennen", en: "Recognise boxing and unboxing" }
+  - id: structs.boxed-equality
+    category: structs
+    label: { de: "Erklären, warum zwei geboxte Werte nicht == sind", en: "Explain why two boxed values are not ==" }
+  - id: arrays.declare-init
+    category: arrays
+    label: { de: "Array deklarieren und initialisieren", en: "Declare and initialise an array" }
+  - id: arrays.index-length
+    category: arrays
+    label: { de: "Array über Index und Length durchlaufen", en: "Iterate an array by index and Length" }
+  - id: arrays.multidim
+    category: arrays
+    label: { de: "Mehrdimensionales Array verwenden", en: "Use a multidimensional array" }
+  - id: arrays.reference-semantics
+    category: arrays
+    label: { de: "Array als Referenztyp an Methoden übergeben", en: "Pass an array to a method as a reference type" }
+  - id: arrays.array-class
+    category: arrays
+    label: { de: "Methoden der Klasse Array verwenden (Sort, IndexOf, Copy)", en: "Use Array class methods (Sort, IndexOf, Copy)" }
+  - id: algo.sieve
+    category: algo
+    label: { de: "Sieb des Eratosthenes implementieren", en: "Implement the sieve of Eratosthenes" }
+  - id: algo.selection-sort
+    category: algo
+    label: { de: "Selection Sort implementieren", en: "Implement selection sort" }
+  - id: algo.fisher-yates
+    category: algo
+    label: { de: "Fisher-Yates-Mischen implementieren", en: "Implement a Fisher-Yates shuffle" }
+  - id: algo.matrix-transpose
+    category: algo
+    label: { de: "Matrix transponieren", en: "Transpose a matrix" }
+  - id: basics.random-seeded
+    category: basics
+    label: { de: "Random mit Seed für reproduzierbare Ergebnisse verwenden", en: "Use seeded Random for reproducible results" }
+  - id: strings.immutability
+    category: strings
+    label: { de: "Unveränderlichkeit von string erklären", en: "Explain string immutability" }
+  - id: strings.methods
+    category: strings
+    label: { de: "Zeichenkettenmethoden verwenden (Substring, IndexOf, Split, Trim)", en: "Use string methods (Substring, IndexOf, Split, Trim)" }
+  - id: strings.stringbuilder
+    category: strings
+    label: { de: "StringBuilder zum Aufbau langer Zeichenketten verwenden", en: "Use StringBuilder to build long strings" }
+  - id: strings.char-iteration
+    category: strings
+    label: { de: "Zeichen einer Zeichenkette durchlaufen", en: "Iterate the characters of a string" }
+  - id: enums.declare
+    category: enums
+    label: { de: "Enumeration deklarieren und verwenden", en: "Declare and use an enum" }
+  - id: enums.underlying-value
+    category: enums
+    label: { de: "Enum in Ganzzahl umwandeln und zurück", en: "Convert an enum to its integer value and back" }
+  - id: enums.parse-tostring
+    category: enums
+    label: { de: "Enum per Enum.Parse und ToString wandeln", en: "Convert an enum with Enum.Parse and ToString" }
+  - id: tuples.declare
+    category: tuples
+    label: { de: "Tupel mit benannten Elementen deklarieren", en: "Declare a tuple with named elements" }
+  - id: tuples.return-multiple
+    category: tuples
+    label: { de: "Mehrere Werte als Tupel zurückgeben", en: "Return several values as a tuple" }
+  - id: tuples.deconstruct
+    category: tuples
+    label: { de: "Tupel dekonstruieren und Deconstruct bereitstellen", en: "Deconstruct a tuple and provide Deconstruct" }
+  - id: records.declare
+    category: records
+    label: { de: "Record deklarieren", en: "Declare a record" }
+  - id: records.value-equality
+    category: records
+    label: { de: "Wertgleichheit von Records nutzen", en: "Use value equality of records" }
+  - id: records.with
+    category: records
+    label: { de: "Record mit with-Ausdruck kopieren", en: "Copy a record with a with-expression" }
+  - id: types.anonymous
+    category: types
+    label: { de: "Anonyme Klasse verwenden", en: "Use an anonymous class" }
+  - id: types.using-alias
+    category: types
+    label: { de: "using-Alias für einen Typ definieren", en: "Define a using alias for a type" }

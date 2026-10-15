@@ -1,0 +1,22 @@
+id: klassen-operatoren-ueberladung
+title: { de: "Operatoren überladen" }
+reading:
+  section: "5.9.3"
+  title: { de: "Operatoren überladen" }
+  printedPage: 385
+teaches:
+  - oop.operator-binary
+  - oop.operator-compound
+  - oop.clone-method
+  - oop.copy-values
+requires:
+  - oop.constructor-explicit
+  - oop.method-instance
+  - oop.method-overload
+  - algo.gcd-modulo
+items:
+  - type: coding
+    id: bruch
+    openFile: "b7 Operatoren-Überladung/Bruch.cs"
+    openLine: 37
+    testProject: "b7 Tests/b7.Tests.csproj"

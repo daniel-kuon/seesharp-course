@@ -1,0 +1,6 @@
+id: pruefung-level-0-4
+title: { de: "Prüfung Level 0–4", en: "Exam levels 0–4" }
+kind: real
+coverage:
+  levels: [0, 1, 2, 3, 4]
+timeLimitMinutes: 90

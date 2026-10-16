@@ -1,0 +1,7 @@
+id: probepruefung-level-0-4
+title: { de: "Probeprüfung Level 0–4", en: "Practice exam levels 0–4" }
+kind: practice
+coverage:
+  levels: [0, 1, 2, 3, 4]
+timeLimitMinutes: 60
+maxItems: 20

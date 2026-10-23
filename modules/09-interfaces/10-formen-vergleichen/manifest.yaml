@@ -1,0 +1,23 @@
+id: interfaces-formen-vergleichen
+title: { de: "Zusatz: Formen vergleichen und sortieren" }
+optional: true
+reading:
+  section: "9.1.1.2"
+  title: { de: "Konkrete Instanzmethoden" }
+  printedPage: 616
+teaches:
+  - interfaces.declare
+  - interfaces.default-member
+  - interfaces.icomparable
+requires:
+  - interfaces.implement
+  - interfaces.as-type
+  - operators.math-class
+  - arrays.array-class
+  - oop.property-computed
+items:
+  - type: coding
+    id: formen-vergleichen
+    openFile: "FormenVergleichen/IForm.cs"
+    openLine: 1
+    testProject: "FormenVergleichen Tests/FormenVergleichen.Tests.csproj"

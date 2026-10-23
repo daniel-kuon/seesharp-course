@@ -1,0 +1,22 @@
+id: interfaces-befehle
+title: { de: "Zusatz: Befehle mit Rückgängig und Wiederholen" }
+optional: true
+reading:
+  section: "9.3"
+  title: { de: "Interfaces als Referenzdatentypen" }
+  printedPage: 644
+teaches:
+  - interfaces.implement
+  - interfaces.as-type
+requires:
+  - interfaces.declare
+  - methods.parameters
+  - arrays.declare-init
+  - oop.constructor-explicit
+  - control.for
+items:
+  - type: coding
+    id: befehle
+    openFile: "Befehle/Befehle.cs"
+    openLine: 1
+    testProject: "Befehle Tests/Befehle.Tests.csproj"

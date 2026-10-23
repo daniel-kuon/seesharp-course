@@ -1,0 +1,25 @@
+id: interfaces-bereiche
+title: { de: "Zusatz: Zahlenbereiche und unendliche Folgen mit yield" }
+optional: true
+reading:
+  section: "9.5.2"
+  title: { de: "Algorithmus-Enumeratoren" }
+  printedPage: 651
+teaches:
+  - interfaces.ienumerable
+  - iterators.yield
+  - iterators.yield-break
+  - iterators.named
+requires:
+  - interfaces.implement
+  - interfaces.explicit
+  - interfaces.ienumerator-manual
+  - generics.method
+  - control.for
+  - operators.integer-division
+items:
+  - type: coding
+    id: bereiche
+    openFile: "Bereiche/Bereich.cs"
+    openLine: 1
+    testProject: "Bereiche Tests/Bereiche.Tests.csproj"

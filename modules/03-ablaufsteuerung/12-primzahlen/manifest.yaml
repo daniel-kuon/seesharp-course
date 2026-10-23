@@ -1,0 +1,21 @@
+id: ablauf-primzahlen
+title: { de: "Zusatz: Primzahlen zählen und zerlegen" }
+optional: true
+reading:
+  section: "4.7.3.3"
+  title: { de: "Bedingungsabhängige Schleifen" }
+  printedPage: 275
+teaches:
+  - control.for
+  - control.do-while
+  - methods.bool-predicate
+requires:
+  - algo.prime-test
+  - operators.integer-division
+  - strings.concat
+items:
+  - type: coding
+    id: primzahlen
+    openFile: "Primzahlen/Primzahlen.cs"
+    openLine: 16
+    testProject: "Primzahlen.Tests/Primzahlen.Tests.csproj"

@@ -1,0 +1,20 @@
+id: ablauf-fizzbuzz
+title: { de: "Zusatz: FizzBuzz" }
+optional: true
+reading:
+  section: "4.7.2.1"
+  title: { de: "if-Anweisung" }
+  printedPage: 254
+teaches:
+  - control.else-if-chain
+requires:
+  - control.for
+  - control.if-else
+  - operators.integer-division
+  - strings.concat
+items:
+  - type: coding
+    id: fizzbuzz
+    openFile: "FizzBuzz/FizzBuzz.cs"
+    openLine: 4
+    testProject: "FizzBuzz.Tests/FizzBuzz.Tests.csproj"

@@ -1,0 +1,20 @@
+id: ablauf-collatz
+title: { de: "Zusatz: Collatz-Folge" }
+optional: true
+reading:
+  section: "4.7.3.3"
+  title: { de: "Bedingungsabhängige Schleifen" }
+  printedPage: 275
+teaches:
+  - control.while
+  - control.if-else
+requires:
+  - operators.comparison
+  - operators.integer-division
+  - operators.increment-compound
+items:
+  - type: coding
+    id: collatz
+    openFile: "Collatz/Collatz.cs"
+    openLine: 4
+    testProject: "Collatz.Tests/Collatz.Tests.csproj"

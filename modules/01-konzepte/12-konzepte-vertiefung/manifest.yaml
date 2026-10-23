@@ -1,0 +1,70 @@
+id: konzepte-vertiefung
+title: { de: "Zusatz: Konzepte vertiefen" }
+optional: true
+reading:
+  section: "2.7"
+  title: { de: "Zusammenfassung zum Kapitel 2" }
+  printedPage: 58
+teaches:
+  - concepts.assembly
+  - concepts.namespace-vs-assembly
+  - concepts.bcl
+requires:
+  - concepts.clr-managed-code
+items:
+  - type: multipleChoice
+    id: kapitel-1
+    prompt: { de: "Welche Aussagen über Klassen und Programme treffen zu? (mehrere möglich)" }
+    options:
+      - { de: "Ein C#-Programm besteht aus Klassen; praxisnahe Programme meist aus sehr vielen." }
+      - { de: "Eine Klasse beschreibt einen Zustand (gespeichert in Feldern) und Handlungskompetenzen (realisiert durch Methoden)." }
+      - { de: "Merkmale und Methoden gehören immer zu den Objekten; eine Klasse selbst kann niemals Methoden ausführen." }
+      - { de: "Beim Programmstart fordert das Laufzeitsystem die Startklasse auf, ihre Methode Main() auszuführen." }
+      - { de: "Vor dem Programmieren werden in der objektorientierten Analyse per Abstraktion die beteiligten Klassen und ihre Beziehungen bestimmt." }
+      - { de: "Eine Eigenschaft ist ein öffentliches Feld, bei dem die Klasse keine Regeln durchsetzen kann." }
+    correct: [0, 1, 3, 4]
+    explanation: { de: "Merkmale und Methoden können auch der Klasse selbst gehören (static), so wie Main(). Eine Eigenschaft besteht aus Zugriffsmethoden und kann deshalb Regeln durchsetzen, etwa dass ein Nenner nie 0 wird." }
+  - type: multipleChoice
+    id: static-oder-objekt
+    prompt: { de: "In der Klasse Bruch ist Kuerze() ohne static deklariert. Wie wird die Methode aufgerufen?" }
+    options:
+      - { de: "Über ein Objekt: Bruch b = new Bruch(); b.Kuerze();" }
+      - { de: "Über den Klassennamen: Bruch.Kuerze();" }
+      - { de: "Gar nicht, Methoden ohne static sind privat." }
+      - { de: "Nur aus Main() heraus." }
+    correct: [0]
+    explanation: { de: "Eine Methode ohne static gehört zu den Objekten der Klasse; jedes Objekt kürzt seinen eigenen Bruch. Eine static-Methode gehört zur Klasse selbst." }
+  - type: multipleChoice
+    id: kapitel-2
+    prompt: { de: "Welche Aussagen über Assemblies und IL treffen zu? (mehrere möglich)" }
+    options:
+      - { de: "Ein Assembly enthält neben dem IL-Code auch Metadaten über die enthaltenen und die verwendeten Typen." }
+      - { de: "Seit .NET 5 ist auch für Anwendungs-Assemblies die Endung .dll üblich." }
+      - { de: "Ein Anwendungs-Assembly unterscheidet sich von einem Bibliotheks-Assembly dadurch, dass es eine Startklasse mit Main() enthält." }
+      - { de: "Der JIT-Compiler übersetzt beim Programmstart sofort das gesamte Assembly in Maschinencode." }
+      - { de: "IL-Code ist an einen bestimmten Prozessortyp gebunden." }
+      - { de: "Wer beim Schreiben einer Klasse die CLS-Regeln beachtet, macht sie für andere .NET-Sprachen nutzbar." }
+    correct: [0, 1, 2, 5]
+    explanation: { de: "Der JIT übersetzt eine Methode erst bei ihrem ersten Aufruf. IL ist gerade prozessorunabhängig; erst der JIT erzeugt Code für die lokale CPU." }
+  - type: multipleChoice
+    id: namensraum-zweck
+    prompt: { de: "Wozu dienen Namensräume? (mehrere möglich)" }
+    options:
+      - { de: "Sie ergänzen den Namen eines Typs um ein Präfix und vermeiden so Namenskollisionen." }
+      - { de: "Sie fassen funktional verwandte Typen zusammen." }
+      - { de: "Sie legen fest, in welcher .dll-Datei ein Typ landet." }
+      - { de: "Sie beschleunigen die JIT-Übersetzung." }
+    correct: [0, 1]
+    explanation: { de: "Welche Datei einen Typ enthält, bestimmt das Projekt, nicht der Namensraum. Ein Namensraum kann sich über mehrere Assemblies erstrecken." }
+  - type: multipleChoice
+    id: console-herkunft
+    prompt: { de: "Dein Hallo-Programm aus Level 0 ruft Console.WriteLine() auf. Woher kommt die Klasse Console?" }
+    options:
+      - { de: "Aus der BCL, genauer aus dem Namensraum System; sie wird mit der .NET-Laufzeit installiert." }
+      - { de: "Der C#-Compiler erzeugt sie bei jedem Build neu." }
+      - { de: "Aus dem Projektordner obj." }
+      - { de: "Aus Rider; ohne Rider gäbe es keine Konsolenausgabe." }
+    correct: [0]
+  - type: open
+    id: weg-des-codes
+    prompt: { de: "Beschreibe in drei bis vier Sätzen den Weg deines Quellcodes von Hallo.cs bis zur Ausführung auf der CPU. Verwende die Begriffe Compiler, IL, Assembly, CLR und JIT." }

@@ -1,0 +1,18 @@
+id: konzepte-tiere-als-objekte
+title: { de: "Zusatz: Tiere als Objekte" }
+optional: true
+reading:
+  section: "1.3"
+  title: { de: "Objektorientierte Programmierung" }
+  printedPage: 9
+teaches:
+  - concepts.message-passing
+requires:
+  - concepts.class-vs-object
+  - methods.return-value
+items:
+  - type: coding
+    id: tiere
+    openFile: "Tiere/Tiere.cs"
+    openLine: 3
+    testProject: "Tiere.Tests/Tiere.Tests.csproj"

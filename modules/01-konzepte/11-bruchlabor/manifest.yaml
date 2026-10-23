@@ -1,0 +1,19 @@
+id: konzepte-bruchlabor
+title: { de: "Zusatz: Bruchlabor" }
+optional: true
+reading:
+  section: "1.3"
+  title: { de: "Objektorientierte Programmierung" }
+  printedPage: 9
+teaches:
+  - concepts.encapsulation
+requires:
+  - concepts.class-vs-object
+  - concepts.message-passing
+  - methods.return-value
+items:
+  - type: coding
+    id: bruchlabor
+    openFile: "Bruchlabor/Bruchlabor.cs"
+    openLine: 4
+    testProject: "Bruchlabor.Tests/Bruchlabor.Tests.csproj"

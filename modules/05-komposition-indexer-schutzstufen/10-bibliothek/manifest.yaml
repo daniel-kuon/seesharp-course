@@ -1,0 +1,22 @@
+id: komposition-bibliothek
+title: { de: "Zusatzaufgabe: Eine Bibliothek mit Indexern" }
+optional: true
+reading:
+  section: "5.12"
+  title: { de: "Indexer" }
+  printedPage: 393
+teaches:
+  - oop.indexer
+  - oop.indexer-overload
+  - oop.nested-class
+requires:
+  - oop.aggregation
+  - oop.tostring-override
+  - oop.property-computed
+  - control.for
+items:
+  - type: coding
+    id: bibliothek
+    openFile: "Bibliothek/Bibliothek.cs"
+    openLine: 14
+    testProject: "Bibliothek Tests/Bibliothek.Tests.csproj"

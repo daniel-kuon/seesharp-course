@@ -1,0 +1,23 @@
+id: komposition-rechteck
+title: { de: "Zusatzaufgabe: Ein Rechteck besitzt seine Punkte" }
+optional: true
+reading:
+  section: "5.10"
+  title: { de: "Aggregation bzw. Komposition" }
+  printedPage: 388
+teaches:
+  - oop.aggregation
+  - oop.property-computed
+  - oop.pure-method-returns-new
+requires:
+  - oop.clone-method
+  - oop.tostring-override
+  - oop.delegate-to-member
+  - operators.math-class
+  - types.double
+items:
+  - type: coding
+    id: rechteck
+    openFile: "Rechteck/Rechteck.cs"
+    openLine: 8
+    testProject: "Rechteck Tests/Rechteck.Tests.csproj"

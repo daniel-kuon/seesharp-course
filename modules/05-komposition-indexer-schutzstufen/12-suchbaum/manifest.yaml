@@ -1,0 +1,22 @@
+id: komposition-suchbaum
+title: { de: "Zusatzaufgabe: Ein binärer Suchbaum mit geschachteltem Knoten" }
+optional: true
+reading:
+  section: "5.11"
+  title: { de: "Geschachtelte Klassen" }
+  printedPage: 391
+teaches:
+  - oop.nested-class
+  - algo.recursion
+requires:
+  - oop.aggregation
+  - oop.tostring-override
+  - oop.property-computed
+  - statics.method
+  - control.while
+items:
+  - type: coding
+    id: suchbaum
+    openFile: "Suchbaum/Suchbaum.cs"
+    openLine: 14
+    testProject: "Suchbaum Tests/Suchbaum.Tests.csproj"

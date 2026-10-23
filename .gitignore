@@ -5,3 +5,11 @@ obj/
 _ReSharper.Caches/
 *.user
 TestResults/
+
+# Written by SeeSharp into each starter project (editor settings, rules for AI assistants); regenerated on every open.
+**/starter/**/.vscode/
+**/starter/**/.github/
+**/starter/**/.junie/
+**/starter/**/.aiassistant/
+**/starter/**/AGENTS.md
+**/starter/**/CLAUDE.md

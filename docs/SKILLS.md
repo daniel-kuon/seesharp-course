@@ -25,6 +25,15 @@ are above the 25 guideline because they each cover five to eight book
 sections; split the levels rather than coarsening the skills if that bothers
 you.
 
+## Optional exercises (Zusatzaufgaben)
+
+Every level also has 2–4 optional exercises (folders `10-…` and up,
+`optional: true`): 35 in total, 34 of them coding. They only re-teach skills a
+mandatory exercise already introduced, so they add practice and `applied`
+credit but never gate a module, an unlock or an exam. The validator enforces
+both directions (no new skills in optional work; mandatory work never depends
+on optional work).
+
 A skill's level is **not** stored in `skills.yaml`. It is derived from the
 exercises that teach it, so the table above only reflects the drafting order.
 

@@ -1,0 +1,22 @@
+id: generics-ringpuffer
+title: { de: "Zusatz: Ein generischer Ringpuffer" }
+optional: true
+reading:
+  section: "8.2.1"
+  title: { de: "Generische Klassen: Definition" }
+  printedPage: 591
+teaches:
+  - generics.array-of-t
+  - generics.default
+requires:
+  - generics.class-declare
+  - oop.indexer
+  - oop.property-computed
+  - operators.integer-division
+  - control.for
+items:
+  - type: coding
+    id: ringpuffer
+    openFile: "Ringpuffer/Ringpuffer.cs"
+    openLine: 1
+    testProject: "Ringpuffer Tests/Ringpuffer.Tests.csproj"

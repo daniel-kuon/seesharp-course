@@ -1,0 +1,23 @@
+id: generics-paar
+title: { de: "Zusatz: Ein generisches Paar mit zwei Typparametern" }
+optional: true
+reading:
+  section: "8.5"
+  title: { de: "Generische Methoden" }
+  printedPage: 602
+teaches:
+  - generics.class-declare
+  - generics.method
+  - generics.type-inference
+requires:
+  - generics.constraint-icomparable
+  - oop.constructor-explicit
+  - oop.property-auto
+  - oop.tostring-override
+  - statics.method
+items:
+  - type: coding
+    id: paare
+    openFile: "Paare/Paar.cs"
+    openLine: 1
+    testProject: "Paare Tests/Paare.Tests.csproj"

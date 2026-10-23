@@ -1,0 +1,22 @@
+id: generics-cache
+title: { de: "Zusatz: Ein Cache mit Größenlimit" }
+optional: true
+reading:
+  section: "8.2.2"
+  title: { de: "Restringierte Typformalparameter" }
+  printedPage: 593
+teaches:
+  - generics.constraint-icomparable
+  - generics.default
+requires:
+  - generics.class-declare
+  - generics.array-of-t
+  - arrays.index-length
+  - control.for
+  - oop.property-computed
+items:
+  - type: coding
+    id: cache
+    openFile: "Cache/Cache.cs"
+    openLine: 1
+    testProject: "Cache Tests/Cache.Tests.csproj"

@@ -1,0 +1,24 @@
+id: generics-algorithmen
+title: { de: "Zusatz: Generische Algorithmen für sortierte Arrays" }
+optional: true
+reading:
+  section: "8.5"
+  title: { de: "Generische Methoden" }
+  printedPage: 602
+teaches:
+  - generics.method
+  - generics.params
+  - generics.constraint-icomparable
+requires:
+  - generics.array-of-t
+  - generics.type-inference
+  - tuples.return-multiple
+  - control.while
+  - control.for
+  - operators.integer-division
+items:
+  - type: coding
+    id: algorithmen
+    openFile: "Algorithmen/Algorithmen.cs"
+    openLine: 1
+    testProject: "Algorithmen Tests/Algorithmen.Tests.csproj"

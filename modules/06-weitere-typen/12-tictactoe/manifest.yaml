@@ -1,0 +1,23 @@
+id: typen-tictactoe
+title: { de: "Zusatzaufgabe: Tic-Tac-Toe mit 2D-Array und Enums" }
+optional: true
+reading:
+  section: "6.2.9"
+  title: { de: "Mehrdimensionale Arrays" }
+  printedPage: 467
+teaches:
+  - arrays.multidim
+  - enums.declare
+  - control.nested-loops
+requires:
+  - oop.indexer
+  - arrays.index-length
+  - control.switch-expression
+  - methods.bool-predicate
+  - oop.property-computed
+items:
+  - type: coding
+    id: spielfeld
+    openFile: "TicTacToe/Spielfeld.cs"
+    openLine: 24
+    testProject: "TicTacToe Tests/TicTacToe.Tests.csproj"

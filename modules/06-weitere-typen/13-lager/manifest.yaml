@@ -1,0 +1,23 @@
+id: typen-lager
+title: { de: "Zusatzaufgabe: Ein Lager aus Records" }
+optional: true
+reading:
+  section: "6.7.3"
+  title: { de: "Kopierkonstruktoren und with-Ausdrücke" }
+  printedPage: 499
+teaches:
+  - records.with
+  - records.value-equality
+  - tuples.return-multiple
+requires:
+  - records.declare
+  - tuples.deconstruct
+  - arrays.declare-init
+  - types.double-vs-decimal
+  - control.foreach
+items:
+  - type: coding
+    id: lager
+    openFile: "Lager/Lager.cs"
+    openLine: 5
+    testProject: "Lager Tests/Lager.Tests.csproj"

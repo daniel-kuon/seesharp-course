@@ -1,0 +1,23 @@
+id: typen-textspiele
+title: { de: "Zusatzaufgabe: Palindrome, Anagramme, Lauflängen" }
+optional: true
+reading:
+  section: "6.3"
+  title: { de: "Klassen für Zeichenfolgen" }
+  printedPage: 472
+teaches:
+  - strings.methods
+  - strings.stringbuilder
+  - arrays.array-class
+requires:
+  - strings.char-iteration
+  - types.char-int-conversion
+  - arrays.index-length
+  - control.while
+  - methods.bool-predicate
+items:
+  - type: coding
+    id: wortspiele
+    openFile: "Textspiele/Wortspiele.cs"
+    openLine: 6
+    testProject: "Textspiele Tests/Textspiele.Tests.csproj"

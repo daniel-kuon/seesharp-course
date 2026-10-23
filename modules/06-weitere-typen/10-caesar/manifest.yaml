@@ -1,0 +1,23 @@
+id: typen-caesar
+title: { de: "Zusatzaufgabe: Caesar-Verschlüsselung knacken" }
+optional: true
+reading:
+  section: "6.3.2"
+  title: { de: "Klasse StringBuilder für veränderliche Zeichenfolgen" }
+  printedPage: 479
+teaches:
+  - strings.char-iteration
+  - strings.stringbuilder
+  - arrays.index-length
+requires:
+  - types.char-int-conversion
+  - types.explicit-cast
+  - arrays.declare-init
+  - control.foreach
+  - control.else-if-chain
+items:
+  - type: coding
+    id: caesar
+    openFile: "Caesar/Caesar.cs"
+    openLine: 7
+    testProject: "Caesar Tests/Caesar.Tests.csproj"

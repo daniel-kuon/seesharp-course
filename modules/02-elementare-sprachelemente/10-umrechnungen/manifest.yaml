@@ -1,0 +1,23 @@
+id: sprachelemente-umrechnungen
+title: { de: "Zusatz: Umrechnungen" }
+optional: true
+reading:
+  section: "4.5.11"
+  title: { de: "Übungsaufgaben zum Abschnitt 4.5 (Aufgabe 6)" }
+  printedPage: 242
+teaches:
+  - types.double-vs-decimal
+  - types.const
+  - types.literal-suffix
+  - operators.math-class
+requires:
+  - types.double
+  - types.explicit-cast
+  - operators.integer-division
+  - strings.interpolation
+items:
+  - type: coding
+    id: umrechnungen
+    openFile: "Umrechnungen/Umrechner.cs"
+    openLine: 4
+    testProject: "Umrechnungen.Tests/Umrechnungen.Tests.csproj"

@@ -1,0 +1,22 @@
+id: sprachelemente-bedingungen
+title: { de: "Zusatz: Bedingungen als Ausdrücke" }
+optional: true
+reading:
+  section: "4.5.5"
+  title: { de: "Logische Operatoren" }
+  printedPage: 225
+teaches:
+  - operators.logical
+  - operators.de-morgan
+  - operators.conditional
+  - operators.precedence
+requires:
+  - operators.comparison
+  - operators.integer-division
+  - types.int
+items:
+  - type: coding
+    id: bedingungen
+    openFile: "Bedingungen/Bedingungen.cs"
+    openLine: 4
+    testProject: "Bedingungen.Tests/Bedingungen.Tests.csproj"

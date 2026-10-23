@@ -1,0 +1,21 @@
+id: sprachelemente-ziffern-und-uhrzeit
+title: { de: "Zusatz: Ziffern und Uhrzeit" }
+optional: true
+reading:
+  section: "4.5.1"
+  title: { de: "Arithmetische Operatoren" }
+  printedPage: 216
+teaches:
+  - operators.integer-division
+  - operators.arithmetic
+  - strings.format-alignment
+requires:
+  - types.int
+  - operators.comparison
+  - strings.interpolation
+items:
+  - type: coding
+    id: ziffern
+    openFile: "Ziffern/Ziffern.cs"
+    openLine: 4
+    testProject: "Ziffern.Tests/Ziffern.Tests.csproj"

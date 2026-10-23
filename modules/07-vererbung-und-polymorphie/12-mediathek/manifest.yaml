@@ -1,0 +1,24 @@
+id: vererbung-mediathek
+title: { de: "Zusatz: Leihfristen und Mahngebühren in der Mediathek" }
+optional: true
+reading:
+  section: "7.4"
+  title: { de: "Konstruktoren und Vererbung" }
+  printedPage: 549
+teaches:
+  - inheritance.protected
+  - inheritance.base-constructor
+  - inheritance.base-call
+requires:
+  - inheritance.derive-class
+  - inheritance.base-reference
+  - inheritance.virtual-override
+  - inheritance.sealed
+  - types.double-vs-decimal
+  - operators.math-class
+items:
+  - type: coding
+    id: mediathek
+    openFile: "Mediathek/Medium.cs"
+    openLine: 1
+    testProject: "Mediathek Tests/Mediathek.Tests.csproj"

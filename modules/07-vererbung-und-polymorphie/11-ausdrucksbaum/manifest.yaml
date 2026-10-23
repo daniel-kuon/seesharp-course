@@ -1,0 +1,25 @@
+id: vererbung-ausdrucksbaum
+title: { de: "Zusatz: Rechenausdrücke als Baum" }
+optional: true
+reading:
+  section: "7.9"
+  title: { de: "Polymorphie (Überschreiben von Methoden)" }
+  printedPage: 566
+teaches:
+  - inheritance.virtual-override
+  - inheritance.sealed
+  - inheritance.base-call
+requires:
+  - inheritance.abstract-class
+  - inheritance.abstract-member
+  - inheritance.base-constructor
+  - inheritance.base-reference
+  - inheritance.type-test
+  - oop.tostring-override
+  - algo.recursion
+items:
+  - type: coding
+    id: ausdruecke
+    openFile: "Ausdruecke/Ausdruck.cs"
+    openLine: 1
+    testProject: "Ausdruecke Tests/Ausdruecke.Tests.csproj"

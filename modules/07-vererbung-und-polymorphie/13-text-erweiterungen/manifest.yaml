@@ -1,0 +1,23 @@
+id: vererbung-text-erweiterungen
+title: { de: "Zusatz: Erweiterungsmitglieder für string" }
+optional: true
+reading:
+  section: "7.15.2"
+  title: { de: "Erweiterungsblöcke ab C# 14" }
+  printedPage: 583
+teaches:
+  - extensions.extension-block
+  - extensions.static-extension
+  - extensions.extension-method
+requires:
+  - strings.char-iteration
+  - strings.methods
+  - strings.stringbuilder
+  - methods.bool-predicate
+  - oop.operator-binary
+items:
+  - type: coding
+    id: textwerkzeuge
+    openFile: "Textwerkzeuge/TextExtensions.cs"
+    openLine: 1
+    testProject: "Textwerkzeuge Tests/Textwerkzeuge.Tests.csproj"

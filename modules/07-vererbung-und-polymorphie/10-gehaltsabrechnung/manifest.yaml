@@ -1,0 +1,25 @@
+id: vererbung-gehaltsabrechnung
+title: { de: "Zusatz: Gehaltsabrechnung mit abstrakter Basisklasse" }
+optional: true
+reading:
+  section: "7.13"
+  title: { de: "Abstrakte Methoden und Klassen" }
+  printedPage: 577
+teaches:
+  - inheritance.abstract-class
+  - inheritance.abstract-member
+  - inheritance.type-test
+requires:
+  - inheritance.derive-class
+  - inheritance.base-constructor
+  - inheritance.base-reference
+  - inheritance.virtual-override
+  - inheritance.base-call
+  - types.double-vs-decimal
+  - control.foreach
+items:
+  - type: coding
+    id: gehalt
+    openFile: "Gehalt/Mitarbeiter.cs"
+    openLine: 1
+    testProject: "Gehalt Tests/Gehalt.Tests.csproj"

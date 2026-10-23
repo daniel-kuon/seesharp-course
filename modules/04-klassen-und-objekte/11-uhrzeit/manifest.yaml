@@ -1,0 +1,22 @@
+id: klassen-uhrzeit
+title: { de: "Zusatzaufgabe: Uhrzeit mit Überladung und Operatoren" }
+optional: true
+reading:
+  section: "5.9.3"
+  title: { de: "Operatoren überladen" }
+  printedPage: 385
+teaches:
+  - oop.operator-binary
+requires:
+  - oop.method-overload
+  - oop.field-private
+  - oop.property-full
+  - oop.constructor-explicit
+  - operators.integer-division
+  - strings.format-alignment
+items:
+  - type: coding
+    id: uhrzeit
+    openFile: "Uhrzeit/Uhrzeit.cs"
+    openLine: 10
+    testProject: "Uhrzeit Tests/Uhrzeit.Tests.csproj"

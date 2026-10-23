@@ -1,0 +1,23 @@
+id: klassen-konto
+title: { de: "Zusatzaufgabe: Ein Girokonto mit Dispo" }
+optional: true
+reading:
+  section: "5.5"
+  title: { de: "Eigenschaften" }
+  printedPage: 361
+teaches:
+  - oop.constructor-validates
+  - statics.property
+requires:
+  - oop.property-validated
+  - oop.method-instance
+  - oop.constructor-explicit
+  - oop.property-field-keyword
+  - methods.bool-predicate
+  - types.double-vs-decimal
+items:
+  - type: coding
+    id: konto
+    openFile: "Konto/Konto.cs"
+    openLine: 16
+    testProject: "Konto Tests/Konto.Tests.csproj"

@@ -1,0 +1,21 @@
+id: klassen-rekursion-vertieft
+title: { de: "Zusatzaufgabe: Rekursion vertieft" }
+optional: true
+reading:
+  section: "5.9.2"
+  title: { de: "Rekursive Methoden" }
+  printedPage: 382
+teaches:
+  - algo.recursion
+  - algo.fibonacci
+requires:
+  - algo.factorial
+  - statics.method
+  - control.if-else
+  - operators.integer-division
+items:
+  - type: coding
+    id: rekursiv
+    openFile: "Rekursion/Rekursiv.cs"
+    openLine: 4
+    testProject: "Rekursion Tests/Rekursion.Tests.csproj"

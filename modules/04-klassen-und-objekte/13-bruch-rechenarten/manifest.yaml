@@ -1,0 +1,22 @@
+id: klassen-bruch-rechenarten
+title: { de: "Zusatzaufgabe: Bruch mit allen Grundrechenarten" }
+optional: true
+reading:
+  section: "5.9.3"
+  title: { de: "Operatoren überladen" }
+  printedPage: 385
+teaches:
+  - oop.operator-binary
+requires:
+  - oop.clone-method
+  - oop.constructor-explicit
+  - oop.property-field-keyword
+  - oop.method-instance
+  - algo.gcd-modulo
+  - methods.bool-predicate
+items:
+  - type: coding
+    id: bruch
+    openFile: "Rechenarten/Bruch.cs"
+    openLine: 50
+    testProject: "Rechenarten Tests/Rechenarten.Tests.csproj"

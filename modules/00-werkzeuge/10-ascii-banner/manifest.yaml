@@ -1,0 +1,20 @@
+id: werkzeuge-ascii-banner
+title: { de: "Zusatz: ASCII-Banner" }
+optional: true
+reading:
+  section: "4.3.10.5"
+  title: { de: "Zeichenfolgenliterale" }
+  printedPage: 208
+teaches:
+  - methods.return-value
+  - methods.declare-static
+  - basics.console-output
+requires:
+  - tools.build-run
+  - tools.seesharp-workflow
+items:
+  - type: coding
+    id: banner
+    openFile: "Banner/Banner.cs"
+    openLine: 4
+    testProject: "Banner.Tests/Banner.Tests.csproj"

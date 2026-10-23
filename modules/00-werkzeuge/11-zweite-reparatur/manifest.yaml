@@ -1,0 +1,19 @@
+id: werkzeuge-zweite-reparatur
+title: { de: "Zusatz: Zweite Reparatur" }
+optional: true
+reading:
+  section: "3.1.6"
+  title: { de: "Programmfehler" }
+  printedPage: 76
+teaches:
+  - tools.read-compiler-error
+requires:
+  - tools.build-run
+  - basics.console-output
+  - methods.return-value
+items:
+  - type: coding
+    id: abschied
+    openFile: "Abschied/Abschied.cs"
+    openLine: 1
+    testProject: "Abschied.Tests/Abschied.Tests.csproj"

@@ -1,0 +1,39 @@
+id: delegaten-ereignisse-abonnieren
+title: { de: "Ereignisse abonnieren und abmelden" }
+reading:
+  section: "10.2.2"
+  title: { de: "Behandlungsmethoden registrieren" }
+  printedPage: 681
+teaches:
+  - events.subscribe-unsubscribe
+  - events.sender-usage
+requires:
+  - events.declare
+  - events.eventhandler-generic
+  - events.custom-eventargs
+  - lambdas.closure
+  - collections.dictionary-add-lookup
+items:
+  - type: coding
+    id: alarmzentrale
+    openFile: "Alarm/Alarmzentrale.cs"
+    openLine: 1
+    testProject: "Alarm Tests/Alarm.Tests.csproj"
+  - type: multipleChoice
+    id: lambda-abmelden
+    prompt: { de: "sensor.Alarm += (s, e) => zaehler++;  und später  sensor.Alarm -= (s, e) => zaehler++;  Wird der Abonnent dadurch abgemeldet?" }
+    options:
+      - { de: "Nein; die zweite Zeile erzeugt ein neues Delegatenobjekt, das nicht in der Aufrufliste steht. Man müsste das Lambda in einer Variablen oder einem Feld aufbewahren." }
+      - { de: "Ja; beide Lambdas sehen gleich aus und sind daher gleich." }
+      - { de: "Der Compiler meldet für die zweite Zeile einen Fehler." }
+    correct: [0]
+    explanation: { de: "-= entfernt ein Delegatenobjekt, das dem registrierten gleicht (gleiche Methode, gleiches Ziel). Zwei getrennt geschriebene Lambdas sind verschiedene Methoden (10.2.2, Seite 681)." }
+  - type: multipleChoice
+    id: abmelden-lohnt
+    prompt: { de: "Warum sollte ein kurzlebiger Abonnent seine Behandlungsmethode abmelden, wenn der Ereignisanbieter länger lebt?" }
+    options:
+      - { de: "Der Anbieter hält über die Aufrufliste eine Referenz auf den Abonnenten; ohne Abmelden bleibt dieser im Speicher und bekommt weiter Benachrichtigungen." }
+      - { de: "Weil ein Ereignis nur einen Abonnenten gleichzeitig haben darf." }
+      - { de: "Es ist nicht nötig; der Garbage Collector meldet Abonnenten automatisch ab." }
+    correct: [0]
+    explanation: { de: "Ein Delegatenobjekt merkt sich das Zielobjekt (10.1.2); solange der Anbieter lebt, lebt über die Aufrufliste auch der Abonnent." }

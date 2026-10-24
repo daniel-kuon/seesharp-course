@@ -1,0 +1,37 @@
+id: delegaten-mehrfachdelegaten
+title: { de: "Mehrfachdelegaten" }
+reading:
+  section: "10.1.3"
+  title: { de: "Delegatenobjekte kombinieren" }
+  printedPage: 663
+teaches:
+  - delegates.multicast
+  - delegates.null-conditional-invoke
+requires:
+  - delegates.create-invoke
+  - delegates.parameter
+  - collections.list-add-remove
+items:
+  - type: coding
+    id: verteiler
+    openFile: "Mehrfach/Verteiler.cs"
+    openLine: 1
+    testProject: "Mehrfach Tests/Mehrfach.Tests.csproj"
+  - type: multipleChoice
+    id: rueckgabe
+    prompt: { de: "Ein Delegat mit drei Zielmethoden, die int zurückgeben, wird aufgerufen. Was liefert der Aufruf?" }
+    options:
+      - { de: "Den Rückgabewert der zuletzt ausgeführten Methode; die Werte der anderen gehen verloren." }
+      - { de: "Die Summe aller drei Rückgabewerte." }
+      - { de: "Ein Array mit allen drei Rückgabewerten." }
+    correct: [0]
+    explanation: { de: "Bei einem Rückgabewert dominiert die zuletzt ausgeführte Methode (10.1.3, Seite 664). Wer alle Werte braucht, durchläuft GetInvocationList()." }
+  - type: multipleChoice
+    id: leere-liste
+    prompt: { de: "Was ist der Wert einer Delegatenvariablen, nachdem die letzte Methode aus ihrer Aufrufliste mit -= entfernt wurde?" }
+    options:
+      - { de: "null; der Aufruf muss deshalb mit ?.Invoke() oder einer null-Prüfung geschützt werden." }
+      - { de: "Ein leeres Delegatenobjekt; der Aufruf tut nichts." }
+      - { de: "Der Aufruf von -= wirft eine Ausnahme." }
+    correct: [0]
+    explanation: { de: "Beim Entleeren der Aufrufliste entsteht kein leeres Delegatenobjekt, sondern null (10.1.3, Seite 664)." }

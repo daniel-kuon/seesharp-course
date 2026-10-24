@@ -1,0 +1,20 @@
+id: delegaten-sortieren-mit-vergleich
+title: { de: "Zusatz: Sortieren mit Vergleichslambda" }
+optional: true
+reading:
+  section: "10.3"
+  title: { de: "Übungsaufgaben zum Kapitel 10" }
+  printedPage: 688
+teaches:
+  - lambdas.expression
+  - lambdas.list-predicate-methods
+  - lambdas.statement
+requires:
+  - collections.list-sort
+  - delegates.predicate
+items:
+  - type: coding
+    id: sortierer
+    openFile: "Sortierer/Sortierer.cs"
+    openLine: 1
+    testProject: "Sortierer Tests/Sortierer.Tests.csproj"

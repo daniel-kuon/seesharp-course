@@ -1,0 +1,20 @@
+id: delegaten-rechentabelle
+title: { de: "Zusatz: Rechentabelle" }
+optional: true
+reading:
+  section: "10.1.2"
+  title: { de: "Delegatenobjekte erzeugen und aufrufen" }
+  printedPage: 660
+teaches:
+  - delegates.create-invoke
+  - delegates.parameter
+  - delegates.generic-func
+requires:
+  - delegates.declare-type
+  - collections.dictionary-add-lookup
+items:
+  - type: coding
+    id: rechentabelle
+    openFile: "Tabelle/Rechentabelle.cs"
+    openLine: 1
+    testProject: "Tabelle Tests/Tabelle.Tests.csproj"

@@ -1,0 +1,31 @@
+id: delegaten-closures-und-funktionen
+title: { de: "Closures, Func und Action" }
+reading:
+  section: "10.1.5"
+  title: { de: "Delegatenobjekte durch anonyme Funktionen erstellen" }
+  printedPage: 665
+teaches:
+  - lambdas.closure
+  - delegates.return-delegate
+  - delegates.generic-func
+  - delegates.generic-action
+requires:
+  - lambdas.expression
+  - lambdas.statement
+  - delegates.predicate
+  - generics.method
+items:
+  - type: coding
+    id: fabrik
+    openFile: "Fabrik/Fabrik.cs"
+    openLine: 1
+    testProject: "Fabrik Tests/Fabrik.Tests.csproj"
+  - type: multipleChoice
+    id: einfangen
+    prompt: { de: "Ein Lambda verwendet die lokale Variable zaehler seiner umgebenden Methode. Was passiert mit der Variablen?" }
+    options:
+      - { de: "Sie wird eingefangen (Closure): Sie lebt so lange weiter, wie das Delegatenobjekt sie braucht, auch nach dem Ende der Methode." }
+      - { de: "Das Lambda erhält eine Kopie des Werts zum Zeitpunkt der Erzeugung." }
+      - { de: "Der Compiler verbietet den Zugriff auf lokale Variablen aus einem Lambda." }
+    correct: [0]
+    explanation: { de: "Das Lambda greift auf die Variable selbst zu, nicht auf eine Kopie; Änderungen sind in beide Richtungen sichtbar (10.1.5.2, Seite 667 bis 675)." }

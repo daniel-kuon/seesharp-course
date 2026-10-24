@@ -1,0 +1,62 @@
+id: delegaten-lambdas-und-praedikate
+title: { de: "Lambda-Ausdrücke und Prädikate" }
+reading:
+  section: "10.1.5.2"
+  title: { de: "Lambda-Ausdrücke" }
+  printedPage: 667
+teaches:
+  - lambdas.expression
+  - lambdas.statement
+  - delegates.predicate
+  - lambdas.list-predicate-methods
+requires:
+  - delegates.create-invoke
+  - delegates.parameter
+  - collections.list-sort
+  - collections.list-remove-while-iterating
+  - strings.methods
+items:
+  - type: coding
+    id: filter
+    openFile: "Lambdas/Filter.cs"
+    openLine: 1
+    testProject: "Lambdas Tests/Lambdas.Tests.csproj"
+  - type: multipleChoice
+    id: typ-praedikat
+    prompt: { de: "Zu welchem Delegatentyp passt das Lambda  x => x > 3  in  list.Exists(x => x > 3)  mit list vom Typ List<int>?" }
+    options:
+      - { de: "Predicate<int>" }
+      - { de: "Comparison<int>" }
+      - { de: "Action<int>" }
+      - { de: "Func<int, int, int>" }
+    correct: [0]
+    explanation: { de: "Exists erwartet ein Predicate<T>: ein Argument vom Typ T, Rückgabetyp bool (10.3 Aufgabe 2, Seite 688)." }
+  - type: multipleChoice
+    id: typ-vergleich
+    prompt: { de: "Zu welchem Delegatentyp passt das Lambda  (a, b) => a.Length - b.Length  in  wörter.Sort((a, b) => a.Length - b.Length)  mit wörter vom Typ List<string>?" }
+    options:
+      - { de: "Comparison<string>" }
+      - { de: "Predicate<string>" }
+      - { de: "Action<string, string>" }
+      - { de: "Func<string, bool>" }
+    correct: [0]
+    explanation: { de: "Sort(Comparison<T>) verlangt zwei Argumente vom Typ T und einen int als Ergebnis (negativ, 0, positiv)." }
+  - type: multipleChoice
+    id: typ-action
+    prompt: { de: "Zu welchem Delegatentyp passt das Lambda  s => Console.WriteLine(s)  in  wörter.ForEach(s => Console.WriteLine(s))?" }
+    options:
+      - { de: "Action<string>" }
+      - { de: "Predicate<string>" }
+      - { de: "Func<string, string>" }
+      - { de: "Comparison<string>" }
+    correct: [0]
+    explanation: { de: "ForEach erwartet eine Action<T>: ein Argument, kein Rückgabewert." }
+  - type: multipleChoice
+    id: ausdruck-oder-anweisung
+    prompt: { de: "Welche Schreibweise ist ein Lambda mit Anweisungsblock (statement lambda)?" }
+    options:
+      - { de: "x => { int y = x * 2; return y + 1; }" }
+      - { de: "x => x * 2 + 1" }
+      - { de: "delegate (int x) { return x * 2 + 1; }" }
+    correct: [0]
+    explanation: { de: "Ein Lambda mit geschweiften Klammern hat einen Anweisungsblock und braucht return, wenn es einen Wert liefert. x => x * 2 + 1 ist ein Ausdruckslambda; die dritte Variante ist eine anonyme Methode (10.1.5.1, Seite 665)." }

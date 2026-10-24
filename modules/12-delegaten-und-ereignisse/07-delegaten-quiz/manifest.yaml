@@ -1,0 +1,166 @@
+id: delegaten-quiz
+title: { de: "Delegaten und Ereignisse: Quiz" }
+reading:
+  section: "10.1.4"
+  title: { de: "Delegaten versus Schnittstellen" }
+  printedPage: 664
+teaches:
+  - delegates.vs-interface
+  - delegates.variance
+  - events.vs-delegate-field
+  - delegates.anonymous-method
+requires:
+  - delegates.declare-type
+  - delegates.multicast
+  - events.declare
+  - events.subscribe-unsubscribe
+  - generics.covariance
+  - generics.contravariance
+  - lambdas.expression
+items:
+  - type: multipleChoice
+    id: d1-unveraenderlich
+    prompt: { de: "Aussage: Ein Delegatenobjekt ist unveränderlich; man kann es nicht modifizieren, sondern nur ersetzen. (10.3 Aufgabe 1.1)" }
+    options:
+      - { de: "Richtig" }
+      - { de: "Falsch" }
+    correct: [0]
+    explanation: { de: "+= und -= erzeugen jeweils ein neues Delegatenobjekt und weisen es der Variablen zu (10.1.3, Seite 663)." }
+  - type: multipleChoice
+    id: d2-rueckgabetyp
+    prompt: { de: "Aussage: Der Rückgabetyp spielt bei der Delegatensignatur keine Rolle. (10.3 Aufgabe 1.2)" }
+    options:
+      - { de: "Richtig" }
+      - { de: "Falsch" }
+    correct: [1]
+    explanation: { de: "Die Signatur besteht aus Parameterliste und Rückgabetyp; nur die Namen von Methode und Parametern sind egal (10.1.1, Seite 659)." }
+  - type: multipleChoice
+    id: d3-einfangen
+    prompt: { de: "Aussage: Bei einer anonymen Methode oder einem Lambda-Ausdruck kann man lokale Variablen und (statische) Felder der Umgebung verwenden (\"einfangen\"). (10.3 Aufgabe 1.3)" }
+    options:
+      - { de: "Richtig" }
+      - { de: "Falsch" }
+    correct: [0]
+    explanation: { de: "Das Einfangen behandelt 10.1.5.3; eingefangen wird die Variable selbst, nicht ihr Wert." }
+  - type: multipleChoice
+    id: d4-varianz
+    prompt: { de: "Aussage: C# unterstützt bei den Typformalparametern von generischen Delegaten die Ko- und Kontravarianz. (10.3 Aufgabe 1.4)" }
+    options:
+      - { de: "Richtig" }
+      - { de: "Falsch" }
+    correct: [0]
+    explanation: { de: "Beispiele: Comparison<in T> (kontravariant), Func<out TResult> (kovariant), Action<in T> (kontravariant); 10.1.6, Seite 675." }
+  - type: multipleChoice
+    id: e1-datenobjekt
+    prompt: { de: "Aussage: Ein Ereignis ist ein Datenobjekt. (10.3 Aufgabe 4.1)" }
+    options:
+      - { de: "Richtig" }
+      - { de: "Falsch" }
+    correct: [1]
+    explanation: { de: "Ein Ereignis ist ein Typmitglied: eine private Delegatenvariable plus öffentliche Zugriffsmethoden zum Registrieren und Abmelden (10.2.1, Seite 678)." }
+  - type: multipleChoice
+    id: e2-erben
+    prompt: { de: "Aussage: Weil die Delegatenvariable zu einem Ereignis privat ist, kann man einer abgeleiteten Klasse keine Möglichkeit geben, die Auslösung zu kontrollieren. (10.3 Aufgabe 4.2)" }
+    options:
+      - { de: "Richtig" }
+      - { de: "Falsch" }
+    correct: [1]
+    explanation: { de: "Die auslösende Methode OnXyz() ist protected virtual; Erben überschreiben sie (10.2.3, Seite 684 bis 686)." }
+  - type: multipleChoice
+    id: e3-abmelden
+    prompt: { de: "Aussage: Die Registrierung eines Ereignisempfängers wieder aufzuheben, lohnt sich nicht. (10.3 Aufgabe 4.3)" }
+    options:
+      - { de: "Richtig" }
+      - { de: "Falsch" }
+    correct: [1]
+    explanation: { de: "Über die Aufrufliste hält der Anbieter den Abonnenten am Leben und benachrichtigt ihn weiter, solange er nicht abgemeldet ist." }
+  - type: multipleChoice
+    id: e4-versiegeln
+    prompt: { de: "Aussage: Man kann ein Ereignis versiegeln. (10.3 Aufgabe 4.4)" }
+    options:
+      - { de: "Richtig" }
+      - { de: "Falsch" }
+    correct: [0]
+    explanation: { de: "Ein überschriebenes Ereignis darf mit sealed override versiegelt werden, wie jedes andere überschriebene Mitglied." }
+  - type: multipleChoice
+    id: szenario-schnittstelle
+    prompt: { de: "In welcher Lage ist eine Schnittstelle besser als ein Delegat? (10.1.4)" }
+    options:
+      - { de: "Ein Typ soll mehrere zusammengehörige Fähigkeiten zusichern, etwa Hinzufügen, Entfernen und Durchlaufen einer Kollektion (ICollection<T>, IEnumerable<T>)." }
+      - { de: "Ein Sortierkriterium soll einmalig an Ort und Stelle als Einzeiler übergeben werden." }
+      - { de: "Eine einzelne statische Methode soll als Rückruf übergeben werden." }
+    correct: [0]
+    explanation: { de: "Eine Schnittstelle kann beliebig viele Methoden vorschreiben, ein Delegatentyp genau eine (10.1.4, Seite 665). Deshalb sind Kollektionen als Parameter- und Variablentypen mit Schnittstellen zu bevorzugen." }
+  - type: multipleChoice
+    id: szenario-delegat
+    prompt: { de: "In welcher Lage ist ein Delegat besser als eine Schnittstelle? (10.1.4)" }
+    options:
+      - { de: "List<T>.Sort soll mit einem einmaligen Kriterium aufgerufen werden: Ein Lambda an Ort und Stelle genügt, eine eigene Klasse mit IComparer<T> wäre Aufwand." }
+      - { de: "Ein Typ soll eine ganze Familie zusammengehöriger Operationen anbieten." }
+      - { de: "Der Aufrufer soll Zustand in Feldern des Rückrufobjekts halten, der über mehrere Methoden geteilt wird." }
+    correct: [0]
+    explanation: { de: "Für den Delegaten sprechen: Der Methodenname ist egal, statische Methoden genügen, ein Lambda erledigt die Aufgabe als Ausdruck (10.1.4, Seite 665)." }
+  - type: multipleChoice
+    id: klassifiziere-1
+    prompt: { de: "Was ist das? — delegate (int x) { return x * 2; }" }
+    options:
+      - { de: "Anonyme Methode" }
+      - { de: "Ausdruckslambda" }
+      - { de: "Lambda mit Anweisungsblock" }
+    correct: [0]
+    explanation: { de: "Das Schlüsselwort delegate mit Parameterliste und Anweisungsblock kennzeichnet die anonyme Methode (10.1.5.1, Seite 665); für Neuentwicklungen ist das Lambda vorzuziehen." }
+  - type: multipleChoice
+    id: klassifiziere-2
+    prompt: { de: "Was ist das? — x => x * 2" }
+    options:
+      - { de: "Anonyme Methode" }
+      - { de: "Ausdruckslambda" }
+      - { de: "Lambda mit Anweisungsblock" }
+    correct: [1]
+    explanation: { de: "Rechts vom Pfeil steht ein einzelner Ausdruck (10.1.5.2, Seite 667)." }
+  - type: multipleChoice
+    id: klassifiziere-3
+    prompt: { de: "Was ist das? — x => { Console.WriteLine(x); }" }
+    options:
+      - { de: "Anonyme Methode" }
+      - { de: "Ausdruckslambda" }
+      - { de: "Lambda mit Anweisungsblock" }
+    correct: [2]
+    explanation: { de: "Rechts vom Pfeil steht ein Anweisungsblock in geschweiften Klammern." }
+  - type: multipleChoice
+    id: klassifiziere-4
+    prompt: { de: "Was ist das? — (a, b) => a.CompareTo(b)" }
+    options:
+      - { de: "Anonyme Methode" }
+      - { de: "Ausdruckslambda" }
+      - { de: "Lambda mit Anweisungsblock" }
+    correct: [1]
+    explanation: { de: "Mehrere Parameter stehen in Klammern; entscheidend ist, dass rechts vom Pfeil ein Ausdruck steht." }
+  - type: multipleChoice
+    id: klassifiziere-5
+    prompt: { de: "Was ist das? — delegate { Console.WriteLine(\"fertig\"); }" }
+    options:
+      - { de: "Anonyme Methode" }
+      - { de: "Ausdruckslambda" }
+      - { de: "Lambda mit Anweisungsblock" }
+    correct: [0]
+    explanation: { de: "Bei einer anonymen Methode darf die Parameterliste ganz entfallen, wenn die Methode keinen Parameter benutzt; das Schlüsselwort delegate verrät sie." }
+  - type: multipleChoice
+    id: varianz-zuweisung
+    prompt: { de: "Welche Zuweisungen kompilieren ohne Cast? Gegeben: Action<object> ao; Action<string> as_; Func<string> fs; Func<object> fo;" }
+    options:
+      - { de: "as_ = ao;" }
+      - { de: "ao = as_;" }
+      - { de: "fo = fs;" }
+      - { de: "fs = fo;" }
+    correct: [0, 2]
+    explanation: { de: "Action<in T> ist kontravariant: Wer jedes object verarbeitet, verarbeitet auch jeden string. Func<out TResult> ist kovariant: Wer einen string liefert, liefert auch ein object (10.1.6, Seite 675)." }
+  - type: multipleChoice
+    id: ereignis-versus-feld
+    prompt: { de: "Ein öffentliches Delegatenfeld erlaubt von außen sowohl x.Changed = null als auch x.Changed(). Warum ist beides bei public event Changed nicht möglich?" }
+    options:
+      - { de: "Ein Ereignis legt die Delegatenvariable privat an und zeigt nach außen nur += und -= (add/remove); Überschreiben und Auslösen sind der eigenen Klasse (und über OnXyz den Erben) vorbehalten." }
+      - { de: "Weil ein Ereignis intern ein Array von Delegaten ist, das schreibgeschützt ist." }
+      - { de: "Weil der Compiler Ereignisse nur in Konsolenanwendungen unterstützt." }
+    correct: [0]
+    explanation: { de: "10.2.1 (Seite 678): Hinter dem Ereignis steht stets eine private Delegatenvariable mit öffentlichen Methoden zum Erweitern und Verkürzen der Aufrufliste. Das schützt die Abonnenten voreinander." }

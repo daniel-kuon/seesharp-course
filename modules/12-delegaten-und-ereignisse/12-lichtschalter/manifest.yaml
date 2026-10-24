@@ -1,0 +1,20 @@
+id: delegaten-lichtschalter
+title: { de: "Zusatz: Lichtschalter mit Ereignissen" }
+optional: true
+reading:
+  section: "10.2"
+  title: { de: "Ereignisse" }
+  printedPage: 678
+teaches:
+  - events.declare
+  - events.raise-safely
+  - events.subscribe-unsubscribe
+requires:
+  - events.eventhandler-generic
+  - events.custom-eventargs
+items:
+  - type: coding
+    id: lichtschalter
+    openFile: "Licht/Lichtschalter.cs"
+    openLine: 1
+    testProject: "Licht Tests/Licht.Tests.csproj"

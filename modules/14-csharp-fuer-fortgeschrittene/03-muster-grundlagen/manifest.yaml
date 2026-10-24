@@ -1,0 +1,33 @@
+id: fortgeschritten-muster-grundlagen
+title: { de: "Muster: Konstante, Typ, Relation, logisch" }
+reading:
+  section: "15.2.3"
+  title: { de: "Typ- und Deklarationsmuster" }
+  printedPage: 975
+teaches:
+  - patterns.constant
+  - patterns.type
+  - patterns.relational
+  - patterns.logical
+requires:
+  - control.switch-expression
+  - nullable.null-conditional
+  - inheritance.type-test
+  - operators.logical
+  - records.declare
+items:
+  - type: coding
+    id: muster
+    openFile: "Musterabgleich/Muster.cs"
+    openLine: 7
+    testProject: "Musterabgleich Tests/Musterabgleich.Tests.csproj"
+  - type: multipleChoice
+    id: not-or
+    prompt: { de: "Für welche Werte von x ist der Ausdruck x is not 1 or 2 wahr?" }
+    options:
+      - { de: "Für alle Werte außer 1, denn not bindet stärker als or: (not 1) or 2." }
+      - { de: "Für alle Werte außer 1 und 2." }
+      - { de: "Nur für den Wert 2." }
+      - { de: "Für gar keinen: Das Muster ist ein Übersetzungsfehler." }
+    correct: [0]
+    explanation: { de: "15.2.9 (Seite 984). Die Rangfolge der Musterkombinatoren ist not vor and vor or. Gemeint ist meist x is not (1 or 2); dafür braucht es die Klammern." }

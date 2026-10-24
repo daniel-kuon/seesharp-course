@@ -1,0 +1,35 @@
+id: fortgeschritten-merkmals-und-positionsmuster
+title: { de: "Merkmals-, Positions- und var-Muster" }
+reading:
+  section: "15.2.4"
+  title: { de: "Merkmalsmuster" }
+  printedPage: 976
+teaches:
+  - patterns.property
+  - patterns.when-guard
+  - patterns.positional
+  - patterns.var
+requires:
+  - patterns.constant
+  - patterns.type
+  - patterns.relational
+  - patterns.logical
+  - records.declare
+  - tuples.deconstruct
+  - oop.property-auto
+items:
+  - type: coding
+    id: muster
+    openFile: "Merkmalsmuster/Muster.cs"
+    openLine: 5
+    testProject: "Merkmalsmuster Tests/Merkmalsmuster.Tests.csproj"
+  - type: multipleChoice
+    id: null-und-merkmalsmuster
+    prompt: { de: "Was liefert p is { X: 0 }, wenn p den Wert null hat?" }
+    options:
+      - { de: "false, ein Merkmalsmuster passt nie auf null; es gibt keine Ausnahme." }
+      - { de: "Eine NullReferenceException, weil p.X gelesen wird." }
+      - { de: "true, weil null wie 0 behandelt wird." }
+      - { de: "Einen Übersetzungsfehler." }
+    correct: [0]
+    explanation: { de: "15.2.4 (Seite 976). Das Merkmalsmuster prüft zuerst, ob der Wert nicht null ist. Deshalb sind { Halter.Land: \"DE\" } und Ähnliches null-sicher." }

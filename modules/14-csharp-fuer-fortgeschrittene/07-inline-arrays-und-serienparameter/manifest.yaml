@@ -1,0 +1,31 @@
+id: fortgeschritten-inline-arrays-und-serienparameter
+title: { de: "Inline-Arrays und Serienparameter mit Kollektionstyp" }
+reading:
+  section: "15.5"
+  title: { de: "Inline-Array" }
+  printedPage: 1005
+teaches:
+  - arrays.inline-array
+  - params.collection-type
+requires:
+  - structs.declare
+  - arrays.declare-init
+  - collections.expression
+  - collections.icollection-members
+  - generics.params
+items:
+  - type: coding
+    id: inline-und-params
+    openFile: "InlineUndParams/Puffer.cs"
+    openLine: 9
+    testProject: "InlineUndParams Tests/InlineUndParams.Tests.csproj"
+  - type: multipleChoice
+    id: params-span-allokation
+    prompt: { de: "Warum kann Summe(params ReadOnlySpan<int> werte) bei Summe(1, 2, 3) ohne Heap-Allokation auskommen, Summe(params int[] werte) aber nicht?" }
+    options:
+      - { de: "Der Compiler darf die Argumente für den Span in einem Inline-Array auf dem Stack ablegen; für ein int[] muss er ein Array-Objekt auf dem Heap anlegen." }
+      - { de: "Ein Span kopiert die Werte in den Prozessor-Cache." }
+      - { de: "Ein ReadOnlySpan<int> speichert die Werte gar nicht; erst beim Lesen werden sie berechnet." }
+      - { de: "Es gibt keinen Unterschied; beide legen ein Array auf dem Heap an." }
+    correct: [0]
+    explanation: { de: "15.6.1 (Seite 1009) und 15.5 (Seite 1005). Ein ReadOnlySpan<T> kann auf Stack-Speicher zeigen, und genau dafür nutzt der Compiler ein Inline-Array. Die Methode darf den Span nur nicht über ihr Ende hinaus aufbewahren." }

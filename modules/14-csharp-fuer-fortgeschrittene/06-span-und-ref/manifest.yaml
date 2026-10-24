@@ -1,0 +1,34 @@
+id: fortgeschritten-span-und-ref
+title: { de: "Span<T>, ReadOnlySpan<T> und ref-Rückgabe" }
+reading:
+  section: "15.4.1"
+  title: { de: "Extrahieren eines Speichersegments ohne Objektkreation und Kopie" }
+  printedPage: 991
+teaches:
+  - spans.span-slice
+  - spans.readonlyspan-param
+  - spans.implicit-conversion
+  - refs.ref-return
+requires:
+  - arrays.array-class
+  - arrays.index-length
+  - strings.char-iteration
+  - structs.value-semantics
+  - extensions.extension-block
+  - oop.indexer
+items:
+  - type: coding
+    id: spans
+    openFile: "SpanUndRef/Spans.cs"
+    openLine: 5
+    testProject: "SpanUndRef Tests/SpanUndRef.Tests.csproj"
+  - type: multipleChoice
+    id: ref-struct
+    prompt: { de: "Span<T> ist eine ref struct. Was folgt daraus?" }
+    options:
+      - { de: "Ein Span<T> lebt nur auf dem Stack: Er darf kein Feld einer Klasse sein, nicht geboxt werden und nicht über ein await hinweg in einer async-Methode gehalten werden." }
+      - { de: "Ein Span<T> kopiert die Elemente des Arrays beim Erzeugen, ist also unabhängig vom Original." }
+      - { de: "Ein Span<T> darf nur für Strings verwendet werden." }
+      - { de: "Ein Span<T> ist unveränderlich; Schreiben geht nur mit ReadOnlySpan<T>." }
+    correct: [0]
+    explanation: { de: "15.4.2 (Seite 992). Ein Span ist ein Fenster auf bestehenden Speicher (Array, String, Stack, nativer Speicher); Änderungen am Span ändern den Speicher darunter. ReadOnlySpan<T> ist die nur lesende Variante." }

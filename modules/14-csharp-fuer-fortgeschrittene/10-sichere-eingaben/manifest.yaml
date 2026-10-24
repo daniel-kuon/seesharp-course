@@ -1,0 +1,20 @@
+id: fortgeschritten-sichere-eingaben
+title: { de: "Zusatz: Sichere Eingaben" }
+optional: true
+reading:
+  section: "15.1.5"
+  title: { de: "null-Operatoren" }
+  printedPage: 968
+teaches:
+  - nullable.null-conditional
+  - nullable.null-coalescing
+  - nullable.warning-fix
+requires:
+  - nullable.annotation
+  - strings.methods
+items:
+  - type: coding
+    id: sichere-eingaben
+    openFile: "SichereEingaben/Eingaben.cs"
+    openLine: 9
+    testProject: "SichereEingaben Tests/SichereEingaben.Tests.csproj"

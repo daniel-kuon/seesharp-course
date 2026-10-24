@@ -1,0 +1,19 @@
+id: fortgeschritten-zeichen-statistik
+title: { de: "Zusatz: Zeichenstatistik ohne Kopien" }
+optional: true
+reading:
+  section: "15.4"
+  title: { de: "Span<T> und ReadOnlySpan<T>" }
+  printedPage: 991
+teaches:
+  - spans.span-slice
+  - spans.readonlyspan-param
+requires:
+  - arrays.array-class
+  - strings.char-iteration
+items:
+  - type: coding
+    id: zeichen-statistik
+    openFile: "Zeichenstatistik/Zeichenstatistik.cs"
+    openLine: 5
+    testProject: "Zeichenstatistik Tests/Zeichenstatistik.Tests.csproj"

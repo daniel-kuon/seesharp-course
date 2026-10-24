@@ -1,0 +1,21 @@
+id: fortgeschritten-listenmuster-analyse
+title: { de: "Zusatz: Muster in Messreihen" }
+optional: true
+reading:
+  section: "15.2.10"
+  title: { de: "Listenmuster" }
+  printedPage: 985
+teaches:
+  - patterns.list
+  - patterns.relational
+  - patterns.combine-in-switch
+requires:
+  - patterns.logical
+  - patterns.when-guard
+  - collections.expression
+items:
+  - type: coding
+    id: listenmuster-analyse
+    openFile: "Messreihen/Messreihe.cs"
+    openLine: 5
+    testProject: "Messreihen Tests/Messreihen.Tests.csproj"

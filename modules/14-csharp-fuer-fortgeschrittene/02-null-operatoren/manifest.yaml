@@ -1,0 +1,32 @@
+id: fortgeschritten-null-operatoren
+title: { de: "Null-Operatoren: ?., ??, ??= und null-bedingte Zuweisung" }
+reading:
+  section: "15.1.5"
+  title: { de: "null-Operatoren" }
+  printedPage: 968
+teaches:
+  - nullable.null-conditional
+  - nullable.null-coalescing
+  - nullable.null-conditional-assignment
+requires:
+  - nullable.annotation
+  - nullable.warning-fix
+  - oop.property-auto
+  - collections.dictionary-trygetvalue
+  - strings.methods
+items:
+  - type: coding
+    id: nulloperatoren
+    openFile: "Nulloperatoren/Auskunft.cs"
+    openLine: 6
+    testProject: "Nulloperatoren Tests/Nulloperatoren.Tests.csproj"
+  - type: multipleChoice
+    id: kurzschluss
+    prompt: { de: "Was passiert bei k?.Alter = Berechne(), wenn k null ist?" }
+    options:
+      - { de: "Nichts: Weder die Zuweisung noch der Aufruf von Berechne() findet statt." }
+      - { de: "Berechne() wird aufgerufen, das Ergebnis aber verworfen." }
+      - { de: "Es gibt eine NullReferenceException." }
+      - { de: "Der Compiler lehnt die Zeile ab: ?. ist nur lesend erlaubt." }
+    correct: [0]
+    explanation: { de: "15.1.5.2 (Seite 969). Seit C# 14 darf ?. auch links vom Zuweisungsoperator stehen; die rechte Seite wird nur ausgewertet, wenn der Empfänger nicht null ist. Vor C# 14 war das ein Übersetzungsfehler." }

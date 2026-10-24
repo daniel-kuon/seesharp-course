@@ -1,0 +1,35 @@
+id: fortgeschritten-tupel-liste-und-maut
+title: { de: "Tupel- und Listenmuster; Mautrechner" }
+reading:
+  section: "15.2.10"
+  title: { de: "Listenmuster" }
+  printedPage: 985
+teaches:
+  - patterns.tuple
+  - patterns.list
+  - patterns.combine-in-switch
+requires:
+  - patterns.property
+  - patterns.positional
+  - patterns.relational
+  - patterns.logical
+  - patterns.when-guard
+  - collections.expression
+  - interfaces.ienumerable
+  - enums.declare
+items:
+  - type: coding
+    id: maut
+    openFile: "TupelListeMaut/Spiele.cs"
+    openLine: 10
+    testProject: "TupelListeMaut Tests/TupelListeMaut.Tests.csproj"
+  - type: multipleChoice
+    id: listenmuster
+    prompt: { de: "Auf welche Arrays passt das Listenmuster [1, .., 9]?" }
+    options:
+      - { de: "Auf jedes Array mit mindestens zwei Elementen, dessen erstes Element 1 und dessen letztes 9 ist (auch [1, 9])." }
+      - { de: "Nur auf Arrays mit genau drei Elementen." }
+      - { de: "Auf jedes Array, das irgendwo eine 1 und später eine 9 enthält." }
+      - { de: "Auch auf [1] und [9], weil .. beliebig viele Elemente einschließlich keinem steht." }
+    correct: [0]
+    explanation: { de: "15.2.10.1 (Seite 985). Das Bereichsmuster .. steht für null oder mehr Elemente in der Mitte, aber 1 und 9 sind zwei verschiedene Positionen; deshalb braucht das Muster mindestens zwei Elemente." }

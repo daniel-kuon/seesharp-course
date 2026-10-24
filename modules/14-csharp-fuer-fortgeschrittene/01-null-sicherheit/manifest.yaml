@@ -1,0 +1,44 @@
+id: fortgeschritten-null-sicherheit
+title: { de: "Nullable-Kontext und Nullzustandsanalyse" }
+reading:
+  section: "15.1.2"
+  title: { de: "Nullzustandsanalyse" }
+  printedPage: 953
+teaches:
+  - nullable.annotation
+  - nullable.warning-fix
+  - nullable.null-forgiving
+  - nullable.attribute-notnullwhen
+  - nullable.attribute-notnullifnotnull
+requires:
+  - oop.property-auto
+  - strings.methods
+  - control.if-else
+  - types.string-basic
+  - oop.constructor-explicit
+  - methods.parameters
+items:
+  - type: coding
+    id: nullsicherheit
+    openFile: "Nullsicherheit/PalindromReverse.cs"
+    openLine: 9
+    testProject: "Nullsicherheit Tests/Nullsicherheit.Tests.csproj"
+  - type: multipleChoice
+    id: null-vergebung
+    prompt: { de: "Wann ist der Null-Vergebungs-Operator (name!) vertretbar?" }
+    options:
+      - { de: "Wenn nachweislich feststeht, dass der Wert nicht null ist, der Compiler das aber nicht erkennen kann, und du das in einem Kommentar begründest." }
+      - { de: "Immer, wenn eine Warnung der Nullzustandsanalyse nervt." }
+      - { de: "Er schützt zur Laufzeit vor einer NullReferenceException." }
+      - { de: "Er wandelt einen nullable Typ in einen Nicht-null-Typ um." }
+    correct: [0]
+    explanation: { de: "15.1.2.2 (Seite 955). Das ! unterdrückt nur die Warnung; zur Laufzeit prüft es nichts. Ist der Wert doch null, fällt die Ausnahme später und woanders." }
+  - type: multipleChoice
+    id: zur-laufzeit
+    prompt: { de: "string? und string haben zur Laufzeit denselben Typ. Was folgt daraus?" }
+    options:
+      - { de: "Die Annotation ist nur eine Information für den Compiler (und für Reflexion über Metadaten); null kann zur Laufzeit trotzdem in einer string-Variablen landen, etwa über Code ohne Nullable-Kontext." }
+      - { de: "Der Compiler garantiert, dass eine string-Variable nie null enthält." }
+      - { de: "string? ist ein eigener Strukturtyp wie int?." }
+    correct: [0]
+    explanation: { de: "15.1.1.1 (Seite 950). Nullable-Referenztypen sind eine statische Analyse, kein neuer Typ. Anders als bei int? gibt es keinen Wrapper." }

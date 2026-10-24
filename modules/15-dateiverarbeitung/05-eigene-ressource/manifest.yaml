@@ -1,0 +1,31 @@
+id: dateien-eigene-ressource
+title: { de: "Eine eigene IDisposable-Klasse" }
+reading:
+  section: "5.4.5"
+  title: { de: "Überflüssige Objekte abräumen" }
+  printedPage: 355
+teaches:
+  - resources.implement-idisposable
+requires:
+  - resources.using-statement
+  - resources.using-declaration
+  - interfaces.implement
+  - exceptions.finally
+  - exceptions.invalid-operation
+  - files.streamwriter
+items:
+  - type: coding
+    id: logbuch
+    openFile: "EigeneRessource/Logbuch.cs"
+    openLine: 17
+    testProject: "EigeneRessource Tests/EigeneRessource.Tests.csproj"
+  - type: multipleChoice
+    id: dispose-vergessen
+    prompt: { de: "Ein Logbuch (mit StreamWriter) wird nicht mit Dispose() freigegeben, und der Garbage Collector ist noch nicht gelaufen. Was gilt?" }
+    options:
+      - { de: "Die Datei bleibt gesperrt, und noch nicht geleerte Zeilen im Puffer des StreamWriters können fehlen. Der GC gibt nichts zu einem vorhersehbaren Zeitpunkt frei." }
+      - { de: "Nichts Besonderes: Beim Verlassen der Methode wird die Datei automatisch geschlossen." }
+      - { de: "Die Datei ist sofort wieder frei, weil die Variable nicht mehr im Gültigkeitsbereich ist." }
+      - { de: "Es gibt beim nächsten Zugriff eine ObjectDisposedException." }
+    correct: [0]
+    explanation: { de: "16.2.2 (Seite 1027) und 5.4.5 (Seite 355). Der Garbage Collector räumt Speicher ab, aber zu einem Zeitpunkt, den man nicht kennt. Dateien, Netzwerkverbindungen und Datenbankverbindungen gibt man deshalb mit using/Dispose() selbst frei." }

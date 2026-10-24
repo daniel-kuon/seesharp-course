@@ -1,0 +1,42 @@
+id: dateien-binaerdaten
+title: { de: "Binärdateien: FileStream und BinaryWriter" }
+reading:
+  section: "16.3.1"
+  title: { de: "Schreiben und Lesen im Binärformat" }
+  printedPage: 1032
+teaches:
+  - files.filestream-bytes
+  - files.filemode-access
+  - files.binary-readwrite
+requires:
+  - files.streamwriter
+  - files.streamreader-lines
+  - exceptions.finally
+  - arrays.array-class
+  - types.int
+items:
+  - type: coding
+    id: binaerdaten
+    openFile: "Binaerdateien/Binaerdaten.cs"
+    openLine: 9
+    testProject: "Binaerdateien Tests/Binaerdateien.Tests.csproj"
+  - type: multipleChoice
+    id: filemode
+    prompt: { de: "Welcher FileMode legt eine Datei neu an und wirft eine IOException, wenn sie schon existiert?" }
+    options:
+      - { de: "FileMode.CreateNew" }
+      - { de: "FileMode.Create" }
+      - { de: "FileMode.OpenOrCreate" }
+      - { de: "FileMode.Truncate" }
+    correct: [0]
+    explanation: { de: "16.1.4.1 (Seite 1019). Create überschreibt eine vorhandene Datei (kürzt sie auf Länge 0), OpenOrCreate öffnet sie unverändert, Truncate verlangt, dass sie existiert, und leert sie; nur CreateNew weigert sich bei vorhandener Datei." }
+  - type: multipleChoice
+    id: read-liefert-weniger
+    prompt: { de: "stream.Read(puffer, 0, 4096) liefert 1000. Was bedeutet das?" }
+    options:
+      - { de: "Es wurden 1000 Bytes gelesen; bei 0 ist das Ende erreicht. Zwischen 1 und 4096 ist alles möglich, deshalb muss man den Rückgabewert verwenden." }
+      - { de: "Der Puffer ist zu klein; es wird eine Ausnahme geworfen." }
+      - { de: "Die Datei ist genau 1000 Bytes lang." }
+      - { de: "Es wurden 4096 Bytes gelesen, 1000 davon sind gültig." }
+    correct: [0]
+    explanation: { de: "16.1.3.1 (Seite 1015). Read liefert die tatsächlich gelesene Zahl, 0 am Datenende. Wer immer den ganzen Puffer schreibt, hängt Müll an das Dateiende." }

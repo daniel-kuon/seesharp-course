@@ -1,0 +1,32 @@
+id: dateien-textdateien
+title: { de: "Textdateien mit StreamWriter und StreamReader" }
+reading:
+  section: "16.3.2"
+  title: { de: "Schreiben und Lesen im Textformat" }
+  printedPage: 1036
+teaches:
+  - files.streamwriter
+  - files.streamreader-lines
+  - files.encoding
+requires:
+  - exceptions.try-catch
+  - exceptions.finally
+  - strings.methods
+  - control.while
+  - types.string-basic
+items:
+  - type: coding
+    id: textdatei
+    openFile: "Textdateien/Textdatei.cs"
+    openLine: 16
+    testProject: "Textdateien Tests/Textdateien.Tests.csproj"
+  - type: multipleChoice
+    id: falsche-codierung
+    prompt: { de: "Eine Textdatei wurde in Windows-1252 gespeichert und enthält ein ä (Byte 0xE4). Was passiert, wenn du sie mit einem StreamReader ohne Angabe einer Codierung liest?" }
+    options:
+      - { de: "Der StreamReader nimmt UTF-8 an; das einzelne Byte 0xE4 ist dort keine gültige Folge und wird als Ersatzzeichen (Fragezeichen im Rhombus) gelesen." }
+      - { de: "Der StreamReader erkennt die Windows-1252-Codierung von selbst und liefert ein ä." }
+      - { de: "Es gibt eine Ausnahme vom Typ FormatException." }
+      - { de: "Das ä wird verlustfrei als 0xE4 gelesen, weil jedes Zeichen ein Byte lang ist." }
+    correct: [0]
+    explanation: { de: "16.3.3 (Seite 1040). Ohne Angabe gilt UTF-8 (mit Erkennung eines BOM). Die Codierung steht nicht in der Datei, man muss sie kennen: Encoding.GetEncoding(1252) (nach Encoding.RegisterProvider(CodePagesEncodingProvider.Instance))." }

@@ -1,0 +1,20 @@
+id: dateien-ordner-statistik
+title: { de: "Zusatz: Ordnerstatistik" }
+optional: true
+reading:
+  section: "16.6.2"
+  title: { de: "Ordnerverwaltung" }
+  printedPage: 1055
+teaches:
+  - files.directory-ops
+  - files.path-api
+  - files.file-ops
+requires:
+  - files.readall-writeall
+  - strings.methods
+items:
+  - type: coding
+    id: ordner-statistik
+    openFile: "Ordnerauswertung/Ordnerstatistik.cs"
+    openLine: 5
+    testProject: "Ordnerauswertung Tests/Ordnerauswertung.Tests.csproj"

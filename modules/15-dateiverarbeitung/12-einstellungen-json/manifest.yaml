@@ -1,0 +1,20 @@
+id: dateien-einstellungen-json
+title: { de: "Zusatz: Einstellungen als JSON" }
+optional: true
+reading:
+  section: "16.5.4"
+  title: { de: "Deserialisieren" }
+  printedPage: 1050
+teaches:
+  - json.serialize
+  - json.deserialize
+  - json.options
+requires:
+  - files.readall-writeall
+  - records.declare
+items:
+  - type: coding
+    id: einstellungen-json
+    openFile: "EinstellungenJson/Speicher.cs"
+    openLine: 5
+    testProject: "EinstellungenJson Tests/EinstellungenJson.Tests.csproj"

@@ -1,0 +1,20 @@
+id: dateien-tagebuch
+title: { de: "Zusatz: Tagebuch" }
+optional: true
+reading:
+  section: "16.3.2"
+  title: { de: "Schreiben und Lesen im Textformat" }
+  printedPage: 1036
+teaches:
+  - files.streamwriter
+  - files.streamreader-lines
+  - files.readall-writeall
+requires:
+  - exceptions.finally
+  - strings.methods
+items:
+  - type: coding
+    id: tagebuch
+    openFile: "Tagebuecher/Tagebuch.cs"
+    openLine: 11
+    testProject: "Tagebuecher Tests/Tagebuecher.Tests.csproj"

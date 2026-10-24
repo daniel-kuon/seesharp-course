@@ -1,0 +1,34 @@
+id: dateien-json
+title: { de: "JSON-Serialisierung" }
+reading:
+  section: "16.5.2"
+  title: { de: "Serialisieren" }
+  printedPage: 1045
+teaches:
+  - json.serialize
+  - json.deserialize
+  - json.options
+  - json.attributes
+  - json.circular-references
+requires:
+  - files.readall-writeall
+  - records.declare
+  - oop.property-auto
+  - enums.parse-tostring
+  - collections.dictionary-add-lookup
+items:
+  - type: coding
+    id: json
+    openFile: "JsonSerialisierung/PersonJson.cs"
+    openLine: 7
+    testProject: "JsonSerialisierung Tests/JsonSerialisierung.Tests.csproj"
+  - type: multipleChoice
+    id: zyklen
+    prompt: { de: "Eine Abteilung enthält Mitarbeiter, und jeder Mitarbeiter verweist auf seine Abteilung. Was passiert bei JsonSerializer.Serialize(abteilung) ohne besondere Einstellung, und wie unterscheiden sich IgnoreCycles und Preserve?" }
+    options:
+      - { de: "Es gibt eine JsonException (zu große Tiefe / Kreis erkannt). IgnoreCycles ersetzt den Rückverweis durch null; Preserve schreibt Objekte mit $id und Wiederholungen als $ref und erhält so die Struktur auch beim Einlesen." }
+      - { de: "Serialize erkennt den Kreis selbst und lässt den Rückverweis weg; IgnoreCycles und Preserve ändern nichts." }
+      - { de: "Es entsteht eine Endlosschleife, bis der Speicher voll ist." }
+      - { de: "IgnoreCycles und Preserve sind dasselbe; beide schreiben $ref." }
+    correct: [0]
+    explanation: { de: "16.5.5 (Seite 1050). Die Voreinstellung bricht mit einer Ausnahme ab. IgnoreCycles verliert den Rückverweis (nach dem Einlesen ist Mitarbeiter.Abteilung leer), Preserve erhält ihn und braucht dafür die Metadaten $id/$ref." }

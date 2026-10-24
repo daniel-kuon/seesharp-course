@@ -1,0 +1,33 @@
+id: dateien-kleine-dateien-und-mittelwerte
+title: { de: "Kleine Dateien und Spaltenmittelwerte" }
+reading:
+  section: "16.4"
+  title: { de: "Schreiben und Lesen von kleinen Dateien mit Bytes oder Texten" }
+  printedPage: 1041
+teaches:
+  - files.readall-writeall
+  - files.parse-delimited-text
+  - files.invariant-culture
+requires:
+  - files.streamreader-lines
+  - exceptions.parse-handling
+  - exceptions.catch-specific
+  - strings.methods
+  - tuples.return-multiple
+  - collections.list-add-remove
+items:
+  - type: coding
+    id: mittelwerte
+    openFile: "Mittelwertrechnung/Mittelwerte.cs"
+    openLine: 17
+    testProject: "Mittelwertrechnung Tests/Mittelwertrechnung.Tests.csproj"
+  - type: multipleChoice
+    id: kultur
+    prompt: { de: "Eine Datei enthält 1.5. Ein Programm parst sie mit double.Parse(text) auf einem deutschen Windows (Sprache de-DE). Was kommt heraus?" }
+    options:
+      - { de: "15: Der Punkt gilt in de-DE als Tausendertrennzeichen. Dateien mit festem Format parst man deshalb mit CultureInfo.InvariantCulture." }
+      - { de: "1,5: Der Punkt wird als Dezimaltrennzeichen erkannt." }
+      - { de: "Eine FormatException, weil nur das Komma erlaubt ist." }
+      - { de: "0, weil der Parser bei unbekannten Zeichen abbricht." }
+    correct: [0]
+    explanation: { de: "16.4 und 16.5 (Seite 1041 bis 1050). Ohne Kultur nutzt .NET die aktuelle Kultur des Threads, und das ändert das Ergebnis still. Für Dateien, Protokolle und JSON gilt immer InvariantCulture (JsonSerializer macht das von selbst)." }

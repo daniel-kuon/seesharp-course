@@ -1,0 +1,42 @@
+id: dateien-dateien-und-ordner
+title: { de: "Dateien, Ordner und Pfade" }
+reading:
+  section: "16.6.1"
+  title: { de: "Dateiverwaltung" }
+  printedPage: 1052
+teaches:
+  - files.file-ops
+  - files.directory-ops
+  - files.path-api
+  - files.special-folders
+requires:
+  - files.readall-writeall
+  - collections.list-sort
+  - strings.methods
+  - exceptions.catch-specific
+items:
+  - type: coding
+    id: dateiverwaltung
+    openFile: "Dateiverwaltung/Dateien.cs"
+    openLine: 5
+    testProject: "Dateiverwaltung Tests/Dateiverwaltung.Tests.csproj"
+  - type: multipleChoice
+    id: path-combine
+    prompt: { de: "Was liefert Path.Combine(\"Ordner\", \"/daten.txt\") auf einem System, auf dem / das Trennzeichen ist?" }
+    options:
+      - { de: "Nur \"/daten.txt\": Ein Teil, der mit einem Trennzeichen beginnt, gilt als absoluter Pfad und verwirft alles davor." }
+      - { de: "\"Ordner/daten.txt\": Das doppelte Trennzeichen wird entfernt." }
+      - { de: "\"Ordner//daten.txt\": Die Teile werden einfach aneinandergehängt." }
+      - { de: "Eine ArgumentException, weil der zweite Teil nicht relativ ist." }
+    correct: [0]
+    explanation: { de: "16.6.4 (Seite 1057). Path.Combine verwirft die Teile vor einem absoluten Pfad. Wer Benutzereingaben anhängt, muss das bedenken (Path.Join verhält sich anders); sonst lassen sich Ordnergrenzen verlassen." }
+  - type: multipleChoice
+    id: spezielle-ordner
+    prompt: { de: "Welche Aufrufe liefern den Temp-Ordner, den Ordner „Dokumente“ des Benutzers und den lokalen Anwendungsdaten-Ordner des Benutzers?" }
+    options:
+      - { de: "Path.GetTempPath(); Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)" }
+      - { de: "Directory.GetCurrentDirectory() für alle drei; sie unterscheiden sich nur im Unterordner." }
+      - { de: "AppDomain.CurrentDomain.BaseDirectory für alle drei." }
+      - { de: "Path.GetTempFileName(); Path.GetFullPath(\"Dokumente\"); Path.GetDirectoryName(Environment.ProcessPath)" }
+    correct: [0]
+    explanation: { de: "16.6.3 (Seite 1056). Das aktuelle Verzeichnis ist der Ort, von dem aus das Programm gestartet wurde, und oft nicht beschreibbar; der Anwendungsordner bei einer installierten Anwendung ebenso. Eigene Daten gehören in LocalApplicationData oder ApplicationData." }

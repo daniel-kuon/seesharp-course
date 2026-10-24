@@ -1,0 +1,54 @@
+id: publish-webanwendung
+title: { de: "Webanwendung veröffentlichen und hosten" }
+reading:
+  section: "23.2.3"
+  title: { de: "Webanwendung mit ASP.NET Core Razor Pages" }
+  printedPage: 1658
+teaches:
+  - publish.web-local-install
+  - publish.web-hosting
+  - publish.reverse-proxy
+requires:
+  - publish.framework-dependent
+  - publish.self-contained
+  - publish.dotnet-publish
+items:
+  - type: multipleChoice
+    id: kestrel-iis
+    prompt: { de: "Welcher Webserver führt eine ASP.NET-Core-Anwendung aus, die du aus dem Veröffentlichungsordner startest, und wie verhält sich IIS dazu?" }
+    options:
+      - { de: "Kestrel, der in ASP.NET Core eingebaute Webserver. IIS kann die Anwendung zusätzlich hosten: im selben Prozess (in-process) oder als Reverse Proxy, der Anforderungen an einen separaten Kestrel-Prozess weiterreicht (out-of-process)." }
+      - { de: "Immer IIS; ohne IIS lässt sich eine ASP.NET-Core-Anwendung nicht starten." }
+      - { de: "Der Browser; die Anwendung läuft im Browser des Benutzers." }
+    correct: [0]
+    explanation: { de: "23.2.3.1 (Seite 1661): Ein Doppelklick auf die exe startet die Anwendung mit Kestrel. Die Unterscheidung in-process und out-of-process steht nicht im Buch; sie stammt aus der Microsoft-Dokumentation zum Hosting unter IIS." }
+  - type: multipleChoice
+    id: reverse-proxy
+    prompt: { de: "Warum stellt man vor Kestrel oft einen Reverse Proxy (IIS, Nginx, Apache)?" }
+    options:
+      - { de: "Der Proxy nimmt die HTTP(S)-Anforderungen aus dem Netz entgegen und reicht sie an Kestrel weiter; er übernimmt zum Beispiel die TLS-Verschlüsselung samt Zertifikat und kann mehrere Anwendungen hinter Port 443 verteilen." }
+      - { de: "Kestrel kann kein HTTP; der Proxy übersetzt die Anforderungen in ein Format, das Kestrel versteht." }
+      - { de: "Ein Reverse Proxy macht die Anwendung schneller, weil er den C#-Code ausführt." }
+    correct: [0]
+    explanation: { de: "23.2.3.3 (Seite 1662): Ein Reverse-Proxy-Server empfängt HTTP(S)-Anforderungen aus dem Internet und leitet sie an Kestrel weiter. Die Aufgaben im Einzelnen (TLS, mehrere Anwendungen, statische Dateien) sind Ergänzungen aus der Dokumentation." }
+  - type: multipleChoice
+    id: launchsettings
+    prompt: { de: "Im Entwicklungsordner hört die Anwendung nach `dotnet run` auf `http://localhost:5194`. Aus dem Veröffentlichungsordner gestartet, antwortet dieser Port nicht; die Konsole nennt Port 5000. Warum?" }
+    options:
+      - { de: "Die Ports stehen in `launchSettings.json`, und die Datei fehlt im Veröffentlichungsordner; ohne Einstellung benutzt Kestrel den Standardport 5000 (nur HTTP)." }
+      - { de: "Die Veröffentlichung hat die Portnummer zufällig neu gewürfelt." }
+      - { de: "Release-Anwendungen dürfen nur Ports unter 1024 benutzen." }
+    correct: [0]
+    explanation: { de: "23.2.3.1 (Seite 1661): `launchSettings.json` gilt nur für Starts aus der Entwicklungsumgebung. Alternativen zum Ändern des Ports sind die Umgebungsvariable `ASPNETCORE_URLS` oder die Kommandozeilenoption `--urls`." }
+  - type: multipleChoice
+    id: umgebungsvariablen
+    prompt: { de: "Was steuern die Umgebungsvariablen `ASPNETCORE_URLS` und `ASPNETCORE_ENVIRONMENT`?" }
+    options:
+      - { de: "`ASPNETCORE_URLS` nennt die Adressen und Ports, auf denen Kestrel lauscht (zum Beispiel `http://localhost:8080`); `ASPNETCORE_ENVIRONMENT` nennt die Umgebung (`Development`, `Production`), von der zum Beispiel abhängt, ob die Entwickler-Fehlerseite erscheint." }
+      - { de: "`ASPNETCORE_URLS` legt fest, welche Internetseiten die Anwendung aufrufen darf; `ASPNETCORE_ENVIRONMENT` den Namen des Betriebssystems." }
+      - { de: "Beide nur, ob die Anwendung frameworkabhängig oder eigenständig ist." }
+    correct: [0]
+    explanation: { de: "Ergänzung aus der Dokumentation (nicht im Buch). Im Buch (22.2.2, Seite 1553) steht die Umgebung `Development` in `launchSettings.json`, und `Program.cs` verzweigt mit `app.Environment.IsDevelopment()`." }
+  - type: review
+    id: webapp-veroeffentlichen
+    prompt: { de: "Lege mit `dotnet new webapp -o MeineWeb` eine Razor-Webanwendung an, veröffentliche sie mit `dotnet publish -c Release` und starte sie aus dem Veröffentlichungsordner mit `dotnet MeineWeb.dll --urls http://localhost:5123` (wähle einen freien Port). Rufe die Seite im Browser auf. Zeige der Betreuung einen Screenshot der laufenden Seite und die Konsolenausgabe des Servers mit der Zeile, die den Port nennt." }

@@ -1,0 +1,21 @@
+id: publish-konsolenanwendung
+title: { de: "Eine Konsolenanwendung veröffentlichen" }
+reading:
+  section: "23.2.1"
+  title: { de: "Einzeldateianwendung" }
+  printedPage: 1649
+teaches:
+  - publish.dotnet-publish
+  - publish.output-contents
+requires:
+  - tools.build-run
+  - tools.new-console-project
+  - publish.configuration-release
+  - publish.framework-dependent
+items:
+  - type: review
+    id: publish-und-start
+    prompt: { de: "Nimm das Konsolenprogramm eines früheren Levels (zum Beispiel den ASCII-Banner aus Level 0) und veröffentliche es im Terminal im Projektordner mit `dotnet publish -c Release` (frameworkabhängig). Starte das Ergebnis aus dem Veröffentlichungsordner (bin/Release/net10.0/publish) zweimal: mit `dotnet <Name>.dll` und als `<Name>.exe`. Zeige der Betreuung die Kommandozeilen, den Ordner und die beiden Starts." }
+  - type: open
+    id: dateiliste
+    prompt: { de: "Liste alle Dateien im Veröffentlichungsordner mit ihrer Größe auf (`dir` im Terminal; kopiere die Ausgabe hierher). Welche davon musst du einem Kunden liefern, damit das Programm auf einem Rechner mit installierter .NET-Laufzeit läuft, und welche nicht? Begründe jede Datei in einem Satz (Buch 3.7, Aufgabe 4)." }

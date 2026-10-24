@@ -1,0 +1,62 @@
+id: publish-konzepte
+title: { de: "Veröffentlichungskonzepte: Quiz" }
+reading:
+  section: "23.1"
+  title: { de: "Veröffentlichungsoptionen" }
+  printedPage: 1637
+teaches:
+  - publish.configuration-release
+  - publish.target-framework
+  - publish.framework-dependent
+  - publish.self-contained
+  - publish.runtime-identifier
+requires:
+  - tools.build-run
+  - tools.sdk-version
+  - tools.solution-anatomy
+items:
+  - type: multipleChoice
+    id: debug-release
+    prompt: { de: "Was unterscheidet die Konfigurationen `Debug` und `Release`?" }
+    options:
+      - { de: "Release erzeugt ein leistungsoptimiertes, aber schwerer zu debuggendes Assembly (zum Beispiel durch Inlining); Debug ist gut testbar und nicht optimiert. Ausgeliefert wird Release." }
+      - { de: "Debug ist schneller, weil es keine Prüfungen enthält; Release enthält zusätzliche Sicherheitsprüfungen." }
+      - { de: "Es gibt keinen Unterschied außer dem Namen des Ausgabeordners (bin/Debug, bin/Release)." }
+    correct: [0]
+    explanation: { de: "23.1.1 (Seite 1637). Die Debug-Informationen stehen in der pdb-Datei; sie hilft bei der Fehlersuche, muss aber nicht an Kunden ausgeliefert werden (23.2.2, Seite 1656)." }
+  - type: multipleChoice
+    id: zielframework
+    prompt: { de: "Was legt `<TargetFramework>net10.0</TargetFramework>` in der Projektdatei fest, und warum steht bei einer WPF-Anwendung `net10.0-windows` da?" }
+    options:
+      - { de: "Die APIs, gegen die das Projekt gebaut wird, und damit die mindestens nötige .NET-Version. WPF nutzt Betriebssystem-APIs von Windows; das Betriebssystem gehört dann in den Moniker." }
+      - { de: "Das Betriebssystem, auf dem das Programm laufen muss; `net10.0` allein läuft deshalb nur unter Linux." }
+      - { de: "Die CPU-Architektur des Zielrechners; `-windows` wählt 64 Bit." }
+    correct: [0]
+    explanation: { de: "23.1.2 (Seite 1637 und 1638): Das Zielframework legt die verfügbaren APIs fest, nicht das ausführende Betriebssystem. `TargetFrameworks` (Mehrzahl, zum Beispiel `net10.0;net10.0-windows`) baut ein Projekt für mehrere Ziele; das steht nicht im Buch." }
+  - type: multipleChoice
+    id: frameworkabhaengig-vs-eigenstaendig
+    prompt: { de: "Ein Programm wird einmal frameworkabhängig und einmal eigenständig (self-contained) veröffentlicht. Welche Aussage stimmt?" }
+    options:
+      - { de: "Frameworkabhängig ist sehr klein (im Buch unter 140 KB), braucht aber eine passende .NET-Laufzeit auf dem Zielrechner und profitiert von deren Updates. Eigenständig bringt die Laufzeit mit (im Buch 130 MB), läuft ohne Installation, muss aber für Laufzeit-Updates neu veröffentlicht werden." }
+      - { de: "Eigenständig ist kleiner, weil es nur den benötigten Teil der Laufzeit enthält, ohne jede weitere Einstellung." }
+      - { de: "Frameworkabhängig läuft nur mit dem Visual Studio, eigenständig auf jedem Rechner." }
+    correct: [0]
+    explanation: { de: "23.1.5 (Seite 1644 bis 1646). Verkleinern lässt sich eine eigenständige Veröffentlichung erst durch zusätzliche Optionen wie `PublishTrimmed` (23.1.6)." }
+  - type: multipleChoice
+    id: runtime-identifier
+    prompt: { de: "Wie wählst du den Runtime Identifier (RID) für eine eigenständige Veröffentlichung?" }
+    options:
+      - { de: "Nach Betriebssystem und CPU-Architektur des Zielrechners, zum Beispiel `win-x64` für ein 64-Bit-Windows, `linux-arm64` für einen ARM-Server unter Linux." }
+      - { de: "Nach dem Betriebssystem des Entwicklungsrechners; das Programm wird dort gebaut und läuft deshalb überall." }
+      - { de: "Nach der .NET-Version; `net10.0` ist der RID für .NET 10." }
+    correct: [0]
+    explanation: { de: "23.1.4 (Seite 1643): Die Zielruntime bestimmt Betriebssystem und CPU-Architektur des ausführenden Rechners. Bei eigenständigen Programmen enthält die Auslieferung die Laufzeit für genau diese Zielruntime." }
+  - type: multipleChoice
+    id: rid-bei-frameworkabhaengig
+    prompt: { de: "Ein frameworkabhängiges Programm wird mit `-r win-x86` veröffentlicht. Was ändert der RID an der Auslieferung?" }
+    options:
+      - { de: "Nur den mitgelieferten Starter (`.exe`, hier 32 Bit); die `.dll` mit dem IL-Code bleibt gleich." }
+      - { de: "Er fügt die komplette Laufzeit zur Auslieferung hinzu." }
+      - { de: "Er übersetzt den IL-Code in Maschinencode für 32 Bit." }
+    correct: [0]
+    explanation: { de: "23.1.4 und 23.1.5 (Seite 1644 und 1645): Bei einem normalen, von der Laufzeit abhängigen Assembly wirkt sich die Zielruntime nur auf den Starthelfer aus. Entscheidend wird sie bei eigenständigen und ReadyToRun-Programmen." }

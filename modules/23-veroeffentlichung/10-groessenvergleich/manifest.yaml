@@ -1,0 +1,17 @@
+id: publish-groessenvergleich
+title: { de: "Zusatz: Größenvergleich" }
+optional: true
+reading:
+  section: "23.1.5"
+  title: { de: "Bereitstellungsmodus" }
+  printedPage: 1644
+teaches:
+  - publish.framework-dependent
+  - publish.self-contained
+  - publish.output-contents
+requires:
+  - publish.dotnet-publish
+items:
+  - type: review
+    id: vergleich
+    prompt: { de: "Veröffentliche ein kleines Konsolenprogramm einmal frameworkabhängig (`dotnet publish -c Release -o pub-fd`) und einmal eigenständig (`dotnet publish -c Release -r win-x64 --self-contained -o pub-sc`). Schreibe für beide Ordner auf, welche Dateien du auf einen Rechner kopieren musst, auf dem die .NET-Laufzeit installiert ist, und welche auf einen Rechner ohne Laufzeit. Gib die Größe beider Ordner an und erkläre in drei Sätzen, wann du welche Variante wählst." }

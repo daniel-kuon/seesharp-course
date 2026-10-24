@@ -13,3 +13,6 @@ TestResults/
 **/starter/**/.aiassistant/
 **/starter/**/AGENTS.md
 **/starter/**/CLAUDE.md
+
+# Books are downloaded by `seesharp init` from the GitHub release, not stored in git
+book/

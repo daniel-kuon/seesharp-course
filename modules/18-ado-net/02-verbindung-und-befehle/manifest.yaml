@@ -1,0 +1,38 @@
+id: adonet-verbindung-und-befehle
+title: { de: "Verbindung, Befehle und Parameter" }
+reading:
+  section: "19.7.5"
+  title: { de: "DbCommand" }
+  printedPage: 1323
+teaches:
+  - ado.connection-open-close
+  - ado.execute-nonquery
+  - ado.execute-scalar
+  - ado.parameters
+  - ado.dbnull
+requires:
+  - resources.using-statement
+  - exceptions.try-catch
+  - sql.insert
+  - sql.select-where
+  - sql.update-delete
+  - types.string-basic
+  - nullable.annotation
+items:
+  - type: coding
+    id: adressbuch
+    openFile: "Kontakte/Adressbuch.cs"
+    openLine: 24
+    testProject: "Kontakte Tests/Kontakte.Tests.csproj"
+  - type: multipleChoice
+    id: parameter-statt-verkettung
+    prompt: { de: "Ein Programm baut den Befehl so: \"DELETE FROM Kontakt WHERE Name = '\" + name + \"'\". Ein Benutzer gibt als Namen  x' OR '1'='1  ein. Was passiert, und was ist die Abhilfe?" }
+    options:
+      - { de: "Die Bedingung wird für jede Zeile wahr: Alle Kontakte werden gelöscht (SQL-Injection). Abhilfe: einen Parameter @name verwenden, dessen Wert der Provider getrennt vom SQL-Text überträgt." }
+      - { de: "Es gibt eine Ausnahme wegen der Hochkommas. Abhilfe: Hochkommas im Namen mit Replace entfernen." }
+      - { de: "Nichts Besonderes: Der Name wird wörtlich gesucht und nicht gefunden. Abhilfe ist nicht nötig." }
+    correct: [0]
+    explanation: { de: "19.7.5: Wer Benutzereingaben in den SQL-Text einfügt, lässt den Benutzer SQL schreiben. Mit Parametern bleibt der Wert immer Daten und wird nie als SQL gelesen; zusätzlich entfallen Probleme mit Hochkommas (O'Brien), Datumsformaten und Dezimaltrennzeichen." }
+  - type: open
+    id: dbnull
+    prompt: { de: "Warum liefert ExecuteScalar für eine Zeile mit NULL in der Spalte nicht einfach null, und was passiert, wenn du das Ergebnis direkt mit (string) umwandelst? Beschreibe, wie du null und DBNull.Value in beiden Richtungen behandelst (Parameter setzen, Ergebnis lesen)." }

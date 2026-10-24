@@ -1,0 +1,20 @@
+id: adonet-bestellungen
+title: { de: "Zusatz: Bestellungen auswerten (SQL)" }
+optional: true
+reading:
+  section: "19.6.4"
+  title: { de: "Abfragen per SELECT" }
+  printedPage: 1302
+teaches:
+  - sql.join
+  - sql.aggregate-group
+  - sql.select-where
+requires:
+  - sql.create-table
+  - sql.insert
+items:
+  - type: coding
+    id: auswertungen
+    openFile: "Bestellauswertung/Auswertungen.cs"
+    openLine: 14
+    testProject: "Bestellauswertung Tests/Bestellauswertung.Tests.csproj"

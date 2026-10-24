@@ -1,0 +1,20 @@
+id: adonet-ueberweisungen-protokoll
+title: { de: "Zusatz: Überweisungen mit Protokoll" }
+optional: true
+reading:
+  section: "19.7.7"
+  title: { de: "DbTransaction" }
+  printedPage: 1332
+teaches:
+  - ado.transaction
+  - ado.transaction-rollback
+  - ado.execute-nonquery
+requires:
+  - ado.parameters
+  - exceptions.rethrow
+items:
+  - type: coding
+    id: bank-protokoll
+    openFile: "Bankprotokoll/Bank.cs"
+    openLine: 20
+    testProject: "Bankprotokoll Tests/Bankprotokoll.Tests.csproj"

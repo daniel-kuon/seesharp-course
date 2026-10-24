@@ -1,0 +1,21 @@
+id: adonet-adressbuch-crud
+title: { de: "Zusatz: Adressbuch mit Suche" }
+optional: true
+reading:
+  section: "19.7.5"
+  title: { de: "DbCommand" }
+  printedPage: 1323
+teaches:
+  - ado.execute-nonquery
+  - ado.parameters
+  - ado.datareader
+  - ado.map-rows
+requires:
+  - ado.connection-open-close
+  - ado.dbnull
+items:
+  - type: coding
+    id: kontaktdienst
+    openFile: "Kontaktverwaltung/Kontaktdienst.cs"
+    openLine: 23
+    testProject: "Kontaktverwaltung Tests/Kontaktverwaltung.Tests.csproj"

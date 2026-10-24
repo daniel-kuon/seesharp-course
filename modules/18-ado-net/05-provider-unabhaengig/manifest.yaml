@@ -1,0 +1,34 @@
+id: adonet-provider-unabhaengig
+title: { de: "Provider-unabhängiger Code, DataTable und LINQ-to-DataSet" }
+reading:
+  section: "19.7.3"
+  title: { de: "Provider-offener Quellcode" }
+  printedPage: 1314
+teaches:
+  - ado.provider-independent
+  - ado.connection-string
+  - ado.datatable-load
+  - ado.linq-to-dataset
+requires:
+  - ado.datareader
+  - ado.map-rows
+  - interfaces.as-type
+  - linq.where
+  - linq.select
+  - delegates.generic-func
+  - resources.using-statement
+items:
+  - type: coding
+    id: zugriff
+    openFile: "Datenzugriff/Zugriff.cs"
+    openLine: 16
+    testProject: "Datenzugriff Tests/Datenzugriff.Tests.csproj"
+  - type: multipleChoice
+    id: wechsel-sql-server
+    prompt: { de: "Der Code in Zugriff.cs soll statt mit SQLite mit dem SQL Server arbeiten. Was muss sich ändern, wenn er provider-unabhängig geschrieben ist?" }
+    options:
+      - { de: "Nur die Stelle, die die DbProviderFactory auswählt (SqlClientFactory.Instance statt SqliteFactory.Instance), und die Verbindungszeichenfolge; Zugriff.cs bleibt unverändert." }
+      - { de: "Jede Methode in Zugriff.cs, weil SqlConnection und SqliteConnection verschiedene Methoden haben." }
+      - { de: "Nichts, denn DbProviderFactory findet den Provider selbst anhand des SQL-Textes." }
+    correct: [0]
+    explanation: { de: "19.7.3: Die Basisklassen DbConnection, DbCommand, DbDataReader und die Fabrik DbProviderFactory legen die gemeinsame Schnittstelle fest. Provider-spezifisch sind nur die Fabrik und das, was in der Verbindungszeichenfolge steht (und ggf. SQL-Dialekt-Unterschiede, die man weiterhin selbst beachten muss)." }

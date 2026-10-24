@@ -1,0 +1,32 @@
+id: adonet-transaktionen
+title: { de: "Transaktionen: Commit und Rollback" }
+reading:
+  section: "19.7.7"
+  title: { de: "DbTransaction" }
+  printedPage: 1332
+teaches:
+  - ado.transaction
+  - ado.transaction-rollback
+requires:
+  - ado.execute-nonquery
+  - ado.parameters
+  - ado.execute-scalar
+  - exceptions.try-catch
+  - exceptions.rethrow
+  - exceptions.finally
+  - resources.using-statement
+items:
+  - type: coding
+    id: bank
+    openFile: "Bankgeschaefte/Bank.cs"
+    openLine: 23
+    testProject: "Bankgeschaefte Tests/Bankgeschaefte.Tests.csproj"
+  - type: multipleChoice
+    id: transactionscope
+    prompt: { de: "Ein Programm benutzt using var scope = new TransactionScope(); führt zwei Datenbankänderungen aus und verlässt den Block, ohne scope.Complete() aufzurufen. Was geschieht mit den Änderungen?" }
+    options:
+      - { de: "Sie werden dauerhaft gespeichert, weil die Befehle ja erfolgreich waren." }
+      - { de: "Sie werden zurückgenommen: Ohne Complete() macht Dispose des Scopes einen impliziten Rollback." }
+      - { de: "Das Programm bricht mit einer Ausnahme ab, und die Änderungen bleiben halb gespeichert." }
+    correct: [1]
+    explanation: { de: "19.7.8: TransactionScope ist der implizite Weg; nur mit Complete() wird beim Verlassen des Blocks bestätigt, sonst zurückgerollt. Mit Microsoft.Data.Sqlite lässt sich der Scope nicht für verteilte Transaktionen über mehrere Datenbanken nutzen; deshalb üben wir hier das ausdrückliche DbTransaction mit Commit und Rollback." }

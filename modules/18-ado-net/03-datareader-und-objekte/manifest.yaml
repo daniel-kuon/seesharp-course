@@ -1,0 +1,31 @@
+id: adonet-datareader-und-objekte
+title: { de: "DataReader und Objektabbildung" }
+reading:
+  section: "19.7.15"
+  title: { de: "DbDataReader" }
+  printedPage: 1363
+teaches:
+  - ado.datareader
+  - ado.map-rows
+requires:
+  - ado.execute-scalar
+  - ado.parameters
+  - ado.dbnull
+  - records.declare
+  - collections.list-add-remove
+  - collections.dictionary-add-lookup
+items:
+  - type: coding
+    id: artikel-repository
+    openFile: "Artikelverwaltung/ArtikelRepository.cs"
+    openLine: 31
+    testProject: "Artikelverwaltung Tests/Artikelverwaltung.Tests.csproj"
+  - type: multipleChoice
+    id: getstring-null
+    prompt: { de: "In der Spalte Kategorie steht für einen Artikel NULL. Was passiert bei leser.GetString(spalte), wenn du vorher nicht IsDBNull(spalte) geprüft hast?" }
+    options:
+      - { de: "GetString liefert null, das passt zum Typ string?." }
+      - { de: "GetString liefert eine leere Zeichenkette." }
+      - { de: "GetString löst eine Ausnahme aus, denn die Spalte enthält keinen Wert; null muss man vorher mit IsDBNull abfangen." }
+    correct: [2]
+    explanation: { de: "19.7.15: Die typisierten Get-Methoden (GetString, GetInt32, GetDecimal ...) können NULL nicht darstellen und lösen eine Ausnahme aus. Erst IsDBNull fragen, dann lesen; sonst ist der Programmierfehler nur bei Zeilen mit NULL sichtbar." }

@@ -1,0 +1,32 @@
+id: adonet-sql-grundlagen
+title: { de: "SQL-Grundlagen mit SQLite" }
+reading:
+  section: "19.6"
+  title: { de: "SQL" }
+  printedPage: 1296
+teaches:
+  - sql.create-table
+  - sql.primary-foreign-key
+  - sql.insert
+  - sql.select-where
+  - sql.update-delete
+  - sql.join
+  - sql.aggregate-group
+requires:
+  - strings.methods
+  - types.string-basic
+items:
+  - type: coding
+    id: skripte
+    openFile: "SqlGrundlagen/Skripte.cs"
+    openLine: 11
+    testProject: "SqlGrundlagen Tests/SqlGrundlagen.Tests.csproj"
+  - type: multipleChoice
+    id: where-having
+    prompt: { de: "Du willst nur Kategorien mit mehr als einem Artikel auflisten. Wo gehört die Bedingung COUNT(*) > 1 hin?" }
+    options:
+      - { de: "In die WHERE-Klausel, denn WHERE filtert alle Zeilen." }
+      - { de: "In die HAVING-Klausel, denn sie filtert die Gruppen, nachdem GROUP BY und die Aggregatfunktion ausgewertet wurden." }
+      - { de: "In die ORDER-BY-Klausel, denn dort stehen alle Bedingungen zur Anzahl." }
+    correct: [1]
+    explanation: { de: "19.6.4: WHERE wählt einzelne Zeilen vor dem Gruppieren aus und kennt keine Aggregatergebnisse; HAVING wählt Gruppen nach dem Gruppieren aus. ORDER BY sortiert nur." }

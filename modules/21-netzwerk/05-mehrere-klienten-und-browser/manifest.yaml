@@ -1,0 +1,23 @@
+id: netz-mehrere-klienten-und-browser
+title: { de: "Mehrere Klienten und WebView2" }
+reading:
+  section: "21.6.3"
+  title: { de: "Simultane Bedienung von mehreren Klienten" }
+  printedPage: 1531
+teaches:
+  - net.multi-client
+  - net.webview2
+requires:
+  - net.tcp-listener
+  - net.tcp-client
+  - net.line-protocol
+items:
+  - type: review
+    id: mehrere-klienten
+    prompt: { de: "Erweitere den Server aus Aufgabe 4 so, dass zwei Klienten gleichzeitig verbunden sein können: eine Annahmeschleife ruft AcceptTcpClient() wiederholt auf und übergibt jeden Klienten an eine eigene Task, die ihn zeilenweise bedient. Starte den Server in einem Terminal und zwei Klienten (zum Beispiel zwei Konsolenprogramme mit Klient.Frage oder ein einfacher Telnet-/netcat-Aufruf) in zwei weiteren Terminals; beide müssen gleichzeitig Antworten bekommen. Zeige das der Betreuung und erkläre, wie du den Server sauber beendest." }
+  - type: open
+    id: warum-blockiert
+    prompt: { de: "Warum blockiert der sequenzielle Server aus Aufgabe 4 den zweiten Klienten, solange der erste verbunden ist? Was begrenzt bei der Lösung mit einer Task je Klient die Zahl der Klienten, die gleichzeitig bedient werden können?" }
+  - type: review
+    id: webview2
+    prompt: { de: "Nur Windows: Lege in Rider eine kleine WPF-Anwendung mit einem WebView2-Steuerelement an (NuGet-Paket Microsoft.Web.WebView2, Abschnitt 21.4.2), die die lokale Adresse einer laufenden Seite anzeigt (zum Beispiel eine kleine Testseite, die du mit HttpListener oder einem Dateiserver bereitstellst). Die Betreuung prüft die Projektdatei (Zieltyp net10.0-windows, Paketverweis) und das laufende Fenster." }

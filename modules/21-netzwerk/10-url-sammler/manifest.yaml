@@ -1,0 +1,19 @@
+id: netz-url-sammler
+title: { de: "Zusatz: URL-Sammler" }
+optional: true
+reading:
+  section: "21.2"
+  title: { de: "URI bzw. URL" }
+  printedPage: 1505
+teaches:
+  - net.uri-parse
+  - net.uri-builder
+  - net.query-escape
+requires:
+  - net.ip-address
+items:
+  - type: coding
+    id: url-sammler
+    openFile: "UrlSammler/UrlSammler.cs"
+    openLine: 1
+    testProject: "UrlSammler Tests/UrlSammler.Tests.csproj"

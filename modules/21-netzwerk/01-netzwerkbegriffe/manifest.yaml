@@ -1,0 +1,101 @@
+id: netz-netzwerkbegriffe
+title: { de: "Netzwerkbegriffe: Quiz" }
+reading:
+  section: "21.1"
+  title: { de: "Begriffe aus der Netzwerktechnik" }
+  printedPage: 1497
+teaches:
+  - net.osi-concepts
+  - net.http-methods
+  - net.httpclient-lifetime
+requires:
+  - interfaces.as-type
+  - types.string-basic
+items:
+  - type: multipleChoice
+    id: schichten
+    prompt: { de: "Welche Zuordnung von Protokoll zu Schicht des TCP/IP-Modells (bzw. OSI-Modells) stimmt?" }
+    options:
+      - { de: "Ethernet: Sicherung/Netzzugang (Link Layer); IP: Vermittlung (Network Layer); TCP: Transport (Transport Layer); HTTP und DNS: Anwendung (Application Layer)." }
+      - { de: "Ethernet: Anwendung; IP: Transport; TCP: Vermittlung; HTTP: Bitübertragung." }
+      - { de: "HTTP: Transport; TCP: Anwendung; IP: Anwendung; Ethernet: Vermittlung." }
+    correct: [0]
+    explanation: { de: "21.1.1.2 bis 21.1.1.7 (Seite 1499 bis 1502) und 21.1.2 (Seite 1503). Jede Schicht verpackt die Daten der Schicht darüber und gibt sie an die darunter weiter." }
+  - type: multipleChoice
+    id: ip-und-port
+    prompt: { de: "Was bezeichnen IP-Adresse und Portnummer?" }
+    options:
+      - { de: "Die IP-Adresse bezeichnet einen Rechner (genauer: eine Netzwerkschnittstelle) im Netz, die Portnummer ein Programm bzw. einen Dienst auf diesem Rechner." }
+      - { de: "Die IP-Adresse bezeichnet ein Programm, die Portnummer den Rechner." }
+      - { de: "Beide bezeichnen den Rechner; der Port ist nur eine Prüfsumme." }
+    correct: [0]
+    explanation: { de: "21.1.1.3 und 21.1.1.4 (Seite 1499 bis 1500). Ein Webserver lauscht üblicherweise auf Port 80 (HTTP) oder 443 (HTTPS); wer einen eigenen Server schreibt, wählt einen freien Port oder lässt das Betriebssystem einen zuteilen (Port 0)." }
+  - type: multipleChoice
+    id: tcp-udp
+    prompt: { de: "Worin unterscheiden sich TCP und UDP?" }
+    options:
+      - { de: "TCP baut eine Verbindung auf und sichert die Übertragung (Reihenfolge, Wiederholung bei Verlust); UDP schickt einzelne Datagramme ohne Verbindung und ohne Garantie." }
+      - { de: "UDP ist die gesicherte, TCP die ungesicherte Variante." }
+      - { de: "TCP gibt es nur im Browser, UDP nur in C#." }
+    correct: [0]
+    explanation: { de: "21.1.1.4 (Seite 1500). HTTP und die Socket-Aufgaben dieses Moduls laufen über TCP." }
+  - type: multipleChoice
+    id: dns
+    prompt: { de: "Was löst DNS auf?" }
+    options:
+      - { de: "Hostnamen (z. B. www.example.com) in IP-Adressen." }
+      - { de: "IP-Adressen in Portnummern." }
+      - { de: "HTML-Seiten in Text." }
+    correct: [0]
+    explanation: { de: "21.1.1.7 und 21.5 (Seite 1502 und 1523). In C# erledigt Dns.GetHostAddresses(name) das; der Name localhost wird lokal aufgelöst und braucht kein Internet." }
+  - type: multipleChoice
+    id: http-methoden
+    prompt: { de: "Welche HTTP-Methode passt? (a) eine Ressource lesen, (b) Daten zum Anlegen an den Server senden, (c) nur prüfen, ob die Ressource existiert und wie groß sie ist, ohne sie zu laden." }
+    options:
+      - { de: "(a) GET, (b) POST, (c) HEAD" }
+      - { de: "(a) POST, (b) GET, (c) HEAD" }
+      - { de: "(a) HEAD, (b) GET, (c) POST" }
+    correct: [0]
+    explanation: { de: "21.3.1 (Seite 1507) und 21.3.2.3 Header zu einer HTTP-Antwort anfordern (Seite 1511). HEAD liefert dieselben Kopfzeilen wie GET, aber keinen Inhalt." }
+  - type: multipleChoice
+    id: statusklassen
+    prompt: { de: "Ordne die Statuscodes den Klassen zu: 200 OK, 301 Moved Permanently, 404 Not Found, 500 Internal Server Error, 503 Service Unavailable." }
+    options:
+      - { de: "200 ist Erfolg (2xx), 301 Umleitung (3xx), 404 Fehler des Klienten (4xx), 500 und 503 Fehler des Servers (5xx)." }
+      - { de: "200 ist Umleitung, 301 Erfolg, 404 und 500 Fehler des Servers, 503 Fehler des Klienten." }
+      - { de: "Alle Codes ab 300 sind Fehler des Servers." }
+    correct: [0]
+    explanation: { de: "21.3.2 (Seite 1509) und HttpResponseMessage.IsSuccessStatusCode: true genau für 200 bis 299. 4xx bedeutet: Die Anforderung war falsch; 5xx: Der Server hat versagt (ein erneuter Versuch kann sich lohnen, z. B. bei 503)." }
+  - type: multipleChoice
+    id: httpclient-lebensdauer
+    prompt:
+      de: |
+        Dieser Code ruft in einer Schleife viele Seiten ab:
+
+        ```csharp
+        foreach (var url in urls)
+        {
+            using var client = new HttpClient();
+            texte.Add(await client.GetStringAsync(url));
+        }
+        ```
+
+        Was spricht dagegen?
+    options:
+      - { de: "Jeder HttpClient baut eigene Verbindungen auf und gibt sie beim Dispose wieder frei; die Sockets bleiben noch eine Weile blockiert, bei vielen Aufrufen gehen die Ports aus. Besser: ein einziger HttpClient, der im ganzen Programm wiederverwendet wird (er ist dafür gebaut und thread-sicher)." }
+      - { de: "Nichts; HttpClient ist ein leichtes Objekt und soll bei jedem Aufruf neu angelegt werden." }
+      - { de: "using ist bei HttpClient verboten." }
+    correct: [0]
+    explanation: { de: "21.3 (Seite 1506 bis 1507): Gegen kurzlebige HttpClient-Objekte sprechen der eigene Verbindungspool und die nach dem Ende einer Verbindung noch blockierten TCP-Ports." }
+  - type: multipleChoice
+    id: tcp-oder-http
+    prompt: { de: "Ein selbst geschriebener Server soll mit einem Browser sprechen. Welches Protokoll muss er sprechen?" }
+    options:
+      - { de: "HTTP (über TCP); ein Browser schickt Anforderungen in diesem Format und erwartet eine HTTP-Antwort mit Statuszeile." }
+      - { de: "Ein beliebiges eigenes Zeilenprotokoll; der Browser versteht jedes." }
+      - { de: "Nur UDP." }
+    correct: [0]
+    explanation: { de: "21.1.2 (Seite 1503). Ein eigenes Zeilenprotokoll (wie in Aufgabe 4) funktioniert nur mit einem passenden eigenen Klienten." }
+  - type: open
+    id: browseraufruf
+    prompt: { de: "Beschreibe in eigenen Worten, welche Schritte im Netzwerk ablaufen, wenn ein Browser die Adresse http://www.example.com/index.html aufruft. Gehe auf Namensauflösung, Verbindungsaufbau, Anforderung und Antwort ein." }

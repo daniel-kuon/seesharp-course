@@ -1,0 +1,20 @@
+id: netz-wetter-api-client
+title: { de: "Zusatz: Typed Client für eine Wetter-API" }
+optional: true
+reading:
+  section: "21.3.2"
+  title: { de: "GET-Anforderungen ohne Anforderungsparameter" }
+  printedPage: 1509
+teaches:
+  - net.httpclient-get
+  - net.json-over-http
+  - net.http-status
+requires:
+  - net.httpclient-post
+  - net.await-io
+items:
+  - type: coding
+    id: vorhersage-client
+    openFile: "Vorhersage/VorhersageClient.cs"
+    openLine: 1
+    testProject: "Vorhersage Tests/Vorhersage.Tests.csproj"

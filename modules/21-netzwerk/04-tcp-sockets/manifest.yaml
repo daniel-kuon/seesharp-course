@@ -1,0 +1,50 @@
+id: netz-tcp-sockets
+title: { de: "TCP-Server und -Klient im Loopback" }
+reading:
+  section: "21.6.1"
+  title: { de: "TCP-Server" }
+  printedPage: 1526
+teaches:
+  - net.tcp-listener
+  - net.tcp-client
+  - net.line-protocol
+requires:
+  - files.streamwriter
+  - files.streamreader-lines
+  - resources.using-statement
+  - exceptions.try-catch
+  - strings.methods
+  - types.int
+items:
+  - type: coding
+    id: rechenserver
+    openFile: "Rechenserver/RechenServer.cs"
+    openLine: 1
+    testProject: "Rechenserver Tests/Rechenserver.Tests.csproj"
+  - type: multipleChoice
+    id: autoflush
+    prompt: { de: "Der Server schreibt seine Antwort mit schreiber.WriteLine(antwort), aber AutoFlush ist nicht eingeschaltet. Der Klient wartet ewig auf die Antwort. Warum?" }
+    options:
+      - { de: "Der StreamWriter puffert die Daten; sie gehen erst bei Flush() (oder Dispose) wirklich auf das Netz. Mit AutoFlush = true wird nach jedem Schreiben geleert." }
+      - { de: "WriteLine sendet nur, wenn der Klient vorher ENDE gesendet hat." }
+      - { de: "Der NetworkStream kann nur in eine Richtung benutzt werden." }
+    correct: [0]
+    explanation: { de: "21.6.1 (Seite 1526 bis 1530): StreamWriter und NetworkStream arbeiten wie bei Dateien (Level 15). Bei einem Dialog über das Netz muss jede Antwort sofort hinausgehen, sonst warten beide Seiten aufeinander." }
+  - type: multipleChoice
+    id: readline-null
+    prompt: { de: "Wann liefert StreamReader.ReadLine() auf einem NetworkStream den Wert null?" }
+    options:
+      - { de: "Wenn die Gegenseite die Verbindung geschlossen hat und alle Daten gelesen sind (Ende des Datenstroms). Solange die Verbindung offen ist und nichts ankommt, blockiert ReadLine dagegen." }
+      - { de: "Wenn gerade keine Zeile da ist; ReadLine kehrt dann sofort mit null zurück." }
+      - { de: "Wenn der Klient eine leere Zeile sendet." }
+    correct: [0]
+    explanation: { de: "21.6.2 (Seite 1530). Eine leere Zeile ist eine Zeichenkette der Länge 0, nicht null. Ein Server prüft deshalb auf null, um getrennte Klienten zu erkennen." }
+  - type: multipleChoice
+    id: port-null
+    prompt: { de: "Was bewirkt new TcpListener(IPAddress.Loopback, 0)?" }
+    options:
+      - { de: "Der Listener lauscht nur auf der lokalen Schleife (127.0.0.1), und das Betriebssystem teilt nach Start() einen freien Port zu; den tatsächlichen Port liefert ((IPEndPoint)listener.LocalEndpoint).Port." }
+      - { de: "Der Listener lauscht auf allen Netzwerkkarten auf Port 80." }
+      - { de: "Der Aufruf ist ungültig, weil Port 0 nicht existiert." }
+    correct: [0]
+    explanation: { de: "21.6.1 (Seite 1526). Für Tests ist das ideal: kein Konflikt mit anderen Programmen und von außen nicht erreichbar." }

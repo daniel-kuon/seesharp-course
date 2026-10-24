@@ -1,0 +1,40 @@
+id: netz-uri-und-adressen
+title: { de: "URIs, Parameter und IP-Adressen" }
+reading:
+  section: "21.2"
+  title: { de: "URI bzw. URL" }
+  printedPage: 1505
+teaches:
+  - net.uri-parse
+  - net.uri-builder
+  - net.query-escape
+  - net.ip-address
+requires:
+  - strings.methods
+  - types.string-basic
+  - collections.dictionary-add-lookup
+  - exceptions.try-pattern
+  - exceptions.catch-specific
+items:
+  - type: coding
+    id: adressen
+    openFile: "Adressen/Adressen.cs"
+    openLine: 1
+    testProject: "Adressen Tests/Adressen.Tests.csproj"
+  - type: multipleChoice
+    id: parameter-kodieren
+    prompt:
+      de: |
+        Ein Suchbegriff wird so in eine Adresse eingebaut:
+
+        ```csharp
+        var url = "http://example.org/suche?q=" + suchbegriff;
+        ```
+
+        Der Benutzer sucht nach `Tom & Jerry`. Was geht schief, und was ist die Lösung?
+    options:
+      - { de: "Das & beendet den Parameter q; der Server sieht q=Tom  und einen weiteren Parameter Jerry. Lösung: den Wert mit Uri.EscapeDataString kodieren (Tom%20%26%20Jerry)." }
+      - { de: "Nichts; Browser und HttpClient kodieren die Adresse selbst, bevor sie sie senden." }
+      - { de: "Der Code kompiliert nicht, weil ein & in einer Zeichenkette verboten ist." }
+    correct: [0]
+    explanation: { de: "21.3.3.1 (Seite 1513) und 21.2 (Seite 1505): In der Abfrage haben &, =, ? und # eine Bedeutung. Daten muss man vor dem Einbauen kodieren; Uri.EscapeDataString kodiert alles außer den unreservierten Zeichen." }

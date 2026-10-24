@@ -1,0 +1,51 @@
+id: netz-httpclient
+title: { de: "HttpClient gegen einen Test-Server" }
+reading:
+  section: "21.3.2"
+  title: { de: "GET-Anforderungen ohne Anforderungsparameter" }
+  printedPage: 1509
+teaches:
+  - net.httpclient-get
+  - net.httpclient-post
+  - net.http-status
+  - net.json-over-http
+  - net.await-io
+requires:
+  - json.serialize
+  - json.deserialize
+  - records.declare
+  - exceptions.try-catch
+  - exceptions.catch-when
+  - delegates.generic-func
+  - interfaces.as-type
+  - nullable.annotation
+items:
+  - type: coding
+    id: wetterclient
+    openFile: "WetterClient/WetterClient.cs"
+    openLine: 1
+    testProject: "WetterClient Tests/WetterClient.Tests.csproj"
+  - type: multipleChoice
+    id: await-bedeutung
+    prompt:
+      de: |
+        Was bewirkt `await` in dieser Zeile?
+
+        ```csharp
+        string text = await _http.GetStringAsync(pfad);
+        ```
+    options:
+      - { de: "Die Methode wartet auf das Ergebnis der Task<string>, ohne den Thread zu blockieren; danach ist text der gelieferte Text. Fehler der Anforderung werden an dieser Stelle als Ausnahme geworfen." }
+      - { de: "Die Zeile startet einen neuen Thread, der den Text irgendwann in text schreibt; der Code danach läuft sofort weiter." }
+      - { de: "await macht aus dem Aufruf einen synchronen Aufruf, der den Thread blockiert, bis das Ergebnis da ist." }
+    correct: [0]
+    explanation: { de: "21.3 (Seite 1507): HttpClient-Methoden arbeiten E/A-gebunden und asynchron. Eine Methode, die await benutzt, wird selbst als async deklariert und liefert eine Task. Die genaue Funktionsweise behandelt das Wahlmodul Multithreading." }
+  - type: multipleChoice
+    id: status-pruefen
+    prompt: { de: "Ein Server antwortet auf GetAsync mit 404. Was passiert ohne weitere Maßnahmen?" }
+    options:
+      - { de: "GetAsync wirft keine Ausnahme; die Antwort hat den Statuscode 404 (IsSuccessStatusCode ist false). Erst EnsureSuccessStatusCode() macht daraus eine HttpRequestException mit StatusCode." }
+      - { de: "GetAsync wirft sofort eine FileNotFoundException." }
+      - { de: "Der Aufruf liefert null." }
+    correct: [0]
+    explanation: { de: "21.3.2.1 (Seite 1509). Dagegen werfen GetStringAsync und GetFromJsonAsync bei Fehlerstatus selbst eine HttpRequestException mit gesetztem StatusCode (seit .NET 5)." }

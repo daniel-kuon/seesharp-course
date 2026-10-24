@@ -1,0 +1,19 @@
+id: netz-chat-protokoll
+title: { de: "Zusatz: Mini-Chat-Protokoll" }
+optional: true
+reading:
+  section: "21.6.2"
+  title: { de: "TCP-Klient" }
+  printedPage: 1530
+teaches:
+  - net.tcp-listener
+  - net.tcp-client
+  - net.line-protocol
+requires:
+  - files.streamwriter
+items:
+  - type: coding
+    id: chat
+    openFile: "Chat/ChatServer.cs"
+    openLine: 1
+    testProject: "Chat Tests/Chat.Tests.csproj"

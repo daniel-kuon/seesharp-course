@@ -1,8 +1,8 @@
 id: efcore-konfiguration-und-konflikte
-title: { de: "Wertkonverter, Konflikte, Transaktionen, Migrationen" }
+title: { de: "Wertkonverter, Konflikte, Transaktionen, Migrationen", en: "Value Converters, Conflicts, Transactions, Migrations" }
 reading:
   section: "20.13"
-  title: { de: "Konflikte durch parallele Zugriffe" }
+  title: { de: "Konflikte durch parallele Zugriffe", en: "Conflicts Caused by Concurrent Access" }
   printedPage: 1482
 teaches:
   - ef.value-converter
@@ -24,13 +24,13 @@ items:
     testProject: "Konten Tests/Konten.Tests.csproj"
   - type: review
     id: migration
-    prompt: { de: "Lege außerhalb des Kurses ein kleines Konsolenprojekt (scratch) mit den Klassen Konto und KontoContext an, füge die Pakete Microsoft.EntityFrameworkCore.Sqlite und Microsoft.EntityFrameworkCore.Design (jeweils Version 10.0.13) hinzu, installiere das Werkzeug dotnet-ef (Version 10.0.13) und erzeuge mit dotnet ef migrations add Anfang die erste Migration. Beschreibe der Betreuung, was im Ordner Migrations entstanden ist, und erkläre in eigenen Worten, warum man EnsureCreated und Migrationen nicht mischen darf (20.3 und 20.3.2). Die Betreuung sieht sich den erzeugten Migrations-Ordner an." }
+    prompt: { de: "Lege außerhalb des Kurses ein kleines Konsolenprojekt (scratch) mit den Klassen Konto und KontoContext an, füge die Pakete Microsoft.EntityFrameworkCore.Sqlite und Microsoft.EntityFrameworkCore.Design (jeweils Version 10.0.13) hinzu, installiere das Werkzeug dotnet-ef (Version 10.0.13) und erzeuge mit dotnet ef migrations add Anfang die erste Migration. Beschreibe der Betreuung, was im Ordner Migrations entstanden ist, und erkläre in eigenen Worten, warum man EnsureCreated und Migrationen nicht mischen darf (20.3 und 20.3.2). Die Betreuung sieht sich den erzeugten Migrations-Ordner an.", en: "Outside the course, create a small console project (scratch) with the classes `Konto` and `KontoContext`, add the packages `Microsoft.EntityFrameworkCore.Sqlite` and `Microsoft.EntityFrameworkCore.Design` (version 10.0.13 each), install the tool `dotnet-ef` (version 10.0.13), and create the first migration with `dotnet ef migrations add Anfang`. Describe to the supervisor what was created in the `Migrations` folder, and explain in your own words why `EnsureCreated` and migrations must not be mixed (20.3 and 20.3.2). The supervisor will look at the generated `Migrations` folder." }
   - type: multipleChoice
     id: konflikt-token
-    prompt: { de: "Zwei Benutzer laden dasselbe Konto (Version 1). Benutzer A ändert und speichert (Version 2). Benutzer B ändert danach und ruft SaveChanges auf. Ohne Concurrency Token: Was geschieht? Mit [ConcurrencyCheck] auf Version?" }
+    prompt: { de: "Zwei Benutzer laden dasselbe Konto (Version 1). Benutzer A ändert und speichert (Version 2). Benutzer B ändert danach und ruft SaveChanges auf. Ohne Concurrency Token: Was geschieht? Mit [ConcurrencyCheck] auf Version?", en: "Two users load the same `Konto` (version 1). User A changes it and saves (version 2). User B then makes a change and calls `SaveChanges`. Without a concurrency token: What happens? With `[ConcurrencyCheck]` on `Version`?" }
     options:
-      - { de: "Ohne Token überschreibt B still die Änderung von A (\"letzter gewinnt\"); mit Token wirft SaveChanges eine DbUpdateConcurrencyException, weil UPDATE ... WHERE Version = 1 keine Zeile mehr trifft." }
-      - { de: "In beiden Fällen wirft SaveChanges eine DbUpdateConcurrencyException." }
-      - { de: "In beiden Fällen merkt EF Core nichts, die Datenbank sperrt die Zeile aber, solange A sie geladen hat." }
+      - { de: "Ohne Token überschreibt B still die Änderung von A (\"letzter gewinnt\"); mit Token wirft SaveChanges eine DbUpdateConcurrencyException, weil UPDATE ... WHERE Version = 1 keine Zeile mehr trifft.", en: "Without a token, B still overwrites A's change (\"last one wins\"); with a token, SaveChanges throws a DbUpdateConcurrencyException because UPDATE ... WHERE Version = 1 no longer matches any rows." }
+      - { de: "In beiden Fällen wirft SaveChanges eine DbUpdateConcurrencyException.", en: "In both cases, SaveChanges throws a DbUpdateConcurrencyException." }
+      - { de: "In beiden Fällen merkt EF Core nichts, die Datenbank sperrt die Zeile aber, solange A sie geladen hat.", en: "In both cases, EF Core doesn't notice anything, but the database locks the row as long as A has it loaded." }
     correct: [0]
-    explanation: { de: "20.13: EF Core arbeitet mit optimistischer Nebenläufigkeit: Es sperrt nichts, sondern prüft beim Speichern, ob der Wert des Tokens noch dem beim Laden entspricht. Bei einem Konflikt entscheidet das Programm: Änderung verwerfen, neu laden und wiederholen oder den Benutzer fragen." }
+    explanation: { de: "20.13: EF Core arbeitet mit optimistischer Nebenläufigkeit: Es sperrt nichts, sondern prüft beim Speichern, ob der Wert des Tokens noch dem beim Laden entspricht. Bei einem Konflikt entscheidet das Programm: Änderung verwerfen, neu laden und wiederholen oder den Benutzer fragen.", en: "20.13: EF Core uses optimistic concurrency: It does not lock anything, but instead checks when saving whether the token's value still matches the one from when it was loaded. If there is a conflict, the program decides whether to discard the change, reload, and retry, or ask the user." }

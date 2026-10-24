@@ -1,8 +1,8 @@
 id: interfaces-enumeratoren
-title: { de: "IEnumerable<T> und ein handgeschriebener IEnumerator<T>" }
+title: { de: "IEnumerable<T> und ein handgeschriebener IEnumerator<T>", en: "IEnumerable<T> and a custom IEnumerator<T>" }
 reading:
   section: "9.5"
-  title: { de: "IEnumerable<T> und IEnumerator<T>" }
+  title: { de: "IEnumerable<T> und IEnumerator<T>", en: "IEnumerable<T> and IEnumerator<T>" }
   printedPage: 647
 teaches:
   - interfaces.ienumerable
@@ -23,10 +23,10 @@ items:
     testProject: "Enumeratoren Tests/Enumeratoren.Tests.csproj"
   - type: multipleChoice
     id: foreach-protokoll
-    prompt: { de: "Was tut foreach (var x in liste) hinter den Kulissen?" }
+    prompt: { de: "Was tut foreach (var x in liste) hinter den Kulissen?", en: "What does `foreach (var x in liste)` do behind the scenes?" }
     options:
-      - { de: "Es ruft liste.GetEnumerator() auf und wiederholt MoveNext(); solange das true liefert, ist x der Wert von Current." }
-      - { de: "Es greift über den Indexer von 0 bis Count - 1 zu." }
-      - { de: "Es kopiert die Liste in ein Array und läuft darüber." }
+      - { de: "Es ruft liste.GetEnumerator() auf und wiederholt MoveNext(); solange das true liefert, ist x der Wert von Current.", en: "It calls `liste.GetEnumerator()` and repeats `MoveNext()`; as long as that returns `true`, `x` is the value of `Current`." }
+      - { de: "Es greift über den Indexer von 0 bis Count - 1 zu.", en: "It accesses the array using an index ranging from 0 to Count - 1." }
+      - { de: "Es kopiert die Liste in ein Array und läuft darüber.", en: "It copies the list into an array and iterates through it." }
     correct: [0]
-    explanation: { de: "9.5.1 (Seite 648). Deshalb reicht IEnumerable<T>, damit foreach über jeden eigenen Typ laufen kann; ein Indexer ist dafür nicht nötig." }
+    explanation: { de: "9.5.1 (Seite 648). Deshalb reicht IEnumerable<T>, damit foreach über jeden eigenen Typ laufen kann; ein Indexer ist dafür nicht nötig.", en: "9.5.1 (page 648). Therefore, IEnumerable<T> is sufficient for foreach to iterate over any custom type; an indexer is not required for this." }

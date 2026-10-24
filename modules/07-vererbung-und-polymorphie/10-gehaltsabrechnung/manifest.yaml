@@ -1,9 +1,9 @@
 id: vererbung-gehaltsabrechnung
-title: { de: "Zusatz: Gehaltsabrechnung mit abstrakter Basisklasse" }
+title: { de: "Zusatz: Gehaltsabrechnung mit abstrakter Basisklasse", en: "Extra: Payroll with an Abstract Base Class" }
 optional: true
 reading:
   section: "7.13"
-  title: { de: "Abstrakte Methoden und Klassen" }
+  title: { de: "Abstrakte Methoden und Klassen", en: "Abstract Methods and Classes" }
   printedPage: 577
 teaches:
   - inheritance.abstract-class

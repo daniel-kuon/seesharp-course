@@ -1,8 +1,8 @@
 id: wpf-euro-viewmodel
-title: { de: "Euro-Konverter als ViewModel" }
+title: { de: "Euro-Konverter als ViewModel", en: "Euro Converter as a ViewModel" }
 reading:
   section: "12.10.4"
-  title: { de: "Änderungsbenachrichtigungen" }
+  title: { de: "Änderungsbenachrichtigungen", en: "Change Notifications" }
   printedPage: 792
 teaches:
   - mvvm.inpc
@@ -25,46 +25,46 @@ items:
     testProject: "EuroKonverter Tests/EuroKonverter.Tests.csproj"
   - type: multipleChoice
     id: zustaendigkeit-kurs
-    prompt: { de: "Wohin gehört die Umrechnung mit dem Kurs 1,95583 (die reine Rechenvorschrift Euro mal Kurs)?" }
+    prompt: { de: "Wohin gehört die Umrechnung mit dem Kurs 1,95583 (die reine Rechenvorschrift Euro mal Kurs)?", en: "Where should the conversion using the exchange rate of 1.95583 (the simple calculation: euro multiplied by the exchange rate) go?" }
     options:
-      - { de: "Ins Modell (Geschäftslogik, unabhängig von jeder Oberfläche); das ViewModel ruft sie nur auf." }
-      - { de: "In die Ansicht (XAML), weil dort der Betrag angezeigt wird." }
-      - { de: "In den Code-Behind des Fensters." }
+      - { de: "Ins Modell (Geschäftslogik, unabhängig von jeder Oberfläche); das ViewModel ruft sie nur auf.", en: "In the model (business logic, independent of any user interface); the ViewModel simply calls it." }
+      - { de: "In die Ansicht (XAML), weil dort der Betrag angezeigt wird.", en: "In the view (XAML), because that's where the amount is displayed." }
+      - { de: "In den Code-Behind des Fensters.", en: "In the window's code-behind." }
     correct: [0]
-    explanation: { de: "12.13.1.1 (Seite 858): Das Modell enthält Daten und Geschäftslogik. In dieser kleinen Aufgabe steckt die Rechnung der Einfachheit halber im ViewModel; in einem größeren Projekt wäre sie eine eigene Klasse." }
+    explanation: { de: "12.13.1.1 (Seite 858): Das Modell enthält Daten und Geschäftslogik. In dieser kleinen Aufgabe steckt die Rechnung der Einfachheit halber im ViewModel; in einem größeren Projekt wäre sie eine eigene Klasse.", en: "12.13.1.1 (page 858): The model contains data and business logic. In this simple exercise, the calculation is included in the ViewModel for the sake of simplicity; in a larger project, it would be its own class." }
   - type: multipleChoice
     id: zustaendigkeit-text
-    prompt: { de: "Wohin gehört der Zustand „Text, den der Benutzer gerade im Eingabefeld stehen hat, samt Fehlermeldung dazu“?" }
+    prompt: { de: "Wohin gehört der Zustand „Text, den der Benutzer gerade im Eingabefeld stehen hat, samt Fehlermeldung dazu“?", en: "Where does the state “text currently in the user’s input field, including any error messages” belong?" }
     options:
-      - { de: "Ins ViewModel: Es hält den Zustand der Ansicht und stellt ihn zur Bindung bereit." }
-      - { de: "Ins Modell, denn dort liegen alle Daten." }
-      - { de: "In die Ansicht, als Feld der Fensterklasse." }
+      - { de: "Ins ViewModel: Es hält den Zustand der Ansicht und stellt ihn zur Bindung bereit.", en: "In the ViewModel: It maintains the view's state and makes it available for binding." }
+      - { de: "Ins Modell, denn dort liegen alle Daten.", en: "Import it into the model, because that's where all the data is." }
+      - { de: "In die Ansicht, als Feld der Fensterklasse.", en: "In the view, as a field of the window class." }
     correct: [0]
-    explanation: { de: "12.13.1.2 (Seite 858): Das ViewModel bereitet Daten für die Ansicht auf (hier: Text mit Komma, Fehlermeldung) und hält ihren Zustand. Das Modell kennt keine Eingabetexte." }
+    explanation: { de: "12.13.1.2 (Seite 858): Das ViewModel bereitet Daten für die Ansicht auf (hier: Text mit Komma, Fehlermeldung) und hält ihren Zustand. Das Modell kennt keine Eingabetexte.", en: "12.13.1.2 (page 858): The ViewModel prepares data for the view (in this case: text with a comma, error message) and maintains its state. The model does not handle any input text." }
   - type: multipleChoice
     id: zustaendigkeit-farbe
-    prompt: { de: "Die Fehlermeldung soll rot und unter dem Eingabefeld erscheinen. Wohin gehören Farbe und Position?" }
+    prompt: { de: "Die Fehlermeldung soll rot und unter dem Eingabefeld erscheinen. Wohin gehören Farbe und Position?", en: "The error message should appear in red and below the input field. Where do color and position belong?" }
     options:
-      - { de: "In die Ansicht (XAML): Aussehen und Anordnung. Das ViewModel liefert nur den Text und HatFehler." }
-      - { de: "Ins ViewModel: Es setzt die Brush-Eigenschaft des TextBlocks." }
-      - { de: "Ins Modell." }
+      - { de: "In die Ansicht (XAML): Aussehen und Anordnung. Das ViewModel liefert nur den Text und HatFehler.", en: "In the view (XAML): Appearance and layout. The ViewModel only provides the text and HatFehler." }
+      - { de: "Ins ViewModel: Es setzt die Brush-Eigenschaft des TextBlocks.", en: "In the ViewModel: It sets the Brush property of the TextBlock." }
+      - { de: "Ins Modell.", en: "Into the model." }
     correct: [0]
-    explanation: { de: "12.13.1.3 (Seite 860): Die Ansicht legt Layout und Darstellung fest und bindet sich an das ViewModel. Ein ViewModel mit Farbobjekten wäre ohne WPF nicht testbar." }
+    explanation: { de: "12.13.1.3 (Seite 860): Die Ansicht legt Layout und Darstellung fest und bindet sich an das ViewModel. Ein ViewModel mit Farbobjekten wäre ohne WPF nicht testbar.", en: "12.13.1.3 (page 860): The view defines the layout and presentation and binds to the ViewModel. A ViewModel containing color objects would not be testable without WPF." }
   - type: multipleChoice
     id: zustaendigkeit-kenntnis
-    prompt: { de: "Wer darf wen kennen?" }
+    prompt: { de: "Wer darf wen kennen?", en: "Who is allowed to date whom?" }
     options:
-      - { de: "Die Ansicht kennt das ViewModel (per Bindung), das ViewModel kennt das Modell, aber nie die Ansicht; das Modell kennt keinen von beiden." }
-      - { de: "Das ViewModel hält eine Referenz auf das Fenster, damit es Steuerelemente ändern kann." }
-      - { de: "Alle drei Schichten kennen sich gegenseitig." }
+      - { de: "Die Ansicht kennt das ViewModel (per Bindung), das ViewModel kennt das Modell, aber nie die Ansicht; das Modell kennt keinen von beiden.", en: "The view knows the ViewModel (via binding), the ViewModel knows the model, but never the view; the model knows neither of them." }
+      - { de: "Das ViewModel hält eine Referenz auf das Fenster, damit es Steuerelemente ändern kann.", en: "The ViewModel holds a reference to the window so that it can modify controls." }
+      - { de: "Alle drei Schichten kennen sich gegenseitig.", en: "All three shifts know each other." }
     correct: [0]
-    explanation: { de: "12.13.1 (Seite 857) und 12.13.4.5 (Seite 884): Ein ViewModel darf keine Fensterklasse kennen. Daran liegt es auch, dass die Tests dieser Aufgabe ganz ohne WPF laufen." }
+    explanation: { de: "12.13.1 (Seite 857) und 12.13.4.5 (Seite 884): Ein ViewModel darf keine Fensterklasse kennen. Daran liegt es auch, dass die Tests dieser Aufgabe ganz ohne WPF laufen.", en: "12.13.1 (page 857) and 12.13.4.5 (page 884): A ViewModel must not be aware of any window class. This is also why the tests for this exercise run entirely without WPF." }
   - type: multipleChoice
     id: zustaendigkeit-ereignis
-    prompt: { de: "Wohin gehört eine Click-Behandlungsmethode im Code-Behind, die den Text des Eingabefelds liest und die Umrechnung anstößt?" }
+    prompt: { de: "Wohin gehört eine Click-Behandlungsmethode im Code-Behind, die den Text des Eingabefelds liest und die Umrechnung anstößt?", en: "Where should a click-handling method in the code-behind go that reads the text in the input field and triggers the conversion?" }
     options:
-      - { de: "Nirgendwohin: In MVVM ersetzt man sie durch eine Bindung (hier) bzw. einen Befehl (nächste Aufgabe), damit die Logik im ViewModel testbar bleibt." }
-      - { de: "In die Ansicht; Code-Behind ist der übliche Ort für Logik." }
-      - { de: "Ins Modell." }
+      - { de: "Nirgendwohin: In MVVM ersetzt man sie durch eine Bindung (hier) bzw. einen Befehl (nächste Aufgabe), damit die Logik im ViewModel testbar bleibt.", en: "Nowhere: In MVVM, you replace them with a binding (here) or a command (next task) so that the logic in the ViewModel remains testable." }
+      - { de: "In die Ansicht; Code-Behind ist der übliche Ort für Logik.", en: "In the view; code-behind is the usual place for logic." }
+      - { de: "Ins Modell.", en: "Into the model." }
     correct: [0]
-    explanation: { de: "12.13.3 (Seite 865): Statt auf Click-Ereignisse im Code Behind zu reagieren, bindet man Befehle; die Trennung von Oberfläche und Logik ist das Ziel des Musters." }
+    explanation: { de: "12.13.3 (Seite 865): Statt auf Click-Ereignisse im Code Behind zu reagieren, bindet man Befehle; die Trennung von Oberfläche und Logik ist das Ziel des Musters.", en: "12.13.3 (page 865): Instead of responding to click events in the code-behind, commands are bound; the goal of this pattern is to separate the user interface from the business logic." }

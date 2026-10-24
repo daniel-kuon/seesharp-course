@@ -1,8 +1,8 @@
 id: interfaces-quiz
-title: { de: "Interfaces-Quiz: Deklaration, abstrakte Klassen, Varianz" }
+title: { de: "Interfaces-Quiz: Deklaration, abstrakte Klassen, Varianz", en: "Interfaces Quiz: Declaration, Abstract Classes, Variance" }
 reading:
   section: "9.1.5"
-  title: { de: "Ko- und Kontravarianz von Typformalparametern in generischen Interfaces" }
+  title: { de: "Ko- und Kontravarianz von Typformalparametern in generischen Interfaces", en: "Covariance and Contravariance of Type Formal Parameters in Generic Interfaces" }
   printedPage: 634
 teaches:
   - interfaces.declare
@@ -19,64 +19,64 @@ requires:
 items:
   - type: multipleChoice
     id: deklaration
-    prompt: { de: "Welche Aussage über die Deklaration eines Interfaces ist richtig?" }
+    prompt: { de: "Welche Aussage über die Deklaration eines Interfaces ist richtig?", en: "Which statement about the declaration of an interface is correct?" }
     options:
-      - { de: "Mitglieder sind implizit public und abstrakt; Instanzfelder sind nicht erlaubt; statische Felder und Mitglieder mit Implementierung sind seit C# 8 bzw. 11 möglich." }
-      - { de: "Mitglieder sind implizit private, damit nur implementierende Klassen sie sehen." }
-      - { de: "Ein Interface darf Instanzfelder deklarieren, die jede implementierende Klasse erbt." }
+      - { de: "Mitglieder sind implizit public und abstrakt; Instanzfelder sind nicht erlaubt; statische Felder und Mitglieder mit Implementierung sind seit C# 8 bzw. 11 möglich.", en: "Members are implicitly public and abstract; instance fields are not allowed; static fields and members with implementations have been supported since C# 8 and 11, respectively." }
+      - { de: "Mitglieder sind implizit private, damit nur implementierende Klassen sie sehen.", en: "Members are implicitly private, so only implementing classes can see them." }
+      - { de: "Ein Interface darf Instanzfelder deklarieren, die jede implementierende Klasse erbt.", en: "An interface may declare instance fields that are inherited by every class that implements it." }
     correct: [0]
-    explanation: { de: "9.1 (Seite 614) und 9.1.2 (Seite 622). Ein Interface beschreibt Fähigkeiten, keinen Zustand." }
+    explanation: { de: "9.1 (Seite 614) und 9.1.2 (Seite 622). Ein Interface beschreibt Fähigkeiten, keinen Zustand.", en: "9.1 (page 614) and 9.1.2 (page 622). An interface describes capabilities, not a state." }
   - type: multipleChoice
     id: vs-abstrakt
-    prompt: { de: "Worin unterscheiden sich Interfaces von abstrakten Klassen? (9.6 Aufgabe 2)" }
+    prompt: { de: "Worin unterscheiden sich Interfaces von abstrakten Klassen? (9.6 Aufgabe 2)", en: "How do interfaces differ from abstract classes? (9.6 Exercise 2)" }
     options:
-      - { de: "Eine Klasse erbt von genau einer Basisklasse, kann aber beliebig viele Interfaces implementieren; Interfaces haben keine Instanzfelder und keine Konstruktoren, abstrakte Klassen können Zustand und Implementierung an Erben weitergeben; Strukturen können Interfaces implementieren, aber nicht erben." }
-      - { de: "Es gibt keinen Unterschied; Interfaces sind abstrakte Klassen ohne das Schlüsselwort class." }
-      - { de: "Abstrakte Klassen dürfen keine Implementierung enthalten, Interfaces schon." }
+      - { de: "Eine Klasse erbt von genau einer Basisklasse, kann aber beliebig viele Interfaces implementieren; Interfaces haben keine Instanzfelder und keine Konstruktoren, abstrakte Klassen können Zustand und Implementierung an Erben weitergeben; Strukturen können Interfaces implementieren, aber nicht erben.", en: "A class inherits from exactly one base class but can implement any number of interfaces; interfaces have no instance fields and no constructors; abstract classes can pass state and implementation to their subclasses; structures can implement interfaces but cannot inherit from them." }
+      - { de: "Es gibt keinen Unterschied; Interfaces sind abstrakte Klassen ohne das Schlüsselwort class.", en: "There is no difference; interfaces are abstract classes without the keyword \"class.\"" }
+      - { de: "Abstrakte Klassen dürfen keine Implementierung enthalten, Interfaces schon.", en: "Abstract classes cannot contain an implementation, but interfaces can." }
     correct: [0]
-    explanation: { de: "Faustregel: abstrakte Klasse für eine ist-ein-Hierarchie mit gemeinsamem Code, Interface für eine Fähigkeit, die quer durch Hierarchien geht (IComparable<T>, IEnumerable<T>)." }
+    explanation: { de: "Faustregel: abstrakte Klasse für eine ist-ein-Hierarchie mit gemeinsamem Code, Interface für eine Fähigkeit, die quer durch Hierarchien geht (IComparable<T>, IEnumerable<T>).", en: "Rule of thumb: Use an abstract class for an \"is-a\" hierarchy with shared code, and an interface for a capability that cuts across hierarchies (IComparable<T>, IEnumerable<T>)." }
   - type: multipleChoice
     id: default-member
-    prompt: { de: "interface ILogger { void Log(string s); void LogError(string s) => Log(\"FEHLER: \" + s); } — Muss eine implementierende Klasse LogError implementieren?" }
+    prompt: { de: "interface ILogger { void Log(string s); void LogError(string s) => Log(\"FEHLER: \" + s); } — Muss eine implementierende Klasse LogError implementieren?", en: "interface ILogger { void Log(string s); void LogError(string s) => Log(\"ERROR: \" + s); } — Does a class that implements this interface have to implement LogError?" }
     options:
-      - { de: "Nein; LogError hat eine Standardimplementierung. Sie ist aber nur über eine ILogger-Referenz aufrufbar, nicht über die Klasse selbst." }
-      - { de: "Ja; jedes Interface-Mitglied muss implementiert werden." }
-      - { de: "Der Code kompiliert nicht, weil Interfaces keine Rümpfe enthalten dürfen." }
+      - { de: "Nein; LogError hat eine Standardimplementierung. Sie ist aber nur über eine ILogger-Referenz aufrufbar, nicht über die Klasse selbst.", en: "No; LogError has a default implementation. However, it can only be called via an ILogger reference, not via the class itself." }
+      - { de: "Ja; jedes Interface-Mitglied muss implementiert werden.", en: "Yes; every interface member must be implemented." }
+      - { de: "Der Code kompiliert nicht, weil Interfaces keine Rümpfe enthalten dürfen.", en: "The code won't compile because interfaces are not allowed to contain stubs." }
     correct: [0]
-    explanation: { de: "Konkrete Schnittstellenmitglieder (9.1.1.2, Seite 616) erlauben, ein Interface nachträglich zu erweitern, ohne alle Implementierungen zu brechen." }
+    explanation: { de: "Konkrete Schnittstellenmitglieder (9.1.1.2, Seite 616) erlauben, ein Interface nachträglich zu erweitern, ohne alle Implementierungen zu brechen.", en: "Concrete interface members (9.1.1.2, page 616) allow an interface to be extended later without breaking all implementations." }
   - type: multipleChoice
     id: kovarianz
-    prompt: { de: "static double SmallestX(IEnumerable<Figur> li) wird mit einer List<Kreis> aufgerufen. Kreis erbt von Figur. Kompiliert das?" }
+    prompt: { de: "static double SmallestX(IEnumerable<Figur> li) wird mit einer List<Kreis> aufgerufen. Kreis erbt von Figur. Kompiliert das?", en: "static double SmallestX(IEnumerable<Figur> li) is called with a List<Kreis>. Kreis inherits from Figur. Will this compile?" }
     options:
-      - { de: "Ja: IEnumerable<out T> ist kovariant; eine Folge von Kreisen darf als Folge von Figuren gelesen werden, weil T nur herausgegeben wird." }
-      - { de: "Nein: generische Typen sind invariant, wie bei List<T>." }
-      - { de: "Nur mit einem expliziten Cast (IEnumerable<Figur>)listeK." }
+      - { de: "Ja: IEnumerable<out T> ist kovariant; eine Folge von Kreisen darf als Folge von Figuren gelesen werden, weil T nur herausgegeben wird.", en: "Yes: `IEnumerable<out T>` is covariant; a sequence of circles can be interpreted as a sequence of shapes because `T` is only output." }
+      - { de: "Nein: generische Typen sind invariant, wie bei List<T>.", en: "No: generic types are invariant, as in `List<T>`." }
+      - { de: "Nur mit einem expliziten Cast (IEnumerable<Figur>)listeK.", en: "Only with an explicit cast (IEnumerable<Figur>)listeK." }
     correct: [0]
-    explanation: { de: "9.1.5.1 (Seite 637). Das out im Interface erlaubt die Zuweisung; bei List<T> (Klasse, T auch als Eingabe) wäre sie unsicher." }
+    explanation: { de: "9.1.5.1 (Seite 637). Das out im Interface erlaubt die Zuweisung; bei List<T> (Klasse, T auch als Eingabe) wäre sie unsicher.", en: "9.1.5.1 (page 637). The `out` keyword in the interface allows the assignment; with `List<T>` (a class, where `T` is also an input type), the assignment would be unsafe." }
   - type: multipleChoice
     id: kontravarianz
-    prompt: { de: "Figur implementiert IComparable<Figur>; Kreis : Figur hat keine eigene Implementierung. Warum funktioniert listeK.Sort() für eine List<Kreis> trotzdem?" }
+    prompt: { de: "Figur implementiert IComparable<Figur>; Kreis : Figur hat keine eigene Implementierung. Warum funktioniert listeK.Sort() für eine List<Kreis> trotzdem?", en: "`Figur` implements `IComparable<Figur>`; `Kreis : Figur` has no implementation of its own. Why does `listeK.Sort()` still work for a `List<Kreis>`?" }
     options:
-      - { de: "IComparable<in T> ist kontravariant: Ein Vergleicher für Figuren kann auch Kreise vergleichen, weil T nur als Eingabe vorkommt; Kreis erbt die Implementierung von Figur." }
-      - { de: "Sort vergleicht nur die Objektadressen." }
-      - { de: "Es funktioniert nicht; der Aufruf wirft InvalidOperationException." }
+      - { de: "IComparable<in T> ist kontravariant: Ein Vergleicher für Figuren kann auch Kreise vergleichen, weil T nur als Eingabe vorkommt; Kreis erbt die Implementierung von Figur.", en: "`IComparable<in T>` is contravariant: A comparer for `Figur` objects can also compare `Kreis` objects, because `T` occurs only as an input; `Kreis` inherits the implementation from `Figur`." }
+      - { de: "Sort vergleicht nur die Objektadressen.", en: "Sort compares only the object addresses." }
+      - { de: "Es funktioniert nicht; der Aufruf wirft InvalidOperationException.", en: "It doesn't work; the call throws an InvalidOperationException." }
     correct: [0]
-    explanation: { de: "9.1.5.2 (Seite 638) und 9.2.2 (Seite 642, Erben von Schnittstellenimplementationen)." }
+    explanation: { de: "9.1.5.2 (Seite 638) und 9.2.2 (Seite 642, Erben von Schnittstellenimplementationen).", en: "9.1.5.2 (page 638) and 9.2.2 (page 642, Inheriting Interface Implementations)." }
   - type: multipleChoice
     id: in-out-regel
-    prompt: { de: "Warum darf ein Typformalparameter, der sowohl als Parametertyp als auch als Rückgabetyp vorkommt (z. B. in IList<T>), weder in noch out sein?" }
+    prompt: { de: "Warum darf ein Typformalparameter, der sowohl als Parametertyp als auch als Rückgabetyp vorkommt (z. B. in IList<T>), weder in noch out sein?", en: "Why can't a type formal parameter that appears as both a parameter type and a return type (e.g., in IList<T>) be either \"in\" or \"out\"?" }
     options:
-      - { de: "Kovarianz wäre beim Hineinschreiben unsicher (eine Figur in eine Kreis-Liste), Kontravarianz beim Herauslesen; also bleibt nur Invarianz." }
-      - { de: "Weil Klassen keine Varianz unterstützen und IList<T> von List<T> abgeleitet ist." }
-      - { de: "Es dürfte schon, der Compiler erlaubt es nur aus historischen Gründen nicht." }
+      - { de: "Kovarianz wäre beim Hineinschreiben unsicher (eine Figur in eine Kreis-Liste), Kontravarianz beim Herauslesen; also bleibt nur Invarianz.", en: "Covariance would be unsafe when writing (a `Figur` into a `Kreis` list), contravariance when reading; so only invariance remains." }
+      - { de: "Weil Klassen keine Varianz unterstützen und IList<T> von List<T> abgeleitet ist.", en: "Because classes do not support variance, and IList<T> is derived from List<T>." }
+      - { de: "Es dürfte schon, der Compiler erlaubt es nur aus historischen Gründen nicht.", en: "It should be allowed; the compiler just doesn't allow it for historical reasons." }
     correct: [0]
-    explanation: { de: "out nur für Ausgabepositionen, in nur für Eingabepositionen (9.1.5, Seite 634)." }
+    explanation: { de: "out nur für Ausgabepositionen, in nur für Eingabepositionen (9.1.5, Seite 634).", en: "\"out\" only for output positions, \"in\" only for input positions (9.1.5, page 634)." }
   - type: multipleChoice
     id: struktur-interface
-    prompt: { de: "struct Punkt : IComparable<Punkt> — warum ist die generische Schnittstelle hier besser als das alte IComparable mit CompareTo(object)?" }
+    prompt: { de: "struct Punkt : IComparable<Punkt> — warum ist die generische Schnittstelle hier besser als das alte IComparable mit CompareTo(object)?", en: "`struct Punkt : IComparable<Punkt>` — why is the generic interface better here than the old `IComparable` with `CompareTo(object)`?" }
     options:
-      - { de: "CompareTo(object) würde den Punkt bei jedem Aufruf boxen; die generische Fassung arbeitet typsicher und ohne Boxing." }
-      - { de: "Strukturen können das nicht-generische IComparable nicht implementieren." }
-      - { de: "Es gibt keinen Unterschied außer der Schreibweise." }
+      - { de: "CompareTo(object) würde den Punkt bei jedem Aufruf boxen; die generische Fassung arbeitet typsicher und ohne Boxing.", en: "`CompareTo(object)` would box the `Punkt` on every call; the generic version works type-safely and without boxing." }
+      - { de: "Strukturen können das nicht-generische IComparable nicht implementieren.", en: "Structures cannot implement the non-generic IComparable interface." }
+      - { de: "Es gibt keinen Unterschied außer der Schreibweise.", en: "There is no difference other than the spelling." }
     correct: [0]
-    explanation: { de: "9.2.3 Vorteile generischer Schnittstellen (Seite 642) und 9.3.2 (Seite 645)." }
+    explanation: { de: "9.2.3 Vorteile generischer Schnittstellen (Seite 642) und 9.3.2 (Seite 645).", en: "9.2.3 Advantages of Generic Interfaces (page 642) and 9.3.2 (page 645)." }

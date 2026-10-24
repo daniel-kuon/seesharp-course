@@ -1,8 +1,8 @@
 id: delegaten-ereignisse-anbieten
-title: { de: "Ereignisse anbieten" }
+title: { de: "Ereignisse anbieten", en: "Providing Events" }
 reading:
   section: "10.2.3"
-  title: { de: "Ereignisse anbieten" }
+  title: { de: "Ereignisse anbieten", en: "Providing Events" }
   printedPage: 684
 teaches:
   - events.declare
@@ -23,19 +23,19 @@ items:
     testProject: "Ereignisse Tests/Ereignisse.Tests.csproj"
   - type: multipleChoice
     id: on-methode
-    prompt: { de: "Warum löst man ein Ereignis üblicherweise in einer Methode OnTemperaturGeaendert aus, die protected virtual ist, statt es direkt im Setter aufzurufen?" }
+    prompt: { de: "Warum löst man ein Ereignis üblicherweise in einer Methode OnTemperaturGeaendert aus, die protected virtual ist, statt es direkt im Setter aufzurufen?", en: "Why is an event usually raised in a method `OnTemperaturGeaendert` that is `protected virtual`, instead of being invoked directly in the setter?" }
     options:
-      - { de: "Abgeleitete Klassen können die Methode überschreiben und so die Auslösung kontrollieren (unterdrücken, ergänzen), ohne an die private Delegatenvariable zu kommen." }
-      - { de: "Weil ein Ereignis nur in einer Methode mit dem Namen On... ausgelöst werden kann." }
-      - { de: "Weil die Methode dadurch schneller läuft." }
+      - { de: "Abgeleitete Klassen können die Methode überschreiben und so die Auslösung kontrollieren (unterdrücken, ergänzen), ohne an die private Delegatenvariable zu kommen.", en: "Derived classes can override the method and thus control its invocation (suppress or extend it) without accessing the private delegate variable." }
+      - { de: "Weil ein Ereignis nur in einer Methode mit dem Namen On... ausgelöst werden kann.", en: "Because an event can only be triggered in a method named On..." }
+      - { de: "Weil die Methode dadurch schneller läuft.", en: "Because that makes the method run faster." }
     correct: [0]
-    explanation: { de: "10.2.3 (Seite 684 bis 686): Die Delegatenvariable zum Ereignis ist privat; mit OnXyz() bekommen Erben eine Kontrollstelle. Der Name folgt der Konvention On + Ereignisname." }
+    explanation: { de: "10.2.3 (Seite 684 bis 686): Die Delegatenvariable zum Ereignis ist privat; mit OnXyz() bekommen Erben eine Kontrollstelle. Der Name folgt der Konvention On + Ereignisname.", en: "10.2.3 (pages 684–686): The delegate variable for the event is private; OnXyz() provides subclasses with a point of control. The name follows the convention \"On + event name.\"" }
   - type: multipleChoice
     id: null-pruefung
-    prompt: { de: "Ein Ereignis hat keinen einzigen Abonnenten. Was passiert bei ereignis(this, e)?" }
+    prompt: { de: "Ein Ereignis hat keinen einzigen Abonnenten. Was passiert bei ereignis(this, e)?", en: "An event does not have a single subscriber. What happens when event(this, e) is called?" }
     options:
-      - { de: "NullReferenceException; deshalb löst man mit ereignis?.Invoke(this, e) aus." }
-      - { de: "Nichts; ein Ereignis ohne Abonnenten ist ein leeres Delegatenobjekt." }
-      - { de: "Der Compiler weigert sich, solchen Code zu übersetzen." }
+      - { de: "NullReferenceException; deshalb löst man mit ereignis?.Invoke(this, e) aus.", en: "NullReferenceException; that's why you trigger it using event?.Invoke(this, e)." }
+      - { de: "Nichts; ein Ereignis ohne Abonnenten ist ein leeres Delegatenobjekt.", en: "Nothing; an event with no subscribers is an empty delegate object." }
+      - { de: "Der Compiler weigert sich, solchen Code zu übersetzen.", en: "The compiler refuses to compile such code." }
     correct: [0]
-    explanation: { de: "Ohne Abonnenten ist die Delegatenvariable null (10.1.3, Seite 664); ?.Invoke(...) prüft das thread-sicher in einem Schritt." }
+    explanation: { de: "Ohne Abonnenten ist die Delegatenvariable null (10.1.3, Seite 664); ?.Invoke(...) prüft das thread-sicher in einem Schritt.", en: "If there are no subscribers, the delegate variable is null (10.1.3, page 664); ?.Invoke(...) checks this in a single, thread-safe step." }

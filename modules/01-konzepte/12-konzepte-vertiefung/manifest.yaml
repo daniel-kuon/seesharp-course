@@ -1,9 +1,9 @@
 id: konzepte-vertiefung
-title: { de: "Zusatz: Konzepte vertiefen" }
+title: { de: "Zusatz: Konzepte vertiefen", en: "Extra: Deepening Concepts" }
 optional: true
 reading:
   section: "2.7"
-  title: { de: "Zusammenfassung zum Kapitel 2" }
+  title: { de: "Zusammenfassung zum Kapitel 2", en: "Summary of Chapter 2" }
   printedPage: 58
 teaches:
   - concepts.assembly
@@ -14,57 +14,57 @@ requires:
 items:
   - type: multipleChoice
     id: kapitel-1
-    prompt: { de: "Welche Aussagen über Klassen und Programme treffen zu? (mehrere möglich)" }
+    prompt: { de: "Welche Aussagen über Klassen und Programme treffen zu? (mehrere möglich)", en: "Which statements about classes and programs are true? (multiple answers possible)" }
     options:
-      - { de: "Ein C#-Programm besteht aus Klassen; praxisnahe Programme meist aus sehr vielen." }
-      - { de: "Eine Klasse beschreibt einen Zustand (gespeichert in Feldern) und Handlungskompetenzen (realisiert durch Methoden)." }
-      - { de: "Merkmale und Methoden gehören immer zu den Objekten; eine Klasse selbst kann niemals Methoden ausführen." }
-      - { de: "Beim Programmstart fordert das Laufzeitsystem die Startklasse auf, ihre Methode Main() auszuführen." }
-      - { de: "Vor dem Programmieren werden in der objektorientierten Analyse per Abstraktion die beteiligten Klassen und ihre Beziehungen bestimmt." }
-      - { de: "Eine Eigenschaft ist ein öffentliches Feld, bei dem die Klasse keine Regeln durchsetzen kann." }
+      - { de: "Ein C#-Programm besteht aus Klassen; praxisnahe Programme meist aus sehr vielen.", en: "A C# program consists of classes; real-world programs usually consist of a large number of them." }
+      - { de: "Eine Klasse beschreibt einen Zustand (gespeichert in Feldern) und Handlungskompetenzen (realisiert durch Methoden).", en: "A class describes a state (stored in fields) and behavior (implemented through methods)." }
+      - { de: "Merkmale und Methoden gehören immer zu den Objekten; eine Klasse selbst kann niemals Methoden ausführen.", en: "Properties and methods are always associated with objects; a class itself can never execute methods." }
+      - { de: "Beim Programmstart fordert das Laufzeitsystem die Startklasse auf, ihre Methode Main() auszuführen.", en: "When the program starts, the runtime system prompts the startup class to execute its Main() method." }
+      - { de: "Vor dem Programmieren werden in der objektorientierten Analyse per Abstraktion die beteiligten Klassen und ihre Beziehungen bestimmt.", en: "In object-oriented analysis, the classes involved and their relationships are determined through abstraction before programming begins." }
+      - { de: "Eine Eigenschaft ist ein öffentliches Feld, bei dem die Klasse keine Regeln durchsetzen kann.", en: "A property is a public field for which the class cannot enforce any rules." }
     correct: [0, 1, 3, 4]
-    explanation: { de: "Merkmale und Methoden können auch der Klasse selbst gehören (static), so wie Main(). Eine Eigenschaft besteht aus Zugriffsmethoden und kann deshalb Regeln durchsetzen, etwa dass ein Nenner nie 0 wird." }
+    explanation: { de: "Merkmale und Methoden können auch der Klasse selbst gehören (static), so wie Main(). Eine Eigenschaft besteht aus Zugriffsmethoden und kann deshalb Regeln durchsetzen, etwa dass ein Nenner nie 0 wird.", en: "Properties and methods can also belong to the class itself (static), just like Main(). A property consists of accessors and can therefore enforce rules, such as ensuring that a denominator never equals 0." }
   - type: multipleChoice
     id: static-oder-objekt
-    prompt: { de: "In der Klasse Bruch ist Kuerze() ohne static deklariert. Wie wird die Methode aufgerufen?" }
+    prompt: { de: "In der Klasse Bruch ist Kuerze() ohne static deklariert. Wie wird die Methode aufgerufen?", en: "In the `Bruch` class, `Kuerze()` is declared without the `static` keyword. How is the method called?" }
     options:
-      - { de: "Über ein Objekt: Bruch b = new Bruch(); b.Kuerze();" }
-      - { de: "Über den Klassennamen: Bruch.Kuerze();" }
-      - { de: "Gar nicht, Methoden ohne static sind privat." }
-      - { de: "Nur aus Main() heraus." }
+      - { de: "Über ein Objekt: Bruch b = new Bruch(); b.Kuerze();", en: "Via an object: `Bruch b = new Bruch(); b.Kuerze();`" }
+      - { de: "Über den Klassennamen: Bruch.Kuerze();", en: "Via the class name: Bruch.Kuerze();" }
+      - { de: "Gar nicht, Methoden ohne static sind privat.", en: "Not at all; methods without `static` are private." }
+      - { de: "Nur aus Main() heraus.", en: "Only from within Main()." }
     correct: [0]
-    explanation: { de: "Eine Methode ohne static gehört zu den Objekten der Klasse; jedes Objekt kürzt seinen eigenen Bruch. Eine static-Methode gehört zur Klasse selbst." }
+    explanation: { de: "Eine Methode ohne static gehört zu den Objekten der Klasse; jedes Objekt kürzt seinen eigenen Bruch. Eine static-Methode gehört zur Klasse selbst.", en: "A method without `static` belongs to the objects of the class; each object shortens its own fraction. A `static` method belongs to the class itself." }
   - type: multipleChoice
     id: kapitel-2
-    prompt: { de: "Welche Aussagen über Assemblies und IL treffen zu? (mehrere möglich)" }
+    prompt: { de: "Welche Aussagen über Assemblies und IL treffen zu? (mehrere möglich)", en: "Which of the following statements about assemblies and IL are true? (More than one may apply.)" }
     options:
-      - { de: "Ein Assembly enthält neben dem IL-Code auch Metadaten über die enthaltenen und die verwendeten Typen." }
-      - { de: "Seit .NET 5 ist auch für Anwendungs-Assemblies die Endung .dll üblich." }
-      - { de: "Ein Anwendungs-Assembly unterscheidet sich von einem Bibliotheks-Assembly dadurch, dass es eine Startklasse mit Main() enthält." }
-      - { de: "Der JIT-Compiler übersetzt beim Programmstart sofort das gesamte Assembly in Maschinencode." }
-      - { de: "IL-Code ist an einen bestimmten Prozessortyp gebunden." }
-      - { de: "Wer beim Schreiben einer Klasse die CLS-Regeln beachtet, macht sie für andere .NET-Sprachen nutzbar." }
+      - { de: "Ein Assembly enthält neben dem IL-Code auch Metadaten über die enthaltenen und die verwendeten Typen.", en: "In addition to the IL code, an assembly also contains metadata about the types it contains and the types it uses." }
+      - { de: "Seit .NET 5 ist auch für Anwendungs-Assemblies die Endung .dll üblich.", en: "Since .NET 5, the .dll extension has also become standard for application assemblies." }
+      - { de: "Ein Anwendungs-Assembly unterscheidet sich von einem Bibliotheks-Assembly dadurch, dass es eine Startklasse mit Main() enthält.", en: "An application assembly differs from a library assembly in that it contains a startup class with a Main() method." }
+      - { de: "Der JIT-Compiler übersetzt beim Programmstart sofort das gesamte Assembly in Maschinencode.", en: "When the program starts, the JIT compiler immediately compiles all the assembly code into machine code." }
+      - { de: "IL-Code ist an einen bestimmten Prozessortyp gebunden.", en: "The IL code is tied to a specific processor type." }
+      - { de: "Wer beim Schreiben einer Klasse die CLS-Regeln beachtet, macht sie für andere .NET-Sprachen nutzbar.", en: "If you follow the CLS rules when writing a class, you make it usable by other .NET languages." }
     correct: [0, 1, 2, 5]
-    explanation: { de: "Der JIT übersetzt eine Methode erst bei ihrem ersten Aufruf. IL ist gerade prozessorunabhängig; erst der JIT erzeugt Code für die lokale CPU." }
+    explanation: { de: "Der JIT übersetzt eine Methode erst bei ihrem ersten Aufruf. IL ist gerade prozessorunabhängig; erst der JIT erzeugt Code für die lokale CPU.", en: "The JIT compiles a method only when it is called for the first time. IL is processor-independent; only the JIT generates code for the local CPU." }
   - type: multipleChoice
     id: namensraum-zweck
-    prompt: { de: "Wozu dienen Namensräume? (mehrere möglich)" }
+    prompt: { de: "Wozu dienen Namensräume? (mehrere möglich)", en: "What are namespaces used for? (multiple answers possible)" }
     options:
-      - { de: "Sie ergänzen den Namen eines Typs um ein Präfix und vermeiden so Namenskollisionen." }
-      - { de: "Sie fassen funktional verwandte Typen zusammen." }
-      - { de: "Sie legen fest, in welcher .dll-Datei ein Typ landet." }
-      - { de: "Sie beschleunigen die JIT-Übersetzung." }
+      - { de: "Sie ergänzen den Namen eines Typs um ein Präfix und vermeiden so Namenskollisionen.", en: "You add a prefix to a type's name to avoid name collisions." }
+      - { de: "Sie fassen funktional verwandte Typen zusammen.", en: "They group together types that are functionally related." }
+      - { de: "Sie legen fest, in welcher .dll-Datei ein Typ landet.", en: "You specify which .dll file a type is placed in." }
+      - { de: "Sie beschleunigen die JIT-Übersetzung.", en: "They speed up JIT compilation." }
     correct: [0, 1]
-    explanation: { de: "Welche Datei einen Typ enthält, bestimmt das Projekt, nicht der Namensraum. Ein Namensraum kann sich über mehrere Assemblies erstrecken." }
+    explanation: { de: "Welche Datei einen Typ enthält, bestimmt das Projekt, nicht der Namensraum. Ein Namensraum kann sich über mehrere Assemblies erstrecken.", en: "The project, not the namespace, determines which file contains a type. A namespace can span multiple assemblies." }
   - type: multipleChoice
     id: console-herkunft
-    prompt: { de: "Dein Hallo-Programm aus Level 0 ruft Console.WriteLine() auf. Woher kommt die Klasse Console?" }
+    prompt: { de: "Dein Hallo-Programm aus Level 0 ruft Console.WriteLine() auf. Woher kommt die Klasse Console?", en: "Your `Hallo` program from Level 0 calls `Console.WriteLine()`. Where does the `Console` class come from?" }
     options:
-      - { de: "Aus der BCL, genauer aus dem Namensraum System; sie wird mit der .NET-Laufzeit installiert." }
-      - { de: "Der C#-Compiler erzeugt sie bei jedem Build neu." }
-      - { de: "Aus dem Projektordner obj." }
-      - { de: "Aus Rider; ohne Rider gäbe es keine Konsolenausgabe." }
+      - { de: "Aus der BCL, genauer aus dem Namensraum System; sie wird mit der .NET-Laufzeit installiert.", en: "From the BCL, specifically from the System namespace; it is installed with the .NET runtime." }
+      - { de: "Der C#-Compiler erzeugt sie bei jedem Build neu.", en: "The C# compiler regenerates them with every build." }
+      - { de: "Aus dem Projektordner obj.", en: "From the \"obj\" project folder." }
+      - { de: "Aus Rider; ohne Rider gäbe es keine Konsolenausgabe.", en: "From Rider; without Rider, there would be no console version." }
     correct: [0]
   - type: open
     id: weg-des-codes
-    prompt: { de: "Beschreibe in drei bis vier Sätzen den Weg deines Quellcodes von Hallo.cs bis zur Ausführung auf der CPU. Verwende die Begriffe Compiler, IL, Assembly, CLR und JIT." }
+    prompt: { de: "Beschreibe in drei bis vier Sätzen den Weg deines Quellcodes von Hallo.cs bis zur Ausführung auf der CPU. Verwende die Begriffe Compiler, IL, Assembly, CLR und JIT.", en: "In three to four sentences, describe the path your source code takes from `Hallo.cs` to execution on the CPU. Use the terms \"compiler,\" \"IL,\" \"assembly,\" \"CLR,\" and \"JIT.\"" }

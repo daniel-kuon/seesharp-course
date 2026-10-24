@@ -1,9 +1,9 @@
 id: klassen-uhrzeit
-title: { de: "Zusatzaufgabe: Uhrzeit mit Überladung und Operatoren" }
+title: { de: "Zusatzaufgabe: Uhrzeit mit Überladung und Operatoren", en: "Extra exercise: Time using overloading and operators" }
 optional: true
 reading:
   section: "5.9.3"
-  title: { de: "Operatoren überladen" }
+  title: { de: "Operatoren überladen", en: "Overloading Operators" }
   printedPage: 385
 teaches:
   - oop.operator-binary

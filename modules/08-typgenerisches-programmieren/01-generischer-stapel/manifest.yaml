@@ -1,8 +1,8 @@
 id: generics-stapel
-title: { de: "Ein generischer Stapel" }
+title: { de: "Ein generischer Stapel", en: "A generic stack" }
 reading:
   section: "8.2.1"
-  title: { de: "Generische Klassen: Definition" }
+  title: { de: "Generische Klassen: Definition", en: "Generic Classes: Definition" }
   printedPage: 591
 teaches:
   - generics.class-declare
@@ -22,10 +22,10 @@ items:
     testProject: "SimpleStack Tests/SimpleStack.Tests.csproj"
   - type: multipleChoice
     id: warum-generisch
-    prompt: { de: "Warum ist SimpleStack<T> einem Stapel mit Elementtyp object vorzuziehen?" }
+    prompt: { de: "Warum ist SimpleStack<T> einem Stapel mit Elementtyp object vorzuziehen?", en: "Why is SimpleStack<T> preferable to a stack with the element type `object`?" }
     options:
-      - { de: "Der Compiler prüft den Elementtyp, Pop() braucht keinen Cast, und Werttypen werden nicht geboxt." }
-      - { de: "Generische Klassen sind immer schneller, weil sie zur Laufzeit interpretiert werden." }
-      - { de: "object-Stapel können keine Strings aufnehmen." }
+      - { de: "Der Compiler prüft den Elementtyp, Pop() braucht keinen Cast, und Werttypen werden nicht geboxt.", en: "The compiler checks the element type; `Pop()` does not require a cast, and value types are not boxed." }
+      - { de: "Generische Klassen sind immer schneller, weil sie zur Laufzeit interpretiert werden.", en: "Generic classes are always faster because they are interpreted at runtime." }
+      - { de: "object-Stapel können keine Strings aufnehmen.", en: "Object stacks cannot hold strings." }
     correct: [0]
-    explanation: { de: "Typsicherheit und Performance sind die Motive aus 8.1 (Seite 589); der ArrayList-Vergleich in 8.8 Aufgabe 2 misst den Boxing-Aufwand." }
+    explanation: { de: "Typsicherheit und Performance sind die Motive aus 8.1 (Seite 589); der ArrayList-Vergleich in 8.8 Aufgabe 2 misst den Boxing-Aufwand.", en: "Type safety and performance are the topics covered in 8.1 (page 589); the ArrayList comparison in 8.8, Exercise 2, measures the boxing overhead." }

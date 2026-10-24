@@ -1,9 +1,9 @@
 id: threads-async-dateien
-title: { de: "Zusatz: Dateien asynchron verarbeiten" }
+title: { de: "Zusatz: Dateien asynchron verarbeiten", en: "Extra: Processing Files Asynchronously" }
 optional: true
 reading:
   section: "17.6.5"
-  title: { de: "await-Ausdruck" }
+  title: { de: "await-Ausdruck", en: "await expression" }
   printedPage: 1173
 teaches:
   - async.declare

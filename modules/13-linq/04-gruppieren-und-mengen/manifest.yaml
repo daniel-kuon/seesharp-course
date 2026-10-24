@@ -1,8 +1,8 @@
 id: linq-gruppieren-und-mengen
-title: { de: "Gruppieren, Zählen und Mengenoperatoren" }
+title: { de: "Gruppieren, Zählen und Mengenoperatoren", en: "Grouping, Counting, and Set Operators" }
 reading:
   section: "18.2.9"
-  title: { de: "GroupBy()" }
+  title: { de: "GroupBy()", en: "GroupBy()" }
   printedPage: 1222
 teaches:
   - linq.groupby
@@ -23,19 +23,19 @@ items:
     testProject: "Gruppen Tests/Gruppen.Tests.csproj"
   - type: multipleChoice
     id: countby-oder-groupby
-    prompt: { de: "Welche Variante zählt Häufigkeiten ohne unnötige Zwischenobjekte?  (a) werte.GroupBy(w => w).Select(g => (g.Key, g.Count()))   (b) werte.CountBy(w => w)" }
+    prompt: { de: "Welche Variante zählt Häufigkeiten ohne unnötige Zwischenobjekte?  (a) werte.GroupBy(w => w).Select(g => (g.Key, g.Count()))   (b) werte.CountBy(w => w)", en: "Which option counts frequencies without unnecessary intermediate objects?  (a) values.GroupBy(w => w).Select(g => (g.Key, g.Count()))   (b) values.CountBy(w => w)" }
     options:
-      - { de: "(b): CountBy (ab .NET 9) zählt direkt je Schlüssel und baut keine Gruppen mit allen Elementen auf; GroupBy muss alle Elemente jeder Gruppe zwischenspeichern, obwohl nur ihre Zahl gebraucht wird." }
-      - { de: "(a): GroupBy ist immer die sparsamere Lösung." }
-      - { de: "Beide sind gleich; der Compiler macht aus (a) intern (b)." }
+      - { de: "(b): CountBy (ab .NET 9) zählt direkt je Schlüssel und baut keine Gruppen mit allen Elementen auf; GroupBy muss alle Elemente jeder Gruppe zwischenspeichern, obwohl nur ihre Zahl gebraucht wird.", en: "(b): CountBy (starting with .NET 9) counts directly per key and does not create groups containing all elements; GroupBy must temporarily store all elements of each group, even though only their count is needed." }
+      - { de: "(a): GroupBy ist immer die sparsamere Lösung.", en: "(a): GroupBy is always the more efficient solution." }
+      - { de: "Beide sind gleich; der Compiler macht aus (a) intern (b).", en: "They are both the same; the compiler internally converts (a) to (b)." }
     correct: [0]
-    explanation: { de: "CountBy und AggregateBy stehen nicht im Buch (Kapitel 18 ist auf dem Stand .NET 8); sie verdichten pro Schlüssel in einem Durchlauf. GroupBy bleibt richtig, wenn man die Elemente der Gruppen selbst braucht." }
+    explanation: { de: "CountBy und AggregateBy stehen nicht im Buch (Kapitel 18 ist auf dem Stand .NET 8); sie verdichten pro Schlüssel in einem Durchlauf. GroupBy bleibt richtig, wenn man die Elemente der Gruppen selbst braucht.", en: "CountBy and AggregateBy are not covered in the book (Chapter 18 is based on .NET 8); they aggregate by key in a single pass. GroupBy remains the correct choice if you need the elements of the groups themselves." }
   - type: multipleChoice
     id: groupby-gruppen
-    prompt: { de: "Was ist ein Element der Sequenz, die  eintraege.GroupBy(e => e.Hash)  liefert?" }
+    prompt: { de: "Was ist ein Element der Sequenz, die  eintraege.GroupBy(e => e.Hash)  liefert?", en: "What is an element of the sequence returned by `eintraege.GroupBy(e => e.Hash)`?" }
     options:
-      - { de: "Ein IGrouping<string, Dateieintrag>: eine Folge von Dateieinträgen mit der Eigenschaft Key (hier der Hash)." }
-      - { de: "Ein einzelner Dateieintrag." }
-      - { de: "Ein Dictionary<string, int> mit den Häufigkeiten." }
+      - { de: "Ein IGrouping<string, Dateieintrag>: eine Folge von Dateieinträgen mit der Eigenschaft Key (hier der Hash).", en: "An `IGrouping<string, Dateieintrag>`: a sequence of `Dateieintrag` objects with the `Key` property (here the hash)." }
+      - { de: "Ein einzelner Dateieintrag.", en: "A single file entry." }
+      - { de: "Ein Dictionary<string, int> mit den Häufigkeiten.", en: "A Dictionary<string, int> containing the frequencies." }
     correct: [0]
-    explanation: { de: "18.2.9 (Seite 1222): Jede Gruppe ist selbst eine Sequenz und trägt ihren Schlüssel in Key; man wertet sie mit Count(), Sum(), Select() usw. aus." }
+    explanation: { de: "18.2.9 (Seite 1222): Jede Gruppe ist selbst eine Sequenz und trägt ihren Schlüssel in Key; man wertet sie mit Count(), Sum(), Select() usw. aus.", en: "18.2.9 (page 1222): Each group is itself a sequence and stores its key in `Key`; it is evaluated using `Count()`, `Sum()`, `Select()`, etc." }

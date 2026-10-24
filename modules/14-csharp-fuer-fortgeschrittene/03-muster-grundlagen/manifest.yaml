@@ -1,8 +1,8 @@
 id: fortgeschritten-muster-grundlagen
-title: { de: "Muster: Konstante, Typ, Relation, logisch" }
+title: { de: "Muster: Konstante, Typ, Relation, logisch", en: "Patterns: Constant, Type, Relational, Logical" }
 reading:
   section: "15.2.3"
-  title: { de: "Typ- und Deklarationsmuster" }
+  title: { de: "Typ- und Deklarationsmuster", en: "Type and Declaration Patterns" }
   printedPage: 975
 teaches:
   - patterns.constant
@@ -23,11 +23,11 @@ items:
     testProject: "Musterabgleich Tests/Musterabgleich.Tests.csproj"
   - type: multipleChoice
     id: not-or
-    prompt: { de: "Für welche Werte von x ist der Ausdruck x is not 1 or 2 wahr?" }
+    prompt: { de: "Für welche Werte von x ist der Ausdruck x is not 1 or 2 wahr?", en: "For which values of x is the expression \"x is not 1 or 2\" true?" }
     options:
-      - { de: "Für alle Werte außer 1, denn not bindet stärker als or: (not 1) or 2." }
-      - { de: "Für alle Werte außer 1 und 2." }
-      - { de: "Nur für den Wert 2." }
-      - { de: "Für gar keinen: Das Muster ist ein Übersetzungsfehler." }
+      - { de: "Für alle Werte außer 1, denn not bindet stärker als or: (not 1) or 2.", en: "For all values except 1, because \"not\" has higher precedence than \"or\": (not 1) or 2." }
+      - { de: "Für alle Werte außer 1 und 2.", en: "For all values except 1 and 2." }
+      - { de: "Nur für den Wert 2.", en: "Only for the value 2." }
+      - { de: "Für gar keinen: Das Muster ist ein Übersetzungsfehler.", en: "For no one: The pattern is a translation error." }
     correct: [0]
-    explanation: { de: "15.2.9 (Seite 984). Die Rangfolge der Musterkombinatoren ist not vor and vor or. Gemeint ist meist x is not (1 or 2); dafür braucht es die Klammern." }
+    explanation: { de: "15.2.9 (Seite 984). Die Rangfolge der Musterkombinatoren ist not vor and vor or. Gemeint ist meist x is not (1 or 2); dafür braucht es die Klammern.", en: "15.2.9 (page 984). The order of precedence for pattern combinators is \"not\" before \"and\" before \"or.\" This usually means \"x is not (1 or 2)\"; parentheses are required for this." }

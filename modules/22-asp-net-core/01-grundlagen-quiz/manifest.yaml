@@ -1,8 +1,8 @@
 id: aspnet-grundlagen-quiz
-title: { de: "Razor Pages: Grundlagen-Quiz" }
+title: { de: "Razor Pages: Grundlagen-Quiz", en: "Razor Pages: Basics Quiz" }
 reading:
   section: "22.2"
-  title: { de: "Konfiguration der Request Pipeline und Anwendungsstart per Program.cs" }
+  title: { de: "Konfiguration der Request Pipeline und Anwendungsstart per Program.cs", en: "Configuring the Request Pipeline and Starting the Application via Program.cs" }
   printedPage: 1552
 teaches:
   - web.request-pipeline
@@ -15,65 +15,65 @@ requires:
 items:
   - type: multipleChoice
     id: reihenfolge
-    prompt: { de: "Welche Reihenfolge der Middleware in `Program.cs` ist sinnvoll?" }
+    prompt: { de: "Welche Reihenfolge der Middleware in `Program.cs` ist sinnvoll?", en: "What is the best order for the middleware in `Program.cs`?" }
     options:
-      - { de: "UseHttpsRedirection, UseStaticFiles, UseRouting, UseAuthorization, MapRazorPages" }
-      - { de: "MapRazorPages, UseAuthorization, UseRouting, UseStaticFiles, UseHttpsRedirection" }
-      - { de: "UseAuthorization, UseRouting, UseHttpsRedirection, MapRazorPages, UseStaticFiles" }
+      - { de: "UseHttpsRedirection, UseStaticFiles, UseRouting, UseAuthorization, MapRazorPages", en: "UseHttpsRedirection, UseStaticFiles, UseRouting, UseAuthorization, MapRazorPages" }
+      - { de: "MapRazorPages, UseAuthorization, UseRouting, UseStaticFiles, UseHttpsRedirection", en: "MapRazorPages, UseAuthorization, UseRouting, UseStaticFiles, UseHttpsRedirection" }
+      - { de: "UseAuthorization, UseRouting, UseHttpsRedirection, MapRazorPages, UseStaticFiles", en: "UseAuthorization, UseRouting, UseHttpsRedirection, MapRazorPages, UseStaticFiles" }
     correct: [0]
-    explanation: { de: "22.2.1 (Seite 1553): Die Komponenten bearbeiten eine Anforderung in der Reihenfolge ihrer Vereinbarung. Erst auf HTTPS umleiten, dann statische Dateien ausliefern, dann die Route wählen, dann prüfen, ob der Zugriff auf das gewählte Ziel erlaubt ist, und zuletzt die Seite erzeugen." }
+    explanation: { de: "22.2.1 (Seite 1553): Die Komponenten bearbeiten eine Anforderung in der Reihenfolge ihrer Vereinbarung. Erst auf HTTPS umleiten, dann statische Dateien ausliefern, dann die Route wählen, dann prüfen, ob der Zugriff auf das gewählte Ziel erlaubt ist, und zuletzt die Seite erzeugen.", en: "22.2.1 (page 1553): The components process a request in the order in which they were agreed upon. First, redirect to HTTPS; then, serve static files; then, select the route; then, check whether access to the selected destination is permitted; and finally, render the page." }
   - type: multipleChoice
     id: falsche-reihenfolge
-    prompt: { de: "In einer Pipeline steht `UseAuthorization()` vor `UseRouting()`. Warum ist das ein Fehler?" }
+    prompt: { de: "In einer Pipeline steht `UseAuthorization()` vor `UseRouting()`. Warum ist das ein Fehler?", en: "In a pipeline, `UseAuthorization()` comes before `UseRouting()`. Why is that an error?" }
     options:
-      - { de: "Die Autorisierung prüft die Anforderungen des Endpunkts, den das Routing erst auswählt; ohne gewählten Endpunkt weiß sie nicht, was sie prüfen soll." }
-      - { de: "Es ist kein Fehler; die Reihenfolge der Middleware spielt keine Rolle." }
-      - { de: "Die Autorisierung ersetzt dann das Routing, und alle Seiten liefern 404." }
+      - { de: "Die Autorisierung prüft die Anforderungen des Endpunkts, den das Routing erst auswählt; ohne gewählten Endpunkt weiß sie nicht, was sie prüfen soll.", en: "Authorization checks the requirements of the endpoint that routing has selected; without a selected endpoint, it does not know what to check." }
+      - { de: "Es ist kein Fehler; die Reihenfolge der Middleware spielt keine Rolle.", en: "It's not a mistake; the order of the middleware doesn't matter." }
+      - { de: "Die Autorisierung ersetzt dann das Routing, und alle Seiten liefern 404.", en: "Authorization then replaces routing, and all pages return a 404 error." }
     correct: [0]
-    explanation: { de: "Middleware ist eine Kette: Jede Komponente sieht nur, was die davor erledigt haben (22.2.1, Seite 1553). Dasselbe gilt für `UseHttpsRedirection`: Steht sie zu weit hinten, wurde die unverschlüsselte Anforderung schon bearbeitet, bevor die Umleitung greift." }
+    explanation: { de: "Middleware ist eine Kette: Jede Komponente sieht nur, was die davor erledigt haben (22.2.1, Seite 1553). Dasselbe gilt für `UseHttpsRedirection`: Steht sie zu weit hinten, wurde die unverschlüsselte Anforderung schon bearbeitet, bevor die Umleitung greift.", en: "Middleware is a chain: Each component only sees what the ones before it have done (22.2.1, page 1553). The same applies to `UseHttpsRedirection`: If it is placed too far down the chain, the unencrypted request will have already been processed before the redirection takes effect." }
   - type: multipleChoice
     id: zustandslos
-    prompt: { de: "Ein PageModel zählt in einem privaten Feld `_anzahl++` bei jedem `OnPost`. Was liefert `_anzahl` bei der nächsten Anforderung desselben Benutzers?" }
+    prompt: { de: "Ein PageModel zählt in einem privaten Feld `_anzahl++` bei jedem `OnPost`. Was liefert `_anzahl` bei der nächsten Anforderung desselben Benutzers?", en: "A PageModel increments a private field, `_anzahl++`, on every `OnPost` call. What value will `_anzahl` return on the next request from the same user?" }
     options:
-      - { de: "Wieder 0 (dann 1): Das PageModel-Objekt entsteht pro Anforderung neu und wird danach verworfen; HTTP ist zustandslos." }
-      - { de: "Den Wert der letzten Anforderung, weil das PageModel so lange lebt wie die Browsersitzung." }
-      - { de: "Den Wert der letzten Anforderung, aber nur wenn das Feld `static` ist; sonst eine Ausnahme." }
+      - { de: "Wieder 0 (dann 1): Das PageModel-Objekt entsteht pro Anforderung neu und wird danach verworfen; HTTP ist zustandslos.", en: "Back to 0 (then 1): The PageModel object is created anew for each request and then discarded; HTTP is stateless." }
+      - { de: "Den Wert der letzten Anforderung, weil das PageModel so lange lebt wie die Browsersitzung.", en: "The value of the last request, because the PageModel lives as long as the browser session." }
+      - { de: "Den Wert der letzten Anforderung, aber nur wenn das Feld `static` ist; sonst eine Ausnahme.", en: "The value of the last request, but only if the field is `static`; otherwise, an exception is thrown." }
     correct: [0]
-    explanation: { de: "22.5.4 (Seite 1571): Page- und PageModel-Objekte sind anforderungsbezogen. Zustand über Anforderungen hinweg gehört in eine Datenbank, ein Cookie, ein verstecktes Formularfeld oder einen Dienst mit langer Lebensdauer. Das gilt auch für ein Formular, das nach einem Fehler erneut angezeigt wird: Der Server weiß nichts mehr vom ersten Versuch, außer was die zweite Anforderung mitschickt." }
+    explanation: { de: "22.5.4 (Seite 1571): Page- und PageModel-Objekte sind anforderungsbezogen. Zustand über Anforderungen hinweg gehört in eine Datenbank, ein Cookie, ein verstecktes Formularfeld oder einen Dienst mit langer Lebensdauer. Das gilt auch für ein Formular, das nach einem Fehler erneut angezeigt wird: Der Server weiß nichts mehr vom ersten Versuch, außer was die zweite Anforderung mitschickt.", en: "22.5.4 (page 1571): Page and PageModel objects are request-specific. State that spans requests belongs in a database, a cookie, a hidden form field, or a service with a long lifespan. This also applies to a form that is redisplayed after an error: The server no longer knows anything about the first attempt, except for what the second request sends along with it." }
   - type: multipleChoice
     id: get-post
-    prompt: { de: "Ein Benutzer gibt die Adresse einer Seite im Browser ein und füllt dort ein `<form method=\"post\">` aus. Welche Behandlungsmethoden laufen?" }
+    prompt: { de: "Ein Benutzer gibt die Adresse einer Seite im Browser ein und füllt dort ein `<form method=\"post\">` aus. Welche Behandlungsmethoden laufen?", en: "A user enters a web address into the browser and fills out a `<form method=\"post\">` there. What processing methods are in use?" }
     options:
-      - { de: "Das Aufrufen der Seite ruft `OnGet` auf, das Absenden des Formulars `OnPost`." }
-      - { de: "Beides ruft `OnGet` auf; `OnPost` läuft nur bei JavaScript." }
-      - { de: "Das Aufrufen ruft `OnPost` auf, das Absenden `OnGet`." }
+      - { de: "Das Aufrufen der Seite ruft `OnGet` auf, das Absenden des Formulars `OnPost`.", en: "When the page is loaded, `OnGet` is called; when the form is submitted, `OnPost` is called." }
+      - { de: "Beides ruft `OnGet` auf; `OnPost` läuft nur bei JavaScript.", en: "Both call `OnGet`; `OnPost` runs only in JavaScript." }
+      - { de: "Das Aufrufen ruft `OnPost` auf, das Absenden `OnGet`.", en: "Calling the method triggers `OnPost`; sending it triggers `OnGet`." }
     correct: [0]
-    explanation: { de: "22.5.3 (Seite 1566): Die Behandlungsmethode `On<HTTP-Methode>` passt zur Methode der Anforderung: Adresse eingeben oder einem Link folgen ist GET, ein Formular mit `method=\"post\"` schickt POST." }
+    explanation: { de: "22.5.3 (Seite 1566): Die Behandlungsmethode `On<HTTP-Methode>` passt zur Methode der Anforderung: Adresse eingeben oder einem Link folgen ist GET, ein Formular mit `method=\"post\"` schickt POST.", en: "22.5.3 (page 1566): The handling method `On<HTTP-Methode>` corresponds to the request method: Entering an address or following a link is a GET request; a form with `method=\"post\"` sends a POST request." }
   - type: multipleChoice
     id: get-doppelt
-    prompt: { de: "Eine PageModel-Klasse enthält `public void OnGet()` und `public Task OnGetAsync()`. Was passiert beim Seitenaufruf?" }
+    prompt: { de: "Eine PageModel-Klasse enthält `public void OnGet()` und `public Task OnGetAsync()`. Was passiert beim Seitenaufruf?", en: "A PageModel class contains `public void OnGet()` and `public Task OnGetAsync()`. What happens when the page is loaded?" }
     options:
-      - { de: "Eine InvalidOperationException (\"Multiple handlers matched\"): Pro HTTP-Methode darf nur eine passende Behandlungsmethode existieren." }
-      - { de: "Es läuft immer die asynchrone Variante." }
-      - { de: "Es laufen beide nacheinander." }
+      - { de: "Eine InvalidOperationException (\"Multiple handlers matched\"): Pro HTTP-Methode darf nur eine passende Behandlungsmethode existieren.", en: "An InvalidOperationException (\"Multiple handlers matched\"): Only one matching handler may exist per HTTP method." }
+      - { de: "Es läuft immer die asynchrone Variante.", en: "The asynchronous version always runs." }
+      - { de: "Es laufen beide nacheinander.", en: "They're both running one after the other." }
     correct: [0]
-    explanation: { de: "22.5.3.1 (Seite 1566): Die Koexistenz einer synchronen und einer asynchronen Variante führt zu einem Ausnahmefehler." }
+    explanation: { de: "22.5.3.1 (Seite 1566): Die Koexistenz einer synchronen und einer asynchronen Variante führt zu einem Ausnahmefehler.", en: "22.5.3.1 (page 1566): The coexistence of a synchronous and an asynchronous variant results in an exception error." }
   - type: multipleChoice
     id: overposting-angriff
-    prompt: { de: "Die Eingabeklasse `Benutzer` hat die Eigenschaften `Name` und `bool IsAdmin`, und `[BindProperty] public Benutzer Neu { get; set; }` bindet sie. Das Formular enthält nur ein Feld `Neu.Name`. Wie kann ein Angreifer trotzdem `IsAdmin` auf `true` setzen?" }
+    prompt: { de: "Die Eingabeklasse `Benutzer` hat die Eigenschaften `Name` und `bool IsAdmin`, und `[BindProperty] public Benutzer Neu { get; set; }` bindet sie. Das Formular enthält nur ein Feld `Neu.Name`. Wie kann ein Angreifer trotzdem `IsAdmin` auf `true` setzen?", en: "The `Benutzer` input class has the `Name` and `bool IsAdmin` properties, and `[BindProperty] public Benutzer Neu { get; set; }` binds them. The form contains only one field, `Neu.Name`. How can an attacker still set `IsAdmin` to `true`?" }
     options:
-      - { de: "Er schickt die Anforderung mit einem zusätzlichen Name-Wert-Paar `Neu.IsAdmin=true` ab (HTML-Formular im Browser ändern oder die Anforderung selbst bauen); die Modellbindung schreibt jede bindbare Eigenschaft, nicht nur die im Formular sichtbaren." }
-      - { de: "Gar nicht: Was nicht im Formular steht, wird nie gebunden." }
-      - { de: "Nur wenn er das Passwort des Servers kennt." }
+      - { de: "Er schickt die Anforderung mit einem zusätzlichen Name-Wert-Paar `Neu.IsAdmin=true` ab (HTML-Formular im Browser ändern oder die Anforderung selbst bauen); die Modellbindung schreibt jede bindbare Eigenschaft, nicht nur die im Formular sichtbaren.", en: "He sends the request with an additional name-value pair, `Neu.IsAdmin=true` (modify the HTML form in the browser or build the request yourself); the model binding writes every bindable property, not just those visible in the form." }
+      - { de: "Gar nicht: Was nicht im Formular steht, wird nie gebunden.", en: "Not at all: Anything not included in the form is never binding." }
+      - { de: "Nur wenn er das Passwort des Servers kennt.", en: "Only if he knows the server's password." }
     correct: [0]
-    explanation: { de: "22.8.7 (Seite 1606): Overposting. Der Angreifer muss nur den Namen der Eigenschaft kennen; die Modellbindung unterscheidet nicht, ob der Wert aus dem ausgelieferten Formular oder aus einer eigenen Anforderung stammt." }
+    explanation: { de: "22.8.7 (Seite 1606): Overposting. Der Angreifer muss nur den Namen der Eigenschaft kennen; die Modellbindung unterscheidet nicht, ob der Wert aus dem ausgelieferten Formular oder aus einer eigenen Anforderung stammt.", en: "22.8.7 (page 1606): Overposting. The attacker only needs to know the name of the property; the model binding does not distinguish whether the value comes from the submitted form or from a separate request." }
   - type: multipleChoice
     id: overposting-schutz
-    prompt: { de: "Welche zwei Maßnahmen schützen gegen Overposting?" }
+    prompt: { de: "Welche zwei Maßnahmen schützen gegen Overposting?", en: "What are two ways to prevent overposting?" }
     options:
-      - { de: "Eine Positivliste der bindbaren Eigenschaften (das Attribut `[Bind]` bzw. `[BindNever]` an gefährlichen Eigenschaften)." }
-      - { de: "Eine eigene Eingabemodellklasse für die Seite, die nur die Felder des Formulars enthält (ohne `IsAdmin`)." }
-      - { de: "Die Klienten-seitige Validierung per JavaScript." }
-      - { de: "Das gefährliche Feld im Formular mit `type=\"hidden\"` verstecken." }
+      - { de: "Eine Positivliste der bindbaren Eigenschaften (das Attribut `[Bind]` bzw. `[BindNever]` an gefährlichen Eigenschaften).", en: "A positive list of bindable properties (the `[Bind]` or `[BindNever]` attribute for hazardous properties)." }
+      - { de: "Eine eigene Eingabemodellklasse für die Seite, die nur die Felder des Formulars enthält (ohne `IsAdmin`).", en: "A separate input model class for the page that contains only the form fields (without `IsAdmin`)." }
+      - { de: "Die Klienten-seitige Validierung per JavaScript.", en: "Client-side validation using JavaScript." }
+      - { de: "Das gefährliche Feld im Formular mit `type=\"hidden\"` verstecken.", en: "Hide the dangerous field in the form using `type=\"hidden\"`." }
     correct: [0, 1]
-    explanation: { de: "22.8.7 (Seite 1607): `Bind` und `BindNever` schützen beim Anlegen neuer Objekte, haben beim Bearbeiten vorhandener aber die Nebenwirkung, dass ausgeschlossene Werte auf Voreinstellungen zurückfallen; deshalb empfiehlt das Buch eine Eingabemodellklasse. JavaScript und versteckte Felder liegen beim Klienten und sind für einen Angreifer wertlos." }
+    explanation: { de: "22.8.7 (Seite 1607): `Bind` und `BindNever` schützen beim Anlegen neuer Objekte, haben beim Bearbeiten vorhandener aber die Nebenwirkung, dass ausgeschlossene Werte auf Voreinstellungen zurückfallen; deshalb empfiehlt das Buch eine Eingabemodellklasse. JavaScript und versteckte Felder liegen beim Klienten und sind für einen Angreifer wertlos.", en: "22.8.7 (page 1607): `Bind` and `BindNever` provide protection when creating new objects, but when editing existing ones, they have the side effect of causing excluded values to fall back to their default settings; therefore, the book recommends using an input model class. JavaScript and hidden fields reside on the client side and are of no value to an attacker." }

@@ -1,8 +1,8 @@
 id: dateien-json
-title: { de: "JSON-Serialisierung" }
+title: { de: "JSON-Serialisierung", en: "JSON Serialization" }
 reading:
   section: "16.5.2"
-  title: { de: "Serialisieren" }
+  title: { de: "Serialisieren", en: "Serialize" }
   printedPage: 1045
 teaches:
   - json.serialize
@@ -24,11 +24,11 @@ items:
     testProject: "JsonSerialisierung Tests/JsonSerialisierung.Tests.csproj"
   - type: multipleChoice
     id: zyklen
-    prompt: { de: "Eine Abteilung enthält Mitarbeiter, und jeder Mitarbeiter verweist auf seine Abteilung. Was passiert bei JsonSerializer.Serialize(abteilung) ohne besondere Einstellung, und wie unterscheiden sich IgnoreCycles und Preserve?" }
+    prompt: { de: "Eine Abteilung enthält Mitarbeiter, und jeder Mitarbeiter verweist auf seine Abteilung. Was passiert bei JsonSerializer.Serialize(abteilung) ohne besondere Einstellung, und wie unterscheiden sich IgnoreCycles und Preserve?", en: "An `Abteilung` contains `Mitarbeiter` objects, and each `Mitarbeiter` refers back to its `Abteilung`. What happens with `JsonSerializer.Serialize(abteilung)` without any special setting, and how do `IgnoreCycles` and `Preserve` differ?" }
     options:
-      - { de: "Es gibt eine JsonException (zu große Tiefe / Kreis erkannt). IgnoreCycles ersetzt den Rückverweis durch null; Preserve schreibt Objekte mit $id und Wiederholungen als $ref und erhält so die Struktur auch beim Einlesen." }
-      - { de: "Serialize erkennt den Kreis selbst und lässt den Rückverweis weg; IgnoreCycles und Preserve ändern nichts." }
-      - { de: "Es entsteht eine Endlosschleife, bis der Speicher voll ist." }
-      - { de: "IgnoreCycles und Preserve sind dasselbe; beide schreiben $ref." }
+      - { de: "Es gibt eine JsonException (zu große Tiefe / Kreis erkannt). IgnoreCycles ersetzt den Rückverweis durch null; Preserve schreibt Objekte mit $id und Wiederholungen als $ref und erhält so die Struktur auch beim Einlesen.", en: "A `JsonException` is thrown (depth too great / cycle detected). `IgnoreCycles` replaces the back reference with `null`; `Preserve` writes objects with `$id` and repetitions as `$ref`, and thus preserves the structure on reading as well." }
+      - { de: "Serialize erkennt den Kreis selbst und lässt den Rückverweis weg; IgnoreCycles und Preserve ändern nichts.", en: "Serialize detects the cycle on its own and omits the backreference; IgnoreCycles and Preserve have no effect." }
+      - { de: "Es entsteht eine Endlosschleife, bis der Speicher voll ist.", en: "An infinite loop occurs until the memory is full." }
+      - { de: "IgnoreCycles und Preserve sind dasselbe; beide schreiben $ref.", en: "IgnoreCycles and Preserve are the same; both write to $ref." }
     correct: [0]
-    explanation: { de: "16.5.5 (Seite 1050). Die Voreinstellung bricht mit einer Ausnahme ab. IgnoreCycles verliert den Rückverweis (nach dem Einlesen ist Mitarbeiter.Abteilung leer), Preserve erhält ihn und braucht dafür die Metadaten $id/$ref." }
+    explanation: { de: "16.5.5 (Seite 1050). Die Voreinstellung bricht mit einer Ausnahme ab. IgnoreCycles verliert den Rückverweis (nach dem Einlesen ist Mitarbeiter.Abteilung leer), Preserve erhält ihn und braucht dafür die Metadaten $id/$ref.", en: "16.5.5 (page 1050). The default aborts with an exception. `IgnoreCycles` loses the back reference (after reading, `Mitarbeiter.Abteilung` is empty), `Preserve` keeps it and needs the metadata `$id`/`$ref` for that." }

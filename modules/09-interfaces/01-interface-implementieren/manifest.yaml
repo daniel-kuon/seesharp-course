@@ -1,8 +1,8 @@
 id: interfaces-implementieren
-title: { de: "Ein Interface implementieren" }
+title: { de: "Ein Interface implementieren", en: "Implementing an Interface" }
 reading:
   section: "9.2"
-  title: { de: "Interfaces implementieren" }
+  title: { de: "Interfaces implementieren", en: "Implementing Interfaces" }
   printedPage: 640
 teaches:
   - interfaces.implement
@@ -23,10 +23,10 @@ items:
     testProject: "Formen Tests/Formen.Tests.csproj"
   - type: multipleChoice
     id: new-interface
-    prompt: { de: "Darf man new IForm() schreiben?" }
+    prompt: { de: "Darf man new IForm() schreiben?", en: "Is it okay to write `new IForm()`?" }
     options:
-      - { de: "Nein; ein Interface hat keine Implementierung. IForm ist aber als Typ für Variablen, Parameter und Arrays erlaubt." }
-      - { de: "Ja, wenn alle Mitglieder Standardimplementierungen haben." }
-      - { de: "Ja; es entsteht ein leeres Objekt." }
+      - { de: "Nein; ein Interface hat keine Implementierung. IForm ist aber als Typ für Variablen, Parameter und Arrays erlaubt.", en: "No; an interface does not have an implementation. However, IForm is allowed as a type for variables, parameters, and arrays." }
+      - { de: "Ja, wenn alle Mitglieder Standardimplementierungen haben.", en: "Yes, if all members have standard implementations." }
+      - { de: "Ja; es entsteht ein leeres Objekt.", en: "Yes; an empty object is created." }
     correct: [0]
-    explanation: { de: "Interfaces sind Verpflichtungserklärungen (9, Seite 609); Instanzen entstehen nur von implementierenden Klassen oder Strukturen (9.3, Seite 644)." }
+    explanation: { de: "Interfaces sind Verpflichtungserklärungen (9, Seite 609); Instanzen entstehen nur von implementierenden Klassen oder Strukturen (9.3, Seite 644).", en: "Interfaces are declarations of commitment (9, p. 609); instances are created only from implementing classes or structures (9.3, p. 644)." }

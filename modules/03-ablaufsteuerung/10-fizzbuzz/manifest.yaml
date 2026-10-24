@@ -1,9 +1,9 @@
 id: ablauf-fizzbuzz
-title: { de: "Zusatz: FizzBuzz" }
+title: { de: "Zusatz: FizzBuzz", en: "Extra: FizzBuzz" }
 optional: true
 reading:
   section: "4.7.2.1"
-  title: { de: "if-Anweisung" }
+  title: { de: "if-Anweisung", en: "if statement" }
   printedPage: 254
 teaches:
   - control.else-if-chain

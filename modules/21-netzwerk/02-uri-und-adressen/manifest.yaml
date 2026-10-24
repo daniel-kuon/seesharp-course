@@ -1,8 +1,8 @@
 id: netz-uri-und-adressen
-title: { de: "URIs, Parameter und IP-Adressen" }
+title: { de: "URIs, Parameter und IP-Adressen", en: "URIs, Parameters, and IP Addresses" }
 reading:
   section: "21.2"
-  title: { de: "URI bzw. URL" }
+  title: { de: "URI bzw. URL", en: "URI or URL" }
   printedPage: 1505
 teaches:
   - net.uri-parse
@@ -32,9 +32,10 @@ items:
         ```
 
         Der Benutzer sucht nach `Tom & Jerry`. Was geht schief, und was ist die Lösung?
+      en: "Here's how to include a search term in a URL:\n\n```csharp\nvar url = \"http://example.org/suche?q=\" + suchbegriff;\n```\n\nThe user is searching for \"`Tom & Jerry`.\" What goes wrong, and what is the solution?"
     options:
-      - { de: "Das & beendet den Parameter q; der Server sieht q=Tom  und einen weiteren Parameter Jerry. Lösung: den Wert mit Uri.EscapeDataString kodieren (Tom%20%26%20Jerry)." }
-      - { de: "Nichts; Browser und HttpClient kodieren die Adresse selbst, bevor sie sie senden." }
-      - { de: "Der Code kompiliert nicht, weil ein & in einer Zeichenkette verboten ist." }
+      - { de: "Das & beendet den Parameter q; der Server sieht q=Tom  und einen weiteren Parameter Jerry. Lösung: den Wert mit Uri.EscapeDataString kodieren (Tom%20%26%20Jerry).", en: "The & character terminates the parameter q; the server sees q=Tom and another parameter, Jerry. Solution: Encode the value using Uri.EscapeDataString (Tom%20%26%20Jerry)." }
+      - { de: "Nichts; Browser und HttpClient kodieren die Adresse selbst, bevor sie sie senden.", en: "Nothing; the browser and HttpClient encode the address themselves before sending it." }
+      - { de: "Der Code kompiliert nicht, weil ein & in einer Zeichenkette verboten ist.", en: "The code won't compile because an ampersand (&) is not allowed in a string." }
     correct: [0]
-    explanation: { de: "21.3.3.1 (Seite 1513) und 21.2 (Seite 1505): In der Abfrage haben &, =, ? und # eine Bedeutung. Daten muss man vor dem Einbauen kodieren; Uri.EscapeDataString kodiert alles außer den unreservierten Zeichen." }
+    explanation: { de: "21.3.3.1 (Seite 1513) und 21.2 (Seite 1505): In der Abfrage haben &, =, ? und # eine Bedeutung. Daten muss man vor dem Einbauen kodieren; Uri.EscapeDataString kodiert alles außer den unreservierten Zeichen.", en: "21.3.3.1 (page 1513) and 21.2 (page 1505): In the query, &, =, ?, and # have specific meanings. Data must be encoded before insertion; `Uri.EscapeDataString` encodes everything except the unreserved characters." }

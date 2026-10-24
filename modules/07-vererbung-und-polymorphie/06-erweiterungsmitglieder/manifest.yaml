@@ -1,8 +1,8 @@
 id: vererbung-erweiterungsmitglieder
-title: { de: "Erweiterungsmitglieder (C# 14)" }
+title: { de: "Erweiterungsmitglieder (C# 14)", en: "Extension Members (C# 14)" }
 reading:
   section: "7.15"
-  title: { de: "Erweiterungsmitglieder" }
+  title: { de: "Erweiterungsmitglieder", en: "Extension Members" }
   printedPage: 581
 teaches:
   - extensions.extension-method
@@ -22,19 +22,19 @@ items:
     testProject: "Erweiterungen Tests/Erweiterungen.Tests.csproj"
   - type: multipleChoice
     id: keine-vererbung
-    prompt: { de: "double ist eine versiegelte Struktur. Warum lässt sich trotzdem pi.High(2) schreiben?" }
+    prompt: { de: "double ist eine versiegelte Struktur. Warum lässt sich trotzdem pi.High(2) schreiben?", en: "`double` is a sealed structure. Why is it still possible to write `pi.High(2)`?" }
     options:
-      - { de: "High ist eine Erweiterungsmethode in einer statischen Klasse; der Compiler schreibt pi.High(2) in DoubleExtensions.High(pi, 2) um. double selbst wird nicht verändert." }
-      - { de: "Der Compiler leitet zur Laufzeit eine Klasse von double ab." }
-      - { de: "double ist in Wirklichkeit nicht versiegelt." }
+      - { de: "High ist eine Erweiterungsmethode in einer statischen Klasse; der Compiler schreibt pi.High(2) in DoubleExtensions.High(pi, 2) um. double selbst wird nicht verändert.", en: "High is an extension method in a static class; the compiler rewrites pi.High(2) as DoubleExtensions.High(pi, 2). The double type itself is not modified." }
+      - { de: "Der Compiler leitet zur Laufzeit eine Klasse von double ab.", en: "At runtime, the compiler derives a class from `double`." }
+      - { de: "double ist in Wirklichkeit nicht versiegelt.", en: "\"double\" is not actually sealed." }
     correct: [0]
-    explanation: { de: "Erweiterungsmitglieder sind syntaktischer Zucker für statische Methoden (7.15.1, Seite 582). Sie haben keinen Zugriff auf private Mitglieder des erweiterten Typs." }
+    explanation: { de: "Erweiterungsmitglieder sind syntaktischer Zucker für statische Methoden (7.15.1, Seite 582). Sie haben keinen Zugriff auf private Mitglieder des erweiterten Typs.", en: "Extension members are syntactic sugar for static methods (7.15.1, page 582). They do not have access to private members of the extended type." }
   - type: multipleChoice
     id: instanz-vs-erweiterung
-    prompt: { de: "Ein Typ hat eine Instanzmethode M() und es gibt zusätzlich eine Erweiterungsmethode M() für ihn. Was ruft x.M() auf?" }
+    prompt: { de: "Ein Typ hat eine Instanzmethode M() und es gibt zusätzlich eine Erweiterungsmethode M() für ihn. Was ruft x.M() auf?", en: "A class has an instance method M(), and there is also an extension method M() for it. What does x.M() call?" }
     options:
-      - { de: "Immer die Instanzmethode; Erweiterungen kommen nur zum Zug, wenn der Typ nichts Passendes hat." }
-      - { de: "Die Erweiterungsmethode, weil sie später definiert wurde." }
-      - { de: "Compilerfehler wegen Mehrdeutigkeit." }
+      - { de: "Immer die Instanzmethode; Erweiterungen kommen nur zum Zug, wenn der Typ nichts Passendes hat.", en: "Always use the instance method; extensions are only used if the type doesn't have a suitable one." }
+      - { de: "Die Erweiterungsmethode, weil sie später definiert wurde.", en: "The extension method, because it was defined later." }
+      - { de: "Compilerfehler wegen Mehrdeutigkeit.", en: "Compiler error due to ambiguity." }
     correct: [0]
-    explanation: { de: "Erweiterungsmitglieder haben niedrigere Priorität als echte Mitglieder (7.15.1). Das gilt auch, wenn der erweiterte Typ das Mitglied später nachrüstet." }
+    explanation: { de: "Erweiterungsmitglieder haben niedrigere Priorität als echte Mitglieder (7.15.1). Das gilt auch, wenn der erweiterte Typ das Mitglied später nachrüstet.", en: "Extension members have lower priority than regular members (7.15.1). This also applies if the extension type adds the member later." }

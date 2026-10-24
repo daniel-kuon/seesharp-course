@@ -1,8 +1,8 @@
 id: attribute-reflexion-auslesen
-title: { de: "Attribute per Reflexion auslesen" }
+title: { de: "Attribute per Reflexion auslesen", en: "Reading Attributes via Reflection" }
 reading:
   section: "14.2"
-  title: { de: "Attribute per Reflexion auswerten" }
+  title: { de: "Attribute per Reflexion auswerten", en: "Evaluating Attributes via Reflection" }
   printedPage: 924
 teaches:
   - reflection.typeof-gettype

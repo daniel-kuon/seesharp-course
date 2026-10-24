@@ -1,8 +1,8 @@
 id: ablauf-primzahl-und-switch
-title: { de: "Primzahltest, switch-Ausdruck, foreach" }
+title: { de: "Primzahltest, switch-Ausdruck, foreach", en: "Prime Number Test, switch Expression, foreach" }
 reading:
   section: "4.7.3.6"
-  title: { de: "Schleifen(durchgänge) vorzeitig beenden" }
+  title: { de: "Schleifen(durchgänge) vorzeitig beenden", en: "Terminating Loops (Iterations) Early" }
   printedPage: 278
 teaches:
   - algo.prime-test

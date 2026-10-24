@@ -1,8 +1,8 @@
 id: dateien-ressourcen-freigeben
-title: { de: "using, Dispose und AutoFlush" }
+title: { de: "using, Dispose und AutoFlush", en: "using, Dispose, and AutoFlush" }
 reading:
   section: "16.2.3"
-  title: { de: "using-Anweisung" }
+  title: { de: "using-Anweisung", en: "using statement" }
   printedPage: 1027
 teaches:
   - resources.dispose-close
@@ -25,21 +25,21 @@ items:
     testProject: "Ressourcenfreigabe Tests/Ressourcenfreigabe.Tests.csproj"
   - type: multipleChoice
     id: using-expansion
-    prompt: { de: "In welchen Code übersetzt der Compiler using (var s = Oeffne()) { Benutze(s); }?" }
+    prompt: { de: "In welchen Code übersetzt der Compiler using (var s = Oeffne()) { Benutze(s); }?", en: "What code does the compiler translate `using (var s = Oeffne()) { Benutze(s); }` into?" }
     options:
-      - { de: "In einen try-Block mit Benutze(s); und einem finally-Block, der s.Dispose() aufruft (falls s nicht null ist)." }
-      - { de: "In einen Aufruf von Benutze(s), gefolgt von s.Close() ohne try-Block." }
-      - { de: "In einen Aufruf von Benutze(s); die Freigabe übernimmt später der Garbage Collector." }
-      - { de: "In einen try-Block mit catch (Exception), der Fehler beim Benutzen verschluckt." }
+      - { de: "In einen try-Block mit Benutze(s); und einem finally-Block, der s.Dispose() aufruft (falls s nicht null ist).", en: "Into a `try` block with `Benutze(s);` and a `finally` block that calls `s.Dispose()` (if `s` is not `null`)." }
+      - { de: "In einen Aufruf von Benutze(s), gefolgt von s.Close() ohne try-Block.", en: "In a call to `Benutze(s)`, followed by `s.Close()` without a `try` block." }
+      - { de: "In einen Aufruf von Benutze(s); die Freigabe übernimmt später der Garbage Collector.", en: "Into a call of `Benutze(s);`; the garbage collector takes care of the release later." }
+      - { de: "In einen try-Block mit catch (Exception), der Fehler beim Benutzen verschluckt.", en: "In a try block with a catch (exception) that catches errors that occur during use." }
     correct: [0]
-    explanation: { de: "16.2.3 (Seite 1027). using ist Kurzschreibweise für try/finally mit Dispose(). Die Ausnahme aus Benutze(s) läuft nach der Freigabe weiter, sie wird nicht verschluckt." }
+    explanation: { de: "16.2.3 (Seite 1027). using ist Kurzschreibweise für try/finally mit Dispose(). Die Ausnahme aus Benutze(s) läuft nach der Freigabe weiter, sie wird nicht verschluckt.", en: "16.2.3 (page 1027). `using` is shorthand for `try/finally` with `Dispose()`. The exception from `Benutze(s)` continues after the release; it is not swallowed." }
   - type: multipleChoice
     id: autoflush
-    prompt: { de: "Ein StreamWriter mit AutoFlush = true schreibt 30 000 Zeilen mit WriteLine. Was ist die Folge?" }
+    prompt: { de: "Ein StreamWriter mit AutoFlush = true schreibt 30 000 Zeilen mit WriteLine. Was ist die Folge?", en: "A StreamWriter with AutoFlush = true writes 30,000 lines using WriteLine. What is the result?" }
     options:
-      - { de: "Jede Zeile wird sofort an den Strom weitergereicht; das ist für Protokolle richtig, bei Massendaten aber viel langsamer als einmaliges Flush() am Ende." }
-      - { de: "Nichts; AutoFlush hat keinen Einfluss auf die Geschwindigkeit." }
-      - { de: "Die Datei wird nie geschlossen." }
-      - { de: "Der Puffer wächst, bis der Speicher voll ist." }
+      - { de: "Jede Zeile wird sofort an den Strom weitergereicht; das ist für Protokolle richtig, bei Massendaten aber viel langsamer als einmaliges Flush() am Ende.", en: "Each line is immediately passed on to the stream; this is appropriate for logs, but for large amounts of data, it's much slower than a single `Flush()` at the end." }
+      - { de: "Nichts; AutoFlush hat keinen Einfluss auf die Geschwindigkeit.", en: "Nothing; AutoFlush has no effect on speed." }
+      - { de: "Die Datei wird nie geschlossen.", en: "The file is never closed." }
+      - { de: "Der Puffer wächst, bis der Speicher voll ist.", en: "The buffer grows until the memory is full." }
     correct: [0]
-    explanation: { de: "16.2.3 und 16.3.2.1.3 (Seite 1038); Übung 16.7/2 (Seite 1060). AutoFlush bedeutet: nach jedem Schreibaufruf Flush(). Das passt, wenn Sicherheit vor Tempo geht (z. B. Protokoll, bevor das Programm abstürzt)." }
+    explanation: { de: "16.2.3 und 16.3.2.1.3 (Seite 1038); Übung 16.7/2 (Seite 1060). AutoFlush bedeutet: nach jedem Schreibaufruf Flush(). Das passt, wenn Sicherheit vor Tempo geht (z. B. Protokoll, bevor das Programm abstürzt).", en: "16.2.3 and 16.3.2.1.3 (page 1038); Exercise 16.7/2 (page 1060). \"AutoFlush\" means: after every write call, call Flush(). This is appropriate when safety takes precedence over speed (e.g., logging before the program crashes)." }

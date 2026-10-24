@@ -1,8 +1,8 @@
 id: netz-netzwerkbegriffe
-title: { de: "Netzwerkbegriffe: Quiz" }
+title: { de: "Netzwerkbegriffe: Quiz", en: "Networking Terms: Quiz" }
 reading:
   section: "21.1"
-  title: { de: "Begriffe aus der Netzwerktechnik" }
+  title: { de: "Begriffe aus der Netzwerktechnik", en: "Terms from Networking" }
   printedPage: 1497
 teaches:
   - net.osi-concepts
@@ -14,58 +14,58 @@ requires:
 items:
   - type: multipleChoice
     id: schichten
-    prompt: { de: "Welche Zuordnung von Protokoll zu Schicht des TCP/IP-Modells (bzw. OSI-Modells) stimmt?" }
+    prompt: { de: "Welche Zuordnung von Protokoll zu Schicht des TCP/IP-Modells (bzw. OSI-Modells) stimmt?", en: "Which correspondence between protocols and layers in the TCP/IP model (or OSI model) is correct?" }
     options:
-      - { de: "Ethernet: Sicherung/Netzzugang (Link Layer); IP: Vermittlung (Network Layer); TCP: Transport (Transport Layer); HTTP und DNS: Anwendung (Application Layer)." }
-      - { de: "Ethernet: Anwendung; IP: Transport; TCP: Vermittlung; HTTP: Bitübertragung." }
-      - { de: "HTTP: Transport; TCP: Anwendung; IP: Anwendung; Ethernet: Vermittlung." }
+      - { de: "Ethernet: Sicherung/Netzzugang (Link Layer); IP: Vermittlung (Network Layer); TCP: Transport (Transport Layer); HTTP und DNS: Anwendung (Application Layer).", en: "Ethernet: Security/Network Access (Link Layer); IP: Routing (Network Layer); TCP: Transport (Transport Layer); HTTP and DNS: Application (Application Layer)." }
+      - { de: "Ethernet: Anwendung; IP: Transport; TCP: Vermittlung; HTTP: Bitübertragung.", en: "Ethernet: Application; IP: Transport; TCP: Switching; HTTP: Data Transmission." }
+      - { de: "HTTP: Transport; TCP: Anwendung; IP: Anwendung; Ethernet: Vermittlung.", en: "HTTP: Transport; TCP: Application; IP: Application; Ethernet: Network." }
     correct: [0]
-    explanation: { de: "21.1.1.2 bis 21.1.1.7 (Seite 1499 bis 1502) und 21.1.2 (Seite 1503). Jede Schicht verpackt die Daten der Schicht darüber und gibt sie an die darunter weiter." }
+    explanation: { de: "21.1.1.2 bis 21.1.1.7 (Seite 1499 bis 1502) und 21.1.2 (Seite 1503). Jede Schicht verpackt die Daten der Schicht darüber und gibt sie an die darunter weiter.", en: "21.1.1.2 through 21.1.1.7 (pages 1499 through 1502) and 21.1.2 (page 1503). Each layer encapsulates the data from the layer above it and passes it on to the layer below." }
   - type: multipleChoice
     id: ip-und-port
-    prompt: { de: "Was bezeichnen IP-Adresse und Portnummer?" }
+    prompt: { de: "Was bezeichnen IP-Adresse und Portnummer?", en: "What do IP address and port number refer to?" }
     options:
-      - { de: "Die IP-Adresse bezeichnet einen Rechner (genauer: eine Netzwerkschnittstelle) im Netz, die Portnummer ein Programm bzw. einen Dienst auf diesem Rechner." }
-      - { de: "Die IP-Adresse bezeichnet ein Programm, die Portnummer den Rechner." }
-      - { de: "Beide bezeichnen den Rechner; der Port ist nur eine Prüfsumme." }
+      - { de: "Die IP-Adresse bezeichnet einen Rechner (genauer: eine Netzwerkschnittstelle) im Netz, die Portnummer ein Programm bzw. einen Dienst auf diesem Rechner.", en: "An IP address identifies a computer (more precisely, a network interface) on the network, while a port number identifies a program or service on that computer." }
+      - { de: "Die IP-Adresse bezeichnet ein Programm, die Portnummer den Rechner.", en: "The IP address identifies a program; the port number identifies the computer." }
+      - { de: "Beide bezeichnen den Rechner; der Port ist nur eine Prüfsumme.", en: "Both refer to the computer; the port is just a checksum." }
     correct: [0]
-    explanation: { de: "21.1.1.3 und 21.1.1.4 (Seite 1499 bis 1500). Ein Webserver lauscht üblicherweise auf Port 80 (HTTP) oder 443 (HTTPS); wer einen eigenen Server schreibt, wählt einen freien Port oder lässt das Betriebssystem einen zuteilen (Port 0)." }
+    explanation: { de: "21.1.1.3 und 21.1.1.4 (Seite 1499 bis 1500). Ein Webserver lauscht üblicherweise auf Port 80 (HTTP) oder 443 (HTTPS); wer einen eigenen Server schreibt, wählt einen freien Port oder lässt das Betriebssystem einen zuteilen (Port 0).", en: "21.1.1.3 and 21.1.1.4 (pages 1499–1500). A web server typically listens on port 80 (HTTP) or 443 (HTTPS); if you’re writing your own server, choose an available port or let the operating system assign one (port 0)." }
   - type: multipleChoice
     id: tcp-udp
-    prompt: { de: "Worin unterscheiden sich TCP und UDP?" }
+    prompt: { de: "Worin unterscheiden sich TCP und UDP?", en: "How do TCP and UDP differ?" }
     options:
-      - { de: "TCP baut eine Verbindung auf und sichert die Übertragung (Reihenfolge, Wiederholung bei Verlust); UDP schickt einzelne Datagramme ohne Verbindung und ohne Garantie." }
-      - { de: "UDP ist die gesicherte, TCP die ungesicherte Variante." }
-      - { de: "TCP gibt es nur im Browser, UDP nur in C#." }
+      - { de: "TCP baut eine Verbindung auf und sichert die Übertragung (Reihenfolge, Wiederholung bei Verlust); UDP schickt einzelne Datagramme ohne Verbindung und ohne Garantie.", en: "TCP establishes a connection and ensures reliable transmission (sequence, retransmission in case of loss); UDP sends individual datagrams without a connection and without any guarantee." }
+      - { de: "UDP ist die gesicherte, TCP die ungesicherte Variante.", en: "UDP is the secure version, while TCP is the unsecured version." }
+      - { de: "TCP gibt es nur im Browser, UDP nur in C#.", en: "TCP is available only in the browser, while UDP is available only in C#." }
     correct: [0]
-    explanation: { de: "21.1.1.4 (Seite 1500). HTTP und die Socket-Aufgaben dieses Moduls laufen über TCP." }
+    explanation: { de: "21.1.1.4 (Seite 1500). HTTP und die Socket-Aufgaben dieses Moduls laufen über TCP.", en: "21.1.1.4 (page 1500). HTTP and the socket functions in this module run over TCP." }
   - type: multipleChoice
     id: dns
-    prompt: { de: "Was löst DNS auf?" }
+    prompt: { de: "Was löst DNS auf?", en: "What does DNS resolve?" }
     options:
-      - { de: "Hostnamen (z. B. www.example.com) in IP-Adressen." }
-      - { de: "IP-Adressen in Portnummern." }
-      - { de: "HTML-Seiten in Text." }
+      - { de: "Hostnamen (z. B. www.example.com) in IP-Adressen.", en: "Hostnames (e.g., www.example.com) into IP addresses." }
+      - { de: "IP-Adressen in Portnummern.", en: "IP addresses in port numbers." }
+      - { de: "HTML-Seiten in Text.", en: "HTML pages as text." }
     correct: [0]
-    explanation: { de: "21.1.1.7 und 21.5 (Seite 1502 und 1523). In C# erledigt Dns.GetHostAddresses(name) das; der Name localhost wird lokal aufgelöst und braucht kein Internet." }
+    explanation: { de: "21.1.1.7 und 21.5 (Seite 1502 und 1523). In C# erledigt Dns.GetHostAddresses(name) das; der Name localhost wird lokal aufgelöst und braucht kein Internet.", en: "21.1.1.7 and 21.5 (pages 1502 and 1523). In C#, `Dns.GetHostAddresses(name)` handles this; the name `localhost` is resolved locally and does not require an Internet connection." }
   - type: multipleChoice
     id: http-methoden
-    prompt: { de: "Welche HTTP-Methode passt? (a) eine Ressource lesen, (b) Daten zum Anlegen an den Server senden, (c) nur prüfen, ob die Ressource existiert und wie groß sie ist, ohne sie zu laden." }
+    prompt: { de: "Welche HTTP-Methode passt? (a) eine Ressource lesen, (b) Daten zum Anlegen an den Server senden, (c) nur prüfen, ob die Ressource existiert und wie groß sie ist, ohne sie zu laden.", en: "Which HTTP method is appropriate? (a) Read a resource, (b) send data to the server to create a resource, (c) simply check whether the resource exists and how large it is, without loading it." }
     options:
-      - { de: "(a) GET, (b) POST, (c) HEAD" }
-      - { de: "(a) POST, (b) GET, (c) HEAD" }
-      - { de: "(a) HEAD, (b) GET, (c) POST" }
+      - { de: "(a) GET, (b) POST, (c) HEAD", en: "(a) GET, (b) POST, (c) HEAD" }
+      - { de: "(a) POST, (b) GET, (c) HEAD", en: "(a) POST, (b) GET, (c) HEAD" }
+      - { de: "(a) HEAD, (b) GET, (c) POST", en: "(a) HEAD, (b) GET, (c) POST" }
     correct: [0]
-    explanation: { de: "21.3.1 (Seite 1507) und 21.3.2.3 Header zu einer HTTP-Antwort anfordern (Seite 1511). HEAD liefert dieselben Kopfzeilen wie GET, aber keinen Inhalt." }
+    explanation: { de: "21.3.1 (Seite 1507) und 21.3.2.3 Header zu einer HTTP-Antwort anfordern (Seite 1511). HEAD liefert dieselben Kopfzeilen wie GET, aber keinen Inhalt.", en: "21.3.1 (page 1507) and 21.3.2.3 Requesting Headers in an HTTP Response (page 1511). HEAD returns the same headers as GET, but no content." }
   - type: multipleChoice
     id: statusklassen
-    prompt: { de: "Ordne die Statuscodes den Klassen zu: 200 OK, 301 Moved Permanently, 404 Not Found, 500 Internal Server Error, 503 Service Unavailable." }
+    prompt: { de: "Ordne die Statuscodes den Klassen zu: 200 OK, 301 Moved Permanently, 404 Not Found, 500 Internal Server Error, 503 Service Unavailable.", en: "Match the status codes to their classes: 200 OK, 301 Moved Permanently, 404 Not Found, 500 Internal Server Error, 503 Service Unavailable." }
     options:
-      - { de: "200 ist Erfolg (2xx), 301 Umleitung (3xx), 404 Fehler des Klienten (4xx), 500 und 503 Fehler des Servers (5xx)." }
-      - { de: "200 ist Umleitung, 301 Erfolg, 404 und 500 Fehler des Servers, 503 Fehler des Klienten." }
-      - { de: "Alle Codes ab 300 sind Fehler des Servers." }
+      - { de: "200 ist Erfolg (2xx), 301 Umleitung (3xx), 404 Fehler des Klienten (4xx), 500 und 503 Fehler des Servers (5xx).", en: "200 indicates success (2xx), 301 indicates a redirect (3xx), 404 indicates a client error (4xx), and 500 and 503 indicate server errors (5xx)." }
+      - { de: "200 ist Umleitung, 301 Erfolg, 404 und 500 Fehler des Servers, 503 Fehler des Klienten.", en: "200 indicates a redirect, 301 indicates success, 404 and 500 indicate server errors, and 503 indicates a client error." }
+      - { de: "Alle Codes ab 300 sind Fehler des Servers.", en: "All codes starting with 300 are server errors." }
     correct: [0]
-    explanation: { de: "21.3.2 (Seite 1509) und HttpResponseMessage.IsSuccessStatusCode: true genau für 200 bis 299. 4xx bedeutet: Die Anforderung war falsch; 5xx: Der Server hat versagt (ein erneuter Versuch kann sich lohnen, z. B. bei 503)." }
+    explanation: { de: "21.3.2 (Seite 1509) und HttpResponseMessage.IsSuccessStatusCode: true genau für 200 bis 299. 4xx bedeutet: Die Anforderung war falsch; 5xx: Der Server hat versagt (ein erneuter Versuch kann sich lohnen, z. B. bei 503).", en: "21.3.2 (page 1509) and HttpResponseMessage.IsSuccessStatusCode: true specifically for 200 through 299. 4xx means: The request was invalid; 5xx: The server failed (it may be worth trying again, e.g., for a 503)." }
   - type: multipleChoice
     id: httpclient-lebensdauer
     prompt:
@@ -81,21 +81,22 @@ items:
         ```
 
         Was spricht dagegen?
+      en: "This code retrieves many pages in a loop:\n\n```csharp\nforeach (var url in urls)\n{\n    using var client = new HttpClient();\n    texte.Add(await client.GetStringAsync(url));\n}\n```\n\nWhat are the arguments against it?"
     options:
-      - { de: "Jeder HttpClient baut eigene Verbindungen auf und gibt sie beim Dispose wieder frei; die Sockets bleiben noch eine Weile blockiert, bei vielen Aufrufen gehen die Ports aus. Besser: ein einziger HttpClient, der im ganzen Programm wiederverwendet wird (er ist dafür gebaut und thread-sicher)." }
-      - { de: "Nichts; HttpClient ist ein leichtes Objekt und soll bei jedem Aufruf neu angelegt werden." }
-      - { de: "using ist bei HttpClient verboten." }
+      - { de: "Jeder HttpClient baut eigene Verbindungen auf und gibt sie beim Dispose wieder frei; die Sockets bleiben noch eine Weile blockiert, bei vielen Aufrufen gehen die Ports aus. Besser: ein einziger HttpClient, der im ganzen Programm wiederverwendet wird (er ist dafür gebaut und thread-sicher).", en: "Each HttpClient establishes its own connections and releases them when it is disposed of; the sockets remain blocked for a while, and if there are many calls, the ports will run out. A better approach: a single HttpClient that is reused throughout the program (it is designed for this purpose and is thread-safe)." }
+      - { de: "Nichts; HttpClient ist ein leichtes Objekt und soll bei jedem Aufruf neu angelegt werden.", en: "Nothing; HttpClient is a lightweight object and should be created anew with each call." }
+      - { de: "using ist bei HttpClient verboten.", en: "The use of \"using\" is prohibited with HttpClient." }
     correct: [0]
-    explanation: { de: "21.3 (Seite 1506 bis 1507): Gegen kurzlebige HttpClient-Objekte sprechen der eigene Verbindungspool und die nach dem Ende einer Verbindung noch blockierten TCP-Ports." }
+    explanation: { de: "21.3 (Seite 1506 bis 1507): Gegen kurzlebige HttpClient-Objekte sprechen der eigene Verbindungspool und die nach dem Ende einer Verbindung noch blockierten TCP-Ports.", en: "21.3 (pages 1506–1507): Arguments against using short-lived HttpClient objects include the HttpClient's own connection pool and the fact that TCP ports remain blocked even after a connection has ended." }
   - type: multipleChoice
     id: tcp-oder-http
-    prompt: { de: "Ein selbst geschriebener Server soll mit einem Browser sprechen. Welches Protokoll muss er sprechen?" }
+    prompt: { de: "Ein selbst geschriebener Server soll mit einem Browser sprechen. Welches Protokoll muss er sprechen?", en: "A server I wrote myself needs to communicate with a browser. What protocol does it need to use?" }
     options:
-      - { de: "HTTP (über TCP); ein Browser schickt Anforderungen in diesem Format und erwartet eine HTTP-Antwort mit Statuszeile." }
-      - { de: "Ein beliebiges eigenes Zeilenprotokoll; der Browser versteht jedes." }
-      - { de: "Nur UDP." }
+      - { de: "HTTP (über TCP); ein Browser schickt Anforderungen in diesem Format und erwartet eine HTTP-Antwort mit Statuszeile.", en: "HTTP (over TCP); a browser sends requests in this format and expects an HTTP response with a status line." }
+      - { de: "Ein beliebiges eigenes Zeilenprotokoll; der Browser versteht jedes.", en: "Any custom line protocol; the browser understands them all." }
+      - { de: "Nur UDP.", en: "UDP only." }
     correct: [0]
-    explanation: { de: "21.1.2 (Seite 1503). Ein eigenes Zeilenprotokoll (wie in Aufgabe 4) funktioniert nur mit einem passenden eigenen Klienten." }
+    explanation: { de: "21.1.2 (Seite 1503). Ein eigenes Zeilenprotokoll (wie in Aufgabe 4) funktioniert nur mit einem passenden eigenen Klienten.", en: "21.1.2 (page 1503). A custom line-by-line log (as in Exercise 4) only works with a compatible custom client." }
   - type: open
     id: browseraufruf
-    prompt: { de: "Beschreibe in eigenen Worten, welche Schritte im Netzwerk ablaufen, wenn ein Browser die Adresse http://www.example.com/index.html aufruft. Gehe auf Namensauflösung, Verbindungsaufbau, Anforderung und Antwort ein." }
+    prompt: { de: "Beschreibe in eigenen Worten, welche Schritte im Netzwerk ablaufen, wenn ein Browser die Adresse http://www.example.com/index.html aufruft. Gehe auf Namensauflösung, Verbindungsaufbau, Anforderung und Antwort ein.", en: "In your own words, describe the steps that take place on the network when a browser accesses the address http://www.example.com/index.html. Discuss name resolution, establishing a connection, the request, and the response." }

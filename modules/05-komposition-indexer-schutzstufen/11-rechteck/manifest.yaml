@@ -1,9 +1,9 @@
 id: komposition-rechteck
-title: { de: "Zusatzaufgabe: Ein Rechteck besitzt seine Punkte" }
+title: { de: "Zusatzaufgabe: Ein Rechteck besitzt seine Punkte", en: "Extra exercise: A rectangle owns its points" }
 optional: true
 reading:
   section: "5.10"
-  title: { de: "Aggregation bzw. Komposition" }
+  title: { de: "Aggregation bzw. Komposition", en: "Aggregation or Composition" }
   printedPage: 388
 teaches:
   - oop.aggregation

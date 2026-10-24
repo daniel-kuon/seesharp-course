@@ -1,9 +1,9 @@
 id: klassen-rekursion-vertieft
-title: { de: "Zusatzaufgabe: Rekursion vertieft" }
+title: { de: "Zusatzaufgabe: Rekursion vertieft", en: "Extra exercise: Recursion in Depth" }
 optional: true
 reading:
   section: "5.9.2"
-  title: { de: "Rekursive Methoden" }
+  title: { de: "Rekursive Methoden", en: "Recursive Methods" }
   printedPage: 382
 teaches:
   - algo.recursion

@@ -1,8 +1,8 @@
 id: typen-enums-und-tupel
-title: { de: "Enumerationen und Tupel" }
+title: { de: "Enumerationen und Tupel", en: "Enumerations and Tuples" }
 reading:
   section: "6.4"
-  title: { de: "Aufzählungstypen" }
+  title: { de: "Aufzählungstypen", en: "Enumeration Types" }
   printedPage: 480
 teaches:
   - enums.declare
@@ -23,11 +23,11 @@ items:
     testProject: "EnumsTupel Tests/EnumsTupel.Tests.csproj"
   - type: multipleChoice
     id: enum-cast
-    prompt: { de: "enum Ampel { Rot, Gelb, Gruen } — was ergibt (Ampel)7?" }
+    prompt: { de: "enum Ampel { Rot, Gelb, Gruen } — was ergibt (Ampel)7?", en: "enum TrafficLight { Red, Yellow, Green } — what is the value of (TrafficLight)7?" }
     options:
-      - { de: "Der Cast gelingt und liefert einen Ampel-Wert, hinter dem die 7 steht; Enum.IsDefined meldet ihn als nicht definiert." }
-      - { de: "Eine InvalidCastException zur Laufzeit." }
-      - { de: "Einen Compilerfehler." }
-      - { de: "Ampel.Gruen, weil auf den letzten Wert gerundet wird." }
+      - { de: "Der Cast gelingt und liefert einen Ampel-Wert, hinter dem die 7 steht; Enum.IsDefined meldet ihn als nicht definiert.", en: "The cast is successful and returns a traffic-light value followed by the number 7; Enum.IsDefined reports it as undefined." }
+      - { de: "Eine InvalidCastException zur Laufzeit.", en: "An InvalidCastException at runtime." }
+      - { de: "Einen Compilerfehler.", en: "A compiler error." }
+      - { de: "Ampel.Gruen, weil auf den letzten Wert gerundet wird.", en: "`Ampel.Gruen`, because it is rounded to the last value." }
     correct: [0]
-    explanation: { de: "Ein Enum ist zur Laufzeit nur eine Ganzzahl (6.4, Seite 480). Deshalb lohnt sich die Validierung im Setter mit Enum.IsDefined." }
+    explanation: { de: "Ein Enum ist zur Laufzeit nur eine Ganzzahl (6.4, Seite 480). Deshalb lohnt sich die Validierung im Setter mit Enum.IsDefined.", en: "At runtime, an enum is simply an integer (6.4, page 480). That's why it's worth validating it in the setter using `Enum.IsDefined`." }

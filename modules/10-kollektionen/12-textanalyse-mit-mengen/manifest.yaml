@@ -1,9 +1,9 @@
 id: kollektionen-textanalyse-mengen
-title: { de: "Zusatz: Textanalyse mit Mengen" }
+title: { de: "Zusatz: Textanalyse mit Mengen", en: "Extra: Text Analysis Using Sets" }
 optional: true
 reading:
   section: "11.5.2"
-  title: { de: "Hashtabellen und die Klasse HashSet<T>" }
+  title: { de: "Hashtabellen und die Klasse HashSet<T>", en: "Hash Tables and the HashSet<T> Class" }
   printedPage: 704
 teaches:
   - collections.hashset-add-contains

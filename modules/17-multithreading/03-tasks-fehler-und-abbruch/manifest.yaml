@@ -1,8 +1,8 @@
 id: threads-tasks-fehler-und-abbruch
-title: { de: "Ausnahmen und Abbruch bei Aufgaben" }
+title: { de: "Ausnahmen und Abbruch bei Aufgaben", en: "Exceptions and Cancellation in Tasks" }
 reading:
   section: "17.5.10"
-  title: { de: "Aufgaben abbrechen" }
+  title: { de: "Aufgaben abbrechen", en: "Cancelling Tasks" }
   printedPage: 1145
 teaches:
   - tasks.aggregate-exception

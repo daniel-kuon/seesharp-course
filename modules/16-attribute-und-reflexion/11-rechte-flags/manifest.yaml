@@ -1,9 +1,9 @@
 id: attribute-rechte-flags
-title: { de: "Zusatz: Berechtigungen mit Flags" }
+title: { de: "Zusatz: Berechtigungen mit Flags", en: "Extra: Permissions with Flags" }
 optional: true
 reading:
   section: "14.5.4"
-  title: { de: "Bitfelder per FlagsAttribute" }
+  title: { de: "Bitfelder per FlagsAttribute", en: "Bit fields using FlagsAttribute" }
   printedPage: 937
 teaches:
   - attributes.flags

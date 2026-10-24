@@ -1,6 +1,6 @@
 id: wpf
-title: { de: "WPF und das MVVM-Muster" }
+title: { de: "WPF und das MVVM-Muster", en: "WPF and the MVVM Pattern" }
 reading:
   section: "12"
-  title: { de: "GUI-Programmierung mit WPF" }
+  title: { de: "GUI-Programmierung mit WPF", en: "GUI Programming with WPF" }
   printedPage: 725

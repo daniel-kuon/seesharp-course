@@ -1,8 +1,8 @@
 id: ausnahmen-log2
-title: { de: "Log2 mit ArgumentOutOfRangeException" }
+title: { de: "Log2 mit ArgumentOutOfRangeException", en: "Log2 with ArgumentOutOfRangeException" }
 reading:
   section: "13.6"
-  title: { de: "Ausnahmen werfen (throw)" }
+  title: { de: "Ausnahmen werfen (throw)", en: "Throwing Exceptions" }
   printedPage: 913
 teaches:
   - exceptions.unhandled-stacktrace
@@ -23,19 +23,19 @@ items:
     testProject: "DuaLog Tests/DuaLog.Tests.csproj"
   - type: multipleChoice
     id: stacktrace
-    prompt: { de: "Die Stapelüberwachung (Stack Trace) im Abschnitt „Frage zur Stapelüberwachung“ der Aufgabenbeschreibung gehört zu einer unbehandelten Ausnahme. Wo wurde die Ausnahme ausgelöst, und wo ist vermutlich die Ursache des falschen Werts?" }
+    prompt: { de: "Die Stapelüberwachung (Stack Trace) im Abschnitt „Frage zur Stapelüberwachung“ der Aufgabenbeschreibung gehört zu einer unbehandelten Ausnahme. Wo wurde die Ausnahme ausgelöst, und wo ist vermutlich die Ursache des falschen Werts?", en: "The stack trace in the “Question about the stack trace” section of the problem description is associated with an unhandled exception. Where was the exception thrown, and where is the likely cause of the incorrect value?" }
     options:
-      - { de: "Ausgelöst in Dualog.Log2 (oberster Eintrag, Dualog.cs, Zeile 9). Den ungültigen Wert hat der Aufrufer Messung.Dezibel (Messung.cs, Zeile 14) übergeben; dort ist nach der Ursache zu suchen." }
-      - { de: "Ausgelöst in Programm.Main (unterster Eintrag), denn dort beginnt das Programm; die anderen Einträge sind nur Folgefehler." }
-      - { de: "Ausgelöst in Messung.Dezibel, weil dort Log2 aufgerufen wird; Dualog.Log2 ist unschuldig." }
+      - { de: "Ausgelöst in Dualog.Log2 (oberster Eintrag, Dualog.cs, Zeile 9). Den ungültigen Wert hat der Aufrufer Messung.Dezibel (Messung.cs, Zeile 14) übergeben; dort ist nach der Ursache zu suchen.", en: "Triggered in Dualog.Log2 (top entry, Dualog.cs, line 9). The caller passed the invalid value to Messung.Dezibel (Messung.cs, line 14); the cause should be investigated there." }
+      - { de: "Ausgelöst in Programm.Main (unterster Eintrag), denn dort beginnt das Programm; die anderen Einträge sind nur Folgefehler.", en: "Thrown in `Programm.Main` (bottom entry), because the program starts there; the other entries are only consequential errors." }
+      - { de: "Ausgelöst in Messung.Dezibel, weil dort Log2 aufgerufen wird; Dualog.Log2 ist unschuldig.", en: "Triggered in *Messung.Dezibel* because *Log2* is called there; *Dualog.Log2* is not to blame." }
     correct: [0]
-    explanation: { de: "Der oberste Eintrag nennt die Methode, in der geworfen wurde; darunter stehen ihre Aufrufer in umgekehrter Aufrufreihenfolge, zuletzt Main() (13.2, Seite 888). Ob die Ursache in der werfenden Methode liegt oder im Aufrufer, der einen unzulässigen Wert übergibt, muss man aus dem Code schließen; hier meldet Log2 zu Recht einen ungültigen Parameter." }
+    explanation: { de: "Der oberste Eintrag nennt die Methode, in der geworfen wurde; darunter stehen ihre Aufrufer in umgekehrter Aufrufreihenfolge, zuletzt Main() (13.2, Seite 888). Ob die Ursache in der werfenden Methode liegt oder im Aufrufer, der einen unzulässigen Wert übergibt, muss man aus dem Code schließen; hier meldet Log2 zu Recht einen ungültigen Parameter.", en: "The top entry lists the method in which the exception was thrown; below it are its callers in reverse call order, with Main() last (13.2, page 888). Whether the cause lies in the method that threw the exception or in the caller that passed an invalid value must be determined from the code; in this case, Log2 correctly reports an invalid parameter." }
   - type: multipleChoice
     id: vorab-pruefen
-    prompt: { de: "Warum ist es besser, vor dem Aufruf x > 0 zu prüfen, als die ArgumentOutOfRangeException von Log2 abzufangen?" }
+    prompt: { de: "Warum ist es besser, vor dem Aufruf x > 0 zu prüfen, als die ArgumentOutOfRangeException von Log2 abzufangen?", en: "Why is it better to check that x > 0 before calling the method than to catch the ArgumentOutOfRangeException thrown by Log2?" }
     options:
-      - { de: "Ein vermeidbarer Fehler wird besser durch eine Vorabprüfung verhindert: Das ist einfacher zu lesen und billiger, als eine Ausnahme auszulösen und zu behandeln. Ausnahmen sind für Fehler da, die man nicht sinnvoll vorher ausschließen kann." }
-      - { de: "Eine abgefangene Ausnahme beendet das Programm trotzdem, nur mit einer anderen Meldung." }
-      - { de: "Ausnahmen können in C# nicht abgefangen werden, wenn die Methode sie selbst wirft." }
+      - { de: "Ein vermeidbarer Fehler wird besser durch eine Vorabprüfung verhindert: Das ist einfacher zu lesen und billiger, als eine Ausnahme auszulösen und zu behandeln. Ausnahmen sind für Fehler da, die man nicht sinnvoll vorher ausschließen kann.", en: "It's better to prevent a avoidable error with a pre-check: That's easier to read and cheaper than triggering and handling an exception. Exceptions are for errors that can't be reasonably ruled out in advance." }
+      - { de: "Eine abgefangene Ausnahme beendet das Programm trotzdem, nur mit einer anderen Meldung.", en: "An intercepted exception still terminates the program, but with a different message." }
+      - { de: "Ausnahmen können in C# nicht abgefangen werden, wenn die Methode sie selbst wirft.", en: "In C#, exceptions cannot be caught if the method throws them itself." }
     correct: [0]
-    explanation: { de: "Fehlervermeidung geht vor Ausnahmebehandlung (13.1, Seite 886). Die Methode selbst prüft ihre Argumente trotzdem und wirft: Sie darf sich nicht darauf verlassen, dass jeder Aufrufer vorher prüft." }
+    explanation: { de: "Fehlervermeidung geht vor Ausnahmebehandlung (13.1, Seite 886). Die Methode selbst prüft ihre Argumente trotzdem und wirft: Sie darf sich nicht darauf verlassen, dass jeder Aufrufer vorher prüft.", en: "Error prevention takes precedence over exception handling (13.1, page 886). The method itself still checks its arguments and throws an exception: it must not rely on every caller to check them beforehand." }

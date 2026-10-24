@@ -1,8 +1,8 @@
 id: typen-strukturen-und-boxing
-title: { de: "Strukturen, Wertsemantik und Boxing" }
+title: { de: "Strukturen, Wertsemantik und Boxing", en: "Structures, Value Semantics, and Boxing" }
 reading:
   section: "6.1"
-  title: { de: "Strukturen" }
+  title: { de: "Strukturen", en: "Structures" }
   printedPage: 431
 teaches:
   - structs.declare
@@ -24,30 +24,30 @@ items:
     testProject: "Punkt Tests/Punkt.Tests.csproj"
   - type: multipleChoice
     id: boxed-equality
-    prompt: { de: "object o1 = 1; object o2 = 1; Console.WriteLine(o1 == o2); gibt False aus. Warum?" }
+    prompt: { de: "object o1 = 1; object o2 = 1; Console.WriteLine(o1 == o2); gibt False aus. Warum?", en: "object o1 = 1; object o2 = 1; Console.WriteLine(o1 == o2); returns False. Why?" }
     options:
-      - { de: "Beide int-Werte werden geboxt, also in je ein eigenes Objekt auf dem Heap kopiert; == vergleicht bei object die Referenzen, und die sind verschieden." }
-      - { de: "object kann keine Zahlen speichern; der Vergleich ist undefiniert." }
-      - { de: "Der zweite Wert wird als 1.0 (double) gespeichert." }
-      - { de: "== ist für object nicht erlaubt; es wird immer False geliefert." }
+      - { de: "Beide int-Werte werden geboxt, also in je ein eigenes Objekt auf dem Heap kopiert; == vergleicht bei object die Referenzen, und die sind verschieden.", en: "Both int values are boxed, meaning they are each copied into their own object on the heap; == compares the references for the objects, and those references are different." }
+      - { de: "object kann keine Zahlen speichern; der Vergleich ist undefiniert.", en: "An `object` cannot store numbers; the comparison is undefined." }
+      - { de: "Der zweite Wert wird als 1.0 (double) gespeichert.", en: "The second value is stored as 1.0 (double)." }
+      - { de: "== ist für object nicht erlaubt; es wird immer False geliefert.", en: "`==` is not allowed for `object`; `False` is always returned." }
     correct: [0]
-    explanation: { de: "Boxing erzeugt pro Zuweisung ein neues Objekt. o1.Equals(o2) vergleicht dagegen den Inhalt und liefert True (6.1.6, Seite 450; 6.10 Aufgabe 1)." }
+    explanation: { de: "Boxing erzeugt pro Zuweisung ein neues Objekt. o1.Equals(o2) vergleicht dagegen den Inhalt und liefert True (6.1.6, Seite 450; 6.10 Aufgabe 1).", en: "Boxing creates a new object per assignment. `o1.Equals(o2)`, on the other hand, compares the content and returns `True` (6.1.6, page 450; 6.10 Exercise 1)." }
   - type: multipleChoice
     id: boxing-erkennen
-    prompt: { de: "In welcher Zeile findet Boxing statt? int i = 7; object o = i; int j = (int)o; double d = i;" }
+    prompt: { de: "In welcher Zeile findet Boxing statt? int i = 7; object o = i; int j = (int)o; double d = i;", en: "In which line does boxing occur? int i = 7; object o = i; int j = (int)o; double d = i;" }
     options:
-      - { de: "object o = i;" }
-      - { de: "int j = (int)o;" }
-      - { de: "double d = i;" }
-      - { de: "In keiner; alle Zeilen sind einfache Kopien." }
+      - { de: "object o = i;", en: "object o = i;" }
+      - { de: "int j = (int)o;", en: "int j = (int)o;" }
+      - { de: "double d = i;", en: "double d = i;" }
+      - { de: "In keiner; alle Zeilen sind einfache Kopien.", en: "None; all the lines are simple copies." }
     correct: [0]
-    explanation: { de: "Die Zuweisung eines Werttyps an object boxt. (int)o ist Unboxing, double d = i ist eine erweiternde Konvertierung ohne Heap-Objekt." }
+    explanation: { de: "Die Zuweisung eines Werttyps an object boxt. (int)o ist Unboxing, double d = i ist eine erweiternde Konvertierung ohne Heap-Objekt.", en: "Assigning a value type to `object` boxes it. `(int)o` is unboxing; `double d = i` is a widening conversion without a heap object." }
   - type: multipleChoice
     id: parameter-kopie
-    prompt: { de: "Eine Methode static void Bewegen(Punkt p, double hor, double vert) ändert p.X und p.Y. Punkt ist eine Struktur. Was sieht der Aufrufer nach Bewegen(meinPunkt, 1, 1)?" }
+    prompt: { de: "Eine Methode static void Bewegen(Punkt p, double hor, double vert) ändert p.X und p.Y. Punkt ist eine Struktur. Was sieht der Aufrufer nach Bewegen(meinPunkt, 1, 1)?", en: "A method `static void Bewegen(Punkt p, double hor, double vert)` changes `p.X` and `p.Y`. `Punkt` is a structure. What does the caller see after `Bewegen(meinPunkt, 1, 1)`?" }
     options:
-      - { de: "meinPunkt ist unverändert; die Methode hat eine Kopie bewegt." }
-      - { de: "meinPunkt wurde um (1; 1) verschoben." }
-      - { de: "Ein Compilerfehler, weil Strukturen nicht als Parameter erlaubt sind." }
+      - { de: "meinPunkt ist unverändert; die Methode hat eine Kopie bewegt.", en: "`meinPunkt` remains unchanged; the method moved a copy." }
+      - { de: "meinPunkt wurde um (1; 1) verschoben.", en: "`meinPunkt` was moved by (1; 1)." }
+      - { de: "Ein Compilerfehler, weil Strukturen nicht als Parameter erlaubt sind.", en: "A compiler error because structures are not allowed as parameters." }
     correct: [0]
-    explanation: { de: "Werttypen werden als Kopie übergeben (6.1.1, Seite 434). Wer das Original ändern will, braucht ref oder eine Instanzmethode auf der Variablen selbst." }
+    explanation: { de: "Werttypen werden als Kopie übergeben (6.1.1, Seite 434). Wer das Original ändern will, braucht ref oder eine Instanzmethode auf der Variablen selbst.", en: "Value types are passed by copy (6.1.1, page 434). To modify the original, you need to use `ref` or an instance method on the variable itself." }

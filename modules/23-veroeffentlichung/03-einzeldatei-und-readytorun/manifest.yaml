@@ -1,8 +1,8 @@
 id: publish-einzeldatei-und-readytorun
-title: { de: "Einzeldatei und ReadyToRun" }
+title: { de: "Einzeldatei und ReadyToRun", en: "Single File and ReadyToRun" }
 reading:
   section: "23.1.6"
-  title: { de: "Zusammenfassung in einer einzelnen Datei" }
+  title: { de: "Zusammenfassung in einer einzelnen Datei", en: "Summary in a single file" }
   printedPage: 1646
 teaches:
   - publish.single-file
@@ -15,7 +15,7 @@ requires:
 items:
   - type: review
     id: drei-varianten
-    prompt: { de: "Veröffentliche dasselbe Konsolenprogramm dreimal, jeweils in einen eigenen Ordner (`-o`): (1) frameworkabhängig: `dotnet publish -c Release -o pub-fd`; (2) eigenständig als Einzeldatei: `dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o pub-single`; (3) wie (2) mit ReadyToRun: `dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:PublishReadyToRun=true -o pub-r2r`. Starte jede Variante einmal. Zeige der Betreuung die drei Ordner und die Starts." }
+    prompt: { de: "Veröffentliche dasselbe Konsolenprogramm dreimal, jeweils in einen eigenen Ordner (`-o`): (1) frameworkabhängig: `dotnet publish -c Release -o pub-fd`; (2) eigenständig als Einzeldatei: `dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o pub-single`; (3) wie (2) mit ReadyToRun: `dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:PublishReadyToRun=true -o pub-r2r`. Starte jede Variante einmal. Zeige der Betreuung die drei Ordner und die Starts.", en: "Publish the same console program three times, each to its own folder (`-o`): (1) framework-dependent: `dotnet publish -c Release -o pub-fd`; (2) standalone as a single file: `dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o pub-single`; (3) same as (2) but with ReadyToRun: `dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -p:PublishReadyToRun=true -o pub-r2r`. Run each version once. Show the supervisor the three folders and the launches." }
   - type: open
     id: tabelle
-    prompt: { de: "Trage für jede der drei Varianten die Anzahl der Dateien und die Gesamtgröße des Ordners in eine kleine Tabelle ein (Markdown oder CSV; kopiere sie hierher). Erkläre dann in zwei Sätzen die Unterschiede zwischen den Varianten bei Größe, Startzeit und Übertragbarkeit auf andere Rechner." }
+    prompt: { de: "Trage für jede der drei Varianten die Anzahl der Dateien und die Gesamtgröße des Ordners in eine kleine Tabelle ein (Markdown oder CSV; kopiere sie hierher). Erkläre dann in zwei Sätzen die Unterschiede zwischen den Varianten bei Größe, Startzeit und Übertragbarkeit auf andere Rechner.", en: "For each of the three variants, enter the number of files and the total size of the folder into a small table (Markdown or CSV; copy it here). Then explain in two sentences the differences between the variants in terms of size, startup time, and portability to other computers." }

@@ -1,8 +1,8 @@
 id: sprachelemente-formatierung
-title: { de: "Zeichenketten und Formatierung" }
+title: { de: "Zeichenketten und Formatierung", en: "Strings and Formatting" }
 reading:
   section: "4.2.3"
-  title: { de: "Formatierte Ausgabe" }
+  title: { de: "Formatierte Ausgabe", en: "Formatted Output" }
   printedPage: 176
 teaches:
   - strings.concat

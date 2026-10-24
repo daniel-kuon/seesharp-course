@@ -1,8 +1,8 @@
 id: ausnahmen-throw-ausdruck
-title: { de: "throw-Ausdrücke und Validierung im SimpleStack" }
+title: { de: "throw-Ausdrücke und Validierung im SimpleStack", en: "throw Expressions and Validation in SimpleStack" }
 reading:
   section: "13.6"
-  title: { de: "Ausnahmen werfen (throw)" }
+  title: { de: "Ausnahmen werfen (throw)", en: "Throwing Exceptions" }
   printedPage: 913
 teaches:
   - exceptions.throw-expression

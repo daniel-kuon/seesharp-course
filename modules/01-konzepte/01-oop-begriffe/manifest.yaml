@@ -1,8 +1,8 @@
 id: konzepte-oop-begriffe
-title: { de: "OOP-Begriffe" }
+title: { de: "OOP-Begriffe", en: "OOP Terms" }
 reading:
   section: "1.3"
-  title: { de: "Objektorientierte Programmierung" }
+  title: { de: "Objektorientierte Programmierung", en: "Object-Oriented Programming" }
   printedPage: 9
 teaches:
   - concepts.class-vs-object
@@ -15,60 +15,60 @@ requires:
 items:
   - type: multipleChoice
     id: aussagen
-    prompt: { de: "Welche Aussagen treffen zu? (mehrere möglich)" }
+    prompt: { de: "Welche Aussagen treffen zu? (mehrere möglich)", en: "Which statements are true? (You may select more than one.)" }
     options:
-      - { de: "Die Felder einer Klasse sind in der Regel gekapselt, also vor direktem Zugriff fremder Klassen geschützt." }
-      - { de: "Alle Methoden einer Klasse sind grundsätzlich öffentlich." }
-      - { de: "Eine Eigenschaft besteht meist aus einem Paar von Zugriffsmethoden, lässt sich aber wie ein Feld verwenden." }
-      - { de: "Jede Klasse besitzt eine Methode Main()." }
-      - { de: "Fremde Klassen können den Zustand eines Objekts nur über dessen öffentliche Methoden oder Eigenschaften ändern." }
+      - { de: "Die Felder einer Klasse sind in der Regel gekapselt, also vor direktem Zugriff fremder Klassen geschützt.", en: "A class's fields are generally encapsulated, meaning they are protected from direct access by other classes." }
+      - { de: "Alle Methoden einer Klasse sind grundsätzlich öffentlich.", en: "All methods of a class are public by default." }
+      - { de: "Eine Eigenschaft besteht meist aus einem Paar von Zugriffsmethoden, lässt sich aber wie ein Feld verwenden.", en: "A property usually consists of a pair of access methods, but can be used like a field." }
+      - { de: "Jede Klasse besitzt eine Methode Main().", en: "Every class has a Main() method." }
+      - { de: "Fremde Klassen können den Zustand eines Objekts nur über dessen öffentliche Methoden oder Eigenschaften ändern.", en: "External classes can only change an object's state through its public methods or properties." }
     correct: [0, 2, 4]
-    explanation: { de: "Methoden können privat sein, und nur die Startklasse braucht Main(). Kapselung heißt: Zugriff von außen nur über die öffentliche Schnittstelle." }
+    explanation: { de: "Methoden können privat sein, und nur die Startklasse braucht Main(). Kapselung heißt: Zugriff von außen nur über die öffentliche Schnittstelle.", en: "Methods can be private, and only the constructor needs `Main()`. Encapsulation means that access from outside is only possible through the public interface." }
   - type: multipleChoice
     id: klasse-objekt
-    prompt: { de: "Was unterscheidet eine Klasse von einem Objekt?" }
+    prompt: { de: "Was unterscheidet eine Klasse von einem Objekt?", en: "What is the difference between a class and an object?" }
     options:
-      - { de: "Eine Klasse ist der Bauplan; ein Objekt ist ein konkretes Exemplar, das zur Laufzeit mit new entsteht." }
-      - { de: "Ein Objekt ist der Bauplan; eine Klasse ist eine Kopie davon im Speicher." }
-      - { de: "Beide Begriffe bedeuten dasselbe." }
-      - { de: "Eine Klasse existiert nur zur Laufzeit, ein Objekt nur im Quelltext." }
+      - { de: "Eine Klasse ist der Bauplan; ein Objekt ist ein konkretes Exemplar, das zur Laufzeit mit new entsteht.", en: "A class is a blueprint; an object is a specific instance created at runtime using `new`." }
+      - { de: "Ein Objekt ist der Bauplan; eine Klasse ist eine Kopie davon im Speicher.", en: "An object is a blueprint; a class is a copy of it in memory." }
+      - { de: "Beide Begriffe bedeuten dasselbe.", en: "Both terms mean the same thing." }
+      - { de: "Eine Klasse existiert nur zur Laufzeit, ein Objekt nur im Quelltext.", en: "A class exists only at runtime, while an object exists only in the source code." }
     correct: [0]
   - type: multipleChoice
     id: kapselung
-    prompt: { de: "Was bedeutet Datenkapselung?" }
+    prompt: { de: "Was bedeutet Datenkapselung?", en: "What does data encapsulation mean?" }
     options:
-      - { de: "Felder sind privat; andere Klassen greifen nur über Methoden oder Eigenschaften darauf zu, die Regeln durchsetzen können." }
-      - { de: "Alle Daten eines Programms liegen in einer einzigen Klasse." }
-      - { de: "Felder werden verschlüsselt im Speicher abgelegt." }
-      - { de: "Eine Klasse darf keine Felder haben, nur Methoden." }
+      - { de: "Felder sind privat; andere Klassen greifen nur über Methoden oder Eigenschaften darauf zu, die Regeln durchsetzen können.", en: "Fields are private; other classes can access them only through methods or properties that can enforce the rules." }
+      - { de: "Alle Daten eines Programms liegen in einer einzigen Klasse.", en: "All of a program's data is contained in a single class." }
+      - { de: "Felder werden verschlüsselt im Speicher abgelegt.", en: "Fields are stored in memory in encrypted form." }
+      - { de: "Eine Klasse darf keine Felder haben, nur Methoden.", en: "A class cannot have fields; it can only have methods." }
     correct: [0]
   - type: multipleChoice
     id: nachricht
-    prompt: { de: "Im Aufruf b.Kuerze() auf einem Bruch-Objekt b: Wer ist in der OOP-Sprechweise Empfänger der Nachricht, und wer entscheidet, wie sie ausgeführt wird?" }
+    prompt: { de: "Im Aufruf b.Kuerze() auf einem Bruch-Objekt b: Wer ist in der OOP-Sprechweise Empfänger der Nachricht, und wer entscheidet, wie sie ausgeführt wird?", en: "In the call `b.Kuerze()` on a `Bruch` object `b`: In OOP terminology, who is the recipient of the message, and who decides how it is executed?" }
     options:
-      - { de: "Empfänger ist das Objekt b; wie gekürzt wird, legt die Klasse Bruch in der Methode fest." }
-      - { de: "Empfänger ist die Startklasse; sie führt die Berechnung selbst durch." }
-      - { de: "Empfänger ist die Laufzeitumgebung; sie wählt zufällig einen Algorithmus." }
-      - { de: "Empfänger ist der Aufrufer; er muss die Felder von b selbst ändern." }
+      - { de: "Empfänger ist das Objekt b; wie gekürzt wird, legt die Klasse Bruch in der Methode fest.", en: "The receiver is the object b; the `Bruch` class specifies how the name is abbreviated in the method." }
+      - { de: "Empfänger ist die Startklasse; sie führt die Berechnung selbst durch.", en: "The recipient is the start class; it performs the calculation itself." }
+      - { de: "Empfänger ist die Laufzeitumgebung; sie wählt zufällig einen Algorithmus.", en: "The recipient is the runtime environment; it randomly selects an algorithm." }
+      - { de: "Empfänger ist der Aufrufer; er muss die Felder von b selbst ändern.", en: "The recipient is the caller; the caller must modify the fields of b themselves." }
     correct: [0]
   - type: multipleChoice
     id: vererbung
-    prompt: { de: "Eine Klasse Kreis ist von einer Klasse Figur abgeleitet. Was bedeutet das?" }
+    prompt: { de: "Eine Klasse Kreis ist von einer Klasse Figur abgeleitet. Was bedeutet das?", en: "A `Kreis` class is derived from a `Figur` class. What does that mean?" }
     options:
-      - { de: "Kreis übernimmt die Felder und Methoden von Figur und kann eigene hinzufügen oder anpassen." }
-      - { de: "Figur übernimmt alle Mitglieder von Kreis." }
-      - { de: "Kreis und Figur teilen sich denselben Speicherbereich." }
-      - { de: "Kreis darf keine eigenen Methoden definieren." }
+      - { de: "Kreis übernimmt die Felder und Methoden von Figur und kann eigene hinzufügen oder anpassen.", en: "`Kreis` inherits the fields and methods of `Figur` and can add or customize its own." }
+      - { de: "Figur übernimmt alle Mitglieder von Kreis.", en: "Figur takes over all members from Kreis." }
+      - { de: "Kreis und Figur teilen sich denselben Speicherbereich.", en: "`Kreis` and `Figur` share the same memory area." }
+      - { de: "Kreis darf keine eigenen Methoden definieren.", en: "`Kreis` may not define its own methods." }
     correct: [0]
   - type: multipleChoice
     id: polymorphie
-    prompt: { de: "Mehrere Figur-Objekte (Kreise, Rechtecke) liegen in einer Liste. Für jedes wird Flaeche() aufgerufen, und jedes Objekt berechnet seine Fläche nach seiner eigenen Formel. Wie heißt dieses Prinzip?" }
+    prompt: { de: "Mehrere Figur-Objekte (Kreise, Rechtecke) liegen in einer Liste. Für jedes wird Flaeche() aufgerufen, und jedes Objekt berechnet seine Fläche nach seiner eigenen Formel. Wie heißt dieses Prinzip?", en: "A list contains several `Figur` objects (circles, rectangles). `Flaeche()` is called for each one, and each object calculates its area using its own formula. What is this principle called?" }
     options:
-      - { de: "Polymorphie" }
-      - { de: "Kapselung" }
-      - { de: "Garbage Collection" }
-      - { de: "Namensraum" }
+      - { de: "Polymorphie", en: "Polymorphism" }
+      - { de: "Kapselung", en: "Encapsulation" }
+      - { de: "Garbage Collection", en: "Garbage Collection" }
+      - { de: "Namensraum", en: "Namespace" }
     correct: [0]
   - type: open
     id: produktivitaet
-    prompt: { de: "Warum steigert objektorientiertes Programmieren die Produktivität in der Software-Entwicklung? Nenne zwei Gründe in eigenen Worten." }
+    prompt: { de: "Warum steigert objektorientiertes Programmieren die Produktivität in der Software-Entwicklung? Nenne zwei Gründe in eigenen Worten.", en: "Why does object-oriented programming increase productivity in software development? List two reasons in your own words." }

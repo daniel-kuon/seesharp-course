@@ -1,9 +1,9 @@
 id: aspnet-kontaktformular
-title: { de: "Zusatz: Kontaktformular mit Validierung" }
+title: { de: "Zusatz: Kontaktformular mit Validierung", en: "Extra: Contact Form with Validation" }
 optional: true
 reading:
   section: "22.9"
-  title: { de: "Validierung" }
+  title: { de: "Validierung", en: "Validation" }
   printedPage: 1608
 teaches:
   - web.validation-attributes

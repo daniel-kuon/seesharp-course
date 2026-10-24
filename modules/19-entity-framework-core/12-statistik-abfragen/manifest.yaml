@@ -1,9 +1,9 @@
 id: efcore-statistik-abfragen
-title: { de: "Zusatz: Umsatzstatistik" }
+title: { de: "Zusatz: Umsatzstatistik", en: "Extra: Sales Statistics" }
 optional: true
 reading:
   section: "20.9.4"
-  title: { de: "Statistische Auswertungsmethoden (Aggregatoperatoren)" }
+  title: { de: "Statistische Auswertungsmethoden (Aggregatoperatoren)", en: "Statistical Analysis Methods (Aggregation Operators)" }
   printedPage: 1454
 teaches:
   - ef.projection-select

@@ -1,8 +1,8 @@
 id: adonet-provider-unabhaengig
-title: { de: "Provider-unabhängiger Code, DataTable und LINQ-to-DataSet" }
+title: { de: "Provider-unabhängiger Code, DataTable und LINQ-to-DataSet", en: "Provider-independent code, DataTable, and LINQ to DataSet" }
 reading:
   section: "19.7.3"
-  title: { de: "Provider-offener Quellcode" }
+  title: { de: "Provider-offener Quellcode", en: "Provider-Independent Source Code" }
   printedPage: 1314
 teaches:
   - ado.provider-independent
@@ -25,10 +25,10 @@ items:
     testProject: "Datenzugriff Tests/Datenzugriff.Tests.csproj"
   - type: multipleChoice
     id: wechsel-sql-server
-    prompt: { de: "Der Code in Zugriff.cs soll statt mit SQLite mit dem SQL Server arbeiten. Was muss sich ändern, wenn er provider-unabhängig geschrieben ist?" }
+    prompt: { de: "Der Code in Zugriff.cs soll statt mit SQLite mit dem SQL Server arbeiten. Was muss sich ändern, wenn er provider-unabhängig geschrieben ist?", en: "The code in Zugriff.cs is supposed to use SQL Server instead of SQLite. What changes need to be made if it is written to be provider-independent?" }
     options:
-      - { de: "Nur die Stelle, die die DbProviderFactory auswählt (SqlClientFactory.Instance statt SqliteFactory.Instance), und die Verbindungszeichenfolge; Zugriff.cs bleibt unverändert." }
-      - { de: "Jede Methode in Zugriff.cs, weil SqlConnection und SqliteConnection verschiedene Methoden haben." }
-      - { de: "Nichts, denn DbProviderFactory findet den Provider selbst anhand des SQL-Textes." }
+      - { de: "Nur die Stelle, die die DbProviderFactory auswählt (SqlClientFactory.Instance statt SqliteFactory.Instance), und die Verbindungszeichenfolge; Zugriff.cs bleibt unverändert.", en: "Only the part where the DbProviderFactory is selected (SqlClientFactory.Instance instead of SqliteFactory.Instance) and the connection string; Zugriff.cs remains unchanged." }
+      - { de: "Jede Methode in Zugriff.cs, weil SqlConnection und SqliteConnection verschiedene Methoden haben.", en: "Every method in Zugriff.cs, because SqlConnection and SqliteConnection have different methods." }
+      - { de: "Nichts, denn DbProviderFactory findet den Provider selbst anhand des SQL-Textes.", en: "Nothing, because DbProviderFactory finds the provider itself based on the SQL text." }
     correct: [0]
-    explanation: { de: "19.7.3: Die Basisklassen DbConnection, DbCommand, DbDataReader und die Fabrik DbProviderFactory legen die gemeinsame Schnittstelle fest. Provider-spezifisch sind nur die Fabrik und das, was in der Verbindungszeichenfolge steht (und ggf. SQL-Dialekt-Unterschiede, die man weiterhin selbst beachten muss)." }
+    explanation: { de: "19.7.3: Die Basisklassen DbConnection, DbCommand, DbDataReader und die Fabrik DbProviderFactory legen die gemeinsame Schnittstelle fest. Provider-spezifisch sind nur die Fabrik und das, was in der Verbindungszeichenfolge steht (und ggf. SQL-Dialekt-Unterschiede, die man weiterhin selbst beachten muss).", en: "19.7.3: The base classes `DbConnection`, `DbCommand`, `DbDataReader`, and the factory `DbProviderFactory` define the common interface. The only provider-specific elements are the factory and the contents of the connection string (as well as any SQL dialect differences, which you must still account for yourself)." }

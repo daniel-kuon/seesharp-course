@@ -1,8 +1,8 @@
 id: delegaten-quiz
-title: { de: "Delegaten und Ereignisse: Quiz" }
+title: { de: "Delegaten und Ereignisse: Quiz", en: "Delegates and Events: Quiz" }
 reading:
   section: "10.1.4"
-  title: { de: "Delegaten versus Schnittstellen" }
+  title: { de: "Delegaten versus Schnittstellen", en: "Delegates vs. Interfaces" }
   printedPage: 664
 teaches:
   - delegates.vs-interface
@@ -20,147 +20,147 @@ requires:
 items:
   - type: multipleChoice
     id: d1-unveraenderlich
-    prompt: { de: "Aussage: Ein Delegatenobjekt ist unveränderlich; man kann es nicht modifizieren, sondern nur ersetzen. (10.3 Aufgabe 1.1)" }
+    prompt: { de: "Aussage: Ein Delegatenobjekt ist unveränderlich; man kann es nicht modifizieren, sondern nur ersetzen. (10.3 Aufgabe 1.1)", en: "Statement: A delegate object is immutable; it cannot be modified, only replaced. (10.3 Exercise 1.1)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "+= und -= erzeugen jeweils ein neues Delegatenobjekt und weisen es der Variablen zu (10.1.3, Seite 663)." }
+    explanation: { de: "+= und -= erzeugen jeweils ein neues Delegatenobjekt und weisen es der Variablen zu (10.1.3, Seite 663).", en: "+= and -= each create a new delegate object and assign it to the variable (10.1.3, page 663)." }
   - type: multipleChoice
     id: d2-rueckgabetyp
-    prompt: { de: "Aussage: Der Rückgabetyp spielt bei der Delegatensignatur keine Rolle. (10.3 Aufgabe 1.2)" }
+    prompt: { de: "Aussage: Der Rückgabetyp spielt bei der Delegatensignatur keine Rolle. (10.3 Aufgabe 1.2)", en: "Statement: The return type is irrelevant for delegate signatures. (10.3 Exercise 1.2)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Die Signatur besteht aus Parameterliste und Rückgabetyp; nur die Namen von Methode und Parametern sind egal (10.1.1, Seite 659)." }
+    explanation: { de: "Die Signatur besteht aus Parameterliste und Rückgabetyp; nur die Namen von Methode und Parametern sind egal (10.1.1, Seite 659).", en: "The signature consists of a list of parameters and a return type; only the names of the method and parameters are irrelevant (10.1.1, page 659)." }
   - type: multipleChoice
     id: d3-einfangen
-    prompt: { de: "Aussage: Bei einer anonymen Methode oder einem Lambda-Ausdruck kann man lokale Variablen und (statische) Felder der Umgebung verwenden (\"einfangen\"). (10.3 Aufgabe 1.3)" }
+    prompt: { de: "Aussage: Bei einer anonymen Methode oder einem Lambda-Ausdruck kann man lokale Variablen und (statische) Felder der Umgebung verwenden (\"einfangen\"). (10.3 Aufgabe 1.3)", en: "Statement: In an anonymous method or lambda expression, you can use (capture) local variables and (static) fields from the surrounding scope. (10.3 Exercise 1.3)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "Das Einfangen behandelt 10.1.5.3; eingefangen wird die Variable selbst, nicht ihr Wert." }
+    explanation: { de: "Das Einfangen behandelt 10.1.5.3; eingefangen wird die Variable selbst, nicht ihr Wert.", en: "Catching is covered in 10.1.5.3; it is the variable itself that is caught, not its value." }
   - type: multipleChoice
     id: d4-varianz
-    prompt: { de: "Aussage: C# unterstützt bei den Typformalparametern von generischen Delegaten die Ko- und Kontravarianz. (10.3 Aufgabe 1.4)" }
+    prompt: { de: "Aussage: C# unterstützt bei den Typformalparametern von generischen Delegaten die Ko- und Kontravarianz. (10.3 Aufgabe 1.4)", en: "Statement: C# supports covariance and contravariance for the formal type parameters of generic delegates. (10.3 Exercise 1.4)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "Beispiele: Comparison<in T> (kontravariant), Func<out TResult> (kovariant), Action<in T> (kontravariant); 10.1.6, Seite 675." }
+    explanation: { de: "Beispiele: Comparison<in T> (kontravariant), Func<out TResult> (kovariant), Action<in T> (kontravariant); 10.1.6, Seite 675.", en: "Examples: Comparison<in T> (contravariant), Func<out TResult> (covariant), Action<in T> (contravariant); 10.1.6, page 675." }
   - type: multipleChoice
     id: e1-datenobjekt
-    prompt: { de: "Aussage: Ein Ereignis ist ein Datenobjekt. (10.3 Aufgabe 4.1)" }
+    prompt: { de: "Aussage: Ein Ereignis ist ein Datenobjekt. (10.3 Aufgabe 4.1)", en: "Statement: An event is a data object. (10.3 Exercise 4.1)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Ein Ereignis ist ein Typmitglied: eine private Delegatenvariable plus öffentliche Zugriffsmethoden zum Registrieren und Abmelden (10.2.1, Seite 678)." }
+    explanation: { de: "Ein Ereignis ist ein Typmitglied: eine private Delegatenvariable plus öffentliche Zugriffsmethoden zum Registrieren und Abmelden (10.2.1, Seite 678).", en: "An event is a type member: a private delegate variable plus public access methods for registering and unregistering (10.2.1, page 678)." }
   - type: multipleChoice
     id: e2-erben
-    prompt: { de: "Aussage: Weil die Delegatenvariable zu einem Ereignis privat ist, kann man einer abgeleiteten Klasse keine Möglichkeit geben, die Auslösung zu kontrollieren. (10.3 Aufgabe 4.2)" }
+    prompt: { de: "Aussage: Weil die Delegatenvariable zu einem Ereignis privat ist, kann man einer abgeleiteten Klasse keine Möglichkeit geben, die Auslösung zu kontrollieren. (10.3 Aufgabe 4.2)", en: "Statement: Because the delegate variable for an event is private, it is not possible to allow a derived class to control when the event is triggered. (10.3 Exercise 4.2)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Die auslösende Methode OnXyz() ist protected virtual; Erben überschreiben sie (10.2.3, Seite 684 bis 686)." }
+    explanation: { de: "Die auslösende Methode OnXyz() ist protected virtual; Erben überschreiben sie (10.2.3, Seite 684 bis 686).", en: "The triggering method OnXyz() is protected virtual; subclasses override it (10.2.3, pages 684–686)." }
   - type: multipleChoice
     id: e3-abmelden
-    prompt: { de: "Aussage: Die Registrierung eines Ereignisempfängers wieder aufzuheben, lohnt sich nicht. (10.3 Aufgabe 4.3)" }
+    prompt: { de: "Aussage: Die Registrierung eines Ereignisempfängers wieder aufzuheben, lohnt sich nicht. (10.3 Aufgabe 4.3)", en: "Statement: It is not worth unregistering an event listener. (10.3 Exercise 4.3)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Über die Aufrufliste hält der Anbieter den Abonnenten am Leben und benachrichtigt ihn weiter, solange er nicht abgemeldet ist." }
+    explanation: { de: "Über die Aufrufliste hält der Anbieter den Abonnenten am Leben und benachrichtigt ihn weiter, solange er nicht abgemeldet ist.", en: "Through the call list, the provider keeps the subscriber active and continues to send notifications as long as the subscriber has not unsubscribed." }
   - type: multipleChoice
     id: e4-versiegeln
-    prompt: { de: "Aussage: Man kann ein Ereignis versiegeln. (10.3 Aufgabe 4.4)" }
+    prompt: { de: "Aussage: Man kann ein Ereignis versiegeln. (10.3 Aufgabe 4.4)", en: "Statement: An event can be sealed. (10.3 Exercise 4.4)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "Ein überschriebenes Ereignis darf mit sealed override versiegelt werden, wie jedes andere überschriebene Mitglied." }
+    explanation: { de: "Ein überschriebenes Ereignis darf mit sealed override versiegelt werden, wie jedes andere überschriebene Mitglied.", en: "An overridden event may be sealed with `sealed override`, just like any other overridden member." }
   - type: multipleChoice
     id: szenario-schnittstelle
-    prompt: { de: "In welcher Lage ist eine Schnittstelle besser als ein Delegat? (10.1.4)" }
+    prompt: { de: "In welcher Lage ist eine Schnittstelle besser als ein Delegat? (10.1.4)", en: "In what situations is an interface better than a delegate? (10.1.4)" }
     options:
-      - { de: "Ein Typ soll mehrere zusammengehörige Fähigkeiten zusichern, etwa Hinzufügen, Entfernen und Durchlaufen einer Kollektion (ICollection<T>, IEnumerable<T>)." }
-      - { de: "Ein Sortierkriterium soll einmalig an Ort und Stelle als Einzeiler übergeben werden." }
-      - { de: "Eine einzelne statische Methode soll als Rückruf übergeben werden." }
+      - { de: "Ein Typ soll mehrere zusammengehörige Fähigkeiten zusichern, etwa Hinzufügen, Entfernen und Durchlaufen einer Kollektion (ICollection<T>, IEnumerable<T>).", en: "A type should support several related capabilities, such as adding to, removing from, and iterating over a collection (ICollection<T>, IEnumerable<T>)." }
+      - { de: "Ein Sortierkriterium soll einmalig an Ort und Stelle als Einzeiler übergeben werden.", en: "A sort criterion should be passed as a single line of code right there on the spot." }
+      - { de: "Eine einzelne statische Methode soll als Rückruf übergeben werden.", en: "A single static method should be passed as a callback." }
     correct: [0]
-    explanation: { de: "Eine Schnittstelle kann beliebig viele Methoden vorschreiben, ein Delegatentyp genau eine (10.1.4, Seite 665). Deshalb sind Kollektionen als Parameter- und Variablentypen mit Schnittstellen zu bevorzugen." }
+    explanation: { de: "Eine Schnittstelle kann beliebig viele Methoden vorschreiben, ein Delegatentyp genau eine (10.1.4, Seite 665). Deshalb sind Kollektionen als Parameter- und Variablentypen mit Schnittstellen zu bevorzugen.", en: "An interface can define any number of methods, while a delegate type can define exactly one (10.1.4, page 665). Therefore, collections should be preferred as parameter and variable types for interfaces." }
   - type: multipleChoice
     id: szenario-delegat
-    prompt: { de: "In welcher Lage ist ein Delegat besser als eine Schnittstelle? (10.1.4)" }
+    prompt: { de: "In welcher Lage ist ein Delegat besser als eine Schnittstelle? (10.1.4)", en: "In what situations is a delegate better than an interface? (10.1.4)" }
     options:
-      - { de: "List<T>.Sort soll mit einem einmaligen Kriterium aufgerufen werden: Ein Lambda an Ort und Stelle genügt, eine eigene Klasse mit IComparer<T> wäre Aufwand." }
-      - { de: "Ein Typ soll eine ganze Familie zusammengehöriger Operationen anbieten." }
-      - { de: "Der Aufrufer soll Zustand in Feldern des Rückrufobjekts halten, der über mehrere Methoden geteilt wird." }
+      - { de: "List<T>.Sort soll mit einem einmaligen Kriterium aufgerufen werden: Ein Lambda an Ort und Stelle genügt, eine eigene Klasse mit IComparer<T> wäre Aufwand.", en: "List<T>.Sort should be called with a single sorting criterion: A lambda expression right there is sufficient; creating a custom class with IComparer<T> would be too much work." }
+      - { de: "Ein Typ soll eine ganze Familie zusammengehöriger Operationen anbieten.", en: "A type is supposed to offer a whole family of related operations." }
+      - { de: "Der Aufrufer soll Zustand in Feldern des Rückrufobjekts halten, der über mehrere Methoden geteilt wird.", en: "The caller should maintain the state in fields of the callback object, which is shared across multiple methods." }
     correct: [0]
-    explanation: { de: "Für den Delegaten sprechen: Der Methodenname ist egal, statische Methoden genügen, ein Lambda erledigt die Aufgabe als Ausdruck (10.1.4, Seite 665)." }
+    explanation: { de: "Für den Delegaten sprechen: Der Methodenname ist egal, statische Methoden genügen, ein Lambda erledigt die Aufgabe als Ausdruck (10.1.4, Seite 665).", en: "In favor of the delegate: The method name doesn't matter; static methods are sufficient, and a lambda can handle the task as an expression (10.1.4, page 665)." }
   - type: multipleChoice
     id: klassifiziere-1
-    prompt: { de: "Was ist das? — delegate (int x) { return x * 2; }" }
+    prompt: { de: "Was ist das? — delegate (int x) { return x * 2; }", en: "What is this? — delegate (int x) { return x * 2; }" }
     options:
-      - { de: "Anonyme Methode" }
-      - { de: "Ausdruckslambda" }
-      - { de: "Lambda mit Anweisungsblock" }
+      - { de: "Anonyme Methode", en: "Anonymous Method" }
+      - { de: "Ausdruckslambda", en: "Expression lambda" }
+      - { de: "Lambda mit Anweisungsblock", en: "Lambda with a block of statements" }
     correct: [0]
-    explanation: { de: "Das Schlüsselwort delegate mit Parameterliste und Anweisungsblock kennzeichnet die anonyme Methode (10.1.5.1, Seite 665); für Neuentwicklungen ist das Lambda vorzuziehen." }
+    explanation: { de: "Das Schlüsselwort delegate mit Parameterliste und Anweisungsblock kennzeichnet die anonyme Methode (10.1.5.1, Seite 665); für Neuentwicklungen ist das Lambda vorzuziehen.", en: "The `delegate` keyword, along with a parameter list and a block of statements, defines an anonymous method (10.1.5.1, page 665); for new code, the lambda is preferred." }
   - type: multipleChoice
     id: klassifiziere-2
-    prompt: { de: "Was ist das? — x => x * 2" }
+    prompt: { de: "Was ist das? — x => x * 2", en: "What is this? — x => x * 2" }
     options:
-      - { de: "Anonyme Methode" }
-      - { de: "Ausdruckslambda" }
-      - { de: "Lambda mit Anweisungsblock" }
+      - { de: "Anonyme Methode", en: "Anonymous Method" }
+      - { de: "Ausdruckslambda", en: "Expression lambda" }
+      - { de: "Lambda mit Anweisungsblock", en: "Lambda with a block of statements" }
     correct: [1]
-    explanation: { de: "Rechts vom Pfeil steht ein einzelner Ausdruck (10.1.5.2, Seite 667)." }
+    explanation: { de: "Rechts vom Pfeil steht ein einzelner Ausdruck (10.1.5.2, Seite 667).", en: "To the right of the arrow is a single expression (10.1.5.2, page 667)." }
   - type: multipleChoice
     id: klassifiziere-3
-    prompt: { de: "Was ist das? — x => { Console.WriteLine(x); }" }
+    prompt: { de: "Was ist das? — x => { Console.WriteLine(x); }", en: "What is this? — x => { Console.WriteLine(x); }" }
     options:
-      - { de: "Anonyme Methode" }
-      - { de: "Ausdruckslambda" }
-      - { de: "Lambda mit Anweisungsblock" }
+      - { de: "Anonyme Methode", en: "Anonymous Method" }
+      - { de: "Ausdruckslambda", en: "Expression lambda" }
+      - { de: "Lambda mit Anweisungsblock", en: "Lambda with a block of statements" }
     correct: [2]
-    explanation: { de: "Rechts vom Pfeil steht ein Anweisungsblock in geschweiften Klammern." }
+    explanation: { de: "Rechts vom Pfeil steht ein Anweisungsblock in geschweiften Klammern.", en: "To the right of the arrow is a statement block in curly braces." }
   - type: multipleChoice
     id: klassifiziere-4
-    prompt: { de: "Was ist das? — (a, b) => a.CompareTo(b)" }
+    prompt: { de: "Was ist das? — (a, b) => a.CompareTo(b)", en: "What is this? — (a, b) => a.CompareTo(b)" }
     options:
-      - { de: "Anonyme Methode" }
-      - { de: "Ausdruckslambda" }
-      - { de: "Lambda mit Anweisungsblock" }
+      - { de: "Anonyme Methode", en: "Anonymous Method" }
+      - { de: "Ausdruckslambda", en: "Expression lambda" }
+      - { de: "Lambda mit Anweisungsblock", en: "Lambda with a block of statements" }
     correct: [1]
-    explanation: { de: "Mehrere Parameter stehen in Klammern; entscheidend ist, dass rechts vom Pfeil ein Ausdruck steht." }
+    explanation: { de: "Mehrere Parameter stehen in Klammern; entscheidend ist, dass rechts vom Pfeil ein Ausdruck steht.", en: "Several parameters are enclosed in parentheses; the key point is that there is an expression to the right of the arrow." }
   - type: multipleChoice
     id: klassifiziere-5
-    prompt: { de: "Was ist das? — delegate { Console.WriteLine(\"fertig\"); }" }
+    prompt: { de: "Was ist das? — delegate { Console.WriteLine(\"fertig\"); }", en: "What is this? — `delegate { Console.WriteLine(\"fertig\"); }`" }
     options:
-      - { de: "Anonyme Methode" }
-      - { de: "Ausdruckslambda" }
-      - { de: "Lambda mit Anweisungsblock" }
+      - { de: "Anonyme Methode", en: "Anonymous Method" }
+      - { de: "Ausdruckslambda", en: "Expression lambda" }
+      - { de: "Lambda mit Anweisungsblock", en: "Lambda with a block of statements" }
     correct: [0]
-    explanation: { de: "Bei einer anonymen Methode darf die Parameterliste ganz entfallen, wenn die Methode keinen Parameter benutzt; das Schlüsselwort delegate verrät sie." }
+    explanation: { de: "Bei einer anonymen Methode darf die Parameterliste ganz entfallen, wenn die Methode keinen Parameter benutzt; das Schlüsselwort delegate verrät sie.", en: "In an anonymous method, the parameter list can be omitted entirely if the method does not use any parameters; the keyword `delegate` indicates this." }
   - type: multipleChoice
     id: varianz-zuweisung
-    prompt: { de: "Welche Zuweisungen kompilieren ohne Cast? Gegeben: Action<object> ao; Action<string> as_; Func<string> fs; Func<object> fo;" }
+    prompt: { de: "Welche Zuweisungen kompilieren ohne Cast? Gegeben: Action<object> ao; Action<string> as_; Func<string> fs; Func<object> fo;", en: "Which assignments compile without a cast? Given: Action<object> ao; Action<string> as_; Func<string> fs; Func<object> fo;" }
     options:
-      - { de: "as_ = ao;" }
-      - { de: "ao = as_;" }
-      - { de: "fo = fs;" }
-      - { de: "fs = fo;" }
+      - { de: "as_ = ao;", en: "as_ = ao;" }
+      - { de: "ao = as_;", en: "ao = as_;" }
+      - { de: "fo = fs;", en: "fo = fs;" }
+      - { de: "fs = fo;", en: "fs = fo;" }
     correct: [0, 2]
-    explanation: { de: "Action<in T> ist kontravariant: Wer jedes object verarbeitet, verarbeitet auch jeden string. Func<out TResult> ist kovariant: Wer einen string liefert, liefert auch ein object (10.1.6, Seite 675)." }
+    explanation: { de: "Action<in T> ist kontravariant: Wer jedes object verarbeitet, verarbeitet auch jeden string. Func<out TResult> ist kovariant: Wer einen string liefert, liefert auch ein object (10.1.6, Seite 675).", en: "Action<in T> is contravariant: Anyone who processes any object also processes any string. Func<out TResult> is covariant: Anyone who returns a string also returns an object (10.1.6, page 675)." }
   - type: multipleChoice
     id: ereignis-versus-feld
-    prompt: { de: "Ein öffentliches Delegatenfeld erlaubt von außen sowohl x.Changed = null als auch x.Changed(). Warum ist beides bei public event Changed nicht möglich?" }
+    prompt: { de: "Ein öffentliches Delegatenfeld erlaubt von außen sowohl x.Changed = null als auch x.Changed(). Warum ist beides bei public event Changed nicht möglich?", en: "A public delegate field allows both `x.Changed = null` and `x.Changed()` from outside. Why aren't both possible with the public `Changed` event?" }
     options:
-      - { de: "Ein Ereignis legt die Delegatenvariable privat an und zeigt nach außen nur += und -= (add/remove); Überschreiben und Auslösen sind der eigenen Klasse (und über OnXyz den Erben) vorbehalten." }
-      - { de: "Weil ein Ereignis intern ein Array von Delegaten ist, das schreibgeschützt ist." }
-      - { de: "Weil der Compiler Ereignisse nur in Konsolenanwendungen unterstützt." }
+      - { de: "Ein Ereignis legt die Delegatenvariable privat an und zeigt nach außen nur += und -= (add/remove); Überschreiben und Auslösen sind der eigenen Klasse (und über OnXyz den Erben) vorbehalten.", en: "An event declares the delegate variable as private and exposes only += and -= (add/remove) to the outside; overriding and invoking are reserved for its own class (and, via OnXyz, its subclasses)." }
+      - { de: "Weil ein Ereignis intern ein Array von Delegaten ist, das schreibgeschützt ist.", en: "Because an event is internally an array of delegates that is read-only." }
+      - { de: "Weil der Compiler Ereignisse nur in Konsolenanwendungen unterstützt.", en: "Because the compiler only supports events in console applications." }
     correct: [0]
-    explanation: { de: "10.2.1 (Seite 678): Hinter dem Ereignis steht stets eine private Delegatenvariable mit öffentlichen Methoden zum Erweitern und Verkürzen der Aufrufliste. Das schützt die Abonnenten voreinander." }
+    explanation: { de: "10.2.1 (Seite 678): Hinter dem Ereignis steht stets eine private Delegatenvariable mit öffentlichen Methoden zum Erweitern und Verkürzen der Aufrufliste. Das schützt die Abonnenten voreinander.", en: "10.2.1 (page 678): Behind every event there is always a private delegate variable with public methods for extending and shortening the call list. This protects subscribers from interfering with one another." }

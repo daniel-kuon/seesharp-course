@@ -1,6 +1,6 @@
 id: ausnahmebehandlung
-title: { de: "Ausnahmebehandlung" }
+title: { de: "Ausnahmebehandlung", en: "Exception Handling" }
 reading:
   section: "13"
-  title: { de: "Ausnahmebehandlung" }
+  title: { de: "Ausnahmebehandlung", en: "Exception Handling" }
   printedPage: 885

@@ -1,9 +1,9 @@
 id: ablauf-primzahlen
-title: { de: "Zusatz: Primzahlen zählen und zerlegen" }
+title: { de: "Zusatz: Primzahlen zählen und zerlegen", en: "Extra: Counting and Factoring Prime Numbers" }
 optional: true
 reading:
   section: "4.7.3.3"
-  title: { de: "Bedingungsabhängige Schleifen" }
+  title: { de: "Bedingungsabhängige Schleifen", en: "Conditional Loops" }
   printedPage: 275
 teaches:
   - control.for

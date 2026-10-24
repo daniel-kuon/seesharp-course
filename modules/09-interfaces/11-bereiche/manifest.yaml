@@ -1,9 +1,9 @@
 id: interfaces-bereiche
-title: { de: "Zusatz: Zahlenbereiche und unendliche Folgen mit yield" }
+title: { de: "Zusatz: Zahlenbereiche und unendliche Folgen mit yield", en: "Extra: Number Ranges and Infinite Sequences with yield" }
 optional: true
 reading:
   section: "9.5.2"
-  title: { de: "Algorithmus-Enumeratoren" }
+  title: { de: "Algorithmus-Enumeratoren", en: "Algorithm Enumerators" }
   printedPage: 651
 teaches:
   - interfaces.ienumerable

@@ -1,8 +1,8 @@
 id: dateien-eigene-ressource
-title: { de: "Eine eigene IDisposable-Klasse" }
+title: { de: "Eine eigene IDisposable-Klasse", en: "A Custom IDisposable Class" }
 reading:
   section: "5.4.5"
-  title: { de: "Überflüssige Objekte abräumen" }
+  title: { de: "Überflüssige Objekte abräumen", en: "Cleaning Up Unneeded Objects" }
   printedPage: 355
 teaches:
   - resources.implement-idisposable
@@ -21,11 +21,11 @@ items:
     testProject: "EigeneRessource Tests/EigeneRessource.Tests.csproj"
   - type: multipleChoice
     id: dispose-vergessen
-    prompt: { de: "Ein Logbuch (mit StreamWriter) wird nicht mit Dispose() freigegeben, und der Garbage Collector ist noch nicht gelaufen. Was gilt?" }
+    prompt: { de: "Ein Logbuch (mit StreamWriter) wird nicht mit Dispose() freigegeben, und der Garbage Collector ist noch nicht gelaufen. Was gilt?", en: "A logbook (with StreamWriter) is not released by Dispose(), and the garbage collector has not yet run. What happens?" }
     options:
-      - { de: "Die Datei bleibt gesperrt, und noch nicht geleerte Zeilen im Puffer des StreamWriters können fehlen. Der GC gibt nichts zu einem vorhersehbaren Zeitpunkt frei." }
-      - { de: "Nichts Besonderes: Beim Verlassen der Methode wird die Datei automatisch geschlossen." }
-      - { de: "Die Datei ist sofort wieder frei, weil die Variable nicht mehr im Gültigkeitsbereich ist." }
-      - { de: "Es gibt beim nächsten Zugriff eine ObjectDisposedException." }
+      - { de: "Die Datei bleibt gesperrt, und noch nicht geleerte Zeilen im Puffer des StreamWriters können fehlen. Der GC gibt nichts zu einem vorhersehbaren Zeitpunkt frei.", en: "The file remains locked, and lines in the StreamWriter's buffer that have not yet been flushed may be missing. The garbage collector does not free anything at a predictable time." }
+      - { de: "Nichts Besonderes: Beim Verlassen der Methode wird die Datei automatisch geschlossen.", en: "Nothing special: The file is automatically closed when you exit the method." }
+      - { de: "Die Datei ist sofort wieder frei, weil die Variable nicht mehr im Gültigkeitsbereich ist.", en: "The file is immediately released again because the variable is no longer in scope." }
+      - { de: "Es gibt beim nächsten Zugriff eine ObjectDisposedException.", en: "An ObjectDisposedException occurs the next time the object is accessed." }
     correct: [0]
-    explanation: { de: "16.2.2 (Seite 1027) und 5.4.5 (Seite 355). Der Garbage Collector räumt Speicher ab, aber zu einem Zeitpunkt, den man nicht kennt. Dateien, Netzwerkverbindungen und Datenbankverbindungen gibt man deshalb mit using/Dispose() selbst frei." }
+    explanation: { de: "16.2.2 (Seite 1027) und 5.4.5 (Seite 355). Der Garbage Collector räumt Speicher ab, aber zu einem Zeitpunkt, den man nicht kennt. Dateien, Netzwerkverbindungen und Datenbankverbindungen gibt man deshalb mit using/Dispose() selbst frei.", en: "16.2.2 (page 1027) and 5.4.5 (page 355). The garbage collector frees up memory, but at an unknown time. Therefore, you must manually release files, network connections, and database connections using `using/Dispose()`." }

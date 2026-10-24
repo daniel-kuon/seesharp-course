@@ -1,9 +1,9 @@
 id: delegaten-lichtschalter
-title: { de: "Zusatz: Lichtschalter mit Ereignissen" }
+title: { de: "Zusatz: Lichtschalter mit Ereignissen", en: "Extra: Light Switches with Events" }
 optional: true
 reading:
   section: "10.2"
-  title: { de: "Ereignisse" }
+  title: { de: "Ereignisse", en: "Events" }
   printedPage: 678
 teaches:
   - events.declare

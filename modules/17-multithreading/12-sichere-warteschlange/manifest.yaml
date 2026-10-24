@@ -1,9 +1,9 @@
 id: threads-sichere-warteschlange
-title: { de: "Zusatz: Eine sichere Warteschlange" }
+title: { de: "Zusatz: Eine sichere Warteschlange", en: "Extra: A Thread-Safe Queue" }
 optional: true
 reading:
   section: "17.2.4.1"
-  title: { de: "Zugriffsexklusivität" }
+  title: { de: "Zugriffsexklusivität", en: "Exclusive Access" }
   printedPage: 1073
 teaches:
   - threading.lock-statement

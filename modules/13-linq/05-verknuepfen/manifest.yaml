@@ -1,8 +1,8 @@
 id: linq-verknuepfen
-title: { de: "Join, GroupJoin und Zip" }
+title: { de: "Join, GroupJoin und Zip", en: "Join, GroupJoin, and Zip" }
 reading:
   section: "18.2.10"
-  title: { de: "Verknüpfen von zwei Sequenzen" }
+  title: { de: "Verknüpfen von zwei Sequenzen", en: "Linking Two Sequences" }
   printedPage: 1224
 teaches:
   - linq.join
@@ -23,10 +23,10 @@ items:
     testProject: "Verknuepfen Tests/Verknuepfen.Tests.csproj"
   - type: multipleChoice
     id: join-oder-groupjoin
-    prompt: { de: "Ein Kunde hat keine Bestellung. Wie verhalten sich Join und GroupJoin über Kunden und Bestellungen?" }
+    prompt: { de: "Ein Kunde hat keine Bestellung. Wie verhalten sich Join und GroupJoin über Kunden und Bestellungen?", en: "A customer has no orders. How do `Join` and `GroupJoin` behave for customers and orders?" }
     options:
-      - { de: "Join (innerer Join) liefert für diesen Kunden keine Zeile; GroupJoin liefert eine Zeile mit einer leeren Gruppe von Bestellungen (Zahl 0)." }
-      - { de: "Beide liefern für diesen Kunden keine Zeile." }
-      - { de: "Join liefert eine Zeile mit null; GroupJoin liefert keine Zeile." }
+      - { de: "Join (innerer Join) liefert für diesen Kunden keine Zeile; GroupJoin liefert eine Zeile mit einer leeren Gruppe von Bestellungen (Zahl 0).", en: "Join (inner join) returns no rows for this customer; GroupJoin returns one row with an empty group of orders (count 0)." }
+      - { de: "Beide liefern für diesen Kunden keine Zeile.", en: "Neither of them provides any lines for this customer." }
+      - { de: "Join liefert eine Zeile mit null; GroupJoin liefert keine Zeile.", en: "Join returns one row with a value of zero; GroupJoin returns no rows." }
     correct: [0]
-    explanation: { de: "18.2.10 (Seite 1224): GroupJoin ordnet jedem Element der äußeren Sequenz die Gruppe seiner Treffer zu, auch wenn sie leer ist; Join liefert nur Paare. Ein linker äußerer Join wird mit GroupJoin plus SelectMany/DefaultIfEmpty nachgebaut." }
+    explanation: { de: "18.2.10 (Seite 1224): GroupJoin ordnet jedem Element der äußeren Sequenz die Gruppe seiner Treffer zu, auch wenn sie leer ist; Join liefert nur Paare. Ein linker äußerer Join wird mit GroupJoin plus SelectMany/DefaultIfEmpty nachgebaut.", en: "18.2.10 (page 1224): GroupJoin assigns the group of its matches to each element of the outer sequence, even if it is empty; Join returns only pairs. A left outer join is implemented using GroupJoin plus SelectMany/DefaultIfEmpty." }

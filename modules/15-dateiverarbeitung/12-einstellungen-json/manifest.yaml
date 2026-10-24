@@ -1,9 +1,9 @@
 id: dateien-einstellungen-json
-title: { de: "Zusatz: Einstellungen als JSON" }
+title: { de: "Zusatz: Einstellungen als JSON", en: "Extra: Settings as JSON" }
 optional: true
 reading:
   section: "16.5.4"
-  title: { de: "Deserialisieren" }
+  title: { de: "Deserialisieren", en: "Deserialize" }
   printedPage: 1050
 teaches:
   - json.serialize

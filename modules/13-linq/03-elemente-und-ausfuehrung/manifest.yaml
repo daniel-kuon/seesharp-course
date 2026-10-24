@@ -1,8 +1,8 @@
 id: linq-elemente-und-ausfuehrung
-title: { de: "Quantoren, Elementoperatoren und verzögerte Ausführung" }
+title: { de: "Quantoren, Elementoperatoren und verzögerte Ausführung", en: "Quantifiers, Element Operators, and Deferred Execution" }
 reading:
   section: "18.2.4"
-  title: { de: "Zurückgestellte oder sofortige Ausführung" }
+  title: { de: "Zurückgestellte oder sofortige Ausführung", en: "Deferred or Immediate Execution" }
   printedPage: 1215
 teaches:
   - linq.element-operators
@@ -23,19 +23,19 @@ items:
     testProject: "LinqAusfuehrung Tests/LinqAusfuehrung.Tests.csproj"
   - type: multipleChoice
     id: verzoegert
-    prompt: { de: "var q = zahlen.Where(z => z > 5);  Wann prüft das Programm die Bedingung z > 5?" }
+    prompt: { de: "var q = zahlen.Where(z => z > 5);  Wann prüft das Programm die Bedingung z > 5?", en: "var q = numbers.Where(z => z > 5);  When does the program evaluate the condition z > 5?" }
     options:
-      - { de: "Erst bei der Aufzählung von q (foreach, ToList(), Count() usw.); die Zeile selbst baut nur die Abfrage." }
-      - { de: "Sofort in der Zeile; q enthält danach die Ergebnisse." }
-      - { de: "Beim Kompilieren." }
+      - { de: "Erst bei der Aufzählung von q (foreach, ToList(), Count() usw.); die Zeile selbst baut nur die Abfrage.", en: "Only when iterating over q (foreach, ToList(), Count(), etc.); the line itself just constructs the query." }
+      - { de: "Sofort in der Zeile; q enthält danach die Ergebnisse.", en: "Immediately on the same line; q will then contain the results." }
+      - { de: "Beim Kompilieren.", en: "During compilation." }
     correct: [0]
-    explanation: { de: "18.2.4 (Seite 1215): Where, Select, OrderBy usw. arbeiten zurückgestellt; ToList(), ToArray(), Count(), Sum() und First() arbeiten sofort." }
+    explanation: { de: "18.2.4 (Seite 1215): Where, Select, OrderBy usw. arbeiten zurückgestellt; ToList(), ToArray(), Count(), Sum() und First() arbeiten sofort.", en: "18.2.4 (page 1215): Where, Select, OrderBy, etc., are deferred; ToList(), ToArray(), Count(), Sum(), and First() are executed immediately." }
   - type: multipleChoice
     id: single-first
-    prompt: { de: "Eine Folge enthält genau zwei Treffer. Was tun First(p) und Single(p)?" }
+    prompt: { de: "Eine Folge enthält genau zwei Treffer. Was tun First(p) und Single(p)?", en: "A sequence contains exactly two matches. What do First(p) and Single(p) do?" }
     options:
-      - { de: "First liefert den ersten Treffer; Single wirft InvalidOperationException, weil der Treffer nicht eindeutig ist." }
-      - { de: "Beide liefern den ersten Treffer." }
-      - { de: "First wirft; Single liefert den ersten Treffer." }
+      - { de: "First liefert den ersten Treffer; Single wirft InvalidOperationException, weil der Treffer nicht eindeutig ist.", en: "First returns the first match; Single throws an InvalidOperationException because the match is not unique." }
+      - { de: "Beide liefern den ersten Treffer.", en: "Both score the first goal." }
+      - { de: "First wirft; Single liefert den ersten Treffer.", en: "First throws; Single lands the first hit." }
     correct: [0]
-    explanation: { de: "Single verlangt genau ein Element; ohne Treffer und bei mehreren Treffern wirft es InvalidOperationException. SingleOrDefault wirft nur bei mehreren." }
+    explanation: { de: "Single verlangt genau ein Element; ohne Treffer und bei mehreren Treffern wirft es InvalidOperationException. SingleOrDefault wirft nur bei mehreren.", en: "`Single` requires exactly one element; if there are no matches or multiple matches, it throws an `InvalidOperationException`. `SingleOrDefault` throws an exception only if there are multiple matches." }

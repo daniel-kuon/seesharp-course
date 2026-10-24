@@ -1,6 +1,6 @@
 id: csharp-fuer-fortgeschrittene
-title: { de: "C# für Fortgeschrittene: Null-Sicherheit, Musterabgleich, Span" }
+title: { de: "C# für Fortgeschrittene: Null-Sicherheit, Musterabgleich, Span", en: "C# for Advanced Users: Null Safety, Pattern Matching, Span" }
 reading:
   section: "15"
-  title: { de: "C# für Fortgeschrittene" }
+  title: { de: "C# für Fortgeschrittene", en: "C# for Advanced Users" }
   printedPage: 949

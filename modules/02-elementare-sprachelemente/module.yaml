@@ -1,6 +1,6 @@
 id: elementare-sprachelemente
-title: { de: "Elementare Sprachelemente" }
+title: { de: "Elementare Sprachelemente", en: "Basic Language Elements" }
 reading:
   section: "4.1"
-  title: { de: "Elementare Sprachelemente (4.1 bis 4.5)" }
+  title: { de: "Elementare Sprachelemente (4.1 bis 4.5)", en: "Basic Language Elements (4.1 through 4.5)" }
   printedPage: 161

@@ -1,8 +1,8 @@
 id: typen-sieb
-title: { de: "Sieb des Eratosthenes" }
+title: { de: "Sieb des Eratosthenes", en: "Eratosthenes' Sieve" }
 reading:
   section: "6.2"
-  title: { de: "Arrays" }
+  title: { de: "Arrays", en: "Arrays" }
   printedPage: 455
 teaches:
   - algo.sieve

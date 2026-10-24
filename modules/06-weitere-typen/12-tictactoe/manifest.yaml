@@ -1,9 +1,9 @@
 id: typen-tictactoe
-title: { de: "Zusatzaufgabe: Tic-Tac-Toe mit 2D-Array und Enums" }
+title: { de: "Zusatzaufgabe: Tic-Tac-Toe mit 2D-Array und Enums", en: "Extra exercise: Tic-Tac-Toe using a 2D array and enums" }
 optional: true
 reading:
   section: "6.2.9"
-  title: { de: "Mehrdimensionale Arrays" }
+  title: { de: "Mehrdimensionale Arrays", en: "Multidimensional Arrays" }
   printedPage: 467
 teaches:
   - arrays.multidim

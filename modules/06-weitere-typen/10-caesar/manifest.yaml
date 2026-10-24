@@ -1,9 +1,9 @@
 id: typen-caesar
-title: { de: "Zusatzaufgabe: Caesar-Verschlüsselung knacken" }
+title: { de: "Zusatzaufgabe: Caesar-Verschlüsselung knacken", en: "Extra exercise: Cracking the Caesar cipher" }
 optional: true
 reading:
   section: "6.3.2"
-  title: { de: "Klasse StringBuilder für veränderliche Zeichenfolgen" }
+  title: { de: "Klasse StringBuilder für veränderliche Zeichenfolgen", en: "The StringBuilder Class for Mutable Strings" }
   printedPage: 479
 teaches:
   - strings.char-iteration

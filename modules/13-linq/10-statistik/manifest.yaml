@@ -1,9 +1,9 @@
 id: linq-statistik
-title: { de: "Zusatz: Notenstatistik" }
+title: { de: "Zusatz: Notenstatistik", en: "Extra: Grade Statistics" }
 optional: true
 reading:
   section: "18.2.11"
-  title: { de: "Weitere LINQ-Operatoren" }
+  title: { de: "Weitere LINQ-Operatoren", en: "Additional LINQ Operators" }
   printedPage: 1228
 teaches:
   - linq.aggregates

@@ -1,6 +1,6 @@
 id: entity-framework-core
-title: { de: "Entity Framework Core (mit SQLite)" }
+title: { de: "Entity Framework Core (mit SQLite)", en: "Entity Framework Core (with SQLite)" }
 reading:
   section: "20"
-  title: { de: "Entity Framework Core" }
+  title: { de: "Entity Framework Core", en: "Entity Framework Core" }
   printedPage: 1399

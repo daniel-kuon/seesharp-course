@@ -1,8 +1,8 @@
 id: threads-parallel-und-plinq
-title: { de: "Parallel und PLINQ" }
+title: { de: "Parallel und PLINQ", en: "Parallel and PLINQ" }
 reading:
   section: "17.5.11"
-  title: { de: "Die Klasse Parallel" }
+  title: { de: "Die Klasse Parallel", en: "The Parallel Class" }
   printedPage: 1152
 teaches:
   - parallel.for-foreach

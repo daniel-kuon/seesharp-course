@@ -1,9 +1,9 @@
 id: generics-ringpuffer
-title: { de: "Zusatz: Ein generischer Ringpuffer" }
+title: { de: "Zusatz: Ein generischer Ringpuffer", en: "Extra: A Generic Ring Buffer" }
 optional: true
 reading:
   section: "8.2.1"
-  title: { de: "Generische Klassen: Definition" }
+  title: { de: "Generische Klassen: Definition", en: "Generic Classes: Definition" }
   printedPage: 591
 teaches:
   - generics.array-of-t

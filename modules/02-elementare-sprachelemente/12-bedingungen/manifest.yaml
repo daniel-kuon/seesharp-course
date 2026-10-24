@@ -1,9 +1,9 @@
 id: sprachelemente-bedingungen
-title: { de: "Zusatz: Bedingungen als Ausdrücke" }
+title: { de: "Zusatz: Bedingungen als Ausdrücke", en: "Extra: Conditions as Expressions" }
 optional: true
 reading:
   section: "4.5.5"
-  title: { de: "Logische Operatoren" }
+  title: { de: "Logische Operatoren", en: "Logical Operators" }
   printedPage: 225
 teaches:
   - operators.logical

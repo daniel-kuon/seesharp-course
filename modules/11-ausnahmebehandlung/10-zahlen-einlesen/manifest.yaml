@@ -1,9 +1,9 @@
 id: ausnahmen-zahlen-einlesen
-title: { de: "Zusatz: Zahlen einlesen" }
+title: { de: "Zusatz: Zahlen einlesen", en: "Extra: Reading Numbers" }
 optional: true
 reading:
   section: "13.3.1.2"
-  title: { de: "Ausnahmebehandlung per catch-Block" }
+  title: { de: "Ausnahmebehandlung per catch-Block", en: "Exception Handling Using a catch Block" }
   printedPage: 891
 teaches:
   - exceptions.try-catch

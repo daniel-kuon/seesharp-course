@@ -1,9 +1,9 @@
 id: fortgeschritten-listenmuster-analyse
-title: { de: "Zusatz: Muster in Messreihen" }
+title: { de: "Zusatz: Muster in Messreihen", en: "Extra: Patterns in Data Series" }
 optional: true
 reading:
   section: "15.2.10"
-  title: { de: "Listenmuster" }
+  title: { de: "Listenmuster", en: "List Patterns" }
   printedPage: 985
 teaches:
   - patterns.list

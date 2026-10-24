@@ -1,9 +1,9 @@
 id: efcore-forum-beziehungen
-title: { de: "Zusatz: Forum mit Themen und Antworten" }
+title: { de: "Zusatz: Forum mit Themen und Antworten", en: "Extra: Forum with Topics and Answers" }
 optional: true
 reading:
   section: "20.5.11"
-  title: { de: "Master-Details - Beziehung" }
+  title: { de: "Master-Details - Beziehung", en: "Master Details - Relationship" }
   printedPage: 1429
 teaches:
   - ef.relation-one-to-many

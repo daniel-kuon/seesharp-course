@@ -1,6 +1,6 @@
 id: multithreading
-title: { de: "Multithreading und asynchrone Programmierung" }
+title: { de: "Multithreading und asynchrone Programmierung", en: "Multithreading and Asynchronous Programming" }
 reading:
   section: "17"
-  title: { de: "Multithreading" }
+  title: { de: "Multithreading", en: "Multithreading" }
   printedPage: 1061

@@ -1,8 +1,8 @@
 id: interfaces-bruch-icomparable-icloneable
-title: { de: "Bruch implementiert IComparable<T> und ICloneable" }
+title: { de: "Bruch implementiert IComparable<T> und ICloneable", en: "Bruch implements IComparable<T> and ICloneable" }
 reading:
   section: "9.2.1"
-  title: { de: "Beispiel IComparable<T>" }
+  title: { de: "Beispiel IComparable<T>", en: "Example: IComparable<T>" }
   printedPage: 640
 teaches:
   - interfaces.icomparable
@@ -22,10 +22,10 @@ items:
     testProject: "b10 Tests/b10.Tests.csproj"
   - type: multipleChoice
     id: klone-vs-clone
-    prompt: { de: "Warum bleibt die eigene Methode Bruch Klone() neben object Clone() sinnvoll?" }
+    prompt: { de: "Warum bleibt die eigene Methode Bruch Klone() neben object Clone() sinnvoll?", en: "Why does it still make sense to use the custom method `Bruch Klone()` alongside `object Clone()`?" }
     options:
-      - { de: "Klone() liefert eine Bruch-Referenz; Clone() liefert object und zwingt den Aufrufer zu einem Cast." }
-      - { de: "Clone() darf nur von Array.Sort aufgerufen werden." }
-      - { de: "Klone() ist schneller, weil sie kein Interface benutzt." }
+      - { de: "Klone() liefert eine Bruch-Referenz; Clone() liefert object und zwingt den Aufrufer zu einem Cast.", en: "`Klone()` returns a `Bruch` reference; `Clone()` returns `object` and forces the caller to cast." }
+      - { de: "Clone() darf nur von Array.Sort aufgerufen werden.", en: "Clone() may only be called by Array.Sort." }
+      - { de: "Klone() ist schneller, weil sie kein Interface benutzt.", en: "`Klone()` is faster because it does not use an interface." }
     correct: [0]
-    explanation: { de: "9.6 Aufgabe 1 (Seite 655) weist genau darauf hin: ICloneable ist alt und nicht generisch; die typsichere Methode spart Casts." }
+    explanation: { de: "9.6 Aufgabe 1 (Seite 655) weist genau darauf hin: ICloneable ist alt und nicht generisch; die typsichere Methode spart Casts.", en: "9.6 Exercise 1 (page 655) points this out explicitly: `ICloneable` is outdated and not generic; the type-safe method eliminates the need for casts." }

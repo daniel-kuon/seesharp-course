@@ -1,9 +1,9 @@
 id: wpf-notizen-viewmodel
-title: { de: "Zusatz: Notizen-ViewModel" }
+title: { de: "Zusatz: Notizen-ViewModel", en: "Extra: Notes ViewModel" }
 optional: true
 reading:
   section: "12.13.2"
-  title: { de: "Beispiel" }
+  title: { de: "Beispiel", en: "Example" }
   printedPage: 862
 teaches:
   - mvvm.inpc

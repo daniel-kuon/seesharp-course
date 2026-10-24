@@ -1,8 +1,8 @@
 id: typen-lotto
-title: { de: "Lotto: Fisher-Yates und Selection Sort" }
+title: { de: "Lotto: Fisher-Yates und Selection Sort", en: "Lotto: Fisher-Yates and Selection Sort" }
 reading:
   section: "6.2.6"
-  title: { de: "Suchen und Sortieren" }
+  title: { de: "Suchen und Sortieren", en: "Search and Sort" }
   printedPage: 463
 teaches:
   - algo.fisher-yates

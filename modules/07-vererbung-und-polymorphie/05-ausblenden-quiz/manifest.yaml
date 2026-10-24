@@ -1,8 +1,8 @@
 id: vererbung-ausblenden-quiz
-title: { de: "Überladen, Verdecken, Überschreiben (Quiz)" }
+title: { de: "Überladen, Verdecken, Überschreiben (Quiz)", en: "Overloading, Hiding, Overriding (Quiz)" }
 reading:
   section: "7.6"
-  title: { de: "Erbstücke durch spezialisierte Varianten ausblenden" }
+  title: { de: "Erbstücke durch spezialisierte Varianten ausblenden", en: "Hiding Heirlooms Using Specialized Variants" }
   printedPage: 555
 teaches:
   - inheritance.hiding-new
@@ -16,74 +16,74 @@ requires:
 items:
   - type: multipleChoice
     id: drei-begriffe
-    prompt: { de: "Welche Zuordnung stimmt? (a) gleicher Name, andere Parameterliste, dieselbe Klasse; (b) gleiche Signatur, abgeleitete Klasse, Schlüsselwort new; (c) gleiche Signatur, abgeleitete Klasse, virtual/override" }
+    prompt: { de: "Welche Zuordnung stimmt? (a) gleicher Name, andere Parameterliste, dieselbe Klasse; (b) gleiche Signatur, abgeleitete Klasse, Schlüsselwort new; (c) gleiche Signatur, abgeleitete Klasse, virtual/override", en: "Which of the following is correct? (a) Same name, different parameter list, same class; (b) Same signature, derived class, the keyword \"new\"; (c) Same signature, derived class, virtual/override" }
     options:
-      - { de: "(a) Überladen, (b) Verdecken, (c) Überschreiben" }
-      - { de: "(a) Überschreiben, (b) Überladen, (c) Verdecken" }
-      - { de: "(a) Verdecken, (b) Überschreiben, (c) Überladen" }
+      - { de: "(a) Überladen, (b) Verdecken, (c) Überschreiben", en: "(a) Overwriting, (b) Hiding, (c) Replacing" }
+      - { de: "(a) Überschreiben, (b) Überladen, (c) Verdecken", en: "(a) Overwrite, (b) Overload, (c) Overlay" }
+      - { de: "(a) Verdecken, (b) Überschreiben, (c) Überladen", en: "(a) Hiding, (b) Overwriting, (c) Overloading" }
     correct: [0]
-    explanation: { de: "Überladen ist ein Thema innerhalb einer Klasse (5.3.5); Verdecken und Überschreiben betreffen die Vererbung (7.6 und 7.9)." }
+    explanation: { de: "Überladen ist ein Thema innerhalb einer Klasse (5.3.5); Verdecken und Überschreiben betreffen die Vererbung (7.6 und 7.9).", en: "Overloading is a matter within a single class (5.3.5); hiding and overriding concern inheritance (7.6 and 7.9)." }
   - type: multipleChoice
     id: statisch
-    prompt: { de: "Welche der drei Techniken ist bei statischen Methoden nicht anwendbar?" }
+    prompt: { de: "Welche der drei Techniken ist bei statischen Methoden nicht anwendbar?", en: "Which of the three techniques cannot be used with static methods?" }
     options:
-      - { de: "Überschreiben: statische Methoden sind nicht virtuell, es gibt keinen dynamischen Typ, nach dem entschieden werden könnte." }
-      - { de: "Überladen: statische Methoden dürfen nicht denselben Namen tragen." }
-      - { de: "Verdecken: new ist bei static verboten." }
+      - { de: "Überschreiben: statische Methoden sind nicht virtuell, es gibt keinen dynamischen Typ, nach dem entschieden werden könnte.", en: "Overriding: Static methods are not virtual; there is no dynamic type that could be used to make a decision." }
+      - { de: "Überladen: statische Methoden dürfen nicht denselben Namen tragen.", en: "Overloading: Static methods must not have the same name." }
+      - { de: "Verdecken: new ist bei static verboten.", en: "Hiding: \"new\" is not allowed with \"static.\"" }
     correct: [0]
-    explanation: { de: "Statische Methoden lassen sich überladen und mit new verdecken (Beispiel StatAusblenden), aber nicht mit virtual/override überschreiben (7.16 Aufgabe 3)." }
+    explanation: { de: "Statische Methoden lassen sich überladen und mit new verdecken (Beispiel StatAusblenden), aber nicht mit virtual/override überschreiben (7.16 Aufgabe 3).", en: "Static methods can be overloaded and hidden using `new` (see the `StatAusblenden` example), but they cannot be overridden using `virtual` or `override` (7.16, Exercise 3)." }
   - type: multipleChoice
     id: new-ueber-basisreferenz
-    prompt: { de: "Kreis verdeckt Wo() mit new. var kreis = new Kreis(); Figur figur = kreis; figur.Wo(); Welche Fassung läuft?" }
+    prompt: { de: "Kreis verdeckt Wo() mit new. var kreis = new Kreis(); Figur figur = kreis; figur.Wo(); Welche Fassung läuft?", en: "`Kreis` hides `Wo()` with `new`. `var kreis = new Kreis(); Figur figur = kreis; figur.Wo();` Which version runs?" }
     options:
-      - { de: "Die Figur-Fassung: Verdecken wirkt nur, wenn der statische Typ der Variablen Kreis ist." }
-      - { de: "Die Kreis-Fassung: das Objekt ist ein Kreis." }
-      - { de: "Ein Compilerfehler, weil Wo mehrdeutig ist." }
+      - { de: "Die Figur-Fassung: Verdecken wirkt nur, wenn der statische Typ der Variablen Kreis ist.", en: "The `Figur` version: Hiding only takes effect if the static type of the variable is `Kreis`." }
+      - { de: "Die Kreis-Fassung: das Objekt ist ein Kreis.", en: "The `Kreis` version: the object is a `Kreis`." }
+      - { de: "Ein Compilerfehler, weil Wo mehrdeutig ist.", en: "A compiler error because \"Wo\" is ambiguous." }
     correct: [0]
-    explanation: { de: "Beim Verdecken entscheidet der statische Typ (7.6.1.2, Seite 557). Genau deshalb ist override in den meisten Fällen die richtige Wahl." }
+    explanation: { de: "Beim Verdecken entscheidet der statische Typ (7.6.1.2, Seite 557). Genau deshalb ist override in den meisten Fällen die richtige Wahl.", en: "When it comes to hiding, the static type is what matters (7.6.1.2, page 557). That is precisely why `override` is the right choice in most cases." }
   - type: multipleChoice
     id: verdeckte-virtualitaet
-    prompt: { de: "class A { public virtual void M() } — class B : A { public new virtual void M() } — class C : B { public override void M() }. C c = new(); A a = c; B b = c; Welche Fassungen laufen bei a.M() und b.M()?" }
+    prompt: { de: "class A { public virtual void M() } — class B : A { public new virtual void M() } — class C : B { public override void M() }. C c = new(); A a = c; B b = c; Welche Fassungen laufen bei a.M() und b.M()?", en: "class A { public virtual void M() } — class B : A { public new virtual void M() } — class C : B { public override void M() }. C c = new(); A a = c; B b = c; Which versions are called when a.M() and b.M() are executed?" }
     options:
-      - { de: "a.M() läuft die A-Fassung, b.M() die C-Fassung." }
-      - { de: "Beide laufen die C-Fassung, weil das Objekt ein C ist." }
-      - { de: "a.M() läuft die A-Fassung, b.M() die B-Fassung." }
-      - { de: "Beide laufen die A-Fassung." }
+      - { de: "a.M() läuft die A-Fassung, b.M() die C-Fassung.", en: "On a.M(), the A version is shown; on b.M(), the C version is shown." }
+      - { de: "Beide laufen die C-Fassung, weil das Objekt ein C ist.", en: "Both run the C version because the object is a C." }
+      - { de: "a.M() läuft die A-Fassung, b.M() die B-Fassung.", en: "On a.M(), Version A is shown; on b.M(), Version B is shown." }
+      - { de: "Beide laufen die A-Fassung.", en: "Both are running the A version." }
     correct: [0]
-    explanation: { de: "B.M beginnt mit new virtual eine neue Kette, die C überschreibt. A.M ist eine andere Kette, die niemand überschreibt (Beispiel VerdecktVirtuell, 7.6.1.2)." }
+    explanation: { de: "B.M beginnt mit new virtual eine neue Kette, die C überschreibt. A.M ist eine andere Kette, die niemand überschreibt (Beispiel VerdecktVirtuell, 7.6.1.2).", en: "`B.M` starts a new chain with `new virtual` that `C` overrides. `A.M` is a different chain that nobody overrides (example `VerdecktVirtuell`, 7.6.1.2)." }
   - type: multipleChoice
     id: ohne-new
-    prompt: { de: "Eine abgeleitete Klasse deklariert eine Methode mit derselben Signatur wie die Basisklasse, ohne new und ohne override. Was passiert?" }
+    prompt: { de: "Eine abgeleitete Klasse deklariert eine Methode mit derselben Signatur wie die Basisklasse, ohne new und ohne override. Was passiert?", en: "A derived class declares a method with the same signature as the base class, without `new` and without `override`. What happens?" }
     options:
-      - { de: "Sie verdeckt die Basismethode; der Compiler warnt (CS0108), dass new fehlt." }
-      - { de: "Sie überschreibt die Basismethode automatisch." }
-      - { de: "Compilerfehler: doppelte Definition." }
+      - { de: "Sie verdeckt die Basismethode; der Compiler warnt (CS0108), dass new fehlt.", en: "It overrides the base method; the compiler issues a warning (CS0108) that `new` is missing." }
+      - { de: "Sie überschreibt die Basismethode automatisch.", en: "It automatically overwrites the base method." }
+      - { de: "Compilerfehler: doppelte Definition.", en: "Compiler error: duplicate definition." }
     correct: [0]
-    explanation: { de: "Verdecken ist der Standard, new macht es nur ausdrücklich und bringt die Warnung zum Schweigen (7.6.1)." }
+    explanation: { de: "Verdecken ist der Standard, new macht es nur ausdrücklich und bringt die Warnung zum Schweigen (7.6.1).", en: "Hiding is the default; `new` only does so explicitly and suppresses the warning (7.6.1)." }
   - type: multipleChoice
     id: privates-verdecken
-    prompt: { de: "class Basis { public void NenneTyp() … } — class Spezial : Basis { new void NenneTyp() … public void DeinTyp() { NenneTyp(); } }. var s = new Spezial(); Was liefern s.NenneTyp() und s.DeinTyp()?" }
+    prompt: { de: "class Basis { public void NenneTyp() … } — class Spezial : Basis { new void NenneTyp() … public void DeinTyp() { NenneTyp(); } }. var s = new Spezial(); Was liefern s.NenneTyp() und s.DeinTyp()?", en: "`class Basis { public void NenneTyp() … }` — `class Spezial : Basis { new void NenneTyp() … public void DeinTyp() { NenneTyp(); } }`. `var s = new Spezial();` What do `s.NenneTyp()` and `s.DeinTyp()` return?" }
     options:
-      - { de: "s.NenneTyp() ruft die Basis-Fassung (die private Spezial-Fassung ist von außen unsichtbar); s.DeinTyp() ruft die Spezial-Fassung." }
-      - { de: "Beide rufen die Spezial-Fassung." }
-      - { de: "Beide rufen die Basis-Fassung." }
+      - { de: "s.NenneTyp() ruft die Basis-Fassung (die private Spezial-Fassung ist von außen unsichtbar); s.DeinTyp() ruft die Spezial-Fassung.", en: "`s.NenneTyp()` calls the base version (the private `Spezial` version is invisible from outside); `s.DeinTyp()` calls the `Spezial` version." }
+      - { de: "Beide rufen die Spezial-Fassung.", en: "Both order the special version." }
+      - { de: "Beide rufen die Basis-Fassung.", en: "Both call for the basic version." }
     correct: [0]
-    explanation: { de: "Die Sichtbarkeit entscheidet, welche Methode von einer Stelle aus überhaupt gefunden wird (Beispiel PrivAusblenden)." }
+    explanation: { de: "Die Sichtbarkeit entscheidet, welche Methode von einer Stelle aus überhaupt gefunden wird (Beispiel PrivAusblenden).", en: "Visibility determines which method can even be found from a given location (example `PrivAusblenden`)." }
   - type: multipleChoice
     id: felder-verdecken
-    prompt: { de: "class BK { protected string x = \"BaseString\"; } — class AK : BK { new int x = 333; } Wie kommt eine Methode von AK an den String der Basisklasse?" }
+    prompt: { de: "class BK { protected string x = \"BaseString\"; } — class AK : BK { new int x = 333; } Wie kommt eine Methode von AK an den String der Basisklasse?", en: "class BK { protected string x = \"BaseString\"; } — class AK : BK { new int x = 333; } How can a method in AK access the string from the base class?" }
     options:
-      - { de: "Über base.x; x allein meint das int-Feld 333 von AK." }
-      - { de: "Gar nicht; das Feld ist durch das Verdecken verloren." }
-      - { de: "Über (string)x." }
+      - { de: "Über base.x; x allein meint das int-Feld 333 von AK.", en: "About base.x; x alone refers to AK's int field 333." }
+      - { de: "Gar nicht; das Feld ist durch das Verdecken verloren.", en: "Not at all; the field is lost because it is obscured." }
+      - { de: "Über (string)x.", en: "About (string)x." }
     correct: [0]
-    explanation: { de: "Auch Felder lassen sich verdecken (7.6.2, Seite 561). Beide Felder existieren im Objekt; base greift auf das Erbstück zu." }
+    explanation: { de: "Auch Felder lassen sich verdecken (7.6.2, Seite 561). Beide Felder existieren im Objekt; base greift auf das Erbstück zu.", en: "Fields can also be hidden (7.6.2, page 561). Both fields exist in the object; `base` accesses the inherited field." }
   - type: multipleChoice
     id: vermeintlich
-    prompt: { de: "Basis hat Methode(in int ip), Spezial hat new Methode(ref int ip). int i = 1; s.Methode(in i); s.Methode(ref i); Welche Fassungen laufen?" }
+    prompt: { de: "Basis hat Methode(in int ip), Spezial hat new Methode(ref int ip). int i = 1; s.Methode(in i); s.Methode(ref i); Welche Fassungen laufen?", en: "`Basis` has `Methode(in int ip)`, `Spezial` has `new Methode(ref int ip)`. `int i = 1; s.Methode(in i); s.Methode(ref i);` Which versions run?" }
     options:
-      - { de: "Erst die Basis-, dann die Spezial-Fassung: in und ref sind verschiedene Signaturen, es wird gar nicht verdeckt, sondern überladen." }
-      - { de: "Beide Male die Spezial-Fassung, weil new verdeckt." }
-      - { de: "Compilerfehler, weil in und ref nicht gemischt werden dürfen." }
+      - { de: "Erst die Basis-, dann die Spezial-Fassung: in und ref sind verschiedene Signaturen, es wird gar nicht verdeckt, sondern überladen.", en: "First the basic version, then the special version: \"in\" and \"ref\" are different signatures; they aren't hidden at all, but rather overlaid." }
+      - { de: "Beide Male die Spezial-Fassung, weil new verdeckt.", en: "Both times the special version, because \"new\" is hidden." }
+      - { de: "Compilerfehler, weil in und ref nicht gemischt werden dürfen.", en: "Compiler error because `in` and `ref` cannot be mixed." }
     correct: [0]
-    explanation: { de: "Parametermodifikatoren gehören zur Signatur; das new ist hier überflüssig und der Compiler warnt (Beispiel VermAusblenden)." }
+    explanation: { de: "Parametermodifikatoren gehören zur Signatur; das new ist hier überflüssig und der Compiler warnt (Beispiel VermAusblenden).", en: "Parameter modifiers are part of the signature; the `new` keyword is unnecessary here, and the compiler issues a warning (example `VermAusblenden`)." }

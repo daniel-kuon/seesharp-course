@@ -1,8 +1,8 @@
 id: wpf-grundlagen-quiz
-title: { de: "WPF-Grundlagen: Quiz" }
+title: { de: "WPF-Grundlagen: Quiz", en: "WPF Basics: Quiz" }
 reading:
   section: "12.1"
-  title: { de: "Einordnung" }
+  title: { de: "Einordnung", en: "Classification" }
   printedPage: 727
 teaches:
   - wpf.architecture
@@ -18,54 +18,54 @@ requires:
 items:
   - type: multipleChoice
     id: aussage-winui
-    prompt: { de: "Richtig oder falsch (Buchaufgabe 12.14/1, Aussage 1): „WinUI 3 wird in Zukunft keine große Rolle spielen.“" }
+    prompt: { de: "Richtig oder falsch (Buchaufgabe 12.14/1, Aussage 1): „WinUI 3 wird in Zukunft keine große Rolle spielen.“", en: "True or false (textbook exercise 12.14/1, statement 1): “WinUI 3 will not play a major role in the future.”" }
     options:
-      - { de: "Falsch: Microsoft empfiehlt für neue Windows-Desktopanwendungen das Windows App SDK mit WinUI 3; WPF bleibt daneben eine gute Wahl." }
-      - { de: "Richtig: WinUI 3 hat WPF vollständig ersetzt und ist deshalb uninteressant." }
-      - { de: "Richtig: WinUI 3 läuft nur im Browser." }
+      - { de: "Falsch: Microsoft empfiehlt für neue Windows-Desktopanwendungen das Windows App SDK mit WinUI 3; WPF bleibt daneben eine gute Wahl.", en: "Incorrect: Microsoft recommends the Windows App SDK with WinUI 3 for new Windows desktop applications; WPF remains a good option as well." }
+      - { de: "Richtig: WinUI 3 hat WPF vollständig ersetzt und ist deshalb uninteressant.", en: "Correct: WinUI 3 has completely replaced WPF and is therefore of no interest." }
+      - { de: "Richtig: WinUI 3 läuft nur im Browser.", en: "Correct: WinUI 3 runs only in the browser." }
     correct: [0]
-    explanation: { de: "12.1.1.2 und 12.1.1.3 (Seite 729 bis 731). WinUI 3 ist die aktuell von Microsoft favorisierte Windows-Bedienoberfläche; WPF ist deshalb nicht veraltet (12.1.1.1, Seite 727)." }
+    explanation: { de: "12.1.1.2 und 12.1.1.3 (Seite 729 bis 731). WinUI 3 ist die aktuell von Microsoft favorisierte Windows-Bedienoberfläche; WPF ist deshalb nicht veraltet (12.1.1.1, Seite 727).", en: "12.1.1.2 and 12.1.1.3 (pages 729–731). WinUI 3 is currently Microsoft’s preferred Windows user interface; therefore, WPF is not obsolete (12.1.1.1, page 727)." }
   - type: multipleChoice
     id: aussage-on-methode
-    prompt: { de: "Richtig oder falsch (Aussage 2): „Leitet man eine eigene Klasse von einer WPF-Klasse ab, dann kann man ein Ereignis dieser Klasse durch das Überschreiben der zugehörigen On-Methode behandeln.“" }
+    prompt: { de: "Richtig oder falsch (Aussage 2): „Leitet man eine eigene Klasse von einer WPF-Klasse ab, dann kann man ein Ereignis dieser Klasse durch das Überschreiben der zugehörigen On-Methode behandeln.“", en: "True or false (Statement 2): “If you derive your own class from a WPF class, you can handle an event of that class by overriding the corresponding On method.”" }
     options:
-      - { de: "Richtig: Viele WPF-Klassen bieten zu ihren Ereignissen geschützte virtuelle On...-Methoden an (OnMouseDown, OnClick, ...)." }
-      - { de: "Falsch: Ereignisse lassen sich nur mit += abonnieren." }
+      - { de: "Richtig: Viele WPF-Klassen bieten zu ihren Ereignissen geschützte virtuelle On...-Methoden an (OnMouseDown, OnClick, ...).", en: "Correct: Many WPF classes provide protected virtual \"On...\" methods for their events (OnMouseDown, OnClick, ...)." }
+      - { de: "Falsch: Ereignisse lassen sich nur mit += abonnieren.", en: "Incorrect: You can only subscribe to events using +=." }
     correct: [0]
-    explanation: { de: "Das ist das Muster aus Level 12 (Ereignisse anbieten, 10.2.3): Die On-Methode löst das Ereignis aus; wer sie überschreibt, kontrolliert die Auslösung. Siehe auch 12.8.6 (Seite 777)." }
+    explanation: { de: "Das ist das Muster aus Level 12 (Ereignisse anbieten, 10.2.3): Die On-Methode löst das Ereignis aus; wer sie überschreibt, kontrolliert die Auslösung. Siehe auch 12.8.6 (Seite 777).", en: "This is the pattern from Level 12 (Offering Events, 10.2.3): The `On` method raises the event; whoever overrides it controls the raising. See also 12.8.6 (page 777)." }
   - type: multipleChoice
     id: aussage-xaml-pflicht
-    prompt: { de: "Richtig oder falsch (Aussage 3): „Für das GUI-Design einer WPF-Anwendung muss man XAML-Code verwenden.“" }
+    prompt: { de: "Richtig oder falsch (Aussage 3): „Für das GUI-Design einer WPF-Anwendung muss man XAML-Code verwenden.“", en: "True or false (Statement 3): “You must use XAML code for the GUI design of a WPF application.”" }
     options:
-      - { de: "Falsch: Die Oberfläche lässt sich auch vollständig im Quellcode erzeugen; XAML ist nur die bevorzugte, deklarative Variante." }
-      - { de: "Richtig: ohne XAML-Datei startet keine WPF-Anwendung." }
+      - { de: "Falsch: Die Oberfläche lässt sich auch vollständig im Quellcode erzeugen; XAML ist nur die bevorzugte, deklarative Variante.", en: "Incorrect: The user interface can also be created entirely in source code; XAML is simply the preferred, declarative option." }
+      - { de: "Richtig: ohne XAML-Datei startet keine WPF-Anwendung.", en: "Correct: A WPF application will not start without a XAML file." }
     correct: [0]
-    explanation: { de: "12.3.1 (Seite 739) zeigt eine minimalistische WPF-Anwendung ohne XAML; im Sample-Projekt WPF/WpfOhneXaml ist das ausprobierbar." }
+    explanation: { de: "12.3.1 (Seite 739) zeigt eine minimalistische WPF-Anwendung ohne XAML; im Sample-Projekt WPF/WpfOhneXaml ist das ausprobierbar.", en: "12.3.1 (page 739) shows a minimalist WPF application without XAML; you can try this out in the sample project WPF/WpfOhneXaml." }
   - type: multipleChoice
     id: aussage-click-container
-    prompt: { de: "Richtig oder falsch (Aussage 4): „Befinden sich in einem Layoutcontainer mehrere Button-Objekte, dann kann man deren Click-Ereignisse durch eine gemeinsame, beim Layoutcontainer registrierte Methode behandeln.“" }
+    prompt: { de: "Richtig oder falsch (Aussage 4): „Befinden sich in einem Layoutcontainer mehrere Button-Objekte, dann kann man deren Click-Ereignisse durch eine gemeinsame, beim Layoutcontainer registrierte Methode behandeln.“", en: "True or false (Statement 4): “If there are multiple button objects in a layout container, their click events can be handled by a single method registered with the layout container.”" }
     options:
-      - { de: "Richtig: Click ist ein Blasenereignis und wandert zu den übergeordneten Elementen; dort kann man einen Handler registrieren (z. B. Button.Click=\"...\" am StackPanel) und per e.Source erfahren, welcher Button gemeint war." }
-      - { de: "Falsch: Click-Handler müssen immer direkt am Button hängen." }
+      - { de: "Richtig: Click ist ein Blasenereignis und wandert zu den übergeordneten Elementen; dort kann man einen Handler registrieren (z. B. Button.Click=\"...\" am StackPanel) und per e.Source erfahren, welcher Button gemeint war.", en: "Correct: A click is a bubble event and propagates up to the parent elements; there, you can register a handler (e.g., Button.Click=\"...\" on the StackPanel) and use e.Source to determine which button was clicked." }
+      - { de: "Falsch: Click-Handler müssen immer direkt am Button hängen.", en: "Incorrect: Click handlers must always be attached directly to the button." }
     correct: [0]
-    explanation: { de: "12.8.1 Routingstrategien (Seite 767) und 12.8.2 Einsatzfälle (Seite 769)." }
+    explanation: { de: "12.8.1 Routingstrategien (Seite 767) und 12.8.2 Einsatzfälle (Seite 769).", en: "12.8.1 Routing Strategies (page 767) and 12.8.2 Use Cases (page 769)." }
   - type: multipleChoice
     id: aussage-layout
-    prompt: { de: "Richtig oder falsch (Aussage 5): „Die WPF-Layoutcontainer ermöglichen ein responsives Layout, sodass ein Fenster gut bedienbar bleibt, wenn ein Benutzer die Größe und/oder das Seitenverhältnis ändert.“" }
+    prompt: { de: "Richtig oder falsch (Aussage 5): „Die WPF-Layoutcontainer ermöglichen ein responsives Layout, sodass ein Fenster gut bedienbar bleibt, wenn ein Benutzer die Größe und/oder das Seitenverhältnis ändert.“", en: "True or false (Statement 5): “WPF layout containers enable a responsive layout, so that a window remains easy to use when a user changes its size and/or aspect ratio.”" }
     options:
-      - { de: "Richtig: Grid, StackPanel, DockPanel und WrapPanel ordnen ihre Kinder relativ an und passen sich der verfügbaren Fläche an." }
-      - { de: "Falsch: WPF-Fenster haben immer eine feste Größe." }
+      - { de: "Richtig: Grid, StackPanel, DockPanel und WrapPanel ordnen ihre Kinder relativ an und passen sich der verfügbaren Fläche an.", en: "Correct: Grid, StackPanel, DockPanel, and WrapPanel arrange their children relative to each other and adapt to the available space." }
+      - { de: "Falsch: WPF-Fenster haben immer eine feste Größe.", en: "False: WPF windows always have a fixed size." }
     correct: [0]
-    explanation: { de: "12.11 (Seite 804). Die Ausnahme ist Canvas mit festen Koordinaten (12.11.6, Seite 817)." }
+    explanation: { de: "12.11 (Seite 804). Die Ausnahme ist Canvas mit festen Koordinaten (12.11.6, Seite 817).", en: "12.11 (page 804). The exception is a canvas with fixed coordinates (12.11.6, page 817)." }
   - type: multipleChoice
     id: window-application
-    prompt: { de: "Was sind Application und Window in einer WPF-Anwendung, und was bewirkt App.xaml?" }
+    prompt: { de: "Was sind Application und Window in einer WPF-Anwendung, und was bewirkt App.xaml?", en: "What are \"Application\" and \"Window\" in a WPF application, and what does App.xaml do?" }
     options:
-      - { de: "Application ist das eine Objekt, das die Anwendung steuert (Start, Ende, Ressourcen); Window ist ein Fenster. In App.xaml legt StartupUri fest, welches Fenster beim Start geöffnet wird." }
-      - { de: "Window steuert die Anwendung, Application ist ein Dialogfenster; App.xaml enthält die Main-Methode von Hand." }
-      - { de: "Application und Window sind dasselbe; App.xaml ist nur ein Kommentar." }
+      - { de: "Application ist das eine Objekt, das die Anwendung steuert (Start, Ende, Ressourcen); Window ist ein Fenster. In App.xaml legt StartupUri fest, welches Fenster beim Start geöffnet wird.", en: "\"Application\" is the object that controls the application (start, stop, resources); \"Window\" is a window. In App.xaml, StartupUri specifies which window opens at startup." }
+      - { de: "Window steuert die Anwendung, Application ist ein Dialogfenster; App.xaml enthält die Main-Methode von Hand.", en: "Window controls the application; Application is a dialog box; App.xaml contains the Main method, which was written manually." }
+      - { de: "Application und Window sind dasselbe; App.xaml ist nur ein Kommentar.", en: "\"Application\" and \"Window\" are the same thing; App.xaml is just a comment." }
     correct: [0]
-    explanation: { de: "12.3.2 und 12.3.3 (Seite 742 bis 745) sowie 12.5.1 (Seite 759): App.xaml beschreibt die Anwendungsklasse, der Build erzeugt daraus die Main-Methode." }
+    explanation: { de: "12.3.2 und 12.3.3 (Seite 742 bis 745) sowie 12.5.1 (Seite 759): App.xaml beschreibt die Anwendungsklasse, der Build erzeugt daraus die Main-Methode.", en: "12.3.2 and 12.3.3 (pages 742–745) and 12.5.1 (page 759): App.xaml defines the application class; the build generates the Main method from it." }
   - type: multipleChoice
     id: xaml-lesen
     prompt:
@@ -84,54 +84,55 @@ items:
         ```
 
         Welche Aussage trifft zu?
+      en: "Take a look at this XAML fragment (see page 752):\n\n```xml\n<StackPanel Margin=\"8\">\n    <TextBox Text=\"{Binding Name}\" Style=\"{StaticResource Feld}\" />\n    <Button Content=\"Speichern\">\n        <Button.ToolTip>\n            <TextBlock Text=\"Schreibt die Daten\" />\n        </Button.ToolTip>\n    </Button>\n</StackPanel>\n```\n\nWhich statement is true?"
     options:
-      - { de: "{Binding Name} und {StaticResource Feld} sind Markuperweiterungen; <Button.ToolTip> ist ein Eigenschaftselement, mit dem die Eigenschaft ToolTip einen komplexen Wert (ein TextBlock-Objekt) bekommt; Margin=\"8\" ist ein einfaches Attribut." }
-      - { de: "<Button.ToolTip> erzeugt ein neues Objekt der Klasse Button.ToolTip." }
-      - { de: "Die geschweiften Klammern sind C#-Interpolation und werden vom Compiler ausgewertet." }
+      - { de: "{Binding Name} und {StaticResource Feld} sind Markuperweiterungen; <Button.ToolTip> ist ein Eigenschaftselement, mit dem die Eigenschaft ToolTip einen komplexen Wert (ein TextBlock-Objekt) bekommt; Margin=\"8\" ist ein einfaches Attribut.", en: "`{Binding Name}` and `{StaticResource Feld}` are markup extensions; `<Button.ToolTip>` is a property element that gives the `ToolTip` property a complex value (a `TextBlock` object); `Margin=\"8\"` is a simple attribute." }
+      - { de: "<Button.ToolTip> erzeugt ein neues Objekt der Klasse Button.ToolTip.", en: "`<Button.ToolTip>` creates a new object of the class `Button.ToolTip`." }
+      - { de: "Die geschweiften Klammern sind C#-Interpolation und werden vom Compiler ausgewertet.", en: "The curly braces indicate C# interpolation and are evaluated by the compiler." }
     correct: [0]
-    explanation: { de: "12.4.2.2 und 12.4.2.3 (Seite 752 bis 758): Elemente erzeugen Objekte, Attribute setzen Eigenschaften, Eigenschaftselemente (Typ.Eigenschaft) setzen Eigenschaften mit komplexem Wert, Markuperweiterungen werden beim Laden ausgewertet." }
+    explanation: { de: "12.4.2.2 und 12.4.2.3 (Seite 752 bis 758): Elemente erzeugen Objekte, Attribute setzen Eigenschaften, Eigenschaftselemente (Typ.Eigenschaft) setzen Eigenschaften mit komplexem Wert, Markuperweiterungen werden beim Laden ausgewertet.", en: "12.4.2.2 and 12.4.2.3 (pages 752 through 758): Elements create objects; attributes set properties; property elements (Type.Property) set properties with complex values; markup extensions are evaluated during loading." }
   - type: multipleChoice
     id: tunneln-blubbern
-    prompt: { de: "Ein Benutzer klickt auf einen Button in einem StackPanel in einem Window. Bei allen drei Elementen sind Handler für PreviewMouseDown (Tunnelereignis) und für MouseDown (Blasenereignis) registriert. In welcher Reihenfolge laufen die Handler?" }
+    prompt: { de: "Ein Benutzer klickt auf einen Button in einem StackPanel in einem Window. Bei allen drei Elementen sind Handler für PreviewMouseDown (Tunnelereignis) und für MouseDown (Blasenereignis) registriert. In welcher Reihenfolge laufen die Handler?", en: "A user clicks a button in a StackPanel within a window. Handlers for PreviewMouseDown (tunnel event) and MouseDown (bubble event) are registered for all three elements. In what order do the handlers run?" }
     options:
-      - { de: "Zuerst PreviewMouseDown von Window, StackPanel, Button (von oben nach unten), danach MouseDown von Button, StackPanel, Window (von unten nach oben)." }
-      - { de: "Zuerst MouseDown von Button bis Window, danach PreviewMouseDown von Window bis Button." }
-      - { de: "Nur die Handler des Buttons laufen; übergeordnete Elemente erfahren nichts." }
+      - { de: "Zuerst PreviewMouseDown von Window, StackPanel, Button (von oben nach unten), danach MouseDown von Button, StackPanel, Window (von unten nach oben).", en: "First, PreviewMouseDown for Window, StackPanel, and Button (from top to bottom), then MouseDown for Button, StackPanel, and Window (from bottom to top)." }
+      - { de: "Zuerst MouseDown von Button bis Window, danach PreviewMouseDown von Window bis Button.", en: "First, MouseDown from the button to the window, then PreviewMouseDown from the window to the button." }
+      - { de: "Nur die Handler des Buttons laufen; übergeordnete Elemente erfahren nichts.", en: "Only the button's handlers run; parent elements are not affected." }
     correct: [0]
-    explanation: { de: "12.8.1 (Seite 767) und die Beobachtungsstudie 12.8.3 (Seite 770). Setzt ein Handler Handled = true, erreichen normal registrierte Handler weiter hinten auf der Route das Ereignis nicht mehr." }
+    explanation: { de: "12.8.1 (Seite 767) und die Beobachtungsstudie 12.8.3 (Seite 770). Setzt ein Handler Handled = true, erreichen normal registrierte Handler weiter hinten auf der Route das Ereignis nicht mehr.", en: "12.8.1 (page 767) and the observational study 12.8.3 (page 770). If a handler sets `Handled = true`, normally registered handlers further down the route will no longer receive the event." }
   - type: multipleChoice
     id: handled
-    prompt: { de: "Ein Handler für das Blasenereignis MouseDown am Button setzt e.Handled = true. Was geschieht mit dem Handler, der beim umgebenden Window registriert ist?" }
+    prompt: { de: "Ein Handler für das Blasenereignis MouseDown am Button setzt e.Handled = true. Was geschieht mit dem Handler, der beim umgebenden Window registriert ist?", en: "A handler for the MouseDown event on the button sets e.Handled = true. What happens to the handler that is registered with the surrounding window?" }
     options:
-      - { de: "Er wird nicht mehr aufgerufen (außer er wurde mit AddHandler und handledEventsToo = true registriert)." }
-      - { de: "Er wird trotzdem immer aufgerufen." }
-      - { de: "Das Programm bricht mit einer Ausnahme ab." }
+      - { de: "Er wird nicht mehr aufgerufen (außer er wurde mit AddHandler und handledEventsToo = true registriert).", en: "It will no longer be called (unless it was registered using AddHandler with handledEventsToo set to true)." }
+      - { de: "Er wird trotzdem immer aufgerufen.", en: "It is still called every time." }
+      - { de: "Das Programm bricht mit einer Ausnahme ab.", en: "The program terminates with an exception." }
     correct: [0]
-    explanation: { de: "12.8.1 (Seite 768): Das Ereignis wandert weiter, aber gewöhnliche Handler werden übersprungen." }
+    explanation: { de: "12.8.1 (Seite 768): Das Ereignis wandert weiter, aber gewöhnliche Handler werden übersprungen.", en: "12.8.1 (page 768): The event continues to propagate, but regular handlers are skipped." }
   - type: multipleChoice
     id: abhaengigkeitseigenschaft
-    prompt: { de: "Warum sind die meisten WPF-Eigenschaften (Text, Width, Background, ...) Abhängigkeitseigenschaften und keine gewöhnlichen Eigenschaften mit Feld?" }
+    prompt: { de: "Warum sind die meisten WPF-Eigenschaften (Text, Width, Background, ...) Abhängigkeitseigenschaften und keine gewöhnlichen Eigenschaften mit Feld?", en: "Why are most WPF properties (Text, Width, Background, etc.) dependency properties rather than regular properties with fields?" }
     options:
-      - { de: "Ihr Wert wird in einer vom Objekt verwalteten Tabelle abgelegt, die Wertequellen mit Vorrang (Animation, Trigger, Stil, lokaler Wert, Standardwert) und Vererbung im Elementbaum erlaubt und die Zielseite einer Datenbindung sein kann." }
-      - { de: "Weil sie schneller sind als Felder." }
-      - { de: "Weil nur Abhängigkeitseigenschaften öffentlich sein dürfen." }
+      - { de: "Ihr Wert wird in einer vom Objekt verwalteten Tabelle abgelegt, die Wertequellen mit Vorrang (Animation, Trigger, Stil, lokaler Wert, Standardwert) und Vererbung im Elementbaum erlaubt und die Zielseite einer Datenbindung sein kann.", en: "Its value is stored in a table managed by the object, which allows for priority-based value sources (animation, trigger, style, local value, default value) and inheritance within the element tree, and can serve as the target of a data binding." }
+      - { de: "Weil sie schneller sind als Felder.", en: "Because they're faster than fields." }
+      - { de: "Weil nur Abhängigkeitseigenschaften öffentlich sein dürfen.", en: "Because only dependency properties may be public." }
     correct: [0]
-    explanation: { de: "12.9 (Seite 778 bis 786). Nur eine Abhängigkeitseigenschaft kann Ziel einer Bindung sein; die Quelle darf eine gewöhnliche Eigenschaft sein (dann braucht sie INotifyPropertyChanged)." }
+    explanation: { de: "12.9 (Seite 778 bis 786). Nur eine Abhängigkeitseigenschaft kann Ziel einer Bindung sein; die Quelle darf eine gewöhnliche Eigenschaft sein (dann braucht sie INotifyPropertyChanged).", en: "12.9 (pages 778–786). Only a dependency property can be the target of a binding; the source may be a regular property (in which case it must implement INotifyPropertyChanged)." }
   - type: multipleChoice
     id: bindungsmodus
-    prompt: { de: "Ein ViewModel soll bei jedem Tastendruck in einem Eingabefeld aktualisiert werden. Welche Bindung leistet das?" }
+    prompt: { de: "Ein ViewModel soll bei jedem Tastendruck in einem Eingabefeld aktualisiert werden. Welche Bindung leistet das?", en: "A ViewModel should be updated every time a key is pressed in an input field. Which binding handles this?" }
     options:
-      - { de: "<TextBox Text=\"{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}\" />" }
-      - { de: "<TextBox Text=\"{Binding Name, Mode=OneWay}\" /> (OneWay schreibt nie zurück)" }
-      - { de: "<TextBox Text=\"{Binding Name}\" /> (der Standard schreibt schon bei jedem Tastendruck zurück)" }
+      - { de: "<TextBox Text=\"{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}\" />", en: "`<TextBox Text=\"{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}\" />`" }
+      - { de: "<TextBox Text=\"{Binding Name, Mode=OneWay}\" /> (OneWay schreibt nie zurück)", en: "`<TextBox Text=\"{Binding Name, Mode=OneWay}\" />` (`OneWay` never writes back)" }
+      - { de: "<TextBox Text=\"{Binding Name}\" /> (der Standard schreibt schon bei jedem Tastendruck zurück)", en: "`<TextBox Text=\"{Binding Name}\" />` (the default already writes back on every keystroke)" }
     correct: [0]
-    explanation: { de: "12.10.1 (Seite 787) und 12.10.3 (Seite 790). TextBox.Text bindet standardmäßig zwar TwoWay, schreibt aber erst bei Fokusverlust (LostFocus) zurück; PropertyChanged schaltet auf jeden Tastendruck um. OneWay überträgt nur von der Quelle zum Ziel." }
+    explanation: { de: "12.10.1 (Seite 787) und 12.10.3 (Seite 790). TextBox.Text bindet standardmäßig zwar TwoWay, schreibt aber erst bei Fokusverlust (LostFocus) zurück; PropertyChanged schaltet auf jeden Tastendruck um. OneWay überträgt nur von der Quelle zum Ziel.", en: "12.10.1 (page 787) and 12.10.3 (page 790). By default, TextBox.Text binds using TwoWay, but only updates the value when focus is lost (LostFocus); PropertyChanged triggers an update with every keystroke. OneWay transfers data only from the source to the destination." }
   - type: multipleChoice
     id: inpc-noetig
-    prompt: { de: "Eine Bindung zeigt die Eigenschaft Summe eines ViewModels an (OneWay). Der Code ändert den Wert, aber die Anzeige bleibt alt. Was fehlt am wahrscheinlichsten?" }
+    prompt: { de: "Eine Bindung zeigt die Eigenschaft Summe eines ViewModels an (OneWay). Der Code ändert den Wert, aber die Anzeige bleibt alt. Was fehlt am wahrscheinlichsten?", en: "A binding shows the `Summe` property of a ViewModel (`OneWay`). The code changes the value, but the display stays old. What is most likely missing?" }
     options:
-      - { de: "Das ViewModel implementiert INotifyPropertyChanged nicht oder löst PropertyChanged(\"Summe\") im Setter nicht aus; die Bindung erfährt nichts von der Änderung." }
-      - { de: "Die Eigenschaft muss eine Abhängigkeitseigenschaft sein." }
-      - { de: "Die Anzeige aktualisiert sich nur beim Neustart der Anwendung." }
+      - { de: "Das ViewModel implementiert INotifyPropertyChanged nicht oder löst PropertyChanged(\"Summe\") im Setter nicht aus; die Bindung erfährt nichts von der Änderung.", en: "The ViewModel does not implement `INotifyPropertyChanged` or does not raise `PropertyChanged(\"Summe\")` in the setter; the binding learns nothing about the change." }
+      - { de: "Die Eigenschaft muss eine Abhängigkeitseigenschaft sein.", en: "The property must be a dependency property." }
+      - { de: "Die Anzeige aktualisiert sich nur beim Neustart der Anwendung.", en: "The display is updated only when the application is restarted." }
     correct: [0]
-    explanation: { de: "12.10.4.1 (Seite 793). Genau das üben die nächsten Aufgaben." }
+    explanation: { de: "12.10.4.1 (Seite 793). Genau das üben die nächsten Aufgaben.", en: "12.10.4.1 (page 793). That is exactly what the following exercises are designed to practice." }

@@ -1,8 +1,8 @@
 id: komposition-r2vek
-title: { de: "Vektoren in der Ebene (R²)" }
+title: { de: "Vektoren in der Ebene (R²)", en: "Vectors in the Plane (R²)" }
 reading:
   section: "5.15"
-  title: { de: "Übungsaufgaben zum Kapitel 5, Aufgabe 4" }
+  title: { de: "Übungsaufgaben zum Kapitel 5, Aufgabe 4", en: "Exercises for Chapter 5, Exercise 4" }
   printedPage: 425
 teaches:
   - oop.property-computed

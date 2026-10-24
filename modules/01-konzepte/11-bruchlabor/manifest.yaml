@@ -1,9 +1,9 @@
 id: konzepte-bruchlabor
-title: { de: "Zusatz: Bruchlabor" }
+title: { de: "Zusatz: Bruchlabor", en: "Extra: Fraction Lab" }
 optional: true
 reading:
   section: "1.3"
-  title: { de: "Objektorientierte Programmierung" }
+  title: { de: "Objektorientierte Programmierung", en: "Object-Oriented Programming" }
   printedPage: 9
 teaches:
   - concepts.encapsulation

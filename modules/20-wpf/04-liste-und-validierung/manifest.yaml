@@ -1,8 +1,8 @@
 id: wpf-liste-und-validierung
-title: { de: "ObservableCollection und Validierung" }
+title: { de: "ObservableCollection und Validierung", en: "ObservableCollection and Validation" }
 reading:
   section: "12.10.5"
-  title: { de: "Datenvalidierung" }
+  title: { de: "Datenvalidierung", en: "Data Validation" }
   printedPage: 796
 teaches:
   - mvvm.observablecollection
@@ -23,28 +23,28 @@ items:
     testProject: "Aufgaben Tests/Aufgaben.Tests.csproj"
   - type: multipleChoice
     id: observable-vs-list
-    prompt: { de: "Eine ListBox ist an eine List<Aufgabe> im ViewModel gebunden. Beim Klick auf Hinzufügen wird die Liste im Code erweitert, aber die ListBox zeigt den neuen Eintrag nicht. Warum, und was hilft?" }
+    prompt: { de: "Eine ListBox ist an eine List<Aufgabe> im ViewModel gebunden. Beim Klick auf Hinzufügen wird die Liste im Code erweitert, aber die ListBox zeigt den neuen Eintrag nicht. Warum, und was hilft?", en: "A `ListBox` is bound to a `List<Aufgabe>` in the ViewModel. When you click `Hinzufügen`, the list is extended in code, but the `ListBox` does not show the new entry. Why, and what helps?" }
     options:
-      - { de: "List<T> meldet Änderungen nicht (kein INotifyCollectionChanged). ObservableCollection<T> löst CollectionChanged aus, sodass sich die ListBox aktualisiert." }
-      - { de: "ListBox kann nur an Arrays gebunden werden." }
-      - { de: "Die ListBox aktualisiert sich nur, wenn man sie neu erzeugt." }
+      - { de: "List<T> meldet Änderungen nicht (kein INotifyCollectionChanged). ObservableCollection<T> löst CollectionChanged aus, sodass sich die ListBox aktualisiert.", en: "List<T> does not report changes (no INotifyCollectionChanged). ObservableCollection<T> triggers a CollectionChanged event, causing the ListBox to update." }
+      - { de: "ListBox kann nur an Arrays gebunden werden.", en: "ListBox can only be bound to arrays." }
+      - { de: "Die ListBox aktualisiert sich nur, wenn man sie neu erzeugt.", en: "The ListBox is updated only when it is recreated." }
     correct: [0]
-    explanation: { de: "12.10.2 (Seite 789) und 12.10.4.2 (Seite 795). Wichtig: ObservableCollection<T> meldet das Hinzufügen und Entfernen von Elementen, aber nicht, wenn sich eine Eigenschaft eines Elements ändert. Dafür muss das Element selbst INotifyPropertyChanged implementieren." }
+    explanation: { de: "12.10.2 (Seite 789) und 12.10.4.2 (Seite 795). Wichtig: ObservableCollection<T> meldet das Hinzufügen und Entfernen von Elementen, aber nicht, wenn sich eine Eigenschaft eines Elements ändert. Dafür muss das Element selbst INotifyPropertyChanged implementieren.", en: "12.10.2 (page 789) and 12.10.4.2 (page 795). Important: `ObservableCollection<T>` notifies you when elements are added or removed, but not when a property of an element changes. For that to happen, the element itself must implement `INotifyPropertyChanged`." }
   - type: multipleChoice
     id: validierung-varianten
-    prompt: { de: "Wodurch unterscheidet sich die Validierung über INotifyDataErrorInfo von der Validierung über eine Ausnahme im Setter?" }
+    prompt: { de: "Wodurch unterscheidet sich die Validierung über INotifyDataErrorInfo von der Validierung über eine Ausnahme im Setter?", en: "How does validation using `INotifyDataErrorInfo` differ from validation using an exception in the setter?" }
     options:
-      - { de: "INotifyDataErrorInfo lässt den ungültigen Wert in der Eigenschaft stehen und meldet Fehler getrennt (HasErrors, GetErrors, ErrorsChanged); mehrere Fehlermeldungen pro Eigenschaft sind möglich und das ViewModel kann daran z. B. den Speichern-Befehl sperren. Bei der Ausnahme verweigert der Setter den Wert." }
-      - { de: "Es gibt keinen Unterschied." }
-      - { de: "INotifyDataErrorInfo funktioniert nur für Zahlen." }
+      - { de: "INotifyDataErrorInfo lässt den ungültigen Wert in der Eigenschaft stehen und meldet Fehler getrennt (HasErrors, GetErrors, ErrorsChanged); mehrere Fehlermeldungen pro Eigenschaft sind möglich und das ViewModel kann daran z. B. den Speichern-Befehl sperren. Bei der Ausnahme verweigert der Setter den Wert.", en: "INotifyDataErrorInfo leaves the invalid value in the property and reports errors separately (HasErrors, GetErrors, ErrorsChanged); multiple error messages per property are possible, and the ViewModel can use this to, for example, disable the Save command. In the case of an exception, the setter rejects the value." }
+      - { de: "Es gibt keinen Unterschied.", en: "There is no difference." }
+      - { de: "INotifyDataErrorInfo funktioniert nur für Zahlen.", en: "INotifyDataErrorInfo works only with numbers." }
     correct: [0]
-    explanation: { de: "12.10.5.1 und 12.10.5.2 (Seite 796 bis 801). Nach dem Ereignis ErrorsChanged fragt die Ansicht GetErrors neu ab und zeigt die Meldungen an (12.10.5.4, Seite 801)." }
+    explanation: { de: "12.10.5.1 und 12.10.5.2 (Seite 796 bis 801). Nach dem Ereignis ErrorsChanged fragt die Ansicht GetErrors neu ab und zeigt die Meldungen an (12.10.5.4, Seite 801).", en: "12.10.5.1 and 12.10.5.2 (pages 796 through 801). After the ErrorsChanged event, the view calls GetErrors again and displays the messages (12.10.5.4, page 801)." }
   - type: multipleChoice
     id: handler-abmelden
-    prompt: { de: "Das ViewModel abonniert PropertyChanged jeder Aufgabe, die in die Sammlung kommt. Warum muss es sich beim Entfernen einer Aufgabe wieder abmelden?" }
+    prompt: { de: "Das ViewModel abonniert PropertyChanged jeder Aufgabe, die in die Sammlung kommt. Warum muss es sich beim Entfernen einer Aufgabe wieder abmelden?", en: "The ViewModel subscribes to the `PropertyChanged` event for every task added to the collection. Why does it need to unsubscribe when a task is removed?" }
     options:
-      - { de: "Sonst hält die Aufgabe über ihr Ereignis eine Referenz auf das ViewModel (es lebt dann so lange wie die Aufgabe) und löst bei Änderungen weiter Handler aus, obwohl sie nicht mehr in der Liste steht." }
-      - { de: "Weil C# das Abmelden vorschreibt und sonst nicht kompiliert." }
-      - { de: "Nur aus Stilgründen; es hat keine Wirkung." }
+      - { de: "Sonst hält die Aufgabe über ihr Ereignis eine Referenz auf das ViewModel (es lebt dann so lange wie die Aufgabe) und löst bei Änderungen weiter Handler aus, obwohl sie nicht mehr in der Liste steht.", en: "Otherwise, the task maintains a reference to the ViewModel via its event (the ViewModel then remains active for as long as the task does) and continues to trigger handlers when changes occur, even though it is no longer in the list." }
+      - { de: "Weil C# das Abmelden vorschreibt und sonst nicht kompiliert.", en: "Because C# requires unsubscribing and would not compile otherwise." }
+      - { de: "Nur aus Stilgründen; es hat keine Wirkung.", en: "It's just for stylistic reasons; it has no effect." }
     correct: [0]
-    explanation: { de: "Ereignisabonnements aus Level 12 (Abonnieren und Abmelden). Der Test Entfernte_Aufgaben_beeinflussen_OffeneAnzahl_nicht_mehr prüft das Verhalten." }
+    explanation: { de: "Ereignisabonnements aus Level 12 (Abonnieren und Abmelden). Der Test Entfernte_Aufgaben_beeinflussen_OffeneAnzahl_nicht_mehr prüft das Verhalten.", en: "Event subscriptions from Level 12 (subscribing and unsubscribing). The test `Entfernte_Aufgaben_beeinflussen_OffeneAnzahl_nicht_mehr` checks the behavior." }

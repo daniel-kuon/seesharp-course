@@ -1,9 +1,9 @@
 id: vererbung-text-erweiterungen
-title: { de: "Zusatz: Erweiterungsmitglieder für string" }
+title: { de: "Zusatz: Erweiterungsmitglieder für string", en: "Extra: Extension members for string" }
 optional: true
 reading:
   section: "7.15.2"
-  title: { de: "Erweiterungsblöcke ab C# 14" }
+  title: { de: "Erweiterungsblöcke ab C# 14", en: "Extension blocks starting with C# 14" }
   printedPage: 583
 teaches:
   - extensions.extension-block

@@ -1,8 +1,8 @@
 id: wpf-oberflaeche
-title: { de: "Die Oberfläche: Layout, Bindung und Steuerelemente" }
+title: { de: "Die Oberfläche: Layout, Bindung und Steuerelemente", en: "The User Interface: Layout, Binding, and Controls" }
 reading:
   section: "12.11"
-  title: { de: "Layoutcontainer" }
+  title: { de: "Layoutcontainer", en: "Layout Container" }
   printedPage: 804
 teaches:
   - xaml.layout-containers
@@ -18,10 +18,10 @@ requires:
 items:
   - type: review
     id: projekt
-    prompt: { de: "Lege in Rider (Windows) eine neue Lösung mit zwei Projekten an: Die Klassenbibliothek mit deinen ViewModels aus den Aufgaben 2 bis 4 (net10.0, ohne WPF-Verweis) und eine WPF-Anwendung (net10.0-windows) mit einem Projektverweis auf die Bibliothek. Zeige der Betreuung beide Projektdateien und erkläre, welche Dateien beim Anlegen entstanden sind (App.xaml, App.xaml.cs, MainWindow.xaml, MainWindow.xaml.cs) und was InitializeComponent() tut." }
+    prompt: { de: "Lege in Rider (Windows) eine neue Lösung mit zwei Projekten an: Die Klassenbibliothek mit deinen ViewModels aus den Aufgaben 2 bis 4 (net10.0, ohne WPF-Verweis) und eine WPF-Anwendung (net10.0-windows) mit einem Projektverweis auf die Bibliothek. Zeige der Betreuung beide Projektdateien und erkläre, welche Dateien beim Anlegen entstanden sind (App.xaml, App.xaml.cs, MainWindow.xaml, MainWindow.xaml.cs) und was InitializeComponent() tut.", en: "In Rider (Windows), create a new solution with two projects: the class library with your ViewModels from Exercises 2 to 4 (net10.0, without a WPF reference) and a WPF application (net10.0-windows) with a project reference to the library. Show the supervisor both project files and explain which files were created (`App.xaml`, `App.xaml.cs`, `MainWindow.xaml`, `MainWindow.xaml.cs`) and what `InitializeComponent()` does." }
   - type: review
     id: fenster
-    prompt: { de: "Baue ein Fenster für eines der drei ViewModels (Umrechner, Zähler oder Aufgabenliste): Grid mit Zeilen und Spalten (DockPanel oder StackPanel, wo es passt), DataContext in App.xaml.cs oder im Fenster gesetzt, TextBox mit TwoWay-Bindung und UpdateSourceTrigger=PropertyChanged, Schaltflächen an Befehle gebunden (bei Bedarf mit CommandParameter), ListBox oder ItemsControl an die Sammlung gebunden und sichtbare Rückmeldung bei Validierungsfehlern. Lege dem Betreuer einen Screenshot des laufenden Fensters vor, auch in verkleinerter und vergrößerter Fassung." }
+    prompt: { de: "Baue ein Fenster für eines der drei ViewModels (Umrechner, Zähler oder Aufgabenliste): Grid mit Zeilen und Spalten (DockPanel oder StackPanel, wo es passt), DataContext in App.xaml.cs oder im Fenster gesetzt, TextBox mit TwoWay-Bindung und UpdateSourceTrigger=PropertyChanged, Schaltflächen an Befehle gebunden (bei Bedarf mit CommandParameter), ListBox oder ItemsControl an die Sammlung gebunden und sichtbare Rückmeldung bei Validierungsfehlern. Lege dem Betreuer einen Screenshot des laufenden Fensters vor, auch in verkleinerter und vergrößerter Fassung.", en: "Create a window for one of the three ViewModels (converter, counter, or task list): Grid with rows and columns (DockPanel or StackPanel, as appropriate), DataContext set in App.xaml.cs or within the window, TextBox with TwoWay binding and UpdateSourceTrigger=PropertyChanged, buttons bound to commands (with CommandParameter if needed), ListBox or ItemsControl bound to the collection and visible feedback for validation errors. Show the supervisor a screenshot of the running window, including a shrunk and an enlarged version." }
   - type: open
     id: begruendung
-    prompt: { de: "Warum steht in MainWindow.xaml.cs außer InitializeComponent() keine Logik, und was würde schiefgehen, wenn die Umrechnung in einer Click-Methode des Fensters steckte? Nenne ein Beispiel aus deinem Fenster, in dem eine Bindung eine Ereignisbehandlungsmethode ersetzt." }
+    prompt: { de: "Warum steht in MainWindow.xaml.cs außer InitializeComponent() keine Logik, und was würde schiefgehen, wenn die Umrechnung in einer Click-Methode des Fensters steckte? Nenne ein Beispiel aus deinem Fenster, in dem eine Bindung eine Ereignisbehandlungsmethode ersetzt.", en: "Why is there no logic in MainWindow.xaml.cs other than `InitializeComponent()`, and what would go wrong if the conversion were placed in one of the window's Click methods? Give an example from your window where a binding replaces an event handler." }

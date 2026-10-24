@@ -1,9 +1,9 @@
 id: interfaces-befehle
-title: { de: "Zusatz: Befehle mit Rückgängig und Wiederholen" }
+title: { de: "Zusatz: Befehle mit Rückgängig und Wiederholen", en: "Extra: Commands with Undo and Redo" }
 optional: true
 reading:
   section: "9.3"
-  title: { de: "Interfaces als Referenzdatentypen" }
+  title: { de: "Interfaces als Referenzdatentypen", en: "Interfaces as Reference Data Types" }
   printedPage: 644
 teaches:
   - interfaces.implement

@@ -1,8 +1,8 @@
 id: ablauf-ggt-differenz
-title: { de: "ggT per Subtraktion" }
+title: { de: "ggT per Subtraktion", en: "GCD by Subtraction" }
 reading:
   section: "4.7.3.3"
-  title: { de: "Bedingungsabhängige Schleifen" }
+  title: { de: "Bedingungsabhängige Schleifen", en: "Conditional Loops" }
   printedPage: 275
 teaches:
   - control.while

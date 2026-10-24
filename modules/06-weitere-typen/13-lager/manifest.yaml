@@ -1,9 +1,9 @@
 id: typen-lager
-title: { de: "Zusatzaufgabe: Ein Lager aus Records" }
+title: { de: "Zusatzaufgabe: Ein Lager aus Records", en: "Extra exercise: A warehouse of records" }
 optional: true
 reading:
   section: "6.7.3"
-  title: { de: "Kopierkonstruktoren und with-Ausdrücke" }
+  title: { de: "Kopierkonstruktoren und with-Ausdrücke", en: "Copy constructors and with expressions" }
   printedPage: 499
 teaches:
   - records.with

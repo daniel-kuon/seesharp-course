@@ -1,8 +1,8 @@
 id: fortgeschritten-inline-arrays-und-serienparameter
-title: { de: "Inline-Arrays und Serienparameter mit Kollektionstyp" }
+title: { de: "Inline-Arrays und Serienparameter mit Kollektionstyp", en: "Inline Arrays and Series Parameters with Collection Types" }
 reading:
   section: "15.5"
-  title: { de: "Inline-Array" }
+  title: { de: "Inline-Array", en: "Inline array" }
   printedPage: 1005
 teaches:
   - arrays.inline-array
@@ -21,11 +21,11 @@ items:
     testProject: "InlineUndParams Tests/InlineUndParams.Tests.csproj"
   - type: multipleChoice
     id: params-span-allokation
-    prompt: { de: "Warum kann Summe(params ReadOnlySpan<int> werte) bei Summe(1, 2, 3) ohne Heap-Allokation auskommen, Summe(params int[] werte) aber nicht?" }
+    prompt: { de: "Warum kann Summe(params ReadOnlySpan<int> werte) bei Summe(1, 2, 3) ohne Heap-Allokation auskommen, Summe(params int[] werte) aber nicht?", en: "Why can `Summe(params ReadOnlySpan<int> werte)` get by without a heap allocation for `Summe(1, 2, 3)`, but `Summe(params int[] werte)` cannot?" }
     options:
-      - { de: "Der Compiler darf die Argumente für den Span in einem Inline-Array auf dem Stack ablegen; für ein int[] muss er ein Array-Objekt auf dem Heap anlegen." }
-      - { de: "Ein Span kopiert die Werte in den Prozessor-Cache." }
-      - { de: "Ein ReadOnlySpan<int> speichert die Werte gar nicht; erst beim Lesen werden sie berechnet." }
-      - { de: "Es gibt keinen Unterschied; beide legen ein Array auf dem Heap an." }
+      - { de: "Der Compiler darf die Argumente für den Span in einem Inline-Array auf dem Stack ablegen; für ein int[] muss er ein Array-Objekt auf dem Heap anlegen.", en: "The compiler may store the arguments for the span in an inline array on the stack; for an `int[]`, it must create an array object on the heap." }
+      - { de: "Ein Span kopiert die Werte in den Prozessor-Cache.", en: "A `Span` copies the values into the processor cache." }
+      - { de: "Ein ReadOnlySpan<int> speichert die Werte gar nicht; erst beim Lesen werden sie berechnet.", en: "A `ReadOnlySpan<int>` does not store the values at all; they are calculated only when read." }
+      - { de: "Es gibt keinen Unterschied; beide legen ein Array auf dem Heap an.", en: "There is no difference; both create an array on the heap." }
     correct: [0]
-    explanation: { de: "15.6.1 (Seite 1009) und 15.5 (Seite 1005). Ein ReadOnlySpan<T> kann auf Stack-Speicher zeigen, und genau dafür nutzt der Compiler ein Inline-Array. Die Methode darf den Span nur nicht über ihr Ende hinaus aufbewahren." }
+    explanation: { de: "15.6.1 (Seite 1009) und 15.5 (Seite 1005). Ein ReadOnlySpan<T> kann auf Stack-Speicher zeigen, und genau dafür nutzt der Compiler ein Inline-Array. Die Methode darf den Span nur nicht über ihr Ende hinaus aufbewahren.", en: "15.6.1 (page 1009) and 15.5 (page 1005). A `ReadOnlySpan<T>` can point to stack memory, and this is precisely why the compiler uses an inline array. The method must not, however, retain the span beyond its end." }

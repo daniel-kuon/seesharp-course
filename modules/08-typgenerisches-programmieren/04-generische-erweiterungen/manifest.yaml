@@ -1,8 +1,8 @@
 id: generics-erweiterungen
-title: { de: "Generische Erweiterungsmitglieder" }
+title: { de: "Generische Erweiterungsmitglieder", en: "Generic Extension Members" }
 reading:
   section: "8.6"
-  title: { de: "Generische Erweiterungsmitglieder" }
+  title: { de: "Generische Erweiterungsmitglieder", en: "Generic Extension Members" }
   printedPage: 604
 teaches:
   - generics.extension
@@ -21,10 +21,10 @@ items:
     testProject: "GenerischeErweiterungen Tests/GenerischeErweiterungen.Tests.csproj"
   - type: multipleChoice
     id: inferenz
-    prompt: { de: "int[] z = [3, 1]; z.LeadingMin(); Woher weiß der Compiler, dass T = int ist?" }
+    prompt: { de: "int[] z = [3, 1]; z.LeadingMin(); Woher weiß der Compiler, dass T = int ist?", en: "int[] z = [3, 1]; z.LeadingMin(); How does the compiler know that T = int?" }
     options:
-      - { de: "Aus dem Typ des Empfängers z (int[]): Typinferenz für generische Methoden." }
-      - { de: "Aus dem Rückgabetyp bool?." }
-      - { de: "Gar nicht; man muss z.LeadingMin<int>() schreiben." }
+      - { de: "Aus dem Typ des Empfängers z (int[]): Typinferenz für generische Methoden.", en: "From the type of the receiver z (int[]): type inference for generic methods." }
+      - { de: "Aus dem Rückgabetyp bool?.", en: "From the return type `bool?`." }
+      - { de: "Gar nicht; man muss z.LeadingMin<int>() schreiben.", en: "Not at all; you have to write z.LeadingMin<int>()." }
     correct: [0]
-    explanation: { de: "Generische Methoden leiten ihre Typargumente aus den Argumenten ab (8.5, Seite 602); bei Erweiterungsmethoden zählt der Empfänger als erstes Argument." }
+    explanation: { de: "Generische Methoden leiten ihre Typargumente aus den Argumenten ab (8.5, Seite 602); bei Erweiterungsmethoden zählt der Empfänger als erstes Argument.", en: "Generic methods derive their type arguments from the arguments (8.5, page 602); for extension methods, the receiver is the first argument." }

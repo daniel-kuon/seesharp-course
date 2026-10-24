@@ -1,9 +1,9 @@
 id: klassen-konto
-title: { de: "Zusatzaufgabe: Ein Girokonto mit Dispo" }
+title: { de: "Zusatzaufgabe: Ein Girokonto mit Dispo", en: "Extra exercise: A checking account with an overdraft line" }
 optional: true
 reading:
   section: "5.5"
-  title: { de: "Eigenschaften" }
+  title: { de: "Eigenschaften", en: "Properties" }
   printedPage: 361
 teaches:
   - oop.constructor-validates

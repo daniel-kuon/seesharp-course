@@ -1,8 +1,8 @@
 id: dateien-textdateien
-title: { de: "Textdateien mit StreamWriter und StreamReader" }
+title: { de: "Textdateien mit StreamWriter und StreamReader", en: "Text Files with StreamWriter and StreamReader" }
 reading:
   section: "16.3.2"
-  title: { de: "Schreiben und Lesen im Textformat" }
+  title: { de: "Schreiben und Lesen im Textformat", en: "Writing and Reading in Text Format" }
   printedPage: 1036
 teaches:
   - files.streamwriter
@@ -22,11 +22,11 @@ items:
     testProject: "Textdateien Tests/Textdateien.Tests.csproj"
   - type: multipleChoice
     id: falsche-codierung
-    prompt: { de: "Eine Textdatei wurde in Windows-1252 gespeichert und enthält ein ä (Byte 0xE4). Was passiert, wenn du sie mit einem StreamReader ohne Angabe einer Codierung liest?" }
+    prompt: { de: "Eine Textdatei wurde in Windows-1252 gespeichert und enthält ein ä (Byte 0xE4). Was passiert, wenn du sie mit einem StreamReader ohne Angabe einer Codierung liest?", en: "A text file was saved in Windows-1252 and contains an \"ä\" (byte 0xE4). What happens if you read it using a StreamReader without specifying a character encoding?" }
     options:
-      - { de: "Der StreamReader nimmt UTF-8 an; das einzelne Byte 0xE4 ist dort keine gültige Folge und wird als Ersatzzeichen (Fragezeichen im Rhombus) gelesen." }
-      - { de: "Der StreamReader erkennt die Windows-1252-Codierung von selbst und liefert ein ä." }
-      - { de: "Es gibt eine Ausnahme vom Typ FormatException." }
-      - { de: "Das ä wird verlustfrei als 0xE4 gelesen, weil jedes Zeichen ein Byte lang ist." }
+      - { de: "Der StreamReader nimmt UTF-8 an; das einzelne Byte 0xE4 ist dort keine gültige Folge und wird als Ersatzzeichen (Fragezeichen im Rhombus) gelesen.", en: "The StreamReader assumes UTF-8; the single byte 0xE4 is not a valid sequence in that encoding and is read as a replacement character (a question mark inside a diamond)." }
+      - { de: "Der StreamReader erkennt die Windows-1252-Codierung von selbst und liefert ein ä.", en: "The StreamReader automatically detects the Windows-1252 encoding and returns an \"ä\"." }
+      - { de: "Es gibt eine Ausnahme vom Typ FormatException.", en: "A FormatException has been thrown." }
+      - { de: "Das ä wird verlustfrei als 0xE4 gelesen, weil jedes Zeichen ein Byte lang ist.", en: "The \"ä\" is read as 0xE4 without any loss of information, because each character is one byte long." }
     correct: [0]
-    explanation: { de: "16.3.3 (Seite 1040). Ohne Angabe gilt UTF-8 (mit Erkennung eines BOM). Die Codierung steht nicht in der Datei, man muss sie kennen: Encoding.GetEncoding(1252) (nach Encoding.RegisterProvider(CodePagesEncodingProvider.Instance))." }
+    explanation: { de: "16.3.3 (Seite 1040). Ohne Angabe gilt UTF-8 (mit Erkennung eines BOM). Die Codierung steht nicht in der Datei, man muss sie kennen: Encoding.GetEncoding(1252) (nach Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)).", en: "16.3.3 (page 1040). Unless otherwise specified, UTF-8 is used (with BOM detection). The encoding is not specified in the file; you must know it: Encoding.GetEncoding(1252) (after Encoding.RegisterProvider(CodePagesEncodingProvider.Instance))." }

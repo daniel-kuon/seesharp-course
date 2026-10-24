@@ -1,9 +1,9 @@
 id: vererbung-mediathek
-title: { de: "Zusatz: Leihfristen und Mahngebühren in der Mediathek" }
+title: { de: "Zusatz: Leihfristen und Mahngebühren in der Mediathek", en: "Extra: Loan Periods and Late Fees in the Media Library" }
 optional: true
 reading:
   section: "7.4"
-  title: { de: "Konstruktoren und Vererbung" }
+  title: { de: "Konstruktoren und Vererbung", en: "Constructors and Inheritance" }
   printedPage: 549
 teaches:
   - inheritance.protected

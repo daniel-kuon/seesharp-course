@@ -1,9 +1,9 @@
 id: adonet-adressbuch-crud
-title: { de: "Zusatz: Adressbuch mit Suche" }
+title: { de: "Zusatz: Adressbuch mit Suche", en: "Extra: Address Book with Search" }
 optional: true
 reading:
   section: "19.7.5"
-  title: { de: "DbCommand" }
+  title: { de: "DbCommand", en: "DbCommand" }
   printedPage: 1323
 teaches:
   - ado.execute-nonquery

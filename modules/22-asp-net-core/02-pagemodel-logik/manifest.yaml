@@ -1,8 +1,8 @@
 id: aspnet-pagemodel-logik
-title: { de: "PageModel-Logik per Unit-Test" }
+title: { de: "PageModel-Logik per Unit-Test", en: "PageModel Logic via Unit Testing" }
 reading:
   section: "22.5.3"
-  title: { de: "Behandlung von HTTP-Anforderungen" }
+  title: { de: "Behandlung von HTTP-Anforderungen", en: "Handling HTTP Requests" }
   printedPage: 1566
 teaches:
   - web.pagemodel-onget
@@ -27,10 +27,10 @@ items:
     testProject: "Umfrage Tests/Umfrage.Tests.csproj"
   - type: multipleChoice
     id: post-redirect-get
-    prompt: { de: "Warum antwortet OnPost nach dem erfolgreichen Speichern mit RedirectToPage statt mit Page()?" }
+    prompt: { de: "Warum antwortet OnPost nach dem erfolgreichen Speichern mit RedirectToPage statt mit Page()?", en: "Why does `OnPost` answer with `RedirectToPage` instead of `Page()` after saving successfully?" }
     options:
-      - { de: "Der Browser lädt danach die Zielseite per GET; ein Neuladen der Seite (F5) schickt das Formular nicht noch einmal ab (Post-Redirect-Get)." }
-      - { de: "Page() kann nach einem POST technisch keine Seite ausliefern." }
-      - { de: "RedirectToPage speichert die Daten im Cookie, damit sie nicht verloren gehen." }
+      - { de: "Der Browser lädt danach die Zielseite per GET; ein Neuladen der Seite (F5) schickt das Formular nicht noch einmal ab (Post-Redirect-Get).", en: "The browser then loads the target page using a GET request; refreshing the page (F5) does not resubmit the form (POST-redirect-GET)." }
+      - { de: "Page() kann nach einem POST technisch keine Seite ausliefern.", en: "Technically, Page() cannot return a page after a POST request." }
+      - { de: "RedirectToPage speichert die Daten im Cookie, damit sie nicht verloren gehen.", en: "RedirectToPage stores the data in a cookie so that it isn't lost." }
     correct: [0]
-    explanation: { de: "22.5.3.4.2 (Seite 1569): Die Weiterleitung nach erfolgreicher POST-Behandlung verhindert, dass ein Benutzer versehentlich doppelt absendet." }
+    explanation: { de: "22.5.3.4.2 (Seite 1569): Die Weiterleitung nach erfolgreicher POST-Behandlung verhindert, dass ein Benutzer versehentlich doppelt absendet.", en: "22.5.3.4.2 (page 1569): Redirecting the user after a successful POST request prevents a user from accidentally submitting the form twice." }

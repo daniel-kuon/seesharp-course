@@ -1,8 +1,8 @@
 id: ablauf-kontrollfluss-fehler
-title: { de: "Fehlersuche in Verzweigungen" }
+title: { de: "Fehlersuche in Verzweigungen", en: "Troubleshooting in Branches" }
 reading:
   section: "4.7.2"
-  title: { de: "Bedingte Anweisung und Fallunterscheidung" }
+  title: { de: "Bedingte Anweisung und Fallunterscheidung", en: "Conditional Statements and Case Statements" }
   printedPage: 253
 teaches:
   - control.dangling-else
@@ -21,19 +21,19 @@ items:
     testProject: "Fehlersuche.Tests/Fehlersuche.Tests.csproj"
   - type: multipleChoice
     id: leere-anweisung
-    prompt: { de: "`int i = 0; while (i < 100); { i++; Console.WriteLine(i); }` Wie oft wird der Block mit i++ ausgeführt?" }
+    prompt: { de: "`int i = 0; while (i < 100); { i++; Console.WriteLine(i); }` Wie oft wird der Block mit i++ ausgeführt?", en: "`int i = 0; while (i < 100); { i++; Console.WriteLine(i); }` How many times is the block containing i++ executed?" }
     options:
-      - { de: "Gar nicht: Das Semikolon hinter dem Schleifenkopf ist der (leere) Schleifenkörper, die Schleife endet nie, der Block wird nie erreicht." }
-      - { de: "100-mal." }
-      - { de: "Einmal." }
-      - { de: "Der Compiler lehnt das Programm ab." }
+      - { de: "Gar nicht: Das Semikolon hinter dem Schleifenkopf ist der (leere) Schleifenkörper, die Schleife endet nie, der Block wird nie erreicht.", en: "Not at all: The semicolon after the loop header is the (empty) loop body; the loop never ends, and the block is never reached." }
+      - { de: "100-mal.", en: "100 times." }
+      - { de: "Einmal.", en: "Once." }
+      - { de: "Der Compiler lehnt das Programm ab.", en: "The compiler rejects the program." }
     correct: [0]
   - type: multipleChoice
     id: else-zuordnung
-    prompt: { de: "Zu welchem if gehört ein else, wenn keine geschweiften Klammern gesetzt sind?" }
+    prompt: { de: "Zu welchem if gehört ein else, wenn keine geschweiften Klammern gesetzt sind?", en: "Which \"if\" statement does an \"else\" belong to if there are no curly braces?" }
     options:
-      - { de: "Zum nächstgelegenen vorangehenden if, das noch kein else hat, unabhängig von der Einrückung." }
-      - { de: "Zu dem if, das gleich eingerückt ist." }
-      - { de: "Zum äußersten if." }
-      - { de: "Der Compiler meldet einen Fehler, wenn es mehrdeutig ist." }
+      - { de: "Zum nächstgelegenen vorangehenden if, das noch kein else hat, unabhängig von der Einrückung.", en: "To the nearest preceding `if` statement that does not yet have an `else` clause, regardless of indentation." }
+      - { de: "Zu dem if, das gleich eingerückt ist.", en: "Regarding the \"if\" statement that is indented." }
+      - { de: "Zum äußersten if.", en: "To the very end, if." }
+      - { de: "Der Compiler meldet einen Fehler, wenn es mehrdeutig ist.", en: "The compiler reports an error if there is ambiguity." }
     correct: [0]

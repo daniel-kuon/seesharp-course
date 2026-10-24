@@ -1,9 +1,9 @@
 id: delegaten-rechentabelle
-title: { de: "Zusatz: Rechentabelle" }
+title: { de: "Zusatz: Rechentabelle", en: "Extra: Calculation Table" }
 optional: true
 reading:
   section: "10.1.2"
-  title: { de: "Delegatenobjekte erzeugen und aufrufen" }
+  title: { de: "Delegatenobjekte erzeugen und aufrufen", en: "Creating and Calling Delegate Objects" }
   printedPage: 660
 teaches:
   - delegates.create-invoke

@@ -1,8 +1,8 @@
 id: aspnet-integrationstests-und-routing
-title: { de: "Seiten, Routing und Integrationstests" }
+title: { de: "Seiten, Routing und Integrationstests", en: "Pages, Routing, and Integration Tests" }
 reading:
   section: "22.7"
-  title: { de: "Routing" }
+  title: { de: "Routing", en: "Routing" }
   printedPage: 1577
 teaches:
   - web.program-cs
@@ -26,19 +26,19 @@ items:
     testProject: "Umfrage Tests/Umfrage.Tests.csproj"
   - type: multipleChoice
     id: routenrestriktion
-    prompt: { de: "Eine Seite beginnt mit `@page \"{id:int}\"`. Was antwortet die Anwendung auf `GET /Detail/abc`?" }
+    prompt: { de: "Eine Seite beginnt mit `@page \"{id:int}\"`. Was antwortet die Anwendung auf `GET /Detail/abc`?", en: "A page begins with `@page \"{id:int}\"`. What does the application return in response to a `GET /Detail/abc` request?" }
     options:
-      - { de: "404: Der Text passt nicht zur Restriktion int, die URL wird keiner Seite zugeordnet und OnGet läuft gar nicht erst." }
-      - { de: "200: OnGet(int id) bekommt 0 und zeigt eine leere Seite." }
-      - { de: "500: Die Umwandlung von abc nach int wirft eine Ausnahme." }
+      - { de: "404: Der Text passt nicht zur Restriktion int, die URL wird keiner Seite zugeordnet und OnGet läuft gar nicht erst.", en: "404: The text does not match the \"int\" restriction; the URL is not associated with any page, and OnGet does not run at all." }
+      - { de: "200: OnGet(int id) bekommt 0 und zeigt eine leere Seite.", en: "200: OnGet(int id) receives 0 and displays a blank page." }
+      - { de: "500: Die Umwandlung von abc nach int wirft eine Ausnahme.", en: "500: The conversion from abc to int throws an exception." }
     correct: [0]
-    explanation: { de: "22.7.2.4 (Seite 1581): Eine Typrestriktion verhindert die Abbildung der URL auf die Seite; es wird keine Behandlungsmethode aufgerufen." }
+    explanation: { de: "22.7.2.4 (Seite 1581): Eine Typrestriktion verhindert die Abbildung der URL auf die Seite; es wird keine Behandlungsmethode aufgerufen.", en: "22.7.2.4 (page 1581): A type restriction prevents the URL from being mapped to the page; no handler is called." }
   - type: multipleChoice
     id: singleton
-    prompt: { de: "Der Dienst wird mit `AddSingleton<IUmfrageDienst, SpeicherDienst>()` registriert. Was würde sich bei `AddTransient` für die Umfrage ändern?" }
+    prompt: { de: "Der Dienst wird mit `AddSingleton<IUmfrageDienst, SpeicherDienst>()` registriert. Was würde sich bei `AddTransient` für die Umfrage ändern?", en: "The service is registered using `AddSingleton<IUmfrageDienst, SpeicherDienst>()`. How would using `AddTransient` affect the survey?" }
     options:
-      - { de: "Jede Injektion bekäme eine neue, leere SpeicherDienst-Instanz; abgegebene Stimmen wären bei der nächsten Anforderung nicht mehr da." }
-      - { de: "Nichts; der Container erzeugt immer nur eine Instanz." }
-      - { de: "Der Dienst würde nicht mehr in das PageModel injiziert." }
+      - { de: "Jede Injektion bekäme eine neue, leere SpeicherDienst-Instanz; abgegebene Stimmen wären bei der nächsten Anforderung nicht mehr da.", en: "Each injection would receive a new, empty SpeicherDienst instance; votes cast would no longer be present at the next request." }
+      - { de: "Nichts; der Container erzeugt immer nur eine Instanz.", en: "Nothing; the container always creates only one instance." }
+      - { de: "Der Dienst würde nicht mehr in das PageModel injiziert.", en: "The service would no longer be injected into the PageModel." }
     correct: [0]
-    explanation: { de: "22.3 (Seite 1554) und 22.5.4 (Seite 1571): Das PageModel lebt nur eine Anforderung lang; Zustand über Anforderungen hinweg braucht einen langlebigen Dienst, eine Datenbank oder Cookies." }
+    explanation: { de: "22.3 (Seite 1554) und 22.5.4 (Seite 1571): Das PageModel lebt nur eine Anforderung lang; Zustand über Anforderungen hinweg braucht einen langlebigen Dienst, eine Datenbank oder Cookies.", en: "22.3 (page 1554) and 22.5.4 (page 1571): The PageModel exists only for the duration of a single request; state that persists across requests requires a long-running service, a database, or cookies." }

@@ -1,8 +1,8 @@
 id: publish-konzepte
-title: { de: "Veröffentlichungskonzepte: Quiz" }
+title: { de: "Veröffentlichungskonzepte: Quiz", en: "Publication Strategies: Quiz" }
 reading:
   section: "23.1"
-  title: { de: "Veröffentlichungsoptionen" }
+  title: { de: "Veröffentlichungsoptionen", en: "Publishing Options" }
   printedPage: 1637
 teaches:
   - publish.configuration-release
@@ -17,46 +17,46 @@ requires:
 items:
   - type: multipleChoice
     id: debug-release
-    prompt: { de: "Was unterscheidet die Konfigurationen `Debug` und `Release`?" }
+    prompt: { de: "Was unterscheidet die Konfigurationen `Debug` und `Release`?", en: "What is the difference between the `Debug` and `Release` configurations?" }
     options:
-      - { de: "Release erzeugt ein leistungsoptimiertes, aber schwerer zu debuggendes Assembly (zum Beispiel durch Inlining); Debug ist gut testbar und nicht optimiert. Ausgeliefert wird Release." }
-      - { de: "Debug ist schneller, weil es keine Prüfungen enthält; Release enthält zusätzliche Sicherheitsprüfungen." }
-      - { de: "Es gibt keinen Unterschied außer dem Namen des Ausgabeordners (bin/Debug, bin/Release)." }
+      - { de: "Release erzeugt ein leistungsoptimiertes, aber schwerer zu debuggendes Assembly (zum Beispiel durch Inlining); Debug ist gut testbar und nicht optimiert. Ausgeliefert wird Release.", en: "The \"Release\" build generates assembly code that is performance-optimized but harder to debug (for example, due to inlining); the \"Debug\" build is easy to test and is not optimized. The \"Release\" build is the one shipped." }
+      - { de: "Debug ist schneller, weil es keine Prüfungen enthält; Release enthält zusätzliche Sicherheitsprüfungen.", en: "The Debug version is faster because it does not include any checks; the Release version includes additional security checks." }
+      - { de: "Es gibt keinen Unterschied außer dem Namen des Ausgabeordners (bin/Debug, bin/Release).", en: "There is no difference other than the name of the output folder (bin/Debug, bin/Release)." }
     correct: [0]
-    explanation: { de: "23.1.1 (Seite 1637). Die Debug-Informationen stehen in der pdb-Datei; sie hilft bei der Fehlersuche, muss aber nicht an Kunden ausgeliefert werden (23.2.2, Seite 1656)." }
+    explanation: { de: "23.1.1 (Seite 1637). Die Debug-Informationen stehen in der pdb-Datei; sie hilft bei der Fehlersuche, muss aber nicht an Kunden ausgeliefert werden (23.2.2, Seite 1656).", en: "23.1.1 (page 1637). The debug information is contained in the pdb file; it helps with troubleshooting but does not need to be provided to customers (23.2.2, page 1656)." }
   - type: multipleChoice
     id: zielframework
-    prompt: { de: "Was legt `<TargetFramework>net10.0</TargetFramework>` in der Projektdatei fest, und warum steht bei einer WPF-Anwendung `net10.0-windows` da?" }
+    prompt: { de: "Was legt `<TargetFramework>net10.0</TargetFramework>` in der Projektdatei fest, und warum steht bei einer WPF-Anwendung `net10.0-windows` da?", en: "What does `<TargetFramework>net10.0</TargetFramework>` specify in the project file, and why does a WPF application show `net10.0-windows`?" }
     options:
-      - { de: "Die APIs, gegen die das Projekt gebaut wird, und damit die mindestens nötige .NET-Version. WPF nutzt Betriebssystem-APIs von Windows; das Betriebssystem gehört dann in den Moniker." }
-      - { de: "Das Betriebssystem, auf dem das Programm laufen muss; `net10.0` allein läuft deshalb nur unter Linux." }
-      - { de: "Die CPU-Architektur des Zielrechners; `-windows` wählt 64 Bit." }
+      - { de: "Die APIs, gegen die das Projekt gebaut wird, und damit die mindestens nötige .NET-Version. WPF nutzt Betriebssystem-APIs von Windows; das Betriebssystem gehört dann in den Moniker.", en: "The APIs on which the project is built, and thus the minimum required .NET version. WPF uses Windows operating system APIs; the operating system should then be included in the moniker." }
+      - { de: "Das Betriebssystem, auf dem das Programm laufen muss; `net10.0` allein läuft deshalb nur unter Linux.", en: "The operating system on which the program must run; for this reason, `net10.0` alone runs only on Linux." }
+      - { de: "Die CPU-Architektur des Zielrechners; `-windows` wählt 64 Bit.", en: "The target computer's CPU architecture; `-windows` selects 64-bit." }
     correct: [0]
-    explanation: { de: "23.1.2 (Seite 1637 und 1638): Das Zielframework legt die verfügbaren APIs fest, nicht das ausführende Betriebssystem. `TargetFrameworks` (Mehrzahl, zum Beispiel `net10.0;net10.0-windows`) baut ein Projekt für mehrere Ziele; das steht nicht im Buch." }
+    explanation: { de: "23.1.2 (Seite 1637 und 1638): Das Zielframework legt die verfügbaren APIs fest, nicht das ausführende Betriebssystem. `TargetFrameworks` (Mehrzahl, zum Beispiel `net10.0;net10.0-windows`) baut ein Projekt für mehrere Ziele; das steht nicht im Buch.", en: "23.1.2 (pages 1637 and 1638): The target framework defines the available APIs, not the operating system running the application. `TargetFrameworks` (plural, for example, `net10.0;net10.0-windows`) builds a project for multiple targets; this is not mentioned in the book." }
   - type: multipleChoice
     id: frameworkabhaengig-vs-eigenstaendig
-    prompt: { de: "Ein Programm wird einmal frameworkabhängig und einmal eigenständig (self-contained) veröffentlicht. Welche Aussage stimmt?" }
+    prompt: { de: "Ein Programm wird einmal frameworkabhängig und einmal eigenständig (self-contained) veröffentlicht. Welche Aussage stimmt?", en: "A program is released both as a framework-dependent version and as a self-contained version. Which statement is correct?" }
     options:
-      - { de: "Frameworkabhängig ist sehr klein (im Buch unter 140 KB), braucht aber eine passende .NET-Laufzeit auf dem Zielrechner und profitiert von deren Updates. Eigenständig bringt die Laufzeit mit (im Buch 130 MB), läuft ohne Installation, muss aber für Laufzeit-Updates neu veröffentlicht werden." }
-      - { de: "Eigenständig ist kleiner, weil es nur den benötigten Teil der Laufzeit enthält, ohne jede weitere Einstellung." }
-      - { de: "Frameworkabhängig läuft nur mit dem Visual Studio, eigenständig auf jedem Rechner." }
+      - { de: "Frameworkabhängig ist sehr klein (im Buch unter 140 KB), braucht aber eine passende .NET-Laufzeit auf dem Zielrechner und profitiert von deren Updates. Eigenständig bringt die Laufzeit mit (im Buch 130 MB), läuft ohne Installation, muss aber für Laufzeit-Updates neu veröffentlicht werden.", en: "Framework-dependent applications are very small (less than 140 KB in the book), but require a compatible .NET runtime on the target computer and benefit from its updates. The standalone version includes the runtime (130 MB in the book), runs without installation, but must be republished for runtime updates." }
+      - { de: "Eigenständig ist kleiner, weil es nur den benötigten Teil der Laufzeit enthält, ohne jede weitere Einstellung.", en: "The standalone version is smaller because it contains only the necessary portion of the runtime, without any additional settings." }
+      - { de: "Frameworkabhängig läuft nur mit dem Visual Studio, eigenständig auf jedem Rechner.", en: "Framework-dependent: Runs only with Visual Studio; standalone on any computer." }
     correct: [0]
-    explanation: { de: "23.1.5 (Seite 1644 bis 1646). Verkleinern lässt sich eine eigenständige Veröffentlichung erst durch zusätzliche Optionen wie `PublishTrimmed` (23.1.6)." }
+    explanation: { de: "23.1.5 (Seite 1644 bis 1646). Verkleinern lässt sich eine eigenständige Veröffentlichung erst durch zusätzliche Optionen wie `PublishTrimmed` (23.1.6).", en: "23.1.5 (pages 1644–1646). A standalone publication can only be reduced in size using additional options such as `PublishTrimmed` (23.1.6)." }
   - type: multipleChoice
     id: runtime-identifier
-    prompt: { de: "Wie wählst du den Runtime Identifier (RID) für eine eigenständige Veröffentlichung?" }
+    prompt: { de: "Wie wählst du den Runtime Identifier (RID) für eine eigenständige Veröffentlichung?", en: "How do you choose the Runtime Identifier (RID) for a standalone release?" }
     options:
-      - { de: "Nach Betriebssystem und CPU-Architektur des Zielrechners, zum Beispiel `win-x64` für ein 64-Bit-Windows, `linux-arm64` für einen ARM-Server unter Linux." }
-      - { de: "Nach dem Betriebssystem des Entwicklungsrechners; das Programm wird dort gebaut und läuft deshalb überall." }
-      - { de: "Nach der .NET-Version; `net10.0` ist der RID für .NET 10." }
+      - { de: "Nach Betriebssystem und CPU-Architektur des Zielrechners, zum Beispiel `win-x64` für ein 64-Bit-Windows, `linux-arm64` für einen ARM-Server unter Linux.", en: "Based on the target computer's operating system and CPU architecture; for example, `win-x64` for a 64-bit Windows system, or `linux-arm64` for an ARM server running Linux." }
+      - { de: "Nach dem Betriebssystem des Entwicklungsrechners; das Programm wird dort gebaut und läuft deshalb überall.", en: "It depends on the operating system of the development computer; the program is built there and therefore runs everywhere." }
+      - { de: "Nach der .NET-Version; `net10.0` ist der RID für .NET 10.", en: "Based on the .NET version, `net10.0`, the RID for .NET 10 is." }
     correct: [0]
-    explanation: { de: "23.1.4 (Seite 1643): Die Zielruntime bestimmt Betriebssystem und CPU-Architektur des ausführenden Rechners. Bei eigenständigen Programmen enthält die Auslieferung die Laufzeit für genau diese Zielruntime." }
+    explanation: { de: "23.1.4 (Seite 1643): Die Zielruntime bestimmt Betriebssystem und CPU-Architektur des ausführenden Rechners. Bei eigenständigen Programmen enthält die Auslieferung die Laufzeit für genau diese Zielruntime.", en: "23.1.4 (page 1643): The target runtime determines the operating system and CPU architecture of the computer on which the program is running. For standalone programs, the distribution includes the runtime for that specific target runtime." }
   - type: multipleChoice
     id: rid-bei-frameworkabhaengig
-    prompt: { de: "Ein frameworkabhängiges Programm wird mit `-r win-x86` veröffentlicht. Was ändert der RID an der Auslieferung?" }
+    prompt: { de: "Ein frameworkabhängiges Programm wird mit `-r win-x86` veröffentlicht. Was ändert der RID an der Auslieferung?", en: "A framework-dependent program is released with the `-r win-x86` flag. How does the RID affect the distribution?" }
     options:
-      - { de: "Nur den mitgelieferten Starter (`.exe`, hier 32 Bit); die `.dll` mit dem IL-Code bleibt gleich." }
-      - { de: "Er fügt die komplette Laufzeit zur Auslieferung hinzu." }
-      - { de: "Er übersetzt den IL-Code in Maschinencode für 32 Bit." }
+      - { de: "Nur den mitgelieferten Starter (`.exe`, hier 32 Bit); die `.dll` mit dem IL-Code bleibt gleich.", en: "Just the included launcher (`.exe`, 32-bit in this case); the `.dll` file containing the IL code remains the same." }
+      - { de: "Er fügt die komplette Laufzeit zur Auslieferung hinzu.", en: "He adds the entire runtime to the delivery." }
+      - { de: "Er übersetzt den IL-Code in Maschinencode für 32 Bit.", en: "It translates the IL code into 32-bit machine code." }
     correct: [0]
-    explanation: { de: "23.1.4 und 23.1.5 (Seite 1644 und 1645): Bei einem normalen, von der Laufzeit abhängigen Assembly wirkt sich die Zielruntime nur auf den Starthelfer aus. Entscheidend wird sie bei eigenständigen und ReadyToRun-Programmen." }
+    explanation: { de: "23.1.4 und 23.1.5 (Seite 1644 und 1645): Bei einem normalen, von der Laufzeit abhängigen Assembly wirkt sich die Zielruntime nur auf den Starthelfer aus. Entscheidend wird sie bei eigenständigen und ReadyToRun-Programmen.", en: "23.1.4 and 23.1.5 (pages 1644 and 1645): In a normal, runtime-dependent assembly, the target runtime affects only the startup helper. It becomes critical for standalone and ReadyToRun programs." }

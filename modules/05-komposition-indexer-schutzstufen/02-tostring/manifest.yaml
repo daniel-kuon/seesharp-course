@@ -1,8 +1,8 @@
 id: komposition-tostring
-title: { de: "ToString überschreiben" }
+title: { de: "ToString überschreiben", en: "Override ToString" }
 reading:
   section: "7.16"
-  title: { de: "Übungsaufgaben zum Kapitel 7, Aufgabe 5" }
+  title: { de: "Übungsaufgaben zum Kapitel 7, Aufgabe 5", en: "Exercises for Chapter 7, Exercise 5" }
   printedPage: 588
 teaches:
   - oop.tostring-override
@@ -20,11 +20,11 @@ items:
     testProject: "b9 Tests/b9.Tests.csproj"
   - type: multipleChoice
     id: ohne-override
-    prompt: { de: "Was gibt Console.WriteLine(new Bruch(7, 8, \"\")) aus, solange ToString() nicht überschrieben ist?" }
+    prompt: { de: "Was gibt Console.WriteLine(new Bruch(7, 8, \"\")) aus, solange ToString() nicht überschrieben ist?", en: "What does `Console.WriteLine(new Bruch(7, 8, \"\"))` print as long as `ToString()` has not been overridden?" }
     options:
-      - { de: "Den Typnamen Bruch, weil die geerbte Object-Implementierung den Typnamen liefert." }
-      - { de: "7/8, weil der Compiler die Eigenschaften zusammenbaut." }
-      - { de: "Einen Compilerfehler, weil Bruch kein string ist." }
-      - { de: "Die Speicheradresse des Objekts." }
+      - { de: "Den Typnamen Bruch, weil die geerbte Object-Implementierung den Typnamen liefert.", en: "The type name is \"Bruch\" because the inherited `Object` implementation provides the type name." }
+      - { de: "7/8, weil der Compiler die Eigenschaften zusammenbaut.", en: "7/8, because the compiler combines the properties." }
+      - { de: "Einen Compilerfehler, weil Bruch kein string ist.", en: "A compiler error because \"Bruch\" is not a string." }
+      - { de: "Die Speicheradresse des Objekts.", en: "The memory address of the object." }
     correct: [0]
-    explanation: { de: "Jede Klasse erbt ToString() von Object; die Standardfassung liefert den voll qualifizierten Typnamen. Erst die Überschreibung macht die Ausgabe nützlich." }
+    explanation: { de: "Jede Klasse erbt ToString() von Object; die Standardfassung liefert den voll qualifizierten Typnamen. Erst die Überschreibung macht die Ausgabe nützlich.", en: "Every class inherits `ToString()` from `Object`; the default implementation returns the fully qualified type name. Only by overriding it does the output become useful." }

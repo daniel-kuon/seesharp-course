@@ -1,8 +1,8 @@
 id: attribute-reflexion-nutzen
-title: { de: "Reflexion nutzen: Mapper, Aufrufer, Plugins" }
+title: { de: "Reflexion nutzen: Mapper, Aufrufer, Plugins", en: "Using Reflection: Mappers, Callers, Plugins" }
 reading:
   section: "14.7.1"
-  title: { de: "Traditionelle Kompensation per Type-Parameter" }
+  title: { de: "Traditionelle Kompensation per Type-Parameter", en: "Traditional Compensation Using Type Parameters" }
   printedPage: 942
 teaches:
   - reflection.get-set-property

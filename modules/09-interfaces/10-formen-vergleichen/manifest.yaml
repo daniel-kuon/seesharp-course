@@ -1,9 +1,9 @@
 id: interfaces-formen-vergleichen
-title: { de: "Zusatz: Formen vergleichen und sortieren" }
+title: { de: "Zusatz: Formen vergleichen und sortieren", en: "Extra: Comparing and Sorting Shapes" }
 optional: true
 reading:
   section: "9.1.1.2"
-  title: { de: "Konkrete Instanzmethoden" }
+  title: { de: "Konkrete Instanzmethoden", en: "Specific instance methods" }
   printedPage: 616
 teaches:
   - interfaces.declare

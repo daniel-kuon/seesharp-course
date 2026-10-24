@@ -1,8 +1,8 @@
 id: komposition-bibliothek-und-konsument
-title: { de: "Bibliothek und Konsument: FractionLib" }
+title: { de: "Bibliothek und Konsument: FractionLib", en: "Library and Consumer: FractionLib" }
 reading:
   section: "5.13"
-  title: { de: "Schutzstufen für Klassen und ihre Mitglieder" }
+  title: { de: "Schutzstufen für Klassen und ihre Mitglieder", en: "Access Levels for Classes and Their Members" }
   printedPage: 398
 teaches:
   - oop.library-consumer
@@ -24,21 +24,21 @@ items:
     testProject: "Bruchrechnung Tests/Bruchrechnung.Tests.csproj"
   - type: multipleChoice
     id: internal
-    prompt: { de: "Eine Methode in FractionLib ist als internal deklariert. Wer darf sie aufrufen?" }
+    prompt: { de: "Eine Methode in FractionLib ist als internal deklariert. Wer darf sie aufrufen?", en: "A method in FractionLib is declared as `internal`. Who is allowed to call it?" }
     options:
-      - { de: "Nur Code innerhalb der Assembly FractionLib.dll." }
-      - { de: "Jedes Projekt, das FractionLib referenziert." }
-      - { de: "Nur die Klasse, in der sie steht." }
-      - { de: "Nur abgeleitete Klassen." }
+      - { de: "Nur Code innerhalb der Assembly FractionLib.dll.", en: "Only code within the FractionLib.dll assembly." }
+      - { de: "Jedes Projekt, das FractionLib referenziert.", en: "Any project that references FractionLib." }
+      - { de: "Nur die Klasse, in der sie steht.", en: "Just the class she's in." }
+      - { de: "Nur abgeleitete Klassen.", en: "Only derived classes." }
     correct: [0]
-    explanation: { de: "internal bedeutet assembly-intern. Das Konsolenprojekt ist eine eigene Assembly und sieht die Methode nicht, obwohl es die Bibliothek referenziert." }
+    explanation: { de: "internal bedeutet assembly-intern. Das Konsolenprojekt ist eine eigene Assembly und sieht die Methode nicht, obwohl es die Bibliothek referenziert.", en: "\"internal\" means \"internal to the assembly.\" The console project is a separate assembly and cannot see the method, even though it references the library." }
   - type: multipleChoice
     id: standard-klasse
-    prompt: { de: "Eine Klasse in einer Bibliothek wird ohne Schutzstufe deklariert: class Helfer { … }. Was gilt?" }
+    prompt: { de: "Eine Klasse in einer Bibliothek wird ohne Schutzstufe deklariert: class Helfer { … }. Was gilt?", en: "A class in a library is declared without an access modifier: class Helper { … }. What happens?" }
     options:
-      - { de: "Sie ist internal; andere Assemblys können sie nicht verwenden." }
-      - { de: "Sie ist public; das ist der Standard für Klassen." }
-      - { de: "Sie ist private; nicht einmal die eigene Assembly sieht sie." }
-      - { de: "Der Compiler meldet einen Fehler, weil die Schutzstufe fehlt." }
+      - { de: "Sie ist internal; andere Assemblys können sie nicht verwenden.", en: "It is internal; other assemblies cannot use it." }
+      - { de: "Sie ist public; das ist der Standard für Klassen.", en: "It is public; that is the default for classes." }
+      - { de: "Sie ist private; nicht einmal die eigene Assembly sieht sie.", en: "It is private; not even its own assembly can see it." }
+      - { de: "Der Compiler meldet einen Fehler, weil die Schutzstufe fehlt.", en: "The compiler reports an error because the protection level is missing." }
     correct: [0]
-    explanation: { de: "Nicht geschachtelte Klassen sind standardmäßig internal (Abschnitt 5.13.1). Wer eine Klasse aus einer Bibliothek herausgeben will, muss public hinschreiben." }
+    explanation: { de: "Nicht geschachtelte Klassen sind standardmäßig internal (Abschnitt 5.13.1). Wer eine Klasse aus einer Bibliothek herausgeben will, muss public hinschreiben.", en: "Non-nested classes are `internal` by default (Section 5.13.1). If you want to expose a class from a library, you must specify `public`." }

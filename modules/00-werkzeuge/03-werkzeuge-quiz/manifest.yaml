@@ -1,8 +1,8 @@
 id: werkzeuge-quiz
-title: { de: "Werkzeuge-Quiz" }
+title: { de: "Werkzeuge-Quiz", en: "Tools Quiz" }
 reading:
   section: "3.1"
-  title: { de: ".NET SDK" }
+  title: { de: ".NET SDK", en: ".NET SDK" }
   printedPage: 61
 teaches:
   - tools.sdk-version
@@ -14,62 +14,62 @@ requires:
 items:
   - type: multipleChoice
     id: sdk-auswahl
-    prompt: { de: "Auf dem Rechner sind mehrere .NET-SDKs installiert. Welches SDK verwendet `dotnet build`?" }
+    prompt: { de: "Auf dem Rechner sind mehrere .NET-SDKs installiert. Welches SDK verwendet `dotnet build`?", en: "Several .NET SDKs are installed on the computer. Which SDK does `dotnet build` use?" }
     options:
-      - { de: "Immer das älteste, damit alte Projekte weiter funktionieren." }
-      - { de: "Das neueste, es sei denn, eine global.json im Projektordner oder darüber legt eine Version fest." }
-      - { de: "Das SDK, das beim letzten Rider-Start ausgewählt wurde." }
-      - { de: "Es fragt bei jedem Aufruf nach." }
+      - { de: "Immer das älteste, damit alte Projekte weiter funktionieren.", en: "Always the oldest one, so that old projects continue to work." }
+      - { de: "Das neueste, es sei denn, eine global.json im Projektordner oder darüber legt eine Version fest.", en: "The latest version, unless a `global.json` file in the project folder or elsewhere specifies a version." }
+      - { de: "Das SDK, das beim letzten Rider-Start ausgewählt wurde.", en: "The SDK that was selected the last time Rider was launched." }
+      - { de: "Es fragt bei jedem Aufruf nach.", en: "It asks for confirmation every time it is called." }
     correct: [1]
-    explanation: { de: "Ohne global.json gewinnt das neueste installierte SDK. SeeSharp liefert eine global.json mit, damit alle Übungen mit derselben Version gebaut werden." }
+    explanation: { de: "Ohne global.json gewinnt das neueste installierte SDK. SeeSharp liefert eine global.json mit, damit alle Übungen mit derselben Version gebaut werden.", en: "Without `global.json`, the most recently installed SDK takes precedence. SeeSharp includes a `global.json` file to ensure that all exercises are built using the same version." }
   - type: multipleChoice
     id: sdk-liste
-    prompt: { de: "Mit welchem Befehl siehst du, welche SDK-Versionen installiert sind?" }
+    prompt: { de: "Mit welchem Befehl siehst du, welche SDK-Versionen installiert sind?", en: "What command do you use to see which SDK versions are installed?" }
     options:
-      - { de: "dotnet --list-sdks" }
-      - { de: "dotnet new sdk" }
-      - { de: "dotnet run --version" }
-      - { de: "csc --sdks" }
+      - { de: "dotnet --list-sdks", en: "dotnet --list-sdks" }
+      - { de: "dotnet new sdk", en: "dotnet new sdk" }
+      - { de: "dotnet run --version", en: "dotnet run --version" }
+      - { de: "csc --sdks", en: "csc --sdks" }
     correct: [0]
   - type: multipleChoice
     id: neues-projekt
-    prompt: { de: "Welcher Befehl legt ein neues Konsolenprojekt namens Hallo an?" }
+    prompt: { de: "Welcher Befehl legt ein neues Konsolenprojekt namens Hallo an?", en: "Which command creates a new console project named `Hallo`?" }
     options:
-      - { de: "dotnet create Hallo" }
-      - { de: "dotnet new console -n Hallo" }
-      - { de: "dotnet build --new Hallo" }
-      - { de: "dotnet new Hallo --console" }
+      - { de: "dotnet create Hallo", en: "dotnet create Hallo" }
+      - { de: "dotnet new console -n Hallo", en: "dotnet new console -n Hallo" }
+      - { de: "dotnet build --new Hallo", en: "dotnet build --new Hallo" }
+      - { de: "dotnet new Hallo --console", en: "dotnet new Hallo --console" }
     correct: [1]
   - type: multipleChoice
     id: projektdatei
-    prompt: { de: "Welche Aussagen über den Aufbau eines Projekts treffen zu? (mehrere möglich)" }
+    prompt: { de: "Welche Aussagen über den Aufbau eines Projekts treffen zu? (mehrere möglich)", en: "Which of the following statements about the structure of a project are true? (more than one may apply)" }
     options:
-      - { de: "Die .csproj-Datei legt unter anderem Zielframework und Ausgabetyp fest." }
-      - { de: "Der Ordner obj enthält Zwischenergebnisse des Builds und kann gelöscht werden." }
-      - { de: "Der Ordner bin enthält den Quellcode." }
-      - { de: "Eine Solution (.sln/.slnx) fasst ein oder mehrere Projekte zusammen." }
+      - { de: "Die .csproj-Datei legt unter anderem Zielframework und Ausgabetyp fest.", en: "Among other things, the .csproj file specifies the target framework and output type." }
+      - { de: "Der Ordner obj enthält Zwischenergebnisse des Builds und kann gelöscht werden.", en: "The \"obj\" folder contains intermediate build results and can be deleted." }
+      - { de: "Der Ordner bin enthält den Quellcode.", en: "The \"bin\" folder contains the source code." }
+      - { de: "Eine Solution (.sln/.slnx) fasst ein oder mehrere Projekte zusammen.", en: "A solution (.sln/.slnx) groups one or more projects together." }
     correct: [0, 1, 3]
-    explanation: { de: "bin enthält das Ergebnis des Builds, nicht den Quellcode. Quellcode liegt direkt im Projektordner." }
+    explanation: { de: "bin enthält das Ergebnis des Builds, nicht den Quellcode. Quellcode liegt direkt im Projektordner.", en: "The \"bin\" folder contains the build output, not the source code. The source code is located directly in the project folder." }
   - type: multipleChoice
     id: ausliefern
-    prompt: { de: "Welche Dateien aus bin/Release/net10.0 musst du mindestens an einen Kunden ausliefern, damit das Programm auf einem Rechner mit installierter .NET-Laufzeit startet?" }
+    prompt: { de: "Welche Dateien aus bin/Release/net10.0 musst du mindestens an einen Kunden ausliefern, damit das Programm auf einem Rechner mit installierter .NET-Laufzeit startet?", en: "Which files from bin/Release/net10.0 do you need to provide to a customer at a minimum so that the program will run on a computer with the .NET runtime installed?" }
     options:
-      - { de: "Nur die .exe-Datei." }
-      - { de: "Die .dll, die .exe und die .runtimeconfig.json." }
-      - { de: "Alle Dateien einschließlich .pdb und obj-Ordner." }
-      - { de: "Nur die .pdb-Datei, sie enthält das Programm." }
+      - { de: "Nur die .exe-Datei.", en: "Just the .exe file." }
+      - { de: "Die .dll, die .exe und die .runtimeconfig.json.", en: "The .dll, the .exe, and the .runtimeconfig.json." }
+      - { de: "Alle Dateien einschließlich .pdb und obj-Ordner.", en: "All files, including .pdb files and the obj folder." }
+      - { de: "Nur die .pdb-Datei, sie enthält das Programm.", en: "Just the .pdb file—it contains the program." }
     correct: [1]
-    explanation: { de: "Die .dll enthält den IL-Code, die .exe ist nur der Windows-Starthelfer, die .runtimeconfig.json nennt die benötigte Laufzeitversion. Die .pdb braucht nur der Debugger." }
+    explanation: { de: "Die .dll enthält den IL-Code, die .exe ist nur der Windows-Starthelfer, die .runtimeconfig.json nennt die benötigte Laufzeitversion. Die .pdb braucht nur der Debugger.", en: "The .dll file contains the IL code; the .exe file is simply the Windows launcher; the .runtimeconfig.json file specifies the required runtime version. The .pdb file is only needed by the debugger." }
   - type: multipleChoice
     id: top-level
-    prompt: { de: "Was gilt für Anweisungen auf oberster Ebene (Top-Level-Statements)?" }
+    prompt: { de: "Was gilt für Anweisungen auf oberster Ebene (Top-Level-Statements)?", en: "What are the rules for top-level statements?" }
     options:
-      - { de: "Der Compiler erzeugt daraus im Hintergrund eine Startklasse mit Main-Methode." }
-      - { de: "Sie sind in jeder Datei eines Projekts erlaubt." }
-      - { de: "Sie ersetzen die Projektdatei." }
-      - { de: "Sie funktionieren nur in Klassenbibliotheken." }
+      - { de: "Der Compiler erzeugt daraus im Hintergrund eine Startklasse mit Main-Methode.", en: "The compiler uses this to generate a starter class with a `Main` method in the background." }
+      - { de: "Sie sind in jeder Datei eines Projekts erlaubt.", en: "They are allowed in every file in a project." }
+      - { de: "Sie ersetzen die Projektdatei.", en: "You are replacing the project file." }
+      - { de: "Sie funktionieren nur in Klassenbibliotheken.", en: "They only work in class libraries." }
     correct: [0]
-    explanation: { de: "Nur eine Datei pro Projekt darf Top-Level-Statements enthalten; der Compiler erzeugt daraus die Main-Methode." }
+    explanation: { de: "Nur eine Datei pro Projekt darf Top-Level-Statements enthalten; der Compiler erzeugt daraus die Main-Methode.", en: "Only one file per project may contain top-level statements; the compiler uses these to generate the `Main` method." }
   - type: open
     id: build-vs-run
-    prompt: { de: "Was ist der Unterschied zwischen `dotnet build` und `dotnet run`? Wann nimmst du welches?" }
+    prompt: { de: "Was ist der Unterschied zwischen `dotnet build` und `dotnet run`? Wann nimmst du welches?", en: "What's the difference between `dotnet build` and `dotnet run`? When do you use which one?" }

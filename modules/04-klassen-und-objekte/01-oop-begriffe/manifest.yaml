@@ -1,8 +1,8 @@
 id: klassen-oop-begriffe
-title: { de: "OOP-Begriffe im Quelltext" }
+title: { de: "OOP-Begriffe im Quelltext", en: "OOP Terms in the Source Code" }
 reading:
   section: "5.1"
-  title: { de: "Überblick, historische Wurzeln, Beispiel" }
+  title: { de: "Überblick, historische Wurzeln, Beispiel", en: "Overview, Historical Roots, Example" }
   printedPage: 286
 teaches:
   - oop.terminology
@@ -14,61 +14,61 @@ requires:
 items:
   - type: multipleChoice
     id: konstruktor
-    prompt: { de: "Welche Markierung zeigt eine Konstruktordefinition?" }
-    options: [{ de: "(1)" }, { de: "(4)" }, { de: "(7)" }, { de: "(10)" }]
+    prompt: { de: "Welche Markierung zeigt eine Konstruktordefinition?", en: "What symbol indicates a constructor definition?" }
+    options: [{ de: "(1)", en: "(1)" }, { de: "(4)", en: "(4)" }, { de: "(7)", en: "(7)" }, { de: "(10)", en: "(10)" }]
     correct: [1]
   - type: multipleChoice
     id: instanzvariablen
-    prompt: { de: "Welche Markierung zeigt die Deklaration von Instanzvariablen?" }
-    options: [{ de: "(2)" }, { de: "(3)" }, { de: "(5)" }, { de: "(11)" }]
+    prompt: { de: "Welche Markierung zeigt die Deklaration von Instanzvariablen?", en: "What symbol indicates the declaration of instance variables?" }
+    options: [{ de: "(2)", en: "(2)" }, { de: "(3)", en: "(3)" }, { de: "(5)", en: "(5)" }, { de: "(11)", en: "(11)" }]
     correct: [0]
   - type: multipleChoice
     id: klassenvariable
-    prompt: { de: "Welche Markierung zeigt die Deklaration einer Klassenvariablen (statisches Feld)?" }
-    options: [{ de: "(2)" }, { de: "(3)" }, { de: "(6)" }, { de: "(10)" }]
+    prompt: { de: "Welche Markierung zeigt die Deklaration einer Klassenvariablen (statisches Feld)?", en: "What symbol indicates the declaration of a class variable (static field)?" }
+    options: [{ de: "(2)", en: "(2)" }, { de: "(3)", en: "(3)" }, { de: "(6)", en: "(6)" }, { de: "(10)", en: "(10)" }]
     correct: [1]
   - type: multipleChoice
     id: instanzeigenschaft
-    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzeigenschaft?" }
-    options: [{ de: "(2)" }, { de: "(5)" }, { de: "(6)" }, { de: "(9)" }]
+    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzeigenschaft?", en: "Which marker indicates the definition of an instance property?" }
+    options: [{ de: "(2)", en: "(2)" }, { de: "(5)", en: "(5)" }, { de: "(6)", en: "(6)" }, { de: "(9)", en: "(9)" }]
     correct: [1]
   - type: multipleChoice
     id: statische-eigenschaft
-    prompt: { de: "Welche Markierung zeigt die Definition einer statischen Eigenschaft?" }
-    options: [{ de: "(3)" }, { de: "(5)" }, { de: "(6)" }, { de: "(10)" }]
+    prompt: { de: "Welche Markierung zeigt die Definition einer statischen Eigenschaft?", en: "Which symbol indicates the definition of a static property?" }
+    options: [{ de: "(3)", en: "(3)" }, { de: "(5)", en: "(5)" }, { de: "(6)", en: "(6)" }, { de: "(10)", en: "(10)" }]
     correct: [2]
   - type: multipleChoice
     id: instanzmethode-parameter
-    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzmethode mit einem Wertparameter vom Typ einer Klasse?" }
-    options: [{ de: "(4)" }, { de: "(7)" }, { de: "(9)" }, { de: "(10)" }]
+    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzmethode mit einem Wertparameter vom Typ einer Klasse?", en: "Which marker indicates that an instance method is defined with a value parameter of a class type?" }
+    options: [{ de: "(4)", en: "(4)" }, { de: "(7)", en: "(7)" }, { de: "(9)", en: "(9)" }, { de: "(10)", en: "(10)" }]
     correct: [1]
   - type: multipleChoice
     id: methodenaufruf
-    prompt: { de: "Welche Markierung zeigt einen Methodenaufruf?" }
-    options: [{ de: "(7)" }, { de: "(8)" }, { de: "(9)" }, { de: "(11)" }]
+    prompt: { de: "Welche Markierung zeigt einen Methodenaufruf?", en: "Which symbol indicates a method call?" }
+    options: [{ de: "(7)", en: "(7)" }, { de: "(8)", en: "(8)" }, { de: "(9)", en: "(9)" }, { de: "(11)", en: "(11)" }]
     correct: [1]
   - type: multipleChoice
     id: referenzrueckgabe
-    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzmethode mit Referenzrückgabe?" }
-    options: [{ de: "(7)" }, { de: "(9)" }, { de: "(10)" }, { de: "(12)" }]
+    prompt: { de: "Welche Markierung zeigt die Definition einer Instanzmethode mit Referenzrückgabe?", en: "What symbol indicates the definition of an instance method that returns a reference?" }
+    options: [{ de: "(7)", en: "(7)" }, { de: "(9)", en: "(9)" }, { de: "(10)", en: "(10)" }, { de: "(12)", en: "(12)" }]
     correct: [1]
   - type: multipleChoice
     id: klassenmethode
-    prompt: { de: "Welche Markierung zeigt den Definitionskopf einer Klassenmethode?" }
-    options: [{ de: "(4)" }, { de: "(7)" }, { de: "(10)" }, { de: "(12)" }]
+    prompt: { de: "Welche Markierung zeigt den Definitionskopf einer Klassenmethode?", en: "Which marker indicates the definition header of a class method?" }
+    options: [{ de: "(4)", en: "(4)" }, { de: "(7)", en: "(7)" }, { de: "(10)", en: "(10)" }, { de: "(12)", en: "(12)" }]
     correct: [2]
   - type: multipleChoice
     id: objekterzeugung
-    prompt: { de: "Welche Markierung zeigt die Deklaration einer lokalen Variablen zusammen mit einer Objekterzeugung?" }
-    options: [{ de: "(2)" }, { de: "(8)" }, { de: "(11)" }, { de: "(12)" }]
+    prompt: { de: "Welche Markierung zeigt die Deklaration einer lokalen Variablen zusammen mit einer Objekterzeugung?", en: "Which symbol indicates the declaration of a local variable along with the creation of an object?" }
+    options: [{ de: "(2)", en: "(2)" }, { de: "(8)", en: "(8)" }, { de: "(11)", en: "(11)" }, { de: "(12)", en: "(12)" }]
     correct: [2]
   - type: multipleChoice
     id: operator
-    prompt: { de: "Welche Markierung zeigt eine Operatorüberladung?" }
-    options: [{ de: "(6)" }, { de: "(10)" }, { de: "(12)" }, { de: "(1)" }]
+    prompt: { de: "Welche Markierung zeigt eine Operatorüberladung?", en: "Which symbol indicates an operator overloading?" }
+    options: [{ de: "(6)", en: "(6)" }, { de: "(10)", en: "(10)" }, { de: "(12)", en: "(12)" }, { de: "(1)", en: "(1)" }]
     correct: [2]
   - type: multipleChoice
     id: klassendefinition
-    prompt: { de: "Welche Markierung zeigt den Kopf der Klassendefinition?" }
-    options: [{ de: "(1)" }, { de: "(4)" }, { de: "(5)" }, { de: "(10)" }]
+    prompt: { de: "Welche Markierung zeigt den Kopf der Klassendefinition?", en: "Which marker indicates the beginning of the class definition?" }
+    options: [{ de: "(1)", en: "(1)" }, { de: "(4)", en: "(4)" }, { de: "(5)", en: "(5)" }, { de: "(10)", en: "(10)" }]
     correct: [0]

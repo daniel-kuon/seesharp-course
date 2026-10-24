@@ -1,8 +1,8 @@
 id: adonet-verbindung-und-befehle
-title: { de: "Verbindung, Befehle und Parameter" }
+title: { de: "Verbindung, Befehle und Parameter", en: "Connection, Commands, and Parameters" }
 reading:
   section: "19.7.5"
-  title: { de: "DbCommand" }
+  title: { de: "DbCommand", en: "DbCommand" }
   printedPage: 1323
 teaches:
   - ado.connection-open-close
@@ -26,13 +26,13 @@ items:
     testProject: "Kontakte Tests/Kontakte.Tests.csproj"
   - type: multipleChoice
     id: parameter-statt-verkettung
-    prompt: { de: "Ein Programm baut den Befehl so: \"DELETE FROM Kontakt WHERE Name = '\" + name + \"'\". Ein Benutzer gibt als Namen  x' OR '1'='1  ein. Was passiert, und was ist die Abhilfe?" }
+    prompt: { de: "Ein Programm baut den Befehl so: \"DELETE FROM Kontakt WHERE Name = '\" + name + \"'\". Ein Benutzer gibt als Namen  x' OR '1'='1  ein. Was passiert, und was ist die Abhilfe?", en: "A program builds the command like this: `\"DELETE FROM Kontakt WHERE Name = '\" + name + \"'\"`. A user enters `x' OR '1'='1` as the name. What happens, and what is the remedy?" }
     options:
-      - { de: "Die Bedingung wird für jede Zeile wahr: Alle Kontakte werden gelöscht (SQL-Injection). Abhilfe: einen Parameter @name verwenden, dessen Wert der Provider getrennt vom SQL-Text überträgt." }
-      - { de: "Es gibt eine Ausnahme wegen der Hochkommas. Abhilfe: Hochkommas im Namen mit Replace entfernen." }
-      - { de: "Nichts Besonderes: Der Name wird wörtlich gesucht und nicht gefunden. Abhilfe ist nicht nötig." }
+      - { de: "Die Bedingung wird für jede Zeile wahr: Alle Kontakte werden gelöscht (SQL-Injection). Abhilfe: einen Parameter @name verwenden, dessen Wert der Provider getrennt vom SQL-Text überträgt.", en: "The condition is true for every row: All contacts are deleted (SQL injection). Workaround: Use a parameter named @name, whose value the provider passes separately from the SQL text." }
+      - { de: "Es gibt eine Ausnahme wegen der Hochkommas. Abhilfe: Hochkommas im Namen mit Replace entfernen.", en: "There is one exception regarding quotation marks. Solution: Use the \"Replace\" function to remove quotation marks from the name." }
+      - { de: "Nichts Besonderes: Der Name wird wörtlich gesucht und nicht gefunden. Abhilfe ist nicht nötig.", en: "Nothing out of the ordinary: The name is searched for verbatim and not found. No action is required." }
     correct: [0]
-    explanation: { de: "19.7.5: Wer Benutzereingaben in den SQL-Text einfügt, lässt den Benutzer SQL schreiben. Mit Parametern bleibt der Wert immer Daten und wird nie als SQL gelesen; zusätzlich entfallen Probleme mit Hochkommas (O'Brien), Datumsformaten und Dezimaltrennzeichen." }
+    explanation: { de: "19.7.5: Wer Benutzereingaben in den SQL-Text einfügt, lässt den Benutzer SQL schreiben. Mit Parametern bleibt der Wert immer Daten und wird nie als SQL gelesen; zusätzlich entfallen Probleme mit Hochkommas (O'Brien), Datumsformaten und Dezimaltrennzeichen.", en: "19.7.5: If you insert user input directly into the SQL text, you are allowing the user to write SQL. With parameters, the value always remains data and is never interpreted as SQL; this also eliminates problems with double quotes (O'Brien), date formats, and decimal separators." }
   - type: open
     id: dbnull
-    prompt: { de: "Warum liefert ExecuteScalar für eine Zeile mit NULL in der Spalte nicht einfach null, und was passiert, wenn du das Ergebnis direkt mit (string) umwandelst? Beschreibe, wie du null und DBNull.Value in beiden Richtungen behandelst (Parameter setzen, Ergebnis lesen)." }
+    prompt: { de: "Warum liefert ExecuteScalar für eine Zeile mit NULL in der Spalte nicht einfach null, und was passiert, wenn du das Ergebnis direkt mit (string) umwandelst? Beschreibe, wie du null und DBNull.Value in beiden Richtungen behandelst (Parameter setzen, Ergebnis lesen).", en: "Why doesn't ExecuteScalar simply return null for a row with NULL in that column, and what happens if you cast the result directly to (string)? Describe how you handle null and DBNull.Value in both directions (setting parameters, reading results)." }

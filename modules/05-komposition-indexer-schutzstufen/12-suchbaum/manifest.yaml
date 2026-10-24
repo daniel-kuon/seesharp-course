@@ -1,9 +1,9 @@
 id: komposition-suchbaum
-title: { de: "Zusatzaufgabe: Ein binärer Suchbaum mit geschachteltem Knoten" }
+title: { de: "Zusatzaufgabe: Ein binärer Suchbaum mit geschachteltem Knoten", en: "Extra exercise: A binary search tree with a nested node" }
 optional: true
 reading:
   section: "5.11"
-  title: { de: "Geschachtelte Klassen" }
+  title: { de: "Geschachtelte Klassen", en: "Nested Classes" }
   printedPage: 391
 teaches:
   - oop.nested-class

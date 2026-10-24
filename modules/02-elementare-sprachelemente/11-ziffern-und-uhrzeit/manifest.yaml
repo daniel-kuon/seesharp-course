@@ -1,9 +1,9 @@
 id: sprachelemente-ziffern-und-uhrzeit
-title: { de: "Zusatz: Ziffern und Uhrzeit" }
+title: { de: "Zusatz: Ziffern und Uhrzeit", en: "Extra: Numbers and Time" }
 optional: true
 reading:
   section: "4.5.1"
-  title: { de: "Arithmetische Operatoren" }
+  title: { de: "Arithmetische Operatoren", en: "Arithmetic Operators" }
   printedPage: 216
 teaches:
   - operators.integer-division

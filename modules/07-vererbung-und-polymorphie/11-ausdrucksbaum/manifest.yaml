@@ -1,9 +1,9 @@
 id: vererbung-ausdrucksbaum
-title: { de: "Zusatz: Rechenausdrücke als Baum" }
+title: { de: "Zusatz: Rechenausdrücke als Baum", en: "Extra: Arithmetic Expressions as Trees" }
 optional: true
 reading:
   section: "7.9"
-  title: { de: "Polymorphie (Überschreiben von Methoden)" }
+  title: { de: "Polymorphie (Überschreiben von Methoden)", en: "Polymorphism (Overriding Methods)" }
   printedPage: 566
 teaches:
   - inheritance.virtual-override

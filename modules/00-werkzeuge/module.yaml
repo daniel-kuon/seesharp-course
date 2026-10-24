@@ -1,6 +1,6 @@
 id: werkzeuge
-title: { de: "Werkzeuge und erstes Projekt" }
+title: { de: "Werkzeuge und erstes Projekt", en: "Tools and First Project" }
 reading:
   section: "3"
-  title: { de: "Werkzeuge zum Entwickeln von C#-Software" }
+  title: { de: "Werkzeuge zum Entwickeln von C#-Software", en: "Tools for Developing C# Software" }
   printedPage: 61

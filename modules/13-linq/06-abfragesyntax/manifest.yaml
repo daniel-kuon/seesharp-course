@@ -1,8 +1,8 @@
 id: linq-abfragesyntax
-title: { de: "Abfragesyntax mit let, into und join" }
+title: { de: "Abfragesyntax mit let, into und join", en: "Query Syntax with let, into, and join" }
 reading:
   section: "18.3"
-  title: { de: "Abfragesyntax" }
+  title: { de: "Abfragesyntax", en: "Query Syntax" }
   printedPage: 1235
 teaches:
   - linq.query-syntax
@@ -23,20 +23,20 @@ items:
     testProject: "Abfragesyntax Tests/Abfragesyntax.Tests.csproj"
   - type: multipleChoice
     id: let-uebersetzung
-    prompt: { de: "from p in produkte  let brutto = p.Preis * 1.19m  where brutto > 20m  select (p.Name, brutto)  — In welche Methodenaufrufe übersetzt der Compiler das?" }
+    prompt: { de: "from p in produkte  let brutto = p.Preis * 1.19m  where brutto > 20m  select (p.Name, brutto)  — In welche Methodenaufrufe übersetzt der Compiler das?", en: "`from p in produkte let brutto = p.Preis * 1.19m where brutto > 20m select (p.Name, brutto)` — Which method calls does the compiler translate this into?" }
     options:
-      - { de: "Ein Select, das p und brutto in einem anonymen Typ bündelt (transparenter Bezeichner), gefolgt von Where und einem weiteren Select, das darauf zugreift." }
-      - { de: "Ein einziges Where; let wird dabei weggelassen." }
-      - { de: "Ein Aggregate-Aufruf, der brutto als Akkumulator führt." }
+      - { de: "Ein Select, das p und brutto in einem anonymen Typ bündelt (transparenter Bezeichner), gefolgt von Where und einem weiteren Select, das darauf zugreift.", en: "A `Select` that bundles `p` and `brutto` into an anonymous type (transparent identifier), followed by `Where` and another `Select` that accesses it." }
+      - { de: "Ein einziges Where; let wird dabei weggelassen.", en: "A single \"where; let\" is omitted here." }
+      - { de: "Ein Aggregate-Aufruf, der brutto als Akkumulator führt.", en: "An aggregate call that acts as an accumulator in the gross sense." }
     correct: [0]
-    explanation: { de: "18.3 (Seite 1235 bis 1243): Die Abfragesyntax ist nur Zucker; der Compiler schreibt sie in Methodenaufrufe um. let wird zu einem Select mit anonymem Typ { p, brutto }, den die folgenden Klauseln unter dem Namen der Bereichsvariablen ansprechen." }
+    explanation: { de: "18.3 (Seite 1235 bis 1243): Die Abfragesyntax ist nur Zucker; der Compiler schreibt sie in Methodenaufrufe um. let wird zu einem Select mit anonymem Typ { p, brutto }, den die folgenden Klauseln unter dem Namen der Bereichsvariablen ansprechen.", en: "18.3 (pages 1235–1243): Query syntax is just sugar; the compiler rewrites it into method calls. `let` becomes a `Select` with the anonymous type `{ p, brutto }`, which the following clauses address under the name of the range variable." }
   - type: multipleChoice
     id: kein-schluesselwort
-    prompt: { de: "Welche dieser Operationen hat in der Abfragesyntax kein eigenes Schlüsselwort und wird deshalb mit dem Methodenaufruf auf der geklammerten Abfrage geschrieben?" }
+    prompt: { de: "Welche dieser Operationen hat in der Abfragesyntax kein eigenes Schlüsselwort und wird deshalb mit dem Methodenaufruf auf der geklammerten Abfrage geschrieben?", en: "Which of these operations does not have its own keyword in the query syntax and is therefore written as part of the method call in the query enclosed in parentheses?" }
     options:
-      - { de: "Take, Skip und Count, z. B. (from p in produkte orderby p.Preis select p).Take(3)" }
-      - { de: "where" }
-      - { de: "orderby" }
-      - { de: "join" }
+      - { de: "Take, Skip und Count, z. B. (from p in produkte orderby p.Preis select p).Take(3)", en: "`Take`, `Skip`, and `Count`, e.g. `(from p in produkte orderby p.Preis select p).Take(3)`" }
+      - { de: "where", en: "where" }
+      - { de: "orderby", en: "orderby" }
+      - { de: "join", en: "join" }
     correct: [0]
-    explanation: { de: "Die Abfragesyntax kennt from, where, select, group, into, orderby, join und let. Alles andere (Take, Skip, Count, Distinct, Chunk usw.) hängt man als Methode an. Daher lässt sich nicht jede Methodensyntax-Abfrage allein in Abfragesyntax ausdrücken (18.6 Aufgabe 1.1)." }
+    explanation: { de: "Die Abfragesyntax kennt from, where, select, group, into, orderby, join und let. Alles andere (Take, Skip, Count, Distinct, Chunk usw.) hängt man als Methode an. Daher lässt sich nicht jede Methodensyntax-Abfrage allein in Abfragesyntax ausdrücken (18.6 Aufgabe 1.1).", en: "The query syntax has `from`, `where`, `select`, `group`, `into`, `orderby`, `join`, and `let`. Everything else (`Take`, `Skip`, `Count`, `Distinct`, `Chunk`, etc.) is attached as a method. That is why not every method-syntax query can be expressed in query syntax alone (18.6 Exercise 1.1)." }

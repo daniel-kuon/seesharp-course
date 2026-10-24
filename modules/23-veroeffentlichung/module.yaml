@@ -1,6 +1,6 @@
 id: veroeffentlichung
-title: { de: "Veröffentlichung von Anwendungen" }
+title: { de: "Veröffentlichung von Anwendungen", en: "Publishing Applications" }
 reading:
   section: "23"
-  title: { de: "Veröffentlichung von .NET-Software" }
+  title: { de: "Veröffentlichung von .NET-Software", en: "Publishing .NET Software" }
   printedPage: 1637

@@ -1,6 +1,6 @@
 id: komposition-indexer-schutzstufen
-title: { de: "Komposition, Indexer, Schutzstufen" }
+title: { de: "Komposition, Indexer, Schutzstufen", en: "Composition, Indexers, Access Levels" }
 reading:
   section: "5.10"
-  title: { de: "Aggregation bzw. Komposition" }
+  title: { de: "Aggregation bzw. Komposition", en: "Aggregation or Composition" }
   printedPage: 388

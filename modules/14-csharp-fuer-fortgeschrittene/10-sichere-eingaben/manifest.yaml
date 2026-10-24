@@ -1,9 +1,9 @@
 id: fortgeschritten-sichere-eingaben
-title: { de: "Zusatz: Sichere Eingaben" }
+title: { de: "Zusatz: Sichere Eingaben", en: "Extra: Secure Data Entry" }
 optional: true
 reading:
   section: "15.1.5"
-  title: { de: "null-Operatoren" }
+  title: { de: "null-Operatoren", en: "null operators" }
   printedPage: 968
 teaches:
   - nullable.null-conditional

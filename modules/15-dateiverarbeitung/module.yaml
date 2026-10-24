@@ -1,6 +1,6 @@
 id: dateiverarbeitung
-title: { de: "Dateiverarbeitung und JSON" }
+title: { de: "Dateiverarbeitung und JSON", en: "File Processing and JSON" }
 reading:
   section: "16"
-  title: { de: "Dateiverarbeitung" }
+  title: { de: "Dateiverarbeitung", en: "File Processing" }
   printedPage: 1013

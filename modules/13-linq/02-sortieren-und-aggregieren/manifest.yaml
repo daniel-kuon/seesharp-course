@@ -1,8 +1,8 @@
 id: linq-sortieren-und-aggregieren
-title: { de: "Sortieren, Aggregate und Teilfolgen" }
+title: { de: "Sortieren, Aggregate und Teilfolgen", en: "Sorting, Aggregates, and Subsequences" }
 reading:
   section: "18.2.7"
-  title: { de: "Sortieren" }
+  title: { de: "Sortieren", en: "Sort" }
   printedPage: 1218
 teaches:
   - linq.orderby
@@ -22,19 +22,19 @@ items:
     testProject: "Statistik Tests/Statistik.Tests.csproj"
   - type: multipleChoice
     id: average-leer
-    prompt: { de: "Was passiert bei  new List<decimal>().Average()  ?" }
+    prompt: { de: "Was passiert bei  new List<decimal>().Average()  ?", en: "What happens when you call `new List<decimal>().Average()`?" }
     options:
-      - { de: "InvalidOperationException: Aus einer leeren Sequenz lässt sich kein Mittelwert bilden. Man prüft vorher mit Any() oder weicht auf DefaultIfEmpty() aus." }
-      - { de: "Das Ergebnis ist 0." }
-      - { de: "Das Ergebnis ist double.NaN." }
+      - { de: "InvalidOperationException: Aus einer leeren Sequenz lässt sich kein Mittelwert bilden. Man prüft vorher mit Any() oder weicht auf DefaultIfEmpty() aus.", en: "InvalidOperationException: You cannot calculate an average from an empty sequence. Check first using Any() or fall back to DefaultIfEmpty()." }
+      - { de: "Das Ergebnis ist 0.", en: "The result is 0." }
+      - { de: "Das Ergebnis ist double.NaN.", en: "The result is double.NaN." }
     correct: [0]
-    explanation: { de: "Min, Max und Average ohne Selektor-Standardwert werfen bei leeren Sequenzen InvalidOperationException; Sum liefert dagegen 0 und Count liefert 0." }
+    explanation: { de: "Min, Max und Average ohne Selektor-Standardwert werfen bei leeren Sequenzen InvalidOperationException; Sum liefert dagegen 0 und Count liefert 0.", en: "Min, Max, and Average—without a selector default value—throw an InvalidOperationException for empty sequences; Sum, on the other hand, returns 0, and Count returns 0." }
   - type: multipleChoice
     id: stabil
-    prompt: { de: "Zwei Produkte haben denselben Preis. Wie steht es um ihre Reihenfolge nach  produkte.OrderByDescending(p => p.Preis)  ?" }
+    prompt: { de: "Zwei Produkte haben denselben Preis. Wie steht es um ihre Reihenfolge nach  produkte.OrderByDescending(p => p.Preis)  ?", en: "Two products have the same price. What is their order after `produkte.OrderByDescending(p => p.Preis)`?" }
     options:
-      - { de: "Sie bleibt wie in der Quelle: OrderBy und OrderByDescending sind stabile Sortierungen (anders als List<T>.Sort)." }
-      - { de: "Sie ist zufällig." }
-      - { de: "Die beiden Produkte werden zu einem zusammengefasst." }
+      - { de: "Sie bleibt wie in der Quelle: OrderBy und OrderByDescending sind stabile Sortierungen (anders als List<T>.Sort).", en: "It remains as in the source: `OrderBy` and `OrderByDescending` are stable sorts (unlike `List<T>.Sort`)." }
+      - { de: "Sie ist zufällig.", en: "It's random." }
+      - { de: "Die beiden Produkte werden zu einem zusammengefasst.", en: "The two products will be combined into one." }
     correct: [0]
-    explanation: { de: "18.2.7 (Seite 1218): Weitere Kriterien hängt man mit ThenBy/ThenByDescending an; ohne sie bleibt die Quellreihenfolge erhalten." }
+    explanation: { de: "18.2.7 (Seite 1218): Weitere Kriterien hängt man mit ThenBy/ThenByDescending an; ohne sie bleibt die Quellreihenfolge erhalten.", en: "18.2.7 (page 1218): Additional criteria are appended using ThenBy/ThenByDescending; without them, the source order is retained." }

@@ -1,9 +1,9 @@
 id: netz-url-sammler
-title: { de: "Zusatz: URL-Sammler" }
+title: { de: "Zusatz: URL-Sammler", en: "Extra: URL Collector" }
 optional: true
 reading:
   section: "21.2"
-  title: { de: "URI bzw. URL" }
+  title: { de: "URI bzw. URL", en: "URI or URL" }
   printedPage: 1505
 teaches:
   - net.uri-parse

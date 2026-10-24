@@ -1,8 +1,8 @@
 id: fortgeschritten-null-operatoren
-title: { de: "Null-Operatoren: ?., ??, ??= und null-bedingte Zuweisung" }
+title: { de: "Null-Operatoren: ?., ??, ??= und null-bedingte Zuweisung", en: "Null Operators: ?., ??, ??=, and Null-Conditional Assignment" }
 reading:
   section: "15.1.5"
-  title: { de: "null-Operatoren" }
+  title: { de: "null-Operatoren", en: "null operators" }
   printedPage: 968
 teaches:
   - nullable.null-conditional
@@ -22,11 +22,11 @@ items:
     testProject: "Nulloperatoren Tests/Nulloperatoren.Tests.csproj"
   - type: multipleChoice
     id: kurzschluss
-    prompt: { de: "Was passiert bei k?.Alter = Berechne(), wenn k null ist?" }
+    prompt: { de: "Was passiert bei k?.Alter = Berechne(), wenn k null ist?", en: "What happens with `k?.Alter = Berechne()` if `k` is `null`?" }
     options:
-      - { de: "Nichts: Weder die Zuweisung noch der Aufruf von Berechne() findet statt." }
-      - { de: "Berechne() wird aufgerufen, das Ergebnis aber verworfen." }
-      - { de: "Es gibt eine NullReferenceException." }
-      - { de: "Der Compiler lehnt die Zeile ab: ?. ist nur lesend erlaubt." }
+      - { de: "Nichts: Weder die Zuweisung noch der Aufruf von Berechne() findet statt.", en: "Nothing: Neither the assignment nor the call to Berechne() takes place." }
+      - { de: "Berechne() wird aufgerufen, das Ergebnis aber verworfen.", en: "`Berechne()` is called, but the result is discarded." }
+      - { de: "Es gibt eine NullReferenceException.", en: "A NullReferenceException has occurred." }
+      - { de: "Der Compiler lehnt die Zeile ab: ?. ist nur lesend erlaubt.", en: "The compiler rejects the line: ?. is read-only." }
     correct: [0]
-    explanation: { de: "15.1.5.2 (Seite 969). Seit C# 14 darf ?. auch links vom Zuweisungsoperator stehen; die rechte Seite wird nur ausgewertet, wenn der Empfänger nicht null ist. Vor C# 14 war das ein Übersetzungsfehler." }
+    explanation: { de: "15.1.5.2 (Seite 969). Seit C# 14 darf ?. auch links vom Zuweisungsoperator stehen; die rechte Seite wird nur ausgewertet, wenn der Empfänger nicht null ist. Vor C# 14 war das ein Übersetzungsfehler.", en: "15.1.5.2 (page 969). Since C# 14, ?. may also appear to the left of the assignment operator; the right-hand side is evaluated only if the receiver is not null. Prior to C# 14, this was a compilation error." }

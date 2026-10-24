@@ -1,6 +1,6 @@
 id: weitere-typen
-title: { de: "Weitere Typen: Strukturen, Arrays, Strings, Enums, Tupel, Records" }
+title: { de: "Weitere Typen: Strukturen, Arrays, Strings, Enums, Tupel, Records", en: "Other types: Structures, arrays, strings, enums, tuples, records" }
 reading:
   section: "6"
-  title: { de: "Weitere .NETte Typen" }
+  title: { de: "Weitere .NETte Typen", en: "More .NET Types" }
   printedPage: 431

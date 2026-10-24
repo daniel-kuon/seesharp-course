@@ -1,8 +1,8 @@
 id: klassen-operatoren-ueberladung
-title: { de: "Operatoren überladen" }
+title: { de: "Operatoren überladen", en: "Overloading Operators" }
 reading:
   section: "5.9.3"
-  title: { de: "Operatoren überladen" }
+  title: { de: "Operatoren überladen", en: "Overloading Operators" }
   printedPage: 385
 teaches:
   - oop.operator-binary

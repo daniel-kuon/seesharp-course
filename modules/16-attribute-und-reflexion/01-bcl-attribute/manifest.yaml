@@ -1,8 +1,8 @@
 id: attribute-bcl-attribute
-title: { de: "BCL-Attribute: Obsolete, Caller-Info, Flags und nameof" }
+title: { de: "BCL-Attribute: Obsolete, Caller-Info, Flags und nameof", en: "BCL Attributes: Obsolete, Caller Info, Flags, and nameof" }
 reading:
   section: "14.5.1"
-  title: { de: "Aufruferinformations-Attribute" }
+  title: { de: "Aufruferinformations-Attribute", en: "Caller Information Attributes" }
   printedPage: 934
 teaches:
   - attributes.apply

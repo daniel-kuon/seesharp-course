@@ -1,6 +1,6 @@
 id: konzepte
-title: { de: "Konzepte: OOP und .NET" }
+title: { de: "Konzepte: OOP und .NET", en: "Concepts: OOP and .NET" }
 reading:
   section: "1"
-  title: { de: "Einstieg in die objektorientierte Software-Entwicklung mit C#" }
+  title: { de: "Einstieg in die objektorientierte Software-Entwicklung mit C#", en: "Getting Started with Object-Oriented Software Development Using C#" }
   printedPage: 1

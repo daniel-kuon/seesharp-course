@@ -1,8 +1,8 @@
 id: sprachelemente-typen-quiz
-title: { de: "Variablen-Quiz" }
+title: { de: "Variablen-Quiz", en: "Variables Quiz" }
 reading:
   section: "4.3"
-  title: { de: "Variablen und Datentypen" }
+  title: { de: "Variablen und Datentypen", en: "Variables and Data Types" }
   printedPage: 180
 teaches:
   - types.var
@@ -16,79 +16,79 @@ requires:
 items:
   - type: multipleChoice
     id: scope
-    prompt: { de: "In Main() steht ein Block { int i = 2; } und danach Console.WriteLine(i). Der Compiler meldet, der Name i sei nicht vorhanden. Warum?" }
+    prompt: { de: "In Main() steht ein Block { int i = 2; } und danach Console.WriteLine(i). Der Compiler meldet, der Name i sei nicht vorhanden. Warum?", en: "In Main(), there is a block { int i = 2; } followed by Console.WriteLine(i). The compiler reports that the name \"i\" does not exist. Why?" }
     options:
-      - { de: "i gilt nur innerhalb des Blocks, in dem es deklariert wurde; außerhalb existiert es nicht." }
-      - { de: "int-Variablen müssen immer am Anfang der Methode stehen." }
-      - { de: "Der Wert 2 ist für WriteLine zu klein." }
-      - { de: "Variablen dürfen nicht in geschweiften Klammern deklariert werden." }
+      - { de: "i gilt nur innerhalb des Blocks, in dem es deklariert wurde; außerhalb existiert es nicht.", en: "i is valid only within the block in which it was declared; it does not exist outside that block." }
+      - { de: "int-Variablen müssen immer am Anfang der Methode stehen.", en: "int variables must always be placed at the beginning of the method." }
+      - { de: "Der Wert 2 ist für WriteLine zu klein.", en: "The value 2 is too small for WriteLine." }
+      - { de: "Variablen dürfen nicht in geschweiften Klammern deklariert werden.", en: "Variables must not be declared within curly braces." }
     correct: [0]
   - type: multipleChoice
     id: var
-    prompt: { de: "Welchen Typ hat x nach `var x = 3.0;`?" }
+    prompt: { de: "Welchen Typ hat x nach `var x = 3.0;`?", en: "What is the type of x after `var x = 3.0;`?" }
     options:
-      - { de: "double" }
-      - { de: "int" }
-      - { de: "float" }
-      - { de: "Keinen festen Typ, var ist dynamisch." }
+      - { de: "double", en: "double" }
+      - { de: "int", en: "int" }
+      - { de: "float", en: "float" }
+      - { de: "Keinen festen Typ, var ist dynamisch.", en: "No fixed type; var is dynamic." }
     correct: [0]
-    explanation: { de: "var leitet den Typ aus dem Initialisierer ab; das Literal 3.0 ist ein double. Danach ist x fest typisiert." }
+    explanation: { de: "var leitet den Typ aus dem Initialisierer ab; das Literal 3.0 ist ein double. Danach ist x fest typisiert.", en: "var infers the type from the initializer; the literal 3.0 is a double. After that, x is strongly typed." }
   - type: multipleChoice
     id: const
-    prompt: { de: "Welche Aussagen über const treffen zu? (mehrere möglich)" }
+    prompt: { de: "Welche Aussagen über const treffen zu? (mehrere möglich)", en: "Which of the following statements about `const` are true? (More than one may be correct.)" }
     options:
-      - { de: "Der Wert muss bei der Deklaration angegeben werden und zur Übersetzungszeit feststehen." }
-      - { de: "Einer const-Variablen kann später ein neuer Wert zugewiesen werden." }
-      - { de: "const double Pi = 3.14159; ist eine gültige Deklaration." }
-      - { de: "const ist nur für Zeichenketten erlaubt." }
+      - { de: "Der Wert muss bei der Deklaration angegeben werden und zur Übersetzungszeit feststehen.", en: "The value must be specified in the declaration and must be determined at compile time." }
+      - { de: "Einer const-Variablen kann später ein neuer Wert zugewiesen werden.", en: "A `const` variable can be assigned a new value later." }
+      - { de: "const double Pi = 3.14159; ist eine gültige Deklaration.", en: "const double Pi = 3.14159; is a valid declaration." }
+      - { de: "const ist nur für Zeichenketten erlaubt.", en: "`const` is only allowed for strings." }
     correct: [0, 2]
   - type: multipleChoice
     id: implizit
-    prompt: { de: "Welche Zuweisungen kompilieren ohne Cast? (mehrere möglich)" }
+    prompt: { de: "Welche Zuweisungen kompilieren ohne Cast? (mehrere möglich)", en: "Which assignments compile without a cast? (multiple answers possible)" }
     options:
-      - { de: "int i = 'c';" }
-      - { de: "double d = 7;" }
-      - { de: "int i = 7.5;" }
-      - { de: "long l = 7;" }
-      - { de: "char c = 65;" }
+      - { de: "int i = 'c';", en: "int i = 'c';" }
+      - { de: "double d = 7;", en: "double d = 7;" }
+      - { de: "int i = 7.5;", en: "int i = 7.5;" }
+      - { de: "long l = 7;", en: "long l = 7;" }
+      - { de: "char c = 65;", en: "char c = 65;" }
     correct: [0, 1, 3]
-    explanation: { de: "char nach int, int nach double und int nach long sind erweiternd und implizit. double nach int verliert Nachkommastellen, int nach char ist verengend; beide brauchen einen Cast. (Ein konstantes Literal wie 65 ließe der Compiler ausnahmsweise durch, eine int-Variable nicht.)" }
+    explanation: { de: "char nach int, int nach double und int nach long sind erweiternd und implizit. double nach int verliert Nachkommastellen, int nach char ist verengend; beide brauchen einen Cast. (Ein konstantes Literal wie 65 ließe der Compiler ausnahmsweise durch, eine int-Variable nicht.)", en: "Converting char to int, int to double, and int to long are widening conversions and are implicit. Converting double to int loses decimal places, while converting int to char is a narrowing conversion; both require a cast. (As an exception, the compiler would allow a constant literal such as 65, but not an int variable.)" }
   - type: multipleChoice
     id: unicode
-    prompt: { de: "Warum darf ein char-Wert ohne Cast einer int-Variablen zugewiesen werden?" }
+    prompt: { de: "Warum darf ein char-Wert ohne Cast einer int-Variablen zugewiesen werden?", en: "Why can a char value be assigned to an int variable without a cast?" }
     options:
-      - { de: "Ein char ist intern eine 16-Bit-Zahl (der Unicode-Code); jeder char-Wert passt verlustfrei in ein int." }
-      - { de: "Weil der Compiler Zeichen in ihre Ziffer umrechnet ('7' wird 7)." }
-      - { de: "Das geht nicht, es ist immer ein Cast nötig." }
-      - { de: "Weil char und int derselbe Typ sind." }
+      - { de: "Ein char ist intern eine 16-Bit-Zahl (der Unicode-Code); jeder char-Wert passt verlustfrei in ein int.", en: "A `char` is internally a 16-bit number (the Unicode code); every `char` value fits into an `int` without any loss of information." }
+      - { de: "Weil der Compiler Zeichen in ihre Ziffer umrechnet ('7' wird 7).", en: "Because the compiler converts characters to their numerical values (\"'7'\" becomes 7)." }
+      - { de: "Das geht nicht, es ist immer ein Cast nötig.", en: "That won't work; casting is always required." }
+      - { de: "Weil char und int derselbe Typ sind.", en: "Because Char and Int are the same type." }
     correct: [0]
   - type: multipleChoice
     id: string
-    prompt: { de: "Welche Aussagen über string treffen zu? (mehrere möglich)" }
+    prompt: { de: "Welche Aussagen über string treffen zu? (mehrere möglich)", en: "Which of the following statements about strings are true? (More than one may be correct.)" }
     options:
-      - { de: "string s = \"Hallo\"; deklariert eine Zeichenkettenvariable und weist ein Literal zu." }
-      - { de: "Zeichenkettenliterale stehen in doppelten Anführungszeichen, Zeichenliterale in einfachen." }
-      - { de: "'Hallo' ist ein gültiges Zeichenkettenliteral." }
-      - { de: "string ist ein Alias für die BCL-Klasse System.String." }
+      - { de: "string s = \"Hallo\"; deklariert eine Zeichenkettenvariable und weist ein Literal zu.", en: "`string s = \"Hallo\";` declares a string variable and assigns a literal to it." }
+      - { de: "Zeichenkettenliterale stehen in doppelten Anführungszeichen, Zeichenliterale in einfachen.", en: "String literals are enclosed in double quotation marks, while character literals are enclosed in single quotation marks." }
+      - { de: "'Hallo' ist ein gültiges Zeichenkettenliteral.", en: "`'Hallo'` is a valid string literal." }
+      - { de: "string ist ein Alias für die BCL-Klasse System.String.", en: "\"string\" is an alias for the BCL class `System.String`." }
     correct: [0, 1, 3]
   - type: multipleChoice
     id: bezeichner
-    prompt: { de: "Welche dieser Namen sind als Bezeichner unzulässig? (mehrere möglich)" }
+    prompt: { de: "Welche dieser Namen sind als Bezeichner unzulässig? (mehrere möglich)", en: "Which of these names are not allowed as identifiers? (multiple answers possible)" }
     options:
-      - { de: "4you" }
-      - { de: "maiLink" }
-      - { de: "else" }
-      - { de: "Lösung" }
-      - { de: "b_3" }
+      - { de: "4you", en: "4you" }
+      - { de: "maiLink", en: "maiLink" }
+      - { de: "else", en: "else" }
+      - { de: "Lösung", en: "Solution" }
+      - { de: "b_3", en: "b_3" }
     correct: [0, 2]
-    explanation: { de: "Bezeichner dürfen nicht mit einer Ziffer beginnen und kein Schlüsselwort sein. Umlaute und Unterstriche sind erlaubt." }
+    explanation: { de: "Bezeichner dürfen nicht mit einer Ziffer beginnen und kein Schlüsselwort sein. Umlaute und Unterstriche sind erlaubt.", en: "Identifiers must not begin with a digit and must not be keywords. Umlauts and underscores are allowed." }
   - type: multipleChoice
     id: main-koepfe
-    prompt: { de: "Welche Methodenköpfe taugen als Einstiegspunkt eines Programms? (mehrere möglich)" }
+    prompt: { de: "Welche Methodenköpfe taugen als Einstiegspunkt eines Programms? (mehrere möglich)", en: "Which method headers are suitable as entry points for a program? (multiple answers allowed)" }
     options:
-      - { de: "static void main()" }
-      - { de: "public static void Main()" }
-      - { de: "static int Main()" }
-      - { de: "static double Main()" }
+      - { de: "static void main()", en: "static void main()" }
+      - { de: "public static void Main()", en: "public static void Main()" }
+      - { de: "static int Main()", en: "static int Main()" }
+      - { de: "static double Main()", en: "static double Main()" }
     correct: [1, 2]
-    explanation: { de: "Main muss groß geschrieben sein und void oder int zurückgeben; public ist nicht nötig." }
+    explanation: { de: "Main muss groß geschrieben sein und void oder int zurückgeben; public ist nicht nötig.", en: "\"Main\" must be capitalized and return \"void\" or \"int\"; \"public\" is not required." }

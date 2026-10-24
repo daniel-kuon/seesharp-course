@@ -1,9 +1,9 @@
 id: kollektionen-telefonbuch
-title: { de: "Zusatz: Telefonbuch" }
+title: { de: "Zusatz: Telefonbuch", en: "Extra: Phone Book" }
 optional: true
 reading:
   section: "11.6"
-  title: { de: "Verwaltung von (Schlüssel-Wert) - Paaren" }
+  title: { de: "Verwaltung von (Schlüssel-Wert) - Paaren", en: "Management of (key-value) pairs" }
   printedPage: 714
 teaches:
   - collections.dictionary-add-lookup

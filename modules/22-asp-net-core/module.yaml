@@ -1,6 +1,6 @@
 id: asp-net-core
-title: { de: "ASP.NET Core Razor Pages" }
+title: { de: "ASP.NET Core Razor Pages", en: "ASP.NET Core Razor Pages" }
 reading:
   section: "22"
-  title: { de: "Webanwendungen mit ASP.NET Core Razor Pages" }
+  title: { de: "Webanwendungen mit ASP.NET Core Razor Pages", en: "Web Applications with ASP.NET Core Razor Pages" }
   printedPage: 1537

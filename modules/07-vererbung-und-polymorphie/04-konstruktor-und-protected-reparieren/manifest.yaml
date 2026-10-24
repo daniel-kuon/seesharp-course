@@ -1,8 +1,8 @@
 id: vererbung-reparatur
-title: { de: "Reparatur: Basiskonstruktor und private Erbstücke" }
+title: { de: "Reparatur: Basiskonstruktor und private Erbstücke", en: "Fix: Base Constructor and Private Inherited Members" }
 reading:
   section: "7.16"
-  title: { de: "Übungsaufgaben zum Kapitel 7, Aufgaben 1 und 2" }
+  title: { de: "Übungsaufgaben zum Kapitel 7, Aufgaben 1 und 2", en: "Exercises for Chapter 7, Problems 1 and 2" }
   printedPage: 586
 teaches:
   - inheritance.base-constructor-required
@@ -20,4 +20,4 @@ items:
     testProject: "Reparatur Tests/Reparatur.Tests.csproj"
   - type: open
     id: erklaerung
-    prompt: { de: "Erkläre in zwei Sätzen: Warum hat Abgeleitet im Starter keinen brauchbaren Konstruktor, obwohl keiner deklariert ist? Und warum sind die privaten Felder xpos/ypos in Kreis zwar vorhanden, aber nicht zugänglich?" }
+    prompt: { de: "Erkläre in zwei Sätzen: Warum hat Abgeleitet im Starter keinen brauchbaren Konstruktor, obwohl keiner deklariert ist? Und warum sind die privaten Felder xpos/ypos in Kreis zwar vorhanden, aber nicht zugänglich?", en: "Explain in two sentences: Why doesn't `Abgeleitet` in the `Starter` class have a usable constructor, even though none is declared? And why are the private fields `xpos` and `ypos` in `Kreis` present but inaccessible?" }

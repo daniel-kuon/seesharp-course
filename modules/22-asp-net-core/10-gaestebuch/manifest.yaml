@@ -1,9 +1,9 @@
 id: aspnet-gaestebuch
-title: { de: "Zusatz: Gästebuch-Seite" }
+title: { de: "Zusatz: Gästebuch-Seite", en: "Extra: Guestbook Page" }
 optional: true
 reading:
   section: "22.5.2"
-  title: { de: "Beispiel" }
+  title: { de: "Beispiel", en: "Example" }
   printedPage: 1564
 teaches:
   - web.pagemodel-onget

@@ -1,9 +1,9 @@
 id: threads-parallele-summe
-title: { de: "Zusatz: Parallele Summe" }
+title: { de: "Zusatz: Parallele Summe", en: "Extra: Parallel Sum" }
 optional: true
 reading:
   section: "17.5.11"
-  title: { de: "Die Klasse Parallel" }
+  title: { de: "Die Klasse Parallel", en: "The Parallel Class" }
   printedPage: 1152
 teaches:
   - parallel.for-foreach

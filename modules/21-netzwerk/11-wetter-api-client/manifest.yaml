@@ -1,9 +1,9 @@
 id: netz-wetter-api-client
-title: { de: "Zusatz: Typed Client für eine Wetter-API" }
+title: { de: "Zusatz: Typed Client für eine Wetter-API", en: "Extra: Typed Client for a Weather API" }
 optional: true
 reading:
   section: "21.3.2"
-  title: { de: "GET-Anforderungen ohne Anforderungsparameter" }
+  title: { de: "GET-Anforderungen ohne Anforderungsparameter", en: "GET Requests Without Request Parameters" }
   printedPage: 1509
 teaches:
   - net.httpclient-get

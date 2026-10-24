@@ -1,6 +1,6 @@
 id: delegaten-und-ereignisse
-title: { de: "Delegaten, Lambda-Ausdrücke und Ereignisse" }
+title: { de: "Delegaten, Lambda-Ausdrücke und Ereignisse", en: "Delegates, lambda expressions, and events" }
 reading:
   section: "10"
-  title: { de: "Delegaten und Ereignisse" }
+  title: { de: "Delegaten und Ereignisse", en: "Delegates and Events" }
   printedPage: 657

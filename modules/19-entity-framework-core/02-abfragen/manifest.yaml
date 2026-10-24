@@ -1,8 +1,8 @@
 id: efcore-abfragen
-title: { de: "Abfragen mit LINQ-to-Entities" }
+title: { de: "Abfragen mit LINQ-to-Entities", en: "Queries with LINQ to Entities" }
 reading:
   section: "20.9.2"
-  title: { de: "Mehrere Entitäten abrufen" }
+  title: { de: "Mehrere Entitäten abrufen", en: "Retrieve Multiple Entities" }
   printedPage: 1452
 teaches:
   - ef.query-where-tolist
@@ -25,10 +25,10 @@ items:
     testProject: "Abfragen Tests/Abfragen.Tests.csproj"
   - type: multipleChoice
     id: uebersetzung
-    prompt: { de: "Welche dieser drei Abfragen auf kontext.Beitraege wird von EF Core vollständig in SQL übersetzt und von der Datenbank ausgeführt?" }
+    prompt: { de: "Welche dieser drei Abfragen auf kontext.Beitraege wird von EF Core vollständig in SQL übersetzt und von der Datenbank ausgeführt?", en: "Which of these three queries on kontext.Beitraege is fully translated into SQL by EF Core and executed by the database?" }
     options:
-      - { de: "kontext.Beitraege.Where(b => b.Titel.Contains(\"LINQ\")).ToList()" }
-      - { de: "kontext.Beitraege.Where(b => IstInteressant(b)).ToList() mit einer eigenen C#-Methode IstInteressant" }
-      - { de: "kontext.Beitraege.AsEnumerable().Where(b => b.Titel.Contains(\"LINQ\")).ToList()" }
+      - { de: "kontext.Beitraege.Where(b => b.Titel.Contains(\"LINQ\")).ToList()", en: "`kontext.Beitraege.Where(b => b.Titel.Contains(\"LINQ\")).ToList()`" }
+      - { de: "kontext.Beitraege.Where(b => IstInteressant(b)).ToList() mit einer eigenen C#-Methode IstInteressant", en: "`kontext.Beitraege.Where(b => IstInteressant(b)).ToList()` with a custom C# method `IstInteressant`" }
+      - { de: "kontext.Beitraege.AsEnumerable().Where(b => b.Titel.Contains(\"LINQ\")).ToList()", en: "`kontext.Beitraege.AsEnumerable().Where(b => b.Titel.Contains(\"LINQ\")).ToList()`" }
     correct: [0]
-    explanation: { de: "20.9.6: Contains auf einer Zeichenkette kennt EF Core und übersetzt es in SQL. Eine eigene C#-Methode kann EF Core nicht übersetzen (es gibt eine InvalidOperationException). AsEnumerable() beendet die serverseitige Abfrage: Alle Zeilen werden geladen und erst danach in C# gefiltert, das ist korrekt, aber bei großen Tabellen langsam." }
+    explanation: { de: "20.9.6: Contains auf einer Zeichenkette kennt EF Core und übersetzt es in SQL. Eine eigene C#-Methode kann EF Core nicht übersetzen (es gibt eine InvalidOperationException). AsEnumerable() beendet die serverseitige Abfrage: Alle Zeilen werden geladen und erst danach in C# gefiltert, das ist korrekt, aber bei großen Tabellen langsam.", en: "20.9.6: EF Core recognizes the `Contains` operator on a string and translates it into SQL. However, it cannot translate a custom C# method (an `InvalidOperationException` is thrown). `AsEnumerable()` completes the server-side query: All rows are loaded and then filtered in C#; this is correct, but it is slow for large tables." }

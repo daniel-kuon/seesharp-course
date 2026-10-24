@@ -1,8 +1,8 @@
 id: delegaten-grundlagen
-title: { de: "Delegaten deklarieren, erzeugen und aufrufen" }
+title: { de: "Delegaten deklarieren, erzeugen und aufrufen", en: "Declare, create, and call delegates" }
 reading:
   section: "10.1.1"
-  title: { de: "Delegatentypen definieren" }
+  title: { de: "Delegatentypen definieren", en: "Define Delegate Types" }
   printedPage: 659
 teaches:
   - delegates.declare-type
@@ -22,23 +22,23 @@ items:
     testProject: "Delegaten Tests/Delegaten.Tests.csproj"
   - type: multipleChoice
     id: signatur
-    prompt: { de: "Ein Delegatentyp ist als delegate double Operation(double a, double b); deklariert. Welche Methode passt zu ihm?" }
+    prompt: { de: "Ein Delegatentyp ist als delegate double Operation(double a, double b); deklariert. Welche Methode passt zu ihm?", en: "A delegate type is declared as `delegate double Operation(double a, double b);`. Which method matches it?" }
     options:
-      - { de: "static double Addiere(double x, double y) { return x + y; }" }
-      - { de: "static void Addiere(double x, double y) { }" }
-      - { de: "static double Addiere(double x) { return x; }" }
+      - { de: "static double Addiere(double x, double y) { return x + y; }", en: "static double Addiere(double x, double y) { return x + y; }" }
+      - { de: "static void Addiere(double x, double y) { }", en: "static void Addiere(double x, double y) { }" }
+      - { de: "static double Addiere(double x) { return x; }", en: "static double Addiere(double x) { return x; }" }
     correct: [0]
-    explanation: { de: "Entscheidend sind Parameterliste und Rückgabetyp (10.1.1, Seite 659); die Namen der Parameter und der Methode spielen keine Rolle." }
+    explanation: { de: "Entscheidend sind Parameterliste und Rückgabetyp (10.1.1, Seite 659); die Namen der Parameter und der Methode spielen keine Rolle.", en: "The parameter list and return type are crucial (10.1.1, page 659); the names of the parameters and the method are irrelevant." }
   - type: multipleChoice
     id: instanz-ziel
-    prompt: { de: "Ein Delegatenobjekt wird aus einer Instanzmethode erzeugt (new Operation(r.Potenz)). Danach ändert sich das Feld r.Exponent. Was gilt beim Aufruf des Delegaten?" }
+    prompt: { de: "Ein Delegatenobjekt wird aus einer Instanzmethode erzeugt (new Operation(r.Potenz)). Danach ändert sich das Feld r.Exponent. Was gilt beim Aufruf des Delegaten?", en: "A delegate object is created from an instance method (new Operation(r.Potenz)). After that, the r.Exponent field changes. What happens when the delegate is called?" }
     options:
-      - { de: "Das Delegatenobjekt merkt sich das Zielobjekt r; der Aufruf sieht den neuen Wert von Exponent." }
-      - { de: "Das Delegatenobjekt hat eine Kopie von r angelegt; der Aufruf sieht noch den alten Wert." }
-      - { de: "Das Delegatenobjekt merkt sich nur den Methodennamen und sucht das Objekt bei jedem Aufruf neu." }
+      - { de: "Das Delegatenobjekt merkt sich das Zielobjekt r; der Aufruf sieht den neuen Wert von Exponent.", en: "The delegate object remembers the target object `r`; the call sees the new value of `Exponent`." }
+      - { de: "Das Delegatenobjekt hat eine Kopie von r angelegt; der Aufruf sieht noch den alten Wert.", en: "The delegate object has created a copy of r; the call still sees the old value." }
+      - { de: "Das Delegatenobjekt merkt sich nur den Methodennamen und sucht das Objekt bei jedem Aufruf neu.", en: "The delegate object only remembers the method name and searches for the object anew each time it is called." }
     correct: [0]
-    explanation: { de: "Ein Delegatenobjekt speichert Zielobjekt (bei Instanzmethoden) und Methode (10.1.2, Seite 660); das Objekt wird nicht kopiert." }
+    explanation: { de: "Ein Delegatenobjekt speichert Zielobjekt (bei Instanzmethoden) und Methode (10.1.2, Seite 660); das Objekt wird nicht kopiert.", en: "A delegate object stores the target object (for instance methods) and the method (10.1.2, page 660); the object is not copied." }
   - type: review
     id: eigener-delegat
-    prompt: { de: "Deklariere in Operation.cs einen zweiten Delegatentyp Bedingung für Methoden mit einem double-Parameter und dem Rückgabetyp bool. Schreibe in Rechner eine Methode Zaehle(double[] werte, Bedingung b), die zählt, wie viele Werte die Bedingung erfüllen, und rufe sie mit einer Methodengruppe auf. Erkläre der Betreuung, was new Bedingung(Methode) zur Laufzeit erzeugt." }
+    prompt: { de: "Deklariere in Operation.cs einen zweiten Delegatentyp Bedingung für Methoden mit einem double-Parameter und dem Rückgabetyp bool. Schreibe in Rechner eine Methode Zaehle(double[] werte, Bedingung b), die zählt, wie viele Werte die Bedingung erfüllen, und rufe sie mit einer Methodengruppe auf. Erkläre der Betreuung, was new Bedingung(Methode) zur Laufzeit erzeugt.", en: "In `Operation.cs`, declare a second delegate type `Bedingung` for methods with one `double` parameter and a `bool` return type. In `Rechner`, write a method `Zaehle(double[] werte, Bedingung b)` that counts how many values satisfy the condition, and call it with a method group. Explain to the supervisor what `new Bedingung(Methode)` creates at runtime." }
     openFile: "Delegaten/Operation.cs"

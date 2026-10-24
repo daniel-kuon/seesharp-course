@@ -1,9 +1,9 @@
 id: sprachelemente-umrechnungen
-title: { de: "Zusatz: Umrechnungen" }
+title: { de: "Zusatz: Umrechnungen", en: "Extra: Conversions" }
 optional: true
 reading:
   section: "4.5.11"
-  title: { de: "Übungsaufgaben zum Abschnitt 4.5 (Aufgabe 6)" }
+  title: { de: "Übungsaufgaben zum Abschnitt 4.5 (Aufgabe 6)", en: "Exercises for Section 4.5 (Exercise 6)" }
   printedPage: 242
 teaches:
   - types.double-vs-decimal

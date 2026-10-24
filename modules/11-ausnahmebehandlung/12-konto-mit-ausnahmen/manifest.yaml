@@ -1,9 +1,9 @@
 id: ausnahmen-konto
-title: { de: "Zusatz: Konto mit Ausnahmen" }
+title: { de: "Zusatz: Konto mit Ausnahmen", en: "Extra: Account with Exceptions" }
 optional: true
 reading:
   section: "13.5"
-  title: { de: "Ausnahmeklassen in der BCL" }
+  title: { de: "Ausnahmeklassen in der BCL", en: "Exception Classes in the BCL" }
   printedPage: 911
 teaches:
   - exceptions.throw

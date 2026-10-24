@@ -1,9 +1,9 @@
 id: ablauf-collatz
-title: { de: "Zusatz: Collatz-Folge" }
+title: { de: "Zusatz: Collatz-Folge", en: "Extra: Collatz Sequence" }
 optional: true
 reading:
   section: "4.7.3.3"
-  title: { de: "Bedingungsabhängige Schleifen" }
+  title: { de: "Bedingungsabhängige Schleifen", en: "Conditional Loops" }
   printedPage: 275
 teaches:
   - control.while

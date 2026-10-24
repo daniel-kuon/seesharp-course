@@ -1,6 +1,6 @@
 id: kollektionen
-title: { de: "Kollektionen: Listen, Mengen, Wörterbücher" }
+title: { de: "Kollektionen: Listen, Mengen, Wörterbücher", en: "Collections: Lists, Sets, Dictionaries" }
 reading:
   section: "11"
-  title: { de: "Kollektionen" }
+  title: { de: "Kollektionen", en: "Collections" }
   printedPage: 691

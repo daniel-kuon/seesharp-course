@@ -1,9 +1,9 @@
 id: werkzeuge-zweite-reparatur
-title: { de: "Zusatz: Zweite Reparatur" }
+title: { de: "Zusatz: Zweite Reparatur", en: "Extra: Second Repair" }
 optional: true
 reading:
   section: "3.1.6"
-  title: { de: "Programmfehler" }
+  title: { de: "Programmfehler", en: "Program Errors" }
   printedPage: 76
 teaches:
   - tools.read-compiler-error

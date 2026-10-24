@@ -1,8 +1,8 @@
 id: fortgeschritten-merkmals-und-positionsmuster
-title: { de: "Merkmals-, Positions- und var-Muster" }
+title: { de: "Merkmals-, Positions- und var-Muster", en: "Property, Positional, and var Patterns" }
 reading:
   section: "15.2.4"
-  title: { de: "Merkmalsmuster" }
+  title: { de: "Merkmalsmuster", en: "Property Patterns" }
   printedPage: 976
 teaches:
   - patterns.property
@@ -25,11 +25,11 @@ items:
     testProject: "Merkmalsmuster Tests/Merkmalsmuster.Tests.csproj"
   - type: multipleChoice
     id: null-und-merkmalsmuster
-    prompt: { de: "Was liefert p is { X: 0 }, wenn p den Wert null hat?" }
+    prompt: { de: "Was liefert p is { X: 0 }, wenn p den Wert null hat?", en: "What does p return when p is { X: 0 } and p is equal to zero?" }
     options:
-      - { de: "false, ein Merkmalsmuster passt nie auf null; es gibt keine Ausnahme." }
-      - { de: "Eine NullReferenceException, weil p.X gelesen wird." }
-      - { de: "true, weil null wie 0 behandelt wird." }
-      - { de: "Einen Übersetzungsfehler." }
+      - { de: "false, ein Merkmalsmuster passt nie auf null; es gibt keine Ausnahme.", en: "false; a feature pattern never matches zero; there are no exceptions." }
+      - { de: "Eine NullReferenceException, weil p.X gelesen wird.", en: "A NullReferenceException occurs because p.X is being accessed." }
+      - { de: "true, weil null wie 0 behandelt wird.", en: "true, because null is treated as 0." }
+      - { de: "Einen Übersetzungsfehler.", en: "A translation error." }
     correct: [0]
-    explanation: { de: "15.2.4 (Seite 976). Das Merkmalsmuster prüft zuerst, ob der Wert nicht null ist. Deshalb sind { Halter.Land: \"DE\" } und Ähnliches null-sicher." }
+    explanation: { de: "15.2.4 (Seite 976). Das Merkmalsmuster prüft zuerst, ob der Wert nicht null ist. Deshalb sind { Halter.Land: \"DE\" } und Ähnliches null-sicher.", en: "15.2.4 (page 976). The attribute pattern first checks whether the value is nonzero. Therefore, { Halter.Land: \"DE\" } and similar expressions are null-safe." }

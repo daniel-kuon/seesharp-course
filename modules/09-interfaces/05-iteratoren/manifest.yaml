@@ -1,8 +1,8 @@
 id: interfaces-iteratoren
-title: { de: "Iteratoren mit yield: RangeItUpDown" }
+title: { de: "Iteratoren mit yield: RangeItUpDown", en: "Iterators with yield: RangeItUpDown" }
 reading:
   section: "9.5.2"
-  title: { de: "Algorithmus-Enumeratoren" }
+  title: { de: "Algorithmus-Enumeratoren", en: "Algorithm Enumerators" }
   printedPage: 651
 teaches:
   - iterators.yield
@@ -22,10 +22,10 @@ items:
     testProject: "Iteratoren Tests/Iteratoren.Tests.csproj"
   - type: multipleChoice
     id: faul
-    prompt: { de: "var r = liste.RangeIt(1, 99); — in RangeIt steht als erste Anweisung eine Bereichsprüfung mit yield break. Wann läuft sie?" }
+    prompt: { de: "var r = liste.RangeIt(1, 99); — in RangeIt steht als erste Anweisung eine Bereichsprüfung mit yield break. Wann läuft sie?", en: "var r = list.RangeIt(1, 99); — The first statement in RangeIt is a range check with `yield break`. When does it run?" }
     options:
-      - { de: "Erst beim ersten MoveNext(), also wenn jemand über r iteriert; der Aufruf selbst erzeugt nur ein Iterator-Objekt." }
-      - { de: "Sofort beim Aufruf von RangeIt." }
-      - { de: "Nie; yield break ist nur eine Markierung für den Compiler." }
+      - { de: "Erst beim ersten MoveNext(), also wenn jemand über r iteriert; der Aufruf selbst erzeugt nur ein Iterator-Objekt.", en: "Only when the first `MoveNext()` is called—that is, when someone iterates over `r`—does the call itself create an iterator object." }
+      - { de: "Sofort beim Aufruf von RangeIt.", en: "Immediately upon launching RangeIt." }
+      - { de: "Nie; yield break ist nur eine Markierung für den Compiler.", en: "Never; a yield break is just a marker for the compiler." }
     correct: [0]
-    explanation: { de: "Iteratoren sind faul (9.5.2, Seite 651): Der Rumpf wird abschnittsweise bei jedem MoveNext ausgeführt. Deshalb wirkt eine Ausnahme im Rumpf erst beim Durchlaufen." }
+    explanation: { de: "Iteratoren sind faul (9.5.2, Seite 651): Der Rumpf wird abschnittsweise bei jedem MoveNext ausgeführt. Deshalb wirkt eine Ausnahme im Rumpf erst beim Durchlaufen.", en: "Iterators are lazy (9.5.2, page 651): The body is executed in chunks each time `MoveNext` is called. Therefore, an exception in the body does not take effect until the iteration is complete." }

@@ -1,9 +1,9 @@
 id: adonet-ueberweisungen-protokoll
-title: { de: "Zusatz: Überweisungen mit Protokoll" }
+title: { de: "Zusatz: Überweisungen mit Protokoll", en: "Extra: Transfers with a log" }
 optional: true
 reading:
   section: "19.7.7"
-  title: { de: "DbTransaction" }
+  title: { de: "DbTransaction", en: "DbTransaction" }
   printedPage: 1332
 teaches:
   - ado.transaction

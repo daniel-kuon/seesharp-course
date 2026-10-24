@@ -1,8 +1,8 @@
 id: publish-webanwendung
-title: { de: "Webanwendung veröffentlichen und hosten" }
+title: { de: "Webanwendung veröffentlichen und hosten", en: "Publish and Host a Web Application" }
 reading:
   section: "23.2.3"
-  title: { de: "Webanwendung mit ASP.NET Core Razor Pages" }
+  title: { de: "Webanwendung mit ASP.NET Core Razor Pages", en: "Web Application Using ASP.NET Core Razor Pages" }
   printedPage: 1658
 teaches:
   - publish.web-local-install
@@ -15,40 +15,40 @@ requires:
 items:
   - type: multipleChoice
     id: kestrel-iis
-    prompt: { de: "Welcher Webserver führt eine ASP.NET-Core-Anwendung aus, die du aus dem Veröffentlichungsordner startest, und wie verhält sich IIS dazu?" }
+    prompt: { de: "Welcher Webserver führt eine ASP.NET-Core-Anwendung aus, die du aus dem Veröffentlichungsordner startest, und wie verhält sich IIS dazu?", en: "Which web server runs an ASP.NET Core application that you launch from the publish folder, and how does IIS handle this?" }
     options:
-      - { de: "Kestrel, der in ASP.NET Core eingebaute Webserver. IIS kann die Anwendung zusätzlich hosten: im selben Prozess (in-process) oder als Reverse Proxy, der Anforderungen an einen separaten Kestrel-Prozess weiterreicht (out-of-process)." }
-      - { de: "Immer IIS; ohne IIS lässt sich eine ASP.NET-Core-Anwendung nicht starten." }
-      - { de: "Der Browser; die Anwendung läuft im Browser des Benutzers." }
+      - { de: "Kestrel, der in ASP.NET Core eingebaute Webserver. IIS kann die Anwendung zusätzlich hosten: im selben Prozess (in-process) oder als Reverse Proxy, der Anforderungen an einen separaten Kestrel-Prozess weiterreicht (out-of-process).", en: "Kestrel, the web server built into ASP.NET Core. IIS can also host the application: either in the same process (in-process) or as a reverse proxy that forwards requests to a separate Kestrel process (out-of-process)." }
+      - { de: "Immer IIS; ohne IIS lässt sich eine ASP.NET-Core-Anwendung nicht starten.", en: "Always IIS; without IIS, an ASP.NET Core application cannot be started." }
+      - { de: "Der Browser; die Anwendung läuft im Browser des Benutzers.", en: "The browser; the application runs in the user's browser." }
     correct: [0]
-    explanation: { de: "23.2.3.1 (Seite 1661): Ein Doppelklick auf die exe startet die Anwendung mit Kestrel. Die Unterscheidung in-process und out-of-process steht nicht im Buch; sie stammt aus der Microsoft-Dokumentation zum Hosting unter IIS." }
+    explanation: { de: "23.2.3.1 (Seite 1661): Ein Doppelklick auf die exe startet die Anwendung mit Kestrel. Die Unterscheidung in-process und out-of-process steht nicht im Buch; sie stammt aus der Microsoft-Dokumentation zum Hosting unter IIS.", en: "23.2.3.1 (page 1661): Double-clicking the exe file launches the application using Kestrel. The distinction between in-process and out-of-process is not mentioned in the book; it comes from the Microsoft documentation on hosting under IIS." }
   - type: multipleChoice
     id: reverse-proxy
-    prompt: { de: "Warum stellt man vor Kestrel oft einen Reverse Proxy (IIS, Nginx, Apache)?" }
+    prompt: { de: "Warum stellt man vor Kestrel oft einen Reverse Proxy (IIS, Nginx, Apache)?", en: "Why is a reverse proxy (IIS, Nginx, Apache) often placed in front of Kestrel?" }
     options:
-      - { de: "Der Proxy nimmt die HTTP(S)-Anforderungen aus dem Netz entgegen und reicht sie an Kestrel weiter; er übernimmt zum Beispiel die TLS-Verschlüsselung samt Zertifikat und kann mehrere Anwendungen hinter Port 443 verteilen." }
-      - { de: "Kestrel kann kein HTTP; der Proxy übersetzt die Anforderungen in ein Format, das Kestrel versteht." }
-      - { de: "Ein Reverse Proxy macht die Anwendung schneller, weil er den C#-Code ausführt." }
+      - { de: "Der Proxy nimmt die HTTP(S)-Anforderungen aus dem Netz entgegen und reicht sie an Kestrel weiter; er übernimmt zum Beispiel die TLS-Verschlüsselung samt Zertifikat und kann mehrere Anwendungen hinter Port 443 verteilen.", en: "The proxy receives HTTP(S) requests from the network and forwards them to Kestrel; for example, it handles TLS encryption, including the certificate, and can distribute multiple applications across port 443." }
+      - { de: "Kestrel kann kein HTTP; der Proxy übersetzt die Anforderungen in ein Format, das Kestrel versteht.", en: "Kestrel doesn't support HTTP; the proxy translates the requests into a format that Kestrel understands." }
+      - { de: "Ein Reverse Proxy macht die Anwendung schneller, weil er den C#-Code ausführt.", en: "A reverse proxy makes the application run faster because it executes the C# code." }
     correct: [0]
-    explanation: { de: "23.2.3.3 (Seite 1662): Ein Reverse-Proxy-Server empfängt HTTP(S)-Anforderungen aus dem Internet und leitet sie an Kestrel weiter. Die Aufgaben im Einzelnen (TLS, mehrere Anwendungen, statische Dateien) sind Ergänzungen aus der Dokumentation." }
+    explanation: { de: "23.2.3.3 (Seite 1662): Ein Reverse-Proxy-Server empfängt HTTP(S)-Anforderungen aus dem Internet und leitet sie an Kestrel weiter. Die Aufgaben im Einzelnen (TLS, mehrere Anwendungen, statische Dateien) sind Ergänzungen aus der Dokumentation.", en: "23.2.3.3 (page 1662): A reverse proxy server receives HTTP(S) requests from the Internet and forwards them to Kestrel. The specific tasks (TLS, multiple applications, static files) are additions from the documentation." }
   - type: multipleChoice
     id: launchsettings
-    prompt: { de: "Im Entwicklungsordner hört die Anwendung nach `dotnet run` auf `http://localhost:5194`. Aus dem Veröffentlichungsordner gestartet, antwortet dieser Port nicht; die Konsole nennt Port 5000. Warum?" }
+    prompt: { de: "Im Entwicklungsordner hört die Anwendung nach `dotnet run` auf `http://localhost:5194`. Aus dem Veröffentlichungsordner gestartet, antwortet dieser Port nicht; die Konsole nennt Port 5000. Warum?", en: "In the development folder, the application listens on `http://localhost:5194` after `dotnet run`. Started from the publish folder, this port does not respond; the console shows port 5000. Why?" }
     options:
-      - { de: "Die Ports stehen in `launchSettings.json`, und die Datei fehlt im Veröffentlichungsordner; ohne Einstellung benutzt Kestrel den Standardport 5000 (nur HTTP)." }
-      - { de: "Die Veröffentlichung hat die Portnummer zufällig neu gewürfelt." }
-      - { de: "Release-Anwendungen dürfen nur Ports unter 1024 benutzen." }
+      - { de: "Die Ports stehen in `launchSettings.json`, und die Datei fehlt im Veröffentlichungsordner; ohne Einstellung benutzt Kestrel den Standardport 5000 (nur HTTP).", en: "The ports are specified in `launchSettings.json`, and the file is missing from the release folder; without this setting, Kestrel uses the default port 5000 (HTTP only)." }
+      - { de: "Die Veröffentlichung hat die Portnummer zufällig neu gewürfelt.", en: "The release randomly reassigned the port number." }
+      - { de: "Release-Anwendungen dürfen nur Ports unter 1024 benutzen.", en: "Release applications may only use ports below 1024." }
     correct: [0]
-    explanation: { de: "23.2.3.1 (Seite 1661): `launchSettings.json` gilt nur für Starts aus der Entwicklungsumgebung. Alternativen zum Ändern des Ports sind die Umgebungsvariable `ASPNETCORE_URLS` oder die Kommandozeilenoption `--urls`." }
+    explanation: { de: "23.2.3.1 (Seite 1661): `launchSettings.json` gilt nur für Starts aus der Entwicklungsumgebung. Alternativen zum Ändern des Ports sind die Umgebungsvariable `ASPNETCORE_URLS` oder die Kommandozeilenoption `--urls`.", en: "23.2.3.1 (page 1661): `launchSettings.json` applies only to launches from the development environment. Alternatives for changing the port are the `ASPNETCORE_URLS` environment variable or the `--urls` command-line option." }
   - type: multipleChoice
     id: umgebungsvariablen
-    prompt: { de: "Was steuern die Umgebungsvariablen `ASPNETCORE_URLS` und `ASPNETCORE_ENVIRONMENT`?" }
+    prompt: { de: "Was steuern die Umgebungsvariablen `ASPNETCORE_URLS` und `ASPNETCORE_ENVIRONMENT`?", en: "What do the environment variables `ASPNETCORE_URLS` and `ASPNETCORE_ENVIRONMENT` control?" }
     options:
-      - { de: "`ASPNETCORE_URLS` nennt die Adressen und Ports, auf denen Kestrel lauscht (zum Beispiel `http://localhost:8080`); `ASPNETCORE_ENVIRONMENT` nennt die Umgebung (`Development`, `Production`), von der zum Beispiel abhängt, ob die Entwickler-Fehlerseite erscheint." }
-      - { de: "`ASPNETCORE_URLS` legt fest, welche Internetseiten die Anwendung aufrufen darf; `ASPNETCORE_ENVIRONMENT` den Namen des Betriebssystems." }
-      - { de: "Beide nur, ob die Anwendung frameworkabhängig oder eigenständig ist." }
+      - { de: "`ASPNETCORE_URLS` nennt die Adressen und Ports, auf denen Kestrel lauscht (zum Beispiel `http://localhost:8080`); `ASPNETCORE_ENVIRONMENT` nennt die Umgebung (`Development`, `Production`), von der zum Beispiel abhängt, ob die Entwickler-Fehlerseite erscheint.", en: "`ASPNETCORE_URLS` specifies the addresses and ports on which Kestrel listens (for example, `http://localhost:8080`); `ASPNETCORE_ENVIRONMENT` specifies the environment (`Development`, `Production`), which determines, for example, whether the developer error page is displayed." }
+      - { de: "`ASPNETCORE_URLS` legt fest, welche Internetseiten die Anwendung aufrufen darf; `ASPNETCORE_ENVIRONMENT` den Namen des Betriebssystems.", en: "`ASPNETCORE_URLS` specifies which websites the application is allowed to access; `ASPNETCORE_ENVIRONMENT` specifies the name of the operating system." }
+      - { de: "Beide nur, ob die Anwendung frameworkabhängig oder eigenständig ist.", en: "The only difference is whether the application is framework-dependent or standalone." }
     correct: [0]
-    explanation: { de: "Ergänzung aus der Dokumentation (nicht im Buch). Im Buch (22.2.2, Seite 1553) steht die Umgebung `Development` in `launchSettings.json`, und `Program.cs` verzweigt mit `app.Environment.IsDevelopment()`." }
+    explanation: { de: "Ergänzung aus der Dokumentation (nicht im Buch). Im Buch (22.2.2, Seite 1553) steht die Umgebung `Development` in `launchSettings.json`, und `Program.cs` verzweigt mit `app.Environment.IsDevelopment()`.", en: "Additional information from the documentation (not included in the book). In the book (22.2.2, page 1553), the `Development` environment is specified in `launchSettings.json`, and `Program.cs` uses `app.Environment.IsDevelopment()` to branch the code." }
   - type: review
     id: webapp-veroeffentlichen
-    prompt: { de: "Lege mit `dotnet new webapp -o MeineWeb` eine Razor-Webanwendung an, veröffentliche sie mit `dotnet publish -c Release` und starte sie aus dem Veröffentlichungsordner mit `dotnet MeineWeb.dll --urls http://localhost:5123` (wähle einen freien Port). Rufe die Seite im Browser auf. Zeige der Betreuung einen Screenshot der laufenden Seite und die Konsolenausgabe des Servers mit der Zeile, die den Port nennt." }
+    prompt: { de: "Lege mit `dotnet new webapp -o MeineWeb` eine Razor-Webanwendung an, veröffentliche sie mit `dotnet publish -c Release` und starte sie aus dem Veröffentlichungsordner mit `dotnet MeineWeb.dll --urls http://localhost:5123` (wähle einen freien Port). Rufe die Seite im Browser auf. Zeige der Betreuung einen Screenshot der laufenden Seite und die Konsolenausgabe des Servers mit der Zeile, die den Port nennt.", en: "Create a Razor web application with `dotnet new webapp -o MeineWeb`, publish it with `dotnet publish -c Release`, and start it from the publish folder with `dotnet MeineWeb.dll --urls http://localhost:5123` (choose a free port). Open the page in the browser. Show the supervisor a screenshot of the running page and the server's console output with the line that names the port." }

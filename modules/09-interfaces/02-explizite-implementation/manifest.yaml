@@ -1,8 +1,8 @@
 id: interfaces-explizit
-title: { de: "Explizite Schnittstellenimplementierung" }
+title: { de: "Explizite Schnittstellenimplementierung", en: "Explicit interface implementation" }
 reading:
   section: "9.4"
-  title: { de: "Explizite Schnittstellenimplementierung" }
+  title: { de: "Explizite Schnittstellenimplementierung", en: "Explicit interface implementation" }
   printedPage: 646
 teaches:
   - interfaces.explicit
@@ -20,10 +20,10 @@ items:
     testProject: "Explizit Tests/Explizit.Tests.csproj"
   - type: multipleChoice
     id: warum-explizit
-    prompt: { de: "Wann ist eine explizite Implementierung (int IMesser.Wert()) nötig oder sinnvoll?" }
+    prompt: { de: "Wann ist eine explizite Implementierung (int IMesser.Wert()) nötig oder sinnvoll?", en: "When is an explicit implementation (int IMesser.Wert()) necessary or useful?" }
     options:
-      - { de: "Wenn zwei Interfaces gleichnamige Mitglieder mit verschiedener Bedeutung verlangen, oder wenn ein Mitglied nicht in der öffentlichen Schnittstelle der Klasse auftauchen soll." }
-      - { de: "Immer; implizite Implementierungen sind veraltet." }
-      - { de: "Nur bei Strukturen." }
+      - { de: "Wenn zwei Interfaces gleichnamige Mitglieder mit verschiedener Bedeutung verlangen, oder wenn ein Mitglied nicht in der öffentlichen Schnittstelle der Klasse auftauchen soll.", en: "When two interfaces require members with the same name but different meanings, or when a member should not appear in the class's public interface." }
+      - { de: "Immer; implizite Implementierungen sind veraltet.", en: "Always; implicit implementations are obsolete." }
+      - { de: "Nur bei Strukturen.", en: "Only for structures." }
     correct: [0]
-    explanation: { de: "9.4 (Seite 646). Ein Beispiel aus der BCL: das nicht-generische IEnumerable.GetEnumerator() wird meist explizit implementiert, damit nur die generische Fassung sichtbar ist (9.5)." }
+    explanation: { de: "9.4 (Seite 646). Ein Beispiel aus der BCL: das nicht-generische IEnumerable.GetEnumerator() wird meist explizit implementiert, damit nur die generische Fassung sichtbar ist (9.5).", en: "9.4 (page 646). An example from the BCL: the non-generic `IEnumerable.GetEnumerator()` is usually implemented explicitly so that only the generic version is visible (9.5)." }

@@ -1,9 +1,9 @@
 id: ablauf-ziffern-und-reihen
-title: { de: "Zusatz: Ziffern und Reihen mit Schleifen" }
+title: { de: "Zusatz: Ziffern und Reihen mit Schleifen", en: "Extra: Numbers and Sequences with Loops" }
 optional: true
 reading:
   section: "4.7.3.1"
-  title: { de: "Zählergesteuerte Schleife (for)" }
+  title: { de: "Zählergesteuerte Schleife (for)", en: "Counter-Controlled Loop (for)" }
   printedPage: 271
 teaches:
   - control.while

@@ -1,8 +1,8 @@
 id: generics-quiz
-title: { de: "Generics-Quiz: Werttypen, Varianz, Vererbung" }
+title: { de: "Generics-Quiz: Werttypen, Varianz, Vererbung", en: "Generics Quiz: Value Types, Variance, Inheritance" }
 reading:
   section: "8.8"
-  title: { de: "Übungsaufgaben zum Kapitel 8" }
+  title: { de: "Übungsaufgaben zum Kapitel 8", en: "Exercises for Chapter 8" }
   printedPage: 607
 teaches:
   - generics.invariance
@@ -16,61 +16,61 @@ requires:
 items:
   - type: multipleChoice
     id: werttyp-argument
-    prompt: { de: "Darf ein Typformalparameter durch einen Werttyp konkretisiert werden, z. B. SimpleStack<int>?" }
+    prompt: { de: "Darf ein Typformalparameter durch einen Werttyp konkretisiert werden, z. B. SimpleStack<int>?", en: "Can a type formal parameter be instantiated with a value type, e.g., `SimpleStack<int>`?" }
     options:
-      - { de: "Ja; für jeden Werttyp erzeugt die Laufzeit eine eigene Konkretisierung ohne Boxing." }
-      - { de: "Nein; Typargumente müssen Klassen sein." }
-      - { de: "Nur, wenn die Klasse where T : struct deklariert." }
+      - { de: "Ja; für jeden Werttyp erzeugt die Laufzeit eine eigene Konkretisierung ohne Boxing.", en: "Yes; for each value type, the runtime creates a separate instance without boxing." }
+      - { de: "Nein; Typargumente müssen Klassen sein.", en: "No; type arguments must be classes." }
+      - { de: "Nur, wenn die Klasse where T : struct deklariert.", en: "Only if the class is declared as `where T : struct`." }
     correct: [0]
-    explanation: { de: "8.8 Aufgabe 1, Aussage 1 ist richtig. Genau das ist der Vorteil gegenüber ArrayList (Aussage 2 in Aufgabe 2)." }
+    explanation: { de: "8.8 Aufgabe 1, Aussage 1 ist richtig. Genau das ist der Vorteil gegenüber ArrayList (Aussage 2 in Aufgabe 2).", en: "8.8 Exercise 1, Statement 1 is correct. That is precisely the advantage over ArrayList (Statement 2 in Exercise 2)." }
   - type: multipleChoice
     id: generische-methode
-    prompt: { de: "Eine Methode einer generischen Klasse verwendet den Typformalparameter T aus dem Klassenkopf als Rückgabetyp (z. B. T Pop()). Ist Pop eine generische Methode?" }
+    prompt: { de: "Eine Methode einer generischen Klasse verwendet den Typformalparameter T aus dem Klassenkopf als Rückgabetyp (z. B. T Pop()). Ist Pop eine generische Methode?", en: "A method of a generic class uses the type parameter T from the class header as its return type (e.g., T Pop()). Is Pop a generic method?" }
     options:
-      - { de: "Nein; eine generische Methode hat einen eigenen Typformalparameter in ihrem Kopf, etwa Max<T>(...)." }
-      - { de: "Ja; jede Methode, in der T vorkommt, ist generisch." }
+      - { de: "Nein; eine generische Methode hat einen eigenen Typformalparameter in ihrem Kopf, etwa Max<T>(...).", en: "No; a generic method has its own type formal parameter in its header, such as Max<T>(...)." }
+      - { de: "Ja; jede Methode, in der T vorkommt, ist generisch.", en: "Yes; any method that includes T is generic." }
     correct: [0]
-    explanation: { de: "8.8 Aufgabe 1, Aussage 2 ist falsch. Pop benutzt nur den Parameter seiner Klasse (8.5, Seite 602)." }
+    explanation: { de: "8.8 Aufgabe 1, Aussage 2 ist falsch. Pop benutzt nur den Parameter seiner Klasse (8.5, Seite 602).", en: "8.8 Exercise 1, Statement 2 is incorrect. Pop uses only the parameter of its class (8.5, page 602)." }
   - type: multipleChoice
     id: invarianz
-    prompt: { de: "List<object> lo = new List<string>(); Kompiliert das, weil object Basisklasse von string ist?" }
+    prompt: { de: "List<object> lo = new List<string>(); Kompiliert das, weil object Basisklasse von string ist?", en: "`List<object> lo = new List<string>();` Does that compile, because `object` is the base class of `string`?" }
     options:
-      - { de: "Nein. Generische Klassen sind invariant: List<string> ist keine List<object>, sonst könnte man über lo ein int in die String-Liste legen." }
-      - { de: "Ja; Vererbung überträgt sich auf Typargumente." }
-      - { de: "Ja, aber nur mit einem expliziten Cast." }
+      - { de: "Nein. Generische Klassen sind invariant: List<string> ist keine List<object>, sonst könnte man über lo ein int in die String-Liste legen.", en: "No. Generic classes are invariant: `List<string>` is not a `List<object>`; otherwise, you could use `lo` to add an `int` to the list of strings." }
+      - { de: "Ja; Vererbung überträgt sich auf Typargumente.", en: "Yes; inheritance applies to type arguments." }
+      - { de: "Ja, aber nur mit einem expliziten Cast.", en: "Yes, but only with an explicit cast." }
     correct: [0]
-    explanation: { de: "8.8 Aufgabe 1, Aussage 3 ist falsch. Nur Interfaces und Delegaten können ko- oder kontravariant sein (9.1.5, Level 9)." }
+    explanation: { de: "8.8 Aufgabe 1, Aussage 3 ist falsch. Nur Interfaces und Delegaten können ko- oder kontravariant sein (9.1.5, Level 9).", en: "8.8 Exercise 1, Statement 3 is incorrect. Only interfaces and delegates can be co- or contravariant (9.1.5, Level 9)." }
   - type: multipleChoice
     id: vererbung
-    prompt: { de: "Darf eine generische Klasse von einer nicht-generischen Klasse abstammen, z. B. class Lager<T> : Basis?" }
+    prompt: { de: "Darf eine generische Klasse von einer nicht-generischen Klasse abstammen, z. B. class Lager<T> : Basis?", en: "May a generic class derive from a non-generic class, e.g. `class Lager<T> : Basis`?" }
     options:
-      - { de: "Ja; umgekehrt darf eine nicht-generische Klasse auch von einer konkretisierten generischen Klasse erben (class IntLager : Lager<int>)." }
-      - { de: "Nein; generische und nicht-generische Klassen bilden getrennte Hierarchien." }
+      - { de: "Ja; umgekehrt darf eine nicht-generische Klasse auch von einer konkretisierten generischen Klasse erben (class IntLager : Lager<int>).", en: "Yes; conversely, a non-generic class may also inherit from a concretized generic class (class IntLager : Lager<int>)." }
+      - { de: "Nein; generische und nicht-generische Klassen bilden getrennte Hierarchien.", en: "No; generic and non-generic classes form separate hierarchies." }
     correct: [0]
-    explanation: { de: "8.8 Aufgabe 1, Aussage 4 ist richtig; die Regeln stehen in 8.2.3 (Seite 596). Eine offene generische Basis (: Lager<T>) braucht einen eigenen Typformalparameter in der abgeleiteten Klasse." }
+    explanation: { de: "8.8 Aufgabe 1, Aussage 4 ist richtig; die Regeln stehen in 8.2.3 (Seite 596). Eine offene generische Basis (: Lager<T>) braucht einen eigenen Typformalparameter in der abgeleiteten Klasse.", en: "8.8 Exercise 1, Statement 4 is correct; the rules are given in 8.2.3 (page 596). An open generic base class (: Lager<T>) requires its own type formal parameter in the derived class." }
   - type: multipleChoice
     id: laufzeittyp
-    prompt: { de: "typeof(SimpleStack<int>) == typeof(SimpleStack<string>) — was liefert der Vergleich?" }
+    prompt: { de: "typeof(SimpleStack<int>) == typeof(SimpleStack<string>) — was liefert der Vergleich?", en: "typeof(SimpleStack<int>) == typeof(SimpleStack<string>) — what does this comparison return?" }
     options:
-      - { de: "false: jede Konkretisierung ist zur Laufzeit ein eigener Typ; nur typeof(SimpleStack<>) bezeichnet die offene Definition." }
-      - { de: "true: beide stammen aus derselben Klassendefinition." }
+      - { de: "false: jede Konkretisierung ist zur Laufzeit ein eigener Typ; nur typeof(SimpleStack<>) bezeichnet die offene Definition.", en: "false: Each instantiation is a separate type at runtime; only `typeof(SimpleStack<>)` refers to the open definition." }
+      - { de: "true: beide stammen aus derselben Klassendefinition.", en: "true: Both come from the same class definition." }
     correct: [0]
-    explanation: { de: "8.4 Generische Typen zur Laufzeit (Seite 601). Statische Felder existieren deshalb pro Konkretisierung getrennt." }
+    explanation: { de: "8.4 Generische Typen zur Laufzeit (Seite 601). Statische Felder existieren deshalb pro Konkretisierung getrennt.", en: "8.4 Generic Types at Runtime (page 601). Static fields therefore exist separately for each instantiation." }
   - type: multipleChoice
     id: arraylist
-    prompt: { de: "Warum ist List<int> beim Einfügen von einer Million int-Werten deutlich schneller als ArrayList?" }
+    prompt: { de: "Warum ist List<int> beim Einfügen von einer Million int-Werten deutlich schneller als ArrayList?", en: "Why is `List<int>` significantly faster than `ArrayList` when inserting one million `int` values?" }
     options:
-      - { de: "ArrayList speichert object; jedes int wird beim Einfügen geboxt und beim Lesen entpackt. List<int> speichert die Werte direkt." }
-      - { de: "ArrayList ist nicht threadsicher." }
-      - { de: "List<int> hat eine feste Größe und muss nie wachsen." }
+      - { de: "ArrayList speichert object; jedes int wird beim Einfügen geboxt und beim Lesen entpackt. List<int> speichert die Werte direkt.", en: "An ArrayList stores objects; each int is boxed when inserted and unboxed when read. A List<int> stores the values directly." }
+      - { de: "ArrayList ist nicht threadsicher.", en: "ArrayList is not thread-safe." }
+      - { de: "List<int> hat eine feste Größe und muss nie wachsen.", en: "List<int> has a fixed size and never needs to grow." }
     correct: [0]
-    explanation: { de: "8.8 Aufgabe 2 misst das mit Stopwatch (Sample Listenwerte); Boxing ist aus 6.1.6 bekannt." }
+    explanation: { de: "8.8 Aufgabe 2 misst das mit Stopwatch (Sample Listenwerte); Boxing ist aus 6.1.6 bekannt.", en: "8.8 Exercise 2 measures this using a stopwatch (sample list values); boxing is described in 6.1.6." }
   - type: multipleChoice
     id: default-klasse
-    prompt: { de: "In einer generischen Klasse steht T x = default; Was enthält x, wenn T mit einer Klasse konkretisiert wurde?" }
+    prompt: { de: "In einer generischen Klasse steht T x = default; Was enthält x, wenn T mit einer Klasse konkretisiert wurde?", en: "In a generic class, T x = default; what does x contain if T has been instantiated with a class?" }
     options:
-      - { de: "null" }
-      - { de: "Ein Objekt, das mit dem Standardkonstruktor erzeugt wurde." }
-      - { de: "Compilerfehler ohne where T : new()." }
+      - { de: "null", en: "null" }
+      - { de: "Ein Objekt, das mit dem Standardkonstruktor erzeugt wurde.", en: "An object created using the default constructor." }
+      - { de: "Compilerfehler ohne where T : new().", en: "Compiler error without `where T : new()`." }
     correct: [0]
-    explanation: { de: "default liefert für Referenztypen null, für Werttypen den Nullwert (8.7, Seite 605). Ein Objekt erzeugt nur new T() mit der Einschränkung new()." }
+    explanation: { de: "default liefert für Referenztypen null, für Werttypen den Nullwert (8.7, Seite 605). Ein Objekt erzeugt nur new T() mit der Einschränkung new().", en: "`default` returns `null` for reference types and the null value for value types (8.7, page 605). An object is created only by `new T()`, with the restriction `new()`." }

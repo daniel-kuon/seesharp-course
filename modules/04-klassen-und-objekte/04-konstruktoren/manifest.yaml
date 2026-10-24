@@ -1,8 +1,8 @@
 id: klassen-konstruktoren
-title: { de: "Konstruktoren" }
+title: { de: "Konstruktoren", en: "Constructors" }
 reading:
   section: "5.4.3"
-  title: { de: "Einsatzvorbereitung (Konstruktoren)" }
+  title: { de: "Einsatzvorbereitung (Konstruktoren)", en: "Preparing for Use (Constructors)" }
   printedPage: 340
 teaches:
   - oop.constructor-explicit

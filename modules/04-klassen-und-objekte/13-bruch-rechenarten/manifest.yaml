@@ -1,9 +1,9 @@
 id: klassen-bruch-rechenarten
-title: { de: "Zusatzaufgabe: Bruch mit allen Grundrechenarten" }
+title: { de: "Zusatzaufgabe: Bruch mit allen Grundrechenarten", en: "Extra exercise: Fractions with all basic arithmetic operations" }
 optional: true
 reading:
   section: "5.9.3"
-  title: { de: "Operatoren überladen" }
+  title: { de: "Operatoren überladen", en: "Overloading Operators" }
   printedPage: 385
 teaches:
   - oop.operator-binary

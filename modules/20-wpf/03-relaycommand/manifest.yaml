@@ -1,8 +1,8 @@
 id: wpf-relaycommand
-title: { de: "RelayCommand und CanExecute" }
+title: { de: "RelayCommand und CanExecute", en: "RelayCommand and CanExecute" }
 reading:
   section: "12.13.3"
-  title: { de: "Kommandobindung" }
+  title: { de: "Kommandobindung", en: "Command Binding" }
   printedPage: 865
 teaches:
   - mvvm.relaycommand
@@ -23,22 +23,22 @@ items:
     testProject: "Befehle Tests/Befehle.Tests.csproj"
   - type: multipleChoice
     id: icommand-mitglieder
-    prompt: { de: "Welche Mitglieder verlangt die Schnittstelle ICommand?" }
+    prompt: { de: "Welche Mitglieder verlangt die Schnittstelle ICommand?", en: "Which members does the ICommand interface require?" }
     options:
-      - { de: "bool CanExecute(object? parameter), void Execute(object? parameter) und das Ereignis CanExecuteChanged." }
-      - { de: "Nur void Execute(), weil WPF die Ausführbarkeit selbst herausfindet." }
-      - { de: "void Click(), bool IsEnabled { get; } und das Ereignis Changed." }
+      - { de: "bool CanExecute(object? parameter), void Execute(object? parameter) und das Ereignis CanExecuteChanged.", en: "bool CanExecute(object? parameter), void Execute(object? parameter), and the CanExecuteChanged event." }
+      - { de: "Nur void Execute(), weil WPF die Ausführbarkeit selbst herausfindet.", en: "Just `void Execute()`, because WPF determines executability on its own." }
+      - { de: "void Click(), bool IsEnabled { get; } und das Ereignis Changed.", en: "void Click(), bool IsEnabled { get; } and the Changed event." }
     correct: [0]
-    explanation: { de: "12.13.3.1 (Seite 866). Eine Schaltfläche, deren Command-Eigenschaft an einen ICommand gebunden ist, fragt CanExecute ab (und deaktiviert sich bei false) und ruft beim Klick Execute auf." }
+    explanation: { de: "12.13.3.1 (Seite 866). Eine Schaltfläche, deren Command-Eigenschaft an einen ICommand gebunden ist, fragt CanExecute ab (und deaktiviert sich bei false) und ruft beim Klick Execute auf.", en: "12.13.3.1 (page 866). A button whose Command property is bound to an ICommand checks whether CanExecute is true (and becomes disabled if false) and calls Execute when clicked." }
   - type: multipleChoice
     id: raise-can-execute-changed
-    prompt: { de: "Verringern ist nur ausführbar, solange Wert > 0. Der Wert wird im Code auf 0 gesetzt, aber die Schaltfläche bleibt aktiv. Was fehlt?" }
+    prompt: { de: "Verringern ist nur ausführbar, solange Wert > 0. Der Wert wird im Code auf 0 gesetzt, aber die Schaltfläche bleibt aktiv. Was fehlt?", en: "`Verringern` is only executable while `Wert > 0`. The value is set to 0 in code, but the button stays enabled. What is missing?" }
     options:
-      - { de: "Der Befehl muss CanExecuteChanged auslösen (hier über RaiseCanExecuteChanged), damit WPF CanExecute erneut abfragt. WPF fragt nicht ständig nach." }
-      - { de: "Die Schaltfläche muss im Code-Behind per IsEnabled = false abgeschaltet werden." }
-      - { de: "Execute muss intern prüfen, ob der Wert größer 0 ist." }
+      - { de: "Der Befehl muss CanExecuteChanged auslösen (hier über RaiseCanExecuteChanged), damit WPF CanExecute erneut abfragt. WPF fragt nicht ständig nach.", en: "The command must trigger CanExecuteChanged (here via RaiseCanExecuteChanged) so that WPF checks CanExecute again. WPF does not check constantly." }
+      - { de: "Die Schaltfläche muss im Code-Behind per IsEnabled = false abgeschaltet werden.", en: "The button must be disabled in the code-behind by setting IsEnabled = false." }
+      - { de: "Execute muss intern prüfen, ob der Wert größer 0 ist.", en: "Execute must check internally whether the value is greater than 0." }
     correct: [0]
-    explanation: { de: "12.13.3.1 und 12.13.3.4 (Seite 866 bis 874). Die Bedingung bleibt im ViewModel; die Ansicht erfährt nur über CanExecuteChanged, dass sie neu fragen soll. (Der WPF-eigene CommandManager.RequerySuggested ist eine andere Technik, die hier bewusst nicht verwendet wird.)" }
+    explanation: { de: "12.13.3.1 und 12.13.3.4 (Seite 866 bis 874). Die Bedingung bleibt im ViewModel; die Ansicht erfährt nur über CanExecuteChanged, dass sie neu fragen soll. (Der WPF-eigene CommandManager.RequerySuggested ist eine andere Technik, die hier bewusst nicht verwendet wird.)", en: "12.13.3.1 and 12.13.3.4 (pages 866 through 874). The condition remains in the ViewModel; the view is only notified via `CanExecuteChanged` that it should re-query. (WPF’s own `CommandManager.RequerySuggested` is a different technique that is deliberately not used here.)" }
   - type: multipleChoice
     id: command-parameter
     prompt:
@@ -50,9 +50,10 @@ items:
         ```
 
         Welchen Typ hat der Parameter, der bei Execute ankommt?
+      en: "Here's how to bind a button:\n\n```xml\n<Button Content=\"Auf 10\" Command=\"{Binding SetzeAuf}\" CommandParameter=\"10\" />\n```\n\nWhat is the data type of the parameter passed to `Execute`?"
     options:
-      - { de: "string, denn ein Attributwert in XAML ist Text; ein int wäre nur über Binding oder eine passende Markuperweiterung möglich. Deshalb muss der Befehl den Parameter selbst umwandeln." }
-      - { de: "int, WPF erkennt die Zahl automatisch." }
-      - { de: "Der Parameter ist immer null." }
+      - { de: "string, denn ein Attributwert in XAML ist Text; ein int wäre nur über Binding oder eine passende Markuperweiterung möglich. Deshalb muss der Befehl den Parameter selbst umwandeln.", en: "string, because an attribute value in XAML is text; an int would only be possible via binding or a suitable markup extension. Therefore, the command must convert the parameter itself." }
+      - { de: "int, WPF erkennt die Zahl automatisch.", en: "int; WPF automatically recognizes the number." }
+      - { de: "Der Parameter ist immer null.", en: "The parameter is always zero." }
     correct: [0]
-    explanation: { de: "12.13.3.2 (Seite 867). Die Aufgabe SetzeAuf akzeptiert deshalb beides: int (aus dem Code) und string (aus XAML)." }
+    explanation: { de: "12.13.3.2 (Seite 867). Die Aufgabe SetzeAuf akzeptiert deshalb beides: int (aus dem Code) und string (aus XAML).", en: "12.13.3.2 (page 867). The SetzeAuf method therefore accepts both: int (from the code) and string (from XAML)." }

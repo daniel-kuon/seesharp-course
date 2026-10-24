@@ -1,8 +1,8 @@
 id: komposition-geschachtelte-klassen
-title: { de: "Geschachtelte Klassen" }
+title: { de: "Geschachtelte Klassen", en: "Nested Classes" }
 reading:
   section: "5.11"
-  title: { de: "Geschachtelte Klassen" }
+  title: { de: "Geschachtelte Klassen", en: "Nested Classes" }
   printedPage: 391
 teaches:
   - oop.nested-class
@@ -20,11 +20,11 @@ items:
     testProject: "GeschachtelteKlassen Tests/GeschachtelteKlassen.Tests.csproj"
   - type: multipleChoice
     id: zugriff
-    prompt: { de: "Eine Klasse Sohn ist in Familie geschachtelt. Auf welche Mitglieder von Familie darf Sohn zugreifen?" }
+    prompt: { de: "Eine Klasse Sohn ist in Familie geschachtelt. Auf welche Mitglieder von Familie darf Sohn zugreifen?", en: "A class `Sohn` is nested in `Familie`. Which members of `Familie` may `Sohn` access?" }
     options:
-      - { de: "Auf alle, auch auf private Felder, sofern eine Familie-Referenz vorliegt." }
-      - { de: "Nur auf öffentliche Mitglieder, wie jede andere Klasse auch." }
-      - { de: "Nur auf statische Mitglieder." }
-      - { de: "Auf gar keine; geschachtelte Klassen sind vollständig getrennt." }
+      - { de: "Auf alle, auch auf private Felder, sofern eine Familie-Referenz vorliegt.", en: "All of them, including private fields, as long as a `Familie` reference is available." }
+      - { de: "Nur auf öffentliche Mitglieder, wie jede andere Klasse auch.", en: "Only on public members, just like any other class." }
+      - { de: "Nur auf statische Mitglieder.", en: "Only on static members." }
+      - { de: "Auf gar keine; geschachtelte Klassen sind vollständig getrennt.", en: "Not at all; nested classes are completely separate." }
     correct: [0]
-    explanation: { de: "Eine geschachtelte Klasse gehört zum Rumpf der äußeren Klasse und sieht deren private Mitglieder. Für Instanzmitglieder braucht sie trotzdem eine Referenz auf ein Familie-Objekt." }
+    explanation: { de: "Eine geschachtelte Klasse gehört zum Rumpf der äußeren Klasse und sieht deren private Mitglieder. Für Instanzmitglieder braucht sie trotzdem eine Referenz auf ein Familie-Objekt.", en: "A nested class is part of the outer class's body and can see its private members. However, for instance members, it still needs a reference to a `Familie` object." }

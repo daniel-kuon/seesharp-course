@@ -1,8 +1,8 @@
 id: typen-zeichenfolgen
-title: { de: "Zeichenfolgen: Zeilenumbruch, Glückszahl, StringBuilder" }
+title: { de: "Zeichenfolgen: Zeilenumbruch, Glückszahl, StringBuilder", en: "Strings: Line Break, Lucky Number, StringBuilder" }
 reading:
   section: "6.3"
-  title: { de: "Klassen für Zeichenfolgen" }
+  title: { de: "Klassen für Zeichenfolgen", en: "Classes for Strings" }
   printedPage: 472
 teaches:
   - strings.methods
@@ -24,19 +24,19 @@ items:
     testProject: "StringUtil Tests/StringUtil.Tests.csproj"
   - type: multipleChoice
     id: immutability
-    prompt: { de: "string s = \"abc\"; s.ToUpper(); Console.WriteLine(s); Was wird ausgegeben?" }
+    prompt: { de: "string s = \"abc\"; s.ToUpper(); Console.WriteLine(s); Was wird ausgegeben?", en: "string s = \"abc\"; s.ToUpper(); Console.WriteLine(s); What will be printed?" }
     options:
-      - { de: "abc, denn Strings sind unveränderlich; ToUpper liefert einen neuen String, der hier verworfen wird." }
-      - { de: "ABC, denn ToUpper ändert den String." }
-      - { de: "Ein Compilerfehler, weil der Rückgabewert nicht verwendet wird." }
+      - { de: "abc, denn Strings sind unveränderlich; ToUpper liefert einen neuen String, der hier verworfen wird.", en: "abc, because strings are immutable; ToUpper returns a new string, which is discarded here." }
+      - { de: "ABC, denn ToUpper ändert den String.", en: "ABC, because ToUpper changes the string." }
+      - { de: "Ein Compilerfehler, weil der Rückgabewert nicht verwendet wird.", en: "A compiler error because the return value is not used." }
     correct: [0]
-    explanation: { de: "String-Methoden verändern nie das Objekt (6.3.1.1, Seite 473). Richtig wäre s = s.ToUpper();." }
+    explanation: { de: "String-Methoden verändern nie das Objekt (6.3.1.1, Seite 473). Richtig wäre s = s.ToUpper();.", en: "String methods never modify the object (6.3.1.1, page 473). The correct syntax would be `s = s.ToUpper();`." }
   - type: multipleChoice
     id: stringbuilder
-    prompt: { de: "In einer Schleife werden 50 000 Zeichen an einen Text angehängt. Warum ist StringBuilder.Append hier viel schneller als s += c?" }
+    prompt: { de: "In einer Schleife werden 50 000 Zeichen an einen Text angehängt. Warum ist StringBuilder.Append hier viel schneller als s += c?", en: "In a loop, 50,000 characters are appended to a string. Why is `StringBuilder.Append` much faster here than `s += c`?" }
     options:
-      - { de: "s += c erzeugt bei jedem Durchlauf einen neuen String und kopiert den alten komplett; StringBuilder schreibt in einen wachsenden Puffer." }
-      - { de: "StringBuilder benutzt mehrere Threads." }
-      - { de: "Der Compiler optimiert Append, += aber nicht." }
+      - { de: "s += c erzeugt bei jedem Durchlauf einen neuen String und kopiert den alten komplett; StringBuilder schreibt in einen wachsenden Puffer.", en: "s += c creates a new string on each pass and copies the old one in its entirety; StringBuilder writes to a growing buffer." }
+      - { de: "StringBuilder benutzt mehrere Threads.", en: "StringBuilder uses multiple threads." }
+      - { de: "Der Compiler optimiert Append, += aber nicht.", en: "The compiler optimizes `Append`, but not `+=`." }
     correct: [0]
-    explanation: { de: "Unveränderliche Strings machen jede Verkettung zu einer Kopie (6.3.2, Seite 479). Das Buch misst den Unterschied im Projekt StringBuilder." }
+    explanation: { de: "Unveränderliche Strings machen jede Verkettung zu einer Kopie (6.3.2, Seite 479). Das Buch misst den Unterschied im Projekt StringBuilder.", en: "Immutable strings cause every concatenation to result in a copy (6.3.2, page 479). The book illustrates the difference in the StringBuilder project." }

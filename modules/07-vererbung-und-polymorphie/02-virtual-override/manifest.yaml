@@ -1,8 +1,8 @@
 id: vererbung-virtual-override
-title: { de: "Polymorphie: virtual und override" }
+title: { de: "Polymorphie: virtual und override", en: "Polymorphism: virtual and override" }
 reading:
   section: "7.9"
-  title: { de: "Polymorphie (Überschreiben von Methoden)" }
+  title: { de: "Polymorphie (Überschreiben von Methoden)", en: "Polymorphism (Overriding Methods)" }
   printedPage: 566
 teaches:
   - inheritance.virtual-override
@@ -23,10 +23,10 @@ items:
     testProject: "Polymorphie Tests/Polymorphie.Tests.csproj"
   - type: multipleChoice
     id: statischer-vs-dynamischer-typ
-    prompt: { de: "Figur f = new Kreis(); f.Wo(); — Wo ist in Figur virtual und in Kreis override. Welche Fassung läuft, und wonach entscheidet sich das?" }
+    prompt: { de: "Figur f = new Kreis(); f.Wo(); — Wo ist in Figur virtual und in Kreis override. Welche Fassung läuft, und wonach entscheidet sich das?", en: "`Figur f = new Kreis(); f.Wo();` — `Wo` is `virtual` in `Figur` and `override` in `Kreis`. Which version runs, and what decides that?" }
     options:
-      - { de: "Die Kreis-Fassung; entscheidend ist der dynamische Typ des Objekts (Kreis), nicht der statische Typ der Variablen (Figur)." }
-      - { de: "Die Figur-Fassung; entscheidend ist der Typ der Variablen." }
-      - { de: "Beide nacheinander, erst Figur, dann Kreis." }
+      - { de: "Die Kreis-Fassung; entscheidend ist der dynamische Typ des Objekts (Kreis), nicht der statische Typ der Variablen (Figur).", en: "The `Kreis` version; what decides is the dynamic type of the object (`Kreis`), not the static type of the variable (`Figur`)." }
+      - { de: "Die Figur-Fassung; entscheidend ist der Typ der Variablen.", en: "The `Figur` version; the type of the variable decides." }
+      - { de: "Beide nacheinander, erst Figur, dann Kreis.", en: "Both in sequence, first `Figur`, then `Kreis`." }
     correct: [0]
-    explanation: { de: "Virtuelle Methoden werden zur Laufzeit über den dynamischen Typ aufgelöst (7.9, Seite 566). Mit new statt override liefe dagegen die Figur-Fassung, weil new nur verdeckt." }
+    explanation: { de: "Virtuelle Methoden werden zur Laufzeit über den dynamischen Typ aufgelöst (7.9, Seite 566). Mit new statt override liefe dagegen die Figur-Fassung, weil new nur verdeckt.", en: "Virtual methods are resolved at runtime based on the dynamic type (7.9, page 566). If you used `new` instead of `override`, however, the `Figur` version would be called, because `new` only masks the method." }

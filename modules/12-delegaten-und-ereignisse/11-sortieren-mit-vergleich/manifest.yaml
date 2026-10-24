@@ -1,9 +1,9 @@
 id: delegaten-sortieren-mit-vergleich
-title: { de: "Zusatz: Sortieren mit Vergleichslambda" }
+title: { de: "Zusatz: Sortieren mit Vergleichslambda", en: "Extra: Sorting with a Comparison Lambda" }
 optional: true
 reading:
   section: "10.3"
-  title: { de: "Übungsaufgaben zum Kapitel 10" }
+  title: { de: "Übungsaufgaben zum Kapitel 10", en: "Exercises for Chapter 10" }
   printedPage: 688
 teaches:
   - lambdas.expression

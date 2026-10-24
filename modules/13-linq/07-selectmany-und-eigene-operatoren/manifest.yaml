@@ -1,8 +1,8 @@
 id: linq-selectmany-und-eigene-operatoren
-title: { de: "SelectMany, Unterabfragen, OfType und eigene Operatoren" }
+title: { de: "SelectMany, Unterabfragen, OfType und eigene Operatoren", en: "SelectMany, subqueries, OfType, and custom operators" }
 reading:
   section: "18.2.8.2"
-  title: { de: "SelectMany()" }
+  title: { de: "SelectMany()", en: "SelectMany()" }
   printedPage: 1220
 teaches:
   - linq.selectmany
@@ -26,41 +26,41 @@ items:
     testProject: "Operatoren Tests/Operatoren.Tests.csproj"
   - type: multipleChoice
     id: aussage-1
-    prompt: { de: "Aussage: Jede in der Methodensyntax formulierbare LINQ-to-Objects-Abfrage lässt sich in einen Abfrageausdruck übersetzen. (18.6 Aufgabe 1.1)" }
+    prompt: { de: "Aussage: Jede in der Methodensyntax formulierbare LINQ-to-Objects-Abfrage lässt sich in einen Abfrageausdruck übersetzen. (18.6 Aufgabe 1.1)", en: "Statement: Every LINQ to Objects query that can be expressed using the method syntax can be translated into a query expression. (18.6 Exercise 1.1)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Operatoren wie Take, Skip, Count, Distinct oder Chunk haben kein Schlüsselwort in der Abfragesyntax; man hängt sie als Methode an den geklammerten Ausdruck." }
+    explanation: { de: "Operatoren wie Take, Skip, Count, Distinct oder Chunk haben kein Schlüsselwort in der Abfragesyntax; man hängt sie als Methode an den geklammerten Ausdruck.", en: "Operators such as Take, Skip, Count, Distinct, or Chunk do not have a keyword in the query syntax; they are appended as methods to the expression enclosed in parentheses." }
   - type: multipleChoice
     id: aussage-2
-    prompt: { de: "Aussage: Ein Abfrageausdruck mit zwei from-Klauseln wird vom Compiler in eine SelectMany()-Methode übersetzt. (18.6 Aufgabe 1.2)" }
+    prompt: { de: "Aussage: Ein Abfrageausdruck mit zwei from-Klauseln wird vom Compiler in eine SelectMany()-Methode übersetzt. (18.6 Aufgabe 1.2)", en: "Statement: A query expression with two `from` clauses is translated by the compiler into a `SelectMany()` method. (18.6 Exercise 1.2)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "Die zweite from-Klausel entspricht SelectMany (18.2.8.2, Seite 1220; Sample Abfragesyntax/SelectMany per Abfragesyntax)." }
+    explanation: { de: "Die zweite from-Klausel entspricht SelectMany (18.2.8.2, Seite 1220; Sample Abfragesyntax/SelectMany per Abfragesyntax).", en: "The second `from` clause corresponds to `SelectMany` (18.2.8.2, page 1220; sample `Abfragesyntax/SelectMany per Abfragesyntax`)." }
   - type: multipleChoice
     id: aussage-3
-    prompt: { de: "Aussage: Eine PLINQ-Abfrage kann Multithreading in Form von Datenparallelität realisieren. (18.6 Aufgabe 1.3)" }
+    prompt: { de: "Aussage: Eine PLINQ-Abfrage kann Multithreading in Form von Datenparallelität realisieren. (18.6 Aufgabe 1.3)", en: "Statement: A PLINQ query can implement multithreading in the form of data parallelism. (18.6 Exercise 1.3)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "AsParallel() verteilt die Elemente auf mehrere Threads; PLINQ ist Thema des Wahlmoduls Multithreading (18.5)." }
+    explanation: { de: "AsParallel() verteilt die Elemente auf mehrere Threads; PLINQ ist Thema des Wahlmoduls Multithreading (18.5).", en: "AsParallel() distributes the elements across multiple threads; PLINQ is covered in the elective module on multithreading (18.5)." }
   - type: multipleChoice
     id: aussage-4
-    prompt: { de: "Aussage: Das kooperative Abbruchmodell lässt sich in LINQ-Abfragen mit WithCancellation(...) nutzen; dieser Operator gibt es aber nur bei PLINQ (ParallelQuery), nicht bei gewöhnlichem LINQ-to-Objects. (18.6 Aufgabe 1.4)" }
+    prompt: { de: "Aussage: Das kooperative Abbruchmodell lässt sich in LINQ-Abfragen mit WithCancellation(...) nutzen; dieser Operator gibt es aber nur bei PLINQ (ParallelQuery), nicht bei gewöhnlichem LINQ-to-Objects. (18.6 Aufgabe 1.4)", en: "Statement: The cooperative cancellation model can be used in LINQ queries with `WithCancellation(...)`; however, this operator is only available in PLINQ (ParallelQuery), not in standard LINQ to Objects. (18.6 Exercise 1.4)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "WithCancellation ist eine Methode von ParallelEnumerable; gewöhnliche Abfragen auf IEnumerable<T> kennen sie nicht. Zum Abbrechen einer sequenziellen Abfrage prüft man ein CancellationToken im Lambda selbst." }
+    explanation: { de: "WithCancellation ist eine Methode von ParallelEnumerable; gewöhnliche Abfragen auf IEnumerable<T> kennen sie nicht. Zum Abbrechen einer sequenziellen Abfrage prüft man ein CancellationToken im Lambda selbst.", en: "WithCancellation is a method of ParallelEnumerable; standard queries on IEnumerable<T> do not support it. To cancel a sequential query, you check for a CancellationToken within the lambda itself." }
   - type: multipleChoice
     id: aussage-5
-    prompt: { de: "Aussage: Mit dem LINQ-Operator Zip() lässt sich eine Datei komprimieren. (18.6 Aufgabe 1.5)" }
+    prompt: { de: "Aussage: Mit dem LINQ-Operator Zip() lässt sich eine Datei komprimieren. (18.6 Aufgabe 1.5)", en: "Statement: You can compress a file using the LINQ Zip() operator. (18.6 Exercise 1.5)" }
     options:
-      - { de: "Richtig" }
-      - { de: "Falsch" }
+      - { de: "Richtig", en: "Correct" }
+      - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Zip() paart die Elemente zweier Sequenzen. Dateien komprimiert man mit System.IO.Compression.ZipFile (Namensvetter, keine Beziehung)." }
+    explanation: { de: "Zip() paart die Elemente zweier Sequenzen. Dateien komprimiert man mit System.IO.Compression.ZipFile (Namensvetter, keine Beziehung).", en: "Zip() pairs the elements of two sequences. Files are compressed using System.IO.Compression.ZipFile (namesake, no relation)." }

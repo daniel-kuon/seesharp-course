@@ -1,9 +1,9 @@
 id: aspnet-produkt-detail
-title: { de: "Zusatz: Produktdetailseite mit Routenparameter" }
+title: { de: "Zusatz: Produktdetailseite mit Routenparameter", en: "Extra: Product detail page with route parameters" }
 optional: true
 reading:
   section: "22.7.2"
-  title: { de: "Routenparameter" }
+  title: { de: "Routenparameter", en: "Route Parameters" }
   printedPage: 1578
 teaches:
   - web.routing-parameters

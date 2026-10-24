@@ -1,8 +1,8 @@
 id: kollektionen-mengenlotto
-title: { de: "Lotto mit SortedSet<T>" }
+title: { de: "Lotto mit SortedSet<T>", en: "Lotto with SortedSet<T>" }
 reading:
   section: "11.5.3"
-  title: { de: "Balancierte Binärbäume und die Klasse SortedSet<T>" }
+  title: { de: "Balancierte Binärbäume und die Klasse SortedSet<T>", en: "Balanced Binary Trees and the SortedSet<T> Class" }
   printedPage: 711
 teaches:
   - collections.sortedset

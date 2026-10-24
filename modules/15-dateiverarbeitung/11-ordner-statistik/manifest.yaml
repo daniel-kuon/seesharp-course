@@ -1,9 +1,9 @@
 id: dateien-ordner-statistik
-title: { de: "Zusatz: Ordnerstatistik" }
+title: { de: "Zusatz: Ordnerstatistik", en: "Extra: Folder Statistics" }
 optional: true
 reading:
   section: "16.6.2"
-  title: { de: "Ordnerverwaltung" }
+  title: { de: "Ordnerverwaltung", en: "Folder Management" }
   printedPage: 1055
 teaches:
   - files.directory-ops

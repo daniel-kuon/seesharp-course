@@ -1,9 +1,9 @@
 id: generics-algorithmen
-title: { de: "Zusatz: Generische Algorithmen für sortierte Arrays" }
+title: { de: "Zusatz: Generische Algorithmen für sortierte Arrays", en: "Extra: Generic Algorithms for Sorted Arrays" }
 optional: true
 reading:
   section: "8.5"
-  title: { de: "Generische Methoden" }
+  title: { de: "Generische Methoden", en: "Generic Methods" }
   printedPage: 602
 teaches:
   - generics.method

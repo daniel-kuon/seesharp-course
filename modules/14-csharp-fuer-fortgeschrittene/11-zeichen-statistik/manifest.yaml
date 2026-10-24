@@ -1,9 +1,9 @@
 id: fortgeschritten-zeichen-statistik
-title: { de: "Zusatz: Zeichenstatistik ohne Kopien" }
+title: { de: "Zusatz: Zeichenstatistik ohne Kopien", en: "Extra: Character Count Without Copies" }
 optional: true
 reading:
   section: "15.4"
-  title: { de: "Span<T> und ReadOnlySpan<T>" }
+  title: { de: "Span<T> und ReadOnlySpan<T>", en: "Span<T> and ReadOnlySpan<T>" }
   printedPage: 991
 teaches:
   - spans.span-slice

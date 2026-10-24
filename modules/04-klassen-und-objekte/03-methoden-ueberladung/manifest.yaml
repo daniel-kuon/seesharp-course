@@ -1,8 +1,8 @@
 id: klassen-methoden-ueberladung
-title: { de: "Methoden überladen" }
+title: { de: "Methoden überladen", en: "Overloading Methods" }
 reading:
   section: "5.3.5"
-  title: { de: "Methoden überladen" }
+  title: { de: "Methoden überladen", en: "Overloading Methods" }
   printedPage: 334
 teaches:
   - oop.method-overload

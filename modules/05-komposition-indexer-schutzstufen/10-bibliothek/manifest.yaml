@@ -1,9 +1,9 @@
 id: komposition-bibliothek
-title: { de: "Zusatzaufgabe: Eine Bibliothek mit Indexern" }
+title: { de: "Zusatzaufgabe: Eine Bibliothek mit Indexern", en: "Extra exercise: A library with indexers" }
 optional: true
 reading:
   section: "5.12"
-  title: { de: "Indexer" }
+  title: { de: "Indexer", en: "Indexer" }
   printedPage: 393
 teaches:
   - oop.indexer

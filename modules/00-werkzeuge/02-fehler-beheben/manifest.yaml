@@ -1,8 +1,8 @@
 id: werkzeuge-fehler-beheben
-title: { de: "Compilerfehler beheben" }
+title: { de: "Compilerfehler beheben", en: "Fixing Compiler Errors" }
 reading:
   section: "3.1.6"
-  title: { de: "Programmfehler" }
+  title: { de: "Programmfehler", en: "Program Errors" }
   printedPage: 76
 teaches:
   - tools.read-compiler-error

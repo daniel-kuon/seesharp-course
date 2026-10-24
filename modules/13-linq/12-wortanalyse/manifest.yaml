@@ -1,9 +1,9 @@
 id: linq-wortanalyse
-title: { de: "Zusatz: Wortanalyse" }
+title: { de: "Zusatz: Wortanalyse", en: "Extra: Word Analysis" }
 optional: true
 reading:
   section: "18.2.9"
-  title: { de: "GroupBy()" }
+  title: { de: "GroupBy()", en: "GroupBy()" }
   printedPage: 1222
 teaches:
   - linq.selectmany

@@ -1,9 +1,9 @@
 id: wpf-taschenrechner-viewmodel
-title: { de: "Zusatz: Taschenrechner-ViewModel" }
+title: { de: "Zusatz: Taschenrechner-ViewModel", en: "Extra: Calculator ViewModel" }
 optional: true
 reading:
   section: "12.13.3"
-  title: { de: "Kommandobindung" }
+  title: { de: "Kommandobindung", en: "Command Binding" }
   printedPage: 865
 teaches:
   - mvvm.relaycommand

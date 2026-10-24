@@ -1,8 +1,8 @@
 id: konzepte-clr-und-bcl
-title: { de: "CLR, Garbage Collection und BCL" }
+title: { de: "CLR, Garbage Collection und BCL", en: "CLR, Garbage Collection, and BCL" }
 reading:
   section: "2.5"
-  title: { de: "CLR" }
+  title: { de: "CLR", en: "CLR" }
   printedPage: 42
 teaches:
   - concepts.clr-managed-code
@@ -13,46 +13,46 @@ requires:
 items:
   - type: multipleChoice
     id: clr-aufgaben
-    prompt: { de: "Welche Aufgaben übernimmt die CLR? (mehrere möglich)" }
+    prompt: { de: "Welche Aufgaben übernimmt die CLR? (mehrere möglich)", en: "What tasks does the CLR perform? (multiple answers possible)" }
     options:
-      - { de: "IL-Code per JIT in Maschinencode übersetzen" }
-      - { de: "Speicher nicht mehr erreichbarer Objekte freigeben" }
-      - { de: "Quellcode auf Rechtschreibfehler in Kommentaren prüfen" }
-      - { de: "Ausnahmebehandlung und Typsicherheit zur Laufzeit" }
+      - { de: "IL-Code per JIT in Maschinencode übersetzen", en: "Compile IL code into machine code using JIT" }
+      - { de: "Speicher nicht mehr erreichbarer Objekte freigeben", en: "Free up memory used by objects that are no longer accessible" }
+      - { de: "Quellcode auf Rechtschreibfehler in Kommentaren prüfen", en: "Check the source code for spelling errors in comments" }
+      - { de: "Ausnahmebehandlung und Typsicherheit zur Laufzeit", en: "Exception Handling and Type Safety at Runtime" }
     correct: [0, 1, 3]
   - type: multipleChoice
     id: managed
-    prompt: { de: "Warum heißt IL-Code auch verwalteter Code (managed code)?" }
+    prompt: { de: "Warum heißt IL-Code auch verwalteter Code (managed code)?", en: "Why is IL code also called \"managed code\"?" }
     options:
-      - { de: "Weil die CLR seine Ausführung betreut: Speicherverwaltung, Typprüfung, Ausnahmen." }
-      - { de: "Weil er von einem Projektmanager freigegeben werden muss." }
-      - { de: "Weil er nur in Verwaltungssoftware verwendet wird." }
-      - { de: "Weil er in einer Datenbank gespeichert wird." }
+      - { de: "Weil die CLR seine Ausführung betreut: Speicherverwaltung, Typprüfung, Ausnahmen.", en: "Because the CLR manages its execution: memory management, type checking, and exceptions." }
+      - { de: "Weil er von einem Projektmanager freigegeben werden muss.", en: "Because it has to be approved by a project manager." }
+      - { de: "Weil er nur in Verwaltungssoftware verwendet wird.", en: "Because it is used only in administrative software." }
+      - { de: "Weil er in einer Datenbank gespeichert wird.", en: "Because it is stored in a database." }
     correct: [0]
   - type: multipleChoice
     id: gc
-    prompt: { de: "Wann gibt der Garbage Collector den Speicher eines Objekts frei?" }
+    prompt: { de: "Wann gibt der Garbage Collector den Speicher eines Objekts frei?", en: "When does the garbage collector free up an object's memory?" }
     options:
-      - { de: "Wenn im Programm keine Referenz mehr auf das Objekt zeigt; den Zeitpunkt bestimmt die CLR." }
-      - { de: "Sofort, wenn die Methode endet, in der das Objekt erzeugt wurde." }
-      - { de: "Nur, wenn der Programmierer delete aufruft." }
-      - { de: "Beim Beenden des Programms, nie vorher." }
+      - { de: "Wenn im Programm keine Referenz mehr auf das Objekt zeigt; den Zeitpunkt bestimmt die CLR.", en: "When there are no longer any references to the object in the program; the CLR determines the exact time." }
+      - { de: "Sofort, wenn die Methode endet, in der das Objekt erzeugt wurde.", en: "Immediately after the method in which the object was created ends." }
+      - { de: "Nur, wenn der Programmierer delete aufruft.", en: "Only if the programmer calls `delete`." }
+      - { de: "Beim Beenden des Programms, nie vorher.", en: "When you exit the program—never before that." }
     correct: [0]
   - type: multipleChoice
     id: bcl
-    prompt: { de: "Was ist die BCL?" }
+    prompt: { de: "Was ist die BCL?", en: "What is the BCL?" }
     options:
-      - { de: "Die mitgelieferte Sammlung von Assemblies mit Grundtypen wie String, Console und Math; Teil der Laufzeitumgebung." }
-      - { de: "Der C#-Compiler." }
-      - { de: "Ein Werkzeug zum Anlegen von Projekten." }
-      - { de: "Die grafische Oberfläche von Visual Studio." }
+      - { de: "Die mitgelieferte Sammlung von Assemblies mit Grundtypen wie String, Console und Math; Teil der Laufzeitumgebung.", en: "The included collection of assemblies containing basic types such as String, Console, and Math; part of the runtime environment." }
+      - { de: "Der C#-Compiler.", en: "The C# compiler." }
+      - { de: "Ein Werkzeug zum Anlegen von Projekten.", en: "A tool for creating projects." }
+      - { de: "Die grafische Oberfläche von Visual Studio.", en: "The graphical user interface of Visual Studio." }
     correct: [0]
   - type: multipleChoice
     id: bcl-plattform
-    prompt: { de: "Welche Aussage über BCL und GUI-Bibliotheken stimmt?" }
+    prompt: { de: "Welche Aussage über BCL und GUI-Bibliotheken stimmt?", en: "Which statement about BCL and GUI libraries is true?" }
     options:
-      - { de: "Die BCL ist plattformunabhängig; WPF ist eine Erweiterung, die nur unter Windows läuft." }
-      - { de: "WPF ist Teil der BCL und läuft überall." }
-      - { de: "Die BCL läuft nur unter Linux." }
-      - { de: "Die BCL enthält keine Klasse für Konsolenausgaben." }
+      - { de: "Die BCL ist plattformunabhängig; WPF ist eine Erweiterung, die nur unter Windows läuft.", en: "BCL is platform-independent; WPF is an extension that runs only on Windows." }
+      - { de: "WPF ist Teil der BCL und läuft überall.", en: "WPF is part of the BCL and runs everywhere." }
+      - { de: "Die BCL läuft nur unter Linux.", en: "BCL runs only on Linux." }
+      - { de: "Die BCL enthält keine Klasse für Konsolenausgaben.", en: "The BCL does not include a class for console output." }
     correct: [0]

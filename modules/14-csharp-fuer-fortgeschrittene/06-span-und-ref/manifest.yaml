@@ -1,8 +1,8 @@
 id: fortgeschritten-span-und-ref
-title: { de: "Span<T>, ReadOnlySpan<T> und ref-Rückgabe" }
+title: { de: "Span<T>, ReadOnlySpan<T> und ref-Rückgabe", en: "Span<T>, ReadOnlySpan<T>, and ref returns" }
 reading:
   section: "15.4.1"
-  title: { de: "Extrahieren eines Speichersegments ohne Objektkreation und Kopie" }
+  title: { de: "Extrahieren eines Speichersegments ohne Objektkreation und Kopie", en: "Extracting a memory segment without creating an object or making a copy" }
   printedPage: 991
 teaches:
   - spans.span-slice
@@ -24,11 +24,11 @@ items:
     testProject: "SpanUndRef Tests/SpanUndRef.Tests.csproj"
   - type: multipleChoice
     id: ref-struct
-    prompt: { de: "Span<T> ist eine ref struct. Was folgt daraus?" }
+    prompt: { de: "Span<T> ist eine ref struct. Was folgt daraus?", en: "Span<T> is a ref struct. What does this imply?" }
     options:
-      - { de: "Ein Span<T> lebt nur auf dem Stack: Er darf kein Feld einer Klasse sein, nicht geboxt werden und nicht über ein await hinweg in einer async-Methode gehalten werden." }
-      - { de: "Ein Span<T> kopiert die Elemente des Arrays beim Erzeugen, ist also unabhängig vom Original." }
-      - { de: "Ein Span<T> darf nur für Strings verwendet werden." }
-      - { de: "Ein Span<T> ist unveränderlich; Schreiben geht nur mit ReadOnlySpan<T>." }
+      - { de: "Ein Span<T> lebt nur auf dem Stack: Er darf kein Feld einer Klasse sein, nicht geboxt werden und nicht über ein await hinweg in einer async-Methode gehalten werden.", en: "A Span<T> exists only on the stack: It cannot be a field of a class, cannot be boxed, and cannot be held across an `await` statement in an `async` method." }
+      - { de: "Ein Span<T> kopiert die Elemente des Arrays beim Erzeugen, ist also unabhängig vom Original.", en: "A `Span<T>` copies the elements of the array on creation, so it is independent of the original." }
+      - { de: "Ein Span<T> darf nur für Strings verwendet werden.", en: "A Span<T> may only be used for strings." }
+      - { de: "Ein Span<T> ist unveränderlich; Schreiben geht nur mit ReadOnlySpan<T>.", en: "A Span<T> is immutable; writing is only possible with ReadOnlySpan<T>." }
     correct: [0]
-    explanation: { de: "15.4.2 (Seite 992). Ein Span ist ein Fenster auf bestehenden Speicher (Array, String, Stack, nativer Speicher); Änderungen am Span ändern den Speicher darunter. ReadOnlySpan<T> ist die nur lesende Variante." }
+    explanation: { de: "15.4.2 (Seite 992). Ein Span ist ein Fenster auf bestehenden Speicher (Array, String, Stack, nativer Speicher); Änderungen am Span ändern den Speicher darunter. ReadOnlySpan<T> ist die nur lesende Variante.", en: "15.4.2 (page 992). A span is a window into existing memory (array, string, stack, native memory); changes to the span modify the memory it covers. ReadOnlySpan<T> is the read-only version." }

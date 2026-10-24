@@ -1,8 +1,8 @@
 id: vererbung-abstrakte-klassen
-title: { de: "Abstrakte Klassen und Mitglieder" }
+title: { de: "Abstrakte Klassen und Mitglieder", en: "Abstract Classes and Members" }
 reading:
   section: "7.13"
-  title: { de: "Abstrakte Methoden und Klassen" }
+  title: { de: "Abstrakte Methoden und Klassen", en: "Abstract Methods and Classes" }
   printedPage: 577
 teaches:
   - inheritance.abstract-class
@@ -21,19 +21,19 @@ items:
     testProject: "Abstrakt Tests/Abstrakt.Tests.csproj"
   - type: multipleChoice
     id: new-abstract
-    prompt: { de: "Figur ist abstract. Was passiert bei new Figur(1, 2)?" }
+    prompt: { de: "Figur ist abstract. Was passiert bei new Figur(1, 2)?", en: "`Figur` is abstract. What happens when you call `new Figur(1, 2)`?" }
     options:
-      - { de: "Compilerfehler: von einer abstrakten Klasse können keine Instanzen erzeugt werden." }
-      - { de: "Es entsteht ein Objekt, dessen abstrakte Mitglieder null liefern." }
-      - { de: "Eine Laufzeitausnahme beim ersten Aufruf eines abstrakten Mitglieds." }
+      - { de: "Compilerfehler: von einer abstrakten Klasse können keine Instanzen erzeugt werden.", en: "Compiler error: You cannot create instances of an abstract class." }
+      - { de: "Es entsteht ein Objekt, dessen abstrakte Mitglieder null liefern.", en: "An object is created whose abstract members return null." }
+      - { de: "Eine Laufzeitausnahme beim ersten Aufruf eines abstrakten Mitglieds.", en: "A runtime exception on the first call to an abstract member." }
     correct: [0]
-    explanation: { de: "Abstrakte Klassen sind reine Basisklassen (7.13, Seite 577). Variablen und Arrays vom Typ Figur sind trotzdem erlaubt, sie verweisen auf Objekte konkreter Unterklassen." }
+    explanation: { de: "Abstrakte Klassen sind reine Basisklassen (7.13, Seite 577). Variablen und Arrays vom Typ Figur sind trotzdem erlaubt, sie verweisen auf Objekte konkreter Unterklassen.", en: "Abstract classes are pure base classes (7.13, page 577). Variables and arrays of type `Figur` are nevertheless permitted; they refer to objects of concrete subclasses." }
   - type: multipleChoice
     id: unvollstaendig
-    prompt: { de: "Eine Klasse Dreieck : Figur implementiert Skaliere und Inhalt, aber nicht Breite. Was meldet der Compiler?" }
+    prompt: { de: "Eine Klasse Dreieck : Figur implementiert Skaliere und Inhalt, aber nicht Breite. Was meldet der Compiler?", en: "A class `Dreieck : Figur` implements `Skaliere` and `Inhalt`, but not `Breite`. What does the compiler report?" }
     options:
-      - { de: "Einen Fehler: Dreieck muss entweder Breite implementieren oder selbst abstract sein." }
-      - { de: "Nichts; Breite wird mit der Basisfassung ergänzt." }
-      - { de: "Eine Warnung, aber das Programm läuft." }
+      - { de: "Einen Fehler: Dreieck muss entweder Breite implementieren oder selbst abstract sein.", en: "An error: `Dreieck` must either implement `Breite` or be `abstract` itself." }
+      - { de: "Nichts; Breite wird mit der Basisfassung ergänzt.", en: "Nothing; `Breite` is filled in with the base version." }
+      - { de: "Eine Warnung, aber das Programm läuft.", en: "A warning, but the program is running." }
     correct: [0]
-    explanation: { de: "Jedes abstrakte Mitglied muss in der ersten konkreten Unterklasse mit override implementiert werden." }
+    explanation: { de: "Jedes abstrakte Mitglied muss in der ersten konkreten Unterklasse mit override implementiert werden.", en: "Every abstract member must be implemented with `override` in the first concrete subclass." }

@@ -1,8 +1,8 @@
 id: aspnet-validierung
-title: { de: "Validierung per Attribut und IValidatableObject" }
+title: { de: "Validierung per Attribut und IValidatableObject", en: "Validation Using Attributes and IValidatableObject" }
 reading:
   section: "22.9.1"
-  title: { de: "Deklaration von Validierungsregeln in Modellklassen" }
+  title: { de: "Deklaration von Validierungsregeln in Modellklassen", en: "Declaration of Validation Rules in Model Classes" }
   printedPage: 1609
 teaches:
   - web.validation-attributes
@@ -22,19 +22,19 @@ items:
     testProject: "Anmeldung Tests/Anmeldung.Tests.csproj"
   - type: multipleChoice
     id: implizites-required
-    prompt: { de: "Ein Eingabemodell hat die Eigenschaft `public string S1 { get; set; } = default!;` (ohne Attribut). Das Formularfeld wird leer abgeschickt. Was meldet ASP.NET Core auf dem Server?" }
+    prompt: { de: "Ein Eingabemodell hat die Eigenschaft `public string S1 { get; set; } = default!;` (ohne Attribut). Das Formularfeld wird leer abgeschickt. Was meldet ASP.NET Core auf dem Server?", en: "An input model has the property `public string S1 { get; set; } = default!;` (without an attribute). The form field is submitted as empty. What does ASP.NET Core report on the server?" }
     options:
-      - { de: "ModelState.IsValid ist false: Ein null-unzulässiger Referenztyp wird behandelt, als stünde [Required] daran. Mit string? wäre das Feld optional." }
-      - { de: "ModelState.IsValid ist true: Ohne Attribut gibt es keine Regel." }
-      - { de: "Es wird eine Ausnahme geworfen, weil S1 null ist." }
+      - { de: "ModelState.IsValid ist false: Ein null-unzulässiger Referenztyp wird behandelt, als stünde [Required] daran. Mit string? wäre das Feld optional.", en: "ModelState.IsValid is false: A reference type that does not allow null values is treated as if it had [Required] applied to it. If it were string?, the field would be optional." }
+      - { de: "ModelState.IsValid ist true: Ohne Attribut gibt es keine Regel.", en: "ModelState.IsValid is true: Without an attribute, there is no rule." }
+      - { de: "Es wird eine Ausnahme geworfen, weil S1 null ist.", en: "An exception is thrown because S1 is zero." }
     correct: [0]
-    explanation: { de: "22.9.6 (Seite 1618): Das implizite Required für null-unzulässige Referenztypen; ein leeres Feld ergibt null, nicht String.Empty." }
+    explanation: { de: "22.9.6 (Seite 1618): Das implizite Required für null-unzulässige Referenztypen; ein leeres Feld ergibt null, nicht String.Empty.", en: "22.9.6 (page 1618): The implicit `Required` for reference types that do not allow `null`; an empty field returns `null`, not `String.Empty`." }
   - type: multipleChoice
     id: bindrequired
-    prompt: { de: "Eine int-Eigenschaft Alter hat [Required]. Die Anforderung enthält gar kein Name-Wert-Paar Alter. Wie reagiert ModelState.IsValid, und was ändert [BindRequired]?" }
+    prompt: { de: "Eine int-Eigenschaft Alter hat [Required]. Die Anforderung enthält gar kein Name-Wert-Paar Alter. Wie reagiert ModelState.IsValid, und was ändert [BindRequired]?", en: "An `int` property `Alter` has `[Required]`. The request contains no name-value pair `Alter` at all. How does `ModelState.IsValid` react, and what does `[BindRequired]` change?" }
     options:
-      - { de: "Die Modellbindung setzt 0; [Required] hat nichts einzuwenden, IsValid bleibt true. [BindRequired] verlangt, dass das Paar überhaupt in der Anforderung steht, und macht IsValid false." }
-      - { de: "IsValid ist false, weil [Required] das fehlende Paar bemerkt; [BindRequired] ändert nichts." }
-      - { de: "IsValid ist true, und auch mit [BindRequired] bleibt es true." }
+      - { de: "Die Modellbindung setzt 0; [Required] hat nichts einzuwenden, IsValid bleibt true. [BindRequired] verlangt, dass das Paar überhaupt in der Anforderung steht, und macht IsValid false.", en: "Model binding sets 0; `[Required]` has no objection, `IsValid` stays `true`. `[BindRequired]` demands that the pair is present in the request at all, and makes `IsValid` `false`." }
+      - { de: "IsValid ist false, weil [Required] das fehlende Paar bemerkt; [BindRequired] ändert nichts.", en: "`IsValid` is `false` because `[Required]` notices the missing pair; `[BindRequired]` changes nothing." }
+      - { de: "IsValid ist true, und auch mit [BindRequired] bleibt es true.", en: "IsValid is true, and it remains true even with [BindRequired]." }
     correct: [0]
-    explanation: { de: "22.9.2 (Seite 1612): [Required] verbietet den Wert null, [BindRequired] fordert das Name-Wert-Paar in den Anforderungsdaten." }
+    explanation: { de: "22.9.2 (Seite 1612): [Required] verbietet den Wert null, [BindRequired] fordert das Name-Wert-Paar in den Anforderungsdaten.", en: "22.9.2 (page 1612): `[Required]` forbids the value `null`, `[BindRequired]` demands the name-value pair in the request data." }

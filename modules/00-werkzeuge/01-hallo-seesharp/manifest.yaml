@@ -1,8 +1,8 @@
 id: werkzeuge-hallo-seesharp
-title: { de: "Hallo SeeSharp" }
+title: { de: "Hallo SeeSharp", en: "Hello SeeSharp" }
 reading:
   section: "3.1.4"
-  title: { de: "Quellcode in IL-Code übersetzen und Programm erstellen" }
+  title: { de: "Quellcode in IL-Code übersetzen und Programm erstellen", en: "Compiling Source Code to IL and Creating a Program" }
   printedPage: 71
 teaches:
   - tools.seesharp-workflow

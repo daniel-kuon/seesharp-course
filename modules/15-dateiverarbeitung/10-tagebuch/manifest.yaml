@@ -1,9 +1,9 @@
 id: dateien-tagebuch
-title: { de: "Zusatz: Tagebuch" }
+title: { de: "Zusatz: Tagebuch", en: "Extra: Diary" }
 optional: true
 reading:
   section: "16.3.2"
-  title: { de: "Schreiben und Lesen im Textformat" }
+  title: { de: "Schreiben und Lesen im Textformat", en: "Writing and Reading in Text Format" }
   printedPage: 1036
 teaches:
   - files.streamwriter

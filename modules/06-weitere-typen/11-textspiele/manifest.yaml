@@ -1,9 +1,9 @@
 id: typen-textspiele
-title: { de: "Zusatzaufgabe: Palindrome, Anagramme, Lauflängen" }
+title: { de: "Zusatzaufgabe: Palindrome, Anagramme, Lauflängen", en: "Extra exercise: Palindromes, anagrams, run lengths" }
 optional: true
 reading:
   section: "6.3"
-  title: { de: "Klassen für Zeichenfolgen" }
+  title: { de: "Klassen für Zeichenfolgen", en: "Classes for Strings" }
   printedPage: 472
 teaches:
   - strings.methods

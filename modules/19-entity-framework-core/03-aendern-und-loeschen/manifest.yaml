@@ -1,8 +1,8 @@
 id: efcore-aendern-und-loeschen
-title: { de: "Ändern, Löschen und Änderungsnachverfolgung" }
+title: { de: "Ändern, Löschen und Änderungsnachverfolgung", en: "Editing, Deleting, and Tracking Changes" }
 reading:
   section: "20.11.2"
-  title: { de: "Entitäten ändern" }
+  title: { de: "Entitäten ändern", en: "Edit Entities" }
   printedPage: 1474
 teaches:
   - ef.update-tracked
@@ -22,10 +22,10 @@ items:
     testProject: "Produkte Tests/Produkte.Tests.csproj"
   - type: multipleChoice
     id: kein-update-aufruf
-    prompt: { de: "Du lädst ein Produkt mit kontext.Produkte.Find(id), setzt produkt.Name = \"neu\" und rufst kontext.SaveChanges() auf, ohne einen weiteren Befehl. Was passiert?" }
+    prompt: { de: "Du lädst ein Produkt mit kontext.Produkte.Find(id), setzt produkt.Name = \"neu\" und rufst kontext.SaveChanges() auf, ohne einen weiteren Befehl. Was passiert?", en: "You load a product with `kontext.Produkte.Find(id)`, set `produkt.Name = \"neu\"`, and call `kontext.SaveChanges()` without any further command. What happens?" }
     options:
-      - { de: "Nichts wird gespeichert, denn man muss zuerst kontext.Update(produkt) aufrufen." }
-      - { de: "Die Änderung wird gespeichert: Der Kontext verfolgt das geladene Produkt nach, erkennt die geänderte Eigenschaft (Zustand Modified) und schreibt sie bei SaveChanges." }
-      - { de: "Die Änderung wird sofort beim Zuweisen in die Datenbank geschrieben." }
+      - { de: "Nichts wird gespeichert, denn man muss zuerst kontext.Update(produkt) aufrufen.", en: "Nothing is saved, because you must call `kontext.Update(produkt)` first." }
+      - { de: "Die Änderung wird gespeichert: Der Kontext verfolgt das geladene Produkt nach, erkennt die geänderte Eigenschaft (Zustand Modified) und schreibt sie bei SaveChanges.", en: "The change is saved: The context tracks the loaded product, detects the modified property (Modified state), and writes it during SaveChanges." }
+      - { de: "Die Änderung wird sofort beim Zuweisen in die Datenbank geschrieben.", en: "The change is written to the database immediately upon assignment." }
     correct: [1]
-    explanation: { de: "20.11.2: Geladene Entitäten werden vom Kontext nachverfolgt (Change Tracking). Nur bei Entitäten, die er nicht kennt, etwa mit AsNoTracking geladen oder von außen mitgebracht, ist ein ausdrückliches Update oder Attach nötig." }
+    explanation: { de: "20.11.2: Geladene Entitäten werden vom Kontext nachverfolgt (Change Tracking). Nur bei Entitäten, die er nicht kennt, etwa mit AsNoTracking geladen oder von außen mitgebracht, ist ein ausdrückliches Update oder Attach nötig.", en: "20.11.2: Loaded entities are tracked by the context (change tracking). Only entities that the context does not recognize—such as those loaded with `AsNoTracking` or brought in from outside—require an explicit update or attach." }

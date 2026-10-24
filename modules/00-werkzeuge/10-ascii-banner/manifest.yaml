@@ -1,9 +1,9 @@
 id: werkzeuge-ascii-banner
-title: { de: "Zusatz: ASCII-Banner" }
+title: { de: "Zusatz: ASCII-Banner", en: "Extra: ASCII Banners" }
 optional: true
 reading:
   section: "4.3.10.5"
-  title: { de: "Zeichenfolgenliterale" }
+  title: { de: "Zeichenfolgenliterale", en: "String literals" }
   printedPage: 208
 teaches:
   - methods.return-value

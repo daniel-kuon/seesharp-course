@@ -1,9 +1,9 @@
 id: generics-cache
-title: { de: "Zusatz: Ein Cache mit Größenlimit" }
+title: { de: "Zusatz: Ein Cache mit Größenlimit", en: "Extra: A cache with a size limit" }
 optional: true
 reading:
   section: "8.2.2"
-  title: { de: "Restringierte Typformalparameter" }
+  title: { de: "Restringierte Typformalparameter", en: "Restricted type formal parameters" }
   printedPage: 593
 teaches:
   - generics.constraint-icomparable

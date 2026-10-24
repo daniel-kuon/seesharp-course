@@ -1,9 +1,9 @@
 id: interfaces-generische-statistik
-title: { de: "Zusatz: Statistik für alle Zahltypen mit INumber<T>" }
+title: { de: "Zusatz: Statistik für alle Zahltypen mit INumber<T>", en: "Extra: Statistics for all number types using INumber<T>" }
 optional: true
 reading:
   section: "9.1.3.2"
-  title: { de: "Beispiel für die Verwendung der numerischen Schnittstellen" }
+  title: { de: "Beispiel für die Verwendung der numerischen Schnittstellen", en: "Example of Using the Numeric Interfaces" }
   printedPage: 626
 teaches:
   - interfaces.generic-math

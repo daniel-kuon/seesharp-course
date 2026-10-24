@@ -1,8 +1,8 @@
 id: publish-konsolenanwendung
-title: { de: "Eine Konsolenanwendung veröffentlichen" }
+title: { de: "Eine Konsolenanwendung veröffentlichen", en: "Publish a Console Application" }
 reading:
   section: "23.2.1"
-  title: { de: "Einzeldateianwendung" }
+  title: { de: "Einzeldateianwendung", en: "Single-File Application" }
   printedPage: 1649
 teaches:
   - publish.dotnet-publish
@@ -15,7 +15,7 @@ requires:
 items:
   - type: review
     id: publish-und-start
-    prompt: { de: "Nimm das Konsolenprogramm eines früheren Levels (zum Beispiel den ASCII-Banner aus Level 0) und veröffentliche es im Terminal im Projektordner mit `dotnet publish -c Release` (frameworkabhängig). Starte das Ergebnis aus dem Veröffentlichungsordner (bin/Release/net10.0/publish) zweimal: mit `dotnet <Name>.dll` und als `<Name>.exe`. Zeige der Betreuung die Kommandozeilen, den Ordner und die beiden Starts." }
+    prompt: { de: "Nimm das Konsolenprogramm eines früheren Levels (zum Beispiel den ASCII-Banner aus Level 0) und veröffentliche es im Terminal im Projektordner mit `dotnet publish -c Release` (frameworkabhängig). Starte das Ergebnis aus dem Veröffentlichungsordner (bin/Release/net10.0/publish) zweimal: mit `dotnet <Name>.dll` und als `<Name>.exe`. Zeige der Betreuung die Kommandozeilen, den Ordner und die beiden Starts.", en: "Take the console program from an earlier level (for example, the ASCII banner from Level 0) and publish it from a terminal in the project folder with `dotnet publish -c Release` (framework-dependent). Start the result from the publish folder (`bin/Release/net10.0/publish`) twice: with `dotnet <Name>.dll` and as `<Name>.exe`. Show the supervisor the command lines, the folder, and the two launches." }
   - type: open
     id: dateiliste
-    prompt: { de: "Liste alle Dateien im Veröffentlichungsordner mit ihrer Größe auf (`dir` im Terminal; kopiere die Ausgabe hierher). Welche davon musst du einem Kunden liefern, damit das Programm auf einem Rechner mit installierter .NET-Laufzeit läuft, und welche nicht? Begründe jede Datei in einem Satz (Buch 3.7, Aufgabe 4)." }
+    prompt: { de: "Liste alle Dateien im Veröffentlichungsordner mit ihrer Größe auf (`dir` im Terminal; kopiere die Ausgabe hierher). Welche davon musst du einem Kunden liefern, damit das Programm auf einem Rechner mit installierter .NET-Laufzeit läuft, und welche nicht? Begründe jede Datei in einem Satz (Buch 3.7, Aufgabe 4).", en: "List all files in the publish folder with their sizes (`dir` in the terminal; copy the output here). Which of them must you deliver to a customer so that the program runs on a computer with the .NET runtime installed, and which not? Justify each file in one sentence (book 3.7, Exercise 4)." }

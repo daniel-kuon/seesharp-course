@@ -1,8 +1,8 @@
 id: sprachelemente-gleitkomma-falle
-title: { de: "Die Gleitkomma-Falle" }
+title: { de: "Die Gleitkomma-Falle", en: "The Floating-Point Trap" }
 reading:
   section: "4.3.5"
-  title: { de: "Darstellung von Gleitkommazahlen im Arbeitsspeicher" }
+  title: { de: "Darstellung von Gleitkommazahlen im Arbeitsspeicher", en: "Representation of Floating-Point Numbers in Memory" }
   printedPage: 189
 teaches:
   - types.float-precision

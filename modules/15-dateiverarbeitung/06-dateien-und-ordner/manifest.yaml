@@ -1,8 +1,8 @@
 id: dateien-dateien-und-ordner
-title: { de: "Dateien, Ordner und Pfade" }
+title: { de: "Dateien, Ordner und Pfade", en: "Files, Folders, and Paths" }
 reading:
   section: "16.6.1"
-  title: { de: "Dateiverwaltung" }
+  title: { de: "Dateiverwaltung", en: "File Management" }
   printedPage: 1052
 teaches:
   - files.file-ops
@@ -22,21 +22,21 @@ items:
     testProject: "Dateiverwaltung Tests/Dateiverwaltung.Tests.csproj"
   - type: multipleChoice
     id: path-combine
-    prompt: { de: "Was liefert Path.Combine(\"Ordner\", \"/daten.txt\") auf einem System, auf dem / das Trennzeichen ist?" }
+    prompt: { de: "Was liefert Path.Combine(\"Ordner\", \"/daten.txt\") auf einem System, auf dem / das Trennzeichen ist?", en: "What does Path.Combine(\"folder\", \"/data.txt\") return on a system where / is the separator?" }
     options:
-      - { de: "Nur \"/daten.txt\": Ein Teil, der mit einem Trennzeichen beginnt, gilt als absoluter Pfad und verwirft alles davor." }
-      - { de: "\"Ordner/daten.txt\": Das doppelte Trennzeichen wird entfernt." }
-      - { de: "\"Ordner//daten.txt\": Die Teile werden einfach aneinandergehängt." }
-      - { de: "Eine ArgumentException, weil der zweite Teil nicht relativ ist." }
+      - { de: "Nur \"/daten.txt\": Ein Teil, der mit einem Trennzeichen beginnt, gilt als absoluter Pfad und verwirft alles davor.", en: "Only \"/daten.txt\": Any part that begins with a separator is treated as an absolute path, and everything before it is ignored." }
+      - { de: "\"Ordner/daten.txt\": Das doppelte Trennzeichen wird entfernt.", en: "\"Folder/data.txt\": The duplicate separator is removed." }
+      - { de: "\"Ordner//daten.txt\": Die Teile werden einfach aneinandergehängt.", en: "\"Ordner//daten.txt\": The parts are simply concatenated." }
+      - { de: "Eine ArgumentException, weil der zweite Teil nicht relativ ist.", en: "An ArgumentException because the second part is not relative." }
     correct: [0]
-    explanation: { de: "16.6.4 (Seite 1057). Path.Combine verwirft die Teile vor einem absoluten Pfad. Wer Benutzereingaben anhängt, muss das bedenken (Path.Join verhält sich anders); sonst lassen sich Ordnergrenzen verlassen." }
+    explanation: { de: "16.6.4 (Seite 1057). Path.Combine verwirft die Teile vor einem absoluten Pfad. Wer Benutzereingaben anhängt, muss das bedenken (Path.Join verhält sich anders); sonst lassen sich Ordnergrenzen verlassen.", en: "16.6.4 (page 1057). Path.Combine discards the parts preceding an absolute path. Anyone appending user input must keep this in mind (Path.Join behaves differently); otherwise, the path may extend beyond folder boundaries." }
   - type: multipleChoice
     id: spezielle-ordner
-    prompt: { de: "Welche Aufrufe liefern den Temp-Ordner, den Ordner „Dokumente“ des Benutzers und den lokalen Anwendungsdaten-Ordner des Benutzers?" }
+    prompt: { de: "Welche Aufrufe liefern den Temp-Ordner, den Ordner „Dokumente“ des Benutzers und den lokalen Anwendungsdaten-Ordner des Benutzers?", en: "Which calls return the Temp folder, the user's \"Documents\" folder, and the user's local application data folder?" }
     options:
-      - { de: "Path.GetTempPath(); Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)" }
-      - { de: "Directory.GetCurrentDirectory() für alle drei; sie unterscheiden sich nur im Unterordner." }
-      - { de: "AppDomain.CurrentDomain.BaseDirectory für alle drei." }
-      - { de: "Path.GetTempFileName(); Path.GetFullPath(\"Dokumente\"); Path.GetDirectoryName(Environment.ProcessPath)" }
+      - { de: "Path.GetTempPath(); Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)", en: "Path.GetTempPath(); Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)" }
+      - { de: "Directory.GetCurrentDirectory() für alle drei; sie unterscheiden sich nur im Unterordner.", en: "Directory.GetCurrentDirectory() for all three; they differ only in the subfolder." }
+      - { de: "AppDomain.CurrentDomain.BaseDirectory für alle drei.", en: "AppDomain.CurrentDomain.BaseDirectory for all three." }
+      - { de: "Path.GetTempFileName(); Path.GetFullPath(\"Dokumente\"); Path.GetDirectoryName(Environment.ProcessPath)", en: "Path.GetTempFileName(); Path.GetFullPath(\"Dokumente\"); Path.GetDirectoryName(Environment.ProcessPath)" }
     correct: [0]
-    explanation: { de: "16.6.3 (Seite 1056). Das aktuelle Verzeichnis ist der Ort, von dem aus das Programm gestartet wurde, und oft nicht beschreibbar; der Anwendungsordner bei einer installierten Anwendung ebenso. Eigene Daten gehören in LocalApplicationData oder ApplicationData." }
+    explanation: { de: "16.6.3 (Seite 1056). Das aktuelle Verzeichnis ist der Ort, von dem aus das Programm gestartet wurde, und oft nicht beschreibbar; der Anwendungsordner bei einer installierten Anwendung ebenso. Eigene Daten gehören in LocalApplicationData oder ApplicationData.", en: "16.6.3 (page 1056). The current directory is the location from which the program was launched, and it is often not writable; the same applies to the application folder for an installed application. Your own data should be stored in LocalApplicationData or ApplicationData." }

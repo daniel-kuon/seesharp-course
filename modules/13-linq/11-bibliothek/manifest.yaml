@@ -1,9 +1,9 @@
 id: linq-bibliothek
-title: { de: "Zusatz: Bibliotheksauskunft" }
+title: { de: "Zusatz: Bibliotheksauskunft", en: "Extra: Library Information" }
 optional: true
 reading:
   section: "18.2.10"
-  title: { de: "Verknüpfen von zwei Sequenzen" }
+  title: { de: "Verknüpfen von zwei Sequenzen", en: "Linking Two Sequences" }
   printedPage: 1224
 teaches:
   - linq.join

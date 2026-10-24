@@ -1,8 +1,8 @@
 id: klassen-felder-und-eigenschaften
-title: { de: "Felder, Eigenschaften, Validierung" }
+title: { de: "Felder, Eigenschaften, Validierung", en: "Fields, Properties, Validation" }
 reading:
   section: "5.5"
-  title: { de: "Eigenschaften" }
+  title: { de: "Eigenschaften", en: "Properties" }
   printedPage: 361
 teaches:
   - oop.field-private
@@ -26,11 +26,11 @@ items:
     testProject: "b0 Tests/b0.Tests.csproj"
   - type: multipleChoice
     id: rekursiver-getter
-    prompt: { de: "Eine Eigenschaft ist so definiert: `public int Zaehler { get { return Zaehler; } set { zaehler = value; } }`. Was passiert beim Lesen von Zaehler?" }
+    prompt: { de: "Eine Eigenschaft ist so definiert: `public int Zaehler { get { return Zaehler; } set { zaehler = value; } }`. Was passiert beim Lesen von Zaehler?", en: "A property is defined as follows: `public int Zaehler { get { return Zaehler; } set { zaehler = value; } }`. What happens when `Zaehler` is read?" }
     options:
-      - { de: "Der Getter ruft sich selbst endlos auf, bis der Stack überläuft (Stack overflow). Richtig wäre return zaehler; mit dem Feld." }
-      - { de: "Es wird der Wert des Feldes zaehler geliefert." }
-      - { de: "Der Compiler meldet einen Fehler." }
-      - { de: "Es wird immer 0 geliefert." }
+      - { de: "Der Getter ruft sich selbst endlos auf, bis der Stack überläuft (Stack overflow). Richtig wäre return zaehler; mit dem Feld.", en: "The getter calls itself endlessly until the stack overflows (stack overflow). The correct version would be `return zaehler;` with the field." }
+      - { de: "Es wird der Wert des Feldes zaehler geliefert.", en: "The value of the \"zaehner\" field is returned." }
+      - { de: "Der Compiler meldet einen Fehler.", en: "The compiler reports an error." }
+      - { de: "Es wird immer 0 geliefert.", en: "It always returns 0." }
     correct: [0]
-    explanation: { de: "Der Compiler erkennt den Logikfehler nicht. Erst zur Laufzeit stapeln sich die Aufrufe von get_Zaehler(), bis die Stack-Kapazität erschöpft ist (siehe 5.15 Aufgabe 3)." }
+    explanation: { de: "Der Compiler erkennt den Logikfehler nicht. Erst zur Laufzeit stapeln sich die Aufrufe von get_Zaehler(), bis die Stack-Kapazität erschöpft ist (siehe 5.15 Aufgabe 3).", en: "The compiler does not detect the logical error. It is not until runtime that the calls to `get_Zaehler()` accumulate until the stack capacity is exhausted (see 5.15, Exercise 3)." }

@@ -1,9 +1,9 @@
 id: attribute-testlaeufer
-title: { de: "Zusatz: Ein Mini-Testläufer" }
+title: { de: "Zusatz: Ein Mini-Testläufer", en: "Extra: A Mini Test Runner" }
 optional: true
 reading:
   section: "14.2"
-  title: { de: "Attribute per Reflexion auswerten" }
+  title: { de: "Attribute per Reflexion auswerten", en: "Evaluating Attributes via Reflection" }
   printedPage: 924
 teaches:
   - reflection.invoke

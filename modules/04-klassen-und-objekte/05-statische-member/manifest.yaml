@@ -1,8 +1,8 @@
 id: klassen-statische-member
-title: { de: "Statische Member" }
+title: { de: "Statische Member", en: "Static Members" }
 reading:
   section: "5.8"
-  title: { de: "Statische Member und Klassen" }
+  title: { de: "Statische Member und Klassen", en: "Static Members and Classes" }
   printedPage: 373
 teaches:
   - statics.property

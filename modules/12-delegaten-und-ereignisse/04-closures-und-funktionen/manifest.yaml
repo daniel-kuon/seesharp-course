@@ -1,8 +1,8 @@
 id: delegaten-closures-und-funktionen
-title: { de: "Closures, Func und Action" }
+title: { de: "Closures, Func und Action", en: "Closures, Func, and Action" }
 reading:
   section: "10.1.5"
-  title: { de: "Delegatenobjekte durch anonyme Funktionen erstellen" }
+  title: { de: "Delegatenobjekte durch anonyme Funktionen erstellen", en: "Creating Delegate Objects Using Anonymous Functions" }
   printedPage: 665
 teaches:
   - lambdas.closure
@@ -22,10 +22,10 @@ items:
     testProject: "Fabrik Tests/Fabrik.Tests.csproj"
   - type: multipleChoice
     id: einfangen
-    prompt: { de: "Ein Lambda verwendet die lokale Variable zaehler seiner umgebenden Methode. Was passiert mit der Variablen?" }
+    prompt: { de: "Ein Lambda verwendet die lokale Variable zaehler seiner umgebenden Methode. Was passiert mit der Variablen?", en: "A lambda uses the local variable `zaehler` from its enclosing method. What happens to the variable?" }
     options:
-      - { de: "Sie wird eingefangen (Closure): Sie lebt so lange weiter, wie das Delegatenobjekt sie braucht, auch nach dem Ende der Methode." }
-      - { de: "Das Lambda erhält eine Kopie des Werts zum Zeitpunkt der Erzeugung." }
-      - { de: "Der Compiler verbietet den Zugriff auf lokale Variablen aus einem Lambda." }
+      - { de: "Sie wird eingefangen (Closure): Sie lebt so lange weiter, wie das Delegatenobjekt sie braucht, auch nach dem Ende der Methode.", en: "It is captured (closure): It continues to exist as long as the delegate object needs it, even after the method has ended." }
+      - { de: "Das Lambda erhält eine Kopie des Werts zum Zeitpunkt der Erzeugung.", en: "The lambda receives a copy of the value at the time it is created." }
+      - { de: "Der Compiler verbietet den Zugriff auf lokale Variablen aus einem Lambda.", en: "The compiler does not allow access to local variables from within a lambda." }
     correct: [0]
-    explanation: { de: "Das Lambda greift auf die Variable selbst zu, nicht auf eine Kopie; Änderungen sind in beide Richtungen sichtbar (10.1.5.2, Seite 667 bis 675)." }
+    explanation: { de: "Das Lambda greift auf die Variable selbst zu, nicht auf eine Kopie; Änderungen sind in beide Richtungen sichtbar (10.1.5.2, Seite 667 bis 675).", en: "The lambda accesses the variable itself, not a copy; changes are visible in both directions (10.1.5.2, pages 667–675)." }

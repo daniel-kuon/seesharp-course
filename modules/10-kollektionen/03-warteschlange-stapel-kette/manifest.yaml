@@ -1,8 +1,8 @@
 id: kollektionen-warteschlange-stapel-kette
-title: { de: "Warteschlange, Stapel und verkettete Liste" }
+title: { de: "Warteschlange, Stapel und verkettete Liste", en: "Queue, Stack, and Linked List" }
 reading:
   section: "11.4.2"
-  title: { de: "Klasse LinkedList<T> mit doppelt verketteten Knoten" }
+  title: { de: "Klasse LinkedList<T> mit doppelt verketteten Knoten", en: "LinkedList<T> class with doubly linked nodes" }
   printedPage: 700
 teaches:
   - collections.queue-fifo

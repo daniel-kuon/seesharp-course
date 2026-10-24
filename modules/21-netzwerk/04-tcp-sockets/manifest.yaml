@@ -1,8 +1,8 @@
 id: netz-tcp-sockets
-title: { de: "TCP-Server und -Klient im Loopback" }
+title: { de: "TCP-Server und -Klient im Loopback", en: "TCP Server and Client in Loopback Mode" }
 reading:
   section: "21.6.1"
-  title: { de: "TCP-Server" }
+  title: { de: "TCP-Server", en: "TCP Server" }
   printedPage: 1526
 teaches:
   - net.tcp-listener
@@ -23,28 +23,28 @@ items:
     testProject: "Rechenserver Tests/Rechenserver.Tests.csproj"
   - type: multipleChoice
     id: autoflush
-    prompt: { de: "Der Server schreibt seine Antwort mit schreiber.WriteLine(antwort), aber AutoFlush ist nicht eingeschaltet. Der Klient wartet ewig auf die Antwort. Warum?" }
+    prompt: { de: "Der Server schreibt seine Antwort mit schreiber.WriteLine(antwort), aber AutoFlush ist nicht eingeschaltet. Der Klient wartet ewig auf die Antwort. Warum?", en: "The server writes its response with `schreiber.WriteLine(antwort)`, but `AutoFlush` is not switched on. The client waits forever for the response. Why?" }
     options:
-      - { de: "Der StreamWriter puffert die Daten; sie gehen erst bei Flush() (oder Dispose) wirklich auf das Netz. Mit AutoFlush = true wird nach jedem Schreiben geleert." }
-      - { de: "WriteLine sendet nur, wenn der Klient vorher ENDE gesendet hat." }
-      - { de: "Der NetworkStream kann nur in eine Richtung benutzt werden." }
+      - { de: "Der StreamWriter puffert die Daten; sie gehen erst bei Flush() (oder Dispose) wirklich auf das Netz. Mit AutoFlush = true wird nach jedem Schreiben geleert.", en: "StreamWriter buffers the data; it is not actually sent to the network until Flush() (or Dispose) is called. If AutoFlush = true, the buffer is flushed after every write operation." }
+      - { de: "WriteLine sendet nur, wenn der Klient vorher ENDE gesendet hat.", en: "`WriteLine` only sends if the client has sent `ENDE` beforehand." }
+      - { de: "Der NetworkStream kann nur in eine Richtung benutzt werden.", en: "The NetworkStream can only be used in one direction." }
     correct: [0]
-    explanation: { de: "21.6.1 (Seite 1526 bis 1530): StreamWriter und NetworkStream arbeiten wie bei Dateien (Level 15). Bei einem Dialog über das Netz muss jede Antwort sofort hinausgehen, sonst warten beide Seiten aufeinander." }
+    explanation: { de: "21.6.1 (Seite 1526 bis 1530): StreamWriter und NetworkStream arbeiten wie bei Dateien (Level 15). Bei einem Dialog über das Netz muss jede Antwort sofort hinausgehen, sonst warten beide Seiten aufeinander.", en: "21.6.1 (pages 1526–1530): StreamWriter and NetworkStream work the same way as with files (Level 15). In a network dialogue, each response must be sent immediately; otherwise, both sides will end up waiting for each other." }
   - type: multipleChoice
     id: readline-null
-    prompt: { de: "Wann liefert StreamReader.ReadLine() auf einem NetworkStream den Wert null?" }
+    prompt: { de: "Wann liefert StreamReader.ReadLine() auf einem NetworkStream den Wert null?", en: "When does StreamReader.ReadLine() return null on a NetworkStream?" }
     options:
-      - { de: "Wenn die Gegenseite die Verbindung geschlossen hat und alle Daten gelesen sind (Ende des Datenstroms). Solange die Verbindung offen ist und nichts ankommt, blockiert ReadLine dagegen." }
-      - { de: "Wenn gerade keine Zeile da ist; ReadLine kehrt dann sofort mit null zurück." }
-      - { de: "Wenn der Klient eine leere Zeile sendet." }
+      - { de: "Wenn die Gegenseite die Verbindung geschlossen hat und alle Daten gelesen sind (Ende des Datenstroms). Solange die Verbindung offen ist und nichts ankommt, blockiert ReadLine dagegen.", en: "When the other end has closed the connection and all data has been read (end of the data stream). However, as long as the connection is open and no data is coming in, `ReadLine` will block." }
+      - { de: "Wenn gerade keine Zeile da ist; ReadLine kehrt dann sofort mit null zurück.", en: "If there is no line at the moment, `ReadLine` returns `null` immediately." }
+      - { de: "Wenn der Klient eine leere Zeile sendet.", en: "When the client sends a blank line." }
     correct: [0]
-    explanation: { de: "21.6.2 (Seite 1530). Eine leere Zeile ist eine Zeichenkette der Länge 0, nicht null. Ein Server prüft deshalb auf null, um getrennte Klienten zu erkennen." }
+    explanation: { de: "21.6.2 (Seite 1530). Eine leere Zeile ist eine Zeichenkette der Länge 0, nicht null. Ein Server prüft deshalb auf null, um getrennte Klienten zu erkennen.", en: "21.6.2 (page 1530). An empty line is a string of length 0, not null. A server therefore checks for null to identify disconnected clients." }
   - type: multipleChoice
     id: port-null
-    prompt: { de: "Was bewirkt new TcpListener(IPAddress.Loopback, 0)?" }
+    prompt: { de: "Was bewirkt new TcpListener(IPAddress.Loopback, 0)?", en: "What does `new TcpListener(IPAddress.Loopback, 0)` do?" }
     options:
-      - { de: "Der Listener lauscht nur auf der lokalen Schleife (127.0.0.1), und das Betriebssystem teilt nach Start() einen freien Port zu; den tatsächlichen Port liefert ((IPEndPoint)listener.LocalEndpoint).Port." }
-      - { de: "Der Listener lauscht auf allen Netzwerkkarten auf Port 80." }
-      - { de: "Der Aufruf ist ungültig, weil Port 0 nicht existiert." }
+      - { de: "Der Listener lauscht nur auf der lokalen Schleife (127.0.0.1), und das Betriebssystem teilt nach Start() einen freien Port zu; den tatsächlichen Port liefert ((IPEndPoint)listener.LocalEndpoint).Port.", en: "The listener listens only on the local loopback address (127.0.0.1), and the operating system assigns a free port after Start(); the actual port is returned by ((IPEndPoint)listener.LocalEndpoint).Port." }
+      - { de: "Der Listener lauscht auf allen Netzwerkkarten auf Port 80.", en: "The listener listens on port 80 on all network cards." }
+      - { de: "Der Aufruf ist ungültig, weil Port 0 nicht existiert.", en: "The call is invalid because port 0 does not exist." }
     correct: [0]
-    explanation: { de: "21.6.1 (Seite 1526). Für Tests ist das ideal: kein Konflikt mit anderen Programmen und von außen nicht erreichbar." }
+    explanation: { de: "21.6.1 (Seite 1526). Für Tests ist das ideal: kein Konflikt mit anderen Programmen und von außen nicht erreichbar.", en: "21.6.1 (page 1526). This is ideal for testing: no conflicts with other programs, and it cannot be accessed from outside." }

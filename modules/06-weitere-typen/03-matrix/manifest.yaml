@@ -1,8 +1,8 @@
 id: typen-matrix
-title: { de: "Eine float-Matrix mit Transponieren" }
+title: { de: "Eine float-Matrix mit Transponieren", en: "A float matrix with transposition" }
 reading:
   section: "6.2.9"
-  title: { de: "Mehrdimensionale Arrays" }
+  title: { de: "Mehrdimensionale Arrays", en: "Multidimensional Arrays" }
   printedPage: 467
 teaches:
   - arrays.multidim

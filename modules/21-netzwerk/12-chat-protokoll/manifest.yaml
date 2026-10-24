@@ -1,9 +1,9 @@
 id: netz-chat-protokoll
-title: { de: "Zusatz: Mini-Chat-Protokoll" }
+title: { de: "Zusatz: Mini-Chat-Protokoll", en: "Extra: Mini Chat Log" }
 optional: true
 reading:
   section: "21.6.2"
-  title: { de: "TCP-Klient" }
+  title: { de: "TCP-Klient", en: "TCP client" }
   printedPage: 1530
 teaches:
   - net.tcp-listener

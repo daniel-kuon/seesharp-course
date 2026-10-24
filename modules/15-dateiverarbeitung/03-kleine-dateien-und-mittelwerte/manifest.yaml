@@ -1,8 +1,8 @@
 id: dateien-kleine-dateien-und-mittelwerte
-title: { de: "Kleine Dateien und Spaltenmittelwerte" }
+title: { de: "Kleine Dateien und Spaltenmittelwerte", en: "Small Files and Column Averages" }
 reading:
   section: "16.4"
-  title: { de: "Schreiben und Lesen von kleinen Dateien mit Bytes oder Texten" }
+  title: { de: "Schreiben und Lesen von kleinen Dateien mit Bytes oder Texten", en: "Reading and Writing Small Files Containing Bytes or Text" }
   printedPage: 1041
 teaches:
   - files.readall-writeall
@@ -23,11 +23,11 @@ items:
     testProject: "Mittelwertrechnung Tests/Mittelwertrechnung.Tests.csproj"
   - type: multipleChoice
     id: kultur
-    prompt: { de: "Eine Datei enthält 1.5. Ein Programm parst sie mit double.Parse(text) auf einem deutschen Windows (Sprache de-DE). Was kommt heraus?" }
+    prompt: { de: "Eine Datei enthält 1.5. Ein Programm parst sie mit double.Parse(text) auf einem deutschen Windows (Sprache de-DE). Was kommt heraus?", en: "A file contains 1.5. A program parses it using `double.Parse(text)` on a German Windows system (language: de-DE). What is the result?" }
     options:
-      - { de: "15: Der Punkt gilt in de-DE als Tausendertrennzeichen. Dateien mit festem Format parst man deshalb mit CultureInfo.InvariantCulture." }
-      - { de: "1,5: Der Punkt wird als Dezimaltrennzeichen erkannt." }
-      - { de: "Eine FormatException, weil nur das Komma erlaubt ist." }
-      - { de: "0, weil der Parser bei unbekannten Zeichen abbricht." }
+      - { de: "15: Der Punkt gilt in de-DE als Tausendertrennzeichen. Dateien mit festem Format parst man deshalb mit CultureInfo.InvariantCulture.", en: "15: In de-DE, the period is used as the thousands separator. Therefore, fixed-format files are parsed using CultureInfo.InvariantCulture." }
+      - { de: "1,5: Der Punkt wird als Dezimaltrennzeichen erkannt.", en: "1.5: The period is recognized as a decimal separator." }
+      - { de: "Eine FormatException, weil nur das Komma erlaubt ist.", en: "A FormatException because only a comma is allowed." }
+      - { de: "0, weil der Parser bei unbekannten Zeichen abbricht.", en: "0, because the parser stops when it encounters unknown characters." }
     correct: [0]
-    explanation: { de: "16.4 und 16.5 (Seite 1041 bis 1050). Ohne Kultur nutzt .NET die aktuelle Kultur des Threads, und das ändert das Ergebnis still. Für Dateien, Protokolle und JSON gilt immer InvariantCulture (JsonSerializer macht das von selbst)." }
+    explanation: { de: "16.4 und 16.5 (Seite 1041 bis 1050). Ohne Kultur nutzt .NET die aktuelle Kultur des Threads, und das ändert das Ergebnis still. Für Dateien, Protokolle und JSON gilt immer InvariantCulture (JsonSerializer macht das von selbst).", en: "16.4 and 16.5 (pages 1041 through 1050). Without a culture specified, .NET uses the thread's current culture, which silently changes the result. For files, protocols, and JSON, InvariantCulture is always used (JsonSerializer handles this automatically)." }

@@ -1,8 +1,8 @@
 id: komposition-aggregation
-title: { de: "Aggregation: eine Aufgabe besitzt ihre Brüche" }
+title: { de: "Aggregation: eine Aufgabe besitzt ihre Brüche", en: "Aggregation: an Aufgabe Owns Its Fractions" }
 reading:
   section: "5.10"
-  title: { de: "Aggregation bzw. Komposition" }
+  title: { de: "Aggregation bzw. Komposition", en: "Aggregation or Composition" }
   printedPage: 388
 teaches:
   - oop.aggregation

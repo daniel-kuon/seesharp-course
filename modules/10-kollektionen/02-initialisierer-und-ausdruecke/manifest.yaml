@@ -1,8 +1,8 @@
 id: kollektionen-initialisierer
-title: { de: "Kollektionsinitialisierer und Kollektionsausdrücke" }
+title: { de: "Kollektionsinitialisierer und Kollektionsausdrücke", en: "Collection initializers and collection expressions" }
 reading:
   section: "11.3"
-  title: { de: "Kollektionsinitialisierer und Kollektionsausdrücke" }
+  title: { de: "Kollektionsinitialisierer und Kollektionsausdrücke", en: "Collection initializers and collection expressions" }
   printedPage: 695
 teaches:
   - collections.initializer
@@ -23,12 +23,12 @@ items:
     testProject: "Sammler Tests/Sammler.Tests.csproj"
   - type: multipleChoice
     id: zieltyp
-    prompt: { de: "Welche dieser Zeilen kompilieren? (mehrere Antworten möglich)" }
+    prompt: { de: "Welche dieser Zeilen kompilieren? (mehrere Antworten möglich)", en: "Which of these lines compile? (multiple answers allowed)" }
     options:
-      - { de: "int[] a = [1, 2, 3];" }
-      - { de: "List<string> b = [];" }
-      - { de: "var c = [];" }
-      - { de: "IEnumerable<int> d = [1, ..a];   // a ist ein int[]" }
-      - { de: "var e = [1, 2, 3];" }
+      - { de: "int[] a = [1, 2, 3];", en: "int[] a = [1, 2, 3];" }
+      - { de: "List<string> b = [];", en: "List<string> b = [];" }
+      - { de: "var c = [];", en: "var c = [];" }
+      - { de: "IEnumerable<int> d = [1, ..a];   // a ist ein int[]", en: "IEnumerable<int> d = [1, ..a];   // a is an int[]" }
+      - { de: "var e = [1, 2, 3];", en: "var e = [1, 2, 3];" }
     correct: [0, 1, 3]
-    explanation: { de: "Ein Kollektionsausdruck hat keinen eigenen Typ, er bekommt ihn vom Ziel (11.3, Seite 695). Bei var fehlt dieser Zieltyp, deshalb sind die dritte und die fünfte Zeile Fehler (CS9176); ein Spread-Element (..a) kann jede Folge einfügen." }
+    explanation: { de: "Ein Kollektionsausdruck hat keinen eigenen Typ, er bekommt ihn vom Ziel (11.3, Seite 695). Bei var fehlt dieser Zieltyp, deshalb sind die dritte und die fünfte Zeile Fehler (CS9176); ein Spread-Element (..a) kann jede Folge einfügen.", en: "A collection expression does not have its own type; it inherits it from the target (11.3, page 695). In the case of `var`, this target type is missing, which is why the third and fifth lines are errors (CS9176); a spread element (..a) can insert any sequence." }

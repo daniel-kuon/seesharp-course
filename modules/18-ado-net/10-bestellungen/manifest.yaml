@@ -1,9 +1,9 @@
 id: adonet-bestellungen
-title: { de: "Zusatz: Bestellungen auswerten (SQL)" }
+title: { de: "Zusatz: Bestellungen auswerten (SQL)", en: "Extra: Analyzing Orders (SQL)" }
 optional: true
 reading:
   section: "19.6.4"
-  title: { de: "Abfragen per SELECT" }
+  title: { de: "Abfragen per SELECT", en: "Queries Using SELECT" }
   printedPage: 1302
 teaches:
   - sql.join

@@ -1,8 +1,8 @@
 id: netz-httpclient
-title: { de: "HttpClient gegen einen Test-Server" }
+title: { de: "HttpClient gegen einen Test-Server", en: "HttpClient against a test server" }
 reading:
   section: "21.3.2"
-  title: { de: "GET-Anforderungen ohne Anforderungsparameter" }
+  title: { de: "GET-Anforderungen ohne Anforderungsparameter", en: "GET Requests Without Request Parameters" }
   printedPage: 1509
 teaches:
   - net.httpclient-get
@@ -34,18 +34,19 @@ items:
         ```csharp
         string text = await _http.GetStringAsync(pfad);
         ```
+      en: "What does `await` do in this line?\n\n```csharp\nstring text = await _http.GetStringAsync(pfad);\n```"
     options:
-      - { de: "Die Methode wartet auf das Ergebnis der Task<string>, ohne den Thread zu blockieren; danach ist text der gelieferte Text. Fehler der Anforderung werden an dieser Stelle als Ausnahme geworfen." }
-      - { de: "Die Zeile startet einen neuen Thread, der den Text irgendwann in text schreibt; der Code danach läuft sofort weiter." }
-      - { de: "await macht aus dem Aufruf einen synchronen Aufruf, der den Thread blockiert, bis das Ergebnis da ist." }
+      - { de: "Die Methode wartet auf das Ergebnis der Task<string>, ohne den Thread zu blockieren; danach ist text der gelieferte Text. Fehler der Anforderung werden an dieser Stelle als Ausnahme geworfen.", en: "The method waits for the result of Task<string> without blocking the thread; after that, text is the returned text. Errors in the request are thrown as exceptions at this point." }
+      - { de: "Die Zeile startet einen neuen Thread, der den Text irgendwann in text schreibt; der Code danach läuft sofort weiter.", en: "This line starts a new thread that will eventually write the text to `text`; the code that follows continues executing immediately." }
+      - { de: "await macht aus dem Aufruf einen synchronen Aufruf, der den Thread blockiert, bis das Ergebnis da ist.", en: "`await` turns the call into a synchronous call that blocks the thread until the result is available." }
     correct: [0]
-    explanation: { de: "21.3 (Seite 1507): HttpClient-Methoden arbeiten E/A-gebunden und asynchron. Eine Methode, die await benutzt, wird selbst als async deklariert und liefert eine Task. Die genaue Funktionsweise behandelt das Wahlmodul Multithreading." }
+    explanation: { de: "21.3 (Seite 1507): HttpClient-Methoden arbeiten E/A-gebunden und asynchron. Eine Methode, die await benutzt, wird selbst als async deklariert und liefert eine Task. Die genaue Funktionsweise behandelt das Wahlmodul Multithreading.", en: "21.3 (page 1507): HttpClient methods are I/O-bound and asynchronous. A method that uses `await` is itself declared as `async` and returns a `Task`. The elective module on multithreading covers exactly how this works." }
   - type: multipleChoice
     id: status-pruefen
-    prompt: { de: "Ein Server antwortet auf GetAsync mit 404. Was passiert ohne weitere Maßnahmen?" }
+    prompt: { de: "Ein Server antwortet auf GetAsync mit 404. Was passiert ohne weitere Maßnahmen?", en: "A server responds to `GetAsync` with a 404. What happens if no further action is taken?" }
     options:
-      - { de: "GetAsync wirft keine Ausnahme; die Antwort hat den Statuscode 404 (IsSuccessStatusCode ist false). Erst EnsureSuccessStatusCode() macht daraus eine HttpRequestException mit StatusCode." }
-      - { de: "GetAsync wirft sofort eine FileNotFoundException." }
-      - { de: "Der Aufruf liefert null." }
+      - { de: "GetAsync wirft keine Ausnahme; die Antwort hat den Statuscode 404 (IsSuccessStatusCode ist false). Erst EnsureSuccessStatusCode() macht daraus eine HttpRequestException mit StatusCode.", en: "GetAsync does not throw an exception; the response has a status code of 404 (IsSuccessStatusCode is false). Only EnsureSuccessStatusCode() converts this into an HttpRequestException with a status code." }
+      - { de: "GetAsync wirft sofort eine FileNotFoundException.", en: "GetAsync immediately throws a FileNotFoundException." }
+      - { de: "Der Aufruf liefert null.", en: "The call returns zero." }
     correct: [0]
-    explanation: { de: "21.3.2.1 (Seite 1509). Dagegen werfen GetStringAsync und GetFromJsonAsync bei Fehlerstatus selbst eine HttpRequestException mit gesetztem StatusCode (seit .NET 5)." }
+    explanation: { de: "21.3.2.1 (Seite 1509). Dagegen werfen GetStringAsync und GetFromJsonAsync bei Fehlerstatus selbst eine HttpRequestException mit gesetztem StatusCode (seit .NET 5).", en: "21.3.2.1 (page 1509). In contrast, GetStringAsync and GetFromJsonAsync throw an HttpRequestException with a set StatusCode in the event of an error (since .NET 5)." }

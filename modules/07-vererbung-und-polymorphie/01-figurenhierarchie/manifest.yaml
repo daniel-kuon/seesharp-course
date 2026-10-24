@@ -1,8 +1,8 @@
 id: vererbung-figurenhierarchie
-title: { de: "Eine Figurenhierarchie" }
+title: { de: "Eine Figurenhierarchie", en: "A Shape Hierarchy" }
 reading:
   section: "7.3"
-  title: { de: "Definition einer abgeleiteten Klasse" }
+  title: { de: "Definition einer abgeleiteten Klasse", en: "Definition of a Derived Class" }
   printedPage: 547
 teaches:
   - inheritance.derive-class
@@ -26,10 +26,10 @@ items:
     testProject: "Figuren Tests/Figuren.Tests.csproj"
   - type: multipleChoice
     id: initialisierung
-    prompt: { de: "new Kreis(1, 2, 3) wird ausgeführt. In welcher Reihenfolge laufen die Konstruktoren?" }
+    prompt: { de: "new Kreis(1, 2, 3) wird ausgeführt. In welcher Reihenfolge laufen die Konstruktoren?", en: "`new Kreis(1, 2, 3)` is executed. In which order do the constructors run?" }
     options:
-      - { de: "Zuerst der Figur-Konstruktor (über base), dann der Rumpf des Kreis-Konstruktors." }
-      - { de: "Zuerst der Kreis-Konstruktor, am Ende automatisch der Figur-Konstruktor." }
-      - { de: "Nur der Kreis-Konstruktor; der Basiskonstruktor läuft nur bei new Figur(...)." }
+      - { de: "Zuerst der Figur-Konstruktor (über base), dann der Rumpf des Kreis-Konstruktors.", en: "First the `Figur` constructor (via `base`), then the body of the `Kreis` constructor." }
+      - { de: "Zuerst der Kreis-Konstruktor, am Ende automatisch der Figur-Konstruktor.", en: "First the `Kreis` constructor, and at the end automatically the `Figur` constructor." }
+      - { de: "Nur der Kreis-Konstruktor; der Basiskonstruktor läuft nur bei new Figur(...).", en: "Only the `Kreis` constructor; the base constructor runs only for `new Figur(...)`." }
     correct: [0]
-    explanation: { de: "Die Basisklasse wird immer zuerst initialisiert (7.4.2, Seite 550). Ohne base(...) wird der parameterlose Basiskonstruktor aufgerufen; fehlt auch der, meldet der Compiler einen Fehler." }
+    explanation: { de: "Die Basisklasse wird immer zuerst initialisiert (7.4.2, Seite 550). Ohne base(...) wird der parameterlose Basiskonstruktor aufgerufen; fehlt auch der, meldet der Compiler einen Fehler.", en: "The base class is always initialized first (7.4.2, page 550). Without `base(...)`, the parameterless base constructor is called; if that is missing too, the compiler reports an error." }

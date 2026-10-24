@@ -1,8 +1,8 @@
 id: kollektionen-auswahl-und-unveraenderlich
-title: { de: "Die richtige Kollektion; schreibgeschützt und unveränderlich" }
+title: { de: "Die richtige Kollektion; schreibgeschützt und unveränderlich", en: "The correct collection; read-only and immutable" }
 reading:
   section: "11.7"
-  title: { de: "Unveränderliche Kollektionen" }
+  title: { de: "Unveränderliche Kollektionen", en: "Immutable Collections" }
   printedPage: 716
 teaches:
   - collections.readonly-view
@@ -23,87 +23,87 @@ items:
     testProject: "Kurse Tests/Kurse.Tests.csproj"
   - type: multipleChoice
     id: aussagen
-    prompt: { de: "Buchaufgabe 11.8 Nr. 1: Welche der folgenden Aussagen sind richtig? (mehrere Antworten möglich)" }
+    prompt: { de: "Buchaufgabe 11.8 Nr. 1: Welche der folgenden Aussagen sind richtig? (mehrere Antworten möglich)", en: "Textbook Exercise 11.8, No. 1: Which of the following statements are correct? (Multiple answers possible)" }
     options:
-      - { de: "Ein Objekt aus der Kollektionsklasse List<T> oder LinkedList<T> hält seine Elemente in sortiertem Zustand." }
-      - { de: "Die Klasse HashSet<T> bietet die beste Leistung bei Existenzprüfungen." }
-      - { de: "Die Klasse List<T> beherrscht zum Suchen und Sortieren dieselben Methoden wie ein Array." }
-      - { de: "Die Klasse Dictionary<K,V> kann zu einem Schlüssel sehr schnell den dazugehörigen Wert ermitteln." }
-      - { de: "Die Kollektionsklasse SortedDictionary<K,V> hält ihre Elemente in sortiertem Zustand." }
+      - { de: "Ein Objekt aus der Kollektionsklasse List<T> oder LinkedList<T> hält seine Elemente in sortiertem Zustand.", en: "An object of the List<T> or LinkedList<T> collection class keeps its elements sorted." }
+      - { de: "Die Klasse HashSet<T> bietet die beste Leistung bei Existenzprüfungen.", en: "The HashSet<T> class offers the best performance for existence checks." }
+      - { de: "Die Klasse List<T> beherrscht zum Suchen und Sortieren dieselben Methoden wie ein Array.", en: "The List<T> class has the same methods for searching and sorting as an array." }
+      - { de: "Die Klasse Dictionary<K,V> kann zu einem Schlüssel sehr schnell den dazugehörigen Wert ermitteln.", en: "The Dictionary<K,V> class can very quickly determine the value associated with a key." }
+      - { de: "Die Kollektionsklasse SortedDictionary<K,V> hält ihre Elemente in sortiertem Zustand.", en: "The SortedDictionary<K,V> collection class keeps its elements sorted." }
     correct: [1, 2, 3, 4]
-    explanation: { de: "Die erste Aussage ist falsch: List<T> und LinkedList<T> behalten die Einfügereihenfolge, sortiert wird nur auf Wunsch mit Sort(). Die übrigen vier stimmen (11.4.1, 11.5.2, 11.6 und der Hinweis auf SortedDictionary in 11.6, Seite 716)." }
+    explanation: { de: "Die erste Aussage ist falsch: List<T> und LinkedList<T> behalten die Einfügereihenfolge, sortiert wird nur auf Wunsch mit Sort(). Die übrigen vier stimmen (11.4.1, 11.5.2, 11.6 und der Hinweis auf SortedDictionary in 11.6, Seite 716).", en: "The first statement is incorrect: `List<T>` and `LinkedList<T>` preserve the insertion order; sorting occurs only when requested using `Sort()`. The remaining four are correct (11.4.1, 11.5.2, 11.6, and the reference to SortedDictionary in 11.6, page 716)." }
   - type: multipleChoice
     id: szenario-index
-    prompt: { de: "Szenario: Die Reihenfolge der Einträge ist wichtig, und man greift mit einer Positionsnummer auf sie zu. Welche Kollektion passt am besten?" }
+    prompt: { de: "Szenario: Die Reihenfolge der Einträge ist wichtig, und man greift mit einer Positionsnummer auf sie zu. Welche Kollektion passt am besten?", en: "Scenario: The order of the entries is important, and they are accessed by position number. Which collection is the best fit?" }
     options:
-      - { de: "List<T>" }
-      - { de: "Queue<T>" }
-      - { de: "Stack<T>" }
-      - { de: "HashSet<T>" }
-      - { de: "SortedSet<T>" }
-      - { de: "Dictionary<TKey,TValue>" }
+      - { de: "List<T>", en: "List<T>" }
+      - { de: "Queue<T>", en: "Queue<T>" }
+      - { de: "Stack<T>", en: "Stack<T>" }
+      - { de: "HashSet<T>", en: "HashSet<T>" }
+      - { de: "SortedSet<T>", en: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [0]
-    explanation: { de: "Nur List<T> (und das Array) bietet Indexzugriff in fester Reihenfolge (11.4.1, Seite 697)." }
+    explanation: { de: "Nur List<T> (und das Array) bietet Indexzugriff in fester Reihenfolge (11.4.1, Seite 697).", en: "Only `List<T>` (and the array) provides index access in a fixed order (11.4.1, page 697)." }
   - type: multipleChoice
     id: szenario-enthalten
-    prompt: { de: "Szenario: Bei sehr vielen Einträgen soll möglichst schnell geprüft werden, ob ein Name schon vorkommt. Welche Kollektion passt am besten?" }
+    prompt: { de: "Szenario: Bei sehr vielen Einträgen soll möglichst schnell geprüft werden, ob ein Name schon vorkommt. Welche Kollektion passt am besten?", en: "Scenario: When there are a large number of entries, you need to check as quickly as possible whether a name already exists. Which collection is the best fit?" }
     options:
-      - { de: "List<T>" }
-      - { de: "Queue<T>" }
-      - { de: "Stack<T>" }
-      - { de: "HashSet<T>" }
-      - { de: "SortedSet<T>" }
-      - { de: "Dictionary<TKey,TValue>" }
+      - { de: "List<T>", en: "List<T>" }
+      - { de: "Queue<T>", en: "Queue<T>" }
+      - { de: "Stack<T>", en: "Stack<T>" }
+      - { de: "HashSet<T>", en: "HashSet<T>" }
+      - { de: "SortedSet<T>", en: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [3]
-    explanation: { de: "Contains() kostet in einer Liste O(n), in einem HashSet<T> O(1) (11.5.2, Seite 704; 11.8, Seite 723)." }
+    explanation: { de: "Contains() kostet in einer Liste O(n), in einem HashSet<T> O(1) (11.5.2, Seite 704; 11.8, Seite 723).", en: "Contains() takes O(n) time in a list and O(1) time in a HashSet<T> (11.5.2, page 704; 11.8, page 723)." }
   - type: multipleChoice
     id: szenario-sortiert
-    prompt: { de: "Szenario: Zahlen sollen gesammelt werden, jede nur einmal, und immer in aufsteigender Reihenfolge verfügbar sein. Welche Kollektion passt am besten?" }
+    prompt: { de: "Szenario: Zahlen sollen gesammelt werden, jede nur einmal, und immer in aufsteigender Reihenfolge verfügbar sein. Welche Kollektion passt am besten?", en: "Scenario: Numbers need to be collected—each one only once—and they must always be available in ascending order. Which collection is the best fit?" }
     options:
-      - { de: "List<T>" }
-      - { de: "Queue<T>" }
-      - { de: "Stack<T>" }
-      - { de: "HashSet<T>" }
-      - { de: "SortedSet<T>" }
-      - { de: "Dictionary<TKey,TValue>" }
+      - { de: "List<T>", en: "List<T>" }
+      - { de: "Queue<T>", en: "Queue<T>" }
+      - { de: "Stack<T>", en: "Stack<T>" }
+      - { de: "HashSet<T>", en: "HashSet<T>" }
+      - { de: "SortedSet<T>", en: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [4]
-    explanation: { de: "SortedSet<T> ist ein balancierter Binärbaum ohne Duplikate (11.5.3, Seite 711), wie beim Lotto." }
+    explanation: { de: "SortedSet<T> ist ein balancierter Binärbaum ohne Duplikate (11.5.3, Seite 711), wie beim Lotto.", en: "SortedSet<T> is a balanced binary tree with no duplicates (11.5.3, page 711), just like in the lottery." }
   - type: multipleChoice
     id: szenario-schluessel
-    prompt: { de: "Szenario: Zu einer Kundennummer soll der zugehörige Kunde gefunden werden. Welche Kollektion passt am besten?" }
+    prompt: { de: "Szenario: Zu einer Kundennummer soll der zugehörige Kunde gefunden werden. Welche Kollektion passt am besten?", en: "Scenario: Find the customer associated with a customer number. Which collection is the best fit?" }
     options:
-      - { de: "List<T>" }
-      - { de: "Queue<T>" }
-      - { de: "Stack<T>" }
-      - { de: "HashSet<T>" }
-      - { de: "SortedSet<T>" }
-      - { de: "Dictionary<TKey,TValue>" }
+      - { de: "List<T>", en: "List<T>" }
+      - { de: "Queue<T>", en: "Queue<T>" }
+      - { de: "Stack<T>", en: "Stack<T>" }
+      - { de: "HashSet<T>", en: "HashSet<T>" }
+      - { de: "SortedSet<T>", en: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [5]
-    explanation: { de: "Ein Dictionary<K,V> ordnet Schlüsseln Werte zu und findet sie schnell (11.6, Seite 714)." }
+    explanation: { de: "Ein Dictionary<K,V> ordnet Schlüsseln Werte zu und findet sie schnell (11.6, Seite 714).", en: "A Dictionary<K,V> maps keys to values and retrieves them quickly (11.6, page 714)." }
   - type: multipleChoice
     id: szenario-rueckgaengig
-    prompt: { de: "Szenario: Ein Rückgängig-Verlauf soll immer zuerst die zuletzt ausgeführte Aktion zurücknehmen. Welche Kollektion passt am besten?" }
+    prompt: { de: "Szenario: Ein Rückgängig-Verlauf soll immer zuerst die zuletzt ausgeführte Aktion zurücknehmen. Welche Kollektion passt am besten?", en: "Scenario: An undo history should always undo the most recent action first. Which collection is the best fit?" }
     options:
-      - { de: "List<T>" }
-      - { de: "Queue<T>" }
-      - { de: "Stack<T>" }
-      - { de: "HashSet<T>" }
-      - { de: "SortedSet<T>" }
-      - { de: "Dictionary<TKey,TValue>" }
+      - { de: "List<T>", en: "List<T>" }
+      - { de: "Queue<T>", en: "Queue<T>" }
+      - { de: "Stack<T>", en: "Stack<T>" }
+      - { de: "HashSet<T>", en: "HashSet<T>" }
+      - { de: "SortedSet<T>", en: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [2]
-    explanation: { de: "Zuletzt hinein, zuerst heraus (LIFO): Stack<T> (11.4.2, Seite 700)." }
+    explanation: { de: "Zuletzt hinein, zuerst heraus (LIFO): Stack<T> (11.4.2, Seite 700).", en: "Last In, First Out (LIFO): Stack<T> (11.4.2, page 700)." }
   - type: multipleChoice
     id: szenario-warteschlange
-    prompt: { de: "Szenario: Druckaufträge sollen in der Reihenfolge ihres Eintreffens abgearbeitet werden. Welche Kollektion passt am besten?" }
+    prompt: { de: "Szenario: Druckaufträge sollen in der Reihenfolge ihres Eintreffens abgearbeitet werden. Welche Kollektion passt am besten?", en: "Scenario: Print jobs should be processed in the order in which they are received. Which collection is the best fit?" }
     options:
-      - { de: "List<T>" }
-      - { de: "Queue<T>" }
-      - { de: "Stack<T>" }
-      - { de: "HashSet<T>" }
-      - { de: "SortedSet<T>" }
-      - { de: "Dictionary<TKey,TValue>" }
+      - { de: "List<T>", en: "List<T>" }
+      - { de: "Queue<T>", en: "Queue<T>" }
+      - { de: "Stack<T>", en: "Stack<T>" }
+      - { de: "HashSet<T>", en: "HashSet<T>" }
+      - { de: "SortedSet<T>", en: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [1]
-    explanation: { de: "Zuerst hinein, zuerst heraus (FIFO): Queue<T> (11.4.2, Seite 700). Eine Liste müsste beim Entnehmen am Anfang alle übrigen Elemente verschieben." }
+    explanation: { de: "Zuerst hinein, zuerst heraus (FIFO): Queue<T> (11.4.2, Seite 700). Eine Liste müsste beim Entnehmen am Anfang alle übrigen Elemente verschieben.", en: "First In, First Out (FIFO): Queue<T> (11.4.2, page 700). When an element is removed from a list, all remaining elements would have to be shifted to the front." }
   - type: open
     id: monate
-    prompt: { de: "Du musst die zwölf Monatsnamen eines Jahres speichern. Nimmst du ein Array oder eine List<T>? Begründe mit Größenänderung und Zugriff (11.1, Seite 691)." }
+    prompt: { de: "Du musst die zwölf Monatsnamen eines Jahres speichern. Nimmst du ein Array oder eine List<T>? Begründe mit Größenänderung und Zugriff (11.1, Seite 691).", en: "You need to store the twelve names of the months in a year. Should you use an array or a List<T>? Explain your choice in terms of scalability and access (11.1, page 691)." }

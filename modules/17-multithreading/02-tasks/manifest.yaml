@@ -1,8 +1,8 @@
 id: threads-tasks
-title: { de: "Aufgaben: Task.Run, WhenAll, WhenAny, ContinueWith" }
+title: { de: "Aufgaben: Task.Run, WhenAll, WhenAny, ContinueWith", en: "Tasks: Task.Run, WhenAll, WhenAny, ContinueWith" }
 reading:
   section: "17.5.1"
-  title: { de: "Aufgaben ohne bzw. mit Rückgabe erstellen" }
+  title: { de: "Aufgaben ohne bzw. mit Rückgabe erstellen", en: "Creating Tasks With and Without a Return Value" }
   printedPage: 1120
 teaches:
   - tasks.run

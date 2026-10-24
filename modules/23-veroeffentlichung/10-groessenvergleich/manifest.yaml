@@ -1,9 +1,9 @@
 id: publish-groessenvergleich
-title: { de: "Zusatz: Größenvergleich" }
+title: { de: "Zusatz: Größenvergleich", en: "Extra: Size Comparison" }
 optional: true
 reading:
   section: "23.1.5"
-  title: { de: "Bereitstellungsmodus" }
+  title: { de: "Bereitstellungsmodus", en: "Deployment Mode" }
   printedPage: 1644
 teaches:
   - publish.framework-dependent
@@ -14,4 +14,4 @@ requires:
 items:
   - type: review
     id: vergleich
-    prompt: { de: "Veröffentliche ein kleines Konsolenprogramm einmal frameworkabhängig (`dotnet publish -c Release -o pub-fd`) und einmal eigenständig (`dotnet publish -c Release -r win-x64 --self-contained -o pub-sc`). Schreibe für beide Ordner auf, welche Dateien du auf einen Rechner kopieren musst, auf dem die .NET-Laufzeit installiert ist, und welche auf einen Rechner ohne Laufzeit. Gib die Größe beider Ordner an und erkläre in drei Sätzen, wann du welche Variante wählst." }
+    prompt: { de: "Veröffentliche ein kleines Konsolenprogramm einmal frameworkabhängig (`dotnet publish -c Release -o pub-fd`) und einmal eigenständig (`dotnet publish -c Release -r win-x64 --self-contained -o pub-sc`). Schreibe für beide Ordner auf, welche Dateien du auf einen Rechner kopieren musst, auf dem die .NET-Laufzeit installiert ist, und welche auf einen Rechner ohne Laufzeit. Gib die Größe beider Ordner an und erkläre in drei Sätzen, wann du welche Variante wählst.", en: "Publish a small console program once as framework-dependent (`dotnet publish -c Release -o pub-fd`) and once as self-contained (`dotnet publish -c Release -r win-x64 --self-contained -o pub-sc`). For both folders, list which files you need to copy to a computer with the .NET runtime installed and which to a computer without the runtime. Specify the size of both folders and explain in three sentences when you should choose which version." }

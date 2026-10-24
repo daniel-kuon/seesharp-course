@@ -1,9 +1,9 @@
 id: publish-quiz-2
-title: { de: "Zusatz: Veröffentlichungs-Quiz 2" }
+title: { de: "Zusatz: Veröffentlichungs-Quiz 2", en: "Extra: Release Quiz 2" }
 optional: true
 reading:
   section: "23.1.4"
-  title: { de: "Zielruntime" }
+  title: { de: "Zielruntime", en: "Target Runtime" }
   printedPage: 1643
 teaches:
   - publish.configuration-release
@@ -14,91 +14,91 @@ requires:
 items:
   - type: multipleChoice
     id: linux-server
-    prompt: { de: "Ein Linux-Server (x64) hat keine .NET-Laufzeit, und du willst eine einzige Datei ausliefern. Welches Kommando passt?" }
+    prompt: { de: "Ein Linux-Server (x64) hat keine .NET-Laufzeit, und du willst eine einzige Datei ausliefern. Welches Kommando passt?", en: "A Linux server (x64) doesn't have a .NET runtime, and you want to serve a single file. Which command should you use?" }
     options:
-      - { de: "`dotnet publish -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true`" }
-      - { de: "`dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true`" }
-      - { de: "`dotnet publish -c Debug` und die `.exe` kopieren" }
+      - { de: "`dotnet publish -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true`", en: "`dotnet publish -c Release -r linux-x64 --self-contained -p:PublishSingleFile=true`" }
+      - { de: "`dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true`", en: "`dotnet publish -c Release -r win-x64 --self-contained -p:PublishSingleFile=true`" }
+      - { de: "`dotnet publish -c Debug` und die `.exe` kopieren", en: "`dotnet publish -c Debug`, then copy the `.exe`" }
     correct: [0]
-    explanation: { de: "Der RID richtet sich nach dem Zielrechner (23.1.4, Seite 1643); eigenständig, weil keine Laufzeit vorhanden ist; Einzeldatei laut 23.1.6." }
+    explanation: { de: "Der RID richtet sich nach dem Zielrechner (23.1.4, Seite 1643); eigenständig, weil keine Laufzeit vorhanden ist; Einzeldatei laut 23.1.6.", en: "The RID is based on the destination computer (23.1.4, page 1643); it is independent because there is no runtime; single file according to 23.1.6." }
   - type: multipleChoice
     id: windows-kiosk
-    prompt: { de: "Ein Windows-Kiosk-PC (64 Bit) ist vom Netz getrennt und hat keine .NET-Laufzeit. Welche Veröffentlichung läuft dort ohne Installation?" }
+    prompt: { de: "Ein Windows-Kiosk-PC (64 Bit) ist vom Netz getrennt und hat keine .NET-Laufzeit. Welche Veröffentlichung läuft dort ohne Installation?", en: "A Windows kiosk PC (64-bit) is disconnected from the network and does not have the .NET runtime. Which version runs on it without installation?" }
     options:
-      - { de: "Eigenständig mit `-r win-x64`." }
-      - { de: "Frameworkabhängig mit `-r win-x64`; die Laufzeit ist im Windows enthalten." }
-      - { de: "Jede Veröffentlichung, weil Windows alle .NET-Programme starten kann." }
+      - { de: "Eigenständig mit `-r win-x64`.", en: "Standalone with `-r win-x64`." }
+      - { de: "Frameworkabhängig mit `-r win-x64`; die Laufzeit ist im Windows enthalten.", en: "Depends on the framework; use the `-r win-x64` option; the runtime is included with Windows." }
+      - { de: "Jede Veröffentlichung, weil Windows alle .NET-Programme starten kann.", en: "Every release, because Windows can run all .NET programs." }
     correct: [0]
-    explanation: { de: "23.1.5 (Seite 1645): Nur die eigenständige Veröffentlichung bringt die Laufzeit mit und setzt nichts auf dem Einsatzrechner voraus." }
+    explanation: { de: "23.1.5 (Seite 1645): Nur die eigenständige Veröffentlichung bringt die Laufzeit mit und setzt nichts auf dem Einsatzrechner voraus.", en: "23.1.5 (page 1645): Only the standalone release includes the runtime and does not require anything to be installed on the target computer." }
   - type: multipleChoice
     id: schnell-startendes-werkzeug
-    prompt: { de: "Ein Kommandozeilenwerkzeug wird oft gestartet und läuft nur kurz; die Startzeit stört. Welche Option hilft, und was ist der Preis?" }
+    prompt: { de: "Ein Kommandozeilenwerkzeug wird oft gestartet und läuft nur kurz; die Startzeit stört. Welche Option hilft, und was ist der Preis?", en: "A command-line tool is often launched and runs only briefly; the startup time is a nuisance. What option can help, and what is the cost?" }
     options:
-      - { de: "ReadyToRun (`-p:PublishReadyToRun=true`): Der IL-Code ist vorübersetzt, der Start schneller. Preis: größere Dateien, und das Ergebnis ist an die Zielruntime gebunden." }
-      - { de: "Die Konfiguration Debug: Sie startet schneller, weil sie nicht optimiert." }
-      - { de: "`PublishSingleFile`: Es verkürzt immer die Startzeit auf null." }
+      - { de: "ReadyToRun (`-p:PublishReadyToRun=true`): Der IL-Code ist vorübersetzt, der Start schneller. Preis: größere Dateien, und das Ergebnis ist an die Zielruntime gebunden.", en: "ReadyToRun (`-p:PublishReadyToRun=true`): The IL code is precompiled, resulting in faster startup. Cost: larger files, and the result is tied to the target runtime." }
+      - { de: "Die Konfiguration Debug: Sie startet schneller, weil sie nicht optimiert.", en: "The \"Debug\" configuration: It starts up faster because it is not optimized." }
+      - { de: "`PublishSingleFile`: Es verkürzt immer die Startzeit auf null.", en: "`PublishSingleFile`: It always reduces the startup time to zero." }
     correct: [0]
-    explanation: { de: "23.1.7 (Seite 1648) und 23.2.2 (Seite 1652): R2R ist eine AOT-Übersetzung für eine bestimmte Zielruntime und deshalb nicht portabel." }
+    explanation: { de: "23.1.7 (Seite 1648) und 23.2.2 (Seite 1652): R2R ist eine AOT-Übersetzung für eine bestimmte Zielruntime und deshalb nicht portabel.", en: "23.1.7 (page 1648) and 23.2.2 (page 1652): R2R is an AOT compilation for a specific target runtime and is therefore not portable." }
   - type: multipleChoice
     id: falscher-rid
-    prompt: { de: "Du veröffentlichst eigenständig mit `-r win-x64` und kopierst die Datei auf einen Linux-Rechner. Was passiert?" }
+    prompt: { de: "Du veröffentlichst eigenständig mit `-r win-x64` und kopierst die Datei auf einen Linux-Rechner. Was passiert?", en: "You publish self-contained with `-r win-x64` and copy the file to a Linux computer. What happens?" }
     options:
-      - { de: "Sie lässt sich nicht starten: Die mitgelieferte Laufzeit und der Starter gehören zu Windows. Für Linux musst du mit `-r linux-x64` (oder `linux-arm64`) neu veröffentlichen." }
-      - { de: "Sie läuft, weil der IL-Code portabel ist; nur das Fenster sieht anders aus." }
-      - { de: "Linux wählt beim Start automatisch den passenden RID." }
+      - { de: "Sie lässt sich nicht starten: Die mitgelieferte Laufzeit und der Starter gehören zu Windows. Für Linux musst du mit `-r linux-x64` (oder `linux-arm64`) neu veröffentlichen.", en: "It won't start: The included runtime and launcher are part of Windows. For Linux, you'll need to republish it with `-r linux-x64` (or `linux-arm64`)." }
+      - { de: "Sie läuft, weil der IL-Code portabel ist; nur das Fenster sieht anders aus.", en: "It runs because the IL code is portable; only the window looks different." }
+      - { de: "Linux wählt beim Start automatisch den passenden RID.", en: "Linux automatically selects the appropriate RID at startup." }
     correct: [0]
-    explanation: { de: "23.1.4 (Seite 1643 und 1644) und 23.2.2 (Seite 1652 und 1657): Die Zielruntime bestimmt Betriebssystem und CPU-Architektur; für jede Zielruntime wird einzeln veröffentlicht." }
+    explanation: { de: "23.1.4 (Seite 1643 und 1644) und 23.2.2 (Seite 1652 und 1657): Die Zielruntime bestimmt Betriebssystem und CPU-Architektur; für jede Zielruntime wird einzeln veröffentlicht.", en: "23.1.4 (pages 1643 and 1644) and 23.2.2 (pages 1652 and 1657): The target runtime is determined by the operating system and CPU architecture; it is published separately for each target runtime." }
   - type: multipleChoice
     id: kleinster-download
-    prompt: { de: "Alle Kunden haben die .NET-10-Laufzeit installiert. Du willst die kleinste Auslieferung. Was wählst du?" }
+    prompt: { de: "Alle Kunden haben die .NET-10-Laufzeit installiert. Du willst die kleinste Auslieferung. Was wählst du?", en: "All customers have the .NET 10 runtime installed. You want the smallest distribution. What do you choose?" }
     options:
-      - { de: "Frameworkabhängig: unter 140 KB im Beispiel des Buchs (Starter, dll, Konfigurationsdateien)." }
-      - { de: "Eigenständig mit Einzeldatei: Die Laufzeit ist dann nicht mehr nötig, also ist die Datei kleiner." }
-      - { de: "ReadyToRun: Vorübersetzter Code ist immer kleiner als IL." }
+      - { de: "Frameworkabhängig: unter 140 KB im Beispiel des Buchs (Starter, dll, Konfigurationsdateien).", en: "Depends on the framework: less than 140 KB in the example from the book (Starter, DLL, configuration files)." }
+      - { de: "Eigenständig mit Einzeldatei: Die Laufzeit ist dann nicht mehr nötig, also ist die Datei kleiner.", en: "Standalone with a single file: The runtime is no longer needed, so the file is smaller." }
+      - { de: "ReadyToRun: Vorübersetzter Code ist immer kleiner als IL.", en: "ReadyToRun: Precompiled code is always smaller than IL." }
     correct: [0]
-    explanation: { de: "23.1.5 (Seite 1645 und 1646): Frameworkabhängige Auslieferungen sind etwa tausendmal kleiner als eigenständige. R2R vergrößert die Dateien." }
+    explanation: { de: "23.1.5 (Seite 1645 und 1646): Frameworkabhängige Auslieferungen sind etwa tausendmal kleiner als eigenständige. R2R vergrößert die Dateien.", en: "23.1.5 (pages 1645 and 1646): Framework-dependent builds are about a thousand times smaller than standalone builds. R2R increases the file size." }
   - type: multipleChoice
     id: alte-laufzeit
-    prompt: { de: "Dein Projekt zielt auf `net10.0`. Auf dem Rechner des Kunden ist nur .NET 8 installiert. Was passiert bei der frameworkabhängigen Veröffentlichung, und was löst das Problem?" }
+    prompt: { de: "Dein Projekt zielt auf `net10.0`. Auf dem Rechner des Kunden ist nur .NET 8 installiert. Was passiert bei der frameworkabhängigen Veröffentlichung, und was löst das Problem?", en: "Your project targets `net10.0`. Only .NET 8 is installed on the customer's computer. What happens with a framework-dependent publish, and what solves the problem?" }
     options:
-      - { de: "Der Start scheitert mit dem Hinweis auf die fehlende Laufzeit. Lösung: .NET 10 installieren oder eigenständig veröffentlichen." }
-      - { de: "Das Programm läuft mit .NET 8 weiter; ältere Laufzeiten sind aufwärtskompatibel." }
-      - { de: "Es läuft, nur langsamer." }
+      - { de: "Der Start scheitert mit dem Hinweis auf die fehlende Laufzeit. Lösung: .NET 10 installieren oder eigenständig veröffentlichen.", en: "The application fails to start with a message indicating that the runtime is missing. Solution: Install .NET 10 or publish it yourself." }
+      - { de: "Das Programm läuft mit .NET 8 weiter; ältere Laufzeiten sind aufwärtskompatibel.", en: "The program continues to run on .NET 8; older runtimes are backward-compatible." }
+      - { de: "Es läuft, nur langsamer.", en: "It's working, just a little slower." }
     correct: [0]
-    explanation: { de: "23.1.2 (Seite 1638): Das Zielframework legt die mindestens erforderliche .NET-Version fest; eine neuere Laufzeit ist unproblematisch, eine ältere nicht (23.1.3, Seite 1642 zeigt die Fehlermeldung bei fehlender Laufzeit)." }
+    explanation: { de: "23.1.2 (Seite 1638): Das Zielframework legt die mindestens erforderliche .NET-Version fest; eine neuere Laufzeit ist unproblematisch, eine ältere nicht (23.1.3, Seite 1642 zeigt die Fehlermeldung bei fehlender Laufzeit).", en: "23.1.2 (page 1638): The target framework specifies the minimum required .NET version; a newer runtime is acceptable, but an older one is not (23.1.3, page 1642 shows the error message that appears when the runtime is missing)." }
   - type: multipleChoice
     id: debug-ausgeliefert
-    prompt: { de: "Ein Kollege liefert die Debug-Ausgabe (`bin/Debug`) an Kunden aus. Was ist daran nachteilig?" }
+    prompt: { de: "Ein Kollege liefert die Debug-Ausgabe (`bin/Debug`) an Kunden aus. Was ist daran nachteilig?", en: "A colleague is providing debug output (`bin/Debug`) to customers. What's the problem with that?" }
     options:
-      - { de: "Der Compiler hat nicht optimiert (zum Beispiel kein Inlining); das Programm ist langsamer als nötig. Ausgeliefert wird die Release-Konfiguration." }
-      - { de: "Debug-Ausgaben laufen nur auf dem Entwicklungsrechner." }
-      - { de: "Debug enthält den Quelltext im Klartext." }
+      - { de: "Der Compiler hat nicht optimiert (zum Beispiel kein Inlining); das Programm ist langsamer als nötig. Ausgeliefert wird die Release-Konfiguration.", en: "The compiler did not optimize the code (for example, no inlining); the program is slower than necessary. The release configuration is included in the delivery." }
+      - { de: "Debug-Ausgaben laufen nur auf dem Entwicklungsrechner.", en: "Debug output appears only on the development computer." }
+      - { de: "Debug enthält den Quelltext im Klartext.", en: "Debug contains the source code in plain text." }
     correct: [0]
-    explanation: { de: "23.1.1 (Seite 1637): Wegen der besseren Performanz sollte bei einer Veröffentlichung die Release-Übersetzung zum Einsatz kommen. Ein Debug-Assembly enthält aber keinen Quelltext, nur Debug-Hilfen in der pdb-Datei." }
+    explanation: { de: "23.1.1 (Seite 1637): Wegen der besseren Performanz sollte bei einer Veröffentlichung die Release-Übersetzung zum Einsatz kommen. Ein Debug-Assembly enthält aber keinen Quelltext, nur Debug-Hilfen in der pdb-Datei.", en: "23.1.1 (page 1637): For better performance, the release version should be used when publishing. However, a debug assembly does not contain source code, only debugging aids in the pdb file." }
   - type: multipleChoice
     id: r2r-woanders
-    prompt: { de: "Eine ReadyToRun-Einzeldatei wurde mit `-r linux-x64` gebaut. Läuft sie auf einem Mac mit Apple-Prozessor (`osx-arm64`)?" }
+    prompt: { de: "Eine ReadyToRun-Einzeldatei wurde mit `-r linux-x64` gebaut. Läuft sie auf einem Mac mit Apple-Prozessor (`osx-arm64`)?", en: "A single ReadyToRun file was built with `-r linux-x64`. Will it run on a Mac with an Apple processor (`osx-arm64`)?" }
     options:
-      - { de: "Nein: Sie enthält Maschinencode und eine Laufzeit für genau eine Zielruntime. Für den Mac wird mit `-r osx-arm64` neu veröffentlicht." }
-      - { de: "Ja: Der IL-Code ist enthalten, also läuft sie überall." }
-      - { de: "Ja, wenn die Datei in .app umbenannt wird." }
+      - { de: "Nein: Sie enthält Maschinencode und eine Laufzeit für genau eine Zielruntime. Für den Mac wird mit `-r osx-arm64` neu veröffentlicht.", en: "No: It contains machine code and a runtime for exactly one target runtime. For the Mac, it is being re-released with the `-r osx-arm64` option." }
+      - { de: "Ja: Der IL-Code ist enthalten, also läuft sie überall.", en: "Yes: The IL code is included, so it runs everywhere." }
+      - { de: "Ja, wenn die Datei in .app umbenannt wird.", en: "Yes, if the file is renamed to .app." }
     correct: [0]
-    explanation: { de: "23.2.2 (Seite 1652 bis 1658): Eine R2R-Anwendung ist nicht portabel, die Veröffentlichung für mehrere Zielruntimes ist aber ohne großen Aufwand möglich." }
+    explanation: { de: "23.2.2 (Seite 1652 bis 1658): Eine R2R-Anwendung ist nicht portabel, die Veröffentlichung für mehrere Zielruntimes ist aber ohne großen Aufwand möglich.", en: "23.2.2 (pages 1652–1658): An R2R application is not portable, but it can be deployed to multiple target runtimes with minimal effort." }
   - type: multipleChoice
     id: wpf-trimmen
-    prompt: { de: "Du veröffentlichst eine WPF-Anwendung eigenständig mit `-p:PublishTrimmed=true`. Was meldet das Kommando?" }
+    prompt: { de: "Du veröffentlichst eine WPF-Anwendung eigenständig mit `-p:PublishTrimmed=true`. Was meldet das Kommando?", en: "You publish a WPF application on your own using `-p:PublishTrimmed=true`. What does the command report?" }
     options:
-      - { de: "Fehler NETSDK1168: WPF wird bei aktiviertem Kürzen nicht unterstützt. Ohne `PublishTrimmed` klappt die Veröffentlichung." }
-      - { de: "Es klappt; die Datei wird besonders klein." }
-      - { de: "Es klappt, aber die Anwendung startet nur unter Linux." }
+      - { de: "Fehler NETSDK1168: WPF wird bei aktiviertem Kürzen nicht unterstützt. Ohne `PublishTrimmed` klappt die Veröffentlichung.", en: "Error NETSDK1168: WPF is not supported when trimming is enabled. Publishing works without `PublishTrimmed`." }
+      - { de: "Es klappt; die Datei wird besonders klein.", en: "It works; the file turns out to be very small." }
+      - { de: "Es klappt, aber die Anwendung startet nur unter Linux.", en: "It works, but the application only runs on Linux." }
     correct: [0]
-    explanation: { de: "23.1.6 (Seite 1648). WPF ist an Windows gebunden; deshalb lautet das Zielframework `net10.0-windows` (23.1.2)." }
+    explanation: { de: "23.1.6 (Seite 1648). WPF ist an Windows gebunden; deshalb lautet das Zielframework `net10.0-windows` (23.1.2).", en: "23.1.6 (page 1648). WPF is tied to Windows; therefore, the target framework is `net10.0-windows` (23.1.2)." }
   - type: multipleChoice
     id: dateien-ausliefern
-    prompt: { de: "Welche Dateien gehören bei der frameworkabhängigen Veröffentlichung eines Programms namens `Rechner` mindestens zur Auslieferung?" }
+    prompt: { de: "Welche Dateien gehören bei der frameworkabhängigen Veröffentlichung eines Programms namens `Rechner` mindestens zur Auslieferung?", en: "When publishing a program called `Rechner` in a framework-dependent manner, what files must be included in the distribution at a minimum?" }
     options:
-      - { de: "`Rechner.exe`, `Rechner.dll`, `Rechner.runtimeconfig.json` und `Rechner.deps.json`; die `Rechner.pdb` ist verzichtbar." }
-      - { de: "Nur die `Rechner.pdb`, weil sie den Code enthält." }
-      - { de: "Nur die `Rechner.exe`; sie enthält alles." }
+      - { de: "`Rechner.exe`, `Rechner.dll`, `Rechner.runtimeconfig.json` und `Rechner.deps.json`; die `Rechner.pdb` ist verzichtbar.", en: "`Rechner.exe`, `Rechner.dll`, `Rechner.runtimeconfig.json`, and `Rechner.deps.json`; `Rechner.pdb` is optional." }
+      - { de: "Nur die `Rechner.pdb`, weil sie den Code enthält.", en: "Just the `Rechner.pdb` file, because it contains the code." }
+      - { de: "Nur die `Rechner.exe`; sie enthält alles.", en: "Just the `Rechner.exe` file; it contains everything." }
     correct: [0]
-    explanation: { de: "23.1.5 (Seite 1645) und 23.2.2 (Seite 1656): Die dll enthält den IL-Code, die exe ist der Starter, die json-Dateien beschreiben die benötigte Laufzeit und die Abhängigkeiten; die pdb enthält Debug-Hilfen." }
+    explanation: { de: "23.1.5 (Seite 1645) und 23.2.2 (Seite 1656): Die dll enthält den IL-Code, die exe ist der Starter, die json-Dateien beschreiben die benötigte Laufzeit und die Abhängigkeiten; die pdb enthält Debug-Hilfen.", en: "23.1.5 (page 1645) and 23.2.2 (page 1656): The DLL contains the IL code, the EXE is the launcher, the JSON files describe the required runtime and dependencies, and the PDB file contains debugging information." }

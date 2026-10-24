@@ -1,8 +1,8 @@
 id: komposition-indexer
-title: { de: "Indexer: eine Personenliste wie ein Array ansprechen" }
+title: { de: "Indexer: eine Personenliste wie ein Array ansprechen", en: "Indexer: Accessing a list of people as if it were an array" }
 reading:
   section: "5.12"
-  title: { de: "Indexer" }
+  title: { de: "Indexer", en: "Indexer" }
   printedPage: 393
 teaches:
   - oop.indexer

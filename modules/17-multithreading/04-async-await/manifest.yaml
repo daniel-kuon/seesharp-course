@@ -1,8 +1,8 @@
 id: threads-async-await
-title: { de: "async und await" }
+title: { de: "async und await", en: "async and await" }
 reading:
   section: "17.6.4"
-  title: { de: "Definition von async-Methoden" }
+  title: { de: "Definition von async-Methoden", en: "Definition of Async Methods" }
   printedPage: 1169
 teaches:
   - async.declare
@@ -27,11 +27,11 @@ items:
     testProject: "AsyncAwait Tests/AsyncAwait.Tests.csproj"
   - type: multipleChoice
     id: deadlock
-    prompt: { de: "In einer Anwendung mit Benutzeroberfläche ruft der UI-Thread eine async-Methode auf, die intern mit await arbeitet, und blockiert dann mit .Result auf deren Ergebnis. Warum hängt das Programm?" }
+    prompt: { de: "In einer Anwendung mit Benutzeroberfläche ruft der UI-Thread eine async-Methode auf, die intern mit await arbeitet, und blockiert dann mit .Result auf deren Ergebnis. Warum hängt das Programm?", en: "In an application with a user interface, the UI thread calls an async method that uses `await` internally, and then blocks on its result with `.Result`. Why does the program hang?" }
     options:
-      - { de: "Der UI-Thread wartet in .Result auf das Ende der Methode. Die Fortsetzung nach dem await will aber im UI-Thread weiterlaufen (Synchronisierungskontext) und kann das nicht, solange er blockiert ist. Beide warten aufeinander: ein Deadlock." }
-      - { de: "Result kann nur auf dem Threadpool aufgerufen werden; auf dem UI-Thread ist es verboten und wirft sofort eine Ausnahme." }
-      - { de: "Der await beginnt erst, wenn niemand mehr auf die Aufgabe wartet." }
-      - { de: "Die async-Methode läuft in einem eigenen Prozess und braucht Zeit zum Starten; nach einigen Sekunden läuft das Programm weiter." }
+      - { de: "Der UI-Thread wartet in .Result auf das Ende der Methode. Die Fortsetzung nach dem await will aber im UI-Thread weiterlaufen (Synchronisierungskontext) und kann das nicht, solange er blockiert ist. Beide warten aufeinander: ein Deadlock.", en: "The UI thread waits in .Result for the method to finish. However, the code following the `await` statement wants to continue running on the UI thread (synchronization context) and cannot do so as long as the UI thread is blocked. Both are waiting for each other: a deadlock." }
+      - { de: "Result kann nur auf dem Threadpool aufgerufen werden; auf dem UI-Thread ist es verboten und wirft sofort eine Ausnahme.", en: "Result can only be called on the thread pool; it is prohibited on the UI thread and immediately throws an exception." }
+      - { de: "Der await beginnt erst, wenn niemand mehr auf die Aufgabe wartet.", en: "The `await` statement does not begin until no one is waiting for the task anymore." }
+      - { de: "Die async-Methode läuft in einem eigenen Prozess und braucht Zeit zum Starten; nach einigen Sekunden läuft das Programm weiter.", en: "The async method runs in its own process and takes some time to start; after a few seconds, the program continues running." }
     correct: [0]
-    explanation: { de: "17.6.12.2 (Seite 1200). Abhilfe: nicht blockieren, sondern bis nach oben mit await weitergeben (async all the way); in Bibliothekscode zusätzlich ConfigureAwait(false). In einer Konsolenanwendung gibt es keinen solchen Kontext, dort tritt der Deadlock nicht auf: Das macht ihn tückisch, weil Tests und Konsolenversuche ihn nicht zeigen." }
+    explanation: { de: "17.6.12.2 (Seite 1200). Abhilfe: nicht blockieren, sondern bis nach oben mit await weitergeben (async all the way); in Bibliothekscode zusätzlich ConfigureAwait(false). In einer Konsolenanwendung gibt es keinen solchen Kontext, dort tritt der Deadlock nicht auf: Das macht ihn tückisch, weil Tests und Konsolenversuche ihn nicht zeigen.", en: "17.6.12.2 (page 1200). Workaround: Do not block; instead, pass it up the call stack using `await` (async all the way); in library code, also use `ConfigureAwait(false)`. In a console application, there is no such context, so the deadlock does not occur there: This makes it tricky because tests and console experiments do not reveal it." }

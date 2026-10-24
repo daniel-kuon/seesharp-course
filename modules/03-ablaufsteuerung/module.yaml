@@ -1,6 +1,6 @@
 id: ablaufsteuerung
-title: { de: "Ablaufsteuerung" }
+title: { de: "Ablaufsteuerung", en: "Control Flow" }
 reading:
   section: "4.7"
-  title: { de: "Anweisungen (zur Ablaufsteuerung)" }
+  title: { de: "Anweisungen (zur Ablaufsteuerung)", en: "Statements (for Flow Control)" }
   printedPage: 252

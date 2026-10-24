@@ -1,8 +1,8 @@
 id: generics-sortierte-liste
-title: { de: "Sortierte Liste mit where T : IComparable<T>" }
+title: { de: "Sortierte Liste mit where T : IComparable<T>", en: "Sorted list where T : IComparable<T>" }
 reading:
   section: "8.2.2"
-  title: { de: "Restringierte Typformalparameter" }
+  title: { de: "Restringierte Typformalparameter", en: "Restricted type formal parameters" }
   printedPage: 593
 teaches:
   - generics.constraint-icomparable
@@ -21,10 +21,10 @@ items:
     testProject: "SimpleSortedList Tests/SimpleSortedList.Tests.csproj"
   - type: multipleChoice
     id: ohne-constraint
-    prompt: { de: "Ohne die Einschränkung where T : IComparable<T> meldet der Compiler in Add() einen Fehler bei element.CompareTo(...). Warum?" }
+    prompt: { de: "Ohne die Einschränkung where T : IComparable<T> meldet der Compiler in Add() einen Fehler bei element.CompareTo(...). Warum?", en: "Without the restriction `where T : IComparable<T>`, the compiler reports an error in `Add()` at `element.CompareTo(...)`. Why?" }
     options:
-      - { de: "Ohne Einschränkung weiß der Compiler über T nur, was jedes object kann; CompareTo gehört nicht dazu." }
-      - { de: "CompareTo ist eine statische Methode und braucht den Klassennamen." }
-      - { de: "Generische Klassen dürfen keine Methoden auf T aufrufen." }
+      - { de: "Ohne Einschränkung weiß der Compiler über T nur, was jedes object kann; CompareTo gehört nicht dazu.", en: "Without the `T` restriction, the compiler only knows what each `object` can do; `CompareTo` is not included." }
+      - { de: "CompareTo ist eine statische Methode und braucht den Klassennamen.", en: "CompareTo is a static method and requires the class name." }
+      - { de: "Generische Klassen dürfen keine Methoden auf T aufrufen.", en: "Generic classes must not call methods on T." }
     correct: [0]
-    explanation: { de: "Einschränkungen (8.2.2, Seite 593) erweitern, was der Compiler über T annimmt, und schließen zugleich ungeeignete Konkretisierungen aus." }
+    explanation: { de: "Einschränkungen (8.2.2, Seite 593) erweitern, was der Compiler über T annimmt, und schließen zugleich ungeeignete Konkretisierungen aus.", en: "Constraints (8.2.2, page 593) extend the compiler's assumptions about T and, at the same time, rule out inappropriate instantiations." }

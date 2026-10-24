@@ -1,0 +1,70 @@
+id: wpf-euro-viewmodel
+title: { de: "Euro-Konverter als ViewModel" }
+reading:
+  section: "12.10.4"
+  title: { de: "Änderungsbenachrichtigungen" }
+  printedPage: 792
+teaches:
+  - mvvm.inpc
+  - mvvm.computed-property
+  - mvvm.separation
+requires:
+  - events.declare
+  - events.raise-safely
+  - events.eventhandler-generic
+  - oop.property-full
+  - oop.property-backing-field
+  - interfaces.implement
+  - oop.property-computed
+  - types.double-vs-decimal
+items:
+  - type: coding
+    id: umrechner
+    openFile: "EuroKonverter/ViewModelBase.cs"
+    openLine: 1
+    testProject: "EuroKonverter Tests/EuroKonverter.Tests.csproj"
+  - type: multipleChoice
+    id: zustaendigkeit-kurs
+    prompt: { de: "Wohin gehört die Umrechnung mit dem Kurs 1,95583 (die reine Rechenvorschrift Euro mal Kurs)?" }
+    options:
+      - { de: "Ins Modell (Geschäftslogik, unabhängig von jeder Oberfläche); das ViewModel ruft sie nur auf." }
+      - { de: "In die Ansicht (XAML), weil dort der Betrag angezeigt wird." }
+      - { de: "In den Code-Behind des Fensters." }
+    correct: [0]
+    explanation: { de: "12.13.1.1 (Seite 858): Das Modell enthält Daten und Geschäftslogik. In dieser kleinen Aufgabe steckt die Rechnung der Einfachheit halber im ViewModel; in einem größeren Projekt wäre sie eine eigene Klasse." }
+  - type: multipleChoice
+    id: zustaendigkeit-text
+    prompt: { de: "Wohin gehört der Zustand „Text, den der Benutzer gerade im Eingabefeld stehen hat, samt Fehlermeldung dazu“?" }
+    options:
+      - { de: "Ins ViewModel: Es hält den Zustand der Ansicht und stellt ihn zur Bindung bereit." }
+      - { de: "Ins Modell, denn dort liegen alle Daten." }
+      - { de: "In die Ansicht, als Feld der Fensterklasse." }
+    correct: [0]
+    explanation: { de: "12.13.1.2 (Seite 858): Das ViewModel bereitet Daten für die Ansicht auf (hier: Text mit Komma, Fehlermeldung) und hält ihren Zustand. Das Modell kennt keine Eingabetexte." }
+  - type: multipleChoice
+    id: zustaendigkeit-farbe
+    prompt: { de: "Die Fehlermeldung soll rot und unter dem Eingabefeld erscheinen. Wohin gehören Farbe und Position?" }
+    options:
+      - { de: "In die Ansicht (XAML): Aussehen und Anordnung. Das ViewModel liefert nur den Text und HatFehler." }
+      - { de: "Ins ViewModel: Es setzt die Brush-Eigenschaft des TextBlocks." }
+      - { de: "Ins Modell." }
+    correct: [0]
+    explanation: { de: "12.13.1.3 (Seite 860): Die Ansicht legt Layout und Darstellung fest und bindet sich an das ViewModel. Ein ViewModel mit Farbobjekten wäre ohne WPF nicht testbar." }
+  - type: multipleChoice
+    id: zustaendigkeit-kenntnis
+    prompt: { de: "Wer darf wen kennen?" }
+    options:
+      - { de: "Die Ansicht kennt das ViewModel (per Bindung), das ViewModel kennt das Modell, aber nie die Ansicht; das Modell kennt keinen von beiden." }
+      - { de: "Das ViewModel hält eine Referenz auf das Fenster, damit es Steuerelemente ändern kann." }
+      - { de: "Alle drei Schichten kennen sich gegenseitig." }
+    correct: [0]
+    explanation: { de: "12.13.1 (Seite 857) und 12.13.4.5 (Seite 884): Ein ViewModel darf keine Fensterklasse kennen. Daran liegt es auch, dass die Tests dieser Aufgabe ganz ohne WPF laufen." }
+  - type: multipleChoice
+    id: zustaendigkeit-ereignis
+    prompt: { de: "Wohin gehört eine Click-Behandlungsmethode im Code-Behind, die den Text des Eingabefelds liest und die Umrechnung anstößt?" }
+    options:
+      - { de: "Nirgendwohin: In MVVM ersetzt man sie durch eine Bindung (hier) bzw. einen Befehl (nächste Aufgabe), damit die Logik im ViewModel testbar bleibt." }
+      - { de: "In die Ansicht; Code-Behind ist der übliche Ort für Logik." }
+      - { de: "Ins Modell." }
+    correct: [0]
+    explanation: { de: "12.13.3 (Seite 865): Statt auf Click-Ereignisse im Code Behind zu reagieren, bindet man Befehle; die Trennung von Oberfläche und Logik ist das Ziel des Musters." }

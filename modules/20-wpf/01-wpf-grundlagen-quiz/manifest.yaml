@@ -1,0 +1,137 @@
+id: wpf-grundlagen-quiz
+title: { de: "WPF-Grundlagen: Quiz" }
+reading:
+  section: "12.1"
+  title: { de: "Einordnung" }
+  printedPage: 727
+teaches:
+  - wpf.architecture
+  - xaml.markup
+  - xaml.routed-events
+  - xaml.dependency-property
+  - xaml.binding-modes
+requires:
+  - events.declare
+  - events.subscribe-unsubscribe
+  - oop.property-full
+  - interfaces.implement
+items:
+  - type: multipleChoice
+    id: aussage-winui
+    prompt: { de: "Richtig oder falsch (Buchaufgabe 12.14/1, Aussage 1): „WinUI 3 wird in Zukunft keine große Rolle spielen.“" }
+    options:
+      - { de: "Falsch: Microsoft empfiehlt für neue Windows-Desktopanwendungen das Windows App SDK mit WinUI 3; WPF bleibt daneben eine gute Wahl." }
+      - { de: "Richtig: WinUI 3 hat WPF vollständig ersetzt und ist deshalb uninteressant." }
+      - { de: "Richtig: WinUI 3 läuft nur im Browser." }
+    correct: [0]
+    explanation: { de: "12.1.1.2 und 12.1.1.3 (Seite 729 bis 731). WinUI 3 ist die aktuell von Microsoft favorisierte Windows-Bedienoberfläche; WPF ist deshalb nicht veraltet (12.1.1.1, Seite 727)." }
+  - type: multipleChoice
+    id: aussage-on-methode
+    prompt: { de: "Richtig oder falsch (Aussage 2): „Leitet man eine eigene Klasse von einer WPF-Klasse ab, dann kann man ein Ereignis dieser Klasse durch das Überschreiben der zugehörigen On-Methode behandeln.“" }
+    options:
+      - { de: "Richtig: Viele WPF-Klassen bieten zu ihren Ereignissen geschützte virtuelle On...-Methoden an (OnMouseDown, OnClick, ...)." }
+      - { de: "Falsch: Ereignisse lassen sich nur mit += abonnieren." }
+    correct: [0]
+    explanation: { de: "Das ist das Muster aus Level 12 (Ereignisse anbieten, 10.2.3): Die On-Methode löst das Ereignis aus; wer sie überschreibt, kontrolliert die Auslösung. Siehe auch 12.8.6 (Seite 777)." }
+  - type: multipleChoice
+    id: aussage-xaml-pflicht
+    prompt: { de: "Richtig oder falsch (Aussage 3): „Für das GUI-Design einer WPF-Anwendung muss man XAML-Code verwenden.“" }
+    options:
+      - { de: "Falsch: Die Oberfläche lässt sich auch vollständig im Quellcode erzeugen; XAML ist nur die bevorzugte, deklarative Variante." }
+      - { de: "Richtig: ohne XAML-Datei startet keine WPF-Anwendung." }
+    correct: [0]
+    explanation: { de: "12.3.1 (Seite 739) zeigt eine minimalistische WPF-Anwendung ohne XAML; im Sample-Projekt WPF/WpfOhneXaml ist das ausprobierbar." }
+  - type: multipleChoice
+    id: aussage-click-container
+    prompt: { de: "Richtig oder falsch (Aussage 4): „Befinden sich in einem Layoutcontainer mehrere Button-Objekte, dann kann man deren Click-Ereignisse durch eine gemeinsame, beim Layoutcontainer registrierte Methode behandeln.“" }
+    options:
+      - { de: "Richtig: Click ist ein Blasenereignis und wandert zu den übergeordneten Elementen; dort kann man einen Handler registrieren (z. B. Button.Click=\"...\" am StackPanel) und per e.Source erfahren, welcher Button gemeint war." }
+      - { de: "Falsch: Click-Handler müssen immer direkt am Button hängen." }
+    correct: [0]
+    explanation: { de: "12.8.1 Routingstrategien (Seite 767) und 12.8.2 Einsatzfälle (Seite 769)." }
+  - type: multipleChoice
+    id: aussage-layout
+    prompt: { de: "Richtig oder falsch (Aussage 5): „Die WPF-Layoutcontainer ermöglichen ein responsives Layout, sodass ein Fenster gut bedienbar bleibt, wenn ein Benutzer die Größe und/oder das Seitenverhältnis ändert.“" }
+    options:
+      - { de: "Richtig: Grid, StackPanel, DockPanel und WrapPanel ordnen ihre Kinder relativ an und passen sich der verfügbaren Fläche an." }
+      - { de: "Falsch: WPF-Fenster haben immer eine feste Größe." }
+    correct: [0]
+    explanation: { de: "12.11 (Seite 804). Die Ausnahme ist Canvas mit festen Koordinaten (12.11.6, Seite 817)." }
+  - type: multipleChoice
+    id: window-application
+    prompt: { de: "Was sind Application und Window in einer WPF-Anwendung, und was bewirkt App.xaml?" }
+    options:
+      - { de: "Application ist das eine Objekt, das die Anwendung steuert (Start, Ende, Ressourcen); Window ist ein Fenster. In App.xaml legt StartupUri fest, welches Fenster beim Start geöffnet wird." }
+      - { de: "Window steuert die Anwendung, Application ist ein Dialogfenster; App.xaml enthält die Main-Methode von Hand." }
+      - { de: "Application und Window sind dasselbe; App.xaml ist nur ein Kommentar." }
+    correct: [0]
+    explanation: { de: "12.3.2 und 12.3.3 (Seite 742 bis 745) sowie 12.5.1 (Seite 759): App.xaml beschreibt die Anwendungsklasse, der Build erzeugt daraus die Main-Methode." }
+  - type: multipleChoice
+    id: xaml-lesen
+    prompt:
+      de: |
+        Betrachte dieses XAML-Fragment (vgl. Seite 752):
+
+        ```xml
+        <StackPanel Margin="8">
+            <TextBox Text="{Binding Name}" Style="{StaticResource Feld}" />
+            <Button Content="Speichern">
+                <Button.ToolTip>
+                    <TextBlock Text="Schreibt die Daten" />
+                </Button.ToolTip>
+            </Button>
+        </StackPanel>
+        ```
+
+        Welche Aussage trifft zu?
+    options:
+      - { de: "{Binding Name} und {StaticResource Feld} sind Markuperweiterungen; <Button.ToolTip> ist ein Eigenschaftselement, mit dem die Eigenschaft ToolTip einen komplexen Wert (ein TextBlock-Objekt) bekommt; Margin=\"8\" ist ein einfaches Attribut." }
+      - { de: "<Button.ToolTip> erzeugt ein neues Objekt der Klasse Button.ToolTip." }
+      - { de: "Die geschweiften Klammern sind C#-Interpolation und werden vom Compiler ausgewertet." }
+    correct: [0]
+    explanation: { de: "12.4.2.2 und 12.4.2.3 (Seite 752 bis 758): Elemente erzeugen Objekte, Attribute setzen Eigenschaften, Eigenschaftselemente (Typ.Eigenschaft) setzen Eigenschaften mit komplexem Wert, Markuperweiterungen werden beim Laden ausgewertet." }
+  - type: multipleChoice
+    id: tunneln-blubbern
+    prompt: { de: "Ein Benutzer klickt auf einen Button in einem StackPanel in einem Window. Bei allen drei Elementen sind Handler für PreviewMouseDown (Tunnelereignis) und für MouseDown (Blasenereignis) registriert. In welcher Reihenfolge laufen die Handler?" }
+    options:
+      - { de: "Zuerst PreviewMouseDown von Window, StackPanel, Button (von oben nach unten), danach MouseDown von Button, StackPanel, Window (von unten nach oben)." }
+      - { de: "Zuerst MouseDown von Button bis Window, danach PreviewMouseDown von Window bis Button." }
+      - { de: "Nur die Handler des Buttons laufen; übergeordnete Elemente erfahren nichts." }
+    correct: [0]
+    explanation: { de: "12.8.1 (Seite 767) und die Beobachtungsstudie 12.8.3 (Seite 770). Setzt ein Handler Handled = true, erreichen normal registrierte Handler weiter hinten auf der Route das Ereignis nicht mehr." }
+  - type: multipleChoice
+    id: handled
+    prompt: { de: "Ein Handler für das Blasenereignis MouseDown am Button setzt e.Handled = true. Was geschieht mit dem Handler, der beim umgebenden Window registriert ist?" }
+    options:
+      - { de: "Er wird nicht mehr aufgerufen (außer er wurde mit AddHandler und handledEventsToo = true registriert)." }
+      - { de: "Er wird trotzdem immer aufgerufen." }
+      - { de: "Das Programm bricht mit einer Ausnahme ab." }
+    correct: [0]
+    explanation: { de: "12.8.1 (Seite 768): Das Ereignis wandert weiter, aber gewöhnliche Handler werden übersprungen." }
+  - type: multipleChoice
+    id: abhaengigkeitseigenschaft
+    prompt: { de: "Warum sind die meisten WPF-Eigenschaften (Text, Width, Background, ...) Abhängigkeitseigenschaften und keine gewöhnlichen Eigenschaften mit Feld?" }
+    options:
+      - { de: "Ihr Wert wird in einer vom Objekt verwalteten Tabelle abgelegt, die Wertequellen mit Vorrang (Animation, Trigger, Stil, lokaler Wert, Standardwert) und Vererbung im Elementbaum erlaubt und die Zielseite einer Datenbindung sein kann." }
+      - { de: "Weil sie schneller sind als Felder." }
+      - { de: "Weil nur Abhängigkeitseigenschaften öffentlich sein dürfen." }
+    correct: [0]
+    explanation: { de: "12.9 (Seite 778 bis 786). Nur eine Abhängigkeitseigenschaft kann Ziel einer Bindung sein; die Quelle darf eine gewöhnliche Eigenschaft sein (dann braucht sie INotifyPropertyChanged)." }
+  - type: multipleChoice
+    id: bindungsmodus
+    prompt: { de: "Ein ViewModel soll bei jedem Tastendruck in einem Eingabefeld aktualisiert werden. Welche Bindung leistet das?" }
+    options:
+      - { de: "<TextBox Text=\"{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}\" />" }
+      - { de: "<TextBox Text=\"{Binding Name, Mode=OneWay}\" /> (OneWay schreibt nie zurück)" }
+      - { de: "<TextBox Text=\"{Binding Name}\" /> (der Standard schreibt schon bei jedem Tastendruck zurück)" }
+    correct: [0]
+    explanation: { de: "12.10.1 (Seite 787) und 12.10.3 (Seite 790). TextBox.Text bindet standardmäßig zwar TwoWay, schreibt aber erst bei Fokusverlust (LostFocus) zurück; PropertyChanged schaltet auf jeden Tastendruck um. OneWay überträgt nur von der Quelle zum Ziel." }
+  - type: multipleChoice
+    id: inpc-noetig
+    prompt: { de: "Eine Bindung zeigt die Eigenschaft Summe eines ViewModels an (OneWay). Der Code ändert den Wert, aber die Anzeige bleibt alt. Was fehlt am wahrscheinlichsten?" }
+    options:
+      - { de: "Das ViewModel implementiert INotifyPropertyChanged nicht oder löst PropertyChanged(\"Summe\") im Setter nicht aus; die Bindung erfährt nichts von der Änderung." }
+      - { de: "Die Eigenschaft muss eine Abhängigkeitseigenschaft sein." }
+      - { de: "Die Anzeige aktualisiert sich nur beim Neustart der Anwendung." }
+    correct: [0]
+    explanation: { de: "12.10.4.1 (Seite 793). Genau das üben die nächsten Aufgaben." }

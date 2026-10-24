@@ -1,0 +1,50 @@
+id: wpf-liste-und-validierung
+title: { de: "ObservableCollection und Validierung" }
+reading:
+  section: "12.10.5"
+  title: { de: "Datenvalidierung" }
+  printedPage: 796
+teaches:
+  - mvvm.observablecollection
+  - mvvm.validation
+requires:
+  - mvvm.inpc
+  - mvvm.relaycommand
+  - mvvm.canexecute
+  - collections.list-add-remove
+  - collections.icollection-members
+  - linq.where
+  - events.subscribe-unsubscribe
+items:
+  - type: coding
+    id: aufgabenliste
+    openFile: "Aufgaben/AufgabenViewModel.cs"
+    openLine: 1
+    testProject: "Aufgaben Tests/Aufgaben.Tests.csproj"
+  - type: multipleChoice
+    id: observable-vs-list
+    prompt: { de: "Eine ListBox ist an eine List<Aufgabe> im ViewModel gebunden. Beim Klick auf Hinzufügen wird die Liste im Code erweitert, aber die ListBox zeigt den neuen Eintrag nicht. Warum, und was hilft?" }
+    options:
+      - { de: "List<T> meldet Änderungen nicht (kein INotifyCollectionChanged). ObservableCollection<T> löst CollectionChanged aus, sodass sich die ListBox aktualisiert." }
+      - { de: "ListBox kann nur an Arrays gebunden werden." }
+      - { de: "Die ListBox aktualisiert sich nur, wenn man sie neu erzeugt." }
+    correct: [0]
+    explanation: { de: "12.10.2 (Seite 789) und 12.10.4.2 (Seite 795). Wichtig: ObservableCollection<T> meldet das Hinzufügen und Entfernen von Elementen, aber nicht, wenn sich eine Eigenschaft eines Elements ändert. Dafür muss das Element selbst INotifyPropertyChanged implementieren." }
+  - type: multipleChoice
+    id: validierung-varianten
+    prompt: { de: "Wodurch unterscheidet sich die Validierung über INotifyDataErrorInfo von der Validierung über eine Ausnahme im Setter?" }
+    options:
+      - { de: "INotifyDataErrorInfo lässt den ungültigen Wert in der Eigenschaft stehen und meldet Fehler getrennt (HasErrors, GetErrors, ErrorsChanged); mehrere Fehlermeldungen pro Eigenschaft sind möglich und das ViewModel kann daran z. B. den Speichern-Befehl sperren. Bei der Ausnahme verweigert der Setter den Wert." }
+      - { de: "Es gibt keinen Unterschied." }
+      - { de: "INotifyDataErrorInfo funktioniert nur für Zahlen." }
+    correct: [0]
+    explanation: { de: "12.10.5.1 und 12.10.5.2 (Seite 796 bis 801). Nach dem Ereignis ErrorsChanged fragt die Ansicht GetErrors neu ab und zeigt die Meldungen an (12.10.5.4, Seite 801)." }
+  - type: multipleChoice
+    id: handler-abmelden
+    prompt: { de: "Das ViewModel abonniert PropertyChanged jeder Aufgabe, die in die Sammlung kommt. Warum muss es sich beim Entfernen einer Aufgabe wieder abmelden?" }
+    options:
+      - { de: "Sonst hält die Aufgabe über ihr Ereignis eine Referenz auf das ViewModel (es lebt dann so lange wie die Aufgabe) und löst bei Änderungen weiter Handler aus, obwohl sie nicht mehr in der Liste steht." }
+      - { de: "Weil C# das Abmelden vorschreibt und sonst nicht kompiliert." }
+      - { de: "Nur aus Stilgründen; es hat keine Wirkung." }
+    correct: [0]
+    explanation: { de: "Ereignisabonnements aus Level 12 (Abonnieren und Abmelden). Der Test Entfernte_Aufgaben_beeinflussen_OffeneAnzahl_nicht_mehr prüft das Verhalten." }

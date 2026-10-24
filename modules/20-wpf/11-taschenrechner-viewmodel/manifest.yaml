@@ -1,0 +1,20 @@
+id: wpf-taschenrechner-viewmodel
+title: { de: "Zusatz: Taschenrechner-ViewModel" }
+optional: true
+reading:
+  section: "12.13.3"
+  title: { de: "Kommandobindung" }
+  printedPage: 865
+teaches:
+  - mvvm.relaycommand
+  - mvvm.command-parameter
+  - mvvm.computed-property
+requires:
+  - mvvm.inpc
+  - mvvm.canexecute
+items:
+  - type: coding
+    id: rechner
+    openFile: "Rechner/RechnerViewModel.cs"
+    openLine: 1
+    testProject: "Rechner Tests/Rechner.Tests.csproj"

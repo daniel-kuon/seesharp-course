@@ -1,0 +1,19 @@
+id: wpf-notizen-viewmodel
+title: { de: "Zusatz: Notizen-ViewModel" }
+optional: true
+reading:
+  section: "12.13.2"
+  title: { de: "Beispiel" }
+  printedPage: 862
+teaches:
+  - mvvm.inpc
+  - mvvm.observablecollection
+  - mvvm.relaycommand
+requires:
+  - mvvm.canexecute
+items:
+  - type: coding
+    id: notizen
+    openFile: "Notizen/NotizenViewModel.cs"
+    openLine: 1
+    testProject: "Notizen Tests/Notizen.Tests.csproj"

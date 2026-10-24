@@ -1,0 +1,58 @@
+id: wpf-relaycommand
+title: { de: "RelayCommand und CanExecute" }
+reading:
+  section: "12.13.3"
+  title: { de: "Kommandobindung" }
+  printedPage: 865
+teaches:
+  - mvvm.relaycommand
+  - mvvm.canexecute
+  - mvvm.command-parameter
+requires:
+  - mvvm.inpc
+  - delegates.generic-action
+  - delegates.generic-func
+  - delegates.null-conditional-invoke
+  - events.raise-safely
+  - interfaces.implement
+items:
+  - type: coding
+    id: relaycommand
+    openFile: "Befehle/RelayCommand.cs"
+    openLine: 1
+    testProject: "Befehle Tests/Befehle.Tests.csproj"
+  - type: multipleChoice
+    id: icommand-mitglieder
+    prompt: { de: "Welche Mitglieder verlangt die Schnittstelle ICommand?" }
+    options:
+      - { de: "bool CanExecute(object? parameter), void Execute(object? parameter) und das Ereignis CanExecuteChanged." }
+      - { de: "Nur void Execute(), weil WPF die Ausführbarkeit selbst herausfindet." }
+      - { de: "void Click(), bool IsEnabled { get; } und das Ereignis Changed." }
+    correct: [0]
+    explanation: { de: "12.13.3.1 (Seite 866). Eine Schaltfläche, deren Command-Eigenschaft an einen ICommand gebunden ist, fragt CanExecute ab (und deaktiviert sich bei false) und ruft beim Klick Execute auf." }
+  - type: multipleChoice
+    id: raise-can-execute-changed
+    prompt: { de: "Verringern ist nur ausführbar, solange Wert > 0. Der Wert wird im Code auf 0 gesetzt, aber die Schaltfläche bleibt aktiv. Was fehlt?" }
+    options:
+      - { de: "Der Befehl muss CanExecuteChanged auslösen (hier über RaiseCanExecuteChanged), damit WPF CanExecute erneut abfragt. WPF fragt nicht ständig nach." }
+      - { de: "Die Schaltfläche muss im Code-Behind per IsEnabled = false abgeschaltet werden." }
+      - { de: "Execute muss intern prüfen, ob der Wert größer 0 ist." }
+    correct: [0]
+    explanation: { de: "12.13.3.1 und 12.13.3.4 (Seite 866 bis 874). Die Bedingung bleibt im ViewModel; die Ansicht erfährt nur über CanExecuteChanged, dass sie neu fragen soll. (Der WPF-eigene CommandManager.RequerySuggested ist eine andere Technik, die hier bewusst nicht verwendet wird.)" }
+  - type: multipleChoice
+    id: command-parameter
+    prompt:
+      de: |
+        Ein Button ist so gebunden:
+
+        ```xml
+        <Button Content="Auf 10" Command="{Binding SetzeAuf}" CommandParameter="10" />
+        ```
+
+        Welchen Typ hat der Parameter, der bei Execute ankommt?
+    options:
+      - { de: "string, denn ein Attributwert in XAML ist Text; ein int wäre nur über Binding oder eine passende Markuperweiterung möglich. Deshalb muss der Befehl den Parameter selbst umwandeln." }
+      - { de: "int, WPF erkennt die Zahl automatisch." }
+      - { de: "Der Parameter ist immer null." }
+    correct: [0]
+    explanation: { de: "12.13.3.2 (Seite 867). Die Aufgabe SetzeAuf akzeptiert deshalb beides: int (aus dem Code) und string (aus XAML)." }

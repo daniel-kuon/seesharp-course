@@ -1,0 +1,27 @@
+id: wpf-oberflaeche
+title: { de: "Die Oberfläche: Layout, Bindung und Steuerelemente" }
+reading:
+  section: "12.11"
+  title: { de: "Layoutcontainer" }
+  printedPage: 804
+teaches:
+  - xaml.layout-containers
+  - xaml.data-binding
+  - xaml.controls
+  - wpf.project-structure
+requires:
+  - mvvm.inpc
+  - mvvm.relaycommand
+  - mvvm.observablecollection
+  - mvvm.validation
+  - tools.solution-anatomy
+items:
+  - type: review
+    id: projekt
+    prompt: { de: "Lege in Rider (Windows) eine neue Lösung mit zwei Projekten an: Die Klassenbibliothek mit deinen ViewModels aus den Aufgaben 2 bis 4 (net10.0, ohne WPF-Verweis) und eine WPF-Anwendung (net10.0-windows) mit einem Projektverweis auf die Bibliothek. Zeige der Betreuung beide Projektdateien und erkläre, welche Dateien beim Anlegen entstanden sind (App.xaml, App.xaml.cs, MainWindow.xaml, MainWindow.xaml.cs) und was InitializeComponent() tut." }
+  - type: review
+    id: fenster
+    prompt: { de: "Baue ein Fenster für eines der drei ViewModels (Umrechner, Zähler oder Aufgabenliste): Grid mit Zeilen und Spalten (DockPanel oder StackPanel, wo es passt), DataContext in App.xaml.cs oder im Fenster gesetzt, TextBox mit TwoWay-Bindung und UpdateSourceTrigger=PropertyChanged, Schaltflächen an Befehle gebunden (bei Bedarf mit CommandParameter), ListBox oder ItemsControl an die Sammlung gebunden und sichtbare Rückmeldung bei Validierungsfehlern. Lege dem Betreuer einen Screenshot des laufenden Fensters vor, auch in verkleinerter und vergrößerter Fassung." }
+  - type: open
+    id: begruendung
+    prompt: { de: "Warum steht in MainWindow.xaml.cs außer InitializeComponent() keine Logik, und was würde schiefgehen, wenn die Umrechnung in einer Click-Methode des Fensters steckte? Nenne ein Beispiel aus deinem Fenster, in dem eine Bindung eine Ereignisbehandlungsmethode ersetzt." }

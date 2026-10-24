@@ -1,0 +1,19 @@
+id: wpf-layouts-nachbauen
+title: { de: "Zusatz: Layouts nachbauen" }
+optional: true
+reading:
+  section: "12.11"
+  title: { de: "Layoutcontainer" }
+  printedPage: 804
+teaches:
+  - xaml.layout-containers
+  - xaml.controls
+requires:
+  - wpf.project-structure
+items:
+  - type: review
+    id: anmeldung
+    prompt: { de: "Baue das Anmeldefenster aus der Aufgabenstellung (Skizze 1) in einem WPF-Projekt nach: Grid mit Beschriftungsspalte (Auto) und Eingabespalte (*), StackPanel für die Schaltflächen, keine festen Pixelpositionen. Zeige der Betreuung das Fenster in kleiner und in großer Fassung." }
+  - type: review
+    id: mail
+    prompt: { de: "Baue das Mail-Fenster mit drei Bereichen (Skizze 2) nach: DockPanel für Menüleiste und Statuszeile, ein Grid mit drei Spalten (Ordnerliste, Nachrichtenliste, Lesebereich) und verstellbaren Trennern (GridSplitter), WrapPanel für die Schnellfilter. Erkläre, wann du StackPanel, DockPanel und Grid gewählt hast und warum kein Canvas." }

@@ -1,0 +1,44 @@
+id: linq-where-und-select
+title: { de: "Where, Select und Verkettung" }
+reading:
+  section: "18.2.1"
+  title: { de: "Beispiel" }
+  printedPage: 1211
+teaches:
+  - linq.where
+  - linq.select
+  - linq.projection-anonymous
+  - linq.chaining
+  - linq.materialize
+requires:
+  - lambdas.expression
+  - delegates.generic-func
+  - interfaces.ienumerable
+  - collections.list-add-remove
+  - types.anonymous
+  - extensions.extension-method
+  - tuples.declare
+items:
+  - type: coding
+    id: abfragen
+    openFile: "LinqEinstieg/Abfragen.cs"
+    openLine: 1
+    testProject: "LinqEinstieg Tests/LinqEinstieg.Tests.csproj"
+  - type: multipleChoice
+    id: anonymer-typ
+    prompt: { de: "Was erzeugt  from p in produkte select new { p.Name, p.Preis }  und warum kann eine Methode diesen Typ nicht als Rückgabetyp deklarieren?" }
+    options:
+      - { de: "Eine Sequenz anonymer Typen; der Compiler vergibt den Typnamen selbst, man kann ihn im Quelltext nicht hinschreiben. Als Rückgabetyp bieten sich Tupel oder ein benannter Typ (Record) an." }
+      - { de: "Eine Sequenz von Produkt-Objekten; der Rückgabetyp wäre dann IEnumerable<Produkt>." }
+      - { de: "Eine Liste von Dictionary<string, decimal>; als Rückgabetyp wäre das möglich." }
+    correct: [0]
+    explanation: { de: "Anonyme Typen (Level 6) haben einen vom Compiler erzeugten, unaussprechlichen Namen. Innerhalb einer Methode genügt var; über Methodengrenzen hinweg nimmt man ein Tupel (string Name, decimal Preis) oder einen Record." }
+  - type: multipleChoice
+    id: where-select-typ
+    prompt: { de: "Welchen Typ hat  produkte.Where(p => p.Preis < 10)  ?" }
+    options:
+      - { de: "IEnumerable<Produkt>; die Methoden von System.Linq.Enumerable arbeiten auf IEnumerable<T> und liefern wieder IEnumerable<T>, sodass man sie verketten kann (Fluent-API)." }
+      - { de: "List<Produkt>; Where kopiert die passenden Elemente in eine neue Liste." }
+      - { de: "bool; Where prüft, ob mindestens ein Produkt passt." }
+    correct: [0]
+    explanation: { de: "18.2.3 (Seite 1213): Weil jede Methode eine Sequenz zurückgibt, lassen sich Aufrufe zu einer Kette verbinden." }

@@ -1,0 +1,21 @@
+id: linq-statistik
+title: { de: "Zusatz: Notenstatistik" }
+optional: true
+reading:
+  section: "18.2.11"
+  title: { de: "Weitere LINQ-Operatoren" }
+  printedPage: 1228
+teaches:
+  - linq.aggregates
+  - linq.orderby
+  - linq.groupby
+requires:
+  - linq.where
+  - linq.select
+  - linq.chaining
+items:
+  - type: coding
+    id: notenstatistik
+    openFile: "Noten/Notenstatistik.cs"
+    openLine: 1
+    testProject: "Noten Tests/Noten.Tests.csproj"

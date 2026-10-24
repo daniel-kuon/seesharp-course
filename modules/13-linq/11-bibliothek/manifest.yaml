@@ -1,0 +1,20 @@
+id: linq-bibliothek
+title: { de: "Zusatz: Bibliotheksauskunft" }
+optional: true
+reading:
+  section: "18.2.10"
+  title: { de: "Verknüpfen von zwei Sequenzen" }
+  printedPage: 1224
+teaches:
+  - linq.join
+  - linq.where
+  - linq.select
+requires:
+  - linq.groupjoin
+  - linq.orderby
+items:
+  - type: coding
+    id: auskunft
+    openFile: "Bibliothek/Auskunft.cs"
+    openLine: 1
+    testProject: "Bibliothek Tests/Bibliothek.Tests.csproj"

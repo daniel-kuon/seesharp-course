@@ -1,0 +1,41 @@
+id: linq-elemente-und-ausfuehrung
+title: { de: "Quantoren, Elementoperatoren und verzögerte Ausführung" }
+reading:
+  section: "18.2.4"
+  title: { de: "Zurückgestellte oder sofortige Ausführung" }
+  printedPage: 1215
+teaches:
+  - linq.element-operators
+  - linq.quantifiers
+  - linq.deferred-execution
+requires:
+  - linq.where
+  - linq.materialize
+  - linq.aggregates
+  - collections.list-add-remove
+  - exceptions.try-catch
+  - exceptions.catch-specific
+items:
+  - type: coding
+    id: ausfuehrung
+    openFile: "LinqAusfuehrung/Ausfuehrung.cs"
+    openLine: 1
+    testProject: "LinqAusfuehrung Tests/LinqAusfuehrung.Tests.csproj"
+  - type: multipleChoice
+    id: verzoegert
+    prompt: { de: "var q = zahlen.Where(z => z > 5);  Wann prüft das Programm die Bedingung z > 5?" }
+    options:
+      - { de: "Erst bei der Aufzählung von q (foreach, ToList(), Count() usw.); die Zeile selbst baut nur die Abfrage." }
+      - { de: "Sofort in der Zeile; q enthält danach die Ergebnisse." }
+      - { de: "Beim Kompilieren." }
+    correct: [0]
+    explanation: { de: "18.2.4 (Seite 1215): Where, Select, OrderBy usw. arbeiten zurückgestellt; ToList(), ToArray(), Count(), Sum() und First() arbeiten sofort." }
+  - type: multipleChoice
+    id: single-first
+    prompt: { de: "Eine Folge enthält genau zwei Treffer. Was tun First(p) und Single(p)?" }
+    options:
+      - { de: "First liefert den ersten Treffer; Single wirft InvalidOperationException, weil der Treffer nicht eindeutig ist." }
+      - { de: "Beide liefern den ersten Treffer." }
+      - { de: "First wirft; Single liefert den ersten Treffer." }
+    correct: [0]
+    explanation: { de: "Single verlangt genau ein Element; ohne Treffer und bei mehreren Treffern wirft es InvalidOperationException. SingleOrDefault wirft nur bei mehreren." }

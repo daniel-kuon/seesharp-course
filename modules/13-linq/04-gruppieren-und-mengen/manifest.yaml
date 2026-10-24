@@ -1,0 +1,41 @@
+id: linq-gruppieren-und-mengen
+title: { de: "Gruppieren, Zählen und Mengenoperatoren" }
+reading:
+  section: "18.2.9"
+  title: { de: "GroupBy()" }
+  printedPage: 1222
+teaches:
+  - linq.groupby
+  - linq.countby
+  - linq.set-operators
+requires:
+  - linq.select
+  - linq.orderby
+  - linq.aggregates
+  - collections.dictionary-grouping
+  - collections.set-operations
+  - records.value-equality
+items:
+  - type: coding
+    id: auswertung
+    openFile: "Gruppen/Auswertung.cs"
+    openLine: 1
+    testProject: "Gruppen Tests/Gruppen.Tests.csproj"
+  - type: multipleChoice
+    id: countby-oder-groupby
+    prompt: { de: "Welche Variante zählt Häufigkeiten ohne unnötige Zwischenobjekte?  (a) werte.GroupBy(w => w).Select(g => (g.Key, g.Count()))   (b) werte.CountBy(w => w)" }
+    options:
+      - { de: "(b): CountBy (ab .NET 9) zählt direkt je Schlüssel und baut keine Gruppen mit allen Elementen auf; GroupBy muss alle Elemente jeder Gruppe zwischenspeichern, obwohl nur ihre Zahl gebraucht wird." }
+      - { de: "(a): GroupBy ist immer die sparsamere Lösung." }
+      - { de: "Beide sind gleich; der Compiler macht aus (a) intern (b)." }
+    correct: [0]
+    explanation: { de: "CountBy und AggregateBy stehen nicht im Buch (Kapitel 18 ist auf dem Stand .NET 8); sie verdichten pro Schlüssel in einem Durchlauf. GroupBy bleibt richtig, wenn man die Elemente der Gruppen selbst braucht." }
+  - type: multipleChoice
+    id: groupby-gruppen
+    prompt: { de: "Was ist ein Element der Sequenz, die  eintraege.GroupBy(e => e.Hash)  liefert?" }
+    options:
+      - { de: "Ein IGrouping<string, Dateieintrag>: eine Folge von Dateieinträgen mit der Eigenschaft Key (hier der Hash)." }
+      - { de: "Ein einzelner Dateieintrag." }
+      - { de: "Ein Dictionary<string, int> mit den Häufigkeiten." }
+    correct: [0]
+    explanation: { de: "18.2.9 (Seite 1222): Jede Gruppe ist selbst eine Sequenz und trägt ihren Schlüssel in Key; man wertet sie mit Count(), Sum(), Select() usw. aus." }

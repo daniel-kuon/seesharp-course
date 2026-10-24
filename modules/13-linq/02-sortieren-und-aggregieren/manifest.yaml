@@ -1,0 +1,40 @@
+id: linq-sortieren-und-aggregieren
+title: { de: "Sortieren, Aggregate und Teilfolgen" }
+reading:
+  section: "18.2.7"
+  title: { de: "Sortieren" }
+  printedPage: 1218
+teaches:
+  - linq.orderby
+  - linq.aggregates
+  - linq.paging
+requires:
+  - linq.where
+  - linq.select
+  - linq.chaining
+  - lambdas.expression
+  - strings.methods
+items:
+  - type: coding
+    id: statistik
+    openFile: "Statistik/Statistik.cs"
+    openLine: 1
+    testProject: "Statistik Tests/Statistik.Tests.csproj"
+  - type: multipleChoice
+    id: average-leer
+    prompt: { de: "Was passiert bei  new List<decimal>().Average()  ?" }
+    options:
+      - { de: "InvalidOperationException: Aus einer leeren Sequenz lässt sich kein Mittelwert bilden. Man prüft vorher mit Any() oder weicht auf DefaultIfEmpty() aus." }
+      - { de: "Das Ergebnis ist 0." }
+      - { de: "Das Ergebnis ist double.NaN." }
+    correct: [0]
+    explanation: { de: "Min, Max und Average ohne Selektor-Standardwert werfen bei leeren Sequenzen InvalidOperationException; Sum liefert dagegen 0 und Count liefert 0." }
+  - type: multipleChoice
+    id: stabil
+    prompt: { de: "Zwei Produkte haben denselben Preis. Wie steht es um ihre Reihenfolge nach  produkte.OrderByDescending(p => p.Preis)  ?" }
+    options:
+      - { de: "Sie bleibt wie in der Quelle: OrderBy und OrderByDescending sind stabile Sortierungen (anders als List<T>.Sort)." }
+      - { de: "Sie ist zufällig." }
+      - { de: "Die beiden Produkte werden zu einem zusammengefasst." }
+    correct: [0]
+    explanation: { de: "18.2.7 (Seite 1218): Weitere Kriterien hängt man mit ThenBy/ThenByDescending an; ohne sie bleibt die Quellreihenfolge erhalten." }

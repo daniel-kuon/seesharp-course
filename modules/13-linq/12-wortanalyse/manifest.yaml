@@ -1,0 +1,22 @@
+id: linq-wortanalyse
+title: { de: "Zusatz: Wortanalyse" }
+optional: true
+reading:
+  section: "18.2.9"
+  title: { de: "GroupBy()" }
+  printedPage: 1222
+teaches:
+  - linq.selectmany
+  - linq.groupby
+  - linq.countby
+  - linq.orderby
+requires:
+  - linq.select
+  - linq.where
+  - linq.chaining
+items:
+  - type: coding
+    id: wortanalyse
+    openFile: "Woerter/Wortanalyse.cs"
+    openLine: 1
+    testProject: "Woerter Tests/Woerter.Tests.csproj"

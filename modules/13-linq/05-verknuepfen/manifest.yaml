@@ -1,0 +1,32 @@
+id: linq-verknuepfen
+title: { de: "Join, GroupJoin und Zip" }
+reading:
+  section: "18.2.10"
+  title: { de: "Verknüpfen von zwei Sequenzen" }
+  printedPage: 1224
+teaches:
+  - linq.join
+  - linq.groupjoin
+  - linq.zip
+requires:
+  - linq.groupby
+  - linq.select
+  - linq.orderby
+  - linq.aggregates
+  - tuples.declare
+  - records.declare
+items:
+  - type: coding
+    id: verknuepfungen
+    openFile: "Verknuepfen/Verknuepfungen.cs"
+    openLine: 1
+    testProject: "Verknuepfen Tests/Verknuepfen.Tests.csproj"
+  - type: multipleChoice
+    id: join-oder-groupjoin
+    prompt: { de: "Ein Kunde hat keine Bestellung. Wie verhalten sich Join und GroupJoin über Kunden und Bestellungen?" }
+    options:
+      - { de: "Join (innerer Join) liefert für diesen Kunden keine Zeile; GroupJoin liefert eine Zeile mit einer leeren Gruppe von Bestellungen (Zahl 0)." }
+      - { de: "Beide liefern für diesen Kunden keine Zeile." }
+      - { de: "Join liefert eine Zeile mit null; GroupJoin liefert keine Zeile." }
+    correct: [0]
+    explanation: { de: "18.2.10 (Seite 1224): GroupJoin ordnet jedem Element der äußeren Sequenz die Gruppe seiner Treffer zu, auch wenn sie leer ist; Join liefert nur Paare. Ein linker äußerer Join wird mit GroupJoin plus SelectMany/DefaultIfEmpty nachgebaut." }

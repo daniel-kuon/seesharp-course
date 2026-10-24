@@ -1,0 +1,26 @@
+id: attribute-bcl-attribute
+title: { de: "BCL-Attribute: Obsolete, Caller-Info, Flags und nameof" }
+reading:
+  section: "14.5.1"
+  title: { de: "Aufruferinformations-Attribute" }
+  printedPage: 934
+teaches:
+  - attributes.apply
+  - attributes.obsolete
+  - attributes.caller-info
+  - attributes.flags
+  - reflection.nameof
+requires:
+  - enums.declare
+  - enums.underlying-value
+  - enums.parse-tostring
+  - operators.logical
+  - methods.parameters
+  - strings.interpolation
+  - oop.method-instance
+items:
+  - type: coding
+    id: bcl-attribute
+    openFile: "BclAttribute/Protokoll.cs"
+    openLine: 1
+    testProject: "BclAttribute Tests/BclAttribute.Tests.csproj"

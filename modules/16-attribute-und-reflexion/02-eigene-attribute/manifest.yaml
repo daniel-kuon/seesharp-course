@@ -1,0 +1,24 @@
+id: attribute-eigene-attribute
+title: { de: "Eigene Attribute definieren" }
+reading:
+  section: "14.6"
+  title: { de: "Attribute definieren" }
+  printedPage: 940
+teaches:
+  - attributes.define-custom
+  - attributes.targets
+  - attributes.parameters
+  - attributes.generic
+requires:
+  - inheritance.derive-class
+  - inheritance.base-constructor
+  - oop.property-auto
+  - attributes.apply
+  - enums.declare
+  - generics.class-declare
+items:
+  - type: coding
+    id: eigene-attribute
+    openFile: "EigeneAttribute/AutorAttribute.cs"
+    openLine: 1
+    testProject: "EigeneAttribute Tests/EigeneAttribute.Tests.csproj"

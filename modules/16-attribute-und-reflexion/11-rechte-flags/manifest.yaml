@@ -1,0 +1,19 @@
+id: attribute-rechte-flags
+title: { de: "Zusatz: Berechtigungen mit Flags" }
+optional: true
+reading:
+  section: "14.5.4"
+  title: { de: "Bitfelder per FlagsAttribute" }
+  printedPage: 937
+teaches:
+  - attributes.flags
+  - attributes.apply
+requires:
+  - enums.parse-tostring
+  - operators.logical
+items:
+  - type: coding
+    id: rechte-flags
+    openFile: "RechteFlags/Rolle.cs"
+    openLine: 1
+    testProject: "RechteFlags Tests/RechteFlags.Tests.csproj"

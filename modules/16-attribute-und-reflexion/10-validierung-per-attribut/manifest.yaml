@@ -1,0 +1,21 @@
+id: attribute-validierung-per-attribut
+title: { de: "Zusatz: Validierung per Attribut" }
+optional: true
+reading:
+  section: "14.6"
+  title: { de: "Attribute definieren" }
+  printedPage: 940
+teaches:
+  - attributes.define-custom
+  - attributes.targets
+  - reflection.getcustomattribute
+  - reflection.get-members
+requires:
+  - attributes.parameters
+  - reflection.isdefined
+items:
+  - type: coding
+    id: validierung
+    openFile: "Validierung/Validierer.cs"
+    openLine: 1
+    testProject: "Validierung Tests/Validierung.Tests.csproj"

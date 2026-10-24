@@ -1,0 +1,22 @@
+id: attribute-reflexion-nutzen
+title: { de: "Reflexion nutzen: Mapper, Aufrufer, Plugins" }
+reading:
+  section: "14.7.1"
+  title: { de: "Traditionelle Kompensation per Type-Parameter" }
+  printedPage: 942
+teaches:
+  - reflection.get-set-property
+  - reflection.invoke
+  - reflection.create-instance
+requires:
+  - reflection.get-members
+  - reflection.getcustomattribute
+  - attributes.define-custom
+  - collections.dictionary-add-lookup
+  - exceptions.try-catch
+items:
+  - type: coding
+    id: reflexion-nutzen
+    openFile: "ReflexionNutzen/Mapper.cs"
+    openLine: 1
+    testProject: "ReflexionNutzen Tests/ReflexionNutzen.Tests.csproj"

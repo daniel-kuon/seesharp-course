@@ -1,0 +1,21 @@
+id: attribute-testlaeufer
+title: { de: "Zusatz: Ein Mini-Testläufer" }
+optional: true
+reading:
+  section: "14.2"
+  title: { de: "Attribute per Reflexion auswerten" }
+  printedPage: 924
+teaches:
+  - reflection.invoke
+  - reflection.get-members
+  - reflection.getcustomattribute
+requires:
+  - reflection.create-instance
+  - attributes.define-custom
+  - exceptions.try-catch
+items:
+  - type: coding
+    id: testlaeufer
+    openFile: "Testlaeufer/Laeufer.cs"
+    openLine: 1
+    testProject: "Testlaeufer Tests/Testlaeufer.Tests.csproj"

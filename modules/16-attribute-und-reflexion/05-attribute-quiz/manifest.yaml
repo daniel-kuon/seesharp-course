@@ -1,0 +1,73 @@
+id: attribute-quiz
+title: { de: "Attribute: Quiz" }
+reading:
+  section: "14.3"
+  title: { de: "Attribute für Assemblen" }
+  printedPage: 929
+teaches:
+  - attributes.conditional
+  - attributes.assembly-level
+requires:
+  - attributes.apply
+  - attributes.obsolete
+  - attributes.caller-info
+  - attributes.flags
+  - reflection.nameof
+items:
+  - type: multipleChoice
+    id: assembly
+    prompt: { de: "Wo steht [assembly: CLSCompliant(true)] und worauf bezieht es sich?" }
+    options:
+      - { de: "In irgendeiner Quelldatei des Projekts auf oberster Ebene (klassisch in AssemblyInfo.cs), außerhalb jeder Typdeklaration. Das vorangestellte assembly: legt fest, dass das Attribut die ganze Assembly beschreibt." }
+      - { de: "Direkt vor einer Klasse; der Compiler erkennt am Namen, dass die ganze Assembly gemeint ist." }
+      - { de: "Nur in der .csproj-Datei; im Quelltext ist es nicht erlaubt." }
+    correct: [0]
+    explanation: { de: "14.3 (Seite 929): Bei Assemblies lässt sich der Bezug nicht durch die Platzierung herstellen, deshalb die explizite Widmung. Für viele Assembly-Attribute (Version, Firma, Produkt) gibt es zusätzlich Projekteigenschaften in der .csproj." }
+  - type: multipleChoice
+    id: conditional
+    prompt: { de: "[Conditional(\"DEBUG\")] steht an der Methode Protokolliere(). Das Programm wird ohne das Symbol DEBUG übersetzt. Was passiert?" }
+    options:
+      - { de: "Der Compiler lässt die AUFRUFE von Protokolliere() weg; die Methode selbst bleibt in der Assembly. Argumente der entfernten Aufrufe werden gar nicht erst ausgewertet." }
+      - { de: "Die Methode wird aus der Assembly entfernt; Aufrufe führen zu einem Laufzeitfehler." }
+      - { de: "Die Methode wird zur Laufzeit übersprungen, indem sie bei jedem Aufruf prüft, ob DEBUG gesetzt ist." }
+    correct: [0]
+    explanation: { de: "14.5.2 (Seite 935). Die Entscheidung fällt beim Übersetzen der AUFRUFSTELLE, nicht zur Laufzeit. Deshalb muss die Methode void sein, und deshalb eignet sich die Aufgabe nicht für automatische Tests: Ob das Symbol gesetzt ist, bestimmt der Build, nicht der Test." }
+  - type: multipleChoice
+    id: step-through
+    prompt: { de: "Was bewirkt [DebuggerStepThrough] an einer Methode?" }
+    options:
+      - { de: "Der Debugger hält im Einzelschrittmodus und an Haltepunkten innerhalb der Methode nicht an; das Verhalten des Programms ändert sich nicht." }
+      - { de: "Die Methode wird in Release-Builds nicht ausgeführt." }
+      - { de: "Ausnahmen in der Methode werden verschluckt, damit der Debugger nicht stoppt." }
+    correct: [0]
+    explanation: { de: "14.5.3 (Seite 937). Ein reines Werkzeug-Attribut: Es ändert nur, wie der Debugger durch den Code läuft. Sinnvoll für triviale Hilfsmethoden, durch die man nicht schrittweise gehen will." }
+  - type: multipleChoice
+    id: struct-layout
+    prompt: { de: "[StructLayout(LayoutKind.Explicit)] mit zwei [FieldOffset(0)]-Feldern (float f; uint u;): Wozu dient das?" }
+    options:
+      - { de: "Beide Felder liegen an derselben Speicherstelle (Union wie in C): Man schreibt einen float und liest dieselben vier Bytes als uint, z. B. um die Bits einer Gleitkommazahl zu betrachten." }
+      - { de: "Der Compiler erzeugt zwei getrennte Felder und synchronisiert sie bei jedem Zugriff." }
+      - { de: "Die Struktur wird auf dem Heap statt auf dem Stack abgelegt." }
+    correct: [0]
+    explanation: { de: "14.5.5 (Seite 940), Beispiel FloatBits. Typisch bei Interoperabilität mit nativem Code; im Alltag selten." }
+  - type: multipleChoice
+    id: attribut-vs-basisklasse
+    prompt: { de: "Wodurch unterscheidet sich ein Attribut davon, einfach eine Basisklasse zu erben?" }
+    options:
+      - { de: "Ein Attribut hängt Metadaten an ein Element, ohne dessen Typhierarchie oder Verhalten zu ändern; es kann auch an Methoden, Eigenschaften, Parameter und Assemblies stehen und wird erst von Compiler oder Werkzeug (per Reflexion) gelesen." }
+      - { de: "Ein Attribut ist nur eine andere Schreibweise für eine Basisklasse." }
+      - { de: "Ein Attribut ersetzt Vererbung und ist schneller, weil es zur Laufzeit nicht gelesen wird." }
+    correct: [0]
+    explanation: { de: "Vererbung beschreibt, WAS ein Typ ist und wie er sich verhält (Polymorphie). Attribute beschreiben, WIE ihn jemand behandeln soll: serialisieren, validieren, als veraltet kennzeichnen. Eine Klasse hat eine Basisklasse, aber beliebig viele Attribute." }
+  - type: multipleChoice
+    id: return-target
+    prompt: { de: "In [return: NotNull] public string Lade() ...: Was legt return: fest?" }
+    options:
+      - { de: "Das Attribut gilt für den RÜCKGABEWERT der Methode, nicht für die Methode selbst. Das Präfix (Attributziel) ist nötig, weil das Attribut sonst der Methode zugeordnet würde." }
+      - { de: "Das Attribut wird nur ausgewertet, wenn die Methode erfolgreich zurückkehrt." }
+      - { de: "Es ist gleichbedeutend mit [NotNull] direkt vor Lade; return: ist nur eine Stilfrage." }
+    correct: [0]
+    explanation: { de: "Auch assembly: ist ein solches Ziel (14.3). Zielangaben wie return:, param:, assembly: nennt man Attributziel-Präfixe; im Buch erscheint return: bei den Lambda-Attributen (14.8, Seite 945)." }
+  - type: open
+    id: obsolete-error
+    prompt: { de: "Ein Kommentar \"bitte nicht mehr verwenden\" an einer alten Methode genügt oft nicht. Warum ist [Obsolete(\"Bitte Neu() verwenden\", error: true)] das bessere Werkzeug für eine Migration, und wann würdest du bewusst bei error: false bleiben?" }

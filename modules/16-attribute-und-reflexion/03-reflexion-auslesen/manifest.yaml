@@ -1,0 +1,25 @@
+id: attribute-reflexion-auslesen
+title: { de: "Attribute per Reflexion auslesen" }
+reading:
+  section: "14.2"
+  title: { de: "Attribute per Reflexion auswerten" }
+  printedPage: 924
+teaches:
+  - reflection.typeof-gettype
+  - reflection.getcustomattribute
+  - reflection.isdefined
+  - reflection.get-members
+requires:
+  - attributes.define-custom
+  - attributes.targets
+  - attributes.parameters
+  - linq.where
+  - linq.select
+  - arrays.array-class
+  - collections.list-sort
+items:
+  - type: coding
+    id: reflexion-auslesen
+    openFile: "ReflexionAuslesen/Dokumentation.cs"
+    openLine: 1
+    testProject: "ReflexionAuslesen Tests/ReflexionAuslesen.Tests.csproj"

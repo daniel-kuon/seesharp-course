@@ -1,6 +1,6 @@
 # seesharp-course
 
-Course content for [SeeSharp](https://github.com/daniel-kuon/seesharp). The tool
+Course content for [SeeSharp](https://github.com/wollume-studios/seesharp). The tool
 reads this repository from disk; nothing here is compiled into the tool.
 
 Layout and schema: `docs/CONTENT-FORMAT.md` in the tool repository.

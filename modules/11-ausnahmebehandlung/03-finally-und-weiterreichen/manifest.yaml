@@ -1,0 +1,42 @@
+id: ausnahmen-finally-und-weiterreichen
+title: { de: "finally, erneutes Werfen und Verpacken" }
+reading:
+  section: "13.3.1.3"
+  title: { de: "Aufräumarbeiten im finally-Block" }
+  printedPage: 895
+teaches:
+  - exceptions.finally
+  - exceptions.rethrow
+  - exceptions.inner-exception
+  - exceptions.catch-when
+requires:
+  - exceptions.try-catch
+  - exceptions.catch-specific
+  - exceptions.catch-variable
+  - exceptions.throw
+  - interfaces.as-type
+items:
+  - type: coding
+    id: ablauf
+    openFile: "Ablaeufe/Ablauf.cs"
+    openLine: 13
+    testProject: "Ablaeufe Tests/Ablaeufe.Tests.csproj"
+  - type: multipleChoice
+    id: reihenfolge
+    prompt: { de: "Welche Ausgabe erzeugt das Programm aus der Aufgabenbeschreibung (Abschnitt „Quizlisting: Verschachtelte try-Anweisungen“)?" }
+    options:
+      - { de: "A1 B1 B3 A3 M2 M3 M4" }
+      - { de: "A1 B1 B2 B3 A3 M2 M3 M4" }
+      - { de: "A1 B1 B3 A3 M3 M2 M4" }
+      - { de: "A1 B1 M2 M3 M4" }
+    correct: [0]
+    explanation: { de: "Die InvalidOperationException passt nicht zu catch (ArgumentException) in B(); B3 läuft trotzdem, A() hat keinen catch, aber sein finally (A3) wird beim Verlassen ausgeführt. Dann fängt Main() die Ausnahme (M2), sein finally läuft (M3) und danach geht es hinter der try-Anweisung weiter (M4); A2 und M1 werden nie erreicht (13.3.2, Seite 899)." }
+  - type: multipleChoice
+    id: throw-ex
+    prompt: { de: "Was ist der Unterschied zwischen throw; und throw ex; in einem catch-Block?" }
+    options:
+      - { de: "throw; reicht dieselbe Ausnahme samt ursprünglicher Stapelüberwachung weiter; throw ex; wirft sie neu, und die Stapelüberwachung beginnt erst an dieser Stelle (der eigentliche Ursprung geht verloren)." }
+      - { de: "Es gibt keinen Unterschied, throw; ist nur eine Kurzschreibweise." }
+      - { de: "throw ex; erhält die Stapelüberwachung, throw; verwirft sie." }
+    correct: [0]
+    explanation: { de: "13.6 (Seite 913): Zum Weiterreichen nimmt man throw;. Wer die Ursache in eine andere Ausnahme packt, gibt die ursprüngliche als InnerException mit und verliert so nichts." }

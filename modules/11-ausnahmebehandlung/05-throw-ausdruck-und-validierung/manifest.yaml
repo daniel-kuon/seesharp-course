@@ -1,0 +1,23 @@
+id: ausnahmen-throw-ausdruck
+title: { de: "throw-Ausdrücke und Validierung im SimpleStack" }
+reading:
+  section: "13.6"
+  title: { de: "Ausnahmen werfen (throw)" }
+  printedPage: 913
+teaches:
+  - exceptions.throw-expression
+  - exceptions.argument-null
+  - exceptions.invalid-operation
+requires:
+  - exceptions.argument-out-of-range
+  - exceptions.throw
+  - generics.class-declare
+  - generics.array-of-t
+  - oop.constructor-validates
+  - operators.conditional
+items:
+  - type: coding
+    id: simplestack
+    openFile: "Stapel/SimpleStack.cs"
+    openLine: 9
+    testProject: "Stapel Tests/Stapel.Tests.csproj"

@@ -1,0 +1,36 @@
+id: ausnahmen-abfangen
+title: { de: "Ausnahmen abfangen" }
+reading:
+  section: "13.3.1"
+  title: { de: "Die try-Anweisung" }
+  printedPage: 890
+teaches:
+  - exceptions.try-catch
+  - exceptions.catch-specific
+  - exceptions.catch-order
+  - exceptions.catch-variable
+  - exceptions.parse-handling
+  - exceptions.overflow-catch
+requires:
+  - exceptions.throw
+  - exceptions.unhandled-stacktrace
+  - overflow.checked
+  - types.int
+  - strings.methods
+  - control.switch-expression
+  - inheritance.derive-class
+items:
+  - type: coding
+    id: taschenrechner
+    openFile: "Rechner/Taschenrechner.cs"
+    openLine: 37
+    testProject: "Rechner Tests/Rechner.Tests.csproj"
+  - type: multipleChoice
+    id: sequenzen
+    prompt: { de: "Buchaufgabe 13.8 Nr. 2: Im Programm Sequenzen aus der Aufgabenbeschreibung fängt Calc() nur die FormatException ab. Das Programm wird mit dem Argument 3000000000 gestartet, Int32.Parse() löst also eine OverflowException aus. Bleibt sie unbehandelt?" }
+    options:
+      - { de: "Nein. Der FormatException-Handler in Calc() passt nicht, aber nach dem finally-Block von Calc() findet die Ausnahme in Main() den Handler für ArithmeticException (OverflowException ist davon abgeleitet). Danach läuft Main() hinter seiner try-Anweisung weiter; „Nach der try-Anweisung in Calc()“ wird nie ausgegeben." }
+      - { de: "Ja. Weil Calc() die OverflowException nicht abfängt, beendet die Laufzeit das Programm mit einer Fehlermeldung." }
+      - { de: "Nein. Der FormatException-Handler in Calc() fängt sie ab, weil OverflowException ein Unterfall von FormatException ist." }
+    correct: [0]
+    explanation: { de: "13.3.2 (Seite 899 bis 902) und 13.5 (Seite 911): OverflowException und DivideByZeroException erben von ArithmeticException, nicht von FormatException. Eine Ausnahme wandert durch die Aufrufer nach oben, jedes finally läuft, bis ein passender catch sie behandelt." }

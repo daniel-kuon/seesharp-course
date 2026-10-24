@@ -1,0 +1,22 @@
+id: ausnahmen-eigene-ausnahme
+title: { de: "Eigene Ausnahmeklasse mit Zusatzinformationen" }
+reading:
+  section: "13.7"
+  title: { de: "Ausnahmen definieren" }
+  printedPage: 916
+teaches:
+  - exceptions.custom-exception
+  - exceptions.custom-properties
+requires:
+  - exceptions.throw
+  - exceptions.inner-exception
+  - exceptions.catch-variable
+  - inheritance.derive-class
+  - inheritance.base-constructor
+  - oop.property-auto
+items:
+  - type: coding
+    id: fakultaet
+    openFile: "Fakultaeten/FakultaetArgumentException.cs"
+    openLine: 3
+    testProject: "Fakultaeten Tests/Fakultaeten.Tests.csproj"

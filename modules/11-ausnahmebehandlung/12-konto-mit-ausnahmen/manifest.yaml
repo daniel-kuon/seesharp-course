@@ -1,0 +1,22 @@
+id: ausnahmen-konto
+title: { de: "Zusatz: Konto mit Ausnahmen" }
+optional: true
+reading:
+  section: "13.5"
+  title: { de: "Ausnahmeklassen in der BCL" }
+  printedPage: 911
+teaches:
+  - exceptions.throw
+  - exceptions.argument-out-of-range
+  - exceptions.invalid-operation
+  - exceptions.custom-exception
+requires:
+  - exceptions.argument-null
+  - exceptions.custom-properties
+  - oop.property-validated
+items:
+  - type: coding
+    id: konto
+    openFile: "Bank/Konto.cs"
+    openLine: 5
+    testProject: "Bank Tests/Bank.Tests.csproj"

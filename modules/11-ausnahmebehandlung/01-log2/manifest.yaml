@@ -1,0 +1,41 @@
+id: ausnahmen-log2
+title: { de: "Log2 mit ArgumentOutOfRangeException" }
+reading:
+  section: "13.6"
+  title: { de: "Ausnahmen werfen (throw)" }
+  printedPage: 913
+teaches:
+  - exceptions.unhandled-stacktrace
+  - exceptions.throw
+  - exceptions.argument-out-of-range
+  - exceptions.prevent-vs-catch
+requires:
+  - operators.math-class
+  - types.double
+  - methods.parameters
+  - control.if-else
+  - methods.return-value
+items:
+  - type: coding
+    id: dualog
+    openFile: "DuaLog/Dualog.cs"
+    openLine: 5
+    testProject: "DuaLog Tests/DuaLog.Tests.csproj"
+  - type: multipleChoice
+    id: stacktrace
+    prompt: { de: "Die Stapelüberwachung (Stack Trace) im Abschnitt „Frage zur Stapelüberwachung“ der Aufgabenbeschreibung gehört zu einer unbehandelten Ausnahme. Wo wurde die Ausnahme ausgelöst, und wo ist vermutlich die Ursache des falschen Werts?" }
+    options:
+      - { de: "Ausgelöst in Dualog.Log2 (oberster Eintrag, Dualog.cs, Zeile 9). Den ungültigen Wert hat der Aufrufer Messung.Dezibel (Messung.cs, Zeile 14) übergeben; dort ist nach der Ursache zu suchen." }
+      - { de: "Ausgelöst in Programm.Main (unterster Eintrag), denn dort beginnt das Programm; die anderen Einträge sind nur Folgefehler." }
+      - { de: "Ausgelöst in Messung.Dezibel, weil dort Log2 aufgerufen wird; Dualog.Log2 ist unschuldig." }
+    correct: [0]
+    explanation: { de: "Der oberste Eintrag nennt die Methode, in der geworfen wurde; darunter stehen ihre Aufrufer in umgekehrter Aufrufreihenfolge, zuletzt Main() (13.2, Seite 888). Ob die Ursache in der werfenden Methode liegt oder im Aufrufer, der einen unzulässigen Wert übergibt, muss man aus dem Code schließen; hier meldet Log2 zu Recht einen ungültigen Parameter." }
+  - type: multipleChoice
+    id: vorab-pruefen
+    prompt: { de: "Warum ist es besser, vor dem Aufruf x > 0 zu prüfen, als die ArgumentOutOfRangeException von Log2 abzufangen?" }
+    options:
+      - { de: "Ein vermeidbarer Fehler wird besser durch eine Vorabprüfung verhindert: Das ist einfacher zu lesen und billiger, als eine Ausnahme auszulösen und zu behandeln. Ausnahmen sind für Fehler da, die man nicht sinnvoll vorher ausschließen kann." }
+      - { de: "Eine abgefangene Ausnahme beendet das Programm trotzdem, nur mit einer anderen Meldung." }
+      - { de: "Ausnahmen können in C# nicht abgefangen werden, wenn die Methode sie selbst wirft." }
+    correct: [0]
+    explanation: { de: "Fehlervermeidung geht vor Ausnahmebehandlung (13.1, Seite 886). Die Methode selbst prüft ihre Argumente trotzdem und wirft: Sie darf sich nicht darauf verlassen, dass jeder Aufrufer vorher prüft." }

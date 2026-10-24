@@ -1,0 +1,125 @@
+id: ausnahmen-fehlerkommunikation
+title: { de: "Rückgabecode, Ausnahme oder Try-Muster" }
+reading:
+  section: "13.4"
+  title: { de: "Ausnahmeobjekte im Vergleich zur Fehlerkommunikation per Rückgabe" }
+  printedPage: 905
+teaches:
+  - exceptions.try-pattern
+  - exceptions.return-code-vs-exception
+  - exceptions.bcl-classes
+requires:
+  - exceptions.parse-handling
+  - exceptions.throw
+  - exceptions.invalid-operation
+  - exceptions.custom-exception
+  - methods.parameters
+items:
+  - type: coding
+    id: bruchparser
+    openFile: "Bruchparser/BruchParser.cs"
+    openLine: 10
+    testProject: "Bruchparser Tests/Bruchparser.Tests.csproj"
+  - type: multipleChoice
+    id: technik-eingabe
+    prompt: { de: "Wahl der Fehlerkommunikation nach der Fehlerwahrscheinlichkeit (13.4.4). Eine Methode wandelt Eingaben eines Benutzers in Zahlen um, und Tippfehler kommen häufig vor. Welche Technik passt am besten?" }
+    options:
+      - { de: "Rückgabewert oder Try-Muster (z. B. bool TryParse(…, out int ergebnis)): Der Fehler ist erwartbar, eine Prüfung ist billiger als eine Ausnahme." }
+      - { de: "Eine Ausnahme: Ausnahmen sind immer die beste Technik." }
+      - { de: "Gar nicht melden, das Ergebnis 0 genügt." }
+    correct: [0]
+    explanation: { de: "Häufige Fehler meldet man per Rückgabe; die Ausnahmebehandlung soll kein Bestandteil der Programmablaufsteuerung sein (13.4.4, Seite 910). Das Ergebnis 0 ohne Hinweis zu verarbeiten wäre „ein gravierender Programmierfehler“ (Seite 911)." }
+  - type: multipleChoice
+    id: technik-konfiguration
+    prompt: { de: "Eine Konfigurationsdatei muss laut Installation immer vorhanden sein. Fehlt sie doch einmal, kann das Programm nicht sinnvoll weiterlaufen. Welche Technik passt am besten?" }
+    options:
+      - { de: "Eine Ausnahme: Der Fehler ist selten, ein try-Block kostet nur bei Auftreten etwas, und eine höhere Methode kann entscheiden, wie es weitergeht." }
+      - { de: "Ein Rückgabecode, den jede aufrufende Methode prüfen und weitergeben muss." }
+      - { de: "Das Try-Muster mit einem bool-Rückgabewert, dessen Wert niemand abfragen muss." }
+    correct: [0]
+    explanation: { de: "Seltene Fehler meldet man per Ausnahme (13.4.4). Ausnahmen wandern automatisch zur bestgerüsteten Methode und können nicht übersehen werden (13.4.3, Seite 909)." }
+  - type: multipleChoice
+    id: technik-dateiende
+    prompt: { de: "Eine Methode liest Zeile für Zeile aus einer Datei. Das Dateiende wird irgendwann sicher erreicht. Welche Technik passt am besten, um es zu melden?" }
+    options:
+      - { de: "Ein spezieller Rückgabewert (z. B. null oder -1): Das Ende ist der Normalfall, keine Ausnahmesituation." }
+      - { de: "Eine EndOfFileException, die in einem catch-Block die Schleife beendet." }
+      - { de: "Ein Absturz des Programms, der vom Betriebssystem behandelt wird." }
+    correct: [0]
+    explanation: { de: "Das Beispiel „keine weiteren Daten beim Lesen einer Datei“ nennt das Buch ausdrücklich für den Rückgabewert (13.4.4, Seite 910); ReadByte() liefert -1 (13.4.1.1, Seite 906)." }
+  - type: multipleChoice
+    id: technik-dienst
+    prompt: { de: "Ein Programm ruft einen Netzwerkdienst auf, der nur sehr selten ausfällt. Welche Technik passt am besten?" }
+    options:
+      - { de: "Eine Ausnahme: Bei geringer Fehlerwahrscheinlichkeit wären ständige Kontrollen von Rückgabewerten meist überflüssig." }
+      - { de: "Ein Rückgabecode, der nach jedem Aufruf geprüft wird." }
+      - { de: "Das Try-Muster mit einem out-Parameter für jeden Aufruf." }
+    correct: [0]
+    explanation: { de: "Bei Fehlern mit geringer Wahrscheinlichkeit haben häufige Kontrollen eine Leistungseinbuße zur Folge; hier lässt man es besser auf eine Ausnahme ankommen (13.4.4, Seite 910)." }
+  - type: multipleChoice
+    id: technik-datei-zeilen
+    prompt: { de: "Ein Programm liest Zahlen aus einer großen Datei, in der etwa jede dritte Zeile fehlerhaft ist. Welche Technik passt am besten, um jede Zeile umzuwandeln?" }
+    options:
+      - { de: "Das Try-Muster (int.TryParse): Der Fehler ist häufig, und der Aufrufer erfährt ohne Ausnahme, ob die Umwandlung gelang." }
+      - { de: "int.Parse() in einem try-Block pro Zeile: Jeder Fehler ist ein Ausnahmefall." }
+      - { de: "Ein einziger try-Block um die ganze Schleife, der beim ersten Fehler abbricht." }
+    correct: [0]
+    explanation: { de: "Ausnahmen kosten Zeit; bei hoher Fehlerwahrscheinlichkeit ist TryParse die richtige Wahl (13.4.4, Seite 910). Das zeigen auch die beiden Methoden ParseAlle… in der Aufgabe." }
+  - type: multipleChoice
+    id: bcl-null
+    prompt: { de: "Welche BCL-Ausnahme passt, wenn eine Methode einen Text braucht und null erhält?" }
+    options:
+      - { de: "ArgumentNullException" }
+      - { de: "InvalidOperationException" }
+      - { de: "NotSupportedException" }
+      - { de: "KeyNotFoundException" }
+      - { de: "IndexOutOfRangeException" }
+    correct: [0]
+    explanation: { de: "Ein unzulässiges Argument meldet man mit ArgumentException oder einer ihrer Unterklassen, bei null mit ArgumentNullException (13.5, Seite 912)." }
+  - type: multipleChoice
+    id: bcl-leerer-stapel
+    prompt: { de: "Welche BCL-Ausnahme passt, wenn Pop() auf einem leeren Stapel aufgerufen wird?" }
+    options:
+      - { de: "ArgumentNullException" }
+      - { de: "InvalidOperationException" }
+      - { de: "NotSupportedException" }
+      - { de: "KeyNotFoundException" }
+      - { de: "IndexOutOfRangeException" }
+    correct: [1]
+    explanation: { de: "Der Aufruf passt nicht zum Zustand des Objekts; kein Argument ist falsch. Dafür gibt es InvalidOperationException (13.5, Seite 912)." }
+  - type: multipleChoice
+    id: bcl-nicht-unterstuetzt
+    prompt: { de: "Welche BCL-Ausnahme passt, wenn man versucht, eine Operation auszuführen, die der Typ grundsätzlich nicht anbietet, z. B. Add() auf einer schreibgeschützten Liste?" }
+    options:
+      - { de: "ArgumentNullException" }
+      - { de: "InvalidOperationException" }
+      - { de: "NotSupportedException" }
+      - { de: "KeyNotFoundException" }
+      - { de: "IndexOutOfRangeException" }
+    correct: [2]
+    explanation: { de: "Die Operation wird vom Typ nicht unterstützt, unabhängig vom aktuellen Zustand: NotSupportedException (13.5, Seite 912)." }
+  - type: multipleChoice
+    id: bcl-schluessel
+    prompt: { de: "Welche BCL-Ausnahme löst der Indexer eines Dictionary<K,V> aus, wenn der Schlüssel nicht vorhanden ist?" }
+    options:
+      - { de: "ArgumentNullException" }
+      - { de: "InvalidOperationException" }
+      - { de: "NotSupportedException" }
+      - { de: "KeyNotFoundException" }
+      - { de: "IndexOutOfRangeException" }
+    correct: [3]
+    explanation: { de: "KeyNotFoundException; mit TryGetValue() lässt sie sich vermeiden (Level 10, 11.6 Seite 714)." }
+  - type: multipleChoice
+    id: bcl-index
+    prompt: { de: "Welche BCL-Ausnahme löst der Zugriff a[5] auf ein Array mit drei Elementen aus?" }
+    options:
+      - { de: "ArgumentNullException" }
+      - { de: "InvalidOperationException" }
+      - { de: "NotSupportedException" }
+      - { de: "KeyNotFoundException" }
+      - { de: "IndexOutOfRangeException" }
+    correct: [4]
+    explanation: { de: "Beim Array-Indexzugriff meldet die Laufzeit IndexOutOfRangeException (13.5, Seite 911)." }
+  - type: open
+    id: syntaxdiagramm
+    prompt: { de: "Buchaufgabe 13.8 Nr. 1: Skizziere ein Syntaxdiagramm (oder eine Schreibweise mit eckigen Klammern für Optionales) der try-Anweisung. Welche Kombinationen aus try, catch und finally sind erlaubt (13.3.1, Seite 890)?" }

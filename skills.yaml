@@ -670,3 +670,929 @@ skills:
   - id: generics.contravariance
     category: generics
     label: { de: "Kontravarianz (in) bei generischen Interfaces erkennen", en: "Recognise contravariance (in) in generic interfaces" }
+
+  # ===========================================================================
+  # Levels 10-23 (planned in docs/PLAN-10-23.md): core 10-15, electives 16-23.
+  # Electives (16-23) require only core skills; no elective skill is required
+  # by another elective.
+  # ===========================================================================
+
+  # ---------------------------------------------------------------------------
+  # Level 10 — Kollektionen: Listen, Mengen, Wörterbücher (ch. 11, Kernmodul)
+  # ---------------------------------------------------------------------------
+  - id: collections.list-add-remove
+    category: collections
+    label: { de: "Elemente einer List<T> hinzufügen, einfügen und entfernen", en: "Add, insert and remove elements of a List<T>" }
+  - id: collections.list-index-search
+    category: collections
+    label: { de: "Per Indexer zugreifen sowie mit Contains und IndexOf suchen", en: "Access by indexer and search with Contains and IndexOf" }
+  - id: collections.list-sort
+    category: collections
+    label: { de: "Eine List<T> mit Sort() und Reverse() ordnen", en: "Order a List<T> with Sort() and Reverse()" }
+  - id: collections.list-remove-while-iterating
+    category: collections
+    label: { de: "Elemente beim Durchlaufen sicher entfernen (RemoveAll oder Rückwärtsschleife)", en: "Safely remove elements while iterating (RemoveAll or backwards loop)" }
+  - id: collections.convert-array
+    category: collections
+    label: { de: "Zwischen Array und List<T> umwandeln (ToArray, Konstruktor)", en: "Convert between array and List<T> (ToArray, constructor)" }
+  - id: collections.initializer
+    category: collections
+    label: { de: "Kollektion mit Kollektionsinitialisierer füllen", en: "Fill a collection with a collection initializer" }
+  - id: collections.expression
+    category: collections
+    label: { de: "Kollektionsausdruck [ ... ] verwenden", en: "Use a collection expression [ ... ]" }
+  - id: collections.expression-spread
+    category: collections
+    label: { de: "Spread-Element .. in Kollektionsausdrücken verwenden", en: "Use the spread element .. in collection expressions" }
+  - id: collections.icollection-members
+    category: collections
+    label: { de: "Code gegen ICollection<T> und IEnumerable<T> statt gegen konkrete Klassen schreiben", en: "Write code against ICollection<T> and IEnumerable<T> instead of concrete classes" }
+  - id: collections.queue-fifo
+    category: collections
+    label: { de: "Queue<T> nach dem FIFO-Prinzip einsetzen", en: "Use Queue<T> as a FIFO structure" }
+  - id: collections.stack-lifo
+    category: collections
+    label: { de: "Stack<T> nach dem LIFO-Prinzip einsetzen", en: "Use Stack<T> as a LIFO structure" }
+  - id: collections.linkedlist-nodes
+    category: collections
+    label: { de: "LinkedList<T> mit AddFirst, AddLast und Knotenzugriff verwenden", en: "Use LinkedList<T> with AddFirst, AddLast and node access" }
+  - id: collections.hashset-add-contains
+    category: collections
+    label: { de: "HashSet<T> füllen (Add liefert bool) und mit Contains abfragen", en: "Fill a HashSet<T> (Add returns bool) and query it with Contains" }
+  - id: collections.set-operations
+    category: collections
+    label: { de: "Mengenoperationen UnionWith, IntersectWith, ExceptWith und IsSubsetOf anwenden", en: "Apply set operations UnionWith, IntersectWith, ExceptWith and IsSubsetOf" }
+  - id: collections.equals-gethashcode-override
+    category: collections
+    label: { de: "Equals() und GetHashCode() für Mengenelemente und Schlüssel überschreiben", en: "Override Equals() and GetHashCode() for set elements and keys" }
+  - id: collections.sortedset
+    category: collections
+    label: { de: "SortedSet<T> als sortierte Menge ohne Duplikate einsetzen", en: "Use SortedSet<T> as a sorted set without duplicates" }
+  - id: collections.sortedset-range
+    category: collections
+    label: { de: "Min, Max und GetViewBetween einer SortedSet<T> nutzen", en: "Use Min, Max and GetViewBetween of a SortedSet<T>" }
+  - id: collections.dictionary-add-lookup
+    category: collections
+    label: { de: "Einträge eines Dictionary<TKey,TValue> per Indexer setzen und lesen", en: "Set and read Dictionary<TKey,TValue> entries via indexer" }
+  - id: collections.dictionary-trygetvalue
+    category: collections
+    label: { de: "Mit TryGetValue und ContainsKey fehlende Schlüssel behandeln", en: "Handle missing keys with TryGetValue and ContainsKey" }
+  - id: collections.dictionary-iterate
+    category: collections
+    label: { de: "Ein Dictionary über KeyValuePair, Keys und Values durchlaufen", en: "Iterate a Dictionary via KeyValuePair, Keys and Values" }
+  - id: collections.dictionary-grouping
+    category: collections
+    label: { de: "Werte mit Dictionary<K, List<V>> nach Schlüssel gruppieren", en: "Group values by key with Dictionary<K, List<V>>" }
+  - id: collections.readonly-view
+    category: collections
+    label: { de: "Schreibgeschützte Sicht (AsReadOnly, IReadOnlyList<T>) herausgeben", en: "Expose a read-only view (AsReadOnly, IReadOnlyList<T>)" }
+  - id: collections.immutable-list
+    category: collections
+    label: { de: "ImmutableList<T> verwenden: Add liefert eine neue Liste", en: "Use ImmutableList<T>: Add returns a new list" }
+  - id: collections.choose-by-requirement
+    category: collections
+    label: { de: "Kollektionstyp nach Anforderung und Laufzeitverhalten wählen", en: "Choose a collection type by requirement and run-time behaviour" }
+  - id: collections.array-vs-list
+    category: collections
+    label: { de: "Arrays und Listen nach Größenänderung und Zugriff unterscheiden", en: "Distinguish arrays from lists by resizing and access" }
+
+  # ---------------------------------------------------------------------------
+  # Level 11 — Ausnahmebehandlung (ch. 13, Kernmodul)
+  # ---------------------------------------------------------------------------
+  - id: exceptions.unhandled-stacktrace
+    category: exceptions
+    label: { de: "Meldung und Stapelüberwachung einer unbehandelten Ausnahme lesen", en: "Read the message and stack trace of an unhandled exception" }
+  - id: exceptions.prevent-vs-catch
+    category: exceptions
+    label: { de: "Fehler durch Vorabprüfung vermeiden statt die Ausnahme abzufangen", en: "Prevent errors by checking first instead of catching the exception" }
+  - id: exceptions.throw
+    category: exceptions
+    label: { de: "Eine Ausnahme mit throw new auslösen", en: "Raise an exception with throw new" }
+  - id: exceptions.argument-out-of-range
+    category: exceptions
+    label: { de: "ArgumentOutOfRangeException bei unzulässigem Wertebereich werfen", en: "Throw ArgumentOutOfRangeException for an invalid value range" }
+  - id: exceptions.argument-null
+    category: exceptions
+    label: { de: "ArgumentNullException bei null-Argument werfen (ThrowIfNull)", en: "Throw ArgumentNullException for a null argument (ThrowIfNull)" }
+  - id: exceptions.invalid-operation
+    category: exceptions
+    label: { de: "InvalidOperationException bei unzulässigem Objektzustand werfen", en: "Throw InvalidOperationException for an invalid object state" }
+  - id: exceptions.try-catch
+    category: exceptions
+    label: { de: "Code mit try und catch absichern", en: "Guard code with try and catch" }
+  - id: exceptions.catch-specific
+    category: exceptions
+    label: { de: "Eine spezifische Ausnahmeklasse abfangen", en: "Catch a specific exception class" }
+  - id: exceptions.catch-order
+    category: exceptions
+    label: { de: "catch-Blöcke in der richtigen Reihenfolge (speziell vor allgemein) anordnen", en: "Order catch blocks correctly (specific before general)" }
+  - id: exceptions.catch-variable
+    category: exceptions
+    label: { de: "Das Ausnahmeobjekt auswerten (Message, Typ, Data, InnerException)", en: "Evaluate the exception object (Message, type, Data, InnerException)" }
+  - id: exceptions.catch-when
+    category: exceptions
+    label: { de: "Mit einem Ausnahmefilter (when) gezielt abfangen", en: "Catch selectively with an exception filter (when)" }
+  - id: exceptions.parse-handling
+    category: exceptions
+    label: { de: "FormatException und OverflowException beim Konvertieren von Text behandeln", en: "Handle FormatException and OverflowException when converting text" }
+  - id: exceptions.overflow-catch
+    category: exceptions
+    label: { de: "OverflowException aus einem checked-Kontext abfangen", en: "Catch an OverflowException from a checked context" }
+  - id: exceptions.finally
+    category: exceptions
+    label: { de: "Aufräumcode in einem finally-Block ausführen", en: "Run clean-up code in a finally block" }
+  - id: exceptions.rethrow
+    category: exceptions
+    label: { de: "Eine Ausnahme mit throw; weiterreichen und die Stapelüberwachung erhalten", en: "Rethrow an exception with throw; preserving the stack trace" }
+  - id: exceptions.inner-exception
+    category: exceptions
+    label: { de: "Eine Ausnahme verpacken und die ursprüngliche als InnerException mitgeben", en: "Wrap an exception and pass the original as InnerException" }
+  - id: exceptions.throw-expression
+    category: exceptions
+    label: { de: "Einen throw-Ausdruck (?? throw, ?: throw) verwenden", en: "Use a throw expression (?? throw, ?: throw)" }
+  - id: exceptions.custom-exception
+    category: exceptions
+    label: { de: "Eine eigene Ausnahmeklasse von Exception ableiten", en: "Derive a custom exception class from Exception" }
+  - id: exceptions.custom-properties
+    category: exceptions
+    label: { de: "Eigene Ausnahme mit Zusatzinformationen (Eigenschaften, Data) ausstatten", en: "Equip a custom exception with extra information (properties, Data)" }
+  - id: exceptions.try-pattern
+    category: exceptions
+    label: { de: "Das Try-Muster (bool TryXyz(..., out T)) implementieren", en: "Implement the Try pattern (bool TryXyz(..., out T))" }
+  - id: exceptions.return-code-vs-exception
+    category: exceptions
+    label: { de: "Rückgabecode oder Ausnahme nach Fehlerwahrscheinlichkeit wählen", en: "Choose return code or exception by error probability" }
+  - id: exceptions.bcl-classes
+    category: exceptions
+    label: { de: "Passende BCL-Ausnahmeklassen für typische Fehlersituationen kennen", en: "Know suitable BCL exception classes for typical error situations" }
+
+  # ---------------------------------------------------------------------------
+  # Level 12 — Delegaten, Lambda-Ausdrücke und Ereignisse (ch. 10, Kernmodul)
+  # ---------------------------------------------------------------------------
+  - id: delegates.declare-type
+    category: delegates
+    label: { de: "Einen Delegatentyp mit delegate deklarieren", en: "Declare a delegate type with delegate" }
+  - id: delegates.create-invoke
+    category: delegates
+    label: { de: "Ein Delegatenobjekt aus einer Methodengruppe erzeugen und aufrufen", en: "Create a delegate object from a method group and invoke it" }
+  - id: delegates.parameter
+    category: delegates
+    label: { de: "Einen Delegaten als Methodenparameter übergeben", en: "Pass a delegate as a method parameter" }
+  - id: delegates.multicast
+    category: delegates
+    label: { de: "Mehrfachdelegaten mit += und -= kombinieren (GetInvocationList)", en: "Combine multicast delegates with += and -= (GetInvocationList)" }
+  - id: delegates.null-conditional-invoke
+    category: delegates
+    label: { de: "Einen Delegaten null-sicher mit ?.Invoke() aufrufen", en: "Invoke a delegate null-safely with ?.Invoke()" }
+  - id: lambdas.expression
+    category: lambdas
+    label: { de: "Einen Lambda-Ausdruck mit Ausdruckskörper schreiben", en: "Write a lambda with an expression body" }
+  - id: lambdas.statement
+    category: lambdas
+    label: { de: "Ein Lambda mit Anweisungsblock schreiben", en: "Write a lambda with a statement body" }
+  - id: delegates.predicate
+    category: delegates
+    label: { de: "Predicate<T> als Filter einsetzen", en: "Use Predicate<T> as a filter" }
+  - id: lambdas.list-predicate-methods
+    category: lambdas
+    label: { de: "FindAll, Exists, RemoveAll, Find und Sort(Comparison) einer List<T> mit Lambdas nutzen", en: "Use FindAll, Exists, RemoveAll, Find and Sort(Comparison) of List<T> with lambdas" }
+  - id: lambdas.closure
+    category: lambdas
+    label: { de: "Eingefangene Variablen (Closure) eines Lambdas verstehen und nutzen", en: "Understand and use captured variables (closures) of a lambda" }
+  - id: delegates.return-delegate
+    category: delegates
+    label: { de: "Eine Methode schreiben, die ein Delegatenobjekt zurückgibt (Fabrikmethode)", en: "Write a method that returns a delegate (factory method)" }
+  - id: delegates.generic-func
+    category: delegates
+    label: { de: "Func<...> als generischen Delegaten mit Rückgabewert einsetzen", en: "Use Func<...> as a generic delegate with a return value" }
+  - id: delegates.generic-action
+    category: delegates
+    label: { de: "Action<...> als generischen Delegaten ohne Rückgabewert einsetzen", en: "Use Action<...> as a generic delegate without a return value" }
+  - id: events.declare
+    category: events
+    label: { de: "Ein Ereignis mit event deklarieren", en: "Declare an event with event" }
+  - id: events.raise-safely
+    category: events
+    label: { de: "Ein Ereignis sicher auslösen (null-Prüfung, OnXyz-Methode)", en: "Raise an event safely (null check, OnXyz method)" }
+  - id: events.eventhandler-generic
+    category: events
+    label: { de: "EventHandler<TEventArgs> als Ereignistyp verwenden", en: "Use EventHandler<TEventArgs> as the event type" }
+  - id: events.custom-eventargs
+    category: events
+    label: { de: "Eine eigene EventArgs-Ableitung mit Nutzdaten definieren", en: "Define a custom EventArgs subclass carrying data" }
+  - id: events.subscribe-unsubscribe
+    category: events
+    label: { de: "Behandlungsmethoden für ein Ereignis an- und abmelden", en: "Subscribe and unsubscribe handler methods for an event" }
+  - id: events.sender-usage
+    category: events
+    label: { de: "Den sender-Parameter auswerten, um das auslösende Objekt zu erkennen", en: "Evaluate the sender parameter to identify the raising object" }
+  - id: delegates.vs-interface
+    category: delegates
+    label: { de: "Delegaten und Schnittstellen als Rückruf-Mechanismus unterscheiden", en: "Distinguish delegates from interfaces as callback mechanisms" }
+  - id: delegates.variance
+    category: delegates
+    label: { de: "Ko- und Kontravarianz bei generischen Delegaten einordnen", en: "Classify covariance and contravariance of generic delegates" }
+  - id: events.vs-delegate-field
+    category: events
+    label: { de: "Ein Ereignis von einem öffentlichen Delegatenfeld unterscheiden", en: "Distinguish an event from a public delegate field" }
+  - id: delegates.anonymous-method
+    category: delegates
+    label: { de: "Anonyme Methoden (delegate { }) erkennen und vom Lambda unterscheiden", en: "Recognise anonymous methods (delegate { }) and tell them from lambdas" }
+
+  # ---------------------------------------------------------------------------
+  # Level 13 — LINQ-to-Objects (ch. 18, Kernmodul)
+  # ---------------------------------------------------------------------------
+  - id: linq.deferred-execution
+    category: linq
+    label: { de: "Zurückgestellte Ausführung einer LINQ-Abfrage erkennen und beherrschen", en: "Recognise and control deferred execution of a LINQ query" }
+  - id: linq.where
+    category: linq
+    label: { de: "Elemente mit Where filtern", en: "Filter elements with Where" }
+  - id: linq.select
+    category: linq
+    label: { de: "Elemente mit Select projizieren", en: "Project elements with Select" }
+  - id: linq.projection-anonymous
+    category: linq
+    label: { de: "Mit Select in Tupel oder anonyme Typen projizieren", en: "Project into tuples or anonymous types with Select" }
+  - id: linq.chaining
+    category: linq
+    label: { de: "Mehrere LINQ-Operatoren zu einer Abfrage verketten (Fluent-API)", en: "Chain several LINQ operators into one query (fluent API)" }
+  - id: linq.element-operators
+    category: linq
+    label: { de: "First, FirstOrDefault, Single, Last und ElementAt einsetzen", en: "Use First, FirstOrDefault, Single, Last and ElementAt" }
+  - id: linq.quantifiers
+    category: linq
+    label: { de: "Any, All und Contains als Quantoren einsetzen", en: "Use Any, All and Contains as quantifiers" }
+  - id: linq.aggregates
+    category: linq
+    label: { de: "Count, Sum, Average, Min und Max anwenden", en: "Apply Count, Sum, Average, Min and Max" }
+  - id: linq.orderby
+    category: linq
+    label: { de: "Mit OrderBy, ThenBy und den Descending-Varianten sortieren", en: "Sort with OrderBy, ThenBy and the Descending variants" }
+  - id: linq.paging
+    category: linq
+    label: { de: "Mit Take, Skip, TakeWhile und Chunk Teilfolgen bilden", en: "Form subsequences with Take, Skip, TakeWhile and Chunk" }
+  - id: linq.set-operators
+    category: linq
+    label: { de: "Distinct, Union, Intersect und Except auf Sequenzen anwenden", en: "Apply Distinct, Union, Intersect and Except to sequences" }
+  - id: linq.materialize
+    category: linq
+    label: { de: "Ergebnisse mit ToList, ToArray, ToDictionary und ToLookup materialisieren", en: "Materialise results with ToList, ToArray, ToDictionary and ToLookup" }
+  - id: linq.groupby
+    category: linq
+    label: { de: "Mit GroupBy gruppieren und Gruppen auswerten", en: "Group with GroupBy and evaluate groups" }
+  - id: linq.countby
+    category: linq
+    label: { de: "CountBy und AggregateBy zum Zählen und Verdichten nach Schlüssel einsetzen", en: "Use CountBy and AggregateBy to count and aggregate by key" }
+  - id: linq.join
+    category: linq
+    label: { de: "Zwei Sequenzen mit Join verknüpfen", en: "Combine two sequences with Join" }
+  - id: linq.groupjoin
+    category: linq
+    label: { de: "Mit GroupJoin Master-Details-Beziehungen auswerten (auch leere Detailmengen)", en: "Evaluate master-detail relations with GroupJoin (including empty detail sets)" }
+  - id: linq.zip
+    category: linq
+    label: { de: "Zwei Sequenzen elementweise mit Zip paaren", en: "Pair two sequences element by element with Zip" }
+  - id: linq.selectmany
+    category: linq
+    label: { de: "Verschachtelte Sequenzen mit SelectMany flachziehen", en: "Flatten nested sequences with SelectMany" }
+  - id: linq.oftype
+    category: linq
+    label: { de: "Mit OfType<T>() nach Laufzeittyp filtern", en: "Filter by run-time type with OfType<T>()" }
+  - id: linq.query-syntax
+    category: linq
+    label: { de: "Eine Abfrage in Abfragesyntax (from, where, orderby, select) formulieren", en: "Write a query in query syntax (from, where, orderby, select)" }
+  - id: linq.query-let
+    category: linq
+    label: { de: "Zwischenwerte mit let in einer Abfrage definieren", en: "Define intermediate values with let in a query" }
+  - id: linq.query-into
+    category: linq
+    label: { de: "Folgeabfragen mit into formulieren", en: "Write follow-up queries with into" }
+  - id: linq.query-group-join
+    category: linq
+    label: { de: "group … by und join in Abfragesyntax einsetzen", en: "Use group … by and join in query syntax" }
+  - id: linq.subquery
+    category: linq
+    label: { de: "Eine Unterabfrage innerhalb einer Abfrage einsetzen", en: "Use a subquery inside a query" }
+  - id: linq.custom-operator
+    category: linq
+    label: { de: "Einen eigenen LINQ-Operator als Erweiterungsmethode mit yield schreiben", en: "Write a custom LINQ operator as an extension method with yield" }
+
+  # ---------------------------------------------------------------------------
+  # Level 14 — C# für Fortgeschrittene: Null-Sicherheit, Musterabgleich, Span (ch. 15, Kernmodul)
+  # ---------------------------------------------------------------------------
+  - id: nullable.annotation
+    category: nullable
+    label: { de: "Referenztypen mit ? als nullable kennzeichnen (Nullable-Kontext)", en: "Mark reference types as nullable with ? (nullable context)" }
+  - id: nullable.warning-fix
+    category: nullable
+    label: { de: "Warnungen der Nullzustandsanalyse durch Code-Änderung beheben", en: "Fix nullable flow-analysis warnings by changing the code" }
+  - id: nullable.null-forgiving
+    category: nullable
+    label: { de: "Den Null-Vergebungs-Operator ! gezielt und begründet einsetzen", en: "Use the null-forgiving operator ! deliberately and justified" }
+  - id: nullable.null-conditional
+    category: nullable
+    label: { de: "Null-bedingten Zugriff ?. und ?[] verwenden", en: "Use null-conditional access ?. and ?[]" }
+  - id: nullable.null-coalescing
+    category: nullable
+    label: { de: "Die Operatoren ?? und ??= verwenden", en: "Use the operators ?? and ??=" }
+  - id: nullable.null-conditional-assignment
+    category: nullable
+    label: { de: "Null-bedingte Zuweisung a?.B = x (C# 14) verwenden", en: "Use null-conditional assignment a?.B = x (C# 14)" }
+  - id: nullable.attribute-notnullwhen
+    category: nullable
+    label: { de: "Mit [NotNullWhen] den Nullzustand von out-Parametern beschreiben", en: "Describe the null state of out parameters with [NotNullWhen]" }
+  - id: nullable.attribute-notnullifnotnull
+    category: nullable
+    label: { de: "Mit [NotNullIfNotNull] Nullzustand von Rückgabe und Parameter verknüpfen", en: "Link return and parameter null state with [NotNullIfNotNull]" }
+  - id: patterns.constant
+    category: patterns
+    label: { de: "Konstantenmuster verwenden (is null, is 0, case 5)", en: "Use constant patterns (is null, is 0, case 5)" }
+  - id: patterns.type
+    category: patterns
+    label: { de: "Typ- und Deklarationsmuster verwenden (is string s)", en: "Use type and declaration patterns (is string s)" }
+  - id: patterns.relational
+    category: patterns
+    label: { de: "Relationsmuster verwenden (< 5, >= 18)", en: "Use relational patterns (< 5, >= 18)" }
+  - id: patterns.logical
+    category: patterns
+    label: { de: "Muster mit and, or und not kombinieren", en: "Combine patterns with and, or and not" }
+  - id: patterns.property
+    category: patterns
+    label: { de: "Merkmalsmuster verwenden ({ Elektro: true })", en: "Use property patterns ({ Elektro: true })" }
+  - id: patterns.when-guard
+    category: patterns
+    label: { de: "Eine when-Bedingung an ein Muster hängen", en: "Attach a when guard to a pattern" }
+  - id: patterns.positional
+    category: patterns
+    label: { de: "Positions- bzw. Dekonstruktionsmuster verwenden", en: "Use positional (deconstruction) patterns" }
+  - id: patterns.var
+    category: patterns
+    label: { de: "Das var-Muster zum Erfassen von Teilwerten verwenden", en: "Use the var pattern to capture sub-values" }
+  - id: patterns.tuple
+    category: patterns
+    label: { de: "Tupelmuster auf mehrere Werte gleichzeitig anwenden", en: "Apply tuple patterns to several values at once" }
+  - id: patterns.list
+    category: patterns
+    label: { de: "Listenmuster mit Elementen, _ und Bereichsmuster .. verwenden", en: "Use list patterns with elements, _ and slice pattern .." }
+  - id: patterns.combine-in-switch
+    category: patterns
+    label: { de: "Mehrere Mustertypen in einem switch-Ausdruck kombinieren", en: "Combine several pattern kinds in one switch expression" }
+  - id: refs.ref-return
+    category: refs
+    label: { de: "ref-Variablen und ref-Rückgabewerte verwenden", en: "Use ref locals and ref return values" }
+  - id: spans.span-slice
+    category: spans
+    label: { de: "Mit Span<T>/ReadOnlySpan<T> Teilbereiche ohne Kopie bearbeiten", en: "Work on sub-ranges without copying with Span<T>/ReadOnlySpan<T>" }
+  - id: spans.readonlyspan-param
+    category: spans
+    label: { de: "ReadOnlySpan<T> als Parameter für Arrays, Strings und Stack-Speicher einsetzen", en: "Use ReadOnlySpan<T> as a parameter for arrays, strings and stack memory" }
+  - id: spans.implicit-conversion
+    category: spans
+    label: { de: "Implizite Span-Konvertierungen und Erweiterungsmitglieder auf Spans (C# 14) nutzen", en: "Use implicit span conversions and extension members on spans (C# 14)" }
+  - id: arrays.inline-array
+    category: arrays
+    label: { de: "Ein Inline-Array mit [InlineArray] deklarieren und verwenden", en: "Declare and use an inline array with [InlineArray]" }
+  - id: params.collection-type
+    category: params
+    label: { de: "Serienparameter mit Kollektionstyp (params ReadOnlySpan<T>, params List<T>) verwenden", en: "Use params with a collection type (params ReadOnlySpan<T>, params List<T>)" }
+
+  # ---------------------------------------------------------------------------
+  # Level 15 — Dateiverarbeitung und JSON (ch. 16, Kernmodul)
+  # ---------------------------------------------------------------------------
+  - id: files.streamwriter
+    category: files
+    label: { de: "Text mit StreamWriter in eine Datei schreiben", en: "Write text to a file with StreamWriter" }
+  - id: files.streamreader-lines
+    category: files
+    label: { de: "Text zeilenweise mit StreamReader lesen (ReadLine bis null)", en: "Read text line by line with StreamReader (ReadLine until null)" }
+  - id: files.encoding
+    category: files
+    label: { de: "Zeichencodierung wählen (UTF-8, Windows-1252) beim Lesen und Schreiben", en: "Choose a character encoding (UTF-8, Windows-1252) when reading and writing" }
+  - id: files.filestream-bytes
+    category: files
+    label: { de: "Mit FileStream Bytes lesen, schreiben und positionieren", en: "Read, write and seek bytes with FileStream" }
+  - id: files.filemode-access
+    category: files
+    label: { de: "FileMode, FileAccess und FileShare passend wählen", en: "Choose FileMode, FileAccess and FileShare appropriately" }
+  - id: files.binary-readwrite
+    category: files
+    label: { de: "Werte mit BinaryWriter und BinaryReader im Binärformat speichern", en: "Store values in binary format with BinaryWriter and BinaryReader" }
+  - id: files.readall-writeall
+    category: files
+    label: { de: "Kleine Dateien mit File.ReadAllText, ReadAllLines, WriteAllLines und ReadAllBytes verarbeiten", en: "Process small files with File.ReadAllText, ReadAllLines, WriteAllLines and ReadAllBytes" }
+  - id: files.parse-delimited-text
+    category: files
+    label: { de: "Zeilen mit Trennzeichen zerlegen und fehlerhafte Felder melden", en: "Split delimited lines and report faulty fields" }
+  - id: files.invariant-culture
+    category: files
+    label: { de: "Zahlen kulturunabhängig mit CultureInfo.InvariantCulture formatieren und parsen", en: "Format and parse numbers culture-independently with CultureInfo.InvariantCulture" }
+  - id: resources.dispose-close
+    category: resources
+    label: { de: "Warum externe Ressourcen mit Dispose()/Close() freigegeben werden müssen", en: "Why external resources must be released with Dispose()/Close()" }
+  - id: resources.using-statement
+    category: resources
+    label: { de: "Eine Ressource mit der using-Anweisung freigeben", en: "Release a resource with the using statement" }
+  - id: resources.using-declaration
+    category: resources
+    label: { de: "Eine Ressource mit der using-Deklaration freigeben", en: "Release a resource with the using declaration" }
+  - id: resources.try-with-using
+    category: resources
+    label: { de: "using mit try/catch kombinieren und Ausnahmen beim Schließen bedenken", en: "Combine using with try/catch and consider exceptions on close" }
+  - id: files.flush-autoflush
+    category: files
+    label: { de: "Pufferung, Flush() und AutoFlush von StreamWriter einordnen", en: "Understand buffering, Flush() and AutoFlush of StreamWriter" }
+  - id: resources.implement-idisposable
+    category: resources
+    label: { de: "IDisposable in einer eigenen Klasse implementieren", en: "Implement IDisposable in your own class" }
+  - id: files.file-ops
+    category: files
+    label: { de: "Dateien mit File prüfen, kopieren, verschieben und löschen", en: "Check, copy, move and delete files with File" }
+  - id: files.directory-ops
+    category: files
+    label: { de: "Ordner mit Directory anlegen, auflisten und löschen", en: "Create, list and delete folders with Directory" }
+  - id: files.path-api
+    category: files
+    label: { de: "Pfade mit der Klasse Path zusammensetzen und zerlegen", en: "Combine and split paths with the Path class" }
+  - id: files.special-folders
+    category: files
+    label: { de: "Spezielle Ordner (Temp, AppData, Dokumente) per Environment/Path ermitteln", en: "Find special folders (temp, AppData, documents) via Environment/Path" }
+  - id: json.serialize
+    category: json
+    label: { de: "Objekte mit JsonSerializer.Serialize in JSON umwandeln", en: "Convert objects to JSON with JsonSerializer.Serialize" }
+  - id: json.deserialize
+    category: json
+    label: { de: "JSON mit JsonSerializer.Deserialize<T> in Objekte zurückverwandeln", en: "Convert JSON back to objects with JsonSerializer.Deserialize<T>" }
+  - id: json.options
+    category: json
+    label: { de: "JsonSerializerOptions (Einrückung, Namensrichtlinie, Enums als Text) einsetzen", en: "Use JsonSerializerOptions (indentation, naming policy, enums as text)" }
+  - id: json.attributes
+    category: json
+    label: { de: "Mit [JsonPropertyName] und [JsonIgnore] die Serialisierung steuern", en: "Control serialisation with [JsonPropertyName] and [JsonIgnore]" }
+  - id: json.circular-references
+    category: json
+    label: { de: "Zirkuläre Objektreferenzen beim Serialisieren behandeln (ReferenceHandler)", en: "Handle circular object references when serialising (ReferenceHandler)" }
+
+  # ---------------------------------------------------------------------------
+  # Level 16 — Attribute und Reflexion (ch. 14, Wahlmodul)
+  # ---------------------------------------------------------------------------
+  - id: attributes.apply
+    category: attributes
+    label: { de: "Attribute auf Typen und Member anwenden", en: "Apply attributes to types and members" }
+  - id: attributes.obsolete
+    category: attributes
+    label: { de: "Mit [Obsolete] Mitglieder als veraltet markieren", en: "Mark members as obsolete with [Obsolete]" }
+  - id: attributes.caller-info
+    category: attributes
+    label: { de: "Aufruferinformations-Attribute (CallerMemberName, CallerLineNumber) nutzen", en: "Use caller-info attributes (CallerMemberName, CallerLineNumber)" }
+  - id: attributes.flags
+    category: attributes
+    label: { de: "Bitfelder mit [Flags]-Aufzählungen modellieren", en: "Model bit fields with [Flags] enumerations" }
+  - id: attributes.define-custom
+    category: attributes
+    label: { de: "Ein eigenes Attribut von Attribute ableiten", en: "Derive a custom attribute from Attribute" }
+  - id: attributes.targets
+    category: attributes
+    label: { de: "Mit AttributeUsage Ziele und AllowMultiple festlegen", en: "Set targets and AllowMultiple with AttributeUsage" }
+  - id: attributes.parameters
+    category: attributes
+    label: { de: "Positionale und benannte Attributparameter definieren und angeben", en: "Define and specify positional and named attribute parameters" }
+  - id: attributes.generic
+    category: attributes
+    label: { de: "Ein generisches Attribut statt eines typeof-Parameters einsetzen", en: "Use a generic attribute instead of a typeof parameter" }
+  - id: attributes.conditional
+    category: attributes
+    label: { de: "Bedingte Methodenausführung mit [Conditional] einordnen", en: "Classify conditional method execution with [Conditional]" }
+  - id: attributes.assembly-level
+    category: attributes
+    label: { de: "Attribute für Assemblies ([assembly: ...]) einordnen", en: "Classify assembly-level attributes ([assembly: ...])" }
+  - id: reflection.nameof
+    category: reflection
+    label: { de: "Mit nameof Bezeichner refaktorierungssicher als Text verwenden", en: "Use identifiers as refactoring-safe text with nameof" }
+  - id: reflection.typeof-gettype
+    category: reflection
+    label: { de: "Type-Objekte mit typeof und GetType() beschaffen", en: "Obtain Type objects with typeof and GetType()" }
+  - id: reflection.getcustomattribute
+    category: reflection
+    label: { de: "Attribute mit GetCustomAttribute(s) auslesen", en: "Read attributes with GetCustomAttribute(s)" }
+  - id: reflection.isdefined
+    category: reflection
+    label: { de: "Mit IsDefined prüfen, ob ein Attribut angebracht ist", en: "Check with IsDefined whether an attribute is applied" }
+  - id: reflection.get-members
+    category: reflection
+    label: { de: "Eigenschaften und Methoden eines Typs mit GetProperties/GetMethods auflisten", en: "List properties and methods of a type with GetProperties/GetMethods" }
+  - id: reflection.get-set-property
+    category: reflection
+    label: { de: "Eigenschaftswerte per PropertyInfo lesen und setzen", en: "Read and set property values via PropertyInfo" }
+  - id: reflection.invoke
+    category: reflection
+    label: { de: "Methoden per MethodInfo.Invoke aufrufen", en: "Call methods via MethodInfo.Invoke" }
+  - id: reflection.create-instance
+    category: reflection
+    label: { de: "Objekte per Activator.CreateInstance zur Laufzeit erzeugen", en: "Create objects at run time with Activator.CreateInstance" }
+
+  # ---------------------------------------------------------------------------
+  # Level 17 — Multithreading und asynchrone Programmierung (ch. 17, Wahlmodul)
+  # ---------------------------------------------------------------------------
+  - id: threading.thread-start-join
+    category: threading
+    label: { de: "Einen Thread erzeugen, starten und mit Join() abwarten", en: "Create, start and join a thread with Join()" }
+  - id: threading.race-condition
+    category: threading
+    label: { de: "Eine Race Condition (verlorene Updates) erkennen und erklären", en: "Recognise and explain a race condition (lost updates)" }
+  - id: threading.lock-statement
+    category: threading
+    label: { de: "Gemeinsamen Zustand mit der lock-Anweisung schützen", en: "Protect shared state with the lock statement" }
+  - id: threading.interlocked
+    category: threading
+    label: { de: "Zähler mit Interlocked atomar ändern", en: "Change counters atomically with Interlocked" }
+  - id: threading.lock-protect-collection
+    category: threading
+    label: { de: "Eine gemeinsame Kollektion mit lock vor parallelen Zugriffen schützen", en: "Protect a shared collection from concurrent access with lock" }
+  - id: tasks.run
+    category: tasks
+    label: { de: "Berechnungen mit Task.Run starten und das Ergebnis mit Result abholen", en: "Start computations with Task.Run and fetch the result with Result" }
+  - id: tasks.when-all-any
+    category: tasks
+    label: { de: "Auf mehrere Aufgaben mit WhenAll/WaitAll bzw. WhenAny warten", en: "Wait for several tasks with WhenAll/WaitAll or WhenAny" }
+  - id: tasks.continuewith
+    category: tasks
+    label: { de: "Fortsetzungsaufgaben mit ContinueWith verketten", en: "Chain continuation tasks with ContinueWith" }
+  - id: tasks.completionsource
+    category: tasks
+    label: { de: "Mit TaskCompletionSource<T> ein Ereignis in eine Aufgabe verpacken", en: "Wrap an event in a task with TaskCompletionSource<T>" }
+  - id: tasks.aggregate-exception
+    category: tasks
+    label: { de: "Ausnahmen aus Aufgaben als AggregateException auswerten (Flatten, InnerExceptions)", en: "Evaluate exceptions from tasks as AggregateException (Flatten, InnerExceptions)" }
+  - id: tasks.cancellation
+    category: tasks
+    label: { de: "Aufgaben kooperativ mit CancellationToken abbrechen", en: "Cancel tasks cooperatively with CancellationToken" }
+  - id: parallel.for-foreach
+    category: parallel
+    label: { de: "Schleifen mit Parallel.For und Parallel.ForEach parallelisieren", en: "Parallelise loops with Parallel.For and Parallel.ForEach" }
+  - id: parallel.invoke
+    category: parallel
+    label: { de: "Mehrere Aktionen mit Parallel.Invoke gleichzeitig ausführen", en: "Run several actions concurrently with Parallel.Invoke" }
+  - id: parallel.plinq
+    category: parallel
+    label: { de: "Abfragen mit AsParallel() und AsOrdered() parallelisieren", en: "Parallelise queries with AsParallel() and AsOrdered()" }
+  - id: async.declare
+    category: async
+    label: { de: "Eine async-Methode mit Task bzw. Task<T> als Rückgabetyp deklarieren", en: "Declare an async method returning Task or Task<T>" }
+  - id: async.await
+    category: async
+    label: { de: "Mit await auf eine Aufgabe warten, ohne den Thread zu blockieren", en: "Wait for a task with await without blocking the thread" }
+  - id: async.exception-handling
+    category: async
+    label: { de: "Ausnahmen von awaited Aufgaben mit try/catch behandeln", en: "Handle exceptions of awaited tasks with try/catch" }
+  - id: async.cancellation
+    category: async
+    label: { de: "Einer async-Methode ein CancellationToken durchreichen und darauf reagieren", en: "Pass a CancellationToken to an async method and react to it" }
+  - id: async.avoid-async-void
+    category: async
+    label: { de: "async void vermeiden und stattdessen async Task schreiben", en: "Avoid async void and write async Task instead" }
+  - id: async.avoid-blocking
+    category: async
+    label: { de: "Das Blockieren auf async-Code (.Result/.Wait) und Deadlocks vermeiden", en: "Avoid blocking on async code (.Result/.Wait) and deadlocks" }
+
+  # ---------------------------------------------------------------------------
+  # Level 18 — SQL und ADO.NET (mit SQLite) (ch. 19, Wahlmodul)
+  # ---------------------------------------------------------------------------
+  - id: sql.create-table
+    category: sql
+    label: { de: "Tabellen mit CREATE TABLE und passenden Spaltentypen anlegen", en: "Create tables with CREATE TABLE and suitable column types" }
+  - id: sql.primary-foreign-key
+    category: sql
+    label: { de: "Primär- und Fremdschlüssel sowie Einschränkungen (NOT NULL, CHECK) deklarieren", en: "Declare primary and foreign keys and constraints (NOT NULL, CHECK)" }
+  - id: sql.insert
+    category: sql
+    label: { de: "Zeilen mit INSERT einfügen", en: "Insert rows with INSERT" }
+  - id: sql.select-where
+    category: sql
+    label: { de: "Mit SELECT, WHERE und ORDER BY abfragen", en: "Query with SELECT, WHERE and ORDER BY" }
+  - id: sql.update-delete
+    category: sql
+    label: { de: "Zeilen mit UPDATE und DELETE ändern und entfernen", en: "Change and remove rows with UPDATE and DELETE" }
+  - id: sql.join
+    category: sql
+    label: { de: "Tabellen mit JOIN verknüpfen", en: "Combine tables with JOIN" }
+  - id: sql.aggregate-group
+    category: sql
+    label: { de: "Mit Aggregatfunktionen, GROUP BY und HAVING auswerten", en: "Evaluate with aggregate functions, GROUP BY and HAVING" }
+  - id: ado.connection-open-close
+    category: ado
+    label: { de: "Eine Datenbankverbindung öffnen und mit using wieder schließen", en: "Open a database connection and close it again with using" }
+  - id: ado.execute-nonquery
+    category: ado
+    label: { de: "Änderungsbefehle mit ExecuteNonQuery ausführen und betroffene Zeilen auswerten", en: "Run change commands with ExecuteNonQuery and evaluate affected rows" }
+  - id: ado.execute-scalar
+    category: ado
+    label: { de: "Einzelwerte mit ExecuteScalar abfragen", en: "Query single values with ExecuteScalar" }
+  - id: ado.parameters
+    category: ado
+    label: { de: "Befehle parametrisieren statt SQL zu verketten (SQL-Injection vermeiden)", en: "Parameterise commands instead of concatenating SQL (avoid SQL injection)" }
+  - id: ado.dbnull
+    category: ado
+    label: { de: "NULL-Werte der Datenbank als DBNull bzw. null behandeln", en: "Handle database NULL values as DBNull or null" }
+  - id: ado.datareader
+    category: ado
+    label: { de: "Ergebniszeilen mit einem DbDataReader lesen", en: "Read result rows with a DbDataReader" }
+  - id: ado.map-rows
+    category: ado
+    label: { de: "Datenbankzeilen auf Objekte abbilden", en: "Map database rows to objects" }
+  - id: ado.transaction
+    category: ado
+    label: { de: "Mehrere Befehle in einer Transaktion mit Commit zusammenfassen", en: "Group several commands in a transaction with Commit" }
+  - id: ado.transaction-rollback
+    category: ado
+    label: { de: "Eine Transaktion bei Fehlern mit Rollback zurücknehmen", en: "Undo a transaction on errors with Rollback" }
+  - id: ado.provider-independent
+    category: ado
+    label: { de: "Datenzugriffscode gegen DbConnection, DbCommand und DbProviderFactory statt gegen einen Provider schreiben", en: "Write data-access code against DbConnection, DbCommand and DbProviderFactory instead of a provider" }
+  - id: ado.connection-string
+    category: ado
+    label: { de: "Verbindungszeichenfolgen mit einem ConnectionStringBuilder zusammensetzen", en: "Assemble connection strings with a connection string builder" }
+  - id: ado.datatable-load
+    category: ado
+    label: { de: "Ergebnisse in eine DataTable laden und Zeilen/Spalten lesen", en: "Load results into a DataTable and read rows/columns" }
+  - id: ado.linq-to-dataset
+    category: ado
+    label: { de: "Eine DataTable mit LINQ (AsEnumerable, Field<T>) abfragen", en: "Query a DataTable with LINQ (AsEnumerable, Field<T>)" }
+
+  # ---------------------------------------------------------------------------
+  # Level 19 — Entity Framework Core (mit SQLite) (ch. 20, Wahlmodul)
+  # ---------------------------------------------------------------------------
+  - id: ef.entity-class
+    category: ef
+    label: { de: "Eine Entitätsklasse mit Schlüssel (Id) und Eigenschaften definieren", en: "Define an entity class with a key (Id) and properties" }
+  - id: ef.dbcontext-define
+    category: ef
+    label: { de: "Eine DbContext-Ableitung mit DbSet<T> und Optionen definieren", en: "Define a DbContext subclass with DbSet<T> and options" }
+  - id: ef.ensure-created
+    category: ef
+    label: { de: "Das Datenbankschema mit EnsureCreated anlegen", en: "Create the database schema with EnsureCreated" }
+  - id: ef.add-savechanges
+    category: ef
+    label: { de: "Entitäten mit Add und SaveChanges speichern", en: "Store entities with Add and SaveChanges" }
+  - id: ef.data-annotations
+    category: ef
+    label: { de: "Mit Annotationen ([Required], [MaxLength], [Key]) das Schema beeinflussen", en: "Influence the schema with annotations ([Required], [MaxLength], [Key])" }
+  - id: ef.dbcontext-lifetime
+    category: ef
+    label: { de: "DbContext kurzlebig verwenden und mit using freigeben", en: "Use DbContext short-lived and dispose it with using" }
+  - id: ef.query-where-tolist
+    category: ef
+    label: { de: "Entitäten mit LINQ (Where, OrderBy, Take, ToList) abfragen", en: "Query entities with LINQ (Where, OrderBy, Take, ToList)" }
+  - id: ef.find-firstordefault
+    category: ef
+    label: { de: "Einzelne Entitäten mit Find und FirstOrDefault abrufen", en: "Fetch single entities with Find and FirstOrDefault" }
+  - id: ef.projection-select
+    category: ef
+    label: { de: "Abfrageergebnisse mit Select projizieren", en: "Project query results with Select" }
+  - id: ef.aggregate-queries
+    category: ef
+    label: { de: "Aggregate (Count, Sum, Average) serverseitig auswerten", en: "Evaluate aggregates (Count, Sum, Average) on the server" }
+  - id: ef.update-tracked
+    category: ef
+    label: { de: "Eine nachverfolgte Entität ändern und mit SaveChanges speichern", en: "Modify a tracked entity and store it with SaveChanges" }
+  - id: ef.remove
+    category: ef
+    label: { de: "Entitäten mit Remove löschen", en: "Delete entities with Remove" }
+  - id: ef.change-tracking-state
+    category: ef
+    label: { de: "EntityState und AsNoTracking einordnen", en: "Classify EntityState and AsNoTracking" }
+  - id: ef.executeupdate-bulk
+    category: ef
+    label: { de: "Massenänderungen mit ExecuteUpdate und ExecuteDelete ausführen", en: "Run bulk changes with ExecuteUpdate and ExecuteDelete" }
+  - id: ef.relation-one-to-many
+    category: ef
+    label: { de: "Eine 1:n-Beziehung mit Navigationseigenschaften und Fremdschlüssel modellieren", en: "Model a 1:n relation with navigation properties and a foreign key" }
+  - id: ef.include
+    category: ef
+    label: { de: "Assoziierte Entitäten mit Include laden (Eager Loading)", en: "Load associated entities with Include (eager loading)" }
+  - id: ef.cascade-delete
+    category: ef
+    label: { de: "Löschverhalten (Cascade, SetNull) einer Beziehung festlegen", en: "Set the delete behaviour (Cascade, SetNull) of a relation" }
+  - id: ef.fluent-config
+    category: ef
+    label: { de: "Das Modell in OnModelCreating mit der Fluent API konfigurieren", en: "Configure the model in OnModelCreating with the Fluent API" }
+  - id: ef.value-converter
+    category: ef
+    label: { de: "Mit einem Wertkonverter einen Typ (z. B. Enum als Text) abbilden", en: "Map a type (e.g. enum as text) with a value converter" }
+  - id: ef.concurrency-token
+    category: ef
+    label: { de: "Parallele Änderungen mit einem Concurrency Token erkennen", en: "Detect concurrent changes with a concurrency token" }
+  - id: ef.transactions
+    category: ef
+    label: { de: "Eine explizite Transaktion mit Database.BeginTransaction verwenden", en: "Use an explicit transaction with Database.BeginTransaction" }
+  - id: ef.migrations
+    category: ef
+    label: { de: "Migrationen (dotnet ef) und ihren Zweck einordnen", en: "Classify migrations (dotnet ef) and their purpose" }
+
+  # ---------------------------------------------------------------------------
+  # Level 20 — WPF und das MVVM-Muster (ch. 12, Wahlmodul)
+  # ---------------------------------------------------------------------------
+  - id: wpf.architecture
+    category: wpf
+    label: { de: "WPF-Architektur (Application, Window, Rendering, Plattform) einordnen", en: "Classify the WPF architecture (Application, Window, rendering, platform)" }
+  - id: xaml.markup
+    category: xaml
+    label: { de: "XAML-Markup lesen: Elemente, Attribute, Eigenschaftselemente, Markuperweiterungen", en: "Read XAML markup: elements, attributes, property elements, markup extensions" }
+  - id: xaml.routed-events
+    category: xaml
+    label: { de: "Routingereignisse (Tunneling, Bubbling, Direct) unterscheiden", en: "Distinguish routed events (tunnelling, bubbling, direct)" }
+  - id: xaml.dependency-property
+    category: xaml
+    label: { de: "Abhängigkeitseigenschaften und ihre Vorteile einordnen", en: "Classify dependency properties and their advantages" }
+  - id: xaml.binding-modes
+    category: xaml
+    label: { de: "Bindungsmodi (OneWay, TwoWay, UpdateSourceTrigger) unterscheiden", en: "Distinguish binding modes (OneWay, TwoWay, UpdateSourceTrigger)" }
+  - id: mvvm.inpc
+    category: mvvm
+    label: { de: "INotifyPropertyChanged in einer ViewModel-Basisklasse implementieren", en: "Implement INotifyPropertyChanged in a view-model base class" }
+  - id: mvvm.computed-property
+    category: mvvm
+    label: { de: "Abhängige (berechnete) Eigenschaften mit Änderungsbenachrichtigung bereitstellen", en: "Provide dependent (computed) properties with change notification" }
+  - id: mvvm.separation
+    category: mvvm
+    label: { de: "Zuständigkeiten von Model, View und ViewModel trennen", en: "Separate the responsibilities of Model, View and ViewModel" }
+  - id: mvvm.relaycommand
+    category: mvvm
+    label: { de: "ICommand in einer RelayCommand-Klasse implementieren", en: "Implement ICommand in a RelayCommand class" }
+  - id: mvvm.canexecute
+    category: mvvm
+    label: { de: "CanExecute und CanExecuteChanged zur Steuerung von Befehlen nutzen", en: "Use CanExecute and CanExecuteChanged to control commands" }
+  - id: mvvm.command-parameter
+    category: mvvm
+    label: { de: "Befehle mit CommandParameter parametrisieren", en: "Parameterise commands with CommandParameter" }
+  - id: mvvm.observablecollection
+    category: mvvm
+    label: { de: "ObservableCollection<T> mit CollectionChanged im ViewModel einsetzen", en: "Use ObservableCollection<T> with CollectionChanged in the view model" }
+  - id: mvvm.validation
+    category: mvvm
+    label: { de: "Eingaben im ViewModel mit INotifyDataErrorInfo validieren", en: "Validate input in the view model with INotifyDataErrorInfo" }
+  - id: xaml.layout-containers
+    category: xaml
+    label: { de: "Layoutcontainer (Grid, StackPanel, DockPanel, WrapPanel) passend einsetzen", en: "Use layout containers (Grid, StackPanel, DockPanel, WrapPanel) appropriately" }
+  - id: xaml.data-binding
+    category: xaml
+    label: { de: "Steuerelemente per Binding an ein ViewModel anbinden", en: "Bind controls to a view model with Binding" }
+  - id: xaml.controls
+    category: xaml
+    label: { de: "Gängige Steuerelemente (TextBox, Button, ListBox, ComboBox) einsetzen", en: "Use common controls (TextBox, Button, ListBox, ComboBox)" }
+  - id: wpf.project-structure
+    category: wpf
+    label: { de: "Aufbau eines WPF-Projekts (App.xaml, MainWindow.xaml, Code-Behind) verstehen", en: "Understand the structure of a WPF project (App.xaml, MainWindow.xaml, code-behind)" }
+
+  # ---------------------------------------------------------------------------
+  # Level 21 — Netzwerkprogrammierung (ch. 21, Wahlmodul)
+  # ---------------------------------------------------------------------------
+  - id: net.osi-concepts
+    category: net
+    label: { de: "Schichten des OSI-/TCP-IP-Modells, IP-Adresse, Port und DNS einordnen", en: "Classify the layers of the OSI/TCP-IP model, IP address, port and DNS" }
+  - id: net.uri-parse
+    category: net
+    label: { de: "Eine URL mit Uri in Schema, Host, Port, Pfad und Abfrage zerlegen", en: "Split a URL with Uri into scheme, host, port, path and query" }
+  - id: net.uri-builder
+    category: net
+    label: { de: "URLs mit UriBuilder und Uri.TryCreate sicher zusammensetzen", en: "Assemble URLs safely with UriBuilder and Uri.TryCreate" }
+  - id: net.query-escape
+    category: net
+    label: { de: "Anforderungsparameter mit Uri.EscapeDataString kodieren und dekodieren", en: "Encode and decode request parameters with Uri.EscapeDataString" }
+  - id: net.ip-address
+    category: net
+    label: { de: "IP-Adressen mit IPAddress parsen und prüfen (Loopback, IPv4/IPv6)", en: "Parse and check IP addresses with IPAddress (loopback, IPv4/IPv6)" }
+  - id: net.http-methods
+    category: net
+    label: { de: "HTTP-Methoden GET, POST, HEAD und Statuscode-Klassen einordnen", en: "Classify the HTTP methods GET, POST, HEAD and status-code classes" }
+  - id: net.httpclient-lifetime
+    category: net
+    label: { de: "Einen HttpClient wiederverwenden statt pro Aufruf neu zu erzeugen", en: "Reuse an HttpClient instead of creating one per call" }
+  - id: net.httpclient-get
+    category: net
+    label: { de: "Mit HttpClient GET-Anforderungen stellen (GetStringAsync, GetAsync, HEAD)", en: "Make GET requests with HttpClient (GetStringAsync, GetAsync, HEAD)" }
+  - id: net.httpclient-post
+    category: net
+    label: { de: "Mit HttpClient Daten per POST senden", en: "Send data with HttpClient via POST" }
+  - id: net.http-status
+    category: net
+    label: { de: "Statuscodes auswerten (IsSuccessStatusCode, EnsureSuccessStatusCode)", en: "Evaluate status codes (IsSuccessStatusCode, EnsureSuccessStatusCode)" }
+  - id: net.json-over-http
+    category: net
+    label: { de: "JSON mit GetFromJsonAsync und PostAsJsonAsync übertragen", en: "Transfer JSON with GetFromJsonAsync and PostAsJsonAsync" }
+  - id: net.await-io
+    category: net
+    label: { de: "E/A-Aufrufe von HttpClient mit async/await abwarten", en: "Await I/O calls of HttpClient with async/await" }
+  - id: net.tcp-listener
+    category: net
+    label: { de: "Mit TcpListener einen TCP-Server aufsetzen und einen Klienten annehmen", en: "Set up a TCP server with TcpListener and accept a client" }
+  - id: net.tcp-client
+    category: net
+    label: { de: "Mit TcpClient eine Verbindung aufbauen und Daten austauschen", en: "Connect and exchange data with TcpClient" }
+  - id: net.line-protocol
+    category: net
+    label: { de: "Ein zeilenbasiertes Protokoll über einen NetworkStream umsetzen", en: "Implement a line-based protocol over a NetworkStream" }
+  - id: net.multi-client
+    category: net
+    label: { de: "Einen Server für mehrere gleichzeitige Klienten entwerfen", en: "Design a server for several simultaneous clients" }
+  - id: net.webview2
+    category: net
+    label: { de: "Das WebView2-Steuerelement in eine WPF-Anwendung einbinden", en: "Embed the WebView2 control in a WPF application" }
+
+  # ---------------------------------------------------------------------------
+  # Level 22 — ASP.NET Core Razor Pages (ch. 22, Wahlmodul)
+  # ---------------------------------------------------------------------------
+  - id: web.request-pipeline
+    category: web
+    label: { de: "Request-Pipeline und die Reihenfolge von Middleware einordnen", en: "Classify the request pipeline and the order of middleware" }
+  - id: web.stateless-http
+    category: web
+    label: { de: "Die Zustandslosigkeit von HTTP und ihre Folgen für Webseiten einordnen", en: "Classify the statelessness of HTTP and its consequences for web pages" }
+  - id: web.overposting-risk
+    category: web
+    label: { de: "Overposting bei der Modellbindung erkennen", en: "Recognise overposting in model binding" }
+  - id: web.pagemodel-onget
+    category: web
+    label: { de: "Eine PageModel-Klasse mit OnGet schreiben, die Daten für die Seite bereitstellt", en: "Write a PageModel class with OnGet that provides data for the page" }
+  - id: web.pagemodel-onpost
+    category: web
+    label: { de: "Formulardaten in OnPost verarbeiten und ein IActionResult zurückgeben", en: "Process form data in OnPost and return an IActionResult" }
+  - id: web.bindproperty
+    category: web
+    label: { de: "Eingaben mit [BindProperty] an PageModel-Eigenschaften binden", en: "Bind input to PageModel properties with [BindProperty]" }
+  - id: web.redirect-to-page
+    category: web
+    label: { de: "Nach erfolgreicher Verarbeitung mit RedirectToPage weiterleiten (Post-Redirect-Get)", en: "Redirect after successful processing with RedirectToPage (Post-Redirect-Get)" }
+  - id: web.modelstate
+    category: web
+    label: { de: "ModelState.IsValid und Fehlermeldungen in OnPost auswerten", en: "Evaluate ModelState.IsValid and error messages in OnPost" }
+  - id: web.di-inject
+    category: web
+    label: { de: "Dienste per Konstruktor in ein PageModel injizieren", en: "Inject services into a PageModel via constructor" }
+  - id: web.validation-attributes
+    category: web
+    label: { de: "Eingaben mit Validierungsattributen ([Required], [Range], [StringLength]) prüfen", en: "Check input with validation attributes ([Required], [Range], [StringLength])" }
+  - id: web.validation-ivalidatableobject
+    category: web
+    label: { de: "Mit IValidatableObject Regeln über mehrere Eigenschaften prüfen", en: "Check rules across several properties with IValidatableObject" }
+  - id: web.program-cs
+    category: web
+    label: { de: "Program.cs: Dienste registrieren und die Middleware-Pipeline aufbauen", en: "Program.cs: register services and build the middleware pipeline" }
+  - id: web.di-register
+    category: web
+    label: { de: "Dienste mit AddSingleton, AddScoped oder AddTransient registrieren", en: "Register services with AddSingleton, AddScoped or AddTransient" }
+  - id: web.routing-parameters
+    category: web
+    label: { de: "Routenparameter und Einschränkungen (@page \"{id:int}\") verwenden", en: "Use route parameters and constraints (@page \"{id:int}\")" }
+  - id: web.razor-syntax
+    category: web
+    label: { de: "Razor-Syntax (@model, @foreach, @if, @Model) in Seiten schreiben", en: "Write Razor syntax (@model, @foreach, @if, @Model) in pages" }
+  - id: web.integration-test
+    category: web
+    label: { de: "Eine Seite mit WebApplicationFactory per HTTP-Aufruf testen", en: "Test a page with WebApplicationFactory via HTTP calls" }
+  - id: web.tag-helpers-form
+    category: web
+    label: { de: "Formulare mit Tag-Helfern (asp-for, asp-validation-for) aufbauen", en: "Build forms with tag helpers (asp-for, asp-validation-for)" }
+  - id: web.layout
+    category: web
+    label: { de: "Ein gemeinsames Layout mit _Layout.cshtml und _ViewImports einsetzen", en: "Use a shared layout with _Layout.cshtml and _ViewImports" }
+
+  # ---------------------------------------------------------------------------
+  # Level 23 — Veröffentlichung von Anwendungen (ch. 23, Wahlmodul)
+  # ---------------------------------------------------------------------------
+  - id: publish.configuration-release
+    category: publish
+    label: { de: "Debug- und Release-Konfiguration unterscheiden und Release veröffentlichen", en: "Distinguish Debug and Release configurations and publish Release" }
+  - id: publish.target-framework
+    category: publish
+    label: { de: "Das Zielframework (TargetFramework) einer Anwendung festlegen und einordnen", en: "Set and classify the target framework (TargetFramework) of an application" }
+  - id: publish.framework-dependent
+    category: publish
+    label: { de: "Eine frameworkabhängige Veröffentlichung beschreiben und erzeugen", en: "Describe and produce a framework-dependent publish" }
+  - id: publish.self-contained
+    category: publish
+    label: { de: "Eine eigenständige (self-contained) Veröffentlichung beschreiben und erzeugen", en: "Describe and produce a self-contained publish" }
+  - id: publish.runtime-identifier
+    category: publish
+    label: { de: "Einen Runtime Identifier (z. B. win-x64) wählen", en: "Choose a runtime identifier (e.g. win-x64)" }
+  - id: publish.dotnet-publish
+    category: publish
+    label: { de: "Mit dotnet publish eine Anwendung veröffentlichen", en: "Publish an application with dotnet publish" }
+  - id: publish.output-contents
+    category: publish
+    label: { de: "Beurteilen, welche Dateien des Veröffentlichungsordners ausgeliefert werden müssen", en: "Judge which files of the publish folder must be shipped" }
+  - id: publish.single-file
+    category: publish
+    label: { de: "Eine Einzeldateianwendung (PublishSingleFile) erzeugen", en: "Produce a single-file application (PublishSingleFile)" }
+  - id: publish.readytorun
+    category: publish
+    label: { de: "ReadyToRun-Übersetzung und ihre Vor- und Nachteile einordnen", en: "Classify ReadyToRun compilation and its pros and cons" }
+  - id: publish.web-local-install
+    category: publish
+    label: { de: "Eine ASP.NET-Core-Anwendung lokal veröffentlichen und starten", en: "Publish and start an ASP.NET Core application locally" }
+  - id: publish.web-hosting
+    category: publish
+    label: { de: "Hosting-Optionen für Webanwendungen (Kestrel, IIS) einordnen", en: "Classify hosting options for web applications (Kestrel, IIS)" }
+  - id: publish.reverse-proxy
+    category: publish
+    label: { de: "Die Rolle eines Reverse Proxy vor Kestrel erklären", en: "Explain the role of a reverse proxy in front of Kestrel" }

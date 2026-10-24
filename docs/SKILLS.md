@@ -1,7 +1,7 @@
-# Skill vocabulary — levels 0–9
+# Skill vocabulary — levels 0–23
 
-Draft from task 3a. `skills.yaml` is the single source of truth; this file
-explains it for review. Ids are permanent once a trainee database references
+Draft from task 3a, extended for levels 10–23 (planned, see `docs/PLAN-10-23.md`).
+`skills.yaml` is the single source of truth; this file explains it for review. Ids are permanent once a trainee database references
 them, so review the ids more carefully than the labels.
 
 ## Counts per level (drafting order)
@@ -18,9 +18,24 @@ them, so review the ids more carefully than the labels.
 | 7 | Vererbung und Polymorphie | 20 | inheritance, extensions, records |
 | 8 | Typgenerisches Programmieren | 13 | generics, algo |
 | 9 | Interfaces | 21 | interfaces, iterators, generics, oop |
+| 10 | Kollektionen | 25 | collections |
+| 11 | Ausnahmebehandlung | 22 | exceptions |
+| 12 | Delegaten, Lambda-Ausdrücke und Ereignisse | 23 | delegates, lambdas, events |
+| 13 | LINQ-to-Objects | 25 | linq |
+| 14 | C# für Fortgeschrittene | 25 | nullable, patterns, refs, spans, arrays, params |
+| 15 | Dateiverarbeitung und JSON | 24 | files, resources, json |
+| 16 | Attribute und Reflexion (Wahl) | 18 | attributes, reflection |
+| 17 | Multithreading und asynchrone Programmierung (Wahl) | 20 | threading, tasks, parallel, async |
+| 18 | SQL und ADO.NET (mit SQLite) (Wahl) | 20 | sql, ado |
+| 19 | Entity Framework Core (mit SQLite) (Wahl) | 22 | ef |
+| 20 | WPF und das MVVM-Muster (Wahl) | 17 | wpf, xaml, mvvm |
+| 21 | Netzwerkprogrammierung (Wahl) | 17 | net |
+| 22 | ASP.NET Core Razor Pages (Wahl) | 18 | web |
+| 23 | Veröffentlichung von Anwendungen (Wahl) | 12 | publish |
 
-206 skills (150 from the levels 0–6 draft, `oop.indexer-overload` and
-`algo.vector-geometry` added for level 5, 54 for levels 7–9). Level 2 and 6
+494 skills: the 206 of levels 0–9 (150 from the levels 0–6 draft,
+`oop.indexer-overload` and `algo.vector-geometry` added for level 5, 54 for
+levels 7–9) plus 288 planned for levels 10–23 (see below). Level 2 and 6
 are above the 25 guideline because they each cover five to eight book
 sections; split the levels rather than coarsening the skills if that bothers
 you.
@@ -86,6 +101,43 @@ exercises 0.2, 3.6, 4.4, 4.5, 4.9): `oop.reference-semantics`,
 `overflow.wraparound`, `overflow.min-max-value`, `types.long`, `types.float`,
 `types.bit-pattern`, `strings.escape` and a few `tools.*` ids from level 0.
 Requiring one of them is a validation error, so manifests avoid them.
+
+## Levels 10–23 (planned)
+
+`docs/PLAN-10-23.md` specifies every module and exercise for the book chapters
+that are not authored yet; the 288 skills it needs were appended to
+`skills.yaml` (ids are permanent once published, labels are German with an
+English translation).
+
+| Block | Levels | Skills | Notes |
+|---|---|---:|---|
+| Core | 10 Kollektionen, 11 Ausnahmebehandlung, 12 Delegaten und Ereignisse, 13 LINQ, 14 C# für Fortgeschrittene, 15 Dateiverarbeitung | 144 | 4–7 mandatory exercises per level, plus 3 optional each |
+| Electives | 16 Attribute und Reflexion, 17 Multithreading, 18 ADO.NET, 19 EF Core, 20 WPF, 21 Netzwerk, 22 ASP.NET Core, 23 Veröffentlichung | 144 | 3–5 mandatory exercises per level, 2–3 optional |
+
+New categories: `collections`, `exceptions`, `delegates`, `lambdas`, `events`,
+`linq`, `nullable`, `patterns`, `refs`, `spans`, `params`, `files`,
+`resources`, `json` (core) and `attributes`, `reflection`, `threading`,
+`tasks`, `parallel`, `async`, `sql`, `ado`, `ef`, `wpf`, `xaml`, `mvvm`,
+`net`, `web`, `publish` (electives). `arrays.inline-array` extends the
+existing `arrays` category.
+
+Rules the plan follows (all checked by a script before commit):
+
+- Every skill is taught by at least one mandatory exercise; optional exercises
+  only re-teach.
+- A `requires` skill is taught by a mandatory exercise of an earlier level or an
+  earlier exercise of the same level.
+- **Electives require only core skills** (levels 0–15) and skills of their own
+  earlier exercises, never another elective's. Concepts that exist in two
+  electives are not shared: `21-netzwerk` teaches its own `net.await-io`
+  instead of requiring `async.await` from `17-multithreading`, the EF
+  exercises stay synchronous.
+- Skills that levels 0–9 do not teach (`types.long`, `types.decimal`,
+  `types.bit-pattern`, …) are not required anywhere.
+- Gradability: ADO.NET and EF Core run against SQLite in memory, WPF is graded
+  through plain `net10.0` view-model libraries, networking through a stub
+  `HttpMessageHandler` and loopback sockets, ASP.NET Core through page-model unit
+  tests and `WebApplicationFactory`; publishing is quiz and review only.
 
 ## Skill graph, levels 0–9
 

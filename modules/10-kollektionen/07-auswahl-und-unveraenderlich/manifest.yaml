@@ -1,0 +1,109 @@
+id: kollektionen-auswahl-und-unveraenderlich
+title: { de: "Die richtige Kollektion; schreibgeschützt und unveränderlich" }
+reading:
+  section: "11.7"
+  title: { de: "Unveränderliche Kollektionen" }
+  printedPage: 716
+teaches:
+  - collections.readonly-view
+  - collections.immutable-list
+  - collections.choose-by-requirement
+  - collections.array-vs-list
+requires:
+  - collections.list-add-remove
+  - collections.dictionary-add-lookup
+  - collections.hashset-add-contains
+  - collections.linkedlist-nodes
+  - interfaces.ienumerable
+items:
+  - type: coding
+    id: kurs
+    openFile: "Kurse/Kurs.cs"
+    openLine: 20
+    testProject: "Kurse Tests/Kurse.Tests.csproj"
+  - type: multipleChoice
+    id: aussagen
+    prompt: { de: "Buchaufgabe 11.8 Nr. 1: Welche der folgenden Aussagen sind richtig? (mehrere Antworten möglich)" }
+    options:
+      - { de: "Ein Objekt aus der Kollektionsklasse List<T> oder LinkedList<T> hält seine Elemente in sortiertem Zustand." }
+      - { de: "Die Klasse HashSet<T> bietet die beste Leistung bei Existenzprüfungen." }
+      - { de: "Die Klasse List<T> beherrscht zum Suchen und Sortieren dieselben Methoden wie ein Array." }
+      - { de: "Die Klasse Dictionary<K,V> kann zu einem Schlüssel sehr schnell den dazugehörigen Wert ermitteln." }
+      - { de: "Die Kollektionsklasse SortedDictionary<K,V> hält ihre Elemente in sortiertem Zustand." }
+    correct: [1, 2, 3, 4]
+    explanation: { de: "Die erste Aussage ist falsch: List<T> und LinkedList<T> behalten die Einfügereihenfolge, sortiert wird nur auf Wunsch mit Sort(). Die übrigen vier stimmen (11.4.1, 11.5.2, 11.6 und der Hinweis auf SortedDictionary in 11.6, Seite 716)." }
+  - type: multipleChoice
+    id: szenario-index
+    prompt: { de: "Szenario: Die Reihenfolge der Einträge ist wichtig, und man greift mit einer Positionsnummer auf sie zu. Welche Kollektion passt am besten?" }
+    options:
+      - { de: "List<T>" }
+      - { de: "Queue<T>" }
+      - { de: "Stack<T>" }
+      - { de: "HashSet<T>" }
+      - { de: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>" }
+    correct: [0]
+    explanation: { de: "Nur List<T> (und das Array) bietet Indexzugriff in fester Reihenfolge (11.4.1, Seite 697)." }
+  - type: multipleChoice
+    id: szenario-enthalten
+    prompt: { de: "Szenario: Bei sehr vielen Einträgen soll möglichst schnell geprüft werden, ob ein Name schon vorkommt. Welche Kollektion passt am besten?" }
+    options:
+      - { de: "List<T>" }
+      - { de: "Queue<T>" }
+      - { de: "Stack<T>" }
+      - { de: "HashSet<T>" }
+      - { de: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>" }
+    correct: [3]
+    explanation: { de: "Contains() kostet in einer Liste O(n), in einem HashSet<T> O(1) (11.5.2, Seite 704; 11.8, Seite 723)." }
+  - type: multipleChoice
+    id: szenario-sortiert
+    prompt: { de: "Szenario: Zahlen sollen gesammelt werden, jede nur einmal, und immer in aufsteigender Reihenfolge verfügbar sein. Welche Kollektion passt am besten?" }
+    options:
+      - { de: "List<T>" }
+      - { de: "Queue<T>" }
+      - { de: "Stack<T>" }
+      - { de: "HashSet<T>" }
+      - { de: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>" }
+    correct: [4]
+    explanation: { de: "SortedSet<T> ist ein balancierter Binärbaum ohne Duplikate (11.5.3, Seite 711), wie beim Lotto." }
+  - type: multipleChoice
+    id: szenario-schluessel
+    prompt: { de: "Szenario: Zu einer Kundennummer soll der zugehörige Kunde gefunden werden. Welche Kollektion passt am besten?" }
+    options:
+      - { de: "List<T>" }
+      - { de: "Queue<T>" }
+      - { de: "Stack<T>" }
+      - { de: "HashSet<T>" }
+      - { de: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>" }
+    correct: [5]
+    explanation: { de: "Ein Dictionary<K,V> ordnet Schlüsseln Werte zu und findet sie schnell (11.6, Seite 714)." }
+  - type: multipleChoice
+    id: szenario-rueckgaengig
+    prompt: { de: "Szenario: Ein Rückgängig-Verlauf soll immer zuerst die zuletzt ausgeführte Aktion zurücknehmen. Welche Kollektion passt am besten?" }
+    options:
+      - { de: "List<T>" }
+      - { de: "Queue<T>" }
+      - { de: "Stack<T>" }
+      - { de: "HashSet<T>" }
+      - { de: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>" }
+    correct: [2]
+    explanation: { de: "Zuletzt hinein, zuerst heraus (LIFO): Stack<T> (11.4.2, Seite 700)." }
+  - type: multipleChoice
+    id: szenario-warteschlange
+    prompt: { de: "Szenario: Druckaufträge sollen in der Reihenfolge ihres Eintreffens abgearbeitet werden. Welche Kollektion passt am besten?" }
+    options:
+      - { de: "List<T>" }
+      - { de: "Queue<T>" }
+      - { de: "Stack<T>" }
+      - { de: "HashSet<T>" }
+      - { de: "SortedSet<T>" }
+      - { de: "Dictionary<TKey,TValue>" }
+    correct: [1]
+    explanation: { de: "Zuerst hinein, zuerst heraus (FIFO): Queue<T> (11.4.2, Seite 700). Eine Liste müsste beim Entnehmen am Anfang alle übrigen Elemente verschieben." }
+  - type: open
+    id: monate
+    prompt: { de: "Du musst die zwölf Monatsnamen eines Jahres speichern. Nimmst du ein Array oder eine List<T>? Begründe mit Größenänderung und Zugriff (11.1, Seite 691)." }

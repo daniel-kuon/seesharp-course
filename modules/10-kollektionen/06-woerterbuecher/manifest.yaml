@@ -1,0 +1,23 @@
+id: kollektionen-woerterbuecher
+title: { de: "Wörterbücher" }
+reading:
+  section: "11.6"
+  title: { de: "Verwaltung von (Schlüssel-Wert) - Paaren" }
+  printedPage: 714
+teaches:
+  - collections.dictionary-add-lookup
+  - collections.dictionary-trygetvalue
+  - collections.dictionary-iterate
+  - collections.dictionary-grouping
+requires:
+  - collections.list-add-remove
+  - collections.hashset-add-contains
+  - strings.methods
+  - control.foreach
+  - tuples.declare
+items:
+  - type: coding
+    id: woerterbuecher
+    openFile: "Woerterbuecher/Woerterbuecher.cs"
+    openLine: 32
+    testProject: "Woerterbuecher Tests/Woerterbuecher.Tests.csproj"

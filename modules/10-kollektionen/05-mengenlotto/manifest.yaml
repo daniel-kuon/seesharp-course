@@ -1,0 +1,20 @@
+id: kollektionen-mengenlotto
+title: { de: "Lotto mit SortedSet<T>" }
+reading:
+  section: "11.5.3"
+  title: { de: "Balancierte Binärbäume und die Klasse SortedSet<T>" }
+  printedPage: 711
+teaches:
+  - collections.sortedset
+  - collections.sortedset-range
+requires:
+  - collections.hashset-add-contains
+  - collections.set-operations
+  - basics.random-seeded
+  - control.while
+items:
+  - type: coding
+    id: lotto
+    openFile: "Lotto/Lotto.cs"
+    openLine: 9
+    testProject: "Lotto Tests/Lotto.Tests.csproj"

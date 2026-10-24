@@ -1,0 +1,19 @@
+id: kollektionen-druckauftraege
+title: { de: "Zusatz: Druckaufträge und Rückgängig-Stapel" }
+optional: true
+reading:
+  section: "11.4.1"
+  title: { de: "Klasse List<T> mit Array-Unterbau" }
+  printedPage: 697
+teaches:
+  - collections.queue-fifo
+  - collections.stack-lifo
+requires:
+  - collections.list-add-remove
+  - control.while
+items:
+  - type: coding
+    id: druckauftraege
+    openFile: "Druckauftraege/Druckauftraege.cs"
+    openLine: 14
+    testProject: "Druckauftraege Tests/Druckauftraege.Tests.csproj"

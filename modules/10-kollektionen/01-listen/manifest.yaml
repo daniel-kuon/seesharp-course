@@ -1,0 +1,35 @@
+id: kollektionen-listen
+title: { de: "Listen verwalten" }
+reading:
+  section: "11.4.1"
+  title: { de: "Klasse List<T> mit Array-Unterbau" }
+  printedPage: 697
+teaches:
+  - collections.list-add-remove
+  - collections.list-index-search
+  - collections.list-sort
+  - collections.list-remove-while-iterating
+  - collections.convert-array
+requires:
+  - arrays.array-class
+  - arrays.index-length
+  - control.for
+  - control.foreach
+  - generics.class-declare
+  - interfaces.icomparable
+  - methods.return-value
+items:
+  - type: coding
+    id: listenwerkzeuge
+    openFile: "Listen/Listenwerkzeuge.cs"
+    openLine: 8
+    testProject: "Listen Tests/Listen.Tests.csproj"
+  - type: multipleChoice
+    id: foreach-remove
+    prompt: { de: "Warum bricht foreach (var x in liste) liste.Remove(x); zur Laufzeit ab?" }
+    options:
+      - { de: "Der Enumerator merkt, dass sich die Liste während der Aufzählung geändert hat, und löst eine Ausnahme aus; sicher geht es mit RemoveAll() oder einer Schleife, die rückwärts läuft." }
+      - { de: "Remove() ist in einer foreach-Schleife grundsätzlich verboten, der Compiler meldet einen Fehler." }
+      - { de: "Remove() löscht alle Elemente mit demselben Wert, deshalb ist die Schleife sofort zu Ende." }
+    correct: [0]
+    explanation: { de: "11.4.1 (Seite 697). Der Name der Ausnahme (InvalidOperationException) folgt in Level 11; wichtig ist hier die Regel: Eine Kollektion nicht während ihrer Aufzählung verändern." }

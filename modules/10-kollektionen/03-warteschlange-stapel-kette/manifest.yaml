@@ -1,0 +1,22 @@
+id: kollektionen-warteschlange-stapel-kette
+title: { de: "Warteschlange, Stapel und verkettete Liste" }
+reading:
+  section: "11.4.2"
+  title: { de: "Klasse LinkedList<T> mit doppelt verketteten Knoten" }
+  printedPage: 700
+teaches:
+  - collections.queue-fifo
+  - collections.stack-lifo
+  - collections.linkedlist-nodes
+requires:
+  - collections.list-add-remove
+  - collections.expression
+  - control.while
+  - strings.char-iteration
+  - oop.class-declare
+items:
+  - type: coding
+    id: warteschlangen
+    openFile: "Warteschlangen/Warteschlangen.cs"
+    openLine: 13
+    testProject: "Warteschlangen Tests/Warteschlangen.Tests.csproj"

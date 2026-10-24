@@ -1,0 +1,23 @@
+id: kollektionen-mengen
+title: { de: "Mengen mit HashSet<T>" }
+reading:
+  section: "11.5.2"
+  title: { de: "Hashtabellen und die Klasse HashSet<T>" }
+  printedPage: 704
+teaches:
+  - collections.hashset-add-contains
+  - collections.set-operations
+  - collections.equals-gethashcode-override
+requires:
+  - collections.list-index-search
+  - collections.icollection-members
+  - inheritance.virtual-override
+  - oop.tostring-override
+  - control.foreach
+  - operators.logical
+items:
+  - type: coding
+    id: mengen
+    openFile: "Mengen/Mengenwerkzeuge.cs"
+    openLine: 7
+    testProject: "Mengen Tests/Mengen.Tests.csproj"

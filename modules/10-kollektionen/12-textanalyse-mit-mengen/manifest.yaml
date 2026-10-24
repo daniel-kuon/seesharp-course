@@ -1,0 +1,21 @@
+id: kollektionen-textanalyse-mengen
+title: { de: "Zusatz: Textanalyse mit Mengen" }
+optional: true
+reading:
+  section: "11.5.2"
+  title: { de: "Hashtabellen und die Klasse HashSet<T>" }
+  printedPage: 704
+teaches:
+  - collections.hashset-add-contains
+  - collections.set-operations
+  - collections.list-sort
+requires:
+  - collections.list-add-remove
+  - strings.methods
+  - control.foreach
+items:
+  - type: coding
+    id: textvergleich
+    openFile: "Textanalyse/Textvergleich.cs"
+    openLine: 8
+    testProject: "Textanalyse Tests/Textanalyse.Tests.csproj"

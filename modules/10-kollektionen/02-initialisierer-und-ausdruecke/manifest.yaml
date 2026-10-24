@@ -1,0 +1,34 @@
+id: kollektionen-initialisierer
+title: { de: "Kollektionsinitialisierer und Kollektionsausdrücke" }
+reading:
+  section: "11.3"
+  title: { de: "Kollektionsinitialisierer und Kollektionsausdrücke" }
+  printedPage: 695
+teaches:
+  - collections.initializer
+  - collections.expression
+  - collections.expression-spread
+  - collections.icollection-members
+requires:
+  - collections.list-add-remove
+  - collections.convert-array
+  - arrays.declare-init
+  - generics.method
+  - interfaces.ienumerable
+items:
+  - type: coding
+    id: sammler
+    openFile: "Sammler/Sammler.cs"
+    openLine: 7
+    testProject: "Sammler Tests/Sammler.Tests.csproj"
+  - type: multipleChoice
+    id: zieltyp
+    prompt: { de: "Welche dieser Zeilen kompilieren? (mehrere Antworten möglich)" }
+    options:
+      - { de: "int[] a = [1, 2, 3];" }
+      - { de: "List<string> b = [];" }
+      - { de: "var c = [];" }
+      - { de: "IEnumerable<int> d = [1, ..a];   // a ist ein int[]" }
+      - { de: "var e = [1, 2, 3];" }
+    correct: [0, 1, 3]
+    explanation: { de: "Ein Kollektionsausdruck hat keinen eigenen Typ, er bekommt ihn vom Ziel (11.3, Seite 695). Bei var fehlt dieser Zieltyp, deshalb sind die dritte und die fünfte Zeile Fehler (CS9176); ein Spread-Element (..a) kann jede Folge einfügen." }

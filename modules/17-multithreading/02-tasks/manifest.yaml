@@ -1,0 +1,25 @@
+id: threads-tasks
+title: { de: "Aufgaben: Task.Run, WhenAll, WhenAny, ContinueWith" }
+reading:
+  section: "17.5.1"
+  title: { de: "Aufgaben ohne bzw. mit Rückgabe erstellen" }
+  printedPage: 1120
+teaches:
+  - tasks.run
+  - tasks.when-all-any
+  - tasks.continuewith
+  - tasks.completionsource
+requires:
+  - lambdas.closure
+  - delegates.generic-func
+  - delegates.generic-action
+  - threading.thread-start-join
+  - collections.list-add-remove
+  - linq.select
+  - events.subscribe-unsubscribe
+items:
+  - type: coding
+    id: aufgaben
+    openFile: "Aufgaben/Berechnungen.cs"
+    openLine: 1
+    testProject: "Aufgaben Tests/Aufgaben.Tests.csproj"

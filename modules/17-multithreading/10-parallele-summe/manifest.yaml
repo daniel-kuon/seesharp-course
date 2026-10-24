@@ -1,0 +1,19 @@
+id: threads-parallele-summe
+title: { de: "Zusatz: Parallele Summe" }
+optional: true
+reading:
+  section: "17.5.11"
+  title: { de: "Die Klasse Parallel" }
+  printedPage: 1152
+teaches:
+  - parallel.for-foreach
+  - threading.interlocked
+  - tasks.run
+requires:
+  - threading.lock-statement
+items:
+  - type: coding
+    id: parallele-summe
+    openFile: "ParalleleSumme/Statistik.cs"
+    openLine: 1
+    testProject: "ParalleleSumme Tests/ParalleleSumme.Tests.csproj"

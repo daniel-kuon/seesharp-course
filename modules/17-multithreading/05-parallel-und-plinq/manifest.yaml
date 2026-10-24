@@ -1,0 +1,26 @@
+id: threads-parallel-und-plinq
+title: { de: "Parallel und PLINQ" }
+reading:
+  section: "17.5.11"
+  title: { de: "Die Klasse Parallel" }
+  printedPage: 1152
+teaches:
+  - parallel.for-foreach
+  - parallel.invoke
+  - parallel.plinq
+  - threading.lock-protect-collection
+requires:
+  - threading.lock-statement
+  - threading.interlocked
+  - tasks.run
+  - linq.where
+  - linq.select
+  - linq.orderby
+  - lambdas.statement
+  - collections.list-add-remove
+items:
+  - type: coding
+    id: parallel-und-plinq
+    openFile: "ParallelPlinq/ParallelRechner.cs"
+    openLine: 1
+    testProject: "ParallelPlinq Tests/ParallelPlinq.Tests.csproj"

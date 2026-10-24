@@ -1,0 +1,37 @@
+id: threads-async-await
+title: { de: "async und await" }
+reading:
+  section: "17.6.4"
+  title: { de: "Definition von async-Methoden" }
+  printedPage: 1169
+teaches:
+  - async.declare
+  - async.await
+  - async.exception-handling
+  - async.cancellation
+  - async.avoid-async-void
+  - async.avoid-blocking
+requires:
+  - tasks.run
+  - tasks.when-all-any
+  - tasks.cancellation
+  - tasks.aggregate-exception
+  - exceptions.try-catch
+  - files.readall-writeall
+  - lambdas.statement
+items:
+  - type: coding
+    id: async-await
+    openFile: "AsyncAwait/Dateien.cs"
+    openLine: 1
+    testProject: "AsyncAwait Tests/AsyncAwait.Tests.csproj"
+  - type: multipleChoice
+    id: deadlock
+    prompt: { de: "In einer Anwendung mit Benutzeroberfläche ruft der UI-Thread eine async-Methode auf, die intern mit await arbeitet, und blockiert dann mit .Result auf deren Ergebnis. Warum hängt das Programm?" }
+    options:
+      - { de: "Der UI-Thread wartet in .Result auf das Ende der Methode. Die Fortsetzung nach dem await will aber im UI-Thread weiterlaufen (Synchronisierungskontext) und kann das nicht, solange er blockiert ist. Beide warten aufeinander: ein Deadlock." }
+      - { de: "Result kann nur auf dem Threadpool aufgerufen werden; auf dem UI-Thread ist es verboten und wirft sofort eine Ausnahme." }
+      - { de: "Der await beginnt erst, wenn niemand mehr auf die Aufgabe wartet." }
+      - { de: "Die async-Methode läuft in einem eigenen Prozess und braucht Zeit zum Starten; nach einigen Sekunden läuft das Programm weiter." }
+    correct: [0]
+    explanation: { de: "17.6.12.2 (Seite 1200). Abhilfe: nicht blockieren, sondern bis nach oben mit await weitergeben (async all the way); in Bibliothekscode zusätzlich ConfigureAwait(false). In einer Konsolenanwendung gibt es keinen solchen Kontext, dort tritt der Deadlock nicht auf: Das macht ihn tückisch, weil Tests und Konsolenversuche ihn nicht zeigen." }

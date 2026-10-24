@@ -1,0 +1,22 @@
+id: threads-tasks-fehler-und-abbruch
+title: { de: "Ausnahmen und Abbruch bei Aufgaben" }
+reading:
+  section: "17.5.10"
+  title: { de: "Aufgaben abbrechen" }
+  printedPage: 1145
+teaches:
+  - tasks.aggregate-exception
+  - tasks.cancellation
+requires:
+  - tasks.run
+  - tasks.when-all-any
+  - exceptions.try-catch
+  - exceptions.catch-specific
+  - exceptions.catch-variable
+  - lambdas.statement
+items:
+  - type: coding
+    id: fehler-und-abbruch
+    openFile: "FehlerAbbruch/Fehler.cs"
+    openLine: 1
+    testProject: "FehlerAbbruch Tests/FehlerAbbruch.Tests.csproj"

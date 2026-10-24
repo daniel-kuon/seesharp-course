@@ -1,0 +1,33 @@
+id: threads-threads-und-synchronisation
+title: { de: "Threads, lock und Interlocked" }
+reading:
+  section: "17.2.4.1.1"
+  title: { de: "Die lock-Anweisung" }
+  printedPage: 1073
+teaches:
+  - threading.thread-start-join
+  - threading.race-condition
+  - threading.lock-statement
+  - threading.interlocked
+requires:
+  - delegates.create-invoke
+  - lambdas.expression
+  - lambdas.closure
+  - collections.list-add-remove
+  - arrays.array-class
+items:
+  - type: coding
+    id: threads-und-zaehler
+    openFile: "Synchronisation/Parallelrechner.cs"
+    openLine: 1
+    testProject: "Synchronisation Tests/Synchronisation.Tests.csproj"
+  - type: multipleChoice
+    id: race-condition
+    prompt: { de: "Zwei Threads erhöhen je 1.000.000 Mal denselben int-Zähler mit zaehler++ und ohne Synchronisation. Welche Endwerte sind möglich?" }
+    options:
+      - { de: "Immer genau 2.000.000, weil ++ eine einzelne Anweisung ist." }
+      - { de: "Praktisch jeder Wert zwischen 2 und 2.000.000, denn zaehler++ besteht aus Lesen, Addieren und Schreiben, und zwei Threads können denselben alten Wert lesen und beide dasselbe Ergebnis zurückschreiben, sodass ein Update verloren geht. Welcher Wert herauskommt, entscheidet der Zufall der Thread-Umschaltung." }
+      - { de: "Mindestens 1.000.000, weil jeder Thread seine eigene Hälfte sicher zählt." }
+      - { de: "Immer weniger als 2.000.000, aber nie weniger als 1.999.000." }
+    correct: [1]
+    explanation: { de: "17.2.4.1 (Seite 1073) und 17.2.4.2.3 (Seite 1084): C# garantiert für ++ keine Atomarität. Lock oder Interlocked.Increment machen aus den drei Schritten einen einzigen. Weil das Ergebnis vom Zufall abhängt, lässt sich eine Race Condition nicht zuverlässig per Test nachweisen, die korrekte Variante aber zuverlässig (800.000 bei 8 mal 100.000)." }

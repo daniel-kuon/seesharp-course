@@ -1,0 +1,19 @@
+id: threads-sichere-warteschlange
+title: { de: "Zusatz: Eine sichere Warteschlange" }
+optional: true
+reading:
+  section: "17.2.4.1"
+  title: { de: "Zugriffsexklusivität" }
+  printedPage: 1073
+teaches:
+  - threading.lock-statement
+  - threading.lock-protect-collection
+  - threading.thread-start-join
+requires:
+  - threading.interlocked
+items:
+  - type: coding
+    id: sichere-warteschlange
+    openFile: "SichereWarteschlange/SichereWarteschlange.cs"
+    openLine: 1
+    testProject: "SichereWarteschlange Tests/SichereWarteschlange.Tests.csproj"

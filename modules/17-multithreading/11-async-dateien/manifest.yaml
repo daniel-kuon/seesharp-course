@@ -1,0 +1,20 @@
+id: threads-async-dateien
+title: { de: "Zusatz: Dateien asynchron verarbeiten" }
+optional: true
+reading:
+  section: "17.6.5"
+  title: { de: "await-Ausdruck" }
+  printedPage: 1173
+teaches:
+  - async.declare
+  - async.await
+  - async.exception-handling
+requires:
+  - files.readall-writeall
+  - tasks.when-all-any
+items:
+  - type: coding
+    id: async-dateien
+    openFile: "AsyncDateien/Dateien.cs"
+    openLine: 1
+    testProject: "AsyncDateien Tests/AsyncDateien.Tests.csproj"

@@ -1,0 +1,5 @@
+@page "{id:int}"
+@model ProduktDetailModel
+<h1>@Model.Produkt?.Name</h1>
+<p>@Model.Produkt?.Beschreibung</p>
+<p><a asp-page="/Produkte/Index">Alle Produkte</a></p>

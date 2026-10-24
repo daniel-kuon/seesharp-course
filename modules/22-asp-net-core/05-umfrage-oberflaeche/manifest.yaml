@@ -1,0 +1,25 @@
+id: aspnet-umfrage-oberflaeche
+title: { de: "Die Umfrage-Oberfläche mit Layout und Tag-Helfern" }
+reading:
+  section: "22.6"
+  title: { de: "Tag-Helfer" }
+  printedPage: 1572
+teaches:
+  - web.tag-helpers-form
+  - web.layout
+requires:
+  - web.razor-syntax
+  - web.validation-attributes
+  - web.program-cs
+items:
+  - type: review
+    id: formular
+    prompt: { de: "Baue das Umfrageformular in Pages/Umfrage.cshtml aus: Die Partei wählt man in einem <select> (asp-for und asp-items mit Model.ParteiAuswahl, dazu eine Leeroption), jedes Feld hat ein <label asp-for>, ein <span asp-validation-for> und die Seite einen asp-validation-summary. Binde die Skripte für die Klienten-Validierung ein (22.9.3). Zeige der Betreuung, was der Browser bei einem leeren Formular tut, und danach, was passiert, wenn man die Skripte entfernt." }
+    openFile: "Umfrage/Pages/Umfrage.cshtml"
+  - type: review
+    id: layout
+    prompt: { de: "Lege ein gemeinsames Layout an (Pages/Shared/_Layout.cshtml mit Navigation und @RenderBody, Pages/_ViewStart.cshtml), verschiebe die Ergebnistabelle in eine partielle Ansicht (_Ergebnisse.cshtml, eingebunden mit <partial>) und binde ein Stylesheet aus wwwroot/css ein (Program.cs braucht dafür UseStaticFiles). Lege drei Screenshots in den Ordner Umfrage/screenshots ab: das leere Formular, das Formular mit Fehlermeldungen (Klienten-Validierung ausgeschaltet oder umgangen, damit die Meldung vom Server kommt) und die Ergebnisseite." }
+    openFile: "Umfrage/Program.cs"
+  - type: open
+    id: texte-und-logik
+    prompt: { de: "Wo stehen in deiner Lösung die Beschriftungen und Texte (22.11.1), und warum steht in den .cshtml-Dateien keine Geschäftslogik? Was passiert mit den eingegebenen Werten, wenn der Server das Formular wegen eines Fehlers erneut anzeigt, und welcher Tag-Helfer sorgt dafür (22.11.2)?" }

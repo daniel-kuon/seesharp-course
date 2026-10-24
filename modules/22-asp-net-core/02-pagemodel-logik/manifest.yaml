@@ -1,0 +1,36 @@
+id: aspnet-pagemodel-logik
+title: { de: "PageModel-Logik per Unit-Test" }
+reading:
+  section: "22.5.3"
+  title: { de: "Behandlung von HTTP-Anforderungen" }
+  printedPage: 1566
+teaches:
+  - web.pagemodel-onget
+  - web.pagemodel-onpost
+  - web.bindproperty
+  - web.redirect-to-page
+  - web.modelstate
+  - web.di-inject
+requires:
+  - interfaces.implement
+  - interfaces.as-type
+  - collections.list-add-remove
+  - linq.where
+  - nullable.annotation
+  - inheritance.derive-class
+  - oop.constructor-explicit
+items:
+  - type: coding
+    id: umfrage-modell
+    openFile: "Umfrage/Pages/UmfrageModel.cs"
+    openLine: 8
+    testProject: "Umfrage Tests/Umfrage.Tests.csproj"
+  - type: multipleChoice
+    id: post-redirect-get
+    prompt: { de: "Warum antwortet OnPost nach dem erfolgreichen Speichern mit RedirectToPage statt mit Page()?" }
+    options:
+      - { de: "Der Browser lädt danach die Zielseite per GET; ein Neuladen der Seite (F5) schickt das Formular nicht noch einmal ab (Post-Redirect-Get)." }
+      - { de: "Page() kann nach einem POST technisch keine Seite ausliefern." }
+      - { de: "RedirectToPage speichert die Daten im Cookie, damit sie nicht verloren gehen." }
+    correct: [0]
+    explanation: { de: "22.5.3.4.2 (Seite 1569): Die Weiterleitung nach erfolgreicher POST-Behandlung verhindert, dass ein Benutzer versehentlich doppelt absendet." }

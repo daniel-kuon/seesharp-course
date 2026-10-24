@@ -1,0 +1,10 @@
+@page
+@model ProdukteModel
+<h1>Produkte</h1>
+
+<ul>
+    @foreach (var p in Model.Liste)
+    {
+        <li><a asp-page="/Produkte/Detail" asp-route-id="@p.Id">@p.Name</a></li>
+    }
+</ul>

@@ -1,0 +1,31 @@
+@page
+@model UmfrageModel
+@{
+    ViewData["Title"] = "Abstimmen";
+}
+
+<h1>Abstimmen</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="feld">
+        <label asp-for="Eingabe.Partei"></label>
+        <select asp-for="Eingabe.Partei" asp-items="Model.ParteiAuswahl">
+            <option value="">-- Bitte eine Partei wählen --</option>
+        </select>
+        <span asp-validation-for="Eingabe.Partei" class="text-danger"></span>
+    </div>
+    <div class="feld">
+        <label asp-for="Eingabe.Name"></label>
+        <input asp-for="Eingabe.Name" />
+        <span asp-validation-for="Eingabe.Name" class="text-danger"></span>
+    </div>
+    <button type="submit">Abschicken</button>
+</form>
+
+<h2>Zwischenstand</h2>
+<partial name="_Ergebnisse" model="Model.Ergebnisse" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

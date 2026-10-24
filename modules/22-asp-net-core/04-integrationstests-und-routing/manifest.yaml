@@ -1,0 +1,44 @@
+id: aspnet-integrationstests-und-routing
+title: { de: "Seiten, Routing und Integrationstests" }
+reading:
+  section: "22.7"
+  title: { de: "Routing" }
+  printedPage: 1577
+teaches:
+  - web.program-cs
+  - web.di-register
+  - web.routing-parameters
+  - web.razor-syntax
+  - web.integration-test
+requires:
+  - web.pagemodel-onget
+  - web.pagemodel-onpost
+  - web.di-inject
+  - web.validation-attributes
+  - web.redirect-to-page
+  - linq.where
+  - collections.dictionary-add-lookup
+items:
+  - type: coding
+    id: seiten
+    openFile: "Umfrage/Program.cs"
+    openLine: 1
+    testProject: "Umfrage Tests/Umfrage.Tests.csproj"
+  - type: multipleChoice
+    id: routenrestriktion
+    prompt: { de: "Eine Seite beginnt mit `@page \"{id:int}\"`. Was antwortet die Anwendung auf `GET /Detail/abc`?" }
+    options:
+      - { de: "404: Der Text passt nicht zur Restriktion int, die URL wird keiner Seite zugeordnet und OnGet läuft gar nicht erst." }
+      - { de: "200: OnGet(int id) bekommt 0 und zeigt eine leere Seite." }
+      - { de: "500: Die Umwandlung von abc nach int wirft eine Ausnahme." }
+    correct: [0]
+    explanation: { de: "22.7.2.4 (Seite 1581): Eine Typrestriktion verhindert die Abbildung der URL auf die Seite; es wird keine Behandlungsmethode aufgerufen." }
+  - type: multipleChoice
+    id: singleton
+    prompt: { de: "Der Dienst wird mit `AddSingleton<IUmfrageDienst, SpeicherDienst>()` registriert. Was würde sich bei `AddTransient` für die Umfrage ändern?" }
+    options:
+      - { de: "Jede Injektion bekäme eine neue, leere SpeicherDienst-Instanz; abgegebene Stimmen wären bei der nächsten Anforderung nicht mehr da." }
+      - { de: "Nichts; der Container erzeugt immer nur eine Instanz." }
+      - { de: "Der Dienst würde nicht mehr in das PageModel injiziert." }
+    correct: [0]
+    explanation: { de: "22.3 (Seite 1554) und 22.5.4 (Seite 1571): Das PageModel lebt nur eine Anforderung lang; Zustand über Anforderungen hinweg braucht einen langlebigen Dienst, eine Datenbank oder Cookies." }

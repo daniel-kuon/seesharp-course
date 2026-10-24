@@ -1,0 +1,13 @@
+@model IReadOnlyList<ParteiErgebnis>
+
+<table>
+    <thead>
+        <tr><th>Partei</th><th>Stimmen</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr><td>@e.Partei</td><td>@e.Stimmen</td></tr>
+        }
+    </tbody>
+</table>

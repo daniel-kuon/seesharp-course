@@ -1,0 +1,40 @@
+id: aspnet-validierung
+title: { de: "Validierung per Attribut und IValidatableObject" }
+reading:
+  section: "22.9.1"
+  title: { de: "Deklaration von Validierungsregeln in Modellklassen" }
+  printedPage: 1609
+teaches:
+  - web.validation-attributes
+  - web.validation-ivalidatableobject
+requires:
+  - web.modelstate
+  - web.bindproperty
+  - oop.property-auto
+  - interfaces.implement
+  - nullable.annotation
+  - strings.methods
+items:
+  - type: coding
+    id: anmeldung
+    openFile: "Anmeldung/Anmeldung.cs"
+    openLine: 6
+    testProject: "Anmeldung Tests/Anmeldung.Tests.csproj"
+  - type: multipleChoice
+    id: implizites-required
+    prompt: { de: "Ein Eingabemodell hat die Eigenschaft `public string S1 { get; set; } = default!;` (ohne Attribut). Das Formularfeld wird leer abgeschickt. Was meldet ASP.NET Core auf dem Server?" }
+    options:
+      - { de: "ModelState.IsValid ist false: Ein null-unzulässiger Referenztyp wird behandelt, als stünde [Required] daran. Mit string? wäre das Feld optional." }
+      - { de: "ModelState.IsValid ist true: Ohne Attribut gibt es keine Regel." }
+      - { de: "Es wird eine Ausnahme geworfen, weil S1 null ist." }
+    correct: [0]
+    explanation: { de: "22.9.6 (Seite 1618): Das implizite Required für null-unzulässige Referenztypen; ein leeres Feld ergibt null, nicht String.Empty." }
+  - type: multipleChoice
+    id: bindrequired
+    prompt: { de: "Eine int-Eigenschaft Alter hat [Required]. Die Anforderung enthält gar kein Name-Wert-Paar Alter. Wie reagiert ModelState.IsValid, und was ändert [BindRequired]?" }
+    options:
+      - { de: "Die Modellbindung setzt 0; [Required] hat nichts einzuwenden, IsValid bleibt true. [BindRequired] verlangt, dass das Paar überhaupt in der Anforderung steht, und macht IsValid false." }
+      - { de: "IsValid ist false, weil [Required] das fehlende Paar bemerkt; [BindRequired] ändert nichts." }
+      - { de: "IsValid ist true, und auch mit [BindRequired] bleibt es true." }
+    correct: [0]
+    explanation: { de: "22.9.2 (Seite 1612): [Required] verbietet den Wert null, [BindRequired] fordert das Name-Wert-Paar in den Anforderungsdaten." }

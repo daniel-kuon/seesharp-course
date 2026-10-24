@@ -1,0 +1,20 @@
+id: aspnet-kontaktformular
+title: { de: "Zusatz: Kontaktformular mit Validierung" }
+optional: true
+reading:
+  section: "22.9"
+  title: { de: "Validierung" }
+  printedPage: 1608
+teaches:
+  - web.validation-attributes
+  - web.modelstate
+  - web.redirect-to-page
+requires:
+  - web.bindproperty
+  - web.pagemodel-onpost
+items:
+  - type: coding
+    id: kontakt
+    openFile: "Kontakt/Pages/KontaktModel.cs"
+    openLine: 6
+    testProject: "Kontakt Tests/Kontakt.Tests.csproj"

@@ -1,0 +1,21 @@
+id: aspnet-gaestebuch
+title: { de: "Zusatz: Gästebuch-Seite" }
+optional: true
+reading:
+  section: "22.5.2"
+  title: { de: "Beispiel" }
+  printedPage: 1564
+teaches:
+  - web.pagemodel-onget
+  - web.pagemodel-onpost
+  - web.bindproperty
+  - web.di-inject
+requires:
+  - web.modelstate
+  - web.redirect-to-page
+items:
+  - type: coding
+    id: gaestebuch
+    openFile: "Gaestebuch/Pages/GaestebuchModel.cs"
+    openLine: 5
+    testProject: "Gaestebuch Tests/Gaestebuch.Tests.csproj"

@@ -1,0 +1,79 @@
+id: aspnet-grundlagen-quiz
+title: { de: "Razor Pages: Grundlagen-Quiz" }
+reading:
+  section: "22.2"
+  title: { de: "Konfiguration der Request Pipeline und Anwendungsstart per Program.cs" }
+  printedPage: 1552
+teaches:
+  - web.request-pipeline
+  - web.stateless-http
+  - web.overposting-risk
+requires:
+  - interfaces.as-type
+  - delegates.generic-func
+  - lambdas.expression
+items:
+  - type: multipleChoice
+    id: reihenfolge
+    prompt: { de: "Welche Reihenfolge der Middleware in `Program.cs` ist sinnvoll?" }
+    options:
+      - { de: "UseHttpsRedirection, UseStaticFiles, UseRouting, UseAuthorization, MapRazorPages" }
+      - { de: "MapRazorPages, UseAuthorization, UseRouting, UseStaticFiles, UseHttpsRedirection" }
+      - { de: "UseAuthorization, UseRouting, UseHttpsRedirection, MapRazorPages, UseStaticFiles" }
+    correct: [0]
+    explanation: { de: "22.2.1 (Seite 1553): Die Komponenten bearbeiten eine Anforderung in der Reihenfolge ihrer Vereinbarung. Erst auf HTTPS umleiten, dann statische Dateien ausliefern, dann die Route wählen, dann prüfen, ob der Zugriff auf das gewählte Ziel erlaubt ist, und zuletzt die Seite erzeugen." }
+  - type: multipleChoice
+    id: falsche-reihenfolge
+    prompt: { de: "In einer Pipeline steht `UseAuthorization()` vor `UseRouting()`. Warum ist das ein Fehler?" }
+    options:
+      - { de: "Die Autorisierung prüft die Anforderungen des Endpunkts, den das Routing erst auswählt; ohne gewählten Endpunkt weiß sie nicht, was sie prüfen soll." }
+      - { de: "Es ist kein Fehler; die Reihenfolge der Middleware spielt keine Rolle." }
+      - { de: "Die Autorisierung ersetzt dann das Routing, und alle Seiten liefern 404." }
+    correct: [0]
+    explanation: { de: "Middleware ist eine Kette: Jede Komponente sieht nur, was die davor erledigt haben (22.2.1, Seite 1553). Dasselbe gilt für `UseHttpsRedirection`: Steht sie zu weit hinten, wurde die unverschlüsselte Anforderung schon bearbeitet, bevor die Umleitung greift." }
+  - type: multipleChoice
+    id: zustandslos
+    prompt: { de: "Ein PageModel zählt in einem privaten Feld `_anzahl++` bei jedem `OnPost`. Was liefert `_anzahl` bei der nächsten Anforderung desselben Benutzers?" }
+    options:
+      - { de: "Wieder 0 (dann 1): Das PageModel-Objekt entsteht pro Anforderung neu und wird danach verworfen; HTTP ist zustandslos." }
+      - { de: "Den Wert der letzten Anforderung, weil das PageModel so lange lebt wie die Browsersitzung." }
+      - { de: "Den Wert der letzten Anforderung, aber nur wenn das Feld `static` ist; sonst eine Ausnahme." }
+    correct: [0]
+    explanation: { de: "22.5.4 (Seite 1571): Page- und PageModel-Objekte sind anforderungsbezogen. Zustand über Anforderungen hinweg gehört in eine Datenbank, ein Cookie, ein verstecktes Formularfeld oder einen Dienst mit langer Lebensdauer. Das gilt auch für ein Formular, das nach einem Fehler erneut angezeigt wird: Der Server weiß nichts mehr vom ersten Versuch, außer was die zweite Anforderung mitschickt." }
+  - type: multipleChoice
+    id: get-post
+    prompt: { de: "Ein Benutzer gibt die Adresse einer Seite im Browser ein und füllt dort ein `<form method=\"post\">` aus. Welche Behandlungsmethoden laufen?" }
+    options:
+      - { de: "Das Aufrufen der Seite ruft `OnGet` auf, das Absenden des Formulars `OnPost`." }
+      - { de: "Beides ruft `OnGet` auf; `OnPost` läuft nur bei JavaScript." }
+      - { de: "Das Aufrufen ruft `OnPost` auf, das Absenden `OnGet`." }
+    correct: [0]
+    explanation: { de: "22.5.3 (Seite 1566): Die Behandlungsmethode `On<HTTP-Methode>` passt zur Methode der Anforderung: Adresse eingeben oder einem Link folgen ist GET, ein Formular mit `method=\"post\"` schickt POST." }
+  - type: multipleChoice
+    id: get-doppelt
+    prompt: { de: "Eine PageModel-Klasse enthält `public void OnGet()` und `public Task OnGetAsync()`. Was passiert beim Seitenaufruf?" }
+    options:
+      - { de: "Eine InvalidOperationException (\"Multiple handlers matched\"): Pro HTTP-Methode darf nur eine passende Behandlungsmethode existieren." }
+      - { de: "Es läuft immer die asynchrone Variante." }
+      - { de: "Es laufen beide nacheinander." }
+    correct: [0]
+    explanation: { de: "22.5.3.1 (Seite 1566): Die Koexistenz einer synchronen und einer asynchronen Variante führt zu einem Ausnahmefehler." }
+  - type: multipleChoice
+    id: overposting-angriff
+    prompt: { de: "Die Eingabeklasse `Benutzer` hat die Eigenschaften `Name` und `bool IsAdmin`, und `[BindProperty] public Benutzer Neu { get; set; }` bindet sie. Das Formular enthält nur ein Feld `Neu.Name`. Wie kann ein Angreifer trotzdem `IsAdmin` auf `true` setzen?" }
+    options:
+      - { de: "Er schickt die Anforderung mit einem zusätzlichen Name-Wert-Paar `Neu.IsAdmin=true` ab (HTML-Formular im Browser ändern oder die Anforderung selbst bauen); die Modellbindung schreibt jede bindbare Eigenschaft, nicht nur die im Formular sichtbaren." }
+      - { de: "Gar nicht: Was nicht im Formular steht, wird nie gebunden." }
+      - { de: "Nur wenn er das Passwort des Servers kennt." }
+    correct: [0]
+    explanation: { de: "22.8.7 (Seite 1606): Overposting. Der Angreifer muss nur den Namen der Eigenschaft kennen; die Modellbindung unterscheidet nicht, ob der Wert aus dem ausgelieferten Formular oder aus einer eigenen Anforderung stammt." }
+  - type: multipleChoice
+    id: overposting-schutz
+    prompt: { de: "Welche zwei Maßnahmen schützen gegen Overposting?" }
+    options:
+      - { de: "Eine Positivliste der bindbaren Eigenschaften (das Attribut `[Bind]` bzw. `[BindNever]` an gefährlichen Eigenschaften)." }
+      - { de: "Eine eigene Eingabemodellklasse für die Seite, die nur die Felder des Formulars enthält (ohne `IsAdmin`)." }
+      - { de: "Die Klienten-seitige Validierung per JavaScript." }
+      - { de: "Das gefährliche Feld im Formular mit `type=\"hidden\"` verstecken." }
+    correct: [0, 1]
+    explanation: { de: "22.8.7 (Seite 1607): `Bind` und `BindNever` schützen beim Anlegen neuer Objekte, haben beim Bearbeiten vorhandener aber die Nebenwirkung, dass ausgeschlossene Werte auf Voreinstellungen zurückfallen; deshalb empfiehlt das Buch eine Eingabemodellklasse. JavaScript und versteckte Felder liegen beim Klienten und sind für einen Angreifer wertlos." }

@@ -1,0 +1,31 @@
+id: efcore-aendern-und-loeschen
+title: { de: "Ändern, Löschen und Änderungsnachverfolgung" }
+reading:
+  section: "20.11.2"
+  title: { de: "Entitäten ändern" }
+  printedPage: 1474
+teaches:
+  - ef.update-tracked
+  - ef.remove
+  - ef.change-tracking-state
+  - ef.executeupdate-bulk
+requires:
+  - ef.query-where-tolist
+  - ef.find-firstordefault
+  - ef.add-savechanges
+  - ef.dbcontext-lifetime
+items:
+  - type: coding
+    id: verwaltung
+    openFile: "Produkte/Verwaltung.cs"
+    openLine: 24
+    testProject: "Produkte Tests/Produkte.Tests.csproj"
+  - type: multipleChoice
+    id: kein-update-aufruf
+    prompt: { de: "Du lädst ein Produkt mit kontext.Produkte.Find(id), setzt produkt.Name = \"neu\" und rufst kontext.SaveChanges() auf, ohne einen weiteren Befehl. Was passiert?" }
+    options:
+      - { de: "Nichts wird gespeichert, denn man muss zuerst kontext.Update(produkt) aufrufen." }
+      - { de: "Die Änderung wird gespeichert: Der Kontext verfolgt das geladene Produkt nach, erkennt die geänderte Eigenschaft (Zustand Modified) und schreibt sie bei SaveChanges." }
+      - { de: "Die Änderung wird sofort beim Zuweisen in die Datenbank geschrieben." }
+    correct: [1]
+    explanation: { de: "20.11.2: Geladene Entitäten werden vom Kontext nachverfolgt (Change Tracking). Nur bei Entitäten, die er nicht kennt, etwa mit AsNoTracking geladen oder von außen mitgebracht, ist ein ausdrückliches Update oder Attach nötig." }

@@ -1,0 +1,21 @@
+id: efcore-bibliothek-verwalten
+title: { de: "Zusatz: Bücherverwaltung" }
+optional: true
+reading:
+  section: "20.11"
+  title: { de: "Entitäten erstellen, modifizieren und löschen" }
+  printedPage: 1472
+teaches:
+  - ef.add-savechanges
+  - ef.query-where-tolist
+  - ef.update-tracked
+  - ef.remove
+requires:
+  - ef.dbcontext-lifetime
+  - ef.find-firstordefault
+items:
+  - type: coding
+    id: buecherei
+    openFile: "Bibliothek/Buecherei.cs"
+    openLine: 19
+    testProject: "Bibliothek Tests/Bibliothek.Tests.csproj"

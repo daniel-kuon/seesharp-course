@@ -1,0 +1,34 @@
+id: efcore-abfragen
+title: { de: "Abfragen mit LINQ-to-Entities" }
+reading:
+  section: "20.9.2"
+  title: { de: "Mehrere Entitäten abrufen" }
+  printedPage: 1452
+teaches:
+  - ef.query-where-tolist
+  - ef.find-firstordefault
+  - ef.projection-select
+  - ef.aggregate-queries
+requires:
+  - linq.where
+  - linq.select
+  - linq.orderby
+  - linq.aggregates
+  - linq.element-operators
+  - ef.dbcontext-define
+  - ef.add-savechanges
+items:
+  - type: coding
+    id: blog-abfragen
+    openFile: "Abfragen/BlogAbfragen.cs"
+    openLine: 24
+    testProject: "Abfragen Tests/Abfragen.Tests.csproj"
+  - type: multipleChoice
+    id: uebersetzung
+    prompt: { de: "Welche dieser drei Abfragen auf kontext.Beitraege wird von EF Core vollständig in SQL übersetzt und von der Datenbank ausgeführt?" }
+    options:
+      - { de: "kontext.Beitraege.Where(b => b.Titel.Contains(\"LINQ\")).ToList()" }
+      - { de: "kontext.Beitraege.Where(b => IstInteressant(b)).ToList() mit einer eigenen C#-Methode IstInteressant" }
+      - { de: "kontext.Beitraege.AsEnumerable().Where(b => b.Titel.Contains(\"LINQ\")).ToList()" }
+    correct: [0]
+    explanation: { de: "20.9.6: Contains auf einer Zeichenkette kennt EF Core und übersetzt es in SQL. Eine eigene C#-Methode kann EF Core nicht übersetzen (es gibt eine InvalidOperationException). AsEnumerable() beendet die serverseitige Abfrage: Alle Zeilen werden geladen und erst danach in C# gefiltert, das ist korrekt, aber bei großen Tabellen langsam." }

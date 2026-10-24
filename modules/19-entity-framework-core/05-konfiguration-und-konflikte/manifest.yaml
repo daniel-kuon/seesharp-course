@@ -1,0 +1,36 @@
+id: efcore-konfiguration-und-konflikte
+title: { de: "Wertkonverter, Konflikte, Transaktionen, Migrationen" }
+reading:
+  section: "20.13"
+  title: { de: "Konflikte durch parallele Zugriffe" }
+  printedPage: 1482
+teaches:
+  - ef.value-converter
+  - ef.concurrency-token
+  - ef.transactions
+  - ef.migrations
+requires:
+  - ef.fluent-config
+  - ef.update-tracked
+  - ef.dbcontext-lifetime
+  - exceptions.try-catch
+  - exceptions.catch-specific
+  - enums.parse-tostring
+items:
+  - type: coding
+    id: konten
+    openFile: "Konten/Datenmodell.cs"
+    openLine: 14
+    testProject: "Konten Tests/Konten.Tests.csproj"
+  - type: review
+    id: migration
+    prompt: { de: "Lege außerhalb des Kurses ein kleines Konsolenprojekt (scratch) mit den Klassen Konto und KontoContext an, füge die Pakete Microsoft.EntityFrameworkCore.Sqlite und Microsoft.EntityFrameworkCore.Design (jeweils Version 10.0.13) hinzu, installiere das Werkzeug dotnet-ef (Version 10.0.13) und erzeuge mit dotnet ef migrations add Anfang die erste Migration. Beschreibe der Betreuung, was im Ordner Migrations entstanden ist, und erkläre in eigenen Worten, warum man EnsureCreated und Migrationen nicht mischen darf (20.3 und 20.3.2). Die Betreuung sieht sich den erzeugten Migrations-Ordner an." }
+  - type: multipleChoice
+    id: konflikt-token
+    prompt: { de: "Zwei Benutzer laden dasselbe Konto (Version 1). Benutzer A ändert und speichert (Version 2). Benutzer B ändert danach und ruft SaveChanges auf. Ohne Concurrency Token: Was geschieht? Mit [ConcurrencyCheck] auf Version?" }
+    options:
+      - { de: "Ohne Token überschreibt B still die Änderung von A (\"letzter gewinnt\"); mit Token wirft SaveChanges eine DbUpdateConcurrencyException, weil UPDATE ... WHERE Version = 1 keine Zeile mehr trifft." }
+      - { de: "In beiden Fällen wirft SaveChanges eine DbUpdateConcurrencyException." }
+      - { de: "In beiden Fällen merkt EF Core nichts, die Datenbank sperrt die Zeile aber, solange A sie geladen hat." }
+    correct: [0]
+    explanation: { de: "20.13: EF Core arbeitet mit optimistischer Nebenläufigkeit: Es sperrt nichts, sondern prüft beim Speichern, ob der Wert des Tokens noch dem beim Laden entspricht. Bei einem Konflikt entscheidet das Programm: Änderung verwerfen, neu laden und wiederholen oder den Benutzer fragen." }

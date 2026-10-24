@@ -1,0 +1,36 @@
+id: efcore-erster-kontext
+title: { de: "Der erste DbContext" }
+reading:
+  section: "20.1"
+  title: { de: "Erster Eindruck und Überblick" }
+  printedPage: 1399
+teaches:
+  - ef.entity-class
+  - ef.dbcontext-define
+  - ef.ensure-created
+  - ef.add-savechanges
+  - ef.data-annotations
+  - ef.dbcontext-lifetime
+requires:
+  - oop.property-auto
+  - collections.list-add-remove
+  - resources.using-statement
+  - nullable.annotation
+  - interfaces.as-type
+  - inheritance.derive-class
+  - inheritance.base-constructor
+items:
+  - type: coding
+    id: blog-kontext
+    openFile: "Blogging/BlogContext.cs"
+    openLine: 14
+    testProject: "Blogging Tests/Blogging.Tests.csproj"
+  - type: multipleChoice
+    id: maxlength-sqlite
+    prompt: { de: "Dein Blog hat [MaxLength(100)] am Namen. Du speicherst mit SQLite einen Namen mit 150 Zeichen. Was geschieht?" }
+    options:
+      - { de: "SaveChanges wirft immer eine DbUpdateException, weil EF Core die Länge prüft." }
+      - { de: "Es wird gespeichert: EF Core legt die Spalte als TEXT an und SQLite erzwingt keine Längen. Beim SQL Server (nvarchar(100)) würde der Name abgewiesen. [MaxLength] ist hier nur ein Hinweis für das Schema." }
+      - { de: "Der Name wird beim Speichern automatisch auf 100 Zeichen gekürzt." }
+    correct: [1]
+    explanation: { de: "20.5 (Annotationen): Annotationen beeinflussen das erzeugte Schema; ob eine Regel durchgesetzt wird, entscheidet das Datenbanksystem. [Required] wird zu NOT NULL und von SQLite durchgesetzt, die Länge nicht. Wer die Länge sicher prüfen will, validiert zusätzlich im Programm." }

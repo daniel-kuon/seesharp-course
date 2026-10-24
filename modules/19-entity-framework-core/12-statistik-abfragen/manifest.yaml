@@ -1,0 +1,19 @@
+id: efcore-statistik-abfragen
+title: { de: "Zusatz: Umsatzstatistik" }
+optional: true
+reading:
+  section: "20.9.4"
+  title: { de: "Statistische Auswertungsmethoden (Aggregatoperatoren)" }
+  printedPage: 1454
+teaches:
+  - ef.projection-select
+  - ef.aggregate-queries
+  - ef.query-where-tolist
+requires:
+  - ef.find-firstordefault
+items:
+  - type: coding
+    id: umsatz
+    openFile: "Umsatzstatistik/Umsatz.cs"
+    openLine: 23
+    testProject: "Umsatzstatistik Tests/Umsatzstatistik.Tests.csproj"

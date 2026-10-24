@@ -1,0 +1,20 @@
+id: efcore-forum-beziehungen
+title: { de: "Zusatz: Forum mit Themen und Antworten" }
+optional: true
+reading:
+  section: "20.5.11"
+  title: { de: "Master-Details - Beziehung" }
+  printedPage: 1429
+teaches:
+  - ef.relation-one-to-many
+  - ef.include
+  - ef.cascade-delete
+requires:
+  - ef.fluent-config
+  - ef.remove
+items:
+  - type: coding
+    id: forum
+    openFile: "Forum/ForumDienst.cs"
+    openLine: 36
+    testProject: "Forum Tests/Forum.Tests.csproj"

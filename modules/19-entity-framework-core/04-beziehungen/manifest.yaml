@@ -1,0 +1,32 @@
+id: efcore-beziehungen
+title: { de: "Beziehungen: Include, Kaskade und Fluent API" }
+reading:
+  section: "20.5.11"
+  title: { de: "Master-Details - Beziehung" }
+  printedPage: 1429
+teaches:
+  - ef.relation-one-to-many
+  - ef.include
+  - ef.cascade-delete
+  - ef.fluent-config
+requires:
+  - ef.entity-class
+  - ef.dbcontext-define
+  - ef.query-where-tolist
+  - ef.remove
+  - ef.add-savechanges
+items:
+  - type: coding
+    id: beziehungen
+    openFile: "Beziehungen/Datenmodell.cs"
+    openLine: 44
+    testProject: "Beziehungen Tests/Beziehungen.Tests.csproj"
+  - type: multipleChoice
+    id: ohne-include
+    prompt: { de: "Du lädst mit kontext.Blogs.FirstOrDefault(b => b.Id == id) einen Blog ohne Include und gibst den Kontext frei. Was enthält blog.Beitraege (Lazy Loading ist nicht eingerichtet)?" }
+    options:
+      - { de: "Alle Beiträge des Blogs, EF Core lädt sie bei Bedarf nach." }
+      - { de: "Eine leere Liste (keine Ausnahme): Navigationseigenschaften werden nur geladen, wenn man es ausdrücklich verlangt, z. B. mit Include (Eager Loading)." }
+      - { de: "null, weil die Eigenschaft nicht geladen wurde." }
+    correct: [1]
+    explanation: { de: "20.9.7: Assoziierte Entitäten lädt EF Core nicht von selbst. Eager Loading mit Include holt sie in derselben Abfrage (JOIN). Die Liste ist durch den Initialisierer new() leer, nicht null; man sieht den Fehler also nur an fehlenden Daten." }

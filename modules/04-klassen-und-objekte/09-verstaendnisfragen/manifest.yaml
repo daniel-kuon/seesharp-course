@@ -1,0 +1,352 @@
+id: klassen-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "5"
+  title: { de: "Klassen und Objekte", en: "Classes and Objects" }
+  printedPage: 286
+teaches:
+  - oop.object-initializer
+  - oop.copy-values
+  - statics.constructor
+  - algo.fibonacci
+requires:
+  - oop.constructor-explicit
+  - oop.clone-method
+  - oop.operator-binary
+  - algo.recursion
+  - statics.property
+  - oop.property-field-keyword
+items:
+  - type: open
+    id: eigenschaft-feld
+    prompt:
+      de: "Warum macht man Felder `private` und bietet nach außen Eigenschaften an? Wie sieht der Setter von `Nenner` aus, wenn der Wert 0 abgelehnt werden soll, und warum weist ein Konstruktor über die Eigenschaften statt direkt an die Felder zu?"
+      en: "Why do you make fields `private` and offer properties to the outside? What does the setter of `Nenner` look like if the value 0 is to be rejected, and why does a constructor assign via the properties rather than directly to the fields?"
+  - type: open
+    id: referenz-kopie
+    prompt:
+      de: |
+        Was gibt dieses Programm in den beiden Zeilen aus? Erkläre, was bei `Punkt b = a;` und bei `a.Klone()` im Speicher passiert.
+
+        ```csharp
+        using System;
+
+        public class Punkt {
+            public int X { get; set; }
+
+            public Punkt Klone() {
+                return new Punkt { X = X };
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Punkt a = new Punkt { X = 1 };
+                Punkt b = a;
+                b.X = 5;
+                Console.WriteLine(a.X);
+                Punkt c = a.Klone();
+                c.X = 9;
+                Console.WriteLine(a.X);
+            }
+        }
+        ```
+      en: |
+        What does this program print in the two lines? Explain what happens in memory at `Punkt b = a;` and at `a.Klone()`.
+
+        ```csharp
+        using System;
+
+        public class Punkt {
+            public int X { get; set; }
+
+            public Punkt Klone() {
+                return new Punkt { X = X };
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Punkt a = new Punkt { X = 1 };
+                Punkt b = a;
+                b.X = 5;
+                Console.WriteLine(a.X);
+                Punkt c = a.Klone();
+                c.X = 9;
+                Console.WriteLine(a.X);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: konstruktor-deklaration
+    prompt:
+      de: "Die Klasse `Bruch` hat die Eigenschaften `Zaehler` und `Nenner`. Welcher Konstruktor ist richtig deklariert, sodass `new Bruch(3, 4)` einen Bruch 3/4 erzeugt?"
+      en: "The class `Bruch` has the properties `Zaehler` and `Nenner`. Which constructor is declared correctly so that `new Bruch(3, 4)` creates a fraction 3/4?"
+    options:
+      - de: |
+          ```csharp
+          public void Bruch(int z, int n) {
+              Zaehler = z;
+              Nenner = n;
+          }
+          ```
+      - de: |
+          ```csharp
+          public Bruch(int z, int n) {
+              z = Zaehler;
+              n = Nenner;
+          }
+          ```
+      - de: |
+          ```csharp
+          public Bruch(int z, int n) {
+              Zaehler = z;
+              Nenner = n;
+          }
+          ```
+      - de: |
+          ```csharp
+          public bruch(int z, int n) {
+              Zaehler = z;
+              Nenner = n;
+          }
+          ```
+    correct: [2]
+    explanation:
+      de: "Ein Konstruktor trägt genau den Klassennamen und hat keinen Rückgabetyp, auch nicht `void`: `public void Bruch(…)` meldet CS0542 (ein Member darf nicht wie die Klasse heißen). Bei `bruch` in Kleinbuchstaben sieht der Compiler eine Methode ohne Rückgabetyp (CS1520). In der zweiten Fassung laufen die Zuweisungen in die falsche Richtung: Die Parameter werden mit den noch leeren Eigenschaften überschrieben, der Bruch bleibt `0/1`; sie kompiliert aber."
+      en: "A constructor carries exactly the class name and has no return type, not even `void`: `public void Bruch(…)` reports CS0542 (a member may not have the same name as the class). With a lowercase `bruch` the compiler sees a method without a return type (CS1520). In the second version the assignments go in the wrong direction: the parameters are overwritten with the still empty properties, the fraction stays `0/1`; it does compile, though."
+  - type: open
+    id: konstruktor-regeln
+    prompt:
+      de: "Was passiert mit dem automatisch erzeugten parameterlosen Konstruktor, sobald du einen eigenen Konstruktor mit Parametern schreibst? Was tust du, wenn `new Bruch()` trotzdem möglich sein soll? Wozu dient ein Objektinitialisierer wie `new Bruch { Zaehler = 3, Nenner = 7 }`?"
+      en: "What happens to the automatically generated parameterless constructor as soon as you write your own constructor with parameters? What do you do if `new Bruch()` is to remain possible? What is an object initializer such as `new Bruch { Zaehler = 3, Nenner = 7 }` used for?"
+  - type: open
+    id: statischer-konstruktor
+    prompt:
+      de: |
+        Was gibt dieses Programm aus (vier Zeilen), und in welcher Reihenfolge? Wann läuft der statische Konstruktor, und warum ist `Anzahl` am Ende 2 und nicht 3?
+
+        ```csharp
+        using System;
+
+        public class Zaehler {
+            public static int Anzahl { get; private set; }
+
+            static Zaehler() {
+                Console.WriteLine("statisch");
+            }
+
+            public Zaehler() {
+                Anzahl++;
+                Console.WriteLine("Objekt " + Anzahl);
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Zaehler a = new Zaehler();
+                Zaehler b = new Zaehler();
+                Zaehler c = a;
+                Console.WriteLine(Zaehler.Anzahl);
+            }
+        }
+        ```
+      en: |
+        What does this program print (four lines), and in which order? When does the static constructor run, and why is `Anzahl` 2 at the end and not 3?
+
+        ```csharp
+        using System;
+
+        public class Zaehler {
+            public static int Anzahl { get; private set; }
+
+            static Zaehler() {
+                Console.WriteLine("statisch");
+            }
+
+            public Zaehler() {
+                Anzahl++;
+                Console.WriteLine("Objekt " + Anzahl);
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Zaehler a = new Zaehler();
+                Zaehler b = new Zaehler();
+                Zaehler c = a;
+                Console.WriteLine(Zaehler.Anzahl);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: ueberladung
+    prompt:
+      de: "In der Klasse `Bruch` gibt es schon `public int Addiere(Bruch b)`. Welche weitere Methode ist eine gültige Überladung und kompiliert daneben?"
+      en: "The class `Bruch` already has `public int Addiere(Bruch b)`. Which further method is a valid overload and compiles alongside it?"
+    options:
+      - de: "public bool Addiere(int z, int n, bool kurz) { … }"
+      - de: "public void Addiere(Bruch b) { … }"
+      - de: "public int Addiere(Bruch anderer) { … }"
+      - de: "public static int Addiere(Bruch b) { … }"
+    correct: [0]
+    explanation:
+      de: "Zur Signatur einer Methode zählen Name und Parametertypen. Rückgabetyp, Parametername und `static` zählen nicht: Die anderen drei Methoden haben dieselbe Signatur `Addiere(Bruch)` wie die vorhandene (CS0111). Eine Überladung braucht eine andere Parameterliste."
+      en: "The signature of a method consists of its name and parameter types. Return type, parameter name and `static` do not count: the other three methods have the same signature `Addiere(Bruch)` as the existing one (CS0111). An overload needs a different parameter list."
+  - type: open
+    id: quersumme
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und was berechnet `Rueck`? Wie viele Aufrufe von `Rueck` gibt es insgesamt? Was würde passieren, wenn die Zeile `if (n == 0) return 0;` fehlte?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                Console.WriteLine(Rueck(1234));
+            }
+
+            public static int Rueck(int n) {
+                if (n == 0) return 0;
+                return n % 10 + Rueck(n / 10);
+            }
+        }
+        ```
+      en: |
+        What does this program print, and what does `Rueck` compute? How many calls of `Rueck` are there in total? What would happen if the line `if (n == 0) return 0;` were missing?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                Console.WriteLine(Rueck(1234));
+            }
+
+            public static int Rueck(int n) {
+                if (n == 0) return 0;
+                return n % 10 + Rueck(n / 10);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: operator-plus
+    prompt:
+      de: "Welche Deklaration überlädt `+` für `Bruch` richtig, sodass `b1 + b2` einen neuen `Bruch` liefert?"
+      en: "Which declaration overloads `+` for `Bruch` correctly, so that `b1 + b2` yields a new `Bruch`?"
+    options:
+      - de: |
+          ```csharp
+          public Bruch operator +(Bruch b1, Bruch b2) { … }
+          ```
+      - de: |
+          ```csharp
+          public static void operator +(Bruch b1, Bruch b2) { … }
+          ```
+      - de: |
+          ```csharp
+          public static Bruch +(Bruch b1, Bruch b2) { … }
+          ```
+      - de: |
+          ```csharp
+          public static Bruch operator +(Bruch b1, Bruch b2) { … }
+          ```
+    correct: [3]
+    explanation:
+      de: "Ein überladener Operator ist eine Methode, die `public static` sein muss: Ohne `static` meldet der Compiler CS0558. Das Schlüsselwort `operator` steht zwischen Rückgabetyp und Operatorsymbol; ohne es ist die Zeile ein Syntaxfehler. Ein binärer Operator liefert ein Ergebnis, `void` ist nicht erlaubt (CS0590)."
+      en: "An overloaded operator is a method that must be `public static`: without `static` the compiler reports CS0558. The keyword `operator` goes between the return type and the operator symbol; without it the line is a syntax error. A binary operator returns a result, `void` is not allowed (CS0590)."
+  - type: open
+    id: statisch-vs-instanz
+    prompt:
+      de: "Was ist der Unterschied zwischen einem Instanzmitglied und einem statischen Mitglied? Erkläre es am Beispiel eines Zählers `Anzahl`, der mitzählt, wie viele `Bruch`-Objekte erzeugt wurden, und einer Fabrikmethode wie `BenDef()`. Wozu dient ein statischer Konstruktor?"
+      en: "What is the difference between an instance member and a static member? Explain it using the example of a counter `Anzahl` that counts how many `Bruch` objects have been created, and a factory method such as `BenDef()`. What is a static constructor for?"
+  - type: open
+    id: nenner-setter
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Was würde passieren, wenn der Getter `return Nenner;` statt `return nenner;` enthielte?
+
+        ```csharp
+        using System;
+
+        public class Bruch {
+            int nenner = 1;
+
+            public int Nenner {
+                get { return nenner; }
+                set { if (value != 0) nenner = value; }
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Bruch b = new Bruch();
+                b.Nenner = 0;
+                Console.WriteLine(b.Nenner);
+                b.Nenner = 4;
+                Console.WriteLine(b.Nenner);
+            }
+        }
+        ```
+      en: |
+        What does this program print? What would happen if the getter contained `return Nenner;` instead of `return nenner;`?
+
+        ```csharp
+        using System;
+
+        public class Bruch {
+            int nenner = 1;
+
+            public int Nenner {
+                get { return nenner; }
+                set { if (value != 0) nenner = value; }
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Bruch b = new Bruch();
+                b.Nenner = 0;
+                Console.WriteLine(b.Nenner);
+                b.Nenner = 4;
+                Console.WriteLine(b.Nenner);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: nenner-field
+    prompt:
+      de: "Der Nenner einer automatisch implementierten Eigenschaft soll den Wert 0 ablehnen (Startwert 1). Welche Fassung mit dem Schlüsselwort `field` ist richtig?"
+      en: "The denominator of an auto-implemented property is supposed to reject the value 0 (initial value 1). Which version using the keyword `field` is correct?"
+    options:
+      - de: |
+          ```csharp
+          public int Nenner { get; set { if (value != 0) Nenner = value; } } = 1;
+          ```
+      - de: |
+          ```csharp
+          public int Nenner { get; set { if (value != 0) field = value; } } = 1;
+          ```
+      - de: |
+          ```csharp
+          public int Nenner { get; set { if (value != 0) nenner = value; } } = 1;
+          ```
+      - de: |
+          ```csharp
+          public int Nenner { get; set { field = value != 0; } } = 1;
+          ```
+    correct: [1]
+    explanation:
+      de: "`field` ist das vom Compiler erzeugte Feld hinter der Eigenschaft. Schreibt der Setter dagegen `Nenner = value`, ruft er sich selbst auf, bis der Stack überläuft; das kompiliert, bricht aber zur Laufzeit ab. Ein Feld `nenner` gibt es in dieser Klasse nicht (CS0103), und `value != 0` ist ein `bool`, das sich nicht in ein `int`-Feld speichern lässt (CS0029)."
+      en: "`field` is the compiler-generated field behind the property. If the setter writes `Nenner = value` instead, it calls itself until the stack overflows; that compiles but aborts at runtime. There is no field `nenner` in this class (CS0103), and `value != 0` is a `bool`, which cannot be stored in an `int` field (CS0029)."
+  - type: open
+    id: rekursion-regeln
+    prompt:
+      de: "Was braucht eine rekursive Methode, damit sie terminiert? Was passiert, wenn das fehlt? Nenne ein Beispiel, bei dem Rekursion elegant ist, und eines, bei dem sie teuer wird."
+      en: "What does a recursive method need in order to terminate? What happens if that is missing? Give an example where recursion is elegant and one where it becomes expensive."
+  - type: open
+    id: operator-vs-methode
+    prompt:
+      de: "Der Operator `+` und die Methode `Addiere(Bruch b)` addieren beide Brüche. Worin unterscheiden sie sich beim Umgang mit den Operanden? Warum ist ein überladener Operator `static`? Was ändert sich mit dem Instanzoperator `+=` aus C# 14?"
+      en: "The operator `+` and the method `Addiere(Bruch b)` both add fractions. How do they differ in the way they treat the operands? Why is an overloaded operator `static`? What changes with the instance operator `+=` from C# 14?"

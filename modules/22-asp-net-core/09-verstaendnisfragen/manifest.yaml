@@ -1,0 +1,304 @@
+id: aspnet-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "22.5"
+  title: { de: "PageModel-Klassen", en: "PageModel Classes" }
+  printedPage: 1563
+teaches:
+  - web.routing-parameters
+  - web.integration-test
+  - web.validation-ivalidatableobject
+  - web.overposting-risk
+requires:
+  - web.request-pipeline
+  - web.stateless-http
+  - web.pagemodel-onget
+  - web.pagemodel-onpost
+  - web.bindproperty
+  - web.redirect-to-page
+  - web.modelstate
+  - web.di-inject
+  - web.di-register
+  - web.program-cs
+  - web.validation-attributes
+  - web.razor-syntax
+items:
+  - type: open
+    id: pipeline-und-program
+    prompt:
+      de: "Was geschieht in `Program.cs` einer Razor-Webanwendung: Was ist der Unterschied zwischen `builder.Services...` vor `Build()` und den `app.Use...`-Aufrufen danach? Was ist die Request-Pipeline, und warum ist die Reihenfolge der Middleware-Komponenten Teil des Programms? Was bewirkt `MapRazorPages()`?"
+      en: "What happens in `Program.cs` of a Razor web application: what is the difference between `builder.Services...` before `Build()` and the `app.Use...` calls after it? What is the request pipeline, and why is the order of the middleware components part of the program? What does `MapRazorPages()` do?"
+  - type: open
+    id: code-onpost
+    prompt:
+      de: |
+        Ein Test erzeugt das PageModel mit einem Dienst, der die gespeicherten Namen in einer Liste merkt (`dienst.Namen`), und einem leeren `PageContext`. Was gibt das Programm aus, und warum?
+
+        ```csharp
+        // im PageModel
+        public IActionResult OnPost()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+                ModelState.AddModelError(nameof(Name), "Name fehlt");
+            if (!ModelState.IsValid)
+                return Page();
+            _dienst.Speichere(Name);
+            return RedirectToPage("Danke");
+        }
+
+        // im Test
+        var a = new AnmeldenModel(dienst) { Name = " ", PageContext = new PageContext() }.OnPost();
+        var b = new AnmeldenModel(dienst) { Name = "Ida", PageContext = new PageContext() }.OnPost();
+        Console.WriteLine($"{a.GetType().Name} / {b.GetType().Name} / {dienst.Namen.Count}");
+        ```
+      en: |
+        A test creates the PageModel with a service that remembers the saved names in a list (`dienst.Namen`) and an empty `PageContext`. What does the program print, and why?
+
+        ```csharp
+        // in the PageModel
+        public IActionResult OnPost()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+                ModelState.AddModelError(nameof(Name), "Name fehlt");
+            if (!ModelState.IsValid)
+                return Page();
+            _dienst.Speichere(Name);
+            return RedirectToPage("Danke");
+        }
+
+        // in the test
+        var a = new AnmeldenModel(dienst) { Name = " ", PageContext = new PageContext() }.OnPost();
+        var b = new AnmeldenModel(dienst) { Name = "Ida", PageContext = new PageContext() }.OnPost();
+        Console.WriteLine($"{a.GetType().Name} / {b.GetType().Name} / {dienst.Namen.Count}");
+        ```
+  - type: multipleChoice
+    id: mc-program-cs
+    prompt:
+      de: "Die Anwendung soll Razor Pages bereitstellen und `IUmfrageDienst` (ein Speicher im Arbeitsspeicher, dessen Stimmen länger leben müssen als eine einzelne Anforderung) per Konstruktorinjektion liefern. Welche `Program.cs` ist richtig?"
+      en: "The application is to serve Razor Pages and provide `IUmfrageDienst` (an in-memory store whose votes must outlive a single request) via constructor injection. Which `Program.cs` is correct?"
+    options:
+      - de: |
+          ```csharp
+          var builder = WebApplication.CreateBuilder(args);
+          builder.Services.AddRazorPages();
+          builder.Services.AddSingleton<IUmfrageDienst, SpeicherDienst>();
+          var app = builder.Build();
+          app.UseRouting();
+          app.Run();
+          ```
+      - de: |
+          ```csharp
+          var builder = WebApplication.CreateBuilder(args);
+          builder.Services.AddRazorPages();
+          builder.Services.AddSingleton<IUmfrageDienst, SpeicherDienst>();
+          var app = builder.Build();
+          app.UseRouting();
+          app.MapRazorPages();
+          app.Run();
+          ```
+      - de: |
+          ```csharp
+          var builder = WebApplication.CreateBuilder(args);
+          var app = builder.Build();
+          builder.Services.AddRazorPages();
+          builder.Services.AddSingleton<IUmfrageDienst, SpeicherDienst>();
+          app.UseRouting();
+          app.MapRazorPages();
+          app.Run();
+          ```
+      - de: |
+          ```csharp
+          var builder = WebApplication.CreateBuilder(args);
+          builder.Services.AddRazorPages();
+          builder.Services.AddTransient<IUmfrageDienst, SpeicherDienst>();
+          var app = builder.Build();
+          app.UseRouting();
+          app.MapRazorPages();
+          app.Run();
+          ```
+    correct: [1]
+    explanation:
+      de: "Option 1 ordnet die Seiten nie einer Adresse zu (`MapRazorPages()` fehlt): Jede Anforderung endet mit 404. Option 3 ändert die Dienstesammlung nach `Build()`: Das wirft eine InvalidOperationException (die Sammlung ist dann schreibgeschützt). Option 4 kompiliert und startet, registriert den Speicher aber als `Transient`: Jede Anforderung bekommt einen neuen, leeren Speicher, die abgegebenen Stimmen gehen verloren; hier braucht man `AddSingleton`."
+      en: "Option 1 never maps the pages to an address (`MapRazorPages()` is missing): every request ends with 404. Option 3 changes the service collection after `Build()`: this throws an InvalidOperationException (the collection is read-only by then). Option 4 compiles and starts, but registers the store as `Transient`: every request gets a new, empty store and the votes cast are lost; `AddSingleton` is needed here."
+  - type: open
+    id: di-lebensdauer
+    prompt:
+      de: "Was ist Konstruktorinjektion, und warum fordert ein PageModel einen Dienst als Schnittstelle (`IUmfrageDienst`) statt als konkrete Klasse an? Was ist der Unterschied zwischen `AddSingleton`, `AddScoped` und `AddTransient`, und welche Lebensdauer wählst du für einen Speicher, der die Stimmen aller Besucher halten soll? Welchen Vorteil bringt die Schnittstelle beim Testen?"
+      en: "What is constructor injection, and why does a PageModel request a service as an interface (`IUmfrageDienst`) rather than as a concrete class? What is the difference between `AddSingleton`, `AddScoped` and `AddTransient`, and which lifetime do you choose for a store that is to hold the votes of all visitors? What advantage does the interface bring for testing?"
+  - type: open
+    id: code-lebensdauer
+    prompt:
+      de: |
+        `Einmal`, `ProAnforderung` und `Immer` sind leere Klassen. Jeder `CreateScope()`-Aufruf entspricht einer Anforderung. Was gibt das Programm aus (vier Werte), und warum?
+
+        ```csharp
+        var services = new ServiceCollection();
+        services.AddSingleton<Einmal>();
+        services.AddScoped<ProAnforderung>();
+        services.AddTransient<Immer>();
+        using var provider = services.BuildServiceProvider();
+
+        using var s1 = provider.CreateScope();
+        using var s2 = provider.CreateScope();
+        bool a = s1.ServiceProvider.GetRequiredService<Einmal>() == s2.ServiceProvider.GetRequiredService<Einmal>();
+        bool b = s1.ServiceProvider.GetRequiredService<ProAnforderung>() == s1.ServiceProvider.GetRequiredService<ProAnforderung>();
+        bool c = s1.ServiceProvider.GetRequiredService<ProAnforderung>() == s2.ServiceProvider.GetRequiredService<ProAnforderung>();
+        bool d = s1.ServiceProvider.GetRequiredService<Immer>() == s1.ServiceProvider.GetRequiredService<Immer>();
+        Console.WriteLine($"{a} {b} {c} {d}");
+        ```
+      en: |
+        `Einmal`, `ProAnforderung` and `Immer` are empty classes. Each `CreateScope()` call corresponds to one request. What does the program print (four values), and why?
+
+        ```csharp
+        var services = new ServiceCollection();
+        services.AddSingleton<Einmal>();
+        services.AddScoped<ProAnforderung>();
+        services.AddTransient<Immer>();
+        using var provider = services.BuildServiceProvider();
+
+        using var s1 = provider.CreateScope();
+        using var s2 = provider.CreateScope();
+        bool a = s1.ServiceProvider.GetRequiredService<Einmal>() == s2.ServiceProvider.GetRequiredService<Einmal>();
+        bool b = s1.ServiceProvider.GetRequiredService<ProAnforderung>() == s1.ServiceProvider.GetRequiredService<ProAnforderung>();
+        bool c = s1.ServiceProvider.GetRequiredService<ProAnforderung>() == s2.ServiceProvider.GetRequiredService<ProAnforderung>();
+        bool d = s1.ServiceProvider.GetRequiredService<Immer>() == s1.ServiceProvider.GetRequiredService<Immer>();
+        Console.WriteLine($"{a} {b} {c} {d}");
+        ```
+  - type: multipleChoice
+    id: mc-redirect
+    prompt:
+      de: "Nach einer gültigen Eingabe soll `OnPost` die Seite `Danke` zeigen. Ein Neuladen dieser Seite im Browser darf das Formular nicht erneut abschicken. Welche Rückgabe ist richtig?"
+      en: "After valid input, `OnPost` is to show the page `Danke`. Reloading that page in the browser must not submit the form again. Which return is correct?"
+    options:
+      - de: |
+          ```csharp
+          public IActionResult OnPost()
+          {
+              _dienst.Speichere(Name);
+              return Page();
+          }
+          ```
+      - de: |
+          ```csharp
+          public IActionResult OnPost()
+          {
+              _dienst.Speichere(Name);
+              return "Danke";
+          }
+          ```
+      - de: |
+          ```csharp
+          public IActionResult OnPost()
+          {
+              _dienst.Speichere(Name);
+              return RedirectToPage("Danke");
+          }
+          ```
+      - de: |
+          ```csharp
+          public IActionResult OnPost()
+          {
+              _dienst.Speichere(Name);
+              RedirectToPage("Danke");
+              return Page();
+          }
+          ```
+    correct: [2]
+    explanation:
+      de: "Option 1 zeigt als Antwort auf den POST eine Seite: Der Browser merkt sich den POST, ein Neuladen schickt das Formular noch einmal ab (doppelte Speicherung). Option 2 lässt sich nicht kompilieren: Eine Zeichenfolge ist kein `IActionResult`. Option 4 erzeugt das Weiterleitungsergebnis, wirft es aber weg und gibt `Page()` zurück: Es gibt keine Weiterleitung, es gilt dasselbe wie bei Option 1. Richtig ist Post-Redirect-Get: `return RedirectToPage(...)`."
+      en: "Option 1 shows a page as the response to the POST: the browser remembers the POST, and reloading submits the form again (double saving). Option 2 does not compile: a string is not an `IActionResult`. Option 4 creates the redirect result but throws it away and returns `Page()`: there is no redirect, so the same applies as for option 1. Correct is Post-Redirect-Get: `return RedirectToPage(...)`."
+  - type: open
+    id: pagemodel-und-zustand
+    prompt:
+      de: "Wie arbeiten `OnGet` und `OnPost` in einem PageModel, und was bedeuten die Ergebnistypen `Page()`, `RedirectToPage(...)` und `NotFound()`? Was heißt Post-Redirect-Get, und welches Problem löst es? Warum darf ein PageModel Zustand nicht in Feldern „für die nächste Anforderung“ aufheben, und wo gehört er stattdessen hin?"
+      en: "How do `OnGet` and `OnPost` work in a PageModel, and what do the result types `Page()`, `RedirectToPage(...)` and `NotFound()` mean? What does Post-Redirect-Get mean, and which problem does it solve? Why may a PageModel not keep state in fields “for the next request”, and where does it belong instead?"
+  - type: open
+    id: code-validierung
+    prompt:
+      de: |
+        Was gibt das Programm aus (zwei Zeilen), und welche Regeln werden verletzt? Wo findest du dieselben Ergebnisse in einer Razor Page wieder?
+
+        ```csharp
+        class Anmeldung
+        {
+            [Required, StringLength(10, MinimumLength = 3)] public string Name { get; set; } = "";
+            [Range(18, 99)] public int Alter { get; set; }
+        }
+
+        var a = new Anmeldung { Name = "Al", Alter = 17 };
+        var fehler = new List<ValidationResult>();
+        bool ok = Validator.TryValidateObject(a, new ValidationContext(a), fehler, validateAllProperties: true);
+        Console.WriteLine(ok + " " + fehler.Count);
+        Console.WriteLine(string.Join("|", fehler.SelectMany(f => f.MemberNames)));
+        ```
+      en: |
+        What does the program print (two lines), and which rules are violated? Where do you find the same results in a Razor Page?
+
+        ```csharp
+        class Anmeldung
+        {
+            [Required, StringLength(10, MinimumLength = 3)] public string Name { get; set; } = "";
+            [Range(18, 99)] public int Alter { get; set; }
+        }
+
+        var a = new Anmeldung { Name = "Al", Alter = 17 };
+        var fehler = new List<ValidationResult>();
+        bool ok = Validator.TryValidateObject(a, new ValidationContext(a), fehler, validateAllProperties: true);
+        Console.WriteLine(ok + " " + fehler.Count);
+        Console.WriteLine(string.Join("|", fehler.SelectMany(f => f.MemberNames)));
+        ```
+  - type: open
+    id: validierung-und-bindung
+    prompt:
+      de: "Wie kommen Formularwerte in ein PageModel (`[BindProperty]`, Modellbindung), und was passiert mit Werten, die fehlen oder sich nicht umwandeln lassen? Welche Aufgabe haben Validierungsattribute und `IValidatableObject`, und warum reicht eine Prüfung im Browser nicht aus? Was ist Overposting, und wie schützt man sich davor?"
+      en: "How do form values get into a PageModel (`[BindProperty]`, model binding), and what happens to values that are missing or cannot be converted? What are validation attributes and `IValidatableObject` for, and why is a check in the browser not enough? What is overposting, and how do you protect against it?"
+  - type: multipleChoice
+    id: mc-overposting
+    prompt:
+      de: "Die Entität `Stimme` hat die Eigenschaften `Id`, `Name`, `Partei` und `Gezaehlt` (die Anwendung setzt `Id` und `Gezaehlt` selbst). Die Klasse `StimmeEingabe` enthält nur `Name` und `Partei`. Das Formular soll nur `Name` und `Partei` entgegennehmen; ein Angreifer soll `Gezaehlt` nicht durch einen selbst gebauten POST setzen können. Welche Eigenschaft im PageModel ist richtig?"
+      en: "The entity `Stimme` has the properties `Id`, `Name`, `Partei` and `Gezaehlt` (the application sets `Id` and `Gezaehlt` itself). The class `StimmeEingabe` contains only `Name` and `Partei`. The form is to accept only `Name` and `Partei`; an attacker must not be able to set `Gezaehlt` with a self-made POST. Which property in the PageModel is correct?"
+    options:
+      - de: "`[BindProperty] public StimmeEingabe Eingabe { get; set; } = new();`"
+      - de: "`[BindProperty] public Stimme Eingabe { get; set; } = new();`"
+      - de: "`public Stimme Eingabe { get; set; } = new();`"
+    correct: [0]
+    explanation:
+      de: "Option 2 bindet alle öffentlichen Eigenschaften von `Stimme`, die in der Anforderung vorkommen: Wer ein Feld `Eingabe.Gezaehlt` mitschickt, setzt es (Overposting). Option 3 hat kein `[BindProperty]`: Es wird nichts gebunden, `Eingabe` bleibt leer, der Schutz ist eine Nebenwirkung des Nichtfunktionierens. Eine eigene Eingabemodellklasse, die nur die erwünschten Felder enthält, bindet nur diese."
+      en: "Option 2 binds all public properties of `Stimme` that occur in the request: anyone who sends a field `Eingabe.Gezaehlt` sets it (overposting). Option 3 has no `[BindProperty]`: nothing is bound, `Eingabe` stays empty, and the protection is a side effect of not working. A dedicated input model class that contains only the desired fields binds only those."
+  - type: open
+    id: code-routing
+    prompt:
+      de: |
+        Die Seite ist so aufgebaut; `Parteien.Alle` enthält die Ids 1, 2 und 3. Welchen Statuscode liefert die laufende Anwendung für `/Detail/2`, `/Detail/abc`, `/Detail/99` und `/Detail`? Wer entscheidet jeweils, das Routing oder der Code von `OnGet`?
+
+        ```razor
+        @page "{id:int}"
+        @model DetailModel
+        ```
+
+        ```csharp
+        public IActionResult OnGet(int id)
+        {
+            Partei = Parteien.Alle.FirstOrDefault(p => p.Id == id);
+            if (Partei is null)
+                return NotFound();
+            return Page();
+        }
+        ```
+      en: |
+        The page is built like this; `Parteien.Alle` contains the ids 1, 2 and 3. Which status code does the running application return for `/Detail/2`, `/Detail/abc`, `/Detail/99` and `/Detail`? Who decides in each case, the routing or the code of `OnGet`?
+
+        ```razor
+        @page "{id:int}"
+        @model DetailModel
+        ```
+
+        ```csharp
+        public IActionResult OnGet(int id)
+        {
+            Partei = Parteien.Alle.FirstOrDefault(p => p.Id == id);
+            if (Partei is null)
+                return NotFound();
+            return Page();
+        }
+        ```

@@ -1,7 +1,7 @@
 # Rubrik: Verständnisfragen SQL und ADO.NET (nur für die Betreuung)
 
-Die Multiple-Choice-Fragen `mc-insert-parameter` (richtig: Option 1), `mc-null-lesen` (Option 1) und
-`mc-transaktion` (Option 1) wertet das Programm selbst aus. Die Code-Listings wurden mit
+Die Multiple-Choice-Fragen `mc-insert-parameter` (richtig: Option 3), `mc-null-lesen` (Option 4) und
+`mc-transaktion` (Option 4) wertet das Programm selbst aus. Die Code-Listings wurden mit
 `Microsoft.Data.Sqlite` 10.0 in einer In-Memory-Datenbank ausgeführt; die Ausgaben unten sind echt.
 
 ## schema-regeln

@@ -75,12 +75,6 @@ items:
     options:
       - de: |
           ```csharp
-          cmd.CommandText = "INSERT INTO Person (Name) VALUES (@name)";
-          cmd.Parameters.AddWithValue("@name", name);
-          cmd.ExecuteNonQuery();
-          ```
-      - de: |
-          ```csharp
           cmd.CommandText = "INSERT INTO Person (Name) VALUES ('" + name + "')";
           cmd.ExecuteNonQuery();
           ```
@@ -90,10 +84,16 @@ items:
           cmd.Parameters.AddWithValue("@Namen", name);
           cmd.ExecuteNonQuery();
           ```
-    correct: [0]
+      - de: |
+          ```csharp
+          cmd.CommandText = "INSERT INTO Person (Name) VALUES (@name)";
+          cmd.Parameters.AddWithValue("@name", name);
+          cmd.ExecuteNonQuery();
+          ```
+    correct: [2]
     explanation:
-      de: "Option 2 setzt die Eingabe in den SQL-Text: Bei `O'Brien` endet das Textliteral beim Apostroph, der Befehl ist ungültig (SqliteException wegen Syntaxfehler), und mit einer bösartigen Eingabe könnte jemand eigenes SQL einschleusen (SQL-Injection). Option 3 benennt den Parameter anders, als der SQL-Text ihn verlangt: Es wird eine InvalidOperationException geworfen, weil für `@name` kein Wert vorliegt."
-      en: "Option 2 puts the input into the SQL text: with `O'Brien` the string literal ends at the apostrophe and the command is invalid (SqliteException, syntax error), and a malicious input could inject its own SQL (SQL injection). Option 3 names the parameter differently from what the SQL text expects: an InvalidOperationException is thrown because no value was supplied for `@name`."
+      de: "Option 1 setzt die Eingabe in den SQL-Text: Bei `O'Brien` endet das Textliteral beim Apostroph, der Befehl ist ungültig (SqliteException wegen Syntaxfehler), und mit einer bösartigen Eingabe könnte jemand eigenes SQL einschleusen (SQL-Injection). Option 2 benennt den Parameter anders, als der SQL-Text ihn verlangt: Es wird eine InvalidOperationException geworfen, weil für `@name` kein Wert vorliegt."
+      en: "Option 1 puts the input into the SQL text: with `O'Brien` the string literal ends at the apostrophe and the command is invalid (SqliteException, syntax error), and a malicious input could inject its own SQL (SQL injection). Option 2 names the parameter differently from what the SQL text expects: an InvalidOperationException is thrown because no value was supplied for `@name`."
   - type: open
     id: execute-varianten
     prompt:
@@ -140,7 +140,7 @@ items:
     options:
       - de: |
           ```csharp
-          string? tel = r.IsDBNull(2) ? null : r.GetString(2);
+          string? tel = r[2] == null ? null : (string)r[2];
           ```
       - de: |
           ```csharp
@@ -148,16 +148,16 @@ items:
           ```
       - de: |
           ```csharp
-          string? tel = r[2] == null ? null : (string)r[2];
+          string? tel = r.IsDBNull(2) ? null : r.GetInt32(2);
           ```
       - de: |
           ```csharp
-          string? tel = r.IsDBNull(2) ? null : r.GetInt32(2);
+          string? tel = r.IsDBNull(2) ? null : r.GetString(2);
           ```
-    correct: [0]
+    correct: [3]
     explanation:
-      de: "Option 2 wirft bei NULL eine InvalidOperationException: Die typisierten Get-Methoden vertragen kein NULL, man fragt vorher mit `IsDBNull`. Option 3 prüft gegen `null`, aber ein fehlender Wert kommt als `DBNull.Value` an, nicht als `null`; der Cast wirft eine InvalidCastException. Option 4 liest den Text mit `GetInt32` und lässt sich nicht kompilieren (int ist kein string)."
-      en: "Option 2 throws an InvalidOperationException on NULL: the typed Get methods cannot handle NULL, so you ask `IsDBNull` first. Option 3 checks against `null`, but a missing value arrives as `DBNull.Value`, not as `null`; the cast throws an InvalidCastException. Option 4 reads the text with `GetInt32` and does not compile (an int is not a string)."
+      de: "Option 1 prüft gegen `null`, aber ein fehlender Wert kommt als `DBNull.Value` an, nicht als `null`; der Cast wirft eine InvalidCastException. Option 2 wirft bei NULL eine InvalidOperationException: Die typisierten Get-Methoden vertragen kein NULL, man fragt vorher mit `IsDBNull`. Option 3 liest den Text mit `GetInt32` und lässt sich nicht kompilieren (int ist kein string)."
+      en: "Option 1 checks against `null`, but a missing value arrives as `DBNull.Value`, not as `null`; the cast throws an InvalidCastException. Option 2 throws an InvalidOperationException on NULL: the typed Get methods cannot handle NULL, so you ask `IsDBNull` first. Option 3 reads the text with `GetInt32` and does not compile (an int is not a string)."
   - type: open
     id: code-dbnull-lesen
     prompt:
@@ -202,6 +202,7 @@ items:
           try
           {
               Buche(con, tx, 1, -50);
+              tx.Commit();
               Buche(con, tx, 2, +50);
               tx.Commit();
           }
@@ -217,14 +218,12 @@ items:
           try
           {
               Buche(con, tx, 1, -50);
-              tx.Commit();
               Buche(con, tx, 2, +50);
               tx.Commit();
           }
-          catch
+          finally
           {
               tx.Rollback();
-              throw;
           }
           ```
       - de: |
@@ -242,15 +241,16 @@ items:
               Buche(con, tx, 2, +50);
               tx.Commit();
           }
-          finally
+          catch
           {
               tx.Rollback();
+              throw;
           }
           ```
-    correct: [0]
+    correct: [3]
     explanation:
-      de: "Option 2 bestätigt schon nach der ersten Buchung: Sie bleibt bestehen, auch wenn die zweite fehlschlägt, und der spätere Aufruf auf der abgeschlossenen Transaktion wirft eine InvalidOperationException. Option 3 ruft nie `Commit` auf: Die Änderungen werden beim Schließen der Verbindung verworfen. Option 4 ruft nach erfolgreichem `Commit` im `finally` trotzdem `Rollback` auf: Das wirft eine InvalidOperationException, obwohl alles gespeichert wurde."
-      en: "Option 2 commits after the first posting: it stays in place even if the second one fails, and the later call on the completed transaction throws an InvalidOperationException. Option 3 never calls `Commit`: the changes are discarded when the connection is closed. Option 4 calls `Rollback` in `finally` even after a successful `Commit`: this throws an InvalidOperationException although everything was saved."
+      de: "Option 1 bestätigt schon nach der ersten Buchung: Sie bleibt bestehen, auch wenn die zweite fehlschlägt, und der spätere Aufruf auf der abgeschlossenen Transaktion wirft eine InvalidOperationException. Option 2 ruft nach erfolgreichem `Commit` im `finally` trotzdem `Rollback` auf: Das wirft eine InvalidOperationException, obwohl alles gespeichert wurde. Option 3 ruft nie `Commit` auf: Die Änderungen werden beim Schließen der Verbindung verworfen."
+      en: "Option 1 commits after the first posting: it stays in place even if the second one fails, and the later call on the completed transaction throws an InvalidOperationException. Option 2 calls `Rollback` in `finally` even after a successful `Commit`: this throws an InvalidOperationException although everything was saved. Option 3 never calls `Commit`: the changes are discarded when the connection is closed."
   - type: open
     id: transaktion-erklaeren
     prompt:

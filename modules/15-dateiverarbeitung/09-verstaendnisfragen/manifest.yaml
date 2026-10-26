@@ -1,0 +1,313 @@
+id: dateien-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "16"
+  title: { de: "Dateiverarbeitung", en: "File Processing" }
+  printedPage: 1013
+teaches:
+  - files.filestream-bytes
+  - files.binary-readwrite
+  - files.invariant-culture
+  - resources.implement-idisposable
+requires:
+  - files.streamwriter
+  - files.streamreader-lines
+  - files.readall-writeall
+  - resources.dispose-close
+  - resources.using-statement
+  - resources.using-declaration
+  - json.deserialize
+items:
+  - type: open
+    id: using-warum
+    prompt:
+      de: "Warum reicht es nicht, ein Objekt wie einen `StreamWriter` einfach liegen zu lassen und auf den Garbage Collector zu vertrauen? Was macht eine `using`-Anweisung genau, und worin unterscheidet sich die `using`-Deklaration (`using var x = …;`) von ihr?"
+      en: "Why isn't it enough to simply leave an object such as a `StreamWriter` lying around and rely on the garbage collector? What exactly does a `using` statement do, and how does the `using` declaration (`using var x = …;`) differ from it?"
+  - type: open
+    id: stream-arten
+    prompt:
+      de: "Worin unterscheiden sich ein `FileStream` mit `BinaryWriter` und ein `StreamWriter`? Wann wählst du welchen, und was musst du bei Textdateien in Bezug auf die Zeichencodierung beachten?"
+      en: "How do a `FileStream` with a `BinaryWriter` and a `StreamWriter` differ? When do you choose which, and what do you have to keep in mind about character encoding with text files?"
+  - type: open
+    id: kultur
+    prompt:
+      de: "Warum parst und schreibt man Zahlen in Dateien mit `CultureInfo.InvariantCulture`? Was kann ohne diese Angabe passieren, und warum fällt der Fehler oft nicht auf dem eigenen Rechner auf?"
+      en: "Why do you parse and write numbers in files using `CultureInfo.InvariantCulture`? What can happen without it, and why is the error often not noticed on your own machine?"
+  - type: open
+    id: eigene-ressource
+    prompt:
+      de: "Wann implementiert eine eigene Klasse `IDisposable`? Wie soll sich `Dispose()` verhalten, wenn es mehrfach aufgerufen wird, und was soll passieren, wenn man das Objekt danach noch benutzt? Wann braucht man zusätzlich einen Finalizer?"
+      en: "When does a custom class implement `IDisposable`? How should `Dispose()` behave if it is called more than once, and what should happen if the object is used afterwards? When do you additionally need a finalizer?"
+  - type: open
+    id: code-using-reihenfolge
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und in welcher Reihenfolge?
+
+        ```csharp
+        class Wache : IDisposable
+        {
+            private readonly string name;
+            public Wache(string n) { name = n; Console.WriteLine($"auf {n}"); }
+            public void Dispose() => Console.WriteLine($"zu {name}");
+        }
+
+        using (var a = new Wache("A"))
+        {
+            using var b = new Wache("B");
+            Console.WriteLine("Arbeit");
+        }
+        Console.WriteLine("danach");
+        ```
+      en: |
+        What does this program print, and in what order?
+
+        ```csharp
+        class Wache : IDisposable
+        {
+            private readonly string name;
+            public Wache(string n) { name = n; Console.WriteLine($"auf {n}"); }
+            public void Dispose() => Console.WriteLine($"zu {name}");
+        }
+
+        using (var a = new Wache("A"))
+        {
+            using var b = new Wache("B");
+            Console.WriteLine("Arbeit");
+        }
+        Console.WriteLine("danach");
+        ```
+  - type: open
+    id: code-schreiber
+    prompt:
+      de: |
+        Was geben die drei Ausgabezeilen aus, und warum?
+
+        ```csharp
+        string pfad = Path.Combine(Path.GetTempPath(), "demo.txt");
+
+        using (var w = new StreamWriter(pfad))
+        {
+            w.WriteLine("eins");
+            w.WriteLine("zwei");
+        }
+        Console.WriteLine(File.ReadAllLines(pfad).Length);
+
+        using (var w = new StreamWriter(pfad, append: true))
+            w.WriteLine("drei");
+        Console.WriteLine(string.Join("|", File.ReadAllLines(pfad)));
+
+        using (var w = new StreamWriter(pfad))
+            w.Write("neu");
+        Console.WriteLine(File.ReadAllText(pfad));
+        ```
+      en: |
+        What do the three output lines print, and why?
+
+        ```csharp
+        string pfad = Path.Combine(Path.GetTempPath(), "demo.txt");
+
+        using (var w = new StreamWriter(pfad))
+        {
+            w.WriteLine("eins");
+            w.WriteLine("zwei");
+        }
+        Console.WriteLine(File.ReadAllLines(pfad).Length);
+
+        using (var w = new StreamWriter(pfad, append: true))
+            w.WriteLine("drei");
+        Console.WriteLine(string.Join("|", File.ReadAllLines(pfad)));
+
+        using (var w = new StreamWriter(pfad))
+            w.Write("neu");
+        Console.WriteLine(File.ReadAllText(pfad));
+        ```
+  - type: open
+    id: code-kultur
+    prompt:
+      de: |
+        Was geben die vier Zeilen aus? (Die Ausgabe erfolgt jeweils mit der invarianten Kultur, also mit Punkt als Dezimaltrennzeichen.)
+
+        ```csharp
+        var de = new CultureInfo("de-DE");
+        var inv = CultureInfo.InvariantCulture;
+        Console.WriteLine(double.Parse("1.5", de).ToString(inv));
+        Console.WriteLine(double.Parse("1,5", de).ToString(inv));
+        Console.WriteLine(double.Parse("1.5", inv).ToString(inv));
+        Console.WriteLine(double.Parse("1,5", inv).ToString(inv));
+        ```
+      en: |
+        What do the four lines print? (The output is always done with the invariant culture, i.e., with a period as the decimal separator.)
+
+        ```csharp
+        var de = new CultureInfo("de-DE");
+        var inv = CultureInfo.InvariantCulture;
+        Console.WriteLine(double.Parse("1.5", de).ToString(inv));
+        Console.WriteLine(double.Parse("1,5", de).ToString(inv));
+        Console.WriteLine(double.Parse("1.5", inv).ToString(inv));
+        Console.WriteLine(double.Parse("1,5", inv).ToString(inv));
+        ```
+  - type: open
+    id: code-binaer
+    prompt:
+      de: |
+        Was geben die drei Ausgabezeilen aus, und warum?
+
+        ```csharp
+        string pfad = Path.GetTempFileName();
+        using (var fs = new FileStream(pfad, FileMode.Create))
+        using (var w = new BinaryWriter(fs))
+        {
+            w.Write(42);
+            w.Write(3.5);
+        }
+        Console.WriteLine(File.ReadAllBytes(pfad).Length);
+
+        using var r = new BinaryReader(File.OpenRead(pfad));
+        Console.WriteLine(r.ReadInt32());
+        Console.WriteLine(r.ReadDouble() * 2);
+        ```
+      en: |
+        What do the three output lines print, and why?
+
+        ```csharp
+        string pfad = Path.GetTempFileName();
+        using (var fs = new FileStream(pfad, FileMode.Create))
+        using (var w = new BinaryWriter(fs))
+        {
+            w.Write(42);
+            w.Write(3.5);
+        }
+        Console.WriteLine(File.ReadAllBytes(pfad).Length);
+
+        using var r = new BinaryReader(File.OpenRead(pfad));
+        Console.WriteLine(r.ReadInt32());
+        Console.WriteLine(r.ReadDouble() * 2);
+        ```
+  - type: multipleChoice
+    id: richtig-zeilen-lesen
+    prompt:
+      de: "Alle Zeilen einer Textdatei (ohne Leerzeilen) sollen ausgegeben werden, keine Zeile darf fehlen, und die Datei muss danach wieder freigegeben sein. Welcher Code ist richtig?"
+      en: "All lines of a text file (without blank lines) are to be printed, no line may be missing, and the file must be released again afterwards. Which code is correct?"
+    options:
+      - de: |
+          ```csharp
+          var r = new StreamReader(pfad);
+          string? zeile;
+          while ((zeile = r.ReadLine()) != null)
+              Console.WriteLine(zeile);
+          ```
+      - de: |
+          ```csharp
+          using var r = new StreamReader(pfad);
+          while (r.ReadLine() != null)
+              Console.WriteLine(r.ReadLine());
+          ```
+      - de: |
+          ```csharp
+          using var r = new StreamReader(pfad);
+          string? zeile;
+          while ((zeile = r.ReadLine()) != null)
+              Console.WriteLine(zeile);
+          ```
+      - de: |
+          ```csharp
+          using var r = new StreamReader(pfad);
+          string? zeile;
+          while ((zeile = r.ReadLine()) != "")
+              Console.WriteLine(zeile);
+          ```
+    correct: [2]
+    explanation:
+      de: "Erste Option: Ohne `using` oder `Dispose()` bleibt die Datei gesperrt, bis der Garbage Collector irgendwann aufräumt; ein Schreibzugriff auf dieselbe Datei kann bis dahin mit einer `IOException` scheitern. Zweite Option: `ReadLine()` wird pro Durchlauf zweimal aufgerufen; die Hälfte der Zeilen geht verloren. Vierte Option: `ReadLine()` liefert am Dateiende `null`, nicht `\"\"`; die Schleife endet nie und gibt endlos leere Zeilen aus."
+      en: "First option: Without `using` or `Dispose()`, the file stays locked until the garbage collector eventually cleans up; a write access to the same file can fail with an `IOException` until then. Second option: `ReadLine()` is called twice per iteration; half of the lines are lost. Fourth option: `ReadLine()` returns `null` at the end of the file, not `\"\"`; the loop never ends and prints empty lines endlessly."
+  - type: multipleChoice
+    id: richtig-json
+    prompt:
+      de: "`json` ist eine Zeichenkette mit dem JSON-Text `{\"Name\":\"Ada\",\"Alter\":36}`, und es gibt `record Person(string Name, int Alter);`. Welche Zeile liefert die `Person`?"
+      en: "`json` is a string containing the JSON text `{\"Name\":\"Ada\",\"Alter\":36}`, and there is `record Person(string Name, int Alter);`. Which line produces the `Person`?"
+    options:
+      - de: "`var p = JsonSerializer.Deserialize<Person>(File.ReadAllText(json));`"
+      - de: "`Person? p = JsonSerializer.Deserialize<Person>(json);`"
+      - de: "`Person p = JsonSerializer.Deserialize(json);`"
+      - de: "`Person p = (Person)JsonSerializer.Serialize(json);`"
+    correct: [1]
+    explanation:
+      de: "Erste Option: `json` ist der JSON-Text selbst, kein Dateipfad; `File.ReadAllText` würde eine Datei dieses Namens suchen und mit einer Ausnahme scheitern. Dritte Option: Das Typargument fehlt, `Deserialize<Person>` ist nötig (CS0411). Vierte Option: `Serialize` macht aus einem Objekt Text, nicht umgekehrt, und eine Zeichenkette lässt sich nicht in `Person` umwandeln (CS0030)."
+      en: "First option: `json` is the JSON text itself, not a file path; `File.ReadAllText` would look for a file with that name and fail with an exception. Third option: The type argument is missing; `Deserialize<Person>` is required (CS0411). Fourth option: `Serialize` turns an object into text, not the other way around, and a string cannot be converted to `Person` (CS0030)."
+  - type: multipleChoice
+    id: richtig-logbuch
+    prompt:
+      de: "Die Klasse `Logbuch` hält einen `StreamWriter` auf eine Datei. Damit `using var log = new Logbuch(pfad);` funktioniert und die Datei am Ende geschlossen wird: Welche Klasse ist richtig?"
+      en: "The class `Logbuch` holds a `StreamWriter` for a file. So that `using var log = new Logbuch(pfad);` works and the file is closed at the end: Which class is correct?"
+    options:
+      - de: |
+          ```csharp
+          class Logbuch : IDisposable
+          {
+              private readonly StreamWriter _w;
+              public Logbuch(string pfad) => _w = new StreamWriter(pfad);
+              public void Schreibe(string z) => _w.WriteLine(z);
+              public void Dispose() => _w.Dispose();
+          }
+          ```
+      - de: |
+          ```csharp
+          class Logbuch
+          {
+              private readonly StreamWriter _w;
+              public Logbuch(string pfad) => _w = new StreamWriter(pfad);
+              public void Schreibe(string z) => _w.WriteLine(z);
+              public void Dispose() => _w.Dispose();
+          }
+          ```
+      - de: |
+          ```csharp
+          class Logbuch : IDisposable
+          {
+              private readonly StreamWriter _w;
+              public Logbuch(string pfad) => _w = new StreamWriter(pfad);
+              public void Schreibe(string z) => _w.WriteLine(z);
+              public void Close() => _w.Dispose();
+          }
+          ```
+    correct: [0]
+    explanation:
+      de: "Zweite Option: Ohne `: IDisposable` ist der Typ für `using` nicht zugelassen, auch wenn eine Methode namens `Dispose` existiert (CS1674). Dritte Option: Die Schnittstelle verlangt eine Methode `Dispose()`; `Close()` genügt nicht (CS0535)."
+      en: "Second option: Without `: IDisposable`, the type is not allowed in `using`, even if a method named `Dispose` exists (CS1674). Third option: The interface requires a method `Dispose()`; `Close()` is not enough (CS0535)."
+  - type: multipleChoice
+    id: richtig-puffer
+    prompt:
+      de: "Eine Datei enthält die sechs Bytes `1 2 3 4 5 6`. `fs` ist ein geöffneter `FileStream`, `puffer` ist `new byte[4]`. Die Bytes sollen der Reihe nach ausgegeben werden, jedes genau einmal. Welche Schleife ist richtig?"
+      en: "A file contains the six bytes `1 2 3 4 5 6`. `fs` is an open `FileStream`, and `puffer` is `new byte[4]`. The bytes are to be printed in order, each exactly once. Which loop is correct?"
+    options:
+      - de: |
+          ```csharp
+          while (fs.Read(puffer, 0, puffer.Length) == 4)
+              for (int i = 0; i < puffer.Length; i++)
+                  Console.Write(puffer[i] + " ");
+          ```
+      - de: |
+          ```csharp
+          while (fs.Read(puffer, 0, puffer.Length) != -1)
+              for (int i = 0; i < puffer.Length; i++)
+                  Console.Write(puffer[i] + " ");
+          ```
+      - de: |
+          ```csharp
+          int n;
+          while ((n = fs.Read(puffer, 0, puffer.Length)) > 0)
+              for (int i = 0; i < puffer.Length; i++)
+                  Console.Write(puffer[i] + " ");
+          ```
+      - de: |
+          ```csharp
+          int n;
+          while ((n = fs.Read(puffer, 0, puffer.Length)) > 0)
+              for (int i = 0; i < n; i++)
+                  Console.Write(puffer[i] + " ");
+          ```
+    correct: [3]
+    explanation:
+      de: "Erste Option: Beim letzten Lesen kommen nur zwei Bytes (5 und 6) an; `== 4` beendet die Schleife schon vorher, sie werden nie ausgegeben (Ausgabe `1 2 3 4`). Zweite Option: `Read` liefert am Ende `0`, nicht `-1` (das tut `ReadByte`); die Schleife endet nie. Dritte Option: Es wird immer der ganze Puffer ausgegeben; beim letzten Durchlauf stehen nur 2 neue Bytes drin, die anderen sind Reste (`1 2 3 4 5 6 3 4`). Richtig ist, nur die `n` tatsächlich gelesenen Bytes zu verwenden."
+      en: "First option: The last read delivers only two bytes (5 and 6); `== 4` ends the loop before that, so they are never printed (output `1 2 3 4`). Second option: `Read` returns `0` at the end, not `-1` (that is what `ReadByte` does); the loop never ends. Third option: The whole buffer is always printed; in the last iteration only 2 new bytes are in it, the others are leftovers (`1 2 3 4 5 6 3 4`). The correct approach is to use only the `n` bytes actually read."

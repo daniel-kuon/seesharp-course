@@ -1,0 +1,240 @@
+id: fortgeschritten-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "15"
+  title: { de: "C# für Fortgeschrittene", en: "C# for Advanced Users" }
+  printedPage: 949
+teaches:
+  - nullable.null-coalescing
+  - patterns.list
+  - refs.ref-return
+  - params.collection-type
+requires:
+  - nullable.annotation
+  - nullable.null-forgiving
+  - nullable.null-conditional
+  - nullable.null-conditional-assignment
+  - patterns.constant
+  - patterns.type
+  - patterns.relational
+  - patterns.logical
+  - patterns.property
+  - patterns.when-guard
+  - patterns.combine-in-switch
+  - spans.span-slice
+items:
+  - type: open
+    id: nullable-kontext
+    prompt:
+      de: "Im aktivierten Nullable-Kontext darf ein `string` nicht null sein, ein `string?` schon. Was bewirkt diese Kennzeichnung beim Übersetzen und was zur Laufzeit? Wofür ist der Null-Vergebungs-Operator `!` gedacht, und wann ist er vertretbar?"
+      en: "In an enabled nullable context, a `string` must not be null, while a `string?` may be. What does this annotation do at compile time and what does it do at runtime? What is the null-forgiving operator `!` for, and when is it acceptable?"
+  - type: open
+    id: null-operatoren
+    prompt:
+      de: "Erkläre die Operatoren `?.`, `??` und `??=` jeweils mit einem kurzen Beispiel. Was bewirkt die null-bedingte Zuweisung `k?.Alter = Berechne();`, wenn `k` den Wert `null` hat?"
+      en: "Explain the operators `?.`, `??`, and `??=`, each with a short example. What does the null-conditional assignment `k?.Alter = Berechne();` do when `k` is `null`?"
+  - type: open
+    id: muster-statt-if
+    prompt:
+      de: "Wann ist ein `switch`-Ausdruck mit Mustern besser lesbar als eine `if`-`else`-Kette? Nenne drei verschiedene Mustertypen mit je einem kurzen Beispiel und erkläre, warum die Reihenfolge der Arme wichtig ist."
+      en: "When is a `switch` expression with patterns more readable than an `if`-`else` chain? Name three different kinds of patterns, each with a short example, and explain why the order of the arms matters."
+  - type: open
+    id: span
+    prompt:
+      de: "Was ist ein `Span<T>` bzw. `ReadOnlySpan<T>`, und welchen Vorteil hat ein Ausschnitt per Span gegenüber `Substring` oder dem Kopieren in ein neues Array? Warum darf ein Span nur auf dem Stack leben, und was folgt daraus für seine Verwendung?"
+      en: "What is a `Span<T>` or `ReadOnlySpan<T>`, and what advantage does a slice via a span have over `Substring` or copying into a new array? Why may a span live only on the stack, and what follows from that for how you use it?"
+  - type: open
+    id: code-null-operatoren
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und warum?
+
+        ```csharp
+        string? name = null;
+        Console.WriteLine(name?.Length ?? -1);
+        name ??= "Ada";
+        name ??= "Bob";
+        Console.WriteLine($"{name} {name?.Length}");
+        ```
+      en: |
+        What does this program print, and why?
+
+        ```csharp
+        string? name = null;
+        Console.WriteLine(name?.Length ?? -1);
+        name ??= "Ada";
+        name ??= "Bob";
+        Console.WriteLine($"{name} {name?.Length}");
+        ```
+  - type: open
+    id: code-span-ref
+    prompt:
+      de: |
+        Was geben die beiden Ausgabezeilen aus, und warum?
+
+        ```csharp
+        int[] daten = { 1, 2, 3, 4, 5 };
+        Span<int> mitte = daten.AsSpan(1, 3);
+        mitte[0] = 20;
+        Console.WriteLine(string.Join(",", daten));
+        Hoechster(daten) = 0;
+        Console.WriteLine(string.Join(",", daten));
+
+        static ref int Hoechster(int[] a)
+        {
+            int idx = 0;
+            for (int i = 1; i < a.Length; i++)
+                if (a[i] > a[idx]) idx = i;
+            return ref a[idx];
+        }
+        ```
+      en: |
+        What do the two output lines print, and why?
+
+        ```csharp
+        int[] daten = { 1, 2, 3, 4, 5 };
+        Span<int> mitte = daten.AsSpan(1, 3);
+        mitte[0] = 20;
+        Console.WriteLine(string.Join(",", daten));
+        Hoechster(daten) = 0;
+        Console.WriteLine(string.Join(",", daten));
+
+        static ref int Hoechster(int[] a)
+        {
+            int idx = 0;
+            for (int i = 1; i < a.Length; i++)
+                if (a[i] > a[idx]) idx = i;
+            return ref a[idx];
+        }
+        ```
+  - type: open
+    id: code-switch-reihenfolge
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Achte besonders auf die Zahl `-2`.
+
+        ```csharp
+        static string Beschreibe(object? o) => o switch
+        {
+            null => "nichts",
+            int and < 0 => "negativ",
+            int n when n % 2 == 0 => "gerade",
+            int => "ungerade",
+            string { Length: 0 } => "leer",
+            string s => $"Text {s}",
+            _ => "anderes"
+        };
+
+        foreach (var o in new object?[] { 4, -2, 7, "", "Hi", null, 2.5 })
+            Console.Write(Beschreibe(o) + "; ");
+        ```
+      en: |
+        What does this program print? Pay special attention to the number `-2`.
+
+        ```csharp
+        static string Beschreibe(object? o) => o switch
+        {
+            null => "nichts",
+            int and < 0 => "negativ",
+            int n when n % 2 == 0 => "gerade",
+            int => "ungerade",
+            string { Length: 0 } => "leer",
+            string s => $"Text {s}",
+            _ => "anderes"
+        };
+
+        foreach (var o in new object?[] { 4, -2, 7, "", "Hi", null, 2.5 })
+            Console.Write(Beschreibe(o) + "; ");
+        ```
+  - type: open
+    id: code-listenmuster
+    prompt:
+      de: |
+        Was gibt dieses Programm für die fünf Arrays aus?
+
+        ```csharp
+        static string Pruefe(int[] a) => a switch
+        {
+            [] => "leer",
+            [var x] => $"eins:{x}",
+            [1, .., 9] => "1 bis 9",
+            [var kopf, .. var rest] => $"{kopf}+{rest.Length}"
+        };
+
+        foreach (var a in new[] { new int[0], new[] { 5 }, new[] { 1, 9 },
+                                  new[] { 1, 2, 9 }, new[] { 2, 3, 4 } })
+            Console.Write(Pruefe(a) + "; ");
+        ```
+      en: |
+        What does this program print for the five arrays?
+
+        ```csharp
+        static string Pruefe(int[] a) => a switch
+        {
+            [] => "leer",
+            [var x] => $"eins:{x}",
+            [1, .., 9] => "1 bis 9",
+            [var kopf, .. var rest] => $"{kopf}+{rest.Length}"
+        };
+
+        foreach (var a in new[] { new int[0], new[] { 5 }, new[] { 1, 9 },
+                                  new[] { 1, 2, 9 }, new[] { 2, 3, 4 } })
+            Console.Write(Pruefe(a) + "; ");
+        ```
+  - type: multipleChoice
+    id: richtig-null
+    prompt:
+      de: "Im aktivierten Nullable-Kontext soll `Laenge` die Länge eines Textes liefern, bei `null` den Wert 0, und weder eine Warnung noch einen Absturz verursachen. Welche Methode ist richtig?"
+      en: "In an enabled nullable context, `Laenge` is supposed to return the length of a text, and 0 for `null`, without causing a warning or a crash. Which method is correct?"
+    options:
+      - de: "`static int Laenge(string? s) => s!.Length;`"
+      - de: "`static int Laenge(string? s) => s.Length;`"
+      - de: "`static int Laenge(string? s) => s?.Length ?? 0;`"
+      - de: "`static int Laenge(string s) => s?.Length;`"
+    correct: [2]
+    explanation:
+      de: "Erste Option: `!` unterdrückt nur die Warnung; bei `null` entsteht trotzdem eine `NullReferenceException`. Zweite Option: Der Compiler warnt (CS8602), und bei `null` stürzt der Aufruf mit einer `NullReferenceException` ab. Vierte Option: `s?.Length` ist ein `int?`; ohne `??` lässt es sich nicht in `int` umwandeln (CS0266)."
+      en: "First option: `!` only suppresses the warning; with `null` a `NullReferenceException` still occurs. Second option: The compiler warns (CS8602), and with `null` the call crashes with a `NullReferenceException`. Fourth option: `s?.Length` is an `int?`; without `??` it cannot be converted to `int` (CS0266)."
+  - type: multipleChoice
+    id: richtig-relation
+    prompt:
+      de: "Welcher Ausdruck ist genau dann `true`, wenn `alter` mindestens 13 und höchstens 17 ist (`alter` ist ein `int`)?"
+      en: "Which expression is `true` exactly when `alter` is at least 13 and at most 17 (`alter` is an `int`)?"
+    options:
+      - de: "`alter is >= 13 and < 18`"
+      - de: "`alter is >= 13 and <= 18`"
+      - de: "`alter is >= 13 or < 18`"
+      - de: "`alter is >= 13 && < 18`"
+    correct: [0]
+    explanation:
+      de: "Zweite Option: `<= 18` schließt auch 18 ein (Off-by-one). Dritte Option: Mit `or` ist das Muster für jede Zahl erfüllt, denn jede Zahl ist mindestens 13 oder kleiner als 18 (der Compiler warnt mit CS8794, dass es immer passt). Vierte Option: Muster verknüpft man mit `and`, `or` und `not`, nicht mit `&&` (CS1525)."
+      en: "Second option: `<= 18` also includes 18 (off-by-one). Third option: With `or`, the pattern matches every number, because every number is at least 13 or less than 18 (the compiler warns with CS8794 that it always matches). Fourth option: Patterns are combined with `and`, `or`, and `not`, not with `&&` (CS1525)."
+  - type: multipleChoice
+    id: richtig-merkmal
+    prompt:
+      de: |
+        Gegeben sind `record Adresse(string Land);` und `record Person(string Name, Adresse? Adresse);`. Welcher Ausdruck prüft für eine `Person p`, ob sie in Deutschland (`"DE"`) wohnt, und ist auch dann sicher, wenn `p.Adresse` den Wert `null` hat?
+      en: |
+        Given `record Adresse(string Land);` and `record Person(string Name, Adresse? Adresse);`. Which expression checks for a `Person p` whether they live in Germany (`"DE"`) and is also safe when `p.Adresse` is `null`?
+    options:
+      - de: "`p.Adresse.Land == \"DE\"`"
+      - de: "`p is { Adresse: \"DE\" }`"
+      - de: "`p is { Adresse: not null, Land: \"DE\" }`"
+      - de: "`p is { Adresse.Land: \"DE\" }`"
+    correct: [3]
+    explanation:
+      de: "Erste Option: Bei `Adresse == null` entsteht eine `NullReferenceException` (der Compiler warnt mit CS8602). Zweite Option: `Adresse` ist keine Zeichenkette; das Konstantenmuster `\"DE\"` passt nicht zum Typ `Adresse` (CS0029). Dritte Option: `Land` gehört zu `Adresse`, nicht zu `Person` (CS0117). Das erweiterte Merkmalsmuster `{ Adresse.Land: \"DE\" }` ist null-sicher: Bei `Adresse == null` ergibt es `false`."
+      en: "First option: With `Adresse == null`, a `NullReferenceException` occurs (the compiler warns with CS8602). Second option: `Adresse` is not a string; the constant pattern `\"DE\"` does not fit the type `Adresse` (CS0029). Third option: `Land` belongs to `Adresse`, not to `Person` (CS0117). The extended property pattern `{ Adresse.Land: \"DE\" }` is null-safe: With `Adresse == null` it yields `false`."
+  - type: multipleChoice
+    id: richtig-params
+    prompt:
+      de: "`Summe` soll mit `Summe(1, 2, 3)` aufrufbar sein, und der Compiler soll die Werte ohne ein Array auf dem Heap übergeben dürfen. Welche Signatur ist richtig?"
+      en: "`Summe` is supposed to be callable as `Summe(1, 2, 3)`, and the compiler should be allowed to pass the values without a heap-allocated array. Which signature is correct?"
+    options:
+      - de: "`static int Summe(params int werte)`"
+      - de: "`static int Summe(params ReadOnlySpan<int> werte)`"
+      - de: "`static int Summe(ReadOnlySpan<int> werte)`"
+    correct: [1]
+    explanation:
+      de: "Erste Option: Ein `params`-Parameter braucht einen Array- oder Kollektionstyp, `int` allein genügt nicht (CS0225). Dritte Option: Ohne `params` lassen sich die Werte nicht einzeln übergeben; `Summe(1, 2, 3)` findet keine passende Überladung (CS1501). Mit `params ReadOnlySpan<int>` darf der Compiler die Argumente in einem Inline-Array auf dem Stack ablegen."
+      en: "First option: A `params` parameter needs an array or collection type; `int` alone is not enough (CS0225). Third option: Without `params`, the values cannot be passed individually; `Summe(1, 2, 3)` finds no matching overload (CS1501). With `params ReadOnlySpan<int>`, the compiler may place the arguments in an inline array on the stack."

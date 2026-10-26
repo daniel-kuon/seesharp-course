@@ -5,14 +5,14 @@ reading:
   title: { de: "Weitere .NETte Typen", en: "More .NET Types" }
   printedPage: 431
 teaches:
-  - structs.value-semantics
-  - arrays.reference-semantics
   - strings.immutability
+  - enums.underlying-value
   - records.value-equality
 requires:
+  - structs.value-semantics
   - structs.boxing
+  - arrays.reference-semantics
   - strings.stringbuilder
-  - enums.parse-tostring
   - tuples.deconstruct
   - records.with
 items:

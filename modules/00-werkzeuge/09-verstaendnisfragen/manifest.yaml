@@ -1,0 +1,285 @@
+id: werkzeuge-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "3.1"
+  title: { de: ".NET SDK", en: ".NET SDK" }
+  printedPage: 61
+teaches:
+  - tools.seesharp-workflow
+  - basics.console-output
+  - methods.return-value
+  - tools.solution-anatomy
+requires:
+  - tools.build-run
+  - tools.read-compiler-error
+items:
+  - type: open
+    id: global-json
+    prompt:
+      de: "Erkläre, was eine `global.json` bewirkt und warum SeeSharp im Kursordner eine mitliefert."
+      en: "Explain what a `global.json` file does and why SeeSharp ships one in the course folder."
+  - type: open
+    id: reihenfolge
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und in welcher Reihenfolge? Begründe es.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                Console.WriteLine("Start");
+                Console.WriteLine(Name());
+                Console.WriteLine("Ende");
+            }
+
+            public static string Name() {
+                Console.WriteLine("in Name");
+                return "SeeSharp";
+            }
+        }
+        ```
+      en: |
+        What does this program print, and in which order? Explain why.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                Console.WriteLine("Start");
+                Console.WriteLine(Name());
+                Console.WriteLine("Ende");
+            }
+
+            public static string Name() {
+                Console.WriteLine("in Name");
+                return "SeeSharp";
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: gueltiges-programm
+    prompt:
+      de: "Welches Programm lässt sich bauen und gibt beim Start `Hallo, SeeSharp!` aus?"
+      en: "Which program builds and prints `Hallo, SeeSharp!` when started?"
+    options:
+      - de: |
+          ```csharp
+          using System;
+
+          public class Programm {
+              static void main() {
+                  Console.WriteLine("Hallo, SeeSharp!");
+              }
+          }
+          ```
+      - de: |
+          ```csharp
+          using System;
+
+          public class Programm {
+              static void Main() {
+                  Console.WriteLine "Hallo, SeeSharp!";
+              }
+          }
+          ```
+      - de: |
+          ```csharp
+          using System;
+
+          public class Programm {
+              static void Main() {
+                  Console.WriteLine("Hallo, SeeSharp!");
+              }
+          }
+          ```
+      - de: |
+          ```csharp
+          using System;
+
+          public class Programm {
+              static void Main() {
+                  console.WriteLine("Hallo, SeeSharp!");
+              }
+          }
+          ```
+    correct: [2]
+    explanation:
+      de: "Die Fassung mit kleinem `main` scheitert, weil C# Groß- und Kleinschreibung unterscheidet: Der Compiler findet keinen Einstiegspunkt `Main` (CS5001). Bei `Console.WriteLine \"…\"` fehlen die Klammern des Aufrufs (CS1002). Bei `console.WriteLine` ist die Klasse klein geschrieben; der Name `console` ist unbekannt (CS0103)."
+      en: "The version with a lowercase `main` fails because C# is case-sensitive: the compiler finds no `Main` entry point (CS5001). In `Console.WriteLine \"…\"` the parentheses of the call are missing (CS1002). In `console.WriteLine` the class name is lowercase; the name `console` is unknown (CS0103)."
+  - type: open
+    id: fehlerarten
+    prompt:
+      de: "Das Buch unterscheidet Syntaxfehler, Laufzeitfehler und Logikfehler. Erkläre jede Art in ein bis zwei Sätzen, nenne je ein Beispiel und sage, woran du sie bemerkst."
+      en: "The book distinguishes syntax errors, runtime errors and logic errors. Explain each kind in one or two sentences, give an example of each, and say how you notice it."
+  - type: open
+    id: rueckgabe-ohne-ausgabe
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Warum? Was müsstest du ändern, damit `Hallo` erscheint?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                Gruss();
+            }
+
+            public static string Gruss() {
+                return "Hallo";
+            }
+        }
+        ```
+      en: |
+        What does this program print? Why? What would you have to change so that `Hallo` appears?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                Gruss();
+            }
+
+            public static string Gruss() {
+                return "Hallo";
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: gruss-methode
+    prompt:
+      de: "`Main()` enthält die Zeile `Console.WriteLine(Gruss());`. Welche Fassung von `Gruss()` ist richtig, damit `Hallo` ausgegeben wird?"
+      en: "`Main()` contains the line `Console.WriteLine(Gruss());`. Which version of `Gruss()` is correct so that `Hallo` is printed?"
+    options:
+      - de: |
+          ```csharp
+          public static void Gruss() {
+              return "Hallo";
+          }
+          ```
+      - de: |
+          ```csharp
+          public static string Gruss() {
+              return "Hallo";
+          }
+          ```
+      - de: |
+          ```csharp
+          public static string Gruss() {
+              Console.WriteLine("Hallo");
+          }
+          ```
+      - de: |
+          ```csharp
+          public static string Gruss() {
+              "Hallo";
+          }
+          ```
+    correct: [1]
+    explanation:
+      de: "Die `void`-Methode liefert nichts zurück, `return \"Hallo\";` ist dort ein Fehler (CS0127), und `Console.WriteLine` bekäme gar keinen Wert. Die dritte Fassung verspricht einen `string`, gibt aber keinen zurück (CS0161); sie würde nur selbst ausgeben. Bei der vierten ist ein bloßer Text keine Anweisung (CS0201), und auch hier fehlt das `return`."
+      en: "The `void` method returns nothing, so `return \"Hallo\";` is an error there (CS0127), and `Console.WriteLine` would not receive a value at all. The third version promises a `string` but does not return one (CS0161); it would only print by itself. In the fourth, a bare piece of text is not a statement (CS0201), and the `return` is missing here as well."
+  - type: open
+    id: ausgabedateien
+    prompt:
+      de: "Du möchtest dein gebautes Programm an eine Kollegin weitergeben, auf deren Rechner die .NET-Laufzeit installiert ist. Welche Dateien aus `bin/` brauchst du, was steckt in jeder davon, und welche Datei kannst du weglassen?"
+      en: "You want to give your built program to a colleague whose computer has the .NET runtime installed. Which files from `bin/` do you need, what does each of them contain, and which file can you leave out?"
+  - type: open
+    id: semikolon
+    prompt:
+      de: |
+        Du startest dieses Projekt mit `dotnet run`. Was passiert, und was zeigt dir der Compiler?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                Console.WriteLine("Hallo")
+            }
+        }
+        ```
+      en: |
+        You start this project with `dotnet run`. What happens, and what does the compiler show you?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                Console.WriteLine("Hallo")
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: projekt-anlegen
+    prompt:
+      de: "Du stehst in einem leeren Ordner. Welche Befehlsfolge legt das Konsolenprojekt `Reparatur` an und startet es?"
+      en: "You are in an empty folder. Which sequence of commands creates the console project `Reparatur` and starts it?"
+    options:
+      - de: |
+          ```
+          dotnet new Reparatur console
+          cd Reparatur
+          dotnet run
+          ```
+      - de: |
+          ```
+          dotnet new console -n Reparatur
+          dotnet run
+          ```
+      - de: |
+          ```
+          dotnet create console -n Reparatur
+          cd Reparatur
+          dotnet run
+          ```
+      - de: |
+          ```
+          dotnet new console -n Reparatur
+          cd Reparatur
+          dotnet run
+          ```
+    correct: [3]
+    explanation:
+      de: "`dotnet new Reparatur console` nennt die Vorlage falsch: Nach `dotnet new` kommt der Vorlagenname `console`, den Projektnamen gibt `-n` an. Ohne `cd Reparatur` sucht `dotnet run` im aktuellen Ordner ein Projekt und findet keins. Einen Befehl `dotnet create` gibt es nicht."
+      en: "`dotnet new Reparatur console` gets the template wrong: `dotnet new` takes the template name `console`, and `-n` gives the project name. Without `cd Reparatur`, `dotnet run` looks for a project in the current folder and finds none. There is no `dotnet create` command."
+  - type: open
+    id: bewertung
+    prompt:
+      de: "Beschreibe, was SeeSharp tut, wenn du bei einer Programmierübung auf „Abgeben“ klickst. Warum zählt nur diese Prüfung und nicht ein grüner Testlauf in Rider? Und wie liest du einen roten Test?"
+      en: "Describe what SeeSharp does when you click “Submit” on a coding exercise. Why does only this check count, and not a green test run in Rider? And how do you read a red test?"
+  - type: multipleChoice
+    id: variable-deklarieren
+    prompt:
+      de: "Welche Zeile legt eine Variable `gruss` vom Typ `string` an und setzt sie auf den Text `Moin, SeeSharp!`?"
+      en: "Which line declares a variable `gruss` of type `string` and sets it to the text `Moin, SeeSharp!`?"
+    options:
+      - de: "string gruss = 'Moin, SeeSharp!';"
+      - de: "gruss string = \"Moin, SeeSharp!\";"
+      - de: "string gruss = \"Moin, SeeSharp!\";"
+      - de: "String gruss = \"Moin, SeeSharp!\""
+    correct: [2]
+    explanation:
+      de: "Einfache Anführungszeichen sind für ein einzelnes Zeichen (`char`) gedacht; bei einem ganzen Text meldet der Compiler „zu viele Zeichen“ (CS1012). `gruss string` vertauscht Typ und Namen (CS1001). Bei der letzten Zeile fehlt das abschließende Semikolon (CS1002)."
+      en: "Single quotes are meant for a single character (`char`); for a whole text the compiler reports “too many characters” (CS1012). `gruss string` swaps type and name (CS1001). In the last line the terminating semicolon is missing (CS1002)."
+  - type: multipleChoice
+    id: debugger-schritt
+    prompt:
+      de: "Der Debugger hält in `Main()` auf der Zeile `Console.WriteLine(Gruss());`. Du willst sehen, was in `Gruss()` passiert. Welche Taste nimmst du?"
+      en: "The debugger is paused in `Main()` on the line `Console.WriteLine(Gruss());`. You want to see what happens inside `Gruss()`. Which key do you press?"
+    options:
+      - de: "`F10`: führt die Zeile aus und bleibt in `Main()`, auch wenn `Gruss()` darin aufgerufen wird."
+        en: "`F10`: executes the line and stays in `Main()`, even though `Gruss()` is called there."
+      - de: "`F11`: springt in den Methodenaufruf hinein."
+        en: "`F11`: steps into the method call."
+      - de: "`Strg+F5`: startet das Programm neu, ohne Debugger."
+        en: "`Ctrl+F5`: restarts the program without the debugger."
+    correct: [1]
+    explanation:
+      de: "`F11` geht in den Aufruf hinein, `F10` führt die Zeile samt Aufruf in einem Schritt aus. `Strg+F5` startet ohne Debugger; Haltepunkte werden dann ignoriert."
+      en: "`F11` steps into the call, whereas `F10` executes the line including the call in one step. `Ctrl+F5` starts without the debugger, so breakpoints are ignored."

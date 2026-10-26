@@ -1,0 +1,274 @@
+id: linq-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "18"
+  title: { de: "LINQ-to-Objects", en: "LINQ to Objects" }
+  printedPage: 1209
+teaches:
+  - linq.deferred-execution
+  - linq.selectmany
+  - linq.query-let
+requires:
+  - linq.where
+  - linq.select
+  - linq.orderby
+  - linq.aggregates
+  - linq.materialize
+  - linq.groupby
+  - linq.countby
+  - linq.groupjoin
+  - linq.query-syntax
+items:
+  - type: open
+    id: ausfuehrung
+    prompt:
+      de: "Erkläre den Unterschied zwischen zurückgestellter und sofortiger Ausführung bei LINQ und nenne je zwei Operatoren. Was passiert, wenn man dieselbe Abfrage zweimal aufzählt, und was, wenn sich die Quelle zwischen dem Bauen der Abfrage und dem Aufzählen ändert?"
+      en: "Explain the difference between deferred and immediate execution in LINQ and name two operators for each. What happens when you enumerate the same query twice, and what happens if the source changes between building the query and enumerating it?"
+  - type: open
+    id: groupby-countby
+    prompt:
+      de: "Was liefert `GroupBy` genau, und wie liest du den Schlüssel und die Elemente einer Gruppe? Wann ist `CountBy(f)` die bessere Wahl gegenüber `GroupBy(f).Select(g => (g.Key, g.Count()))`?"
+      en: "What exactly does `GroupBy` return, and how do you read the key and the elements of a group? When is `CountBy(f)` the better choice compared to `GroupBy(f).Select(g => (g.Key, g.Count()))`?"
+  - type: open
+    id: join-vs-groupjoin
+    prompt:
+      de: "Du hast eine Liste von Kunden und eine Liste von Bestellungen. Was passiert bei `Join` und bei `GroupJoin` mit einem Kunden, der noch nie bestellt hat? Wann würdest du also `GroupJoin` statt `Join` verwenden?"
+      en: "You have a list of customers and a list of orders. What happens with `Join` and with `GroupJoin` for a customer who has never ordered? So when would you use `GroupJoin` instead of `Join`?"
+  - type: open
+    id: select-vs-selectmany
+    prompt:
+      de: "Was unterscheidet `Select` von `SelectMany`? Erkläre es an einer `List<string>` mit Sätzen, aus der du alle Wörter als eine einzige flache Folge erhalten möchtest."
+      en: "What is the difference between `Select` and `SelectMany`? Explain it using a `List<string>` of sentences from which you want to obtain all words as a single flat sequence."
+  - type: open
+    id: code-mehrfach
+    prompt:
+      de: |
+        Was geben die drei Ausgabezeilen aus, und warum?
+
+        ```csharp
+        var zahlen = new List<int> { 1, 2, 3 };
+        var gross = zahlen.Where(z => z > 1);
+        zahlen.Add(10);
+        Console.WriteLine(gross.Count());
+        var liste = zahlen.Where(z => z > 1).ToList();
+        zahlen.Add(20);
+        Console.WriteLine(liste.Count);
+        Console.WriteLine(gross.Count());
+        ```
+      en: |
+        What do the three output lines print, and why?
+
+        ```csharp
+        var zahlen = new List<int> { 1, 2, 3 };
+        var gross = zahlen.Where(z => z > 1);
+        zahlen.Add(10);
+        Console.WriteLine(gross.Count());
+        var liste = zahlen.Where(z => z > 1).ToList();
+        zahlen.Add(20);
+        Console.WriteLine(liste.Count);
+        Console.WriteLine(gross.Count());
+        ```
+  - type: open
+    id: code-select-zweimal
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Wie oft erscheint `S`, und warum?
+
+        ```csharp
+        var q = new[] { 3, 1, 2 }.Select(x => { Console.Write("S "); return x * 2; });
+        Console.WriteLine("gebaut");
+        foreach (var v in q) { }
+        foreach (var v in q) { }
+        ```
+      en: |
+        What does this program print? How often does `S` appear, and why?
+
+        ```csharp
+        var q = new[] { 3, 1, 2 }.Select(x => { Console.Write("S "); return x * 2; });
+        Console.WriteLine("gebaut");
+        foreach (var v in q) { }
+        foreach (var v in q) { }
+        ```
+  - type: open
+    id: code-gruppen
+    prompt:
+      de: |
+        Was gibt dieses Programm aus?
+
+        ```csharp
+        string[] woerter = { "Apfel", "Birne", "Ananas", "Banane", "Kiwi" };
+        foreach (var g in woerter.GroupBy(w => w[0]))
+            Console.WriteLine($"{g.Key}: {g.Count()} ({string.Join(", ", g)})");
+        ```
+      en: |
+        What does this program print?
+
+        ```csharp
+        string[] woerter = { "Apfel", "Birne", "Ananas", "Banane", "Kiwi" };
+        foreach (var g in woerter.GroupBy(w => w[0]))
+            Console.WriteLine($"{g.Key}: {g.Count()} ({string.Join(", ", g)})");
+        ```
+  - type: open
+    id: code-leere-folge
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und warum verhalten sich die drei Aufrufe so unterschiedlich?
+
+        ```csharp
+        var leer = new List<int>();
+        Console.WriteLine(leer.Sum());
+        Console.WriteLine(leer.FirstOrDefault());
+        try { Console.WriteLine(leer.Average()); }
+        catch (InvalidOperationException) { Console.WriteLine("leer"); }
+        ```
+      en: |
+        What does this program print, and why do the three calls behave so differently?
+
+        ```csharp
+        var leer = new List<int>();
+        Console.WriteLine(leer.Sum());
+        Console.WriteLine(leer.FirstOrDefault());
+        try { Console.WriteLine(leer.Average()); }
+        catch (InvalidOperationException) { Console.WriteLine("leer"); }
+        ```
+  - type: multipleChoice
+    id: richtig-methodensyntax
+    prompt:
+      de: |
+        Gegeben ist `record Produkt(string Name, decimal Preis);` und eine `List<Produkt> produkte`. Welcher Code liefert die Namen aller Produkte mit einem Preis über 10, alphabetisch sortiert, als `IEnumerable<string>`?
+      en: |
+        Given `record Produkt(string Name, decimal Preis);` and a `List<Produkt> produkte`. Which code returns the names of all products priced above 10, sorted alphabetically, as an `IEnumerable<string>`?
+    options:
+      - de: |
+          ```csharp
+          IEnumerable<string> namen = produkte
+              .Where(p => p.Preis > 10)
+              .OrderBy(p => p.Name)
+              .Select(p => p.Name);
+          ```
+      - de: |
+          ```csharp
+          IEnumerable<string> namen = produkte
+              .Select(p => p.Name)
+              .Where(p => p.Preis > 10)
+              .OrderBy(n => n);
+          ```
+      - de: |
+          ```csharp
+          IEnumerable<string> namen = produkte
+              .Where(p => p.Preis > 10)
+              .Select(p => p.Name)
+              .OrderBy();
+          ```
+      - de: |
+          ```csharp
+          IEnumerable<string> namen = produkte
+              .Where(p => p.Preis > 10)
+              .OrderBy(p => p.Name);
+          ```
+    correct: [0]
+    explanation:
+      de: "Zweite Option: Nach `Select(p => p.Name)` besteht die Folge aus Strings; ein `string` hat keine Eigenschaft `Preis` (CS1061). Dritte Option: `OrderBy` verlangt einen Schlüsselwähler, auch für Strings: `OrderBy(n => n)` (CS1501). Vierte Option: Ohne `Select` bleibt es eine sortierte Folge von `Produkt`-Objekten, keine Folge von Namen (CS0266)."
+      en: "Second option: After `Select(p => p.Name)` the sequence consists of strings; a `string` has no `Preis` property (CS1061). Third option: `OrderBy` requires a key selector, even for strings: `OrderBy(n => n)` (CS1501). Fourth option: Without `Select`, the result is still a sorted sequence of `Produkt` objects, not a sequence of names (CS0266)."
+  - type: multipleChoice
+    id: richtig-abfragesyntax
+    prompt:
+      de: |
+        Welche Abfragesyntax entspricht `produkte.Where(p => p.Preis > 10).OrderBy(p => p.Name).Select(p => p.Name)`?
+      en: |
+        Which query syntax corresponds to `produkte.Where(p => p.Preis > 10).OrderBy(p => p.Name).Select(p => p.Name)`?
+    options:
+      - de: |
+          ```csharp
+          var q = from p in produkte
+                  where p.Preis > 10
+                  orderby p.Name
+                  select p.Name;
+          ```
+      - de: |
+          ```csharp
+          var q = from p in produkte
+                  select p.Name
+                  where p.Preis > 10
+                  orderby p.Name;
+          ```
+      - de: |
+          ```csharp
+          var q = from p in produkte
+                  where p.Preis > 10
+                  orderby p.Name;
+          ```
+      - de: |
+          ```csharp
+          var q = from p in produkte
+                  where p.Preis > 10
+                  orderby p.Name descending
+                  select p.Name;
+          ```
+    correct: [0]
+    explanation:
+      de: "Zweite Option: Die Abfrage endet mit `select`; danach dürfen `where` und `orderby` nicht mehr folgen (Syntaxfehler). Dritte Option: Es fehlt die abschließende `select`-Klausel (CS0742). Vierte Option: Der Code kompiliert, sortiert aber absteigend (`descending`) und liefert die Namen in umgekehrter Reihenfolge."
+      en: "Second option: The query ends with `select`; `where` and `orderby` may not follow it (syntax error). Third option: The final `select` clause is missing (CS0742). Fourth option: The code compiles, but sorts in descending order (`descending`) and returns the names in reverse order."
+  - type: multipleChoice
+    id: richtig-let
+    prompt:
+      de: |
+        Der Bruttopreis (`p.Preis * 1.19m`) soll in der Abfrage nur einmal je Produkt berechnet und sowohl zum Filtern (über 100) als auch in der Ausgabe benutzt werden. Welche Abfrage ist richtig?
+      en: |
+        The gross price (`p.Preis * 1.19m`) is to be calculated only once per product in the query and used both for filtering (above 100) and in the output. Which query is correct?
+    options:
+      - de: |
+          ```csharp
+          var q = from p in produkte
+                  let brutto = p.Preis * 1.19m
+                  where brutto > 100
+                  select (p.Name, brutto);
+          ```
+      - de: |
+          ```csharp
+          var q = from p in produkte
+                  where brutto > 100
+                  let brutto = p.Preis * 1.19m
+                  select (p.Name, brutto);
+          ```
+      - de: |
+          ```csharp
+          var q = from p in produkte
+                  let brutto = p.Preis * 1.19m
+                  where brutto > 100
+                  select p.Name, brutto;
+          ```
+    correct: [0]
+    explanation:
+      de: "Zweite Option: `brutto` wird in `where` benutzt, bevor `let` es einführt (CS0103). Dritte Option: Eine `select`-Klausel liefert genau einen Ausdruck; zwei Werte bündelt man als Tupel `(p.Name, brutto)` oder anonymen Typ (Compilerfehler, z. B. CS0819)."
+      en: "Second option: `brutto` is used in `where` before `let` introduces it (CS0103). Third option: A `select` clause returns exactly one expression; two values are bundled as a tuple `(p.Name, brutto)` or an anonymous type (compiler error, e.g. CS0819)."
+  - type: multipleChoice
+    id: richtig-materialisieren
+    prompt:
+      de: |
+        `Teuer(int x)` gibt bei jedem Aufruf `T ` aus und liefert `x > 1`. Mit `quelle = new[] { 1, 2, 3 }` soll `Teuer` für jedes Element genau einmal laufen, obwohl du das Ergebnis zweimal brauchst (erst die Anzahl, dann die Elemente). Welcher Code erreicht das?
+      en: |
+        `Teuer(int x)` prints `T ` on every call and returns `x > 1`. With `quelle = new[] { 1, 2, 3 }`, `Teuer` should run exactly once per element even though you need the result twice (first the count, then the elements). Which code achieves that?
+    options:
+      - de: |
+          ```csharp
+          var ergebnis = quelle.Where(Teuer).ToList();
+          Console.WriteLine(ergebnis.Count);
+          foreach (var e in ergebnis) Console.Write(e + " ");
+          ```
+      - de: |
+          ```csharp
+          var ergebnis = quelle.Where(Teuer);
+          Console.WriteLine(ergebnis.Count());
+          foreach (var e in ergebnis) Console.Write(e + " ");
+          ```
+      - de: |
+          ```csharp
+          var ergebnis = quelle.Where(Teuer).ToList;
+          Console.WriteLine(ergebnis.Count);
+          foreach (var e in ergebnis) Console.Write(e + " ");
+          ```
+    correct: [0]
+    explanation:
+      de: "Zweite Option: Die Abfrage wird zweimal aufgezählt, `Teuer` läuft also sechsmal (`Count()` und `foreach` beginnen je von vorn). Dritte Option: `ToList` ohne Klammern ist nur eine Methodengruppe, kein Aufruf; `ergebnis` hat dann keinen Member `Count` (CS1061)."
+      en: "Second option: The query is enumerated twice, so `Teuer` runs six times (`Count()` and `foreach` each start over). Third option: `ToList` without parentheses is only a method group, not a call; `ergebnis` then has no member `Count` (CS1061)."

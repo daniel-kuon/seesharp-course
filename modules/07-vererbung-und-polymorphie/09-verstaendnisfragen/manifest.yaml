@@ -1,0 +1,296 @@
+id: vererbung-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "7"
+  title: { de: "Vererbung und Polymorphie", en: "Inheritance and Polymorphism" }
+  printedPage: 543
+teaches:
+  - inheritance.abstract-class
+  - inheritance.hiding-new
+  - inheritance.base-constructor-required
+  - extensions.extension-method
+requires:
+  - inheritance.derive-class
+  - inheritance.base-constructor
+  - inheritance.protected
+  - inheritance.type-test
+  - inheritance.virtual-override
+  - records.inheritance
+items:
+  - type: open
+    id: verdecken-ueberschreiben
+    prompt:
+      de: "Worin unterscheiden sich Überschreiben (`virtual`/`override`) und Verdecken (`new`)? Woran entscheidet sich bei `Figur f = new Kreis(); f.Beschreibe();`, welche Version der Methode läuft?"
+      en: "How do overriding (`virtual`/`override`) and hiding (`new`) differ? In `Figur f = new Kreis(); f.Beschreibe();`, what decides which version of the method runs?"
+  - type: open
+    id: polymorphie
+    prompt:
+      de: "Was ist Polymorphie? Erkläre am Beispiel eines Arrays `Figur[]` mit Kreisen und Rechtecken, was der statische und was der dynamische Typ einer Variablen ist und welchen Vorteil das dem Code gibt, der die Figuren durchläuft."
+      en: "What is polymorphism? Using an array `Figur[]` holding circles and rectangles as an example, explain what the static type and the dynamic type of a variable are, and what advantage this gives to the code that loops over the shapes."
+  - type: open
+    id: abstrakt
+    prompt:
+      de: "Wann machst du eine Methode oder eine ganze Klasse `abstract`, statt in der Basisklasse eine `virtual`-Methode mit einem Standardwert (z. B. Fläche 0) zu schreiben? Was kann man mit einer abstrakten Klasse nicht tun, und was muss die erste konkrete Unterklasse tun?"
+      en: "When do you make a method or an entire class `abstract` instead of writing a `virtual` method with a default value (e.g. area 0) in the base class? What can you not do with an abstract class, and what must the first concrete subclass do?"
+  - type: open
+    id: basiskonstruktor-protected
+    prompt:
+      de: "Warum läuft vor dem Rumpf eines `Kreis`-Konstruktors immer ein Konstruktor der Basisklasse `Figur`, und was passiert beim Übersetzen, wenn `Figur` nur einen Konstruktor mit Parametern hat und `Kreis` nichts angibt? Warum kommt `Kreis` an ein `private` Feld von `Figur` nicht heran, an ein `protected` Feld aber schon?"
+      en: "Why does a constructor of the base class `Figur` always run before the body of a `Kreis` constructor, and what happens at compile time if `Figur` has only a constructor with parameters and `Kreis` specifies nothing? Why can `Kreis` not reach a `private` field of `Figur`, but can reach a `protected` one?"
+  - type: open
+    id: erweiterungsmitglieder
+    prompt:
+      de: "Was sind Erweiterungsmitglieder, und wann setzt du sie ein? Nenne zwei Grenzen: Was können sie nicht, und was passiert, wenn der erweiterte Typ schon ein Mitglied gleichen Namens hat?"
+      en: "What are extension members, and when do you use them? Name two limits: what can they not do, and what happens if the extended type already has a member of the same name?"
+  - type: open
+    id: code-verdecken
+    prompt:
+      de: |
+        Was gibt das Programm in den drei Zeilen aus? Begründe jede Zeile.
+
+        ```csharp
+        Figur f = new Kreis();
+        Console.WriteLine(f.Name());
+        Console.WriteLine(((Kreis)f).Name());
+        Console.WriteLine(f.Beschreibe());
+
+        class Figur
+        {
+            public string Name() => "Figur";
+            public virtual string Beschreibe() => "eine Figur";
+        }
+        class Kreis : Figur
+        {
+            public new string Name() => "Kreis";
+            public override string Beschreibe() => "ein Kreis";
+        }
+        ```
+      en: |
+        What does the program print on its three lines? Justify each line.
+
+        ```csharp
+        Figur f = new Kreis();
+        Console.WriteLine(f.Name());
+        Console.WriteLine(((Kreis)f).Name());
+        Console.WriteLine(f.Beschreibe());
+
+        class Figur
+        {
+            public string Name() => "Figur";
+            public virtual string Beschreibe() => "eine Figur";
+        }
+        class Kreis : Figur
+        {
+            public new string Name() => "Kreis";
+            public override string Beschreibe() => "ein Kreis";
+        }
+        ```
+  - type: open
+    id: code-konstruktorreihenfolge
+    prompt:
+      de: |
+        Was gibt das Programm aus (Zeile für Zeile)? Erkläre die Reihenfolge.
+
+        ```csharp
+        var k = new Kreis(2);
+        Console.WriteLine(k);
+
+        class Figur
+        {
+            public Figur() { Console.WriteLine("Figur"); }
+            public override string ToString() => "Figur";
+        }
+        class Kreis : Figur
+        {
+            double r;
+            public Kreis(double r) { this.r = r; Console.WriteLine("Kreis"); }
+            public override string ToString() => base.ToString() + " mit r=" + r;
+        }
+        ```
+      en: |
+        What does the program print (line by line)? Explain the order.
+
+        ```csharp
+        var k = new Kreis(2);
+        Console.WriteLine(k);
+
+        class Figur
+        {
+            public Figur() { Console.WriteLine("Figur"); }
+            public override string ToString() => "Figur";
+        }
+        class Kreis : Figur
+        {
+            double r;
+            public Kreis(double r) { this.r = r; Console.WriteLine("Kreis"); }
+            public override string ToString() => base.ToString() + " mit r=" + r;
+        }
+        ```
+  - type: open
+    id: code-typtest
+    prompt:
+      de: |
+        Was gibt das Programm aus? Wozu dient hier `f is Kreis k`, und warum ist `f.R` an dieser Stelle nicht erlaubt?
+
+        ```csharp
+        Figur[] fs = { new Kreis(1), new Quadrat(2), new Kreis(3) };
+        foreach (Figur f in fs)
+            if (f is Kreis k) Console.Write($"K{k.R} ");
+            else Console.Write($"{f.GetType().Name} ");
+
+        class Figur { }
+        class Kreis : Figur { public double R; public Kreis(double r) { R = r; } }
+        class Quadrat : Figur { public double A; public Quadrat(double a) { A = a; } }
+        ```
+      en: |
+        What does the program print? What is `f is Kreis k` used for here, and why is `f.R` not allowed at that point?
+
+        ```csharp
+        Figur[] fs = { new Kreis(1), new Quadrat(2), new Kreis(3) };
+        foreach (Figur f in fs)
+            if (f is Kreis k) Console.Write($"K{k.R} ");
+            else Console.Write($"{f.GetType().Name} ");
+
+        class Figur { }
+        class Kreis : Figur { public double R; public Kreis(double r) { R = r; } }
+        class Quadrat : Figur { public double A; public Quadrat(double a) { A = a; } }
+        ```
+  - type: open
+    id: code-record-vererbung
+    prompt:
+      de: |
+        Was geben die beiden `WriteLine`-Zeilen aus? Warum ist `a == b` nicht `true`, obwohl `X` und `Y` übereinstimmen?
+
+        ```csharp
+        Figur a = new Figur(1, 2);
+        Figur b = new Kreis(1, 2, 5);
+        Console.WriteLine(a == b);
+        Console.WriteLine(b);
+
+        record Figur(int X, int Y);
+        record Kreis(int X, int Y, int R) : Figur(X, Y);
+        ```
+      en: |
+        What do the two `WriteLine` lines print? Why is `a == b` not `true` even though `X` and `Y` match?
+
+        ```csharp
+        Figur a = new Figur(1, 2);
+        Figur b = new Kreis(1, 2, 5);
+        Console.WriteLine(a == b);
+        Console.WriteLine(b);
+
+        record Figur(int X, int Y);
+        record Kreis(int X, int Y, int R) : Figur(X, Y);
+        ```
+  - type: multipleChoice
+    id: ueberschreiben-richtig
+    prompt:
+      de: |
+        Die Basisklasse ist `class Figur { public virtual double Flaeche() => 0; }`. `Kreis` hat das Feld `double r`. Welche Deklaration in `Kreis` sorgt dafür, dass `Figur f = new Kreis(); f.Flaeche()` die Kreisfläche liefert?
+      en: |
+        The base class is `class Figur { public virtual double Flaeche() => 0; }`. `Kreis` has the field `double r`. Which declaration in `Kreis` makes `Figur f = new Kreis(); f.Flaeche()` return the area of the circle?
+    options:
+      - de: |
+          ```csharp
+          public double Flaeche() => Math.PI * r * r;
+          ```
+      - de: |
+          ```csharp
+          public override int Flaeche() => (int)(Math.PI * r * r);
+          ```
+      - de: |
+          ```csharp
+          public override double Flaeche() => Math.PI * r * r;
+          ```
+      - de: |
+          ```csharp
+          public new double Flaeche() => Math.PI * r * r;
+          ```
+    correct: [2]
+    explanation:
+      de: "Die erste Variante ohne Modifizierer verdeckt die Basismethode (Warnung CS0114); über die `Figur`-Referenz läuft weiter die Basisfassung und liefert 0. Die zweite kompiliert nicht: Eine Überschreibung muss den Rückgabetyp `double` der Basismethode behalten (CS0508). Die dritte ist richtig (7.9, Seite 566). Die vierte verdeckt ausdrücklich mit `new`: ohne Warnung, aber über die `Figur`-Referenz erscheint wieder 0 (7.6, Seite 555)."
+      en: "The first variant, without a modifier, hides the base method (warning CS0114); through the `Figur` reference the base version still runs and returns 0. The second does not compile: an override must keep the return type `double` of the base method (CS0508). The third is correct (7.9, page 566). The fourth hides explicitly with `new`: no warning, but through the `Figur` reference you get 0 again (7.6, page 555)."
+  - type: multipleChoice
+    id: konstruktor-richtig
+    prompt:
+      de: |
+        `Figur` hat nur den Konstruktor `public Figur(double x, double y)`. Welcher Konstruktor in `class Kreis : Figur` ist richtig?
+      en: |
+        `Figur` has only the constructor `public Figur(double x, double y)`. Which constructor in `class Kreis : Figur` is correct?
+    options:
+      - de: |
+          ```csharp
+          public Kreis(double x, double y, double r) { this.r = r; }
+          ```
+      - de: |
+          ```csharp
+          public Kreis(double x, double y, double r) : Figur(x, y) { this.r = r; }
+          ```
+      - de: |
+          ```csharp
+          public Kreis(double x, double y, double r) { base(x, y); this.r = r; }
+          ```
+      - de: |
+          ```csharp
+          public Kreis(double x, double y, double r) : base(x, y) { this.r = r; }
+          ```
+    correct: [3]
+    explanation:
+      de: "Die erste Variante gibt keinen Basiskonstruktor an; der Compiler sucht einen parameterlosen und findet keinen (CS7036). In der zweiten steht der Klassenname statt `base`; die Schreibweise `: Figur(x, y)` gibt es nur bei Records (Syntaxfehler). In der dritten steht der Basisaufruf im Rumpf; er gehört in die Initialisierungsliste vor dem Rumpf, `base(...)` ist kein Befehl (CS0175). Die vierte ist richtig (7.4.1, Seite 549)."
+      en: "The first variant names no base constructor; the compiler looks for a parameterless one and finds none (CS7036). The second uses the class name instead of `base`; the notation `: Figur(x, y)` only exists for records (syntax error). The third puts the base call in the body; it belongs in the initializer list before the body, and `base(...)` is not a statement (CS0175). The fourth is correct (7.4.1, page 549)."
+  - type: multipleChoice
+    id: abstrakt-richtig
+    prompt:
+      de: |
+        `Figur` soll jede Unterklasse zwingen, `Flaeche()` zu liefern, ohne selbst einen Flächenwert vorzugeben. Welche Deklaration ist richtig?
+      en: |
+        `Figur` is to force every subclass to provide `Flaeche()` without supplying an area value itself. Which declaration is correct?
+    options:
+      - de: |
+          ```csharp
+          abstract class Figur { public abstract double Flaeche() { return 0; } }
+          ```
+      - de: |
+          ```csharp
+          class Figur { public abstract double Flaeche(); }
+          ```
+      - de: |
+          ```csharp
+          abstract class Figur { public virtual double Flaeche(); }
+          ```
+      - de: |
+          ```csharp
+          abstract class Figur { public abstract double Flaeche(); }
+          ```
+    correct: [3]
+    explanation:
+      de: "Die erste Variante kompiliert nicht: Ein abstraktes Mitglied hat keinen Rumpf (CS0500). In der zweiten ist die Klasse selbst nicht `abstract`, obwohl sie ein abstraktes Mitglied enthält (CS0513). In der dritten fehlt der Rumpf einer `virtual`-Methode (CS0501); `virtual` verlangt eine Standardimplementierung. Die vierte ist richtig; jede konkrete Unterklasse muss `Flaeche()` mit `override` implementieren (7.13, Seite 577)."
+      en: "The first variant does not compile: an abstract member has no body (CS0500). In the second, the class itself is not `abstract` although it contains an abstract member (CS0513). In the third, the `virtual` method lacks a body (CS0501); `virtual` requires a default implementation. The fourth is correct; every concrete subclass must implement `Flaeche()` with `override` (7.13, page 577)."
+  - type: multipleChoice
+    id: erweiterung-richtig
+    prompt:
+      de: |
+        Welche Deklaration macht `Console.WriteLine(3.0.Quadrat());` im klassischen Stil mit einer Erweiterungsmethode möglich?
+      en: |
+        Which declaration makes `Console.WriteLine(3.0.Quadrat());` possible in the classic style using an extension method?
+    options:
+      - de: |
+          ```csharp
+          static class DoubleExt { public static double Quadrat(double x) => x * x; }
+          ```
+      - de: |
+          ```csharp
+          class DoubleExt { public static double Quadrat(this double x) => x * x; }
+          ```
+      - de: |
+          ```csharp
+          static class DoubleExt { public double Quadrat(this double x) => x * x; }
+          ```
+      - de: |
+          ```csharp
+          static class DoubleExt { public static double Quadrat(this double x) => x * x; }
+          ```
+    correct: [3]
+    explanation:
+      de: "In der ersten Variante fehlt `this` vor dem ersten Parameter; dann ist `Quadrat` eine gewöhnliche statische Methode, und `3.0.Quadrat()` findet sie nicht (CS1061). In der zweiten ist die Klasse nicht `static` (CS1106). In der dritten ist die Methode nicht `static`; in einer statischen Klasse sind Instanzmitglieder verboten (CS0708, CS1105). Die vierte ist richtig (7.15.3, Seite 585)."
+      en: "The first variant lacks `this` before the first parameter; then `Quadrat` is an ordinary static method and `3.0.Quadrat()` does not find it (CS1061). In the second, the class is not `static` (CS1106). In the third, the method is not `static`; instance members are forbidden in a static class (CS0708, CS1105). The fourth is correct (7.15.3, page 585)."

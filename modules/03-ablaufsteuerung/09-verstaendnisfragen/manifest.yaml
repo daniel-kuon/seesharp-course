@@ -1,0 +1,354 @@
+id: ablauf-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "4.7"
+  title: { de: "Anweisungen (zur Ablaufsteuerung)", en: "Statements (for Flow Control)" }
+  printedPage: 252
+teaches:
+  - control.dangling-else
+  - control.assignment-in-condition
+  - control.empty-statement
+requires:
+  - control.for
+  - control.foreach
+  - control.switch-expression
+  - control.do-while
+  - algo.gcd-modulo
+items:
+  - type: open
+    id: schleife-wahl
+    prompt:
+      de: "In C# gibt es `for`, `foreach`, `while` und `do … while`. Wann nimmst du welche Schleife? Nenne zu jeder ein passendes Beispiel."
+      en: "C# has `for`, `foreach`, `while` and `do … while`. When do you use which loop? Give a fitting example for each."
+  - type: open
+    id: dangling-else
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Zu welchem `if` gehört das `else`, und woher weißt du das?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int x = 5;
+                if (x > 0)
+                    if (x > 10)
+                        Console.WriteLine("groß");
+                else
+                    Console.WriteLine("negativ");
+            }
+        }
+        ```
+      en: |
+        What does this program print? Which `if` does the `else` belong to, and how do you know?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int x = 5;
+                if (x > 0)
+                    if (x > 10)
+                        Console.WriteLine("groß");
+                else
+                    Console.WriteLine("negativ");
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: ist-gerade
+    prompt:
+      de: "Die Methode `IstGerade(int n)` soll `true` liefern, wenn `n` gerade ist (`IstGerade(4)` ist `true`, `IstGerade(7)` ist `false`). Welche Fassung ist richtig?"
+      en: "The method `IstGerade(int n)` is supposed to return `true` if `n` is even (`IstGerade(4)` is `true`, `IstGerade(7)` is `false`). Which version is correct?"
+    options:
+      - de: |
+          ```csharp
+          public static bool IstGerade(int n) {
+              return n % 2;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static bool IstGerade(int n) {
+              return n / 2 == 0;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static bool IstGerade(int n) {
+              return n % 2 == 0;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static bool IstGerade(int n) {
+              if (n % 2 = 0) {
+                  return true;
+              }
+              return false;
+          }
+          ```
+    correct: [2]
+    explanation:
+      de: "`n % 2` ist ein `int`, keine Bedingung; als Rückgabewert `bool` geht das nicht (CS0029). `n / 2 == 0` ist die Ganzzahldivision, nicht der Rest: Sie ist nur für 0 und 1 gleich 0, `IstGerade(4)` würde `false` liefern. In der vierten Fassung steht in der Bedingung `=` (Zuweisung) statt `==` (Vergleich); das kompiliert nicht (CS0131), und selbst bei einer Variablen würde nur zugewiesen."
+      en: "`n % 2` is an `int`, not a condition; it cannot be returned as `bool` (CS0029). `n / 2 == 0` is the integer division, not the remainder: it only equals 0 for 0 and 1, so `IstGerade(4)` would return `false`. The fourth version has `=` (assignment) instead of `==` (comparison) in the condition; it does not compile (CS0131), and even with a variable it would only assign."
+  - type: open
+    id: endlosschleife
+    prompt:
+      de: "Nenne zwei typische Ursachen für eine Endlosschleife. Wie findest du die Ursache, wenn ein Programm in einer Schleife hängt?"
+      en: "Name two typical causes of an infinite loop. How do you find the cause when a program is stuck in a loop?"
+  - type: open
+    id: leere-anweisung
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Wie oft läuft der Schleifenkörper, und was zeigt dir der Compiler?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                for (int i = 0; i < 3; i++);
+                {
+                    Console.WriteLine("Hallo");
+                }
+            }
+        }
+        ```
+      en: |
+        What does this program print? How often does the loop body run, and what does the compiler show you?
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                for (int i = 0; i < 3; i++);
+                {
+                    Console.WriteLine("Hallo");
+                }
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: wochentag-switch
+    prompt:
+      de: "Die Methode `Wochentag(int tag)` soll für 1 den Text `Montag`, für 2 `Dienstag` und für jeden anderen Wert `ungültig` liefern. Welcher Rumpf ist richtig?"
+      en: "The method `Wochentag(int tag)` is supposed to return `Montag` for 1, `Dienstag` for 2 and `ungültig` for every other value. Which body is correct?"
+    options:
+      - de: |
+          ```csharp
+          return tag switch { 1 => "Montag", 2 => "Dienstag" };
+          ```
+      - de: |
+          ```csharp
+          return tag switch { 1 => "Montag", 2 => "Dienstag", _ => "ungültig" };
+          ```
+      - de: |
+          ```csharp
+          return switch (tag) { 1 => "Montag", 2 => "Dienstag", _ => "ungültig" };
+          ```
+      - de: |
+          ```csharp
+          return tag switch { case 1: "Montag", case 2: "Dienstag", default: "ungültig" };
+          ```
+    correct: [1]
+    explanation:
+      de: "Beim switch-Ausdruck steht `switch` hinter dem Wert, jeder Arm hat die Form `Muster => Wert`, und `_` fängt alle übrigen Werte auf. Ohne `_` kompiliert der Ausdruck nur mit einer Warnung (CS8509); für `Wochentag(9)` wirft er dann zur Laufzeit eine `SwitchExpressionException`. `switch (tag) { … }` vor dem Wert ist die Schreibweise der alten switch-Anweisung und im Ausdruck ein Syntaxfehler. `case 1:` und `default:` gehören zur Anweisung, nicht in den Ausdruck (CS9134)."
+      en: "In the switch expression, `switch` comes after the value, every arm has the form `pattern => value`, and `_` catches all remaining values. Without `_` the expression compiles only with a warning (CS8509); for `Wochentag(9)` it then throws a `SwitchExpressionException` at runtime. `switch (tag) { … }` in front of the value is the notation of the old switch statement and a syntax error in an expression. `case 1:` and `default:` belong to the statement, not into the expression (CS9134)."
+  - type: open
+    id: switch-vs-if
+    prompt:
+      de: "Wann würdest du einen switch-Ausdruck statt einer `if`-`else if`-Kette verwenden, und wann nicht? Wozu dient `_`, und was passiert, wenn es fehlt?"
+      en: "When would you use a switch expression instead of an `if`/`else if` chain, and when not? What is `_` for, and what happens if it is missing?"
+  - type: open
+    id: do-while
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Und was würde ausgegeben, wenn man `do { … } while (…)` durch eine `while`-Schleife mit derselben Bedingung ersetzt? Begründe den Unterschied.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int n = 10, count = 0;
+                do {
+                    count++;
+                    n = n / 2;
+                } while (n > 20);
+                Console.WriteLine(count + " " + n);
+            }
+        }
+        ```
+      en: |
+        What does this program print? And what would be printed if `do { … } while (…)` were replaced by a `while` loop with the same condition? Explain the difference.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int n = 10, count = 0;
+                do {
+                    count++;
+                    n = n / 2;
+                } while (n > 20);
+                Console.WriteLine(count + " " + n);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: summe-schleife
+    prompt:
+      de: "Die Methode `Summe(int n)` soll `1 + 2 + … + n` berechnen: `Summe(4)` ist `10`, `Summe(1)` ist `1`. Welche Fassung ist richtig?"
+      en: "The method `Summe(int n)` is supposed to compute `1 + 2 + … + n`: `Summe(4)` is `10`, `Summe(1)` is `1`. Which version is correct?"
+    options:
+      - de: |
+          ```csharp
+          public static int Summe(int n) {
+              int summe = 0;
+              for (int i = 1; i < n; i++) {
+                  summe += i;
+              }
+              return summe;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static int Summe(int n) {
+              int summe = 0;
+              for (int i = 1; i <= n; i++) {
+                  summe = i;
+              }
+              return summe;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static int Summe(int n) {
+              int summe;
+              for (int i = 1; i <= n; i++) {
+                  summe += i;
+              }
+              return summe;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static int Summe(int n) {
+              int summe = 0;
+              for (int i = 1; i <= n; i++) {
+                  summe += i;
+              }
+              return summe;
+          }
+          ```
+    correct: [3]
+    explanation:
+      de: "Bei `i < n` fehlt der letzte Summand (off-by-one): `Summe(4)` liefert `6`, `Summe(1)` liefert `0`. Bei `summe = i` wird nur zugewiesen statt addiert, übrig bleibt der letzte Wert (`4`). Ohne Startwert `int summe;` meldet der Compiler eine nicht zugewiesene Variable (CS0165)."
+      en: "With `i < n` the last summand is missing (off-by-one): `Summe(4)` returns `6`, `Summe(1)` returns `0`. With `summe = i` the value is only assigned instead of added, so the last value remains (`4`). Without an initial value, `int summe;`, the compiler reports an unassigned variable (CS0165)."
+  - type: open
+    id: euklid-vergleich
+    prompt:
+      de: "Es gibt zwei Varianten des Euklidischen Algorithmus: mit Subtraktion und mit Modulo. Beschreibe beide in eigenen Worten. Warum ist die Modulo-Variante bei stark unterschiedlichen Zahlen viel schneller?"
+      en: "There are two variants of Euclid's algorithm: with subtraction and with modulo. Describe both in your own words. Why is the modulo variant much faster for numbers that differ greatly?"
+  - type: open
+    id: euklid-trace
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und was berechnet es? Verfolge die Werte von `a`, `b` und `r` Schritt für Schritt.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int a = 48, b = 18;
+                while (b != 0) {
+                    int r = a % b;
+                    a = b;
+                    b = r;
+                }
+                Console.WriteLine(a);
+            }
+        }
+        ```
+      en: |
+        What does this program print, and what does it compute? Follow the values of `a`, `b` and `r` step by step.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int a = 48, b = 18;
+                while (b != 0) {
+                    int r = a % b;
+                    a = b;
+                    b = r;
+                }
+                Console.WriteLine(a);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: ggt-modulo
+    prompt:
+      de: "Die Methode `Ggt(int a, int b)` soll den größten gemeinsamen Teiler mit der Modulo-Variante berechnen: `Ggt(12, 18)` ist `6`. Welche Fassung ist richtig?"
+      en: "The method `Ggt(int a, int b)` is supposed to compute the greatest common divisor with the modulo variant: `Ggt(12, 18)` is `6`. Which version is correct?"
+    options:
+      - de: |
+          ```csharp
+          public static int Ggt(int a, int b) {
+              while (b != 0) {
+                  int rest = a % b;
+                  a = b;
+                  b = rest;
+              }
+              return a;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static int Ggt(int a, int b) {
+              while (b != 0) {
+                  a = b;
+                  b = a % b;
+              }
+              return a;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static int Ggt(int a, int b) {
+              while (b != 0) {
+                  int rest = a % b;
+                  a = b;
+                  b = rest;
+              }
+              return b;
+          }
+          ```
+      - de: |
+          ```csharp
+          public static int Ggt(int a, int b) {
+              while (b != 0) {
+                  int rest = a / b;
+                  a = b;
+                  b = rest;
+              }
+              return a;
+          }
+          ```
+    correct: [0]
+    explanation:
+      de: "In der zweiten Fassung wird `a` überschrieben, bevor `a % b` gerechnet wird: `b % b` ist immer 0, die Schleife endet sofort und liefert den alten Wert von `b` (`18`). Die dritte gibt am Ende `b` zurück, und das ist nach der Schleife immer `0`; das Ergebnis steht in `a`. Die vierte teilt statt den Rest zu bilden (`/` statt `%`) und liefert `18`."
+      en: "In the second version `a` is overwritten before `a % b` is computed: `b % b` is always 0, the loop ends immediately and returns the old value of `b` (`18`). The third returns `b` at the end, which is always `0` after the loop; the result is in `a`. The fourth divides instead of taking the remainder (`/` instead of `%`) and returns `18`."
+  - type: open
+    id: ueberlauf
+    prompt:
+      de: "Eine `int`-Variable `x` hat den Wert `int.MaxValue`, und du führst `x = x + 1;` aus. Was passiert in C#? Warum ist das gefährlich, und wie sicherst du dich ab?"
+      en: "An `int` variable `x` holds the value `int.MaxValue`, and you execute `x = x + 1;`. What happens in C#? Why is this dangerous, and how do you protect yourself?"

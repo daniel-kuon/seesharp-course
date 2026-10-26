@@ -1,0 +1,190 @@
+id: publish-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "23.1"
+  title: { de: "Veröffentlichungsoptionen", en: "Publishing Options" }
+  printedPage: 1637
+teaches:
+  - publish.single-file
+  - publish.readytorun
+  - publish.web-hosting
+  - publish.reverse-proxy
+requires:
+  - publish.configuration-release
+  - publish.target-framework
+  - publish.framework-dependent
+  - publish.self-contained
+  - publish.runtime-identifier
+  - publish.dotnet-publish
+  - publish.output-contents
+  - publish.web-local-install
+items:
+  - type: open
+    id: debug-release
+    prompt:
+      de: "Was unterscheidet die Konfigurationen Debug und Release, und welche lieferst du an Kunden aus? Nenne eine Optimierung, die Release vornimmt, und ihren Preis für die Fehlersuche. Mit welchem Schalter von `dotnet publish` wählst du die Konfiguration?"
+      en: "What distinguishes the Debug and Release configurations, and which one do you ship to customers? Name one optimization that Release performs and its cost for debugging. Which switch of `dotnet publish` selects the configuration?"
+  - type: open
+    id: code-framework-abhaengig
+    prompt:
+      de: |
+        Im Ordner des Konsolenprogramms `Hallo` (Zielframework `net10.0`) läuft dieser Befehl, ohne weitere Optionen in der Projektdatei:
+
+        ```bash
+        dotnet publish -c Release
+        ```
+
+        Wo liegt das Ergebnis, welche Dateien enthält es ungefähr, und wie groß ist es? Wie startest du das Programm von dort aus, und was muss auf dem Zielrechner installiert sein?
+      en: |
+        In the folder of the console program `Hallo` (target framework `net10.0`) this command runs, with no further options in the project file:
+
+        ```bash
+        dotnet publish -c Release
+        ```
+
+        Where is the result, roughly which files does it contain, and how large is it? How do you start the program from there, and what must be installed on the target computer?
+  - type: multipleChoice
+    id: mc-rid-mac
+    prompt:
+      de: "Ein Konsolenprogramm soll als eigenständige Einzeldatei für einen Mac mit Apple-Silicon-Prozessor (ARM) veröffentlicht werden. Welches Kommando ist richtig?"
+      en: "A console program is to be published as a self-contained single file for a Mac with an Apple Silicon (ARM) processor. Which command is correct?"
+    options:
+      - de: "`dotnet publish -c Release -r osx-arm64 --self-contained`"
+      - de: "`dotnet publish -c Release -r osx-arm64 --self-contained -p:PublishSingleFile=true`"
+      - de: "`dotnet publish -c Release -r arm64 --self-contained -p:PublishSingleFile=true`"
+      - de: "`dotnet publish -c Release -r win-arm64 --self-contained -p:PublishSingleFile=true`"
+    correct: [1]
+    explanation:
+      de: "Option 1 ist eigenständig, aber keine Einzeldatei: Es entsteht ein Ordner mit vielen Dateien (die Laufzeit liegt lose daneben). Option 3 nennt keinen gültigen Runtime Identifier: Er besteht aus Betriebssystem und Architektur (`osx-arm64`); `arm64` allein lehnt das SDK mit dem Fehler NETSDK1083 ab. Option 4 ist ein gültiger RID, aber für Windows auf ARM: Das Ergebnis läuft nicht auf einem Mac."
+      en: "Option 1 is self-contained but not a single file: it produces a folder with many files (the runtime sits loose next to it). Option 3 does not name a valid runtime identifier: it consists of operating system and architecture (`osx-arm64`); the SDK rejects `arm64` alone with error NETSDK1083. Option 4 is a valid RID, but for Windows on ARM: the result does not run on a Mac."
+  - type: open
+    id: zielframework
+    prompt:
+      de: "Was steht in `TargetFramework` (zum Beispiel `net10.0`), und was legt es fest? Warum heißt das Zielframework einer WPF-Anwendung `net10.0-windows`, und was bewirkt die Mehrzahl `TargetFrameworks`? Wie unterscheidet sich das von einem Runtime Identifier wie `win-x64`?"
+      en: "What does `TargetFramework` (for example `net10.0`) contain, and what does it determine? Why is the target framework of a WPF application called `net10.0-windows`, and what does the plural `TargetFrameworks` do? How is that different from a runtime identifier such as `win-x64`?"
+  - type: open
+    id: code-csproj-einzeldatei
+    prompt:
+      de: |
+        Diese Projektdatei gehört zu einem Konsolenprogramm. Jemand ruft im Projektordner nur `dotnet publish -c Release` auf. Was entsteht, wie viele Dateien sind es ungefähr, wie groß ist das Ergebnis, und auf welchen Rechnern läuft es ohne Installation?
+
+        ```xml
+        <Project Sdk="Microsoft.NET.Sdk">
+          <PropertyGroup>
+            <OutputType>Exe</OutputType>
+            <TargetFramework>net10.0</TargetFramework>
+            <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+            <SelfContained>true</SelfContained>
+            <PublishSingleFile>true</PublishSingleFile>
+          </PropertyGroup>
+        </Project>
+        ```
+      en: |
+        This project file belongs to a console program. Someone runs only `dotnet publish -c Release` in the project folder. What is produced, roughly how many files are there, how large is the result, and on which computers does it run without installation?
+
+        ```xml
+        <Project Sdk="Microsoft.NET.Sdk">
+          <PropertyGroup>
+            <OutputType>Exe</OutputType>
+            <TargetFramework>net10.0</TargetFramework>
+            <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+            <SelfContained>true</SelfContained>
+            <PublishSingleFile>true</PublishSingleFile>
+          </PropertyGroup>
+        </Project>
+        ```
+  - type: multipleChoice
+    id: mc-wpf-tfm
+    prompt:
+      de: "Ein neues Projekt soll eine WPF-Anwendung werden. Welche `PropertyGroup` der Projektdatei baut fehlerfrei?"
+      en: "A new project is to become a WPF application. Which `PropertyGroup` of the project file builds without errors?"
+    options:
+      - de: |
+          ```xml
+          <PropertyGroup>
+            <OutputType>WinExe</OutputType>
+            <TargetFramework>net10.0</TargetFramework>
+            <UseWPF>true</UseWPF>
+          </PropertyGroup>
+          ```
+      - de: |
+          ```xml
+          <PropertyGroup>
+            <OutputType>WinExe</OutputType>
+            <TargetFramework>net10.0</TargetFramework>
+            <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+            <UseWPF>true</UseWPF>
+          </PropertyGroup>
+          ```
+      - de: |
+          ```xml
+          <PropertyGroup>
+            <OutputType>WinExe</OutputType>
+            <TargetFramework>net10.0-windows</TargetFramework>
+            <UseWPF>true</UseWPF>
+          </PropertyGroup>
+          ```
+    correct: [2]
+    explanation:
+      de: "WPF braucht Windows-APIs; das gehört in den Target Framework Moniker: `net10.0-windows`. Option 1 bricht mit dem Fehler NETSDK1136 ab (die Zielplattform muss Windows sein). Option 2 ändert daran nichts: Ein Runtime Identifier nennt die Zielplattform der Veröffentlichung, ersetzt aber nicht das `-windows` im Zielframework; derselbe Fehler."
+      en: "WPF needs Windows APIs; that belongs in the target framework moniker: `net10.0-windows`. Option 1 fails with error NETSDK1136 (the target platform must be Windows). Option 2 changes nothing about that: a runtime identifier names the target platform of the publication, but does not replace the `-windows` in the target framework; same error."
+  - type: open
+    id: frameworkabhaengig-vs-eigenstaendig
+    prompt:
+      de: "Vergleiche eine frameworkabhängige mit einer eigenständigen Veröffentlichung: Was enthält jede, wie groß sind sie ungefähr, und was muss auf dem Zielrechner vorhanden sein? Nenne für jede Variante einen Fall, in dem sie die bessere Wahl ist, und sag, wer bei einem Sicherheitsupdate der Laufzeit tätig werden muss."
+      en: "Compare a framework-dependent with a self-contained publication: what does each contain, roughly how large are they, and what must be present on the target computer? Give a case for each variant in which it is the better choice, and say who has to act when the runtime gets a security update."
+  - type: open
+    id: code-wpf-trimmen
+    prompt:
+      de: |
+        Im Ordner einer WPF-Anwendung (`net10.0-windows`) läuft dieser Befehl, um die Anwendung möglichst klein auszuliefern. Was passiert, und was änderst du an der Befehlszeile, damit die eigenständige Veröffentlichung gelingt?
+
+        ```bash
+        dotnet publish -c Release -r win-x64 --self-contained -p:PublishTrimmed=true
+        ```
+      en: |
+        In the folder of a WPF application (`net10.0-windows`) this command runs to deliver the application as small as possible. What happens, and what do you change on the command line so that the self-contained publication succeeds?
+
+        ```bash
+        dotnet publish -c Release -r win-x64 --self-contained -p:PublishTrimmed=true
+        ```
+  - type: open
+    id: einzeldatei-trimmen-r2r
+    prompt:
+      de: "Was bewirken `PublishSingleFile`, `PublishTrimmed` und `PublishReadyToRun`, und welchen Preis hat jede Option (Größe, Startzeit, Portabilität)? Warum braucht ReadyToRun einen Runtime Identifier, und warum kann man ein ReadyToRun-Ergebnis für Windows nicht auf Linux verwenden?"
+      en: "What do `PublishSingleFile`, `PublishTrimmed` and `PublishReadyToRun` do, and what does each option cost (size, startup time, portability)? Why does ReadyToRun need a runtime identifier, and why can a ReadyToRun result for Windows not be used on Linux?"
+  - type: open
+    id: code-web-start
+    prompt:
+      de: |
+        Eine Webanwendung `MeineWeb` wurde mit `dotnet publish -c Release` veröffentlicht. Im Veröffentlichungsordner läuft zuerst der erste, dann der zweite Befehl. Auf welcher Adresse antwortet die Anwendung jeweils? Warum fehlt im Ordner die Datei `launchSettings.json`, und was heißt das für die Adresse?
+
+        ```bash
+        dotnet MeineWeb.dll
+        dotnet MeineWeb.dll --urls http://localhost:5123
+        ```
+      en: |
+        A web application `MeineWeb` was published with `dotnet publish -c Release`. In the publish folder, first the first and then the second command runs. At which address does the application respond in each case? Why is the file `launchSettings.json` missing from the folder, and what does that mean for the address?
+
+        ```bash
+        dotnet MeineWeb.dll
+        dotnet MeineWeb.dll --urls http://localhost:5123
+        ```
+  - type: multipleChoice
+    id: mc-web-start
+    prompt:
+      de: "Du stehst im Ordner `bin/Release/net10.0/publish` der veröffentlichten Webanwendung `MeineWeb` und willst sie auf Port 8080 starten. Welches Kommando ist richtig?"
+      en: "You are in the folder `bin/Release/net10.0/publish` of the published web application `MeineWeb` and want to start it on port 8080. Which command is correct?"
+    options:
+      - de: "`dotnet MeineWeb.dll --urls http://localhost:8080`"
+      - de: "`dotnet run --urls http://localhost:8080`"
+      - de: "`dotnet MeineWeb --urls http://localhost:8080`"
+    correct: [0]
+    explanation:
+      de: "Option 2 braucht ein Projekt: Im Veröffentlichungsordner liegt keine Projektdatei, `dotnet run` meldet, dass kein ausführbares Projekt gefunden wurde. Option 3 lässt die Endung weg: `dotnet MeineWeb` sucht einen Befehl dieses Namens und findet keinen; gestartet wird die Assembly mit `dotnet MeineWeb.dll` (oder die Datei `MeineWeb.exe`)."
+      en: "Option 2 needs a project: the publish folder contains no project file, and `dotnet run` reports that no executable project was found. Option 3 leaves out the extension: `dotnet MeineWeb` looks for a command of that name and finds none; the assembly is started with `dotnet MeineWeb.dll` (or the file `MeineWeb.exe`)."
+  - type: open
+    id: kestrel-und-proxy
+    prompt:
+      de: "Was ist Kestrel, und warum stellt man bei einer Webanwendung im Netz meist einen Reverse Proxy (IIS, Nginx, Apache) davor? Welche Aufgaben kann der Proxy übernehmen (nenne mindestens zwei), und welche Rolle behält die ASP.NET-Core-Anwendung?"
+      en: "What is Kestrel, and why do you usually put a reverse proxy (IIS, Nginx, Apache) in front of a web application on the network? What tasks can the proxy take over (name at least two), and what role does the ASP.NET Core application keep?"

@@ -1,0 +1,208 @@
+id: konzepte-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "1.3"
+  title: { de: "Objektorientierte Programmierung", en: "Object-Oriented Programming" }
+  printedPage: 9
+teaches:
+  - concepts.inheritance
+  - concepts.polymorphism
+  - concepts.namespace-vs-assembly
+  - concepts.aot
+requires:
+  - concepts.garbage-collection
+  - concepts.bcl
+items:
+  - type: open
+    id: klasse-objekt
+    prompt:
+      de: "Erkläre mit eigenen Worten den Unterschied zwischen einer Klasse und einem Objekt. Nimm ein Beispiel (etwa `Bruch` oder etwas aus dem Alltag) und sage, was zur Laufzeit mit `new` passiert."
+      en: "Explain in your own words the difference between a class and an object. Use an example (such as `Bruch` or something from everyday life) and say what happens at runtime when `new` is used."
+  - type: multipleChoice
+    id: objekt-erzeugen
+    prompt:
+      de: "Welche Zeilen erzeugen ein Objekt der Klasse `Bruch` und rufen danach `Kuerze()` darauf auf? (Die Klasse `Bruch` aus dem Buch ist vorhanden.)"
+      en: "Which lines create an object of the class `Bruch` and then call `Kuerze()` on it? (The class `Bruch` from the book exists.)"
+    options:
+      - de: |
+          ```csharp
+          Bruch b = Bruch();
+          b.Kuerze();
+          ```
+      - de: |
+          ```csharp
+          Bruch b = new Bruch();
+          b.Kuerze();
+          ```
+      - de: |
+          ```csharp
+          Bruch b;
+          b.Kuerze();
+          ```
+      - de: |
+          ```csharp
+          Bruch b = new Bruch;
+          b.Kuerze();
+          ```
+    correct: [1]
+    explanation:
+      de: "Ohne `new` entsteht kein Objekt: `Bruch()` ohne `new` ist kein gültiger Aufruf (CS1955), und `Bruch b;` deklariert nur eine Variable, der noch kein Objekt zugewiesen ist (CS0165). Beim vierten Beispiel fehlen die Klammern hinter `new Bruch` (CS1526)."
+      en: "Without `new` no object is created: `Bruch()` without `new` is not a valid call (CS1955), and `Bruch b;` merely declares a variable to which no object has been assigned yet (CS0165). In the fourth example the parentheses after `new Bruch` are missing (CS1526)."
+  - type: open
+    id: kapselung
+    prompt:
+      de: "Was bedeutet Kapselung, und warum ist sie nützlich? Erkläre es am Beispiel des Nenners eines Bruchs, der nie 0 werden darf."
+      en: "What does encapsulation mean, and why is it useful? Explain it using the denominator of a fraction, which must never become 0."
+  - type: open
+    id: nachricht-code
+    prompt:
+      de: |
+        Angenommen, die Klasse `Bruch` aus dem Buch existiert und hat eine Methode `Kuerze()`. Was passiert in diesen beiden Zeilen? Benenne dabei, was Klasse, was Objekt und was Nachricht ist, und wer die Nachricht empfängt.
+
+        ```csharp
+        Bruch b = new Bruch();
+        b.Kuerze();
+        ```
+      en: |
+        Assume the class `Bruch` from the book exists and has a method `Kuerze()`. What happens in these two lines? In your answer, name what is the class, what is the object and what is the message, and who receives the message.
+
+        ```csharp
+        Bruch b = new Bruch();
+        b.Kuerze();
+        ```
+  - type: multipleChoice
+    id: aufruf-schreibweise
+    prompt:
+      de: "`b` ist ein `Bruch`-Objekt, und `Kuerze()` ist eine Methode, die zu Objekten der Klasse `Bruch` gehört (ohne `static`). Welche Zeile schickt `b` die Nachricht, sich zu kürzen?"
+      en: "`b` is a `Bruch` object, and `Kuerze()` is a method that belongs to objects of the class `Bruch` (without `static`). Which line sends `b` the message to reduce itself?"
+    options:
+      - de: "Kuerze(b);"
+      - de: "Bruch.Kuerze();"
+      - de: "b.Kuerze();"
+      - de: "b = Kuerze();"
+    correct: [2]
+    explanation:
+      de: "Eine Nachricht schreibt man als `Empfänger.Methode()`. `Kuerze(b);` und `b = Kuerze();` suchen eine Methode `Kuerze` ohne Empfänger und finden keine (CS0103). `Bruch.Kuerze();` adressiert die Klasse statt eines Objekts, aber `Kuerze()` braucht ein Objekt (CS0120)."
+      en: "A message is written as `receiver.Method()`. `Kuerze(b);` and `b = Kuerze();` look for a method `Kuerze` without a receiver and find none (CS0103). `Bruch.Kuerze();` addresses the class instead of an object, but `Kuerze()` needs an object (CS0120)."
+  - type: open
+    id: vererbung-polymorphie
+    prompt:
+      de: "Eine Klasse `Kreis` ist von einer Klasse `Figur` abgeleitet. Erkläre, was Vererbung hier bedeutet und was Polymorphie bedeutet. Warum ist beides nützlich?"
+      en: "A class `Kreis` is derived from a class `Figur`. Explain what inheritance means here and what polymorphism means. Why are both useful?"
+  - type: open
+    id: namensraum-assembly
+    prompt:
+      de: "Ein Namensraum und ein Assembly sind zwei verschiedene Dinge. Erkläre beide, sage, in welcher Beziehung sie stehen, und was die Direktive `using` importiert."
+      en: "A namespace and an assembly are two different things. Explain both, say how they relate to each other, and say what the `using` directive imports."
+  - type: open
+    id: namensraum-im-code
+    prompt:
+      de: |
+        Dieses Programm hat keine `using`-Direktive und baut trotzdem. Warum? Was sind in `System.Console.WriteLine` der Namensraum, die Klasse und die Methode? Und wo liegt der Code von `WriteLine`?
+
+        ```csharp
+        public class Programm {
+            static void Main() {
+                System.Console.WriteLine(Gruss());
+            }
+
+            public static string Gruss() {
+                return "Hallo";
+            }
+        }
+        ```
+      en: |
+        This program has no `using` directive and still builds. Why? In `System.Console.WriteLine`, which part is the namespace, which the class and which the method? And where does the code of `WriteLine` live?
+
+        ```csharp
+        public class Programm {
+            static void Main() {
+                System.Console.WriteLine(Gruss());
+            }
+
+            public static string Gruss() {
+                return "Hallo";
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: using-direktive
+    prompt:
+      de: "Welche Zeile am Dateianfang macht es möglich, `Console.WriteLine(...)` ohne den Präfix `System.` zu schreiben?"
+      en: "Which line at the top of a file makes it possible to write `Console.WriteLine(...)` without the `System.` prefix?"
+    options:
+      - de: "using System.dll;"
+      - de: "import System;"
+      - de: "using System.Console;"
+      - de: "using System;"
+    correct: [3]
+    explanation:
+      de: "`using` importiert einen Namensraum. `System.dll` ist kein Namensraum (CS0234), `import` gibt es in C# nicht (CS0246), und `System.Console` ist eine Klasse, kein Namensraum (CS0138)."
+      en: "`using` imports a namespace. `System.dll` is not a namespace (CS0234), C# has no `import` (CS0246), and `System.Console` is a class, not a namespace (CS0138)."
+  - type: open
+    id: il-jit-aot
+    prompt:
+      de: "Der C#-Compiler erzeugt keinen Maschinencode, sondern IL-Code. Was ist das, wann entsteht der Maschinencode, und welchen Vorteil und welchen Nachteil hat es, stattdessen schon beim Veröffentlichen zu übersetzen (AOT)?"
+      en: "The C# compiler does not produce machine code but IL code. What is that, when does the machine code come into existence, and what are the advantage and the disadvantage of compiling already at publish time instead (AOT)?"
+  - type: open
+    id: startklasse
+    prompt:
+      de: |
+        Dieses Programm besteht aus zwei Klassen. Welche ist die Startklasse, was gibt das Programm in welcher Reihenfolge aus, und wo beginnt die Ausführung?
+
+        ```csharp
+        using System;
+
+        public class Hilfe {
+            public static string Text() {
+                return "aus Hilfe";
+            }
+        }
+
+        public class Start {
+            static void Main() {
+                Console.WriteLine("Start");
+                Console.WriteLine(Hilfe.Text());
+            }
+        }
+        ```
+      en: |
+        This program consists of two classes. Which one is the start class, what does the program print and in which order, and where does execution begin?
+
+        ```csharp
+        using System;
+
+        public class Hilfe {
+            public static string Text() {
+                return "aus Hilfe";
+            }
+        }
+
+        public class Start {
+            static void Main() {
+                Console.WriteLine("Start");
+                Console.WriteLine(Hilfe.Text());
+            }
+        }
+        ```
+  - type: open
+    id: clr-bcl-gc
+    prompt:
+      de: "Was sind die CLR und die BCL, und wie unterscheiden sie sich? Warum nennt man IL-Code „verwalteten Code“, und wann gibt die Garbage Collection den Speicher eines Objekts frei?"
+      en: "What are the CLR and the BCL, and how do they differ? Why is IL code called “managed code”, and when does the garbage collector free the memory of an object?"
+  - type: multipleChoice
+    id: framework-oder-net
+    prompt:
+      de: "Ihr startet ein neues Programm, das nur unter Windows laufen soll. Welche .NET-Implementation wählt ihr, und warum?"
+      en: "You are starting a new program that only has to run on Windows. Which .NET implementation do you choose, and why?"
+    options:
+      - de: "Das klassische .NET Framework, weil es Windows-gebunden ist und deshalb am besten zu Windows-Programmen passt."
+        en: "The classic .NET Framework, because it is tied to Windows and therefore fits Windows programs best."
+      - de: "Das heutige .NET (hier Version 10): Es wird weiterentwickelt und ist auch für reine Windows-Programme die richtige Wahl für neue Projekte."
+        en: "Today's .NET (version 10 here): it is still being developed and is the right choice for new projects even if they only run on Windows."
+      - de: "Je nach Programmiersprache: C# braucht .NET, Visual Basic braucht das .NET Framework."
+        en: "It depends on the language: C# needs .NET, Visual Basic needs the .NET Framework."
+    correct: [1]
+    explanation:
+      de: "Das .NET Framework wird nicht mehr weiterentwickelt; neue Projekte nutzen .NET, auch wenn sie nur unter Windows laufen sollen. Alle .NET-Sprachen erzeugen denselben IL-Code und laufen auf derselben Implementation."
+      en: "The .NET Framework is no longer being developed; new projects use .NET even if they only need to run on Windows. All .NET languages produce the same IL code and run on the same implementation."

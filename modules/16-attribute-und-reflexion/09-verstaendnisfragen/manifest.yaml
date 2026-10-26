@@ -1,0 +1,358 @@
+id: attribute-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "14"
+  title: { de: "Attribute und Reflexion", en: "Attributes and Reflection" }
+  printedPage: 921
+teaches:
+  - reflection.typeof-gettype
+  - reflection.get-set-property
+  - reflection.invoke
+  - attributes.conditional
+requires:
+  - attributes.apply
+  - attributes.caller-info
+  - attributes.flags
+  - attributes.define-custom
+  - attributes.targets
+  - attributes.parameters
+  - reflection.nameof
+  - reflection.getcustomattribute
+  - reflection.get-members
+items:
+  - type: open
+    id: attribut-grundlagen
+    prompt:
+      de: "Was ist ein Attribut, und wer wertet es aus? Verändert ein Attribut allein schon das Verhalten des markierten Codes? Worin unterscheiden sich positionale und benannte Attributparameter, und warum schreibt man `[Obsolete]` statt `[ObsoleteAttribute]`?"
+      en: "What is an attribute, and who evaluates it? Does an attribute on its own change the behavior of the marked code? How do positional and named attribute parameters differ, and why do you write `[Obsolete]` instead of `[ObsoleteAttribute]`?"
+  - type: open
+    id: eigenes-attribut
+    prompt:
+      de: "Wie definierst du ein eigenes Attribut, und wozu dient `[AttributeUsage]`? Welche Arten von Werten sind als Attributparameter erlaubt, und warum ist zum Beispiel `DateTime.Now` nicht erlaubt?"
+      en: "How do you define your own attribute, and what is `[AttributeUsage]` for? What kinds of values are allowed as attribute parameters, and why is `DateTime.Now`, for example, not allowed?"
+  - type: open
+    id: reflexion-wann
+    prompt:
+      de: "Was ist Reflexion? Nenne zwei sinnvolle Einsatzgebiete und zwei Nachteile gegenüber dem direkten Zugriff auf Eigenschaften und Methoden. Wann würdest du trotzdem auf sie verzichten?"
+      en: "What is reflection? Name two useful areas of application and two disadvantages compared to accessing properties and methods directly. When would you avoid it anyway?"
+  - type: open
+    id: conditional-caller
+    prompt:
+      de: "Was bewirkt `[Conditional(\"DEBUG\")]` an einer Methode genau: Was wird entfernt, und was passiert mit den Argumenten der Aufrufe? Wie funktioniert `[CallerMemberName]` an einem optionalen Parameter: Wer setzt den Wert ein, und wann?"
+      en: "What exactly does `[Conditional(\"DEBUG\")]` do on a method: What is removed, and what happens to the arguments of the calls? How does `[CallerMemberName]` work on an optional parameter: Who inserts the value, and when?"
+  - type: open
+    id: code-eigenschaften
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und warum?
+
+        ```csharp
+        class Person
+        {
+            public string Name { get; set; } = "Ada";
+            public int Alter { get; set; } = 36;
+        }
+
+        var p = new Person();
+        var t = p.GetType();
+        foreach (var prop in t.GetProperties().OrderBy(x => x.Name))
+            Console.WriteLine($"{prop.Name} = {prop.GetValue(p)}");
+        t.GetProperty("Alter")!.SetValue(p, 37);
+        Console.WriteLine(p.Alter);
+        ```
+      en: |
+        What does this program print, and why?
+
+        ```csharp
+        class Person
+        {
+            public string Name { get; set; } = "Ada";
+            public int Alter { get; set; } = 36;
+        }
+
+        var p = new Person();
+        var t = p.GetType();
+        foreach (var prop in t.GetProperties().OrderBy(x => x.Name))
+            Console.WriteLine($"{prop.Name} = {prop.GetValue(p)}");
+        t.GetProperty("Alter")!.SetValue(p, 37);
+        Console.WriteLine(p.Alter);
+        ```
+  - type: open
+    id: code-autor
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? (`using System.Reflection;` ist vorhanden.)
+
+        ```csharp
+        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+        class AutorAttribute : Attribute
+        {
+            public string Name { get; }
+            public int Version { get; set; } = 1;
+            public AutorAttribute(string name) => Name = name;
+        }
+
+        [Autor("Ada", Version = 2)]
+        class Rechner
+        {
+            [Autor("Bob")]
+            public int Addiere(int a, int b) => a + b;
+            public int Minus(int a, int b) => a - b;
+        }
+
+        var t = typeof(Rechner);
+        Console.WriteLine(t.GetCustomAttribute<AutorAttribute>()!.Version);
+        var flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
+        foreach (var m in t.GetMethods(flags).OrderBy(m => m.Name))
+            Console.WriteLine($"{m.Name}: {m.GetCustomAttribute<AutorAttribute>()?.Name ?? "-"}");
+        ```
+      en: |
+        What does this program print? (`using System.Reflection;` is present.)
+
+        ```csharp
+        [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+        class AutorAttribute : Attribute
+        {
+            public string Name { get; }
+            public int Version { get; set; } = 1;
+            public AutorAttribute(string name) => Name = name;
+        }
+
+        [Autor("Ada", Version = 2)]
+        class Rechner
+        {
+            [Autor("Bob")]
+            public int Addiere(int a, int b) => a + b;
+            public int Minus(int a, int b) => a - b;
+        }
+
+        var t = typeof(Rechner);
+        Console.WriteLine(t.GetCustomAttribute<AutorAttribute>()!.Version);
+        var flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
+        foreach (var m in t.GetMethods(flags).OrderBy(m => m.Name))
+            Console.WriteLine($"{m.Name}: {m.GetCustomAttribute<AutorAttribute>()?.Name ?? "-"}");
+        ```
+  - type: open
+    id: code-flags
+    prompt:
+      de: |
+        Was geben die vier Ausgabezeilen aus? Was würde sich in der ersten Zeile ändern, wenn `[Flags]` fehlte?
+
+        ```csharp
+        [Flags]
+        enum Recht { Kein = 0, Lesen = 1, Schreiben = 2, Loeschen = 4 }
+
+        var r = Recht.Lesen | Recht.Loeschen;
+        Console.WriteLine(r);
+        Console.WriteLine((int)r);
+        Console.WriteLine(r.HasFlag(Recht.Schreiben));
+        Console.WriteLine(r & ~Recht.Lesen);
+        ```
+      en: |
+        What do the four output lines print? What would change in the first line if `[Flags]` were missing?
+
+        ```csharp
+        [Flags]
+        enum Recht { Kein = 0, Lesen = 1, Schreiben = 2, Loeschen = 4 }
+
+        var r = Recht.Lesen | Recht.Loeschen;
+        Console.WriteLine(r);
+        Console.WriteLine((int)r);
+        Console.WriteLine(r.HasFlag(Recht.Schreiben));
+        Console.WriteLine(r & ~Recht.Lesen);
+        ```
+  - type: open
+    id: code-invoke
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und warum fängt der erste `catch`-Block die Ausnahme?
+
+        ```csharp
+        class Demo { public int Teile(int a, int b) => a / b; }
+
+        var m = typeof(Demo).GetMethod("Teile")!;
+        Console.WriteLine(m.Invoke(new Demo(), new object[] { 10, 2 }));
+        try { m.Invoke(new Demo(), new object[] { 1, 0 }); }
+        catch (TargetInvocationException e)
+        {
+            Console.WriteLine(e.InnerException!.GetType().Name);
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("direkt");
+        }
+        ```
+      en: |
+        What does this program print, and why does the first `catch` block catch the exception?
+
+        ```csharp
+        class Demo { public int Teile(int a, int b) => a / b; }
+
+        var m = typeof(Demo).GetMethod("Teile")!;
+        Console.WriteLine(m.Invoke(new Demo(), new object[] { 10, 2 }));
+        try { m.Invoke(new Demo(), new object[] { 1, 0 }); }
+        catch (TargetInvocationException e)
+        {
+            Console.WriteLine(e.InnerException!.GetType().Name);
+        }
+        catch (DivideByZeroException)
+        {
+            Console.WriteLine("direkt");
+        }
+        ```
+  - type: multipleChoice
+    id: richtig-attribut
+    prompt:
+      de: "Das Attribut `Autor` soll nur auf Klassen anwendbar sein und einen Namen entgegennehmen. Welcher Code kompiliert, definiert das Attribut richtig und wendet es auf die Klasse `Rechner` an?"
+      en: "The attribute `Autor` is supposed to be applicable only to classes and take a name. Which code compiles, defines the attribute correctly, and applies it to the class `Rechner`?"
+    options:
+      - de: |
+          ```csharp
+          [AttributeUsage(AttributeTargets.Class)]
+          sealed class AutorAttribute : Attribute
+          {
+              public AutorAttribute(string name) { }
+          }
+
+          class Rechner
+          {
+              [Autor("Ada")]
+              public void Rechne() { }
+          }
+          ```
+      - de: |
+          ```csharp
+          [AttributeUsage(AttributeTargets.Class)]
+          sealed class AutorAttribute : Attribute
+          {
+              public AutorAttribute(string name) { }
+          }
+
+          [Autor("Ada")]
+          class Rechner { }
+          ```
+      - de: |
+          ```csharp
+          sealed class AutorAttribute
+          {
+              public AutorAttribute(string name) { }
+          }
+
+          [Autor("Ada")]
+          class Rechner { }
+          ```
+      - de: |
+          ```csharp
+          [AttributeUsage(AttributeTargets.Class)]
+          sealed class AutorAttribute : Attribute
+          {
+              public AutorAttribute(string name) { }
+          }
+
+          [Autor(DateTime.Now.ToString())]
+          class Rechner { }
+          ```
+    correct: [1]
+    explanation:
+      de: "Erste Option: Das Attribut ist nur für Klassen erlaubt (`AttributeTargets.Class`), steht hier aber an einer Methode (CS0592). Dritte Option: Eine Attributklasse muss von `Attribute` erben (CS0616). Vierte Option: Attributparameter müssen Konstanten sein (oder `typeof`-Ausdrücke, Aufzählungswerte, Arrays davon); `DateTime.Now.ToString()` entsteht erst zur Laufzeit (CS0182)."
+      en: "First option: The attribute is only allowed on classes (`AttributeTargets.Class`), but is placed on a method here (CS0592). Third option: An attribute class must inherit from `Attribute` (CS0616). Fourth option: Attribute parameters must be constants (or `typeof` expressions, enum values, arrays of those); `DateTime.Now.ToString()` only exists at runtime (CS0182)."
+  - type: multipleChoice
+    id: richtig-eigenschaften
+    prompt:
+      de: "Welcher Code gibt die Namen aller öffentlichen Eigenschaften der Klasse `Person` aus?"
+      en: "Which code prints the names of all public properties of the class `Person`?"
+    options:
+      - de: |
+          ```csharp
+          foreach (var p in typeof(Person).Properties)
+              Console.WriteLine(p.Name);
+          ```
+      - de: |
+          ```csharp
+          foreach (var p in Person.GetProperties())
+              Console.WriteLine(p.Name);
+          ```
+      - de: |
+          ```csharp
+          foreach (var p in typeof(Person).GetMethods())
+              Console.WriteLine(p.Name);
+          ```
+      - de: |
+          ```csharp
+          foreach (var p in typeof(Person).GetProperties())
+              Console.WriteLine(p.Name);
+          ```
+    correct: [3]
+    explanation:
+      de: "Erste Option: `Type` hat keine Eigenschaft `Properties`; die Methode heißt `GetProperties()` (CS1061). Zweite Option: `GetProperties()` gehört zu `Type`, nicht zur Klasse `Person`; den `Type` liefert `typeof(Person)` (CS0117). Dritte Option: Das sind die Methoden, darunter `get_Name`, `set_Name` und `ToString`, nicht die Eigenschaften."
+      en: "First option: `Type` has no property `Properties`; the method is called `GetProperties()` (CS1061). Second option: `GetProperties()` belongs to `Type`, not to the class `Person`; `typeof(Person)` provides the `Type` (CS0117). Third option: These are the methods, including `get_Name`, `set_Name`, and `ToString`, not the properties."
+  - type: multipleChoice
+    id: richtig-caller
+    prompt:
+      de: "`Protokolliere(\"x\")` soll ausgeben, in welcher Methode der Aufruf steht, ohne dass der Aufrufer den Namen übergibt. Welche Methode ist richtig?"
+      en: "`Protokolliere(\"x\")` is supposed to print the method in which the call appears, without the caller passing the name. Which method is correct?"
+    options:
+      - de: |
+          ```csharp
+          static void Protokolliere(string text,
+              [CallerMemberName] string aufrufer = "")
+              => Console.WriteLine($"{text} von {aufrufer}");
+          ```
+      - de: |
+          ```csharp
+          static void Protokolliere(string text,
+              [CallerMemberName] string aufrufer)
+              => Console.WriteLine($"{text} von {aufrufer}");
+          ```
+      - de: |
+          ```csharp
+          static void Protokolliere(string text)
+          {
+              string aufrufer = nameof(Protokolliere);
+              Console.WriteLine($"{text} von {aufrufer}");
+          }
+          ```
+      - de: |
+          ```csharp
+          static void Protokolliere(string text,
+              [CallerLineNumber] string aufrufer = "")
+              => Console.WriteLine($"{text} von {aufrufer}");
+          ```
+    correct: [0]
+    explanation:
+      de: "Zweite Option: Ein Parameter mit Aufruferinformation muss optional sein, also einen Standardwert haben (CS4022). Dritte Option: `nameof(Protokolliere)` ergibt immer den Namen dieser Methode selbst, nie den des Aufrufers. Vierte Option: `[CallerLineNumber]` liefert die Zeilennummer als `int` und passt nicht zu einem `string`-Parameter (CS4017); für den Methodennamen ist `[CallerMemberName]` zuständig."
+      en: "Second option: A parameter with caller information must be optional, i.e., have a default value (CS4022). Third option: `nameof(Protokolliere)` always yields the name of this method itself, never that of the caller. Fourth option: `[CallerLineNumber]` provides the line number as an `int` and does not fit a `string` parameter (CS4017); `[CallerMemberName]` is responsible for the method name."
+  - type: multipleChoice
+    id: richtig-conditional
+    prompt:
+      de: "Die Aufrufe der Methode `Log` sollen im Release-Build (ohne das Symbol `DEBUG`) vom Compiler entfernt werden. Welche Deklaration ist richtig?"
+      en: "The calls to the method `Log` are supposed to be removed by the compiler in the release build (without the symbol `DEBUG`). Which declaration is correct?"
+    options:
+      - de: |
+          ```csharp
+          [Conditional(DEBUG)]
+          static void Log(string s) => Console.WriteLine(s);
+          ```
+      - de: |
+          ```csharp
+          [Conditional("DEBUG")]
+          static int Log(string s)
+          {
+              Console.WriteLine(s);
+              return s.Length;
+          }
+          ```
+      - de: |
+          ```csharp
+          [Conditional("DEBUG")]
+          static void Log(string s) => Console.WriteLine(s);
+          ```
+      - de: |
+          ```csharp
+          [Obsolete("DEBUG")]
+          static void Log(string s) => Console.WriteLine(s);
+          ```
+    correct: [2]
+    explanation:
+      de: "Erste Option: Das Symbol ist eine Zeichenkette, `Conditional(\"DEBUG\")`; ohne Anführungszeichen sucht der Compiler einen Bezeichner `DEBUG` (CS0103). Zweite Option: Eine bedingte Methode muss `void` zurückgeben (CS0578). Vierte Option: `Obsolete` markiert die Methode nur als veraltet (Warnung CS0618 beim Aufruf) und entfernt keine Aufrufe."
+      en: "First option: The symbol is a string, `Conditional(\"DEBUG\")`; without quotation marks the compiler looks for an identifier `DEBUG` (CS0103). Second option: A conditional method must return `void` (CS0578). Fourth option: `Obsolete` only marks the method as outdated (warning CS0618 at the call) and removes no calls."

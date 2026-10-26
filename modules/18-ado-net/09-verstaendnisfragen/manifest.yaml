@@ -1,0 +1,302 @@
+id: adonet-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "19.7"
+  title: { de: "ADO.NET: Verbindungen, Befehle, Leser und Transaktionen", en: "ADO.NET: Connections, Commands, Readers and Transactions" }
+  printedPage: 1307
+teaches:
+  - ado.transaction
+  - ado.transaction-rollback
+  - ado.provider-independent
+  - ado.datatable-load
+requires:
+  - sql.create-table
+  - sql.primary-foreign-key
+  - sql.select-where
+  - ado.connection-open-close
+  - ado.execute-nonquery
+  - ado.execute-scalar
+  - ado.parameters
+  - ado.dbnull
+  - ado.datareader
+  - ado.map-rows
+items:
+  - type: open
+    id: schema-regeln
+    prompt:
+      de: "Erkläre, was ein Primärschlüssel und ein Fremdschlüssel sind. Warum legt man Einschränkungen wie `NOT NULL`, `UNIQUE` oder `CHECK` ins Datenbankschema, statt nur im C#-Code zu prüfen?"
+      en: "Explain what a primary key and a foreign key are. Why do you put constraints such as `NOT NULL`, `UNIQUE` or `CHECK` into the database schema instead of checking only in C# code?"
+  - type: open
+    id: code-zeilen-und-count
+    prompt:
+      de: |
+        Die Tabelle `Artikel` wird angelegt und gefüllt, `con` ist eine geöffnete `SqliteConnection`. Was gibt das Programm aus, und warum?
+
+        ```csharp
+        Exec("CREATE TABLE Artikel (Id INTEGER PRIMARY KEY, Name TEXT NOT NULL, Preis REAL)");
+        Exec("INSERT INTO Artikel (Name, Preis) VALUES ('Stift', 1.5), ('Heft', 3), ('Mappe', NULL), ('Block', 4)");
+        int n = Exec("UPDATE Artikel SET Preis = Preis * 2 WHERE Preis > 2");
+
+        using var cmd = con.CreateCommand();
+        cmd.CommandText = "SELECT COUNT(Preis) FROM Artikel";
+        Console.WriteLine(n + " / " + cmd.ExecuteScalar());
+
+        int Exec(string sql)
+        {
+            using var c = con.CreateCommand();
+            c.CommandText = sql;
+            return c.ExecuteNonQuery();
+        }
+        ```
+      en: |
+        The table `Artikel` is created and filled; `con` is an open `SqliteConnection`. What does the program print, and why?
+
+        ```csharp
+        Exec("CREATE TABLE Artikel (Id INTEGER PRIMARY KEY, Name TEXT NOT NULL, Preis REAL)");
+        Exec("INSERT INTO Artikel (Name, Preis) VALUES ('Stift', 1.5), ('Heft', 3), ('Mappe', NULL), ('Block', 4)");
+        int n = Exec("UPDATE Artikel SET Preis = Preis * 2 WHERE Preis > 2");
+
+        using var cmd = con.CreateCommand();
+        cmd.CommandText = "SELECT COUNT(Preis) FROM Artikel";
+        Console.WriteLine(n + " / " + cmd.ExecuteScalar());
+
+        int Exec(string sql)
+        {
+            using var c = con.CreateCommand();
+            c.CommandText = sql;
+            return c.ExecuteNonQuery();
+        }
+        ```
+  - type: multipleChoice
+    id: mc-insert-parameter
+    prompt:
+      de: "Ein Name, den der Benutzer eingetippt hat (zum Beispiel `O'Brien`), soll in die Tabelle `Person (Id, Name)` eingefügt werden. Welcher Code ist richtig?"
+      en: "A name typed in by the user (for example `O'Brien`) is to be inserted into the table `Person (Id, Name)`. Which code is correct?"
+    options:
+      - de: |
+          ```csharp
+          cmd.CommandText = "INSERT INTO Person (Name) VALUES (@name)";
+          cmd.Parameters.AddWithValue("@name", name);
+          cmd.ExecuteNonQuery();
+          ```
+      - de: |
+          ```csharp
+          cmd.CommandText = "INSERT INTO Person (Name) VALUES ('" + name + "')";
+          cmd.ExecuteNonQuery();
+          ```
+      - de: |
+          ```csharp
+          cmd.CommandText = "INSERT INTO Person (Name) VALUES (@name)";
+          cmd.Parameters.AddWithValue("@Namen", name);
+          cmd.ExecuteNonQuery();
+          ```
+    correct: [0]
+    explanation:
+      de: "Option 2 setzt die Eingabe in den SQL-Text: Bei `O'Brien` endet das Textliteral beim Apostroph, der Befehl ist ungültig (SqliteException wegen Syntaxfehler), und mit einer bösartigen Eingabe könnte jemand eigenes SQL einschleusen (SQL-Injection). Option 3 benennt den Parameter anders, als der SQL-Text ihn verlangt: Es wird eine InvalidOperationException geworfen, weil für `@name` kein Wert vorliegt."
+      en: "Option 2 puts the input into the SQL text: with `O'Brien` the string literal ends at the apostrophe and the command is invalid (SqliteException, syntax error), and a malicious input could inject its own SQL (SQL injection). Option 3 names the parameter differently from what the SQL text expects: an InvalidOperationException is thrown because no value was supplied for `@name`."
+  - type: open
+    id: execute-varianten
+    prompt:
+      de: "Es gibt `ExecuteNonQuery`, `ExecuteScalar` und `ExecuteReader`. Wann verwendest du welche Methode? Nenne zu jeder ein SQL-Beispiel und sag, was sie zurückgibt."
+      en: "There are `ExecuteNonQuery`, `ExecuteScalar` and `ExecuteReader`. When do you use which method? Give a SQL example for each and say what it returns."
+  - type: open
+    id: code-injection
+    prompt:
+      de: |
+        Die Tabelle `Benutzer (Name, Passwort)` enthält drei Zeilen (`anna`, `bernd`, `carla`), `cmd` ist ein Befehl auf einer geöffneten Verbindung. Was gibt das Programm aus? Erkläre beide Ausgaben und was das über die Art lehrt, Werte an SQL zu übergeben.
+
+        ```csharp
+        string name = "nobody";
+        string pw = "' OR '1'='1";
+
+        cmd.CommandText = "SELECT COUNT(*) FROM Benutzer WHERE Name = '" + name + "' AND Passwort = '" + pw + "'";
+        Console.WriteLine(cmd.ExecuteScalar());
+
+        cmd.CommandText = "SELECT COUNT(*) FROM Benutzer WHERE Name = @name AND Passwort = @pw";
+        cmd.Parameters.AddWithValue("@name", name);
+        cmd.Parameters.AddWithValue("@pw", pw);
+        Console.WriteLine(cmd.ExecuteScalar());
+        ```
+      en: |
+        The table `Benutzer (Name, Passwort)` contains three rows (`anna`, `bernd`, `carla`); `cmd` is a command on an open connection. What does the program print? Explain both outputs and what this teaches about how to pass values to SQL.
+
+        ```csharp
+        string name = "nobody";
+        string pw = "' OR '1'='1";
+
+        cmd.CommandText = "SELECT COUNT(*) FROM Benutzer WHERE Name = '" + name + "' AND Passwort = '" + pw + "'";
+        Console.WriteLine(cmd.ExecuteScalar());
+
+        cmd.CommandText = "SELECT COUNT(*) FROM Benutzer WHERE Name = @name AND Passwort = @pw";
+        cmd.Parameters.AddWithValue("@name", name);
+        cmd.Parameters.AddWithValue("@pw", pw);
+        Console.WriteLine(cmd.ExecuteScalar());
+        ```
+  - type: multipleChoice
+    id: mc-null-lesen
+    prompt:
+      de: "Die Spalte `Telefon` der Tabelle `Person` ist optional (`TEXT` ohne `NOT NULL`) und steht im Ergebnis eines `SELECT` an Position 2. `r` ist ein `DbDataReader` auf einer gelesenen Zeile. Welcher Code liest sie richtig in ein `string?`?"
+      en: "The column `Telefon` of the table `Person` is optional (`TEXT` without `NOT NULL`) and is at position 2 in the result of a `SELECT`. `r` is a `DbDataReader` positioned on a row. Which code reads it correctly into a `string?`?"
+    options:
+      - de: |
+          ```csharp
+          string? tel = r.IsDBNull(2) ? null : r.GetString(2);
+          ```
+      - de: |
+          ```csharp
+          string? tel = r.GetString(2);
+          ```
+      - de: |
+          ```csharp
+          string? tel = r[2] == null ? null : (string)r[2];
+          ```
+      - de: |
+          ```csharp
+          string? tel = r.IsDBNull(2) ? null : r.GetInt32(2);
+          ```
+    correct: [0]
+    explanation:
+      de: "Option 2 wirft bei NULL eine InvalidOperationException: Die typisierten Get-Methoden vertragen kein NULL, man fragt vorher mit `IsDBNull`. Option 3 prüft gegen `null`, aber ein fehlender Wert kommt als `DBNull.Value` an, nicht als `null`; der Cast wirft eine InvalidCastException. Option 4 liest den Text mit `GetInt32` und lässt sich nicht kompilieren (int ist kein string)."
+      en: "Option 2 throws an InvalidOperationException on NULL: the typed Get methods cannot handle NULL, so you ask `IsDBNull` first. Option 3 checks against `null`, but a missing value arrives as `DBNull.Value`, not as `null`; the cast throws an InvalidCastException. Option 4 reads the text with `GetInt32` and does not compile (an int is not a string)."
+  - type: open
+    id: code-dbnull-lesen
+    prompt:
+      de: |
+        In der Tabelle `Person (Name TEXT NOT NULL, Jahrgang INTEGER)` stehen die Zeilen `('Ida', NULL)` und `('Max', 1990)`. Was gibt das Programm aus, und warum geht es bei Ida nicht schief?
+
+        ```csharp
+        cmd.CommandText = "SELECT Name, Jahrgang FROM Person ORDER BY Name";
+        using var r = cmd.ExecuteReader();
+        while (r.Read())
+        {
+            int? jahrgang = r.IsDBNull(1) ? null : r.GetInt32(1);
+            Console.WriteLine($"{r.GetString(0)}: {jahrgang?.ToString() ?? "unbekannt"}");
+        }
+        ```
+      en: |
+        The table `Person (Name TEXT NOT NULL, Jahrgang INTEGER)` contains the rows `('Ida', NULL)` and `('Max', 1990)`. What does the program print, and why does it not go wrong for Ida?
+
+        ```csharp
+        cmd.CommandText = "SELECT Name, Jahrgang FROM Person ORDER BY Name";
+        using var r = cmd.ExecuteReader();
+        while (r.Read())
+        {
+            int? jahrgang = r.IsDBNull(1) ? null : r.GetInt32(1);
+            Console.WriteLine($"{r.GetString(0)}: {jahrgang?.ToString() ?? "unbekannt"}");
+        }
+        ```
+  - type: open
+    id: leser-und-abbilden
+    prompt:
+      de: "Wie arbeitet ein `DbDataReader`, und wie machst du aus den Zeilen eines Ergebnisses Objekte? Warum gibst du den Leser und die Verbindung sofort wieder frei (`using`), und was passiert, wenn man das vergisst?"
+      en: "How does a `DbDataReader` work, and how do you turn the rows of a result into objects? Why do you release the reader and the connection promptly (`using`), and what happens if you forget?"
+  - type: multipleChoice
+    id: mc-transaktion
+    prompt:
+      de: "Zwei Buchungen (`Buche(con, tx, id, betrag)` führt ein `UPDATE` in der Transaktion `tx` aus) sollen entweder beide oder keine wirksam werden. Welcher Code ist richtig?"
+      en: "Two postings (`Buche(con, tx, id, betrag)` runs an `UPDATE` inside the transaction `tx`) are to take effect either both or not at all. Which code is correct?"
+    options:
+      - de: |
+          ```csharp
+          using var tx = con.BeginTransaction();
+          try
+          {
+              Buche(con, tx, 1, -50);
+              Buche(con, tx, 2, +50);
+              tx.Commit();
+          }
+          catch
+          {
+              tx.Rollback();
+              throw;
+          }
+          ```
+      - de: |
+          ```csharp
+          using var tx = con.BeginTransaction();
+          try
+          {
+              Buche(con, tx, 1, -50);
+              tx.Commit();
+              Buche(con, tx, 2, +50);
+              tx.Commit();
+          }
+          catch
+          {
+              tx.Rollback();
+              throw;
+          }
+          ```
+      - de: |
+          ```csharp
+          var tx = con.BeginTransaction();
+          Buche(con, tx, 1, -50);
+          Buche(con, tx, 2, +50);
+          ```
+      - de: |
+          ```csharp
+          using var tx = con.BeginTransaction();
+          try
+          {
+              Buche(con, tx, 1, -50);
+              Buche(con, tx, 2, +50);
+              tx.Commit();
+          }
+          finally
+          {
+              tx.Rollback();
+          }
+          ```
+    correct: [0]
+    explanation:
+      de: "Option 2 bestätigt schon nach der ersten Buchung: Sie bleibt bestehen, auch wenn die zweite fehlschlägt, und der spätere Aufruf auf der abgeschlossenen Transaktion wirft eine InvalidOperationException. Option 3 ruft nie `Commit` auf: Die Änderungen werden beim Schließen der Verbindung verworfen. Option 4 ruft nach erfolgreichem `Commit` im `finally` trotzdem `Rollback` auf: Das wirft eine InvalidOperationException, obwohl alles gespeichert wurde."
+      en: "Option 2 commits after the first posting: it stays in place even if the second one fails, and the later call on the completed transaction throws an InvalidOperationException. Option 3 never calls `Commit`: the changes are discarded when the connection is closed. Option 4 calls `Rollback` in `finally` even after a successful `Commit`: this throws an InvalidOperationException although everything was saved."
+  - type: open
+    id: transaktion-erklaeren
+    prompt:
+      de: "Was ist eine Transaktion, und was bedeuten `Commit` und `Rollback`? Warum braucht eine Überweisung von Konto A auf Konto B eine Transaktion? Wie sieht das übliche Muster in C# aus?"
+      en: "What is a transaction, and what do `Commit` and `Rollback` mean? Why does a transfer from account A to account B need a transaction? What does the usual pattern look like in C#?"
+  - type: open
+    id: code-rollback
+    prompt:
+      de: |
+        Die Tabelle `Konto (Id INTEGER PRIMARY KEY, Stand INTEGER NOT NULL CHECK (Stand >= 0))` enthält Konto 1 mit 100 und Konto 2 mit 50. `Exec(sql, tx)` führt einen Befehl innerhalb der Transaktion aus, `Stand(id)` liest das Guthaben. Was gibt das Programm aus, und warum steht bei Konto 2 nicht 130?
+
+        ```csharp
+        using var tx = con.BeginTransaction();
+        try
+        {
+            Exec("UPDATE Konto SET Stand = Stand + 80 WHERE Id = 2", tx);
+            Exec("UPDATE Konto SET Stand = Stand - 150 WHERE Id = 1", tx);
+            tx.Commit();
+        }
+        catch (SqliteException)
+        {
+            tx.Rollback();
+            Console.WriteLine("Fehler");
+        }
+        Console.WriteLine(Stand(1) + " " + Stand(2));
+        ```
+      en: |
+        The table `Konto (Id INTEGER PRIMARY KEY, Stand INTEGER NOT NULL CHECK (Stand >= 0))` contains account 1 with 100 and account 2 with 50. `Exec(sql, tx)` runs a command inside the transaction, `Stand(id)` reads the balance. What does the program print, and why is account 2 not at 130?
+
+        ```csharp
+        using var tx = con.BeginTransaction();
+        try
+        {
+            Exec("UPDATE Konto SET Stand = Stand + 80 WHERE Id = 2", tx);
+            Exec("UPDATE Konto SET Stand = Stand - 150 WHERE Id = 1", tx);
+            tx.Commit();
+        }
+        catch (SqliteException)
+        {
+            tx.Rollback();
+            Console.WriteLine("Fehler");
+        }
+        Console.WriteLine(Stand(1) + " " + Stand(2));
+        ```
+  - type: open
+    id: provider-unabhaengig
+    prompt:
+      de: "Was ist ein ADO.NET-Provider, und was gewinnt man, wenn man gegen `DbConnection`, `DbCommand` und `DbProviderFactory` programmiert statt gegen `SqliteConnection`? Was lässt sich damit trotzdem nicht austauschen?"
+      en: "What is an ADO.NET provider, and what do you gain by programming against `DbConnection`, `DbCommand` and `DbProviderFactory` instead of `SqliteConnection`? What can you still not swap out that way?"

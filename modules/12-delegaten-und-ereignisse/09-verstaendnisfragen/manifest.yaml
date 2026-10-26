@@ -5,14 +5,16 @@ reading:
   title: { de: "Delegaten und Ereignisse", en: "Delegates and Events" }
   printedPage: 657
 teaches:
-  - delegates.multicast
-  - lambdas.closure
-  - events.declare
-  - events.raise-safely
+  - delegates.return-delegate
+  - events.vs-delegate-field
 requires:
   - delegates.declare-type
   - delegates.create-invoke
+  - delegates.multicast
+  - lambdas.closure
   - lambdas.list-predicate-methods
+  - events.declare
+  - events.raise-safely
   - events.eventhandler-generic
   - events.custom-eventargs
   - events.subscribe-unsubscribe

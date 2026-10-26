@@ -1,0 +1,246 @@
+id: sprachelemente-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "4.1"
+  title: { de: "Elementare Sprachelemente (4.1 bis 4.5)", en: "Basic Language Elements (4.1 through 4.5)" }
+  printedPage: 161
+teaches:
+  - types.literal-suffix
+  - types.implicit-conversion
+  - strings.escape
+  - operators.precedence
+requires:
+  - types.double-vs-decimal
+  - types.var
+  - strings.interpolation
+  - operators.arithmetic
+items:
+  - type: open
+    id: double-vs-decimal
+    prompt:
+      de: "In C# ist `0.1 + 0.2 == 0.3` mit `double` falsch. Erkläre, woran das liegt. Wann nimmst du stattdessen `decimal`, und wie vergleichst du `double`-Werte sinnvoll?"
+      en: "In C#, `0.1 + 0.2 == 0.3` is false with `double`. Explain why. When do you use `decimal` instead, and how do you compare `double` values sensibly?"
+  - type: open
+    id: plus-verkettung
+    prompt:
+      de: |
+        Was gibt dieses Programm aus (vier Zeilen)? Erkläre, warum die erste und die dritte Zeile so aussehen.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int a = 3, b = 2;
+                Console.WriteLine("Summe: " + a + b);
+                Console.WriteLine("Summe: " + (a + b));
+                Console.WriteLine(a + b + " ist die Summe");
+                Console.WriteLine($"Summe: {a + b}");
+            }
+        }
+        ```
+      en: |
+        What does this program print (four lines)? Explain why the first and the third line look the way they do.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int a = 3, b = 2;
+                Console.WriteLine("Summe: " + a + b);
+                Console.WriteLine("Summe: " + (a + b));
+                Console.WriteLine(a + b + " ist die Summe");
+                Console.WriteLine($"Summe: {a + b}");
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: betrag-literal
+    prompt:
+      de: "Welche Zeile speichert den Rechnungsbetrag 19,99 Euro dezimal exakt und kompiliert?"
+      en: "Which line stores the invoice amount 19.99 euros exactly in decimal form and compiles?"
+    options:
+      - de: "decimal preis = 19.99;"
+      - de: "decimal preis = 19.99m;"
+      - de: "double preis = 19.99m;"
+      - de: "float preis = 19.99;"
+    correct: [1]
+    explanation:
+      de: "Ein Literal wie `19.99` ist ohne Suffix ein `double`. Das lässt sich weder implizit in `decimal` (CS0664) noch in `float` (CS0664) umwandeln; dafür braucht es die Suffixe `m` und `f`. `double preis = 19.99m;` scheitert, weil `decimal` nach `double` nur mit explizitem Cast geht (CS0266), und `double` wäre für Geldbeträge ohnehin binär ungenau."
+      en: "A literal like `19.99` without a suffix is a `double`. It cannot be converted implicitly to `decimal` (CS0664) or to `float` (CS0664); that requires the suffixes `m` and `f`. `double preis = 19.99m;` fails because `decimal` to `double` needs an explicit cast (CS0266), and `double` would be binary-inexact for money anyway."
+  - type: open
+    id: ganzzahldivision
+    prompt:
+      de: "Warum ergibt `7 / 2` in C# den Wert `3`, und was musst du ändern, damit `3.5` herauskommt? Nenne auch eine typische Stelle in einem Programm, an der dir diese Falle begegnen kann."
+      en: "Why does `7 / 2` evaluate to `3` in C#, and what do you have to change to get `3.5`? Also name a typical place in a program where you might run into this trap."
+  - type: open
+    id: division-und-cast
+    prompt:
+      de: |
+        Was gibt dieses Programm in den drei Zeilen aus? (Die Nachkommastelle schreibt sich je nach Spracheinstellung mit Komma oder Punkt.) Erkläre die Unterschiede zwischen `x`, `y` und `z`.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int a = 7, b = 2;
+                double x = a / b;
+                double y = (double)a / b;
+                double z = (double)(a / b);
+                Console.WriteLine(x);
+                Console.WriteLine(y);
+                Console.WriteLine(z);
+            }
+        }
+        ```
+      en: |
+        What does this program print in the three lines? (The decimal separator is written as a comma or a point depending on the language setting.) Explain the differences between `x`, `y` and `z`.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int a = 7, b = 2;
+                double x = a / b;
+                double y = (double)a / b;
+                double z = (double)(a / b);
+                Console.WriteLine(x);
+                Console.WriteLine(y);
+                Console.WriteLine(z);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: mittelwert
+    prompt:
+      de: "Die Methode `Mittelwert(int a, int b)` soll den Mittelwert als `double` liefern: `Mittelwert(1, 2)` ergibt `1.5`. Welche Fassung des Rumpfs ist richtig?"
+      en: "The method `Mittelwert(int a, int b)` is supposed to return the mean as a `double`: `Mittelwert(1, 2)` gives `1.5`. Which version of the body is correct?"
+    options:
+      - de: "return (a + b) / 2;"
+      - de: "return (double)((a + b) / 2);"
+      - de: "return a + b / 2.0;"
+      - de: "return (a + b) / 2.0;"
+    correct: [3]
+    explanation:
+      de: "Bei `(a + b) / 2` teilen zwei `int`-Werte (Ganzzahldivision): Das Ergebnis ist `1`, erst danach wird es zu `1.0`. Der Cast in `(double)((a + b) / 2)` kommt zu spät, die Division ist schon gelaufen. `a + b / 2.0` rechnet nach der Rangfolge `a + (b / 2.0)` und liefert für `(1, 2)` den Wert `2`. Mit `(a + b) / 2.0` ist ein Operand `double`, also wird gleitkommamäßig geteilt: `1.5`."
+      en: "In `(a + b) / 2` two `int` values are divided (integer division): the result is `1`, and only afterwards it becomes `1.0`. The cast in `(double)((a + b) / 2)` comes too late, the division has already happened. `a + b / 2.0` is evaluated as `a + (b / 2.0)` by precedence and yields `2` for `(1, 2)`. With `(a + b) / 2.0` one operand is `double`, so the division is done in floating point: `1.5`."
+  - type: open
+    id: umwandlung
+    prompt:
+      de: "Wann wandelt C# einen Wert implizit um, und wann brauchst du einen expliziten Cast? Nenne je zwei Beispiele und sage, was ein Cast von `double` nach `int` mit den Nachkommastellen macht."
+      en: "When does C# convert a value implicitly, and when do you need an explicit cast? Give two examples of each and say what a cast from `double` to `int` does to the fractional digits."
+  - type: open
+    id: abschneiden-char
+    prompt:
+      de: |
+        Was gibt dieses Programm aus (drei Zeilen)? Begründe jede Zeile.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                double d = -2.7;
+                int n = (int)d;
+                char c = 'a';
+                int code = c;
+                char next = (char)(c + 1);
+                Console.WriteLine(n);
+                Console.WriteLine(code);
+                Console.WriteLine(next);
+            }
+        }
+        ```
+      en: |
+        What does this program print (three lines)? Justify each line.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                double d = -2.7;
+                int n = (int)d;
+                char c = 'a';
+                int code = c;
+                char next = (char)(c + 1);
+                Console.WriteLine(n);
+                Console.WriteLine(code);
+                Console.WriteLine(next);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: char-verschieben
+    prompt:
+      de: "Die Methode `Verschiebe(char c, int um)` soll das Zeichen liefern, das `um` Positionen hinter `c` liegt: `Verschiebe('a', 1)` ergibt `'b'`. Welcher Rumpf ist richtig?"
+      en: "The method `Verschiebe(char c, int um)` is supposed to return the character that is `um` positions after `c`: `Verschiebe('a', 1)` gives `'b'`. Which body is correct?"
+    options:
+      - de: "return c + um;"
+      - de: "return (char)c + um;"
+      - de: "return (char)(c + um);"
+      - de: "return (char)um;"
+    correct: [2]
+    explanation:
+      de: "`c + um` ist ein `int` (das `char` wird zum Rechnen erweitert) und lässt sich nicht implizit zurück in `char` wandeln (CS0266). `(char)c + um` castet nur `c`, die Summe bleibt ein `int` (CS0266). `(char)um` kompiliert, liefert aber das Zeichen mit dem Code `1`, nicht `'b'`. Erst die Klammer um die ganze Summe, `(char)(c + um)`, wandelt das Ergebnis zurück."
+      en: "`c + um` is an `int` (the `char` is widened for the calculation) and cannot be converted back to `char` implicitly (CS0266). `(char)c + um` only casts `c`, the sum remains an `int` (CS0266). `(char)um` compiles but yields the character with code `1`, not `'b'`. Only the parentheses around the whole sum, `(char)(c + um)`, convert the result back."
+  - type: open
+    id: var-const-scope
+    prompt:
+      de: "Was bewirken `var` und `const`? Was ändert `var` nicht, und warum gibt es `const`? Und was bedeutet es, dass eine lokale Variable nur in dem Block gilt, in dem sie deklariert wurde?"
+      en: "What do `var` and `const` do? What does `var` not change, and why does `const` exist? And what does it mean that a local variable is only valid in the block in which it was declared?"
+  - type: open
+    id: ausrichtung
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Gib die Leerzeichen genau an (zum Beispiel mit `_` für ein Leerzeichen) und erkläre, was `5` und `-5` hinter dem Komma bewirken.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int i = 42, j = 7;
+                Console.WriteLine($"[{i,5}]");
+                Console.WriteLine($"[{j,-5}]");
+                Console.WriteLine($"{i}\n{j}");
+            }
+        }
+        ```
+      en: |
+        What does this program print? State the spaces exactly (for example using `_` for a space) and explain what `5` and `-5` after the comma do.
+
+        ```csharp
+        using System;
+
+        public class Programm {
+            static void Main() {
+                int i = 42, j = 7;
+                Console.WriteLine($"[{i,5}]");
+                Console.WriteLine($"[{j,-5}]");
+                Console.WriteLine($"{i}\n{j}");
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: spaltenformat
+    prompt:
+      de: "`int x = 42;` soll rechtsbündig in einer Spalte der Breite 6 erscheinen, also als `[    42]`. Welche Interpolation leistet das?"
+      en: "`int x = 42;` is supposed to appear right-aligned in a column of width 6, that is `[    42]`. Which interpolation does that?"
+    options:
+      - de: "$\"[{x,6}]\""
+      - de: "$\"[{x,-6}]\""
+      - de: "$\"[{x:D6}]\""
+      - de: "$\"[{x:6}]\""
+    correct: [0]
+    explanation:
+      de: "Die Breite steht hinter einem Komma, positiv bedeutet rechtsbündig. `{x,-6}` ist linksbündig (`[42    ]`). Hinter dem Doppelpunkt steht keine Breite, sondern eine Formatzeichenfolge: `{x:D6}` füllt mit Nullen auf (`[000042]`), und `{x:6}` ist keine Breitenangabe, die `6` wird nur als Text übernommen (`[6]`)."
+      en: "The width follows a comma; positive means right-aligned. `{x,-6}` is left-aligned (`[42    ]`). After the colon comes a format string, not a width: `{x:D6}` pads with zeros (`[000042]`), and `{x:6}` is not a width specification, the `6` is simply copied as text (`[6]`)."
+  - type: open
+    id: inkrement-praefix
+    prompt:
+      de: "Was ist der Unterschied zwischen `i++` und `++i`? Erkläre es an einem Ausdruck, in dem der Unterschied sichtbar wird, und sage, was in `x += 3 * 2` zuerst gerechnet wird."
+      en: "What is the difference between `i++` and `++i`? Explain it with an expression in which the difference is visible, and say what is calculated first in `x += 3 * 2`."

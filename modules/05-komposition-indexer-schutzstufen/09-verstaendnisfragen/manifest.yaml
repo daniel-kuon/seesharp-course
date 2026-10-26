@@ -1,0 +1,360 @@
+id: komposition-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "5.10"
+  title: { de: "Aggregation bzw. Komposition", en: "Aggregation or Composition" }
+  printedPage: 388
+teaches:
+  - oop.tostring-implicit
+  - oop.indexer-overload
+  - access.internal
+  - access.public-private
+requires:
+  - oop.aggregation
+  - oop.tostring-override
+  - oop.nested-class
+  - oop.indexer
+  - oop.pure-method-returns-new
+  - tools.project-reference
+items:
+  - type: open
+    id: aggregation-komposition
+    prompt:
+      de: "Eine Klasse `Aufgabe` besitzt drei `Bruch`-Objekte als Felder und lässt ihre Brüche rechnen (`lsg.Addiere(b2)`). Erkläre, was Aggregation beziehungsweise Komposition bedeutet, was Delegieren hier heißt und wie sich beides im Quelltext zeigt. Was bewirkt `readonly` bei einem solchen Feld?"
+      en: "A class `Aufgabe` owns three `Bruch` objects as fields and lets its fractions do the calculating (`lsg.Addiere(b2)`). Explain what aggregation or composition means, what delegating means here, and how both show up in the source code. What does `readonly` do for such a field?"
+  - type: open
+    id: tostring-ausgabe
+    prompt:
+      de: |
+        Was gibt dieses Programm aus (drei Zeilen)? Welche Methode wird in jeder Zeile aufgerufen, obwohl sie nirgends hingeschrieben ist? Und was würde ausgegeben, wenn die Klasse `ToString()` nicht überschriebe?
+
+        ```csharp
+        using System;
+
+        public class Bruch {
+            public int Zaehler { get; set; }
+            public int Nenner { get; set; }
+
+            public override string ToString() {
+                return Zaehler + "/" + Nenner;
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Bruch b = new Bruch { Zaehler = 3, Nenner = 4 };
+                Console.WriteLine(b);
+                Console.WriteLine($"Bruch: {b}");
+                Console.WriteLine(b + "!");
+            }
+        }
+        ```
+      en: |
+        What does this program print (three lines)? Which method is called in every line although it is not written anywhere? And what would be printed if the class did not override `ToString()`?
+
+        ```csharp
+        using System;
+
+        public class Bruch {
+            public int Zaehler { get; set; }
+            public int Nenner { get; set; }
+
+            public override string ToString() {
+                return Zaehler + "/" + Nenner;
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Bruch b = new Bruch { Zaehler = 3, Nenner = 4 };
+                Console.WriteLine(b);
+                Console.WriteLine($"Bruch: {b}");
+                Console.WriteLine(b + "!");
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: tostring-override
+    prompt:
+      de: "Die Klasse `Bruch` soll `ToString()` so überschreiben, dass `Console.WriteLine(b)` für 3/4 den Text `3/4` ausgibt. Welche Fassung ist richtig?"
+      en: "The class `Bruch` is supposed to override `ToString()` so that `Console.WriteLine(b)` prints `3/4` for 3/4. Which version is correct?"
+    options:
+      - de: |
+          ```csharp
+          public string ToString() {
+              return Zaehler + "/" + Nenner;
+          }
+          ```
+      - de: |
+          ```csharp
+          public override string ToString() {
+              return Zaehler + "/" + Nenner;
+          }
+          ```
+      - de: |
+          ```csharp
+          public override void ToString() {
+              Console.WriteLine(Zaehler + "/" + Nenner);
+          }
+          ```
+      - de: |
+          ```csharp
+          public override string tostring() {
+              return Zaehler + "/" + Nenner;
+          }
+          ```
+    correct: [1]
+    explanation:
+      de: "Ohne `override` entsteht eine neue Methode, die die geerbte nur verdeckt (Warnung CS0114): `Console.WriteLine(b)` ruft weiter `object.ToString()` auf und gibt den Typnamen `Bruch` aus, nur ein direkter Aufruf `b.ToString()` liefert `3/4`. Beim Überschreiben müssen Name und Rückgabetyp zur geerbten Methode passen: `void` statt `string` meldet CS0508, und `tostring` in Kleinbuchstaben ist eine Methode, die es in `object` nicht gibt (CS0115)."
+      en: "Without `override` a new method is created that merely hides the inherited one (warning CS0114): `Console.WriteLine(b)` still calls `object.ToString()` and prints the type name `Bruch`; only a direct call `b.ToString()` yields `3/4`. When overriding, name and return type must match the inherited method: `void` instead of `string` reports CS0508, and a lowercase `tostring` is a method that does not exist in `object` (CS0115)."
+  - type: open
+    id: vektor-plus-addiere
+    prompt:
+      de: |
+        Was gibt dieses Programm aus (drei Zeilen)? Erkläre, worin sich `Plus` und `Addiere` unterscheiden und was die Eigenschaft `Laenge` besonders macht.
+
+        ```csharp
+        using System;
+
+        public class Vek {
+            public double X { get; set; }
+            public double Y { get; set; }
+
+            public double Laenge {
+                get { return Math.Sqrt(X * X + Y * Y); }
+            }
+
+            public void Addiere(Vek v) {
+                X += v.X;
+                Y += v.Y;
+            }
+
+            public Vek Plus(Vek v) {
+                return new Vek { X = X + v.X, Y = Y + v.Y };
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Vek a = new Vek { X = 3, Y = 4 };
+                Vek b = new Vek { X = 3, Y = 4 };
+                Vek c = a.Plus(b);
+                Console.WriteLine(a.Laenge);
+                a.Addiere(b);
+                Console.WriteLine(a.Laenge);
+                Console.WriteLine(c.Laenge);
+            }
+        }
+        ```
+      en: |
+        What does this program print (three lines)? Explain how `Plus` and `Addiere` differ and what is special about the property `Laenge`.
+
+        ```csharp
+        using System;
+
+        public class Vek {
+            public double X { get; set; }
+            public double Y { get; set; }
+
+            public double Laenge {
+                get { return Math.Sqrt(X * X + Y * Y); }
+            }
+
+            public void Addiere(Vek v) {
+                X += v.X;
+                Y += v.Y;
+            }
+
+            public Vek Plus(Vek v) {
+                return new Vek { X = X + v.X, Y = Y + v.Y };
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Vek a = new Vek { X = 3, Y = 4 };
+                Vek b = new Vek { X = 3, Y = 4 };
+                Vek c = a.Plus(b);
+                Console.WriteLine(a.Laenge);
+                a.Addiere(b);
+                Console.WriteLine(a.Laenge);
+                Console.WriteLine(c.Laenge);
+            }
+        }
+        ```
+  - type: open
+    id: geschachtelte-klassen
+    prompt:
+      de: "Wann deklariert man eine Klasse innerhalb einer anderen? Was darf die innere Klasse, und was ist die Standard-Schutzstufe einer geschachtelten Klasse? Wie spricht man von außen eine `public` geschachtelte Klasse an?"
+      en: "When do you declare a class inside another one? What may the inner class do, and what is the default access level of a nested class? How do you refer to a `public` nested class from the outside?"
+  - type: open
+    id: familie-privat
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Warum darf `Kind` auf `f.name` zugreifen, obwohl das Feld privat ist? Würde in `Main` die Zeile `Familie.Kind k = new Familie.Kind();` kompilieren?
+
+        ```csharp
+        using System;
+
+        public class Familie {
+            string name = "Meier";
+
+            class Kind {
+                public string Vorstellung(Familie f) {
+                    return "Ich bin von Familie " + f.name;
+                }
+            }
+
+            public string Test() {
+                return new Kind().Vorstellung(this);
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Console.WriteLine(new Familie().Test());
+            }
+        }
+        ```
+      en: |
+        What does this program print? Why may `Kind` access `f.name` although the field is private? Would the line `Familie.Kind k = new Familie.Kind();` compile in `Main`?
+
+        ```csharp
+        using System;
+
+        public class Familie {
+            string name = "Meier";
+
+            class Kind {
+                public string Vorstellung(Familie f) {
+                    return "Ich bin von Familie " + f.name;
+                }
+            }
+
+            public string Test() {
+                return new Kind().Vorstellung(this);
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Console.WriteLine(new Familie().Test());
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: readonly-feld
+    prompt:
+      de: "Die Klasse `Linie` hat das Feld `readonly Punkt start;`, das im Konstruktor mit einem `Punkt`-Objekt belegt wird. Was bewirkt `readonly` hier?"
+      en: "The class `Linie` has the field `readonly Punkt start;`, which is set to a `Punkt` object in the constructor. What does `readonly` do here?"
+    options:
+      - de: "Die Referenz `start` kann nach dem Konstruktor nicht mehr auf ein anderes Objekt zeigen; die Eigenschaften des `Punkt`-Objekts dürfen sich aber weiter ändern."
+        en: "The reference `start` can no longer point to a different object after the constructor; the properties of the `Punkt` object may still change, however."
+      - de: "Auch die Eigenschaften des `Punkt`-Objekts, etwa `start.X`, dürfen nach dem Konstruktor nicht mehr geändert werden."
+        en: "The properties of the `Punkt` object, such as `start.X`, must not be changed any more after the constructor either."
+      - de: "Das Feld darf nirgends zugewiesen werden, auch nicht im Konstruktor; deshalb braucht es einen Initialisierer."
+        en: "The field may not be assigned anywhere, not even in the constructor; that is why it needs an initializer."
+      - de: "Das Feld ist nur für andere Klassen schreibgeschützt; innerhalb von `Linie` darf man es jederzeit neu zuweisen."
+        en: "The field is read-only only for other classes; inside `Linie` it may be reassigned at any time."
+    correct: [0]
+    explanation:
+      de: "`readonly` fixiert nur die Referenz, nicht das Objekt dahinter: `start.X = 10;` ist erlaubt, `start = new Punkt();` außerhalb des Konstruktors nicht (CS0191). Zugewiesen werden darf im Konstruktor oder im Initialisierer; der Schreibschutz gilt auch innerhalb der Klasse."
+      en: "`readonly` fixes only the reference, not the object behind it: `start.X = 10;` is allowed, `start = new Punkt();` outside the constructor is not (CS0191). Assignment is allowed in the constructor or in an initializer; the protection also applies inside the class."
+  - type: open
+    id: indexer-konzept
+    prompt:
+      de: "Was ist ein Indexer, und wie unterscheidet er sich von einer gewöhnlichen Eigenschaft? Wofür ist er gut, und in welcher Weise kann man Indexer überladen?"
+      en: "What is an indexer, and how does it differ from an ordinary property? What is it good for, and in what ways can indexers be overloaded?"
+  - type: open
+    id: tabelle-indexer
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Was passiert, wenn man in `Main` zusätzlich `t[1] = 5;` schreibt, und warum?
+
+        ```csharp
+        using System;
+
+        public class Tabelle {
+            public int Basis { get; set; }
+
+            public int this[int i] {
+                get { return Basis * i; }
+            }
+
+            public int this[int i, int j] {
+                get { return Basis * i + j; }
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Tabelle t = new Tabelle { Basis = 10 };
+                Console.WriteLine(t[3]);
+                Console.WriteLine(t[3, 4]);
+            }
+        }
+        ```
+      en: |
+        What does this program print? What happens if you additionally write `t[1] = 5;` in `Main`, and why?
+
+        ```csharp
+        using System;
+
+        public class Tabelle {
+            public int Basis { get; set; }
+
+            public int this[int i] {
+                get { return Basis * i; }
+            }
+
+            public int this[int i, int j] {
+                get { return Basis * i + j; }
+            }
+        }
+
+        public class Programm {
+            static void Main() {
+                Tabelle t = new Tabelle { Basis = 10 };
+                Console.WriteLine(t[3]);
+                Console.WriteLine(t[3, 4]);
+            }
+        }
+        ```
+  - type: multipleChoice
+    id: indexer-deklaration
+    prompt:
+      de: "Die Klasse `PersList` soll es erlauben, eine `Person` über ihre Position anzusprechen: `liste[1]` lesen und `liste[1] = p` schreiben. Welche Deklaration ist ein gültiger Indexer dafür?"
+      en: "The class `PersList` is supposed to allow access to a `Person` by position: reading `liste[1]` and writing `liste[1] = p`. Which declaration is a valid indexer for that?"
+    options:
+      - de: "public Person this(int i) { get { … } set { … } }"
+      - de: "public Person Indexer[int i] { get { … } set { … } }"
+      - de: "public static Person this[int i] { get { … } set { … } }"
+      - de: "public Person this[int i] { get { … } set { … } }"
+    correct: [3]
+    explanation:
+      de: "Ein Indexer ist eine Eigenschaft mit Parametern; er heißt `this` und die Parameter stehen in eckigen Klammern. `this(int i)` mit runden Klammern und `Indexer[int i]` mit eigenem Namen sind Syntaxfehler. Ein Indexer gehört immer zu einem Objekt, `static` ist nicht erlaubt (CS0106)."
+      en: "An indexer is a property with parameters; it is named `this` and the parameters go in square brackets. `this(int i)` with round brackets and `Indexer[int i]` with a name of its own are syntax errors. An indexer always belongs to an object, `static` is not allowed (CS0106)."
+  - type: open
+    id: schutzstufen
+    prompt:
+      de: "Erkläre die Schutzstufen `public`, `internal` und `private`: Was sieht wer? Was gilt, wenn man bei einer nicht geschachtelten Klasse oder bei einem Mitglied nichts angibt? Was bedeutet „assembly-intern“ ganz konkret für ein zweites Projekt, das eine Bibliothek referenziert?"
+      en: "Explain the access levels `public`, `internal` and `private`: who can see what? What applies if nothing is specified for a non-nested class or for a member? What does “assembly-internal” mean in concrete terms for a second project that references a library?"
+  - type: open
+    id: bibliothek-verweis
+    prompt:
+      de: "Ein Konsolenprojekt soll die Klasse `Bruch` aus der Klassenbibliothek `FractionLib` im Namensraum `de.bebagoe.fraction` benutzen. Was brauchst du dafür, und warum reicht der Projektverweis allein nicht? Wie hängen Namensraum und Assembly hier zusammen?"
+      en: "A console project is supposed to use the class `Bruch` from the class library `FractionLib` in the namespace `de.bebagoe.fraction`. What do you need for that, and why is the project reference alone not enough? How do namespace and assembly relate here?"
+  - type: multipleChoice
+    id: ggt-schutzstufe
+    prompt:
+      de: "In der Klassenbibliothek `FractionLib` hat `Bruch` die statische Hilfsmethode `Ggt`. Eine zweite Klasse `Helfer` in derselben Bibliothek soll sie aufrufen, ein Konsolenprojekt, das `FractionLib` referenziert, darf sie aber nicht sehen. Welche Schutzstufe ist richtig?"
+      en: "In the class library `FractionLib`, `Bruch` has the static helper method `Ggt`. A second class `Helfer` in the same library is supposed to call it, but a console project that references `FractionLib` must not see it. Which access level is correct?"
+    options:
+      - de: "private static int Ggt(int a, int b)"
+      - de: "public static int Ggt(int a, int b)"
+      - de: "internal static int Ggt(int a, int b)"
+      - de: "protected static int Ggt(int a, int b)"
+    correct: [2]
+    explanation:
+      de: "`internal` heißt assembly-intern: Alle Klassen in `FractionLib` sehen die Methode, das Konsolenprojekt nicht (dort meldet der Compiler, `Bruch` enthalte keine Definition für `Ggt`, CS0117). `private` ist zu streng: Schon `Helfer` darf die Methode nicht aufrufen (CS0122). `public` zeigt sie jedem Projekt. `protected` gilt nur innerhalb der Klasse und ihrer Unterklassen, `Helfer` käme auch hier nicht heran (CS0122)."
+      en: "`internal` means assembly-internal: all classes in `FractionLib` see the method, the console project does not (there the compiler reports that `Bruch` contains no definition for `Ggt`, CS0117). `private` is too strict: even `Helfer` may not call the method (CS0122). `public` shows it to every project. `protected` applies only inside the class and its subclasses, `Helfer` would not get access here either (CS0122)."

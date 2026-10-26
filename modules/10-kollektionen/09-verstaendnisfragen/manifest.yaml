@@ -1,0 +1,271 @@
+id: kollektionen-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "11"
+  title: { de: "Kollektionen", en: "Collections" }
+  printedPage: 691
+teaches:
+  - collections.list-remove-while-iterating
+  - collections.equals-gethashcode-override
+  - collections.dictionary-trygetvalue
+  - collections.choose-by-requirement
+requires:
+  - collections.list-add-remove
+  - collections.expression-spread
+  - collections.queue-fifo
+  - collections.stack-lifo
+  - collections.hashset-add-contains
+  - collections.dictionary-add-lookup
+  - collections.readonly-view
+  - collections.immutable-list
+items:
+  - type: open
+    id: kollektion-waehlen
+    prompt:
+      de: "Welche Kollektion nimmst du jeweils und warum? (a) Druckaufträge sollen in der Reihenfolge ihres Eintreffens abgearbeitet werden. (b) Ein Editor merkt sich seinen Rückgängig-Verlauf. (c) Bei Millionen Einträgen soll schnell geprüft werden, ob eine Kundennummer schon vergeben ist. (d) Zu einem Namen soll die Telefonnummer gefunden werden."
+      en: "Which collection do you pick in each case, and why? (a) Print jobs are to be processed in the order in which they arrive. (b) An editor keeps its undo history. (c) With millions of entries, you want to check quickly whether a customer number has already been assigned. (d) The phone number is to be found for a given name."
+  - type: open
+    id: hash-schnell
+    prompt:
+      de: "Warum ist `Contains()` in einem `HashSet<T>` bei großen Datenmengen viel schneller als in einer `List<T>`? Erkläre grob, wie das `HashSet<T>` ein Element findet, und was ein eigener Elementtyp dafür bereitstellen muss."
+      en: "Why is `Contains()` in a `HashSet<T>` much faster than in a `List<T>` for large amounts of data? Explain roughly how the `HashSet<T>` finds an element, and what a custom element type must provide for this."
+  - type: open
+    id: foreach-aendern
+    prompt:
+      de: "Warum löst es zur Laufzeit eine Ausnahme aus, wenn du innerhalb einer `foreach`-Schleife über eine `List<T>` Elemente entfernst? Nenne zwei sichere Wege, Elemente während eines Durchlaufs zu entfernen, und erkläre, wieso die Rückwärtsschleife funktioniert."
+      en: "Why does removing elements inside a `foreach` loop over a `List<T>` throw an exception at run time? Name two safe ways to remove elements during a pass, and explain why the backward loop works."
+  - type: open
+    id: woerterbuch-lesen
+    prompt:
+      de: "Was passiert, wenn du bei einem `Dictionary<string, int>` mit `d[\"x\"]` einen nicht vorhandenen Schlüssel liest, und was, wenn du `d[\"x\"] = 1` schreibst? Wie liest du sicher, und wie sammelst du mehrere Werte unter einem Schlüssel? Darf man sich auf die Reihenfolge der Aufzählung verlassen?"
+      en: "What happens if you read a missing key from a `Dictionary<string, int>` with `d[\"x\"]`, and what happens if you write `d[\"x\"] = 1`? How do you read safely, and how do you collect several values under one key? May you rely on the order of enumeration?"
+  - type: open
+    id: sicht-oder-unveraenderlich
+    prompt:
+      de: "Eine Klasse gibt ihre interne Liste einmal als `IReadOnlyList<T>` (bzw. `AsReadOnly()`) heraus und einmal als `ImmutableList<T>`. Worin unterscheiden sich die beiden für den Empfänger, wenn die Klasse ihre Liste später ändert? Warum hilft die unveränderliche Variante, wenn mehrere Threads lesen?"
+      en: "A class hands out its internal list once as an `IReadOnlyList<T>` (or `AsReadOnly()`) and once as an `ImmutableList<T>`. How do the two differ for the recipient if the class later changes its list? Why does the immutable variant help when several threads read?"
+  - type: open
+    id: code-liste-rueckwaerts
+    prompt:
+      de: |
+        Was gibt das Programm aus? Verfolge die Liste Schritt für Schritt und erkläre, warum die Schleife rückwärts läuft.
+
+        ```csharp
+        var l = new List<int> { 1, 2, 3, 4, 5, 6 };
+        for (int i = l.Count - 1; i >= 0; i--)
+            if (l[i] % 2 == 0) l.RemoveAt(i);
+        l.Insert(1, 9);
+        l.Reverse();
+        Console.WriteLine(string.Join(",", l));
+        ```
+      en: |
+        What does the program print? Trace the list step by step and explain why the loop runs backward.
+
+        ```csharp
+        var l = new List<int> { 1, 2, 3, 4, 5, 6 };
+        for (int i = l.Count - 1; i >= 0; i--)
+            if (l[i] % 2 == 0) l.RemoveAt(i);
+        l.Insert(1, 9);
+        l.Reverse();
+        Console.WriteLine(string.Join(",", l));
+        ```
+  - type: open
+    id: code-queue-stack
+    prompt:
+      de: |
+        Was geben die drei `WriteLine`-Zeilen aus? Begründe mit der Reihenfolge, in der `Queue<T>` und `Stack<T>` ihre Elemente herausgeben.
+
+        ```csharp
+        var q = new Queue<string>();
+        var s = new Stack<string>();
+        foreach (string x in new[] { "a", "b", "c" })
+        {
+            q.Enqueue(x);
+            s.Push(x);
+        }
+        Console.WriteLine(q.Dequeue() + s.Pop());
+        Console.WriteLine(q.Peek() + s.Peek());
+        Console.WriteLine(q.Count + s.Count);
+        ```
+      en: |
+        What do the three `WriteLine` lines print? Justify with the order in which `Queue<T>` and `Stack<T>` hand out their elements.
+
+        ```csharp
+        var q = new Queue<string>();
+        var s = new Stack<string>();
+        foreach (string x in new[] { "a", "b", "c" })
+        {
+            q.Enqueue(x);
+            s.Push(x);
+        }
+        Console.WriteLine(q.Dequeue() + s.Pop());
+        Console.WriteLine(q.Peek() + s.Peek());
+        Console.WriteLine(q.Count + s.Count);
+        ```
+  - type: open
+    id: code-hashset-punkt
+    prompt:
+      de: |
+        Was geben die beiden `WriteLine`-Zeilen aus? Was erwartet man vielleicht, und wie behebst du den Unterschied?
+
+        ```csharp
+        var s = new HashSet<Punkt>();
+        s.Add(new Punkt(1, 2));
+        Console.WriteLine(s.Add(new Punkt(1, 2)));
+        Console.WriteLine(s.Count);
+
+        class Punkt
+        {
+            public int X, Y;
+            public Punkt(int x, int y) { X = x; Y = y; }
+        }
+        ```
+      en: |
+        What do the two `WriteLine` lines print? What might one expect instead, and how do you fix the difference?
+
+        ```csharp
+        var s = new HashSet<Punkt>();
+        s.Add(new Punkt(1, 2));
+        Console.WriteLine(s.Add(new Punkt(1, 2)));
+        Console.WriteLine(s.Count);
+
+        class Punkt
+        {
+            public int X, Y;
+            public Punkt(int x, int y) { X = x; Y = y; }
+        }
+        ```
+  - type: open
+    id: code-woerterbuch
+    prompt:
+      de: |
+        Was gibt das Programm aus, und was passiert in der letzten Zeile?
+
+        ```csharp
+        var d = new Dictionary<string, int>();
+        d["a"] = 1;
+        d["a"] += 5;
+        if (d.TryGetValue("b", out int wert)) Console.WriteLine(wert);
+        else Console.WriteLine("kein b");
+        Console.WriteLine(d.ContainsKey("a") + " " + d["a"]);
+        Console.WriteLine(d["b"]);
+        ```
+      en: |
+        What does the program print, and what happens on the last line?
+
+        ```csharp
+        var d = new Dictionary<string, int>();
+        d["a"] = 1;
+        d["a"] += 5;
+        if (d.TryGetValue("b", out int wert)) Console.WriteLine(wert);
+        else Console.WriteLine("kein b");
+        Console.WriteLine(d.ContainsKey("a") + " " + d["a"]);
+        Console.WriteLine(d["b"]);
+        ```
+  - type: multipleChoice
+    id: gerade-entfernen
+    prompt:
+      de: |
+        Aus `var l = new List<int> { 2, 4, 5, 6, 8 };` sollen alle geraden Zahlen entfernt werden, sodass nur `5` übrig bleibt. Welcher Code tut das?
+      en: |
+        All even numbers are to be removed from `var l = new List<int> { 2, 4, 5, 6, 8 };` so that only `5` remains. Which code does that?
+    options:
+      - de: |
+          ```csharp
+          foreach (int x in l)
+              if (x % 2 == 0) l.Remove(x);
+          ```
+      - de: |
+          ```csharp
+          for (int i = 0; i < l.Count; i++)
+              if (l[i] % 2 == 0) l.RemoveAt(i);
+          ```
+      - de: |
+          ```csharp
+          for (int i = 0; i < l.Length; i++)
+              if (l[i] % 2 == 0) l.RemoveAt(i);
+          ```
+      - de: |
+          ```csharp
+          for (int i = l.Count - 1; i >= 0; i--)
+              if (l[i] % 2 == 0) l.RemoveAt(i);
+          ```
+    correct: [3]
+    explanation:
+      de: "Die erste Variante löst eine `InvalidOperationException` aus (\"Collection was modified\"): Eine Liste darf während `foreach` nicht verändert werden. Die zweite kompiliert und läuft, überspringt aber Elemente: Nach `RemoveAt(i)` rutscht das nächste Element auf Platz `i`, und `i++` übergeht es; es bleiben `4, 5, 8`. Die dritte kompiliert nicht, `List<T>` hat `Count` statt `Length` (CS1061). Die vierte ist richtig: Beim Rückwärtslaufen verschiebt das Entfernen nur Elemente, die schon abgearbeitet sind (11.4.1, Seite 697)."
+      en: "The first variant throws an `InvalidOperationException` (\"Collection was modified\"): a list must not be changed during `foreach`. The second compiles and runs but skips elements: after `RemoveAt(i)` the next element moves into position `i`, and `i++` steps over it; `4, 5, 8` remain. The third does not compile; `List<T>` has `Count`, not `Length` (CS1061). The fourth is correct: when running backward, removing only shifts elements that have already been processed (11.4.1, page 697)."
+  - type: multipleChoice
+    id: spread-richtig
+    prompt:
+      de: |
+        Mit `List<int> mitte = [1, 2, 3];` soll eine neue Liste `alle` mit den Werten `0, 1, 2, 3, 9` entstehen. Welche Zeile ist richtig?
+      en: |
+        With `List<int> mitte = [1, 2, 3];`, a new list `alle` with the values `0, 1, 2, 3, 9` is to be created. Which line is correct?
+    options:
+      - de: |
+          ```csharp
+          List<int> alle = [0, mitte, 9];
+          ```
+      - de: |
+          ```csharp
+          List<int> alle = [0, ..mitte, 9];
+          ```
+      - de: |
+          ```csharp
+          List<int> alle = [0, ...mitte, 9];
+          ```
+      - de: |
+          ```csharp
+          var alle = [0, ..mitte, 9];
+          ```
+    correct: [1]
+    explanation:
+      de: "In der ersten Zeile ist `mitte` als einzelnes Element gemeint, eine `List<int>` ist aber kein `int` (CS0029); zum Einfügen der Elemente braucht man das Spread-Element `..`. Die zweite ist richtig (11.3, Seite 695). Die dritte schreibt drei Punkte; richtig sind zwei (CS8635). In der vierten fehlt der Zieltyp: Ein Kollektionsausdruck wird erst durch `List<int>`, `int[]` und Ähnliches zu etwas Konkretem, `var` genügt nicht (CS9176)."
+      en: "In the first line, `mitte` is meant as a single element, but a `List<int>` is not an `int` (CS0029); to insert its elements you need the spread element `..`. The second is correct (11.3, page 695). The third writes three dots; the correct form has two (CS8635). The fourth lacks the target type: a collection expression becomes concrete only through `List<int>`, `int[]` and the like, and `var` is not enough (CS9176)."
+  - type: multipleChoice
+    id: trygetvalue-richtig
+    prompt:
+      de: |
+        `d` ist ein `Dictionary<string, int>`. Welche Anweisung gibt den Wert zum Schlüssel `"x"` aus, oder `0`, wenn der Schlüssel fehlt, ohne dass eine Ausnahme entsteht?
+      en: |
+        `d` is a `Dictionary<string, int>`. Which statement prints the value for the key `"x"`, or `0` if the key is missing, without raising an exception?
+    options:
+      - de: |
+          ```csharp
+          Console.WriteLine(d.TryGetValue("x", out int w) ? w : 0);
+          ```
+      - de: |
+          ```csharp
+          Console.WriteLine(d["x"]);
+          ```
+      - de: |
+          ```csharp
+          Console.WriteLine(d.Get("x") ?? 0);
+          ```
+      - de: |
+          ```csharp
+          int w = 0;
+          Console.WriteLine(d.TryGetValue("x", w) ? w : 0);
+          ```
+    correct: [0]
+    explanation:
+      de: "Die erste Zeile ist richtig: Bei fehlendem Schlüssel liefert `TryGetValue` `false` und setzt `w` auf 0 (11.6, Seite 714). Die zweite wirft bei fehlendem Schlüssel eine `KeyNotFoundException`. Ein `Dictionary<K,V>` hat keine Methode `Get` (CS1061). In der vierten fehlt das Schlüsselwort `out` beim zweiten Argument (CS1620); `TryGetValue` schreibt das Ergebnis in eine Variable, die als `out` übergeben wird."
+      en: "The first line is correct: for a missing key, `TryGetValue` returns `false` and sets `w` to 0 (11.6, page 714). The second throws a `KeyNotFoundException` if the key is missing. A `Dictionary<K,V>` has no method `Get` (CS1061). In the fourth, the keyword `out` is missing at the second argument (CS1620); `TryGetValue` writes the result into a variable passed as `out`."
+  - type: multipleChoice
+    id: kundennummern
+    prompt:
+      de: "Eine Anwendung prüft millionenfach, ob eine Kundennummer bereits vergeben ist. Die Reihenfolge der Nummern ist egal, Duplikate soll es nicht geben. Welche Kollektion passt am besten?"
+      en: "An application checks millions of times whether a customer number has already been assigned. The order of the numbers does not matter, and there must be no duplicates. Which collection fits best?"
+    options:
+      - de: "`List<int>`: `Contains()` ist einfach zu benutzen."
+        en: "`List<int>`: `Contains()` is easy to use."
+      - de: "`Queue<int>`: Die älteste Nummer kommt zuerst heraus."
+        en: "`Queue<int>`: the oldest number comes out first."
+      - de: "`HashSet<int>`: Die Existenzprüfung ist sehr schnell, `Add()` weist Duplikate ab."
+        en: "`HashSet<int>`: the existence check is very fast, and `Add()` rejects duplicates."
+      - de: "`LinkedList<int>`: Einfügen an bekannter Stelle ist billig."
+        en: "`LinkedList<int>`: inserting at a known position is cheap."
+    correct: [2]
+    explanation:
+      de: "Hier zählen Existenzprüfung und Eindeutigkeit, nicht die Reihenfolge: `HashSet<T>` (11.5, Seite 704; 11.8, Seite 723). `List<T>.Contains()` und `LinkedList<T>.Contains()` durchsuchen alle Elemente (O(n)), bei Millionen Aufrufen ein Unterschied von Sekunden zu Millisekunden. Eine `Queue<T>` ist für das Abarbeiten in Eintreffreihenfolge gedacht."
+      en: "What matters here are the existence check and uniqueness, not the order: `HashSet<T>` (11.5, page 704; 11.8, page 723). `List<T>.Contains()` and `LinkedList<T>.Contains()` search all elements (O(n)), which with millions of calls is the difference between seconds and milliseconds. A `Queue<T>` is meant for processing in order of arrival."

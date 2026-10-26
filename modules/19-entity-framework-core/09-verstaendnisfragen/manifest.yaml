@@ -1,0 +1,263 @@
+id: efcore-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "20"
+  title: { de: "Entity Framework Core", en: "Entity Framework Core" }
+  printedPage: 1399
+teaches:
+  - ef.change-tracking-state
+  - ef.include
+  - ef.concurrency-token
+  - ef.transactions
+requires:
+  - ef.entity-class
+  - ef.dbcontext-define
+  - ef.dbcontext-lifetime
+  - ef.add-savechanges
+  - ef.query-where-tolist
+  - ef.find-firstordefault
+  - ef.update-tracked
+  - ef.remove
+  - ef.relation-one-to-many
+  - ef.cascade-delete
+  - ef.fluent-config
+items:
+  - type: open
+    id: dbcontext-rolle
+    prompt:
+      de: "Welche Aufgabe haben `DbContext` und `DbSet<T>` in EF Core? Was passiert bei `Add` und was bei `SaveChanges`? Warum ist ein Kontext eine kurzlebige Arbeitseinheit (erzeugen, benutzen, mit `using` freigeben) und nicht ein Objekt, das man das ganze Programm lang behält?"
+      en: "What are `DbContext` and `DbSet<T>` for in EF Core? What happens on `Add` and what on `SaveChanges`? Why is a context a short-lived unit of work (create, use, release with `using`) rather than an object you keep for the whole program run?"
+  - type: open
+    id: code-verzoegerung
+    prompt:
+      de: |
+        Die Tabelle `Produkte` enthält `Stift` (Preis 3), `Heft` (6) und `Mappe` (8); `Preis` ist ein `int`. Was gibt das Programm aus, und warum sind die beiden Zahlen verschieden?
+
+        ```csharp
+        using var db = new ShopContext(options);
+
+        var teuer = db.Produkte.Where(p => p.Preis > 5);
+        var liste = teuer.ToList();
+
+        db.Produkte.Add(new Produkt { Name = "Atlas", Preis = 9 });
+        db.SaveChanges();
+
+        Console.WriteLine(liste.Count + " " + teuer.Count());
+        ```
+      en: |
+        The table `Produkte` contains `Stift` (price 3), `Heft` (6) and `Mappe` (8); `Preis` is an `int`. What does the program print, and why are the two numbers different?
+
+        ```csharp
+        using var db = new ShopContext(options);
+
+        var teuer = db.Produkte.Where(p => p.Preis > 5);
+        var liste = teuer.ToList();
+
+        db.Produkte.Add(new Produkt { Name = "Atlas", Preis = 9 });
+        db.SaveChanges();
+
+        Console.WriteLine(liste.Count + " " + teuer.Count());
+        ```
+  - type: multipleChoice
+    id: mc-abfrage-serverseitig
+    prompt:
+      de: "Gesucht ist eine `List<Kunde>` mit allen Kunden aus Hamburg, nach Namen sortiert. Filtern und Sortieren sollen in der Datenbank laufen, nicht im Speicher des Programms. Welcher Code ist richtig?"
+      en: "You need a `List<Kunde>` with all customers from Hamburg, sorted by name. Filtering and sorting are to run in the database, not in the program's memory. Which code is correct?"
+    options:
+      - de: |
+          ```csharp
+          List<Kunde> liste = db.Kunden
+              .AsEnumerable()
+              .Where(k => k.Stadt == "Hamburg")
+              .OrderBy(k => k.Name)
+              .ToList();
+          ```
+      - de: |
+          ```csharp
+          Kunde? kunde = db.Kunden.Find(k => k.Stadt == "Hamburg");
+          ```
+      - de: |
+          ```csharp
+          List<Kunde> liste = db.Kunden
+              .Where(k => k.Stadt == "Hamburg")
+              .OrderBy(k => k.Name)
+              .ToList();
+          ```
+      - de: |
+          ```csharp
+          List<Kunde> liste = db.Kunden
+              .Where(k => k.Stadt == "Hamburg")
+              .OrderBy(k => k.Name);
+          ```
+    correct: [2]
+    explanation:
+      de: "Option 1 kompiliert und liefert dieselben Namen, aber `AsEnumerable()` beendet die serverseitige Auswertung: Es werden alle Kunden geladen, und gefiltert wird erst in C#. Option 2 lässt sich nicht kompilieren: `Find` erwartet Schlüsselwerte, keinen Lambda-Ausdruck, und liefert höchstens einen Kunden. Option 4 lässt sich nicht kompilieren: Ohne `ToList()` ist das Ergebnis eine nicht ausgeführte Abfrage (`IOrderedQueryable<Kunde>`), keine Liste."
+      en: "Option 1 compiles and returns the same names, but `AsEnumerable()` ends server-side evaluation: all customers are loaded and filtering happens only in C#. Option 2 does not compile: `Find` expects key values, not a lambda expression, and returns at most one customer. Option 4 does not compile: without `ToList()` the result is an unexecuted query (`IOrderedQueryable<Kunde>`), not a list."
+  - type: open
+    id: nachverfolgung-und-zustaende
+    prompt:
+      de: "Was bedeutet es, dass ein `DbContext` Entitäten nachverfolgt (Change Tracking)? Welche `EntityState`-Werte gibt es, und was macht `SaveChanges` mit ihnen? Wann und warum würdest du `AsNoTracking()` verwenden, und was musst du dann beim Ändern beachten?"
+      en: "What does it mean that a `DbContext` tracks entities (change tracking)? Which `EntityState` values exist, and what does `SaveChanges` do with them? When and why would you use `AsNoTracking()`, and what do you have to keep in mind when changing data then?"
+  - type: open
+    id: code-nachverfolgung
+    prompt:
+      de: |
+        Die Tabelle `Produkte` enthält `Stift` (Preis 3), `Heft` (6) und `Mappe` (8). Was gibt das Programm aus (zwei Zeilen), und warum?
+
+        ```csharp
+        using (var db = new ShopContext(options))
+        {
+            var heft = db.Produkte.First(p => p.Name == "Heft");
+            var stift = db.Produkte.AsNoTracking().First(p => p.Name == "Stift");
+            heft.Preis = 10;
+            stift.Preis = 99;
+            Console.WriteLine(db.Entry(heft).State + " / " + db.Entry(stift).State);
+            db.SaveChanges();
+        }
+        using (var db = new ShopContext(options))
+            Console.WriteLine(string.Join(", ", db.Produkte.OrderBy(p => p.Id).Select(p => p.Name + "=" + p.Preis)));
+        ```
+      en: |
+        The table `Produkte` contains `Stift` (price 3), `Heft` (6) and `Mappe` (8). What does the program print (two lines), and why?
+
+        ```csharp
+        using (var db = new ShopContext(options))
+        {
+            var heft = db.Produkte.First(p => p.Name == "Heft");
+            var stift = db.Produkte.AsNoTracking().First(p => p.Name == "Stift");
+            heft.Preis = 10;
+            stift.Preis = 99;
+            Console.WriteLine(db.Entry(heft).State + " / " + db.Entry(stift).State);
+            db.SaveChanges();
+        }
+        using (var db = new ShopContext(options))
+            Console.WriteLine(string.Join(", ", db.Produkte.OrderBy(p => p.Id).Select(p => p.Name + "=" + p.Preis)));
+        ```
+  - type: multipleChoice
+    id: mc-loeschen
+    prompt:
+      de: "Der Kunde mit der Nummer `id` soll aus der Datenbank gelöscht werden (falls es ihn gibt). Welcher Code ist richtig?"
+      en: "The customer with the number `id` is to be deleted from the database (if there is one). Which code is correct?"
+    options:
+      - de: |
+          ```csharp
+          var kunde = db.Kunden.Find(id);
+          if (kunde != null)
+              db.Kunden.Remove(kunde);
+          ```
+      - de: |
+          ```csharp
+          var kunde = db.Kunden.Find(id);
+          if (kunde != null)
+              db.Kunden.Remove(kunde);
+          db.SaveChanges();
+          ```
+      - de: |
+          ```csharp
+          db.Kunden.Remove(id);
+          db.SaveChanges();
+          ```
+    correct: [1]
+    explanation:
+      de: "Option 1 kompiliert, markiert den Kunden aber nur als `Deleted`; ohne `SaveChanges()` geht kein `DELETE` an die Datenbank, und nach dem Freigeben des Kontexts ist der Kunde noch da. Option 3 lässt sich nicht kompilieren: `Remove` erwartet eine Entität (`Kunde`), keine Nummer."
+      en: "Option 1 compiles, but only marks the customer as `Deleted`; without `SaveChanges()` no `DELETE` is sent to the database, and after the context is released the customer is still there. Option 3 does not compile: `Remove` expects an entity (`Kunde`), not a number."
+  - type: open
+    id: beziehungen-include-kaskade
+    prompt:
+      de: "Ein Blog hat viele Beiträge (1:n). Woraus besteht diese Beziehung in den Klassen (Fremdschlüssel, Navigationseigenschaften)? Warum ist `blog.Posts` nach einem einfachen `db.Blogs.First()` leer, und wie behebt `Include` das? Was geschieht mit den Beiträgen, wenn man den Blog löscht, und wo wird das festgelegt?"
+      en: "A blog has many posts (1:n). What does this relationship consist of in the classes (foreign key, navigation properties)? Why is `blog.Posts` empty after a plain `db.Blogs.First()`, and how does `Include` fix that? What happens to the posts when you delete the blog, and where is that configured?"
+  - type: open
+    id: code-include
+    prompt:
+      de: |
+        Die Datenbank enthält einen Blog mit zwei Beiträgen. Die Klasse `Blog` hat `public List<Post> Posts { get; set; } = new();`. Was gibt das Programm aus (zwei Zeilen), und warum?
+
+        ```csharp
+        using var db = new BlogContext(options);
+
+        var ohne = db.Blogs.First();
+        Console.WriteLine(ohne.Posts.Count);
+
+        var mit = db.Blogs.Include(b => b.Posts).First();
+        Console.WriteLine(mit.Posts.Count);
+        ```
+      en: |
+        The database contains one blog with two posts. The class `Blog` has `public List<Post> Posts { get; set; } = new();`. What does the program print (two lines), and why?
+
+        ```csharp
+        using var db = new BlogContext(options);
+
+        var ohne = db.Blogs.First();
+        Console.WriteLine(ohne.Posts.Count);
+
+        var mit = db.Blogs.Include(b => b.Posts).First();
+        Console.WriteLine(mit.Posts.Count);
+        ```
+  - type: multipleChoice
+    id: mc-eager-loading
+    prompt:
+      de: "Gesucht ist eine `List<Blog>` mit allen Blogs, deren `Posts`-Listen bereits gefüllt sind (Eager Loading). Welcher Code ist richtig?"
+      en: "You need a `List<Blog>` with all blogs whose `Posts` lists are already filled (eager loading). Which code is correct?"
+    options:
+      - de: |
+          ```csharp
+          List<Blog> blogs = db.Posts.Include(p => p.Blog).ToList();
+          ```
+      - de: |
+          ```csharp
+          List<Blog> blogs = db.Blogs.Include(b => b.Posts).ToList();
+          ```
+      - de: |
+          ```csharp
+          List<Blog> blogs = db.Blogs.ToList();
+          ```
+    correct: [1]
+    explanation:
+      de: "Option 1 lässt sich nicht kompilieren: Sie fragt die Beiträge ab (`List<Post>`) und lädt zu jedem den Blog, liefert also keine Blogs. Option 3 kompiliert, lädt aber nur die Blogs: EF Core füllt Navigationseigenschaften nicht von selbst, die `Posts`-Listen bleiben leer."
+      en: "Option 1 does not compile: it queries the posts (`List<Post>`) and loads the blog for each one, so it does not return blogs. Option 3 compiles but loads only the blogs: EF Core does not fill navigation properties on its own, so the `Posts` lists stay empty."
+  - type: open
+    id: konflikte-und-transaktion
+    prompt:
+      de: "Zwei Benutzer laden dieselbe Zeile und ändern sie. Was ist optimistische Nebenläufigkeit, was leistet ein Concurrency Token (zum Beispiel `[ConcurrencyCheck]` auf einer Versionsspalte), und was tut ein Programm, wenn `SaveChanges` eine `DbUpdateConcurrencyException` wirft? Wann brauchst du zusätzlich `Database.BeginTransaction()`, obwohl `SaveChanges` selbst schon atomar ist?"
+      en: "Two users load the same row and change it. What is optimistic concurrency, what does a concurrency token (for example `[ConcurrencyCheck]` on a version column) do, and what does a program do when `SaveChanges` throws a `DbUpdateConcurrencyException`? When do you additionally need `Database.BeginTransaction()`, although `SaveChanges` itself is already atomic?"
+  - type: open
+    id: code-konflikt
+    prompt:
+      de: |
+        `Konto` hat `Id`, `Saldo` und `[ConcurrencyCheck] int Version`. Die Tabelle enthält ein Konto mit Saldo 100 und Version 1; alle Kontexte benutzen dieselbe Datenbank. Was gibt das Programm aus (zwei Zeilen), und warum?
+
+        ```csharp
+        using var a = new KontoContext(options);
+        using var b = new KontoContext(options);
+        var ka = a.Konten.Single();
+        var kb = b.Konten.Single();
+
+        ka.Saldo += 10; ka.Version++;
+        a.SaveChanges();
+
+        kb.Saldo += 20; kb.Version++;
+        try { b.SaveChanges(); Console.WriteLine("gespeichert"); }
+        catch (DbUpdateConcurrencyException) { Console.WriteLine("Konflikt"); }
+
+        using var c = new KontoContext(options);
+        Console.WriteLine(c.Konten.Single().Saldo);
+        ```
+      en: |
+        `Konto` has `Id`, `Saldo` and `[ConcurrencyCheck] int Version`. The table contains one account with balance 100 and version 1; all contexts use the same database. What does the program print (two lines), and why?
+
+        ```csharp
+        using var a = new KontoContext(options);
+        using var b = new KontoContext(options);
+        var ka = a.Konten.Single();
+        var kb = b.Konten.Single();
+
+        ka.Saldo += 10; ka.Version++;
+        a.SaveChanges();
+
+        kb.Saldo += 20; kb.Version++;
+        try { b.SaveChanges(); Console.WriteLine("gespeichert"); }
+        catch (DbUpdateConcurrencyException) { Console.WriteLine("Konflikt"); }
+
+        using var c = new KontoContext(options);
+        Console.WriteLine(c.Konten.Single().Saldo);
+        ```

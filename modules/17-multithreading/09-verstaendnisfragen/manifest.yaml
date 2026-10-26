@@ -1,0 +1,276 @@
+id: threads-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "17"
+  title: { de: "Multithreading", en: "Multithreading" }
+  printedPage: 1061
+teaches:
+  - threading.race-condition
+  - async.exception-handling
+  - async.avoid-async-void
+  - async.avoid-blocking
+requires:
+  - threading.thread-start-join
+  - threading.lock-statement
+  - threading.interlocked
+  - threading.lock-protect-collection
+  - tasks.run
+  - tasks.when-all-any
+  - tasks.aggregate-exception
+  - tasks.cancellation
+  - async.declare
+  - async.await
+items:
+  - type: open
+    id: race-condition
+    prompt:
+      de: "Zwei Threads erhöhen je eine Million Mal dieselbe `int`-Variable mit `zaehler++`. Warum ist das Ergebnis oft kleiner als 2.000.000? Nenne zwei Möglichkeiten, den Fehler zu beheben, und sage, wann du welche wählst."
+      en: "Two threads each increment the same `int` variable one million times with `zaehler++`. Why is the result often smaller than 2,000,000? Name two ways to fix the error and say when you choose which."
+  - type: open
+    id: lock-regeln
+    prompt:
+      de: "Worauf sperrt man mit `lock`, und warum nimmt man dafür ein privates Objekt? Warum gehören bei einer `List<T>` auch die lesenden Zugriffe unter dieselbe Sperre?"
+      en: "What do you lock on with `lock`, and why do you use a private object for it? Why do the read accesses to a `List<T>` also have to be under the same lock?"
+  - type: open
+    id: task-ausnahmen
+    prompt:
+      de: "Eine Aufgabe (`Task`) wirft eine Ausnahme. Wann und wo wird sie sichtbar? Was ist eine `AggregateException`, warum gibt es sie, und wie unterscheidet sich das Verhalten bei `await` davon?"
+      en: "A task (`Task`) throws an exception. When and where does it become visible? What is an `AggregateException`, why does it exist, and how does the behavior with `await` differ from it?"
+  - type: open
+    id: abbruch
+    prompt:
+      de: "Wie bricht man eine laufende Aufgabe ab? Erkläre, was „kooperativ“ dabei bedeutet, wer `CancellationTokenSource` und wer `CancellationToken` benutzt und in welchem Zustand die Aufgabe am Ende ist."
+      en: "How do you cancel a running task? Explain what \"cooperative\" means here, who uses the `CancellationTokenSource` and who uses the `CancellationToken`, and what state the task is in at the end."
+  - type: open
+    id: async-fallen
+    prompt:
+      de: "Was geschieht bei einem `await`, und warum blockiert es den Thread nicht? Erkläre die zwei Fallen `async void` und das Blockieren mit `.Result` bzw. `.Wait()` in einer Anwendung mit Benutzeroberfläche."
+      en: "What happens at an `await`, and why doesn't it block the thread? Explain the two pitfalls: `async void` and blocking with `.Result` or `.Wait()` in an application with a user interface."
+  - type: open
+    id: code-lock-zaehler
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Ist das Ergebnis bei jedem Lauf gleich, und was würde ohne `lock` passieren?
+
+        ```csharp
+        int zaehler = 0;
+        var gate = new object();
+        var threads = new List<Thread>();
+        for (int i = 0; i < 4; i++)
+        {
+            var t = new Thread(() =>
+            {
+                for (int k = 0; k < 1000; k++)
+                    lock (gate) zaehler++;
+            });
+            threads.Add(t);
+            t.Start();
+        }
+        foreach (var t in threads) t.Join();
+        Console.WriteLine(zaehler);
+        ```
+      en: |
+        What does this program print? Is the result the same on every run, and what would happen without `lock`?
+
+        ```csharp
+        int zaehler = 0;
+        var gate = new object();
+        var threads = new List<Thread>();
+        for (int i = 0; i < 4; i++)
+        {
+            var t = new Thread(() =>
+            {
+                for (int k = 0; k < 1000; k++)
+                    lock (gate) zaehler++;
+            });
+            threads.Add(t);
+            t.Start();
+        }
+        foreach (var t in threads) t.Join();
+        Console.WriteLine(zaehler);
+        ```
+  - type: open
+    id: code-thread-kopie
+    prompt:
+      de: |
+        Was gibt dieses Programm aus? Warum steht `int kopie = i;` in der Schleife, und was würde mit `i` direkt im Lambda passieren?
+
+        ```csharp
+        var ergebnisse = new int[3];
+        var threads = new Thread[3];
+        for (int i = 0; i < 3; i++)
+        {
+            int kopie = i;
+            threads[i] = new Thread(() => ergebnisse[kopie] = kopie * 10);
+            threads[i].Start();
+        }
+        foreach (var t in threads) t.Join();
+        Console.WriteLine(string.Join(",", ergebnisse));
+        ```
+      en: |
+        What does this program print? Why is `int kopie = i;` inside the loop, and what would happen with `i` directly in the lambda?
+
+        ```csharp
+        var ergebnisse = new int[3];
+        var threads = new Thread[3];
+        for (int i = 0; i < 3; i++)
+        {
+            int kopie = i;
+            threads[i] = new Thread(() => ergebnisse[kopie] = kopie * 10);
+            threads[i].Start();
+        }
+        foreach (var t in threads) t.Join();
+        Console.WriteLine(string.Join(",", ergebnisse));
+        ```
+  - type: open
+    id: code-waitall
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und warum?
+
+        ```csharp
+        var t1 = Task.Run(() => { throw new InvalidOperationException("A"); });
+        var t2 = Task.Run(() => { throw new ArgumentException("B"); });
+        try
+        {
+            Task.WaitAll(t1, t2);
+        }
+        catch (AggregateException e)
+        {
+            Console.WriteLine(e.InnerExceptions.Count);
+            Console.WriteLine(string.Join(",",
+                e.InnerExceptions.Select(x => x.Message).OrderBy(m => m)));
+        }
+        ```
+      en: |
+        What does this program print, and why?
+
+        ```csharp
+        var t1 = Task.Run(() => { throw new InvalidOperationException("A"); });
+        var t2 = Task.Run(() => { throw new ArgumentException("B"); });
+        try
+        {
+            Task.WaitAll(t1, t2);
+        }
+        catch (AggregateException e)
+        {
+            Console.WriteLine(e.InnerExceptions.Count);
+            Console.WriteLine(string.Join(",",
+                e.InnerExceptions.Select(x => x.Message).OrderBy(m => m)));
+        }
+        ```
+  - type: open
+    id: code-async-reihenfolge
+    prompt:
+      de: |
+        Was gibt dieses Programm aus, und in welcher Reihenfolge? (Der Code steht in einer Konsolenanwendung mit Top-Level-Anweisungen, `await` auf oberster Ebene ist erlaubt.)
+
+        ```csharp
+        static async Task<int> HoleAsync(int x)
+        {
+            Console.WriteLine("start " + x);
+            await Task.Delay(50);
+            Console.WriteLine("ende " + x);
+            return x * 2;
+        }
+
+        var t = HoleAsync(1);
+        Console.WriteLine("dazwischen");
+        Console.WriteLine(await t);
+        ```
+      en: |
+        What does this program print, and in what order? (The code is in a console application with top-level statements; `await` at the top level is allowed.)
+
+        ```csharp
+        static async Task<int> HoleAsync(int x)
+        {
+            Console.WriteLine("start " + x);
+            await Task.Delay(50);
+            Console.WriteLine("ende " + x);
+            return x * 2;
+        }
+
+        var t = HoleAsync(1);
+        Console.WriteLine("dazwischen");
+        Console.WriteLine(await t);
+        ```
+  - type: multipleChoice
+    id: richtig-sperre
+    prompt:
+      de: "Mehrere Threads rufen `Hinzufuegen` und `Anzahl` derselben Instanz auf. Welche Variante schützt die `List<int>` korrekt?"
+      en: "Several threads call `Hinzufuegen` and `Anzahl` on the same instance. Which variant protects the `List<int>` correctly?"
+    options:
+      - de: |
+          ```csharp
+          private readonly List<int> _liste = new();
+          public void Hinzufuegen(int x) { lock (_liste.Count) _liste.Add(x); }
+          public int Anzahl() { lock (_liste.Count) return _liste.Count; }
+          ```
+      - de: |
+          ```csharp
+          private readonly object _gate = new();
+          private readonly List<int> _liste = new();
+          public void Hinzufuegen(int x) { lock (_gate) _liste.Add(x); }
+          public int Anzahl() => _liste.Count;
+          ```
+      - de: |
+          ```csharp
+          private readonly List<int> _liste = new();
+          public void Hinzufuegen(int x) { lock (new object()) _liste.Add(x); }
+          public int Anzahl() { lock (new object()) return _liste.Count; }
+          ```
+      - de: |
+          ```csharp
+          private readonly object _gate = new();
+          private readonly List<int> _liste = new();
+          public void Hinzufuegen(int x) { lock (_gate) _liste.Add(x); }
+          public int Anzahl() { lock (_gate) return _liste.Count; }
+          ```
+    correct: [3]
+    explanation:
+      de: "Erste Option: `Count` ist ein `int`, kein Referenztyp; `lock` verlangt ein Referenzobjekt (CS0185). Zweite Option: Auch lesende Zugriffe gehören unter dieselbe Sperre; sonst kann `Anzahl()` mitten in einer Änderung lesen (Race Condition). Dritte Option: Jeder Aufruf sperrt ein neues Objekt, nie dasselbe; kein Thread wartet auf einen anderen, die Sperre schützt nichts, und Einträge gehen verloren oder es gibt Ausnahmen."
+      en: "First option: `Count` is an `int`, not a reference type; `lock` requires a reference object (CS0185). Second option: Read accesses also belong under the same lock; otherwise `Anzahl()` can read in the middle of a modification (race condition). Third option: Every call locks a new object, never the same one; no thread waits for another, the lock protects nothing, and entries get lost or exceptions occur."
+  - type: multipleChoice
+    id: richtig-interlocked
+    prompt:
+      de: "Mehrere Threads erhöhen das gemeinsame Feld `private int _zaehler;`. Welche Zeile tut das atomar, ohne `lock`?"
+      en: "Several threads increment the shared field `private int _zaehler;`. Which line does that atomically, without `lock`?"
+    options:
+      - de: "`Interlocked.Increment(ref _zaehler);`"
+      - de: "`Interlocked.Increment(_zaehler);`"
+      - de: "`_zaehler++;`"
+    correct: [0]
+    explanation:
+      de: "Zweite Option: `Increment` ändert die Variable selbst und verlangt sie deshalb als `ref`-Argument (CS1620). Dritte Option: `_zaehler++` besteht aus Lesen, Addieren und Schreiben; zwei Threads können denselben alten Wert lesen, und ein Update geht verloren."
+      en: "Second option: `Increment` changes the variable itself and therefore requires it as a `ref` argument (CS1620). Third option: `_zaehler++` consists of reading, adding, and writing; two threads can read the same old value, and an update is lost."
+  - type: multipleChoice
+    id: richtig-whenall
+    prompt:
+      de: "In einer Methode `async Task<int>` sind `a` und `b` zwei `Task<int>`. Wie liefert die Methode ihre Summe, ohne den Thread zu blockieren?"
+      en: "In an `async Task<int>` method, `a` and `b` are two `Task<int>`. How does the method return their sum without blocking the thread?"
+    options:
+      - de: "`return a.Result + b.Result;`"
+      - de: "`return await Task.WhenAll(a, b);`"
+      - de: |
+          ```csharp
+          int[] r = await Task.WhenAll(a, b);
+          return r[0] + r[1];
+          ```
+      - de: "`return await Task.WhenAny(a, b);`"
+    correct: [2]
+    explanation:
+      de: "Erste Option: `.Result` blockiert den Thread, bis die Aufgaben fertig sind (in einer Anwendung mit Benutzeroberfläche droht ein Deadlock); es kompiliert, erfüllt aber die Vorgabe nicht. Zweite Option: `await Task.WhenAll(a, b)` liefert ein `int[]`, kein `int` (CS0029). Vierte Option: `WhenAny` liefert die zuerst fertige Aufgabe, nicht die Summe, und der Rückgabeausdruck hat den falschen Typ (CS4016)."
+      en: "First option: `.Result` blocks the thread until the tasks have finished (in an application with a user interface a deadlock is possible); it compiles but does not meet the requirement. Second option: `await Task.WhenAll(a, b)` yields an `int[]`, not an `int` (CS0029). Fourth option: `WhenAny` returns the task that finished first, not the sum, and the return expression has the wrong type (CS4016)."
+  - type: multipleChoice
+    id: richtig-async-signatur
+    prompt:
+      de: "Die Methode `LadeAsync` führt asynchrone Arbeit aus und gibt keinen Wert zurück. Der Aufrufer soll `await LadeAsync();` schreiben und Ausnahmen der Methode mit `try`/`catch` erhalten. Welche Signatur ist richtig?"
+      en: "The method `LadeAsync` performs asynchronous work and returns no value. The caller is supposed to write `await LadeAsync();` and receive the method's exceptions with `try`/`catch`. Which signature is correct?"
+    options:
+      - de: "`static async void LadeAsync()`"
+      - de: "`static async Task LadeAsync()`"
+      - de: "`static async int LadeAsync()`"
+    correct: [1]
+    explanation:
+      de: "Erste Option: Auf eine `async void`-Methode kann man nicht warten (CS4008), und ihre Ausnahmen lassen sich nicht abfangen; `async void` gehört nur zu Ereignishandlern. Dritte Option: Eine asynchrone Methode darf nur `void`, `Task` oder `Task<T>` (oder einen task-ähnlichen Typ) zurückgeben, nicht `int` (CS1983); für einen Wert wäre `Task<int>` richtig."
+      en: "First option: You cannot await an `async void` method (CS4008), and its exceptions cannot be caught; `async void` belongs only to event handlers. Third option: An asynchronous method may only return `void`, `Task`, or `Task<T>` (or a task-like type), not `int` (CS1983); for a value, `Task<int>` would be correct."

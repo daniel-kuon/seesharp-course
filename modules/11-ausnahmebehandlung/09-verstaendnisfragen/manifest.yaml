@@ -1,0 +1,285 @@
+id: ausnahmen-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "13"
+  title: { de: "Ausnahmebehandlung", en: "Exception Handling" }
+  printedPage: 885
+teaches:
+  - exceptions.catch-order
+  - exceptions.finally
+  - exceptions.rethrow
+  - exceptions.throw-expression
+requires:
+  - exceptions.throw
+  - exceptions.try-catch
+  - exceptions.catch-specific
+  - exceptions.catch-variable
+  - exceptions.inner-exception
+  - exceptions.custom-exception
+  - exceptions.argument-null
+items:
+  - type: open
+    id: vermeiden-abfangen
+    prompt:
+      de: "Was bedeutet der Grundsatz \"Fehlervermeidung geht vor Ausnahmebehandlung\"? Zeige es an einer Division zweier Zahlen, und nenne einen Fall, in dem eine Ausnahme trotzdem die richtige Technik ist."
+      en: "What does the principle \"error prevention comes before exception handling\" mean? Show it with a division of two numbers, and name a case in which an exception is still the right technique."
+  - type: open
+    id: catch-reihenfolge
+    prompt:
+      de: "In welcher Reihenfolge prüft die Laufzeit mehrere `catch`-Blöcke? Warum muss `catch (DivideByZeroException)` vor `catch (ArithmeticException)` stehen, und was passiert bei der umgekehrten Reihenfolge? Wozu dient ein Ausnahmefilter mit `when`?"
+      en: "In which order does the runtime check several `catch` blocks? Why must `catch (DivideByZeroException)` come before `catch (ArithmeticException)`, and what happens with the reverse order? What is an exception filter with `when` for?"
+  - type: open
+    id: finally-wann
+    prompt:
+      de: "Wann läuft ein `finally`-Block, und wofür setzt du ihn ein? Läuft er auch, wenn der `try`-Block mit `return` verlassen wird oder wenn kein `catch` dieses `try` zur Ausnahme passt und sie nach oben weiterwandert? Nenne ein Beispiel für eine Aufräumarbeit."
+      en: "When does a `finally` block run, and what do you use it for? Does it also run when the `try` block is left with `return` or when no `catch` of this `try` matches the exception and it travels further up? Give an example of a cleanup task."
+  - type: open
+    id: weiterreichen-verpacken
+    prompt:
+      de: "In einem `catch`-Block willst du eine Ausnahme nach dem Protokollieren weitergeben. Worin unterscheiden sich `throw;` und `throw ex;`? Wann packst du die Ursache stattdessen in eine neue Ausnahme, und was gibst du dabei als zweites Argument mit?"
+      en: "In a `catch` block you want to pass an exception on after logging it. How do `throw;` and `throw ex;` differ? When do you instead wrap the cause in a new exception, and what do you pass as the second argument?"
+  - type: open
+    id: eigene-ausnahme
+    prompt:
+      de: "Wann definierst du eine eigene Ausnahmeklasse, statt eine BCL-Ausnahme zu werfen? Wovon leitest du sie ab, welche Konstruktoren bietest du an, und wie machst du Zusatzinformationen (z. B. den Betrag, der fehlte) für den Fänger verfügbar?"
+      en: "When do you define your own exception class instead of throwing a BCL exception? What do you derive it from, which constructors do you provide, and how do you make additional information (e.g. the missing amount) available to the code that catches it?"
+  - type: open
+    id: code-finally-return
+    prompt:
+      de: |
+        Was gibt das Programm aus (Zeile für Zeile)? Erkläre die Reihenfolge, obwohl der `return` im `try`-Block steht.
+
+        ```csharp
+        Console.WriteLine(F());
+
+        static string F()
+        {
+            try { Console.WriteLine("try"); return "ergebnis"; }
+            finally { Console.WriteLine("finally"); }
+        }
+        ```
+      en: |
+        What does the program print (line by line)? Explain the order even though the `return` is in the `try` block.
+
+        ```csharp
+        Console.WriteLine(F());
+
+        static string F()
+        {
+            try { Console.WriteLine("try"); return "ergebnis"; }
+            finally { Console.WriteLine("finally"); }
+        }
+        ```
+  - type: open
+    id: code-catch-reihenfolge
+    prompt:
+      de: |
+        Was gibt das Programm aus? Welcher `catch`-Block fängt die Ausnahme, und läuft `finally`? Was würde der Compiler sagen, wenn man die beiden `catch`-Blöcke vertauschte?
+
+        ```csharp
+        try
+        {
+            Console.WriteLine(Teile(10, 0));
+        }
+        catch (DivideByZeroException) { Console.WriteLine("durch null"); }
+        catch (ArithmeticException) { Console.WriteLine("arithmetik"); }
+        finally { Console.WriteLine("ende"); }
+
+        static int Teile(int a, int b) => a / b;
+        ```
+      en: |
+        What does the program print? Which `catch` block catches the exception, and does `finally` run? What would the compiler say if the two `catch` blocks were swapped?
+
+        ```csharp
+        try
+        {
+            Console.WriteLine(Teile(10, 0));
+        }
+        catch (DivideByZeroException) { Console.WriteLine("durch null"); }
+        catch (ArithmeticException) { Console.WriteLine("arithmetik"); }
+        finally { Console.WriteLine("ende"); }
+
+        static int Teile(int a, int b) => a / b;
+        ```
+  - type: open
+    id: code-innere-ausnahme
+    prompt:
+      de: |
+        Was gibt das Programm in den beiden Zeilen aus? Woher kommt jeder der beiden Typnamen?
+
+        ```csharp
+        try
+        {
+            try { int.Parse("abc"); }
+            catch (FormatException ex) { throw new InvalidOperationException("Eingabe ungültig", ex); }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.GetType().Name + ": " + ex.Message);
+            if (ex.InnerException != null) Console.WriteLine(ex.InnerException.GetType().Name);
+        }
+        ```
+      en: |
+        What does the program print on its two lines? Where does each of the two type names come from?
+
+        ```csharp
+        try
+        {
+            try { int.Parse("abc"); }
+            catch (FormatException ex) { throw new InvalidOperationException("Eingabe ungültig", ex); }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.GetType().Name + ": " + ex.Message);
+            if (ex.InnerException != null) Console.WriteLine(ex.InnerException.GetType().Name);
+        }
+        ```
+  - type: open
+    id: code-throw-ausdruck
+    prompt:
+      de: |
+        Was gibt das Programm in den beiden Zeilen aus? Was bewirkt `??` hier zusammen mit `throw`, und wozu dient `nameof(s)`?
+
+        ```csharp
+        try { Console.WriteLine(Laenge(null)); }
+        catch (ArgumentNullException ex) { Console.WriteLine("Null: " + ex.ParamName); }
+        Console.WriteLine(Laenge("abc"));
+
+        static int Laenge(string? s) => (s ?? throw new ArgumentNullException(nameof(s))).Length;
+        ```
+      en: |
+        What does the program print on its two lines? What does `??` do here together with `throw`, and what is `nameof(s)` for?
+
+        ```csharp
+        try { Console.WriteLine(Laenge(null)); }
+        catch (ArgumentNullException ex) { Console.WriteLine("Null: " + ex.ParamName); }
+        Console.WriteLine(Laenge("abc"));
+
+        static int Laenge(string? s) => (s ?? throw new ArgumentNullException(nameof(s))).Length;
+        ```
+  - type: multipleChoice
+    id: weiterreichen-richtig
+    prompt:
+      de: |
+        `Aufrufer()` fängt eine `FormatException` aus `Ursprung()`, protokolliert sie mit `Log(ex)` und soll sie dann unverändert (gleicher Typ, gleiche Meldung, ursprüngliche Stapelüberwachung) an ihren eigenen Aufrufer weiterreichen. Welcher `catch`-Block tut das?
+      en: |
+        `Aufrufer()` catches a `FormatException` from `Ursprung()`, logs it with `Log(ex)`, and is then to pass it on unchanged (same type, same message, original stack trace) to its own caller. Which `catch` block does that?
+    options:
+      - de: |
+          ```csharp
+          catch (Exception ex) { Log(ex); throw ex; }
+          ```
+      - de: |
+          ```csharp
+          catch (Exception ex) { Log(ex); throw new Exception(ex.Message); }
+          ```
+      - de: |
+          ```csharp
+          catch (Exception ex) { Log(ex); throw; }
+          ```
+      - de: |
+          ```csharp
+          catch (Exception ex) { Log(ex); }
+          ```
+    correct: [2]
+    explanation:
+      de: "Die erste Variante reicht dieselbe Ausnahme weiter, überschreibt aber die Stapelüberwachung: Sie beginnt erst in `Aufrufer()`, der Ursprung geht verloren. Die zweite wirft eine neue allgemeine `Exception`; Typ und Stapelüberwachung sind weg, und die Ursache wurde nicht als zweites Argument mitgegeben. Die vierte fängt die Ausnahme und schluckt sie: Der Aufrufer erfährt nichts. Die dritte ist richtig: `throw;` ohne Ausdruck behält alles (13.6, Seite 913)."
+      en: "The first variant passes on the same exception but overwrites the stack trace: it begins only in `Aufrufer()`, and the origin is lost. The second throws a new general `Exception`; type and stack trace are gone, and the cause was not passed as the second argument. The fourth catches the exception and swallows it: the caller learns nothing. The third is correct: `throw;` without an expression keeps everything (13.6, page 913)."
+  - type: multipleChoice
+    id: try-syntax
+    prompt:
+      de: |
+        Welche `try`-Anweisung ist gültig?
+      en: |
+        Which `try` statement is valid?
+    options:
+      - de: |
+          ```csharp
+          try { Console.WriteLine(1); }
+          catch (FormatException) { }
+          catch (Exception) { }
+          finally { Console.WriteLine(2); }
+          ```
+      - de: |
+          ```csharp
+          try { Console.WriteLine(1); }
+          ```
+      - de: |
+          ```csharp
+          try { Console.WriteLine(1); }
+          catch (Exception) { }
+          catch (FormatException) { }
+          ```
+      - de: |
+          ```csharp
+          try { Console.WriteLine(1); }
+          finally { Console.WriteLine(2); }
+          catch (Exception) { }
+          ```
+    correct: [0]
+    explanation:
+      de: "Die erste ist gültig: spezifischer `catch` zuerst, allgemeiner danach, `finally` zuletzt (13.3.1, Seite 890). Die zweite hat weder `catch` noch `finally` (CS1524): Ein `try` braucht mindestens eines von beiden. In der dritten steht der allgemeine `catch (Exception)` vor dem speziellen; der zweite Block wäre nie erreichbar (CS0160). In der vierten steht `finally` vor dem `catch`; `finally` ist immer der letzte Block (Syntaxfehler)."
+      en: "The first is valid: specific `catch` first, more general one afterwards, `finally` last (13.3.1, page 890). The second has neither `catch` nor `finally` (CS1524): a `try` needs at least one of the two. In the third, the general `catch (Exception)` comes before the specific one; the second block would never be reachable (CS0160). In the fourth, `finally` comes before the `catch`; `finally` is always the last block (syntax error)."
+  - type: multipleChoice
+    id: eigene-ausnahme-richtig
+    prompt:
+      de: |
+        `throw new KontoException("Deckung fehlt", 50m);` soll funktionieren, und der Fänger soll `ex.Message` und den Betrag `ex.Betrag` lesen können. Welche Klasse ist richtig?
+      en: |
+        `throw new KontoException("Deckung fehlt", 50m);` is to work, and the code that catches it is to be able to read `ex.Message` and the amount `ex.Betrag`. Which class is correct?
+    options:
+      - de: |
+          ```csharp
+          class KontoException
+          {
+              public decimal Betrag { get; }
+              public string Message { get; }
+              public KontoException(string message, decimal betrag) { Message = message; Betrag = betrag; }
+          }
+          ```
+      - de: |
+          ```csharp
+          class KontoException : Exception
+          {
+              public decimal Betrag { get; }
+              public KontoException(string message, decimal betrag) : base(message) { Betrag = betrag; }
+          }
+          ```
+      - de: |
+          ```csharp
+          class KontoException : Exception
+          {
+              public decimal Betrag { get; }
+              public KontoException(string message, decimal betrag) { Betrag = betrag; }
+          }
+          ```
+      - de: |
+          ```csharp
+          class KontoException : Exception
+          {
+              public decimal Betrag { get; }
+              public KontoException(string message, decimal betrag) : Exception(message) { Betrag = betrag; }
+          }
+          ```
+    correct: [1]
+    explanation:
+      de: "Die erste Klasse leitet nicht von `Exception` ab; geworfen und gefangen werden können nur Objekte, die von `Exception` abstammen (CS0155). Die zweite ist richtig: Sie reicht die Meldung mit `: base(message)` an die Basisklasse weiter und ergänzt eine Eigenschaft (13.7, Seite 916). In der dritten fehlt `: base(message)`; sie kompiliert, aber `ex.Message` liefert dann nur den Standardtext \"Exception of type 'KontoException' was thrown.\". Die vierte ruft den Basiskonstruktor mit dem Klassennamen auf; das heißt `base(...)` (Syntaxfehler)."
+      en: "The first class does not derive from `Exception`; only objects derived from `Exception` can be thrown and caught (CS0155). The second is correct: it passes the message on to the base class with `: base(message)` and adds a property (13.7, page 916). The third lacks `: base(message)`; it compiles, but `ex.Message` then yields only the default text \"Exception of type 'KontoException' was thrown.\". The fourth calls the base constructor with the class name; it has to be `base(...)` (syntax error)."
+  - type: multipleChoice
+    id: aufraeumen
+    prompt:
+      de: "Eine Methode öffnet eine Datei, liest und gibt per `return` ein Ergebnis zurück. Wo schließt du die Datei so, dass es bei normalem Ende, bei `return` und bei einer Ausnahme geschieht?"
+      en: "A method opens a file, reads it and returns a result with `return`. Where do you close the file so that this happens on normal completion, on `return`, and on an exception?"
+    options:
+      - de: "Nach dem `return` am Ende des `try`-Blocks."
+        en: "After the `return` at the end of the `try` block."
+      - de: "Im `catch`-Block."
+        en: "In the `catch` block."
+      - de: "Vor dem `try`-Block, bevor etwas schiefgehen kann."
+        en: "Before the `try` block, before anything can go wrong."
+      - de: "Im `finally`-Block."
+        en: "In the `finally` block."
+    correct: [3]
+    explanation:
+      de: "Der `finally`-Block läuft immer: nach normalem Ende, nach einem `return` und nach einer Ausnahme (13.3.1.3, Seite 895). Code nach dem `return` wird nie erreicht; der `catch`-Block läuft nur bei einer Ausnahme; und vor dem `try` ist die Datei noch gar nicht gelesen."
+      en: "The `finally` block always runs: after normal completion, after a `return`, and after an exception (13.3.1.3, page 895). Code after the `return` is never reached; the `catch` block runs only on an exception; and before the `try` the file has not even been read yet."

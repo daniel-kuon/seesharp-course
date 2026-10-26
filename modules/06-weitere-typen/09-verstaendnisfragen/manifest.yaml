@@ -1,0 +1,239 @@
+id: typen-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "6"
+  title: { de: "Weitere .NETte Typen", en: "More .NET Types" }
+  printedPage: 431
+teaches:
+  - structs.value-semantics
+  - arrays.reference-semantics
+  - strings.immutability
+  - records.value-equality
+requires:
+  - structs.boxing
+  - strings.stringbuilder
+  - enums.parse-tostring
+  - tuples.deconstruct
+  - records.with
+items:
+  - type: open
+    id: wert-referenz
+    prompt:
+      de: "Erkläre den Unterschied zwischen Werttyp und Referenztyp. Was passiert bei `var b = a;` und beim Übergeben an eine Methode, je nachdem ob `a` eine `struct` oder ein Array ist? Nenne für jede Art einen Typ."
+      en: "Explain the difference between a value type and a reference type. What happens with `var b = a;` and when passing `a` to a method, depending on whether `a` is a `struct` or an array? Name one type for each kind."
+  - type: open
+    id: boxing
+    prompt:
+      de: "Was ist Boxing, wann passiert es, und warum ergibt `object x = 1; object y = 1; x == y` den Wert `false`, während `x.Equals(y)` `true` liefert?"
+      en: "What is boxing, when does it happen, and why does `object x = 1; object y = 1; x == y` give `false` while `x.Equals(y)` gives `true`?"
+  - type: open
+    id: string-unveraenderlich
+    prompt:
+      de: "Ein Kollege schreibt `name.ToUpper();` und wundert sich, dass `name` unverändert ist. Erkläre, was hier passiert und warum, und sag, wann du statt `+=` einen `StringBuilder` nimmst."
+      en: "A colleague writes `name.ToUpper();` and is surprised that `name` is unchanged. Explain what is happening and why, and say when you would use a `StringBuilder` instead of `+=`."
+  - type: open
+    id: record-vs-klasse
+    prompt:
+      de: "Was bekommst du mit `public record Artikel(string Name, int Menge);` geschenkt, was du bei einer gleichwertigen Klasse selbst schreiben müsstest? Worin unterscheidet sich `==` bei zwei Records von `==` bei zwei Klassenobjekten, und wozu dient `with`?"
+      en: "With `public record Artikel(string Name, int Menge);`, what do you get for free that you would have to write yourself for an equivalent class? How does `==` on two records differ from `==` on two class objects, and what is `with` for?"
+  - type: open
+    id: code-struct
+    prompt:
+      de: |
+        Was gibt das Programm aus? Begründe jede der beiden Zahlen.
+
+        ```csharp
+        Punkt a = new Punkt { X = 1 };
+        Punkt b = a;
+        b.X = 2;
+        Setze(a);
+        Console.WriteLine($"{a.X} {b.X}");
+
+        static void Setze(Punkt p) => p.X = 99;
+        struct Punkt { public int X; }
+        ```
+      en: |
+        What does the program print? Justify each of the two numbers.
+
+        ```csharp
+        Punkt a = new Punkt { X = 1 };
+        Punkt b = a;
+        b.X = 2;
+        Setze(a);
+        Console.WriteLine($"{a.X} {b.X}");
+
+        static void Setze(Punkt p) => p.X = 99;
+        struct Punkt { public int X; }
+        ```
+  - type: open
+    id: code-array-string
+    prompt:
+      de: |
+        Was gibt das Programm aus, und warum verhalten sich das Array und der String so unterschiedlich?
+
+        ```csharp
+        int[] a = { 3, 1, 2 };
+        int[] b = a;
+        Array.Sort(b);
+        string s = "abc";
+        string t = s;
+        s += "d";
+        Console.WriteLine(string.Join(",", a) + " " + t);
+        ```
+      en: |
+        What does the program print, and why do the array and the string behave so differently?
+
+        ```csharp
+        int[] a = { 3, 1, 2 };
+        int[] b = a;
+        Array.Sort(b);
+        string s = "abc";
+        string t = s;
+        s += "d";
+        Console.WriteLine(string.Join(",", a) + " " + t);
+        ```
+  - type: open
+    id: code-record
+    prompt:
+      de: |
+        Was gibt das Programm in den drei Zeilen aus? Begründe jede Zeile.
+
+        ```csharp
+        var a = new Artikel("Stift", 3);
+        var b = a with { Menge = 5 };
+        var c = new Artikel("Stift", 3);
+        Console.WriteLine(a == c);
+        Console.WriteLine(ReferenceEquals(a, c));
+        Console.WriteLine(b);
+
+        public record Artikel(string Name, int Menge);
+        ```
+      en: |
+        What does the program print on its three lines? Justify each line.
+
+        ```csharp
+        var a = new Artikel("Stift", 3);
+        var b = a with { Menge = 5 };
+        var c = new Artikel("Stift", 3);
+        Console.WriteLine(a == c);
+        Console.WriteLine(ReferenceEquals(a, c));
+        Console.WriteLine(b);
+
+        public record Artikel(string Name, int Menge);
+        ```
+  - type: open
+    id: code-enum
+    prompt:
+      de: |
+        Was gibt das Programm aus? Warum wirft der Cast in der ersten Zeile keine Ausnahme, und was sagt das über Enums?
+
+        ```csharp
+        Ampel a = (Ampel)7;
+        Console.WriteLine(a);
+        Console.WriteLine((int)Ampel.Gelb);
+        Console.WriteLine(Enum.IsDefined(a));
+
+        enum Ampel { Rot, Gelb, Gruen }
+        ```
+      en: |
+        What does the program print? Why does the cast in the first line not throw an exception, and what does that tell you about enums?
+
+        ```csharp
+        Ampel a = (Ampel)7;
+        Console.WriteLine(a);
+        Console.WriteLine((int)Ampel.Gelb);
+        Console.WriteLine(Enum.IsDefined(a));
+
+        enum Ampel { Rot, Gelb, Gruen }
+        ```
+  - type: multipleChoice
+    id: tausch
+    prompt:
+      de: "Welcher Code vertauscht die Werte der beiden `int`-Variablen `a` und `b` ohne Hilfsvariable?"
+      en: "Which code swaps the values of the two `int` variables `a` and `b` without a helper variable?"
+    options:
+      - de: "`a = b; b = a;`"
+      - de: "`a, b = b, a;`"
+      - de: "`(a, b) = (b, a);`"
+      - de: "`(a, b) = (a, b);`"
+    correct: [2]
+    explanation:
+      de: "`a = b; b = a;` überschreibt zuerst `a`; danach haben beide den alten Wert von `b`. `a, b = b, a;` ist in C# kein gültiger Ausdruck (Compilerfehler CS1001); die Schreibweise kennt nur Python. `(a, b) = (a, b);` weist jedem Wert sich selbst zu und ändert nichts. Die Tupelzuweisung `(a, b) = (b, a);` wertet die rechte Seite zuerst vollständig aus (6.6, Seite 486)."
+      en: "`a = b; b = a;` overwrites `a` first, so both end up with the old value of `b`. `a, b = b, a;` is not valid C# (compiler error CS1001); that notation only exists in Python. `(a, b) = (a, b);` assigns each value to itself and changes nothing. The tuple assignment `(a, b) = (b, a);` evaluates the whole right-hand side first (6.6, page 486)."
+  - type: multipleChoice
+    id: schleife
+    prompt:
+      de: "Welche Schleife setzt jedes Element von `int[] z = new int[5];` genau einmal auf seinen Index?"
+      en: "Which loop sets every element of `int[] z = new int[5];` to its index, exactly once?"
+    options:
+      - de: |
+          ```csharp
+          for (int i = 0; i <= z.Length; i++) z[i] = i;
+          ```
+      - de: |
+          ```csharp
+          for (int i = 1; i < z.Length; i++) z[i] = i;
+          ```
+      - de: |
+          ```csharp
+          for (int i = 0; i < z.Length(); i++) z[i] = i;
+          ```
+      - de: |
+          ```csharp
+          for (int i = 0; i < z.Length; i++) z[i] = i;
+          ```
+    correct: [3]
+    explanation:
+      de: "Die erste Schleife läuft einmal zu weit: Bei `i == 5` löst `z[5]` eine `IndexOutOfRangeException` aus (gültig sind 0 bis `Length - 1`). Die zweite beginnt bei 1 und lässt `z[0]` aus. Die dritte kompiliert nicht, weil `Length` eine Eigenschaft ist und keine Methode (CS1955). Die vierte ist richtig (6.2, Seite 455)."
+      en: "The first loop runs one iteration too far: at `i == 5`, `z[5]` throws an `IndexOutOfRangeException` (valid indexes are 0 to `Length - 1`). The second starts at 1 and skips `z[0]`. The third does not compile because `Length` is a property, not a method (CS1955). The fourth is correct (6.2, page 455)."
+  - type: multipleChoice
+    id: stringbuilder
+    prompt:
+      de: "`string[] teile = { \"a\", \"b\", \"c\" };` Welcher Code liefert in `s` den Text `abc`, ohne dabei in jedem Durchlauf einen neuen String zu bauen?"
+      en: "`string[] teile = { \"a\", \"b\", \"c\" };` Which code puts the text `abc` into `s` without building a new string on every pass?"
+    options:
+      - de: |
+          ```csharp
+          var sb = new StringBuilder();
+          foreach (string t in teile) sb.Append(t);
+          string s = sb;
+          ```
+      - de: |
+          ```csharp
+          var sb = new StringBuilder();
+          sb.Append(teile);
+          string s = sb.ToString();
+          ```
+      - de: |
+          ```csharp
+          string s = "";
+          foreach (string t in teile) s.Insert(s.Length, t);
+          ```
+      - de: |
+          ```csharp
+          var sb = new StringBuilder();
+          foreach (string t in teile) sb.Append(t);
+          string s = sb.ToString();
+          ```
+    correct: [3]
+    explanation:
+      de: "Die erste Variante kompiliert nicht: Ein `StringBuilder` lässt sich nicht implizit in `string` umwandeln, man braucht `ToString()` (CS0029). In der zweiten hängt `Append(teile)` das Array als `object` an und liefert `System.String[]`. In der dritten bleibt `s` leer, denn `Insert` ändert den String nicht, sondern liefert einen neuen, den hier niemand speichert (Unveränderlichkeit, 6.3, Seite 472). Die vierte ist richtig (6.3.2, Seite 479)."
+      en: "The first variant does not compile: a `StringBuilder` cannot be converted implicitly to `string`; you need `ToString()` (CS0029). In the second, `Append(teile)` appends the array as an `object` and yields `System.String[]`. In the third, `s` stays empty, because `Insert` does not change the string but returns a new one that nobody stores (immutability, 6.3, page 472). The fourth is correct (6.3.2, page 479)."
+  - type: multipleChoice
+    id: tupel-rueckgabe
+    prompt:
+      de: "Eine Methode soll Minimum und Maximum eines Arrays zurückgeben und hat den Rückgabetyp `(int Min, int Max)`. Welche Aussage stimmt?"
+      en: "A method is to return the minimum and maximum of an array and has the return type `(int Min, int Max)`. Which statement is correct?"
+    options:
+      - de: "Der Aufrufer erhält beide Werte ohne eigene Klasse und kann sie mit `var (min, max) = …` in zwei Variablen zerlegen; mit `_` lässt sich ein Element verwerfen."
+        en: "The caller gets both values without a class of its own and can split them into two variables with `var (min, max) = …`; `_` discards an element."
+      - de: "Mehrere Werte kann man nur über `out`-Parameter zurückgeben; ein Tupel als Rückgabetyp ist nicht möglich."
+        en: "Multiple values can only be returned via `out` parameters; a tuple as a return type is not possible."
+      - de: "Alle Elemente eines Tupels müssen denselben Typ haben, hier also `int`."
+        en: "All elements of a tuple must have the same type, here `int`."
+      - de: "Beim Dekonstruieren muss jedes Element einer eigenen benannten Variablen zugewiesen werden; `_` ist nicht erlaubt."
+        en: "When deconstructing, each element must be assigned to its own named variable; `_` is not allowed."
+    correct: [0]
+    explanation:
+      de: "Tupel als Rückgabetyp und das Dekonstruieren stehen in 6.6.4 und 6.6.5 (Seite 491 und 493). Ein Tupel darf Elemente verschiedener Typen enthalten, z. B. `(string, bool)`, und `_` verwirft einen Wert, den man nicht braucht."
+      en: "Tuples as a return type and deconstruction are covered in 6.6.4 and 6.6.5 (pages 491 and 493). A tuple may contain elements of different types, e.g. `(string, bool)`, and `_` discards a value you do not need."

@@ -60,8 +60,10 @@ brauchst du später in der Klasse `Bruch`.
 
 ## Überlauf (4.6, Seite 244)
 
-Ganzzahltypen haben einen festen Wertebereich. `int.MaxValue + 1` wird nicht
-zum Fehler, sondern springt still auf den negativen Rand. Wer Zwischenergebnisse
+Ganzzahltypen haben einen festen Wertebereich. Steht `int.MaxValue + 1` als
+konstanter Ausdruck im Code, meldet schon der Compiler einen Fehler (CS0220). Mit
+Variablen zur Laufzeit (`x = x + 1` bei `x == int.MaxValue`) gibt es dagegen keinen
+Fehler: Der Wert springt still auf den negativen Rand. Wer Zwischenergebnisse
 nicht abschätzen kann, nimmt `long` oder lässt mit `checked` eine Ausnahme
 auslösen. In diesem Level gibt es dazu keine eigene Übung; behalte das Thema
 im Hinterkopf, wenn in Level 4 Fakultäten berechnet werden.

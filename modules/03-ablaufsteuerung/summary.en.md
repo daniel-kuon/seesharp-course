@@ -24,6 +24,6 @@ The greatest common divisor of two numbers can be determined by repeated subtrac
 
 ## Overflow (4.6, page 244)
 
-Integer types have a fixed range of values. `int.MaxValue + 1` does not result in an error but silently wraps around to the negative boundary. If you cannot estimate intermediate results, use `long` or use `checked` to trigger an exception. There is no specific exercise on this topic in this level; keep this in mind when calculating factorials in Level 4.
+Integer types have a fixed range of values. Written as a constant expression, `int.MaxValue + 1` is already rejected by the compiler (CS0220). With variables at run time (`x = x + 1` when `x == int.MaxValue`) there is no error: the value silently wraps around to the negative boundary. If you cannot estimate intermediate results, use `long` or use `checked` to trigger an exception. There is no specific exercise on this topic in this level; keep this in mind when calculating factorials in Level 4.
 
 Further Study: Sections 4.6 and 4.7 (pages 244–285); the exercises in 4.7.4 (page 281) serve as the basis for this level.

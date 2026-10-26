@@ -1,0 +1,385 @@
+id: wpf-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "12.13"
+  title: { de: "Das MVVM-Muster", en: "The MVVM Pattern" }
+  printedPage: 856
+teaches:
+  - xaml.dependency-property
+  - xaml.binding-modes
+  - mvvm.observablecollection
+  - mvvm.validation
+requires:
+  - wpf.architecture
+  - xaml.markup
+  - xaml.routed-events
+  - mvvm.inpc
+  - mvvm.computed-property
+  - mvvm.separation
+  - mvvm.relaycommand
+  - mvvm.canexecute
+  - events.declare
+  - events.raise-safely
+  - interfaces.implement
+items:
+  - type: open
+    id: wpf-aufbau-xaml
+    prompt:
+      de: "Wie hängen eine `.xaml`-Datei und ihre Code-Behind-Datei zusammen (partielle Klasse, `InitializeComponent`)? Was beschreibt XAML eigentlich, und was bewirken ein Element, ein Attribut, ein Eigenschaftselement wie `<Button.Content>` und eine Markuperweiterung wie `{Binding}`? Was bedeutet es, dass alle Oberflächenobjekte dem UI-Thread gehören?"
+      en: "How are a `.xaml` file and its code-behind file connected (partial class, `InitializeComponent`)? What does XAML actually describe, and what do an element, an attribute, a property element such as `<Button.Content>` and a markup extension such as `{Binding}` do? What does it mean that all user interface objects belong to the UI thread?"
+  - type: open
+    id: code-inpc
+    prompt:
+      de: |
+        `Euro` implementiert `INotifyPropertyChanged`; `Raise` löst `PropertyChanged` mit dem Namen des aufrufenden Mitglieds aus (`[CallerMemberName]`), sofern es Abonnenten gibt. Was gibt das Programm aus, und warum wird `Dollar` mitgemeldet, obwohl es keinen Setter hat?
+
+        ```csharp
+        class Euro : INotifyPropertyChanged
+        {
+            double _betrag;
+            public event PropertyChangedEventHandler? PropertyChanged;
+
+            public double Betrag
+            {
+                get => _betrag;
+                set
+                {
+                    if (_betrag == value) return;
+                    _betrag = value;
+                    Raise();
+                    Raise(nameof(Dollar));
+                }
+            }
+            public double Dollar => Betrag * 1.1;
+            void Raise([CallerMemberName] string? name = null) =>
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        var e = new Euro();
+        var namen = new List<string>();
+        e.PropertyChanged += (s, a) => namen.Add(a.PropertyName!);
+        e.Betrag = 10;
+        e.Betrag = 10;
+        e.Betrag = 20;
+        Console.WriteLine(string.Join(",", namen));
+        ```
+      en: |
+        `Euro` implements `INotifyPropertyChanged`; `Raise` raises `PropertyChanged` with the name of the calling member (`[CallerMemberName]`) if there are subscribers. What does the program print, and why is `Dollar` reported as well although it has no setter?
+
+        ```csharp
+        class Euro : INotifyPropertyChanged
+        {
+            double _betrag;
+            public event PropertyChangedEventHandler? PropertyChanged;
+
+            public double Betrag
+            {
+                get => _betrag;
+                set
+                {
+                    if (_betrag == value) return;
+                    _betrag = value;
+                    Raise();
+                    Raise(nameof(Dollar));
+                }
+            }
+            public double Dollar => Betrag * 1.1;
+            void Raise([CallerMemberName] string? name = null) =>
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        var e = new Euro();
+        var namen = new List<string>();
+        e.PropertyChanged += (s, a) => namen.Add(a.PropertyName!);
+        e.Betrag = 10;
+        e.Betrag = 10;
+        e.Betrag = 20;
+        Console.WriteLine(string.Join(",", namen));
+        ```
+  - type: multipleChoice
+    id: mc-inpc-eigenschaft
+    prompt:
+      de: "Eine Klasse implementiert `INotifyPropertyChanged` (Ereignis `PropertyChanged`, Feld `_titel`). Welche Eigenschaft `Titel` meldet Änderungen korrekt an die Oberfläche?"
+      en: "A class implements `INotifyPropertyChanged` (event `PropertyChanged`, field `_titel`). Which `Titel` property reports changes to the user interface correctly?"
+    options:
+      - de: |
+          ```csharp
+          public string Titel
+          {
+              get => _titel;
+              set
+              {
+                  if (_titel == value) return;
+                  _titel = value;
+                  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(_titel)));
+              }
+          }
+          ```
+      - de: |
+          ```csharp
+          public string Titel
+          {
+              get => _titel;
+              set
+              {
+                  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Titel)));
+                  _titel = value;
+              }
+          }
+          ```
+      - de: |
+          ```csharp
+          public string Titel
+          {
+              get => _titel;
+              set
+              {
+                  if (_titel == value) return;
+                  _titel = value;
+                  PropertyChanged(this, new PropertyChangedEventArgs(nameof(Titel)));
+              }
+          }
+          ```
+      - de: |
+          ```csharp
+          public string Titel
+          {
+              get => _titel;
+              set
+              {
+                  if (_titel == value) return;
+                  _titel = value;
+                  PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Titel)));
+              }
+          }
+          ```
+    correct: [3]
+    explanation:
+      de: "Option 1 meldet den Namen `_titel` (das Feld) statt `Titel`: Die Bindung hört auf den Eigenschaftsnamen und aktualisiert sich nicht. Option 2 löst das Ereignis aus, bevor der neue Wert gesetzt ist: Abonnenten lesen noch den alten Wert. Option 3 ruft das Ereignis ohne `?.` auf und wirft eine NullReferenceException, solange niemand `PropertyChanged` abonniert hat."
+      en: "Option 1 reports the name `_titel` (the field) instead of `Titel`: the binding listens for the property name and does not update. Option 2 raises the event before the new value has been set: subscribers still read the old value. Option 3 invokes the event without `?.` and throws a NullReferenceException as long as nobody has subscribed to `PropertyChanged`."
+  - type: open
+    id: routingereignisse
+    prompt:
+      de: "Ein `Button` liegt in einem `StackPanel`, das in einem `Grid` im `Window` liegt. Der Benutzer klickt auf den Button. Beschreibe, wie das Ereignis durch die Elementhierarchie läuft: Was sind Tunnel-, Blasen- und Direktereignisse (nenne je ein Beispiel), und in welcher Reihenfolge werden die Elemente besucht? Was bewirkt `e.Handled = true`, und wozu sind Routingereignisse nützlich?"
+      en: "A `Button` sits in a `StackPanel` that sits in a `Grid` in the `Window`. The user clicks the button. Describe how the event travels through the element hierarchy: what are tunneling, bubbling and direct events (give one example of each), and in which order are the elements visited? What does `e.Handled = true` do, and what are routed events useful for?"
+  - type: open
+    id: abhaengigkeitseigenschaften
+    prompt:
+      de: "Was ist eine Abhängigkeitseigenschaft (`DependencyProperty`), und wodurch unterscheidet sie sich von einer gewöhnlichen C#-Eigenschaft mit Feld? Welche Vorteile bringt das (nenne mindestens zwei), und warum kann man eine Datenbindung nur auf eine Abhängigkeitseigenschaft als Ziel setzen?"
+      en: "What is a dependency property (`DependencyProperty`), and how does it differ from an ordinary C# property with a field? What advantages does this bring (name at least two), and why can a data binding only target a dependency property?"
+  - type: open
+    id: code-relaycommand
+    prompt:
+      de: |
+        `RelayCommand` ist wie in der Übung gebaut: Der Konstruktor nimmt `Action<object?> ausfuehren` und `Func<object?, bool>? kannAusfuehren`; `RaiseCanExecuteChanged()` löst `CanExecuteChanged` aus. Was gibt das Programm aus, und warum steht beim zweiten Wert nicht 2?
+
+        ```csharp
+        int zaehler = 0;
+        bool erlaubt = false;
+        var cmd = new RelayCommand(_ => zaehler++, _ => erlaubt);
+        int meldungen = 0;
+        cmd.CanExecuteChanged += (s, a) => meldungen++;
+
+        if (cmd.CanExecute(null)) cmd.Execute(null);
+        erlaubt = true;
+        if (cmd.CanExecute(null)) cmd.Execute(null);
+        cmd.RaiseCanExecuteChanged();
+
+        Console.WriteLine($"{zaehler} {meldungen}");
+        ```
+      en: |
+        `RelayCommand` is built as in the exercise: the constructor takes `Action<object?> ausfuehren` and `Func<object?, bool>? kannAusfuehren`; `RaiseCanExecuteChanged()` raises `CanExecuteChanged`. What does the program print, and why is the second value not 2?
+
+        ```csharp
+        int zaehler = 0;
+        bool erlaubt = false;
+        var cmd = new RelayCommand(_ => zaehler++, _ => erlaubt);
+        int meldungen = 0;
+        cmd.CanExecuteChanged += (s, a) => meldungen++;
+
+        if (cmd.CanExecute(null)) cmd.Execute(null);
+        erlaubt = true;
+        if (cmd.CanExecute(null)) cmd.Execute(null);
+        cmd.RaiseCanExecuteChanged();
+
+        Console.WriteLine($"{zaehler} {meldungen}");
+        ```
+  - type: multipleChoice
+    id: mc-kollektion
+    prompt:
+      de: "Ein ViewModel bietet eine Liste von Einträgen an, an die eine `ListBox` gebunden ist. Ruft der Code `Eintraege.Add(...)` auf, soll die `ListBox` sofort den neuen Eintrag zeigen. Welche Eigenschaft ist richtig?"
+      en: "A view model offers a list of entries to which a `ListBox` is bound. When the code calls `Eintraege.Add(...)`, the `ListBox` is to show the new entry immediately. Which property is correct?"
+    options:
+      - de: "`public ObservableCollection<string> Eintraege => new();`"
+      - de: "`public List<string> Eintraege { get; } = new();`"
+      - de: "`public ObservableCollection<string> Eintraege { get; } = new();`"
+    correct: [2]
+    explanation:
+      de: "Option 1 erzeugt bei jedem Lesen eine neue, leere Sammlung (`=>` statt `= new()`): Ein `Add` landet in einem Wegwerfobjekt, die Bindung sieht es nie, und `Eintraege.Count` bleibt 0. Option 2 kompiliert und speichert die Einträge, aber `List<T>` meldet Änderungen nicht (sie implementiert `INotifyCollectionChanged` nicht), die `ListBox` bleibt unverändert."
+      en: "Option 1 creates a new, empty collection every time it is read (`=>` instead of `= new()`): an `Add` ends up in a throwaway object, the binding never sees it, and `Eintraege.Count` stays 0. Option 2 compiles and stores the entries, but `List<T>` does not report changes (it does not implement `INotifyCollectionChanged`), so the `ListBox` stays unchanged."
+  - type: open
+    id: datenbindung-modi
+    prompt:
+      de: "Erkläre eine Datenbindung (`{Binding Name}`) mit Ziel und Quelle. Was unterscheiden die Modi `OneWay`, `TwoWay` und `OneWayToSource`? Wann schreibt eine `TextBox` ihren Text standardmäßig in die Quelle zurück, und was ändert `UpdateSourceTrigger=PropertyChanged`? Was muss die Quelle tun, damit die Oberfläche Änderungen mitbekommt?"
+      en: "Explain a data binding (`{Binding Name}`) with target and source. What distinguishes the modes `OneWay`, `TwoWay` and `OneWayToSource`? When does a `TextBox` write its text back to the source by default, and what does `UpdateSourceTrigger=PropertyChanged` change? What must the source do so that the user interface notices changes?"
+  - type: open
+    id: code-observablecollection
+    prompt:
+      de: |
+        Was gibt das Programm aus? Und warum wäre das mit einer normalen `List<string>` nicht möglich, welche Folge hat dieser Unterschied für eine gebundene `ListBox`?
+
+        ```csharp
+        var liste = new ObservableCollection<string> { "a", "b" };
+        var log = new List<string>();
+        liste.CollectionChanged += (s, e) => log.Add(e.Action.ToString());
+
+        liste.Add("c");
+        liste[0] = "x";
+        liste.Remove("b");
+        liste.Clear();
+
+        Console.WriteLine(string.Join(",", log));
+        ```
+      en: |
+        What does the program print? And why would this not be possible with an ordinary `List<string>`, what consequence does this difference have for a bound `ListBox`?
+
+        ```csharp
+        var liste = new ObservableCollection<string> { "a", "b" };
+        var log = new List<string>();
+        liste.CollectionChanged += (s, e) => log.Add(e.Action.ToString());
+
+        liste.Add("c");
+        liste[0] = "x";
+        liste.Remove("b");
+        liste.Clear();
+
+        Console.WriteLine(string.Join(",", log));
+        ```
+  - type: open
+    id: code-validierung
+    prompt:
+      de: |
+        `Eingabe` implementiert `INotifyDataErrorInfo`. Was gibt das Programm aus? Erkläre, wann `ErrorsChanged` ausgelöst wird, und warum es beim zweiten Setzen von `Name` nicht passiert.
+
+        ```csharp
+        class Eingabe : INotifyDataErrorInfo
+        {
+            string _name = "";
+            string? _fehler;
+            public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+            public bool HasErrors => _fehler != null;
+            public IEnumerable GetErrors(string? name) =>
+                _fehler is null ? Array.Empty<string>() : new[] { _fehler };
+
+            public string Name
+            {
+                get => _name;
+                set
+                {
+                    _name = value;
+                    var neu = string.IsNullOrWhiteSpace(value) ? "Name fehlt" : null;
+                    if (neu == _fehler) return;
+                    _fehler = neu;
+                    ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Name)));
+                }
+            }
+        }
+
+        var e = new Eingabe();
+        int n = 0;
+        e.ErrorsChanged += (s, a) => n++;
+        e.Name = "";
+        e.Name = " ";
+        e.Name = "Ida";
+        e.Name = "Max";
+        Console.WriteLine($"{n} {e.HasErrors}");
+        ```
+      en: |
+        `Eingabe` implements `INotifyDataErrorInfo`. What does the program print? Explain when `ErrorsChanged` is raised, and why it does not happen when `Name` is set for the second time.
+
+        ```csharp
+        class Eingabe : INotifyDataErrorInfo
+        {
+            string _name = "";
+            string? _fehler;
+            public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+            public bool HasErrors => _fehler != null;
+            public IEnumerable GetErrors(string? name) =>
+                _fehler is null ? Array.Empty<string>() : new[] { _fehler };
+
+            public string Name
+            {
+                get => _name;
+                set
+                {
+                    _name = value;
+                    var neu = string.IsNullOrWhiteSpace(value) ? "Name fehlt" : null;
+                    if (neu == _fehler) return;
+                    _fehler = neu;
+                    ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Name)));
+                }
+            }
+        }
+
+        var e = new Eingabe();
+        int n = 0;
+        e.ErrorsChanged += (s, a) => n++;
+        e.Name = "";
+        e.Name = " ";
+        e.Name = "Ida";
+        e.Name = "Max";
+        Console.WriteLine($"{n} {e.HasErrors}");
+        ```
+  - type: multipleChoice
+    id: mc-befehl
+    prompt:
+      de: "Die Schaltfläche „Löschen“ soll nur klickbar sein, solange ein Eintrag ausgewählt ist (`Auswahl != null`). `RelayCommand(Action<object?> ausfuehren, Func<object?, bool>? kannAusfuehren = null)` hat die Methode `RaiseCanExecuteChanged()`. Welcher Code im ViewModel ist richtig?"
+      en: "The “Löschen” (delete) button is to be clickable only while an entry is selected (`Auswahl != null`). `RelayCommand(Action<object?> ausfuehren, Func<object?, bool>? kannAusfuehren = null)` has the method `RaiseCanExecuteChanged()`. Which code in the view model is correct?"
+    options:
+      - de: |
+          ```csharp
+          LoeschenCommand = new RelayCommand(_ => Entfernen(), _ => Auswahl != null);
+
+          public string? Auswahl
+          {
+              get => _auswahl;
+              set
+              {
+                  _auswahl = value;
+                  LoeschenCommand.RaiseCanExecuteChanged();
+              }
+          }
+          ```
+      - de: |
+          ```csharp
+          LoeschenCommand = new RelayCommand(_ => Entfernen(), _ => Auswahl != null);
+
+          public string? Auswahl
+          {
+              get => _auswahl;
+              set { _auswahl = value; }
+          }
+          ```
+      - de: |
+          ```csharp
+          LoeschenCommand = new RelayCommand(_ => Entfernen(), Auswahl != null);
+
+          public string? Auswahl
+          {
+              get => _auswahl;
+              set
+              {
+                  _auswahl = value;
+                  LoeschenCommand.RaiseCanExecuteChanged();
+              }
+          }
+          ```
+    correct: [0]
+    explanation:
+      de: "Option 2 kompiliert, aber nichts meldet der Schaltfläche, dass sich die Bedingung geändert hat: `CanExecuteChanged` wird nie ausgelöst, und WPF fragt `CanExecute` nur nach diesem Ereignis neu ab. Option 3 lässt sich nicht kompilieren: Der zweite Parameter ist ein Delegat (`Func<object?, bool>`), kein `bool`; außerdem würde `Auswahl != null` nur einmal im Konstruktor ausgewertet."
+      en: "Option 2 compiles, but nothing tells the button that the condition has changed: `CanExecuteChanged` is never raised, and WPF queries `CanExecute` again only after that event. Option 3 does not compile: the second parameter is a delegate (`Func<object?, bool>`), not a `bool`; besides, `Auswahl != null` would be evaluated only once in the constructor."
+  - type: open
+    id: mvvm-rollen
+    prompt:
+      de: "Welche drei Rollen trennt das MVVM-Muster, und was gehört jeweils hinein? Warum kennt das ViewModel keine Fensterklassen, und was gewinnt man dadurch (denke an die Tests in diesem Modul)? Wie wird ein Klick auf eine Schaltfläche in MVVM behandelt, wenn es keine `Click`-Methode im Code-Behind gibt?"
+      en: "Which three roles does the MVVM pattern separate, and what belongs in each? Why does the view model not know any window classes, and what do you gain from that (think of the tests in this module)? How is a click on a button handled in MVVM when there is no `Click` method in the code-behind?"

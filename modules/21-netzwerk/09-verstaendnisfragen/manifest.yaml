@@ -1,0 +1,215 @@
+id: netz-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "21.3"
+  title: { de: "Internet-Ressourcen per HttpClient nutzen", en: "Using Internet Resources with HttpClient" }
+  printedPage: 1506
+teaches:
+  - net.http-status
+  - net.json-over-http
+  - net.query-escape
+  - net.multi-client
+requires:
+  - net.osi-concepts
+  - net.http-methods
+  - net.httpclient-lifetime
+  - net.uri-parse
+  - net.uri-builder
+  - net.ip-address
+  - net.httpclient-get
+  - net.httpclient-post
+  - net.await-io
+  - net.tcp-listener
+  - net.tcp-client
+  - net.line-protocol
+items:
+  - type: open
+    id: osi-und-protokolle
+    prompt:
+      de: "Erkläre das Schichtenprinzip der Netzwerkkommunikation (OSI-Modell bzw. Protokollstapel) mit eigenen Worten. Wofür sind IP-Adresse, Portnummer und DNS jeweils zuständig? Worin unterscheiden sich TCP und UDP, und warum läuft HTTP über TCP?"
+      en: "Explain the layering principle of network communication (OSI model or protocol stack) in your own words. What are the IP address, the port number and DNS each responsible for? How do TCP and UDP differ, and why does HTTP run over TCP?"
+  - type: open
+    id: code-uri-zerlegen
+    prompt:
+      de: |
+        Was gibt das Programm aus (drei Zeilen)? Woher kommt der Port in der letzten Zeile, obwohl er in der Adresse nicht steht?
+
+        ```csharp
+        var u = new Uri("https://example.org:8443/a/b.html?x=1&y=zwei#kopf");
+        Console.WriteLine(u.Scheme + " " + u.Host + " " + u.Port);
+        Console.WriteLine(u.AbsolutePath + " " + u.Query + " " + u.Fragment);
+
+        var u2 = new Uri("http://example.org/start");
+        Console.WriteLine(u2.Port + " " + u2.IsDefaultPort);
+        ```
+      en: |
+        What does the program print (three lines)? Where does the port in the last line come from although it is not in the address?
+
+        ```csharp
+        var u = new Uri("https://example.org:8443/a/b.html?x=1&y=zwei#kopf");
+        Console.WriteLine(u.Scheme + " " + u.Host + " " + u.Port);
+        Console.WriteLine(u.AbsolutePath + " " + u.Query + " " + u.Fragment);
+
+        var u2 = new Uri("http://example.org/start");
+        Console.WriteLine(u2.Port + " " + u2.IsDefaultPort);
+        ```
+  - type: multipleChoice
+    id: mc-url-bauen
+    prompt:
+      de: "Ein Suchbegriff `suche`, den der Benutzer eingetippt hat (zum Beispiel `Tom & Jerry`), soll als Parameter `q` in die Adresse `https://example.org/s` eingebaut werden. Welcher Code ist richtig?"
+      en: "A search term `suche` typed in by the user (for example `Tom & Jerry`) is to be inserted as the parameter `q` into the address `https://example.org/s`. Which code is correct?"
+    options:
+      - de: |
+          ```csharp
+          string url = "https://example.org/s?q=" + suche;
+          ```
+      - de: |
+          ```csharp
+          string url = "https://example.org/s?q=" + Uri.EscapeDataString(suche);
+          ```
+      - de: |
+          ```csharp
+          var u = new Uri("https://example.org/s");
+          u.Query = "q=" + suche;
+          ```
+    correct: [1]
+    explanation:
+      de: "Option 1 setzt die Eingabe unkodiert ein: Das `&` in `Tom & Jerry` beginnt einen neuen Parameter, die Anfrage meint etwas anderes als gewollt. Option 3 lässt sich nicht kompilieren: `Uri.Query` ist schreibgeschützt (eine `Uri` ist unveränderlich; zum Zusammensetzen gibt es `UriBuilder`), und `suche` wäre auch hier nicht kodiert."
+      en: "Option 1 inserts the input unencoded: the `&` in `Tom & Jerry` starts a new parameter, so the request means something other than intended. Option 3 does not compile: `Uri.Query` is read-only (a `Uri` is immutable; to assemble one there is `UriBuilder`), and `suche` would not be encoded here either."
+  - type: open
+    id: uri-und-kodierung
+    prompt:
+      de: "Aus welchen Teilen besteht eine Adresse, die `Uri` zerlegt? Warum musst du Werte in der Abfrage mit `Uri.EscapeDataString` kodieren, und was geschieht sonst mit Zeichen wie Leerzeichen, `&`, `=` oder Umlauten? Wann verwendest du `new Uri(...)`, wann `Uri.TryCreate` und wann `UriBuilder`?"
+      en: "What parts does an address consist of that `Uri` breaks down? Why do you have to encode values in the query with `Uri.EscapeDataString`, and what happens otherwise to characters such as spaces, `&`, `=` or umlauts? When do you use `new Uri(...)`, when `Uri.TryCreate` and when `UriBuilder`?"
+  - type: open
+    id: http-methoden-status
+    prompt:
+      de: "Wofür verwendet man die HTTP-Methoden `GET`, `POST` und `HEAD`? Was bedeuten die Statuscode-Klassen 2xx, 3xx, 4xx und 5xx, und woran erkennst du, ob ein Fehler beim Klienten oder beim Server liegt? Wie verhalten sich `GetAsync` und `EnsureSuccessStatusCode()` bei einem Statuscode 404?"
+      en: "What are the HTTP methods `GET`, `POST` and `HEAD` used for? What do the status code classes 2xx, 3xx, 4xx and 5xx mean, and how can you tell whether an error lies with the client or the server? How do `GetAsync` and `EnsureSuccessStatusCode()` behave with a status code of 404?"
+  - type: open
+    id: code-statuscodes
+    prompt:
+      de: |
+        `TestHandler` antwortet für die Adresse `/ok` mit dem Status 200 und für alle anderen mit 404 (ohne Netzwerk). Was gibt das Programm aus (drei Zeilen)? Warum wirft der erste Aufruf von `GetAsync` keine Ausnahme, der von `GetStringAsync` aber schon?
+
+        ```csharp
+        using var client = new HttpClient(new TestHandler());
+        var a = await client.GetAsync("http://test/ok");
+        var b = await client.GetAsync("http://test/fehlt");
+        Console.WriteLine($"{(int)a.StatusCode} {(int)b.StatusCode} {b.IsSuccessStatusCode}");
+
+        try { b.EnsureSuccessStatusCode(); }
+        catch (HttpRequestException e) { Console.WriteLine(e.StatusCode); }
+
+        try { await client.GetStringAsync("http://test/fehlt"); }
+        catch (HttpRequestException) { Console.WriteLine("Ausnahme"); }
+        ```
+      en: |
+        `TestHandler` answers the address `/ok` with status 200 and all others with 404 (without a network). What does the program print (three lines)? Why does the first call of `GetAsync` not throw an exception, but the call of `GetStringAsync` does?
+
+        ```csharp
+        using var client = new HttpClient(new TestHandler());
+        var a = await client.GetAsync("http://test/ok");
+        var b = await client.GetAsync("http://test/fehlt");
+        Console.WriteLine($"{(int)a.StatusCode} {(int)b.StatusCode} {b.IsSuccessStatusCode}");
+
+        try { b.EnsureSuccessStatusCode(); }
+        catch (HttpRequestException e) { Console.WriteLine(e.StatusCode); }
+
+        try { await client.GetStringAsync("http://test/fehlt"); }
+        catch (HttpRequestException) { Console.WriteLine("Ausnahme"); }
+        ```
+  - type: multipleChoice
+    id: mc-httpclient
+    prompt:
+      de: "Eine Methode `Lade(url)` soll den Text einer Webseite liefern und `HttpClient` so verwenden, wie es das Buch empfiehlt (ein Objekt für alle Aufrufe, 21.3). Welcher Code ist richtig?"
+      en: "A method `Lade(url)` is to return the text of a web page and use `HttpClient` the way the book recommends (one object for all calls, 21.3). Which code is correct?"
+    options:
+      - de: |
+          ```csharp
+          static readonly HttpClient Client = new();
+
+          static async Task<string> Lade(string url) =>
+              await Client.GetStringAsync(url);
+          ```
+      - de: |
+          ```csharp
+          static async Task<string> Lade(string url)
+          {
+              using var client = new HttpClient();
+              return await client.GetStringAsync(url);
+          }
+          ```
+      - de: |
+          ```csharp
+          static readonly HttpClient Client = new();
+
+          static string Lade(string url) =>
+              Client.GetStringAsync(url);
+          ```
+    correct: [0]
+    explanation:
+      de: "Option 2 kompiliert und funktioniert, legt aber bei jedem Aufruf einen neuen Client an: Das verschwendet Verbindungen und kann bei vielen Aufrufen die Ports erschöpfen. Option 3 lässt sich nicht kompilieren: `GetStringAsync` liefert eine `Task<string>`, keinen `string`; man braucht `async`/`await` und den Rückgabetyp `Task<string>`."
+      en: "Option 2 compiles and works, but creates a new client on every call: this wastes connections and can exhaust the ports with many calls. Option 3 does not compile: `GetStringAsync` returns a `Task<string>`, not a `string`; you need `async`/`await` and the return type `Task<string>`."
+  - type: open
+    id: httpclient-und-async
+    prompt:
+      de: "Warum legt man einen `HttpClient` einmal an und benutzt ihn weiter, statt für jeden Aufruf einen neuen zu erzeugen? Was bedeuten `Task<T>` und `await` bei `GetStringAsync`, und was geschieht mit dem Thread, während auf die Antwort gewartet wird? Wie überträgt man JSON mit `GetFromJsonAsync<T>` und `PostAsJsonAsync`?"
+      en: "Why do you create an `HttpClient` once and keep using it instead of creating a new one for every call? What do `Task<T>` and `await` mean for `GetStringAsync`, and what happens to the thread while the response is awaited? How do you transfer JSON with `GetFromJsonAsync<T>` and `PostAsJsonAsync`?"
+  - type: multipleChoice
+    id: mc-json
+    prompt:
+      de: "Der Server liefert JSON, das zur Klasse `Wetter` mit der Eigenschaft `Temperatur` passt. `client` ist ein `HttpClient`, `System.Net.Http.Json` ist eingebunden, der Code steht in einer `async`-Methode. Welcher Code gibt die Temperatur richtig aus?"
+      en: "The server returns JSON that matches the class `Wetter` with the property `Temperatur`. `client` is an `HttpClient`, `System.Net.Http.Json` is imported, and the code is in an `async` method. Which code prints the temperature correctly?"
+    options:
+      - de: |
+          ```csharp
+          var w = client.GetFromJsonAsync<Wetter>(url);
+          Console.WriteLine(w.Temperatur);
+          ```
+      - de: |
+          ```csharp
+          var w = await client.GetStringAsync<Wetter>(url);
+          Console.WriteLine(w.Temperatur);
+          ```
+      - de: |
+          ```csharp
+          var w = await client.GetFromJsonAsync<Wetter>(url);
+          Console.WriteLine(w?.Temperatur);
+          ```
+    correct: [2]
+    explanation:
+      de: "Option 1 lässt sich nicht kompilieren: Ohne `await` ist `w` eine `Task<Wetter?>`, und die hat keine Eigenschaft `Temperatur`. Option 2 lässt sich nicht kompilieren: `GetStringAsync` ist nicht generisch; das Umwandeln von JSON in ein Objekt leistet `GetFromJsonAsync<T>`. Das Ergebnis ist nullable (`Wetter?`), deshalb `w?.Temperatur`."
+      en: "Option 1 does not compile: without `await`, `w` is a `Task<Wetter?>`, which has no property `Temperatur`. Option 2 does not compile: `GetStringAsync` is not generic; converting JSON into an object is what `GetFromJsonAsync<T>` does. The result is nullable (`Wetter?`), hence `w?.Temperatur`."
+  - type: open
+    id: code-tcp-schleife
+    prompt:
+      de: |
+        Ein Klient verbindet sich mit diesem Server, schickt die zwei Zeilen `hallo` und `welt` (je mit `WriteLine`, dazwischen liest er jeweils die Antwort) und schließt dann seine Verbindung. Was empfängt der Klient, was gibt der Server aus, und warum endet die Schleife? Was würde ohne `AutoFlush = true` geschehen?
+
+        ```csharp
+        using var c = listener.AcceptTcpClient();
+        using var r = new StreamReader(c.GetStream());
+        using var w = new StreamWriter(c.GetStream()) { AutoFlush = true };
+        string? zeile;
+        while ((zeile = r.ReadLine()) != null)
+            w.WriteLine(zeile.ToUpper());
+        Console.WriteLine("Klient weg");
+        ```
+      en: |
+        A client connects to this server, sends the two lines `hallo` and `welt` (each with `WriteLine`, reading the response in between each time) and then closes its connection. What does the client receive, what does the server print, and why does the loop end? What would happen without `AutoFlush = true`?
+
+        ```csharp
+        using var c = listener.AcceptTcpClient();
+        using var r = new StreamReader(c.GetStream());
+        using var w = new StreamWriter(c.GetStream()) { AutoFlush = true };
+        string? zeile;
+        while ((zeile = r.ReadLine()) != null)
+            w.WriteLine(zeile.ToUpper());
+        Console.WriteLine("Klient weg");
+        ```
+  - type: open
+    id: tcp-zeilenprotokoll
+    prompt:
+      de: "Beschreibe, wie ein einfacher TCP-Server mit `TcpListener` und `TcpClient` arbeitet und wie daraus ein zeilenbasiertes Protokoll wird. Warum bedient ein Server, der nur in einer Schleife `AcceptTcpClient()` aufruft und die Verbindung gleich bearbeitet, nur einen Klienten zugleich, und wie lässt sich das ändern?"
+      en: "Describe how a simple TCP server with `TcpListener` and `TcpClient` works and how it becomes a line-based protocol. Why does a server that merely calls `AcceptTcpClient()` in a loop and handles the connection right away serve only one client at a time, and how can that be changed?"

@@ -1,0 +1,285 @@
+id: generics-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "8"
+  title: { de: "Typgenerisches Programmieren", en: "Generic Programming" }
+  printedPage: 589
+teaches:
+  - generics.constraint-kinds
+  - generics.type-inference
+  - generics.invariance
+requires:
+  - generics.class-declare
+  - generics.constraint-icomparable
+  - generics.default
+  - generics.method
+  - generics.nullable-value
+  - generics.params
+items:
+  - type: open
+    id: warum-generics
+    prompt:
+      de: "Ein Stapel soll beliebige Elemente aufnehmen. Warum ist `class SimpleStack<T>` besser als ein Stapel mit dem Elementtyp `object`? Nenne mindestens zwei konkrete Nachteile der `object`-Lösung."
+      en: "A stack is to hold arbitrary elements. Why is `class SimpleStack<T>` better than a stack whose element type is `object`? Name at least two concrete disadvantages of the `object` solution."
+  - type: open
+    id: einschraenkung
+    prompt:
+      de: "Wozu dient `where T : IComparable<T>` bei einer sortierten Liste? Was kann der Compiler ohne diese Einschränkung über `T` nicht wissen, und was schließt sie zusätzlich aus?"
+      en: "What is `where T : IComparable<T>` for in a sorted list? What can the compiler not know about `T` without this constraint, and what does the constraint additionally rule out?"
+  - type: open
+    id: invarianz
+    prompt:
+      de: "`List<object> lo = new List<string>();` kompiliert nicht, obwohl `string` von `object` erbt. Erkläre, welches Problem die Sprache damit verhindert. Wo gibt es Varianz doch, und was ist der Unterschied zu Klassen?"
+      en: "`List<object> lo = new List<string>();` does not compile even though `string` inherits from `object`. Explain which problem the language prevents with this. Where does variance exist after all, and how does that differ from classes?"
+  - type: open
+    id: nullable-default
+    prompt:
+      de: "Was ist `int?` wirklich, und worin unterscheidet es sich von `int`? Wofür braucht generischer Code `default(T)`, und was liefert es für `int`, `string` und `int?`?"
+      en: "What is `int?` really, and how does it differ from `int`? What does generic code need `default(T)` for, and what does it return for `int`, `string` and `int?`?"
+  - type: open
+    id: generische-methode
+    prompt:
+      de: "Was ist der Unterschied zwischen einer generischen Klasse wie `SimpleStack<T>` mit der Methode `T Pop()` und einer generischen Methode wie `static T Max<T>(params T[] werte)`? Was bedeutet Typinferenz, und wann musst du das Typargument beim Aufruf trotzdem selbst angeben?"
+      en: "What is the difference between a generic class like `SimpleStack<T>` with the method `T Pop()` and a generic method like `static T Max<T>(params T[] werte)`? What does type inference mean, and when must you still supply the type argument yourself at the call?"
+  - type: open
+    id: code-nullable
+    prompt:
+      de: |
+        Was gibt das Programm in den vier Zeilen aus? Begründe jede Zeile.
+
+        ```csharp
+        int? a = null;
+        int? b = 5;
+        Console.WriteLine(a ?? 10);
+        Console.WriteLine(b ?? 10);
+        Console.WriteLine(a.HasValue);
+        a ??= 7;
+        Console.WriteLine(a);
+        ```
+      en: |
+        What does the program print on its four lines? Justify each line.
+
+        ```csharp
+        int? a = null;
+        int? b = 5;
+        Console.WriteLine(a ?? 10);
+        Console.WriteLine(b ?? 10);
+        Console.WriteLine(a.HasValue);
+        a ??= 7;
+        Console.WriteLine(a);
+        ```
+  - type: open
+    id: code-generische-methode
+    prompt:
+      de: |
+        Was gibt das Programm aus? Welches `T` leitet der Compiler jeweils ab? Warum würde `Groesser(new object(), new object())` nicht kompilieren?
+
+        ```csharp
+        Console.WriteLine(Groesser(3, 9));
+        Console.WriteLine(Groesser("Apfel", "Birne"));
+        Console.WriteLine(Groesser('x', 'k'));
+
+        static T Groesser<T>(T a, T b) where T : IComparable<T>
+            => a.CompareTo(b) >= 0 ? a : b;
+        ```
+      en: |
+        What does the program print? Which `T` does the compiler infer each time? Why would `Groesser(new object(), new object())` not compile?
+
+        ```csharp
+        Console.WriteLine(Groesser(3, 9));
+        Console.WriteLine(Groesser("Apfel", "Birne"));
+        Console.WriteLine(Groesser('x', 'k'));
+
+        static T Groesser<T>(T a, T b) where T : IComparable<T>
+            => a.CompareTo(b) >= 0 ? a : b;
+        ```
+  - type: open
+    id: code-default
+    prompt:
+      de: |
+        Was gibt das Programm in den drei Zeilen aus? Woher kommt jeweils der Wert, den `Pop()` bei leerem Stapel liefert?
+
+        ```csharp
+        var a = new Stapel<int>();
+        var b = new Stapel<string>();
+        a.Push(7);
+        Console.WriteLine(a.Pop());
+        Console.WriteLine(a.Pop());
+        Console.WriteLine(b.Pop() is null);
+
+        class Stapel<T>
+        {
+            T[] data = new T[4];
+            int n;
+            public void Push(T x) => data[n++] = x;
+            public T Pop() => n > 0 ? data[--n] : default!;
+        }
+        ```
+      en: |
+        What does the program print on its three lines? Where does the value that `Pop()` returns for an empty stack come from in each case?
+
+        ```csharp
+        var a = new Stapel<int>();
+        var b = new Stapel<string>();
+        a.Push(7);
+        Console.WriteLine(a.Pop());
+        Console.WriteLine(a.Pop());
+        Console.WriteLine(b.Pop() is null);
+
+        class Stapel<T>
+        {
+            T[] data = new T[4];
+            int n;
+            public void Push(T x) => data[n++] = x;
+            public T Pop() => n > 0 ? data[--n] : default!;
+        }
+        ```
+  - type: open
+    id: code-invarianz
+    prompt:
+      de: |
+        Dieser Code kompiliert nicht. Welche Zeile ist das, und welcher Fehler würde zur Laufzeit entstehen, wenn der Compiler sie erlaubte?
+
+        ```csharp
+        var ls = new List<string> { "a", "b" };
+        object o = ls[0];
+        List<object> lo = ls;
+        lo.Add(42);
+        ```
+      en: |
+        This code does not compile. Which line is it, and what error would arise at run time if the compiler allowed it?
+
+        ```csharp
+        var ls = new List<string> { "a", "b" };
+        object o = ls[0];
+        List<object> lo = ls;
+        lo.Add(42);
+        ```
+  - type: multipleChoice
+    id: einschraenkung-richtig
+    prompt:
+      de: |
+        Die Klasse soll mit `x.CompareTo(...)` Elemente vom Typ `T` vergleichen. Welcher Klassenkopf macht den folgenden Rumpf übersetzbar?
+
+        ```csharp
+        // Klassenkopf: ???
+        {
+            T[] data = new T[10];
+            public bool Groesser(T x) => x.CompareTo(data[0]) > 0;
+        }
+        ```
+      en: |
+        The class is to compare elements of type `T` using `x.CompareTo(...)`. Which class header makes the following body compile?
+
+        ```csharp
+        // class header: ???
+        {
+            T[] data = new T[10];
+            public bool Groesser(T x) => x.CompareTo(data[0]) > 0;
+        }
+        ```
+    options:
+      - de: |
+          ```csharp
+          class Liste<T>
+          ```
+      - de: |
+          ```csharp
+          class Liste<T> : IComparable<T>
+          ```
+      - de: |
+          ```csharp
+          class Liste<T> where T : IComparable<T>
+          ```
+      - de: |
+          ```csharp
+          class Liste<T> where T : class
+          ```
+    correct: [2]
+    explanation:
+      de: "Ohne Einschränkung weiß der Compiler über `T` nur, was jedes `object` kann; `CompareTo` gehört nicht dazu, die erste Variante kompiliert nicht. In der zweiten bekennt sich die Klasse `Liste<T>` selbst zu `IComparable<T>` (und müsste dann ein eigenes `CompareTo` liefern, CS0535); über `T` sagt das nichts. `where T : class` verlangt nur einen Referenztyp, auch damit hat `T` kein `CompareTo`. Die dritte Variante ist richtig (8.2.2, Seite 593)."
+      en: "Without a constraint, the compiler knows about `T` only what every `object` can do; `CompareTo` is not part of that, so the first variant does not compile. In the second, the class `Liste<T>` itself declares `IComparable<T>` (and would then have to supply its own `CompareTo`, CS0535); that says nothing about `T`. `where T : class` only demands a reference type; `T` still has no `CompareTo` with it. The third variant is correct (8.2.2, page 593)."
+  - type: multipleChoice
+    id: typinferenz-richtig
+    prompt:
+      de: |
+        Gegeben ist `static T[] Leer<T>() => new T[0];`. Welche Zeile kompiliert?
+      en: |
+        Given `static T[] Leer<T>() => new T[0];`. Which line compiles?
+    options:
+      - de: |
+          ```csharp
+          int[] a = Leer();
+          ```
+      - de: |
+          ```csharp
+          int[] a = Leer<int>();
+          ```
+      - de: |
+          ```csharp
+          int[] a = Leer<>();
+          ```
+      - de: |
+          ```csharp
+          int[] a = Leer(int);
+          ```
+    correct: [1]
+    explanation:
+      de: "Der Compiler leitet `T` nur aus den Argumenten ab, nie aus dem Zieltyp der Zuweisung; `Leer()` hat keine Argumente (CS0411). `Leer<>()` und `Leer(int)` sind keine gültige Schreibweise für ein Typargument. Bei leerer Argumentliste muss man `T` selbst nennen: `Leer<int>()` (8.5, Seite 602)."
+      en: "The compiler infers `T` only from the arguments, never from the target type of the assignment; `Leer()` has no arguments (CS0411). `Leer<>()` and `Leer(int)` are not valid ways to write a type argument. With an empty argument list you must name `T` yourself: `Leer<int>()` (8.5, page 602)."
+  - type: multipleChoice
+    id: nullable-richtig
+    prompt:
+      de: |
+        `int? n` kann `null` sein. Welche Zeile liefert in `x` den Wert von `n`, oder -1, wenn `n` `null` ist?
+      en: |
+        `int? n` can be `null`. Which line puts the value of `n` into `x`, or -1 if `n` is `null`?
+    options:
+      - de: |
+          ```csharp
+          int x = n;
+          ```
+      - de: |
+          ```csharp
+          int x = n.Value;
+          ```
+      - de: |
+          ```csharp
+          int x = n.Value ?? -1;
+          ```
+      - de: |
+          ```csharp
+          int x = n ?? -1;
+          ```
+    correct: [3]
+    explanation:
+      de: "Die erste Zeile kompiliert nicht: `int?` lässt sich nicht implizit in `int` umwandeln (CS0266). Die zweite kompiliert, wirft aber bei `null` eine `InvalidOperationException`, weil dann kein `Value` da ist. In der dritten ist `n.Value` schon ein `int`, der nie `null` sein kann; `??` ist auf `int` nicht anwendbar (CS0019). Die vierte ist richtig (8.3.2, Seite 600)."
+      en: "The first line does not compile: `int?` cannot be converted implicitly to `int` (CS0266). The second compiles but throws an `InvalidOperationException` for `null`, because there is no `Value` then. In the third, `n.Value` is already an `int`, which can never be `null`; `??` cannot be applied to `int` (CS0019). The fourth is correct (8.3.2, page 600)."
+  - type: multipleChoice
+    id: einschraenkungen-kombinieren
+    prompt:
+      de: |
+        `T` soll ein Referenztyp sein, `IComparable<T>` implementieren und einen parameterlosen Konstruktor haben. Welche Deklaration ist richtig?
+      en: |
+        `T` is to be a reference type, implement `IComparable<T>` and have a parameterless constructor. Which declaration is correct?
+    options:
+      - de: |
+          ```csharp
+          class W<T> where T : class, IComparable<T>, new()
+          ```
+      - de: |
+          ```csharp
+          class W<T> where T : new(), class, IComparable<T>
+          ```
+      - de: |
+          ```csharp
+          class W<T> where T : class where T : new()
+          ```
+      - de: |
+          ```csharp
+          class W<T> where T : class & IComparable<T> & new()
+          ```
+    correct: [0]
+    explanation:
+      de: "Die Einschränkungen stehen in einer einzigen `where`-Klausel, durch Kommas getrennt; `class` (oder `struct`) kommt zuerst und `new()` zuletzt. Die zweite Variante verletzt die Reihenfolge (CS0401). Die dritte schreibt zwei `where`-Klauseln für dasselbe `T` (CS0409). Die vierte verwendet `&`, das es hier nicht gibt (Syntaxfehler). Siehe 8.2.2 (Seite 593)."
+      en: "The constraints go in a single `where` clause separated by commas; `class` (or `struct`) comes first and `new()` last. The second variant violates the order (CS0401). The third writes two `where` clauses for the same `T` (CS0409). The fourth uses `&`, which does not exist here (syntax error). See 8.2.2 (page 593)."

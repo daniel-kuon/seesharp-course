@@ -189,11 +189,6 @@ items:
       - de: |
           ```csharp
           delegate bool Vergleich(int a, int b);
-          Vergleich v = (a, b) => a < b;
-          ```
-      - de: |
-          ```csharp
-          delegate bool Vergleich(int a, int b);
           Vergleich v = new Vergleich();
           ```
       - de: |
@@ -204,18 +199,29 @@ items:
       - de: |
           ```csharp
           delegate bool Vergleich(int a, int b);
+          Vergleich v = (a, b) => a < b;
+          ```
+      - de: |
+          ```csharp
+          delegate bool Vergleich(int a, int b);
           Vergleich v = a => a < 1;
           ```
-    correct: [0]
+    correct: [2]
     explanation:
-      de: "Zweite Option: Ein Delegatenobjekt entsteht aus einer Methode oder einem Lambda, nicht mit einem parameterlosen `new` (Fehler CS1729). Dritte Option: `a + b` ist ein `int`, der Delegat verlangt `bool` als Rückgabetyp (Fehler CS0029/CS1662). Vierte Option: Das Lambda hat einen Parameter, der Delegat zwei (Fehler CS1593)."
-      en: "Second option: A delegate object is created from a method or a lambda, not with a parameterless `new` (error CS1729). Third option: `a + b` is an `int`, but the delegate requires `bool` as its return type (errors CS0029/CS1662). Fourth option: The lambda has one parameter, the delegate has two (error CS1593)."
+      de: "Erste Option: Ein Delegatenobjekt entsteht aus einer Methode oder einem Lambda, nicht mit einem parameterlosen `new` (Fehler CS1729). Zweite Option: `a + b` ist ein `int`, der Delegat verlangt `bool` als Rückgabetyp (Fehler CS0029/CS1662). Vierte Option: Das Lambda hat einen Parameter, der Delegat zwei (Fehler CS1593)."
+      en: "First option: A delegate object is created from a method or a lambda, not with a parameterless `new` (error CS1729). Second option: `a + b` is an `int`, but the delegate requires `bool` as its return type (errors CS0029/CS1662). Fourth option: The lambda has one parameter, the delegate has two (error CS1593)."
   - type: multipleChoice
     id: richtig-ausloesen
     prompt:
       de: "Die Klasse `Sensor` soll nach dem Standardmuster ein Ereignis `Gemessen` anbieten. `MessEventArgs` ist eine von `EventArgs` abgeleitete Klasse. Welche Variante ist richtig?"
       en: "The class `Sensor` is supposed to provide an event `Gemessen` using the standard pattern. `MessEventArgs` is a class derived from `EventArgs`. Which variant is correct?"
     options:
+      - de: |
+          ```csharp
+          public event EventHandler<MessEventArgs>? Gemessen;
+          protected virtual void OnGemessen(MessEventArgs e)
+              => Gemessen?.Invoke(e);
+          ```
       - de: |
           ```csharp
           public event EventHandler<MessEventArgs>? Gemessen;
@@ -228,16 +234,10 @@ items:
           protected virtual void OnGemessen(MessEventArgs e)
               => Gemessen(this, e);
           ```
-      - de: |
-          ```csharp
-          public event EventHandler<MessEventArgs>? Gemessen;
-          protected virtual void OnGemessen(MessEventArgs e)
-              => Gemessen?.Invoke(e);
-          ```
-    correct: [0]
+    correct: [1]
     explanation:
-      de: "Zweite Option: Ohne `?.` stürzt der Aufruf mit einer `NullReferenceException` ab, solange sich niemand angemeldet hat (die Aufrufliste ist dann `null`). Dritte Option: `EventHandler<T>` verlangt zwei Argumente (`sender` und `e`); mit nur einem lässt sich der Code nicht übersetzen (Fehler CS7036)."
-      en: "Second option: Without `?.`, the call crashes with a `NullReferenceException` as long as nobody has subscribed (the invocation list is then `null`). Third option: `EventHandler<T>` requires two arguments (`sender` and `e`); with only one, the code does not compile (error CS7036)."
+      de: "Erste Option: `EventHandler<T>` verlangt zwei Argumente (`sender` und `e`); mit nur einem lässt sich der Code nicht übersetzen (Fehler CS7036). Dritte Option: Ohne `?.` stürzt der Aufruf mit einer `NullReferenceException` ab, solange sich niemand angemeldet hat (die Aufrufliste ist dann `null`)."
+      en: "First option: `EventHandler<T>` requires two arguments (`sender` and `e`); with only one, the code does not compile (error CS7036). Third option: Without `?.`, the call crashes with a `NullReferenceException` as long as nobody has subscribed (the invocation list is then `null`)."
   - type: multipleChoice
     id: richtig-handler
     prompt:
@@ -246,12 +246,17 @@ items:
     options:
       - de: |
           ```csharp
-          static void Zeige(object? sender, MessEventArgs e)
+          static void Zeige(Sensor sender, MessEventArgs e)
               => Console.WriteLine(e.Wert);
           ```
       - de: |
           ```csharp
           static void Zeige(MessEventArgs e)
+              => Console.WriteLine(e.Wert);
+          ```
+      - de: |
+          ```csharp
+          static void Zeige(object? sender, MessEventArgs e)
               => Console.WriteLine(e.Wert);
           ```
       - de: |
@@ -262,30 +267,25 @@ items:
               return 0;
           }
           ```
-      - de: |
-          ```csharp
-          static void Zeige(Sensor sender, MessEventArgs e)
-              => Console.WriteLine(e.Wert);
-          ```
-    correct: [0]
+    correct: [2]
     explanation:
-      de: "Zweite Option: Es fehlt der `sender`-Parameter (CS0123). Dritte Option: Der Rückgabetyp muss `void` sein wie beim Delegaten (CS0407). Vierte Option: Der Delegat übergibt als ersten Parameter ein `object?`; eine Methode, die nur einen `Sensor` annimmt, könnte mit einem beliebigen Objekt aufgerufen werden und passt deshalb nicht (CS0123). Ein allgemeinerer Parametertyp wäre dagegen erlaubt (Kontravarianz)."
-      en: "Second option: The `sender` parameter is missing (CS0123). Third option: The return type must be `void`, like the delegate's (CS0407). Fourth option: The delegate passes an `object?` as its first parameter; a method that accepts only a `Sensor` could be called with an arbitrary object and therefore does not fit (CS0123). A more general parameter type, however, would be allowed (contravariance)."
+      de: "Erste Option: Der Delegat übergibt als ersten Parameter ein `object?`; eine Methode, die nur einen `Sensor` annimmt, könnte mit einem beliebigen Objekt aufgerufen werden und passt deshalb nicht (CS0123). Zweite Option: Es fehlt der `sender`-Parameter (CS0123). Vierte Option: Der Rückgabetyp muss `void` sein wie beim Delegaten (CS0407). Ein allgemeinerer Parametertyp wäre dagegen erlaubt (Kontravarianz)."
+      en: "First option: The delegate passes an `object?` as its first parameter; a method that accepts only a `Sensor` could be called with an arbitrary object and therefore does not fit (CS0123). Second option: The `sender` parameter is missing (CS0123). Fourth option: The return type must be `void`, like the delegate's (CS0407). A more general parameter type, however, would be allowed (contravariance)."
   - type: multipleChoice
     id: richtig-praedikat
     prompt:
       de: "Aus `List<int> zahlen = new() { 1, 2, 3, 4 };` sollen alle geraden Zahlen entfernt werden, sodass `zahlen` danach `1, 3` enthält. Welcher Code tut das?"
       en: "All even numbers are to be removed from `List<int> zahlen = new() { 1, 2, 3, 4 };` so that `zahlen` contains `1, 3` afterwards. Which code does that?"
     options:
-      - de: "`zahlen.RemoveAll(z => z % 2 == 0);`"
-      - de: "`zahlen.RemoveAll(z => z % 2);`"
       - de: |
           ```csharp
           foreach (var z in zahlen)
               if (z % 2 == 0) zahlen.Remove(z);
           ```
+      - de: "`zahlen.RemoveAll(z => z % 2 == 0);`"
       - de: "`zahlen.FindAll(z => z % 2 == 0);`"
-    correct: [0]
+      - de: "`zahlen.RemoveAll(z => z % 2);`"
+    correct: [1]
     explanation:
-      de: "Zweite Option: Das Prädikat muss `bool` liefern, `z % 2` ist ein `int` (Fehler CS1662). Dritte Option: Das Ändern der Liste während des `foreach` wirft eine `InvalidOperationException`. Vierte Option: `FindAll` liefert eine neue Liste mit den geraden Zahlen und verändert `zahlen` nicht; `1, 2, 3, 4` bleiben stehen."
-      en: "Second option: The predicate must return `bool`, but `z % 2` is an `int` (error CS1662). Third option: Modifying the list during `foreach` throws an `InvalidOperationException`. Fourth option: `FindAll` returns a new list with the even numbers and does not change `zahlen`; `1, 2, 3, 4` remain."
+      de: "Erste Option: Das Ändern der Liste während des `foreach` wirft eine `InvalidOperationException`. Dritte Option: `FindAll` liefert eine neue Liste mit den geraden Zahlen und verändert `zahlen` nicht; `1, 2, 3, 4` bleiben stehen. Vierte Option: Das Prädikat muss `bool` liefern, `z % 2` ist ein `int` (Fehler CS1662)."
+      en: "First option: Modifying the list during `foreach` throws an `InvalidOperationException`. Third option: `FindAll` returns a new list with the even numbers and does not change `zahlen`; `1, 2, 3, 4` remain. Fourth option: The predicate must return `bool`, but `z % 2` is an `int` (error CS1662)."

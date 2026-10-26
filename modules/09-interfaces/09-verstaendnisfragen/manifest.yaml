@@ -1,0 +1,330 @@
+id: interfaces-verstaendnisfragen
+title: { de: "Verständnisfragen", en: "Comprehension questions" }
+reading:
+  section: "9"
+  title: { de: "Interfaces", en: "Interfaces" }
+  printedPage: 609
+teaches:
+  - interfaces.explicit
+  - interfaces.struct-boxing
+  - iterators.yield
+  - interfaces.generic-math
+requires:
+  - interfaces.implement
+  - interfaces.as-type
+  - interfaces.multiple
+  - interfaces.icomparable
+  - inheritance.abstract-class
+items:
+  - type: open
+    id: mehrere-interfaces
+    prompt:
+      de: "`Kreis` erbt von `Figur` und soll außerdem `IComparable<Kreis>` und `ICloneable` erfüllen. Warum ist das mit Interfaces möglich, mit einer zweiten Basisklasse aber nicht? Was legt ein Interface fest, und was gibt eine abstrakte Klasse zusätzlich an ihre Erben weiter?"
+      en: "`Kreis` inherits from `Figur` and is also to fulfil `IComparable<Kreis>` and `ICloneable`. Why is that possible with interfaces but not with a second base class? What does an interface specify, and what does an abstract class additionally pass on to its subclasses?"
+  - type: open
+    id: explizit-wann
+    prompt:
+      de: "Was bedeutet es, ein Interface-Mitglied explizit zu implementieren (`int IMesser.Wert() => 2;`)? Nenne zwei Gründe, das zu tun, und erkläre, wie man ein explizit implementiertes Mitglied aufruft."
+      en: "What does it mean to implement an interface member explicitly (`int IMesser.Wert() => 2;`)? Give two reasons for doing so, and explain how you call an explicitly implemented member."
+  - type: open
+    id: foreach-protokoll
+    prompt:
+      de: "Was geschieht hinter den Kulissen, wenn `foreach (var x in sammlung)` läuft? Nenne die beteiligten Interfaces und Mitglieder in der Reihenfolge ihres Aufrufs. Was muss ein eigener Typ liefern, damit `foreach` für ihn funktioniert?"
+      en: "What happens behind the scenes when `foreach (var x in sammlung)` runs? Name the interfaces and members involved in the order they are called. What must a custom type provide so that `foreach` works for it?"
+  - type: open
+    id: yield-faul
+    prompt:
+      de: "Was bewirkt `yield return` in einer Methode mit dem Rückgabetyp `IEnumerable<int>`, und was nimmt dir der Compiler dabei ab? Erkläre, was mit \"Iteratoren sind faul\" gemeint ist, und welche Folge das für den Zeitpunkt hat, zu dem der Rumpf der Methode läuft."
+      en: "What does `yield return` do in a method with the return type `IEnumerable<int>`, and what does the compiler do for you? Explain what is meant by \"iterators are lazy\", and what follows from that for the moment at which the method body runs."
+  - type: open
+    id: generische-mathematik
+    prompt:
+      de: "In einer generischen Methode `Add<T>(T a, T b)` ist `a + b` ohne Einschränkung nicht erlaubt. Wie löst man das mit `IAdditionOperators<T, T, T>`, und welche Spracheigenschaft von Interfaces (seit C# 11) macht das möglich? Warum funktioniert dieselbe Methode dann für `int`, `double` und einen eigenen Typ wie `Bruch`?"
+      en: "In a generic method `Add<T>(T a, T b)`, `a + b` is not allowed without a constraint. How do you solve this with `IAdditionOperators<T, T, T>`, and which language feature of interfaces (since C# 11) makes it possible? Why does the same method then work for `int`, `double` and a custom type such as `Bruch`?"
+  - type: open
+    id: code-explizit
+    prompt:
+      de: |
+        Was gibt das Programm in den drei Zeilen aus? Begründe jede Zeile.
+
+        ```csharp
+        Kopf k = new Kopf();
+        IMesser m = k;
+        Console.WriteLine(k.Wert());
+        Console.WriteLine(m.Wert());
+        Console.WriteLine(((IGabel)k).Wert());
+
+        interface IMesser { int Wert(); }
+        interface IGabel { int Wert(); }
+        class Kopf : IMesser, IGabel
+        {
+            public int Wert() => 1;
+            int IMesser.Wert() => 2;
+        }
+        ```
+      en: |
+        What does the program print on its three lines? Justify each line.
+
+        ```csharp
+        Kopf k = new Kopf();
+        IMesser m = k;
+        Console.WriteLine(k.Wert());
+        Console.WriteLine(m.Wert());
+        Console.WriteLine(((IGabel)k).Wert());
+
+        interface IMesser { int Wert(); }
+        interface IGabel { int Wert(); }
+        class Kopf : IMesser, IGabel
+        {
+            public int Wert() => 1;
+            int IMesser.Wert() => 2;
+        }
+        ```
+  - type: open
+    id: code-struct-interface
+    prompt:
+      de: |
+        Was geben die beiden `WriteLine`-Zeilen aus? Warum unterscheiden sich die Zahlen?
+
+        ```csharp
+        Zaehler s = new Zaehler();
+        IZaehler t = s;
+        t.Erhoehe();
+        t.Erhoehe();
+        Console.WriteLine(s.N);
+        Console.WriteLine(t.N);
+
+        interface IZaehler { int N { get; } void Erhoehe(); }
+        struct Zaehler : IZaehler
+        {
+            public int N { get; private set; }
+            public void Erhoehe() => N++;
+        }
+        ```
+      en: |
+        What do the two `WriteLine` lines print? Why do the numbers differ?
+
+        ```csharp
+        Zaehler s = new Zaehler();
+        IZaehler t = s;
+        t.Erhoehe();
+        t.Erhoehe();
+        Console.WriteLine(s.N);
+        Console.WriteLine(t.N);
+
+        interface IZaehler { int N { get; } void Erhoehe(); }
+        struct Zaehler : IZaehler
+        {
+            public int N { get; private set; }
+            public void Erhoehe() => N++;
+        }
+        ```
+  - type: open
+    id: code-yield
+    prompt:
+      de: |
+        Was gibt das Programm aus, und in welcher Reihenfolge? Warum erscheint `Start` erst nach `vor foreach`?
+
+        ```csharp
+        var zahlen = Quadrate(3);
+        Console.WriteLine("vor foreach");
+        foreach (int q in zahlen) Console.WriteLine(q);
+
+        static IEnumerable<int> Quadrate(int n)
+        {
+            Console.WriteLine("Start");
+            for (int i = 1; i <= n; i++) yield return i * i;
+        }
+        ```
+      en: |
+        What does the program print, and in which order? Why does `Start` appear only after `vor foreach`?
+
+        ```csharp
+        var zahlen = Quadrate(3);
+        Console.WriteLine("vor foreach");
+        foreach (int q in zahlen) Console.WriteLine(q);
+
+        static IEnumerable<int> Quadrate(int n)
+        {
+            Console.WriteLine("Start");
+            for (int i = 1; i <= n; i++) yield return i * i;
+        }
+        ```
+  - type: open
+    id: code-icomparable
+    prompt:
+      de: |
+        Was gibt das Programm aus? Warum ist die Reihenfolge nach `Array.Sort` so, und was bedeutet die Zeile `... < 0` für die Zahlen 5 und 9?
+
+        ```csharp
+        P[] xs = { new P(3), new P(1), new P(2) };
+        Array.Sort(xs);
+        foreach (P p in xs) Console.Write(p.W + " ");
+        Console.WriteLine(new P(5).CompareTo(new P(9)) < 0);
+
+        class P : IComparable<P>
+        {
+            public int W;
+            public P(int w) { W = w; }
+            public int CompareTo(P? o) => o is null ? 1 : o.W.CompareTo(W);
+        }
+        ```
+      en: |
+        What does the program print? Why is the order after `Array.Sort` what it is, and what does the line `... < 0` mean for the numbers 5 and 9?
+
+        ```csharp
+        P[] xs = { new P(3), new P(1), new P(2) };
+        Array.Sort(xs);
+        foreach (P p in xs) Console.Write(p.W + " ");
+        Console.WriteLine(new P(5).CompareTo(new P(9)) < 0);
+
+        class P : IComparable<P>
+        {
+            public int W;
+            public P(int w) { W = w; }
+            public int CompareTo(P? o) => o is null ? 1 : o.W.CompareTo(W);
+        }
+        ```
+  - type: multipleChoice
+    id: icomparable-richtig
+    prompt:
+      de: |
+        Welche Klasse implementiert `IComparable<K>` korrekt, sodass `Array.Sort` für ein `K[]` funktioniert?
+      en: |
+        Which class implements `IComparable<K>` correctly, so that `Array.Sort` works for a `K[]`?
+    options:
+      - de: |
+          ```csharp
+          class K : IComparable<K>
+          {
+              public int W;
+              public int CompareTo(object o) => W.CompareTo(((K)o).W);
+          }
+          ```
+      - de: |
+          ```csharp
+          class K : IComparable<K>
+          {
+              public int W;
+              public bool CompareTo(K? o) => o is not null && W < o.W;
+          }
+          ```
+      - de: |
+          ```csharp
+          class K : IComparable<K>
+          {
+              public int W;
+              public int CompareTo(K? o) => o is null ? 1 : W.CompareTo(o.W);
+          }
+          ```
+      - de: |
+          ```csharp
+          class K : IComparable<K>
+          {
+              public int W;
+              int CompareTo(K? o) => o is null ? 1 : W.CompareTo(o.W);
+          }
+          ```
+    correct: [2]
+    explanation:
+      de: "Die erste Klasse liefert `CompareTo(object)`, das ist die Methode des alten nicht-generischen `IComparable`; `IComparable<K>` verlangt `CompareTo(K?)` (CS0535). Die zweite hat den Rückgabetyp `bool` statt `int` (CS0738); `CompareTo` muss negativ, 0 oder positiv liefern. Die vierte ist nicht `public`; Interface-Mitglieder sind öffentlich, eine nicht öffentliche Methode erfüllt sie nicht (CS0737). Die dritte ist richtig (9.2.1, Seite 640)."
+      en: "The first class provides `CompareTo(object)`, which is the method of the old non-generic `IComparable`; `IComparable<K>` requires `CompareTo(K?)` (CS0535). The second has the return type `bool` instead of `int` (CS0738); `CompareTo` must return negative, 0 or positive. The fourth is not `public`; interface members are public, and a non-public method does not fulfil them (CS0737). The third is correct (9.2.1, page 640)."
+  - type: multipleChoice
+    id: explizit-richtig
+    prompt:
+      de: |
+        `class C : IA, IB` — beide Interfaces verlangen `string Name()`. Über `IA` soll `"A"` herauskommen, über `IB` soll `"B"` herauskommen. Welcher Rumpf von `C` ist richtig?
+      en: |
+        `class C : IA, IB` — both interfaces require `string Name()`. Through `IA` the result is to be `"A"`, through `IB` it is to be `"B"`. Which body of `C` is correct?
+    options:
+      - de: |
+          ```csharp
+          public string Name() => "A";
+          ```
+      - de: |
+          ```csharp
+          public string IA.Name() => "A";
+          public string IB.Name() => "B";
+          ```
+      - de: |
+          ```csharp
+          public string Name() => "A";
+          public string Name() => "B";
+          ```
+      - de: |
+          ```csharp
+          string IA.Name() => "A";
+          string IB.Name() => "B";
+          ```
+    correct: [3]
+    explanation:
+      de: "Die erste Variante kompiliert, aber dieselbe Methode erfüllt beide Interfaces; über `IB` kommt ebenfalls `\"A\"` heraus. In der zweiten steht `public` an einer expliziten Implementierung, das ist nicht erlaubt (CS0106); explizite Implementierungen haben keinen Zugriffsmodifizierer. Die dritte deklariert zweimal dieselbe Signatur (CS0111). Die vierte ist richtig (9.4, Seite 646); aufrufbar sind beide nur über eine Referenz vom Typ `IA` bzw. `IB`."
+      en: "The first variant compiles, but the same method fulfils both interfaces; through `IB` the result is also `\"A\"`. The second puts `public` on an explicit implementation, which is not allowed (CS0106); explicit implementations have no access modifier. The third declares the same signature twice (CS0111). The fourth is correct (9.4, page 646); both can be called only through a reference of type `IA` or `IB`."
+  - type: multipleChoice
+    id: iterator-richtig
+    prompt:
+      de: |
+        Welche Methode liefert die Zahlen 1, 2, 3, …, `n` als `IEnumerable<int>`, sodass `foreach (int x in Bis(3))` die Zahlen 1, 2 und 3 durchläuft?
+      en: |
+        Which method returns the numbers 1, 2, 3, …, `n` as an `IEnumerable<int>`, so that `foreach (int x in Bis(3))` iterates over 1, 2 and 3?
+    options:
+      - de: |
+          ```csharp
+          static IEnumerable<int> Bis(int n)
+          {
+              for (int i = 0; i < n; i++) yield return i;
+          }
+          ```
+      - de: |
+          ```csharp
+          static int Bis(int n)
+          {
+              for (int i = 1; i <= n; i++) yield return i;
+          }
+          ```
+      - de: |
+          ```csharp
+          static IEnumerable<int> Bis(int n)
+          {
+              for (int i = 1; i <= n; i++) return i;
+          }
+          ```
+      - de: |
+          ```csharp
+          static IEnumerable<int> Bis(int n)
+          {
+              for (int i = 1; i <= n; i++) yield return i;
+          }
+          ```
+    correct: [3]
+    explanation:
+      de: "Die erste Methode kompiliert, liefert aber 0, 1, 2: Die Schleife beginnt bei 0 und endet vor `n`. In der zweiten ist der Rückgabetyp `int`; ein Iteratorblock muss `IEnumerable<T>` oder `IEnumerator<T>` liefern (CS1624). In der dritten steht `return i` statt `yield return i`; ein `int` lässt sich nicht als `IEnumerable<int>` zurückgeben (CS0029). Die vierte ist richtig (9.5.2, Seite 651)."
+      en: "The first method compiles but yields 0, 1, 2: the loop starts at 0 and stops before `n`. In the second, the return type is `int`; an iterator block must return `IEnumerable<T>` or `IEnumerator<T>` (CS1624). In the third, `return i` appears instead of `yield return i`; an `int` cannot be returned as an `IEnumerable<int>` (CS0029). The fourth is correct (9.5.2, page 651)."
+  - type: multipleChoice
+    id: generische-mathematik-richtig
+    prompt:
+      de: |
+        `using System.Numerics;` ist vorhanden. Welche generische Methode addiert zwei Werte beliebiger Typen, die den Operator `+` bereitstellen (`int`, `double`, `Bruch`)?
+      en: |
+        `using System.Numerics;` is present. Which generic method adds two values of any types that provide the `+` operator (`int`, `double`, `Bruch`)?
+    options:
+      - de: |
+          ```csharp
+          static T Add<T>(T a, T b) => a + b;
+          ```
+      - de: |
+          ```csharp
+          static T Add<T>(T a, T b) where T : IComparable<T> => a + b;
+          ```
+      - de: |
+          ```csharp
+          static T Add<T>(T a, T b) where T : IAdditionOperators<T, T, T> => a + b;
+          ```
+      - de: |
+          ```csharp
+          static double Add<T>(T a, T b) where T : struct => a + b;
+          ```
+    correct: [2]
+    explanation:
+      de: "Ohne Einschränkung (erste Variante) kennt der Compiler für `T` keinen Operator `+` (CS0019). `IComparable<T>` (zweite) verspricht nur Vergleichbarkeit, `struct` (vierte) nur, dass `T` ein Werttyp ist; beide stellen `+` nicht sicher (CS0019). `IAdditionOperators<T, T, T>` verlangt den statischen abstrakten Operator `+`; damit ist die dritte Variante richtig (9.1.3, Seite 625)."
+      en: "Without a constraint (first variant), the compiler knows no `+` operator for `T` (CS0019). `IComparable<T>` (second) promises only comparability, and `struct` (fourth) only that `T` is a value type; neither guarantees `+` (CS0019). `IAdditionOperators<T, T, T>` requires the static abstract operator `+`; the third variant is therefore correct (9.1.3, page 625)."

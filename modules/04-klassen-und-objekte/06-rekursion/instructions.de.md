@@ -1,7 +1,7 @@
 # Rekursion
 
 Lies im Buch Abschnitt **5.9.2 Rekursive Methoden** (Seite 382). Die
-Fakultät ist Aufgabe 5 in **5.15** (Seite 425).
+Fakultät ist Aufgabe 5 in **5.15** (Seite 427).
 
 Öffne `Bruch.cs`. `Kuerze()` ruft bereits `GgtRekursiv()` auf, das noch fehlt.
 Vervollständige die drei statischen Methoden **rekursiv**, also ohne

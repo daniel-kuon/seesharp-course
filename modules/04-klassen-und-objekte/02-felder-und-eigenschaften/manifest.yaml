@@ -29,7 +29,7 @@ items:
     prompt: { de: "Eine Eigenschaft ist so definiert: `public int Zaehler { get { return Zaehler; } set { zaehler = value; } }`. Was passiert beim Lesen von Zaehler?", en: "A property is defined as follows: `public int Zaehler { get { return Zaehler; } set { zaehler = value; } }`. What happens when `Zaehler` is read?" }
     options:
       - { de: "Der Getter ruft sich selbst endlos auf, bis der Stack überläuft (Stack overflow). Richtig wäre return zaehler; mit dem Feld.", en: "The getter calls itself endlessly until the stack overflows (stack overflow). The correct version would be `return zaehler;` with the field." }
-      - { de: "Es wird der Wert des Feldes zaehler geliefert.", en: "The value of the \"zaehner\" field is returned." }
+      - { de: "Es wird der Wert des Feldes zaehler geliefert.", en: "The value of the field `zaehler` is returned." }
       - { de: "Der Compiler meldet einen Fehler.", en: "The compiler reports an error." }
       - { de: "Es wird immer 0 geliefert.", en: "It always returns 0." }
     correct: [0]

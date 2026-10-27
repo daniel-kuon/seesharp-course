@@ -1,6 +1,6 @@
 # OOP Terms in the Source Code
 
-Read Section **5.1, “Overview, Historical Roots, Example”** (page 286), along with 5.1.3, “Toward a True Class” (page 293), in the book. The exercise corresponds to Exercise 7 in Section 5.15 (page 424).
+Read Section **5.1, “Overview, Historical Roots, Example”** (page 286), along with 5.1.3, “Toward a True Class” (page 293), in the book. The exercise corresponds to Exercise 7 in Section 5.15 (page 428).
 
 In the following short listing of the `Bruch` class, twelve items are highlighted. For each question, match each term with the correct highlight.
 
@@ -13,7 +13,10 @@ public class Bruch {                                        // (1)
         Zaehler = zpar; Nenner = npar; anzahl++;
     }
 
-    public int Zaehler { get; set; }                        // (5)
+    public int Zaehler {                                    // (5)
+        get { return zaehler; }
+        set { zaehler = value; }
+    }
 
     public int Nenner {
         get { return nenner; }

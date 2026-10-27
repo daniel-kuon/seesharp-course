@@ -8,7 +8,7 @@ Open `Uhrzeit.cs` and complete it:
 
 1. `Normiere(m)`: normalizes any number of minutes to the range 0 to 1439. Note: In C#, `-1 % 1440` equals `-1`; a negative remainder requires an additional `1440`.
 2. Both constructors normalize the values: `new Uhrzeit(25, 70)` is 02:10, `new Uhrzeit(-1, 0)` is 23:00, and `new Uhrzeit(1500)` is 01:00.
-3. The `Stunde` and `Minute` fields calculate their values based on the field (integer division and remainder).
+3. `Stunde` and `Minute` calculate their values from the field (integer division and remainder).
 4. Two overloads of the `Addiere` function: one with minutes and one with hours and minutes. The second one calls the first.
 5. `Text()` returns `"07:05"`. Tip: `$"{Stunde:D2}"` pads with zeros.
 6. The `operator +(Uhrzeit, int)` returns a **new** time; the original remains unchanged.

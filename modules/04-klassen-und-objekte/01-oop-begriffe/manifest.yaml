@@ -69,6 +69,6 @@ items:
     correct: [2]
   - type: multipleChoice
     id: klassendefinition
-    prompt: { de: "Welche Markierung zeigt den Kopf der Klassendefinition?", en: "Which marker indicates the beginning of the class definition?" }
+    prompt: { de: "Welche Markierung zeigt den Kopf der Klassendefinition?", en: "Which marker indicates the header of the class definition?" }
     options: [{ de: "(1)", en: "(1)" }, { de: "(4)", en: "(4)" }, { de: "(5)", en: "(5)" }, { de: "(10)", en: "(10)" }]
     correct: [0]

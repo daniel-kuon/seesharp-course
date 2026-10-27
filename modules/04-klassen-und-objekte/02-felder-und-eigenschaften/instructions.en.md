@@ -7,7 +7,7 @@ Open *`Bruch.cs`*. The fields *`zaehler`*, *`nenner`*, and *`etikett`* are prese
 1. The `Zaehler` property reads and writes the `zaehler` field.
 2. `Nenner`'s setter ignores the value 0 (in which case the denominator remains unchanged).
 3. `Etikett`'s setter accepts a maximum of 40 characters (`Substring`).
-4. `Kuerze()` shortens the fraction using the GCD (Euclidean, modulo variant from Level 3, using `Math.Abs` for negative values). A fraction with a numerator of 0 becomes 0/1.
+4. `Kuerze()` reduces the fraction using the GCD (Euclidean, modulo variant from Level 3, using `Math.Abs` for negative values). A fraction with a numerator of 0 becomes 0/1.
 5. `Addiere(Bruch b)` adds `b` to this fraction and then simplifies it.
 
 Then answer the question about the recursive getter.

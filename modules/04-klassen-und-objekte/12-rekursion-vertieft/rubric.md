@@ -4,7 +4,7 @@
 - `Potenz`: Wer `Potenz(basis, exponent / 2)` zweimal aufruft, statt das
   Ergebnis in einer Variablen zu halten, bekommt wieder exponentiellen
   Aufwand (der Test bleibt grün, die Idee ist verfehlt). Im Review zeigen
-  lassen. Ausblick: `long` läuft bei `2⁶³` über (Level 2, Überlauf).
+  lassen. Ausblick: `long` läuft bei `2⁶³` über (Level 3, Überlauf, 4.6).
 - `Binomial` ist absichtlich naiv: `Binomial(20, 10)` braucht schon rund
   370 000 Aufrufe. Gleiche Schwäche wie die naive Fibonacci-Fassung; der
   Ausweg (Zwischenergebnisse merken) braucht Arrays aus Level 6.

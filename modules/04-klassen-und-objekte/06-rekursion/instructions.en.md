@@ -1,6 +1,6 @@
 # Recursion
 
-Read Section **5.9.2**, **“Recursive Methods”** (page 382), in the book. The factorial is Exercise 5 in **Section 5.15** (page 425).
+Read Section **5.9.2**, **“Recursive Methods”** (page 382), in the book. The factorial is Exercise 5 in **Section 5.15** (page 427).
 
 Open `Bruch.cs`. `Kuerze()` already calls `GgtRekursiv()`, which is still missing. Complete the three static methods **recursively**, that is, without a loop:
 

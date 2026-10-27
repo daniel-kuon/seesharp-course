@@ -9,7 +9,7 @@ Mitglieder, Rekursion und zuletzt überladene Operatoren. Jede Übung baut auf d
 Stand der vorigen auf; der Sample-Ordner `Bruch/b0` bis `b7` des Buchs ist die
 Vorlage.
 
-## Begriffe (5.1, Seite 286; 5.15 Aufgabe 7, Seite 424)
+## Begriffe (5.1, Seite 286; 5.15 Aufgabe 7, Seite 428)
 
 Bevor du schreibst, solltest du im Quelltext benennen können, was du siehst:
 Instanzvariable (Feld), Klassenvariable (statisches Feld), Konstruktor,
@@ -27,7 +27,7 @@ anderen Startwert. Nach außen zeigt die Klasse **Eigenschaften** mit `get` und
 zugreifen, sonst ruft er sich endlos auf, bis der Stack überläuft (5.15
 Aufgabe 3, Seite 425). Automatisch implementierte Eigenschaften (`{ get; set; }`)
 ersparen das Feld; seit C# 14 erlaubt das Schlüsselwort `field` auch in ihnen
-einen Setter mit Prüfung (5.6, Seite 367).
+einen Setter mit Prüfung (5.5.2.2, Seite 365).
 
 ## Methoden und Überladung (5.3, Seite 308; 5.3.5, Seite 334)
 

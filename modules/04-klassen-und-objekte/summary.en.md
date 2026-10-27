@@ -9,7 +9,7 @@ members, recursion and finally overloaded operators. Every exercise builds on
 the state of the previous one; the book's sample folder `Bruch/b0` to `b7` is
 the template.
 
-## Terms (5.1, page 286; 5.15 exercise 7, page 424)
+## Terms (5.1, page 286; 5.15 exercise 7, page 428)
 
 Before you write code you should be able to name what you see in the source:
 instance variable (field), class variable (static field), constructor, instance
@@ -27,7 +27,7 @@ with `get` and `set`. The setter validates (`Nenner` must never become 0,
 itself, otherwise it calls itself endlessly until the stack overflows (5.15
 exercise 3, page 425). Automatically implemented properties (`{ get; set; }`)
 save you the field; since C# 14 the `field` keyword allows a validating setter
-in them too (5.6, page 367).
+in them too (5.5.2.2, page 365).
 
 ## Methods and overloading (5.3, page 308; 5.3.5, page 334)
 

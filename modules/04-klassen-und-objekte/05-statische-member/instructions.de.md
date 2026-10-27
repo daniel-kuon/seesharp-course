@@ -1,9 +1,10 @@
 # Statische Member
 
 Lies im Buch Abschnitt **5.8 Statische Member und Klassen** (Seite 373) bis
-5.8.4 (Statische Konstruktoren, Seite 377) und **5.6 Automatisch
-implementierte Eigenschaften statt expliziter Felder** (Seite 367) zum
-Schlüsselwort `field`.
+5.8.4 (Statische Konstruktoren, Seite 377) und zum Schlüsselwort `field`
+**5.5.2.2 Validierender set-Block ohne explizite Felddeklaration** (Seite 365)
+sowie **5.6 Automatisch implementierte Eigenschaften statt expliziter Felder**
+(Seite 367).
 
 Öffne `Bruch.cs`. Die Klasse verwendet jetzt automatisch implementierte
 Eigenschaften ohne eigene Felder. Vervollständige:

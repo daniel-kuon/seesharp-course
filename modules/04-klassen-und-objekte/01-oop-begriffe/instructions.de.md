@@ -2,7 +2,7 @@
 
 Lies im Buch Abschnitt **5.1 Überblick, historische Wurzeln, Beispiel**
 (Seite 286) mit 5.1.3 (Auf-Bruch zu echter Klasse, Seite 293). Die Aufgabe
-entspricht 5.15 Aufgabe 7 (Seite 424).
+entspricht 5.15 Aufgabe 7 (Seite 428).
 
 Im folgenden Kurzlisting der Klasse `Bruch` sind zwölf Stellen markiert.
 Ordne in den Fragen jedem Begriff die richtige Markierung zu.
@@ -16,7 +16,10 @@ public class Bruch {                                        // (1)
         Zaehler = zpar; Nenner = npar; anzahl++;
     }
 
-    public int Zaehler { get; set; }                        // (5)
+    public int Zaehler {                                    // (5)
+        get { return zaehler; }
+        set { zaehler = value; }
+    }
 
     public int Nenner {
         get { return nenner; }

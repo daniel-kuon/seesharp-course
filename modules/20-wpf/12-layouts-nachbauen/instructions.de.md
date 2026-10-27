@@ -49,7 +49,12 @@ Verhalten beim Verändern der Fenstergröße an, nicht auf Pixel.
   Rest füllt die Mitte.
 - Die Schnellfilter liegen in einem `WrapPanel`: Wird das Fenster schmaler,
   rutschen die Knöpfe in eine zweite Zeile.
-- Die drei Bereiche sind ein `Grid` mit drei Spalten und zwei `GridSplitter`.
-  Der Lesebereich (`*`) nimmt den Platz.
+- Die drei Bereiche sind ein `Grid` mit drei Spalten. Der Lesebereich (`*`) nimmt
+  den restlichen Platz.
+
+> **Deep Dive (optional):** `GridSplitter` steht nicht im Buch. Ein `GridSplitter` in einer
+> eigenen schmalen Spalte zwischen zwei Bereichen lässt den Benutzer die Spaltenbreiten mit
+> der Maus verschieben. Setze zwei davon zwischen die drei Bereiche; ohne sie ist die
+> Aufgabe ebenfalls gelöst.
 
 Beantworte außerdem: Warum ist `Canvas` für beide Fenster ungeeignet?

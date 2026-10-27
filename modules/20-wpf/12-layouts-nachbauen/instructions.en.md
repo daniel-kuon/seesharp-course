@@ -40,6 +40,8 @@ Recreate two windows. The sketches are just guidelines: What matters is how the 
 
 - The window is a `DockPanel`: the menu bar is at the top, the status bar is at the bottom, and the rest fills the center.
 - The quick filters are contained in a `WrapPanel`: If the window becomes narrower, the buttons shift to a second row.
-- The three areas are a `Grid` with three columns and two `GridSplitter` controls. The reading area (`*`) takes up the remaining space.
+- The three areas are a `Grid` with three columns. The reading area (`*`) takes up the remaining space.
+
+> **Deep Dive (optional):** `GridSplitter` is not in the book. A `GridSplitter` in its own narrow column between two areas lets the user drag the column widths with the mouse. Put two of them between the three areas; the exercise is also solved without them.
 
 Also, answer the following: Why is `Canvas` unsuitable for both windows?

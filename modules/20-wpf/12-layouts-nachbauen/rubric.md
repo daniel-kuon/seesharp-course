@@ -12,7 +12,7 @@ Reine Sichtprüfung am laufenden Fenster (Windows); es gibt keine Tests.
   mehrspaltige Aufteilung (`Auto`, `*`), `DockPanel` für Kopf- und Fußbereiche,
   `StackPanel` für Reihen von Schaltflächen, `WrapPanel` für umbrechende
   Reihen.
-- `GridSplitter` ist nicht im Buch behandelt; die Funktion ist ein
+- Bonus (Deep Dive): `GridSplitter` ist nicht im Buch behandelt; die Funktion ist ein
   Zusatz. Wer Spalten ohne Trenner baut, hat die Kernaufgabe gelöst.
 - Die Skizzen liegen als Text in der Aufgabenstellung (kein Bildmaterial);
   auf Wunsch kann die Betreuung eigene Screenshots dazugeben.

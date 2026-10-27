@@ -9,7 +9,7 @@ Open `ViewModelBase.cs`:
 
 Open `UmrechnerViewModel.cs` (exchange rate: 1 euro = 1.95583 DM, numbers with commas):
 
-3. `EuroText` and `DmText` are the texts of the two input fields. If the user changes one of them, the other field displays the converted amount rounded to two decimal places (commercial rounding, `"F2"`).
+3. `EuroText` and `DmText` are the texts of the two input fields. If the user changes one of them, the other field displays the converted amount rounded to two decimal places (commercial rounding, `"F2"`). To read and write numbers with a decimal comma, the starter provides the fields `Deutsch` and `Stil` (not in the book, given here): `decimal.TryParse(text, Stil, Deutsch, out var zahl)` and `zahl.ToString("F2", Deutsch)`.
 4. **No ping-pong:** If the user sets `EuroText = "10"`, the ViewModel must not overwrite `EuroText` via `DmText` (`"10"` would become `"10,00"`). Therefore, set the partner field using `SetProperty`. Each affected property reports its change exactly once.
 5. Invalid text sets `Fehlermeldung` and leaves the partner field unchanged. Empty text clears the partner field without generating an error. Valid text clears the error message.
 6. `HatFehler` is **calculated** (`Fehlermeldung` is not empty) and is reported together with `Fehlermeldung` whenever the latter changes.

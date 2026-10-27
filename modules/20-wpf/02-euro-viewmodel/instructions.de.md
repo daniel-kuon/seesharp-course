@@ -22,7 +22,10 @@ laufen die Tests überall.
 
 3. `EuroText` und `DmText` sind die Texte der beiden Eingabefelder. Ändert
    der Benutzer einen davon, bekommt das andere Feld den umgerechneten Betrag
-   mit zwei Nachkommastellen (kaufmännisch gerundet, `"F2"`).
+   mit zwei Nachkommastellen (kaufmännisch gerundet, `"F2"`). Zum Lesen und Schreiben
+   der Zahlen mit Komma stehen im Starter die Felder `Deutsch` und `Stil` bereit (nicht im
+   Buch, hier vorgegeben): `decimal.TryParse(text, Stil, Deutsch, out var zahl)` und
+   `zahl.ToString("F2", Deutsch)`.
 4. **Kein Ping-Pong:** Setzt der Benutzer `EuroText = "10"`, darf das ViewModel
    dabei nicht über `DmText` wieder `EuroText` überschreiben (aus `"10"` würde
    `"10,00"`). Setze das Partnerfeld deshalb über `SetProperty` auf dem

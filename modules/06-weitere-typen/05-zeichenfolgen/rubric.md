@@ -7,7 +7,7 @@
 - Hat der Trainee `List<string>` für die Zeilen genommen? Das ist erlaubt
   (Level 10 vertieft es), aber `ToArray()` am Ende muss er erklären können.
 - `Glueckszahl`: `char` + `char` ergibt `int`; wer `Convert.ToInt32`
-  braucht, hat 4.3.11/4 (Level 2) vergessen.
+  braucht, hat 4.5.7.1 (Seite 229, Level 2) vergessen.
 - Quizfrage zur Unveränderlichkeit ist der Klassiker `s.ToUpper();` ohne
   Zuweisung; im Code-Review darauf achten.
 

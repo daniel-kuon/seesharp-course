@@ -1,6 +1,6 @@
 # A float matrix with transposition
 
-Read Section **6.2.9, “Multidimensional Arrays”** (page 467), and Exercise 4 in Section **6.10** (page 541) in the book. For the two-dimensional indexer, see **5.12.3** (page 397); for tuple assignment, see **6.6** (page 486).
+Read Section **6.2.9, “Multidimensional Arrays”** (page 467), and Exercise 4 in Section **6.10** (page 541) in the book. For the two-dimensional indexer, see **5.12.3** (page 397); for tuple assignment, see **6.6.4** (page 491).
 
 `FloatMatrix` encapsulates a rectangular `float[,]` array. Open `FloatMatrix.cs` and complete the following:
 

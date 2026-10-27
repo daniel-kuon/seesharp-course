@@ -23,11 +23,11 @@ items:
     testProject: "EnumsTupel Tests/EnumsTupel.Tests.csproj"
   - type: multipleChoice
     id: enum-cast
-    prompt: { de: "enum Ampel { Rot, Gelb, Gruen } — was ergibt (Ampel)7?", en: "enum TrafficLight { Red, Yellow, Green } — what is the value of (TrafficLight)7?" }
+    prompt: { de: "enum Ampel { Rot, Gelb, Gruen } — was ergibt (Ampel)7?", en: "enum Ampel { Rot, Gelb, Gruen } — what does (Ampel)7 give?" }
     options:
-      - { de: "Der Cast gelingt und liefert einen Ampel-Wert, hinter dem die 7 steht; Enum.IsDefined meldet ihn als nicht definiert.", en: "The cast is successful and returns a traffic-light value followed by the number 7; Enum.IsDefined reports it as undefined." }
+      - { de: "Der Cast gelingt und liefert einen Ampel-Wert, hinter dem die 7 steht; Enum.IsDefined meldet ihn als nicht definiert.", en: "The cast succeeds and returns an Ampel value whose underlying number is 7; Enum.IsDefined reports it as not defined." }
       - { de: "Eine InvalidCastException zur Laufzeit.", en: "An InvalidCastException at runtime." }
       - { de: "Einen Compilerfehler.", en: "A compiler error." }
-      - { de: "Ampel.Gruen, weil auf den letzten Wert gerundet wird.", en: "`Ampel.Gruen`, because it is rounded to the last value." }
+      - { de: "Ampel.Gruen, weil auf den letzten Wert gerundet wird.", en: "`Ampel.Gruen`, because it is rounded down to the last value." }
     correct: [0]
-    explanation: { de: "Ein Enum ist zur Laufzeit nur eine Ganzzahl (6.4, Seite 480). Deshalb lohnt sich die Validierung im Setter mit Enum.IsDefined.", en: "At runtime, an enum is simply an integer (6.4, page 480). That's why it's worth validating it in the setter using `Enum.IsDefined`." }
+    explanation: { de: "Ein Enum ist zur Laufzeit nur eine Ganzzahl (6.4, Seite 480). Die explizite Typumwandlung (Ampel)7 erlaubt der Compiler, und zur Laufzeit wird weder geprüft noch gerundet; es entsteht keine Ausnahme. Deshalb lohnt sich die Validierung im Setter mit Enum.IsDefined.", en: "At runtime, an enum is simply an integer (6.4, page 480). The compiler allows the explicit conversion `(Ampel)7`, and at runtime nothing is checked or rounded; no exception occurs. That's why it's worth validating in the setter using `Enum.IsDefined`." }

@@ -158,8 +158,8 @@ items:
       - de: "`(a, b) = (a, b);`"
     correct: [2]
     explanation:
-      de: "`a = b; b = a;` überschreibt zuerst `a`; danach haben beide den alten Wert von `b`. `a, b = b, a;` ist in C# kein gültiger Ausdruck (Compilerfehler CS1001); die Schreibweise kennt nur Python. `(a, b) = (a, b);` weist jedem Wert sich selbst zu und ändert nichts. Die Tupelzuweisung `(a, b) = (b, a);` wertet die rechte Seite zuerst vollständig aus (6.6, Seite 486)."
-      en: "`a = b; b = a;` overwrites `a` first, so both end up with the old value of `b`. `a, b = b, a;` is not valid C# (compiler error CS1001); that notation only exists in Python. `(a, b) = (a, b);` assigns each value to itself and changes nothing. The tuple assignment `(a, b) = (b, a);` evaluates the whole right-hand side first (6.6, page 486)."
+      de: "`a = b; b = a;` überschreibt zuerst `a`; danach haben beide den alten Wert von `b`. `a, b = b, a;` ist in C# kein gültiger Ausdruck (Compilerfehler CS1001); die Schreibweise stammt aus Python. `(a, b) = (a, b);` weist jedem Wert sich selbst zu und ändert nichts. Die Tupelzuweisung `(a, b) = (b, a);` wertet die rechte Seite zuerst vollständig aus (6.6.4, Seite 491)."
+      en: "`a = b; b = a;` overwrites `a` first, so both end up with the old value of `b`. `a, b = b, a;` is not valid C# (compiler error CS1001); that notation comes from Python. `(a, b) = (a, b);` assigns each value to itself and changes nothing. The tuple assignment `(a, b) = (b, a);` evaluates the whole right-hand side first (6.6.4, page 491)."
   - type: multipleChoice
     id: schleife
     prompt:
@@ -235,5 +235,5 @@ items:
         en: "When deconstructing, each element must be assigned to its own named variable; `_` is not allowed."
     correct: [0]
     explanation:
-      de: "Tupel als Rückgabetyp und das Dekonstruieren stehen in 6.6.4 und 6.6.5 (Seite 491 und 493). Ein Tupel darf Elemente verschiedener Typen enthalten, z. B. `(string, bool)`, und `_` verwirft einen Wert, den man nicht braucht."
-      en: "Tuples as a return type and deconstruction are covered in 6.6.4 and 6.6.5 (pages 491 and 493). A tuple may contain elements of different types, e.g. `(string, bool)`, and `_` discards a value you do not need."
+      de: "Tupel als Rückgabetyp und das Dekonstruieren stehen in 6.6.4 und 6.6.5 (Seite 491 und 493). Ein Tupel darf Elemente verschiedener Typen enthalten, z. B. `(string, bool)`, und `_` verwirft einen Wert, den man nicht braucht. `out`-Parameter sind nur eine schlechter lesbare Alternative (6.6.5, Seite 494)."
+      en: "Tuples as a return type and deconstruction are covered in 6.6.4 and 6.6.5 (pages 491 and 493). A tuple may contain elements of different types, e.g. `(string, bool)`, and `_` discards a value you do not need. `out` parameters are merely a less readable alternative (6.6.5, page 494)."

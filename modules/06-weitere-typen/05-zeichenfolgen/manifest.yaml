@@ -30,7 +30,7 @@ items:
       - { de: "ABC, denn ToUpper ändert den String.", en: "ABC, because ToUpper changes the string." }
       - { de: "Ein Compilerfehler, weil der Rückgabewert nicht verwendet wird.", en: "A compiler error because the return value is not used." }
     correct: [0]
-    explanation: { de: "String-Methoden verändern nie das Objekt (6.3.1.1, Seite 473). Richtig wäre s = s.ToUpper();.", en: "String methods never modify the object (6.3.1.1, page 473). The correct syntax would be `s = s.ToUpper();`." }
+    explanation: { de: "String-Methoden verändern nie das Objekt (6.3.1.1, Seite 473). Richtig wäre s = s.ToUpper();. Ein Compilerfehler entsteht nicht: C# verlangt nicht, dass ein Rückgabewert verwendet wird.", en: "String methods never modify the object (6.3.1.1, page 473). The correct code would be `s = s.ToUpper();`. There is no compiler error: C# does not require a return value to be used." }
   - type: multipleChoice
     id: stringbuilder
     prompt: { de: "In einer Schleife werden 50 000 Zeichen an einen Text angehängt. Warum ist StringBuilder.Append hier viel schneller als s += c?", en: "In a loop, 50,000 characters are appended to a string. Why is `StringBuilder.Append` much faster here than `s += c`?" }
@@ -39,4 +39,4 @@ items:
       - { de: "StringBuilder benutzt mehrere Threads.", en: "StringBuilder uses multiple threads." }
       - { de: "Der Compiler optimiert Append, += aber nicht.", en: "The compiler optimizes `Append`, but not `+=`." }
     correct: [0]
-    explanation: { de: "Unveränderliche Strings machen jede Verkettung zu einer Kopie (6.3.2, Seite 479). Das Buch misst den Unterschied im Projekt StringBuilder.", en: "Immutable strings cause every concatenation to result in a copy (6.3.2, page 479). The book illustrates the difference in the StringBuilder project." }
+    explanation: { de: "Unveränderliche Strings machen jede Verkettung zu einer Kopie (6.3.2, Seite 479). Das Buch misst den Unterschied im Projekt StringBuilder (Seite 480). Mit Threads oder einer besonderen Compiler-Optimierung hat das nichts zu tun.", en: "Immutable strings cause every concatenation to result in a copy (6.3.2, page 479). The book measures the difference in the StringBuilder project (page 480). It has nothing to do with threads or a special compiler optimization." }

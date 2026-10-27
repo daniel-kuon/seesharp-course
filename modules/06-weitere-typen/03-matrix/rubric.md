@@ -6,7 +6,7 @@
 - Beim nicht quadratischen Fall müssen `Zeilen` und `Spalten` vor dem
   Anlegen des neuen Arrays getauscht werden (oder man benutzt die alten
   Werte sauber). Tupelzuweisung als eleganteste Form zeigen.
-- `float[,]` gegen `float[][]` (6.2.10) abgrenzen: rechteckig vs. gezackt.
+- `float[,]` gegen `float[][]` (6.2.10) abgrenzen: rechteckig vs. "ausgesägt" (jagged).
 - `Anzeigen()` liefert einen String statt zu drucken; kurz begründen
   (Testbarkeit).
 

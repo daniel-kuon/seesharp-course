@@ -6,7 +6,7 @@ In Level 3, you checked individual numbers for primality. The sieve finds **all*
 
 Open `Primzahlen.cs` and implement the following:
 
-1. `BisZu(int grenze)`: Create a `bool[grenze + 1]` array (index = number), set entries starting at 2 to `true`, filter, then copy the remaining numbers in ascending order into an `int[]` of the appropriate length. Return an empty array if `grenze < 2`.
+1. `BisZu(int grenze)`: Create a `bool[grenze + 1]` array (index = number), set entries starting at 2 to `true`, run the sieve, then copy the remaining numbers in ascending order into an `int[]` of the appropriate length. Return an empty array if `grenze < 2`.
 2. `Anzahl(int grenze)`: the number of prime numbers up to `grenze` (there are 168 up to 1000).
 
-Tip: You can skip the multiples of a base `b`, starting with `b * b`; smaller multiples have already been eliminated. The tests also check the limit of 1,000,000; a loop up to that limit for each base would be too slow.
+Tip: You can start crossing out the multiples of a base `b` at `b * b`; smaller multiples have already been eliminated. You only need bases up to the square root of the limit. The tests also check the limit 1,000,000; without these shortcuts that takes noticeably longer.

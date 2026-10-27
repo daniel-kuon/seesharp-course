@@ -2,7 +2,7 @@
 
 Lies im Buch Abschnitt **6.2.9 Mehrdimensionale Arrays** (Seite 467) und
 Aufgabe 4 in **6.10** (Seite 541). Für den zweidimensionalen Indexer siehe
-**5.12.3** (Seite 397), für die Tupelzuweisung **6.6** (Seite 486).
+**5.12.3** (Seite 397), für die Tupelzuweisung **6.6.4** (Seite 491).
 
 `FloatMatrix` kapselt ein rechteckiges Array `float[,]`. Öffne
 `FloatMatrix.cs` und vervollständige:

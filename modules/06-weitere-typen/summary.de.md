@@ -22,12 +22,13 @@ Ein Array hat eine feste Länge und einen Elementtyp; `new int[49]` liefert
 lauter Nullen, `Length` und der Index von 0 bis `Length - 1` steuern die
 Schleife. Arrays sind **Referenztypen**: `Mische(vektor, rnd)` kann das Array
 des Aufrufers verändern, ohne etwas zurückzugeben. Die Klasse `Array` bringt
-`Sort`, `IndexOf`, `BinarySearch` und `Copy` mit (6.2.6, Seite 463). Drei
+`IndexOf`, `Sort` und `BinarySearch` mit (6.2.6, Seite 463), dazu `Resize`
+(6.2.2, Seite 458). Drei
 Algorithmen aus den Übungen 6.10 solltest du von Hand können: das **Sieb des
 Eratosthenes** über ein `bool[]`, **Fisher-Yates** zum Mischen und
 **Selection Sort**. Mehrdimensionale Arrays (`float[,]`, 6.2.9, Seite 467)
 sind rechteckig; der zweidimensionale Indexer `m[i, j]` macht eine Matrix
-bequem. Ein `Random` mit festem Seed liefert immer dieselbe Folge, das macht
+bequem. Ein `Random` mit festem Initialisierungswert (Seed) liefert immer dieselbe Folge, das macht
 Zufall testbar (6.2.4, Seite 459).
 
 ## Zeichenfolgen (6.3, Seite 472)
@@ -35,16 +36,19 @@ Zufall testbar (6.2.4, Seite 459).
 `string` ist **unveränderlich**: `s.ToUpper()` ändert `s` nicht, sondern
 liefert einen neuen String; `s += c` in einer Schleife kopiert jedes Mal den
 ganzen Text. Für den Aufbau langer Texte gibt es `StringBuilder` mit `Append`
-(6.3.2, Seite 479). Die wichtigsten `String`-Methoden sind `Split`,
-`Substring`, `IndexOf`, `Insert`, `Trim`, `Contains`; mit `foreach (char c
+(6.3.2, Seite 479). Das Buch zeigt in 6.3.1.2 (Seite 473) u. a. `IndexOf`,
+`Substring`, `Replace`, `StartsWith`, `ToUpper`/`ToLower` und `CompareTo`;
+`Split`, `Insert` und `Trim` aus den Übungen stehen nicht im Buch, sondern in
+der BCL-Dokumentation. Mit `foreach (char c
 in s)` läuft man über die Zeichen, und ein `char` rechnet direkt als `int`.
 
 ## Enumerationen (6.4, Seite 480)
 
 Ein `enum` gibt einer Handvoll Ganzzahlen Namen. Der Cast `(Temperament)13`
 gelingt immer, auch wenn es keinen solchen Wert gibt; `Enum.IsDefined` prüft
-das, ein validierender Setter wehrt es ab. `ToString()` liefert den Namen,
-`Enum.Parse`/`TryParse` lesen ihn (mit `ignoreCase`), `(int)t` holt die Zahl.
+das, ein validierender Setter wehrt es ab. `(int)t` holt die Zahl. Über das
+Buch hinaus: `ToString()` liefert den Namen, `Enum.Parse`/`TryParse` lesen
+ihn (mit `ignoreCase`).
 
 ## Tupel (6.6, Seite 486)
 
@@ -68,8 +72,9 @@ macht daraus echte Werttypen. Ihre Vererbung folgt in Level 7.
 
 ## Anonyme Klassen und using-Alias (6.5 und 6.8, Seite 483 und 504)
 
-`new { Name = "Otto", Alter = 35 }` erzeugt ein Objekt eines namenlosen Typs
-mit Nur-Lese-Eigenschaften; die Variable muss `var` sein. Das ist für kurze
+`new { Name = "Otto", Alter = 35 }` erzeugt ein Objekt einer anonymen Klasse,
+deren Namen nur der Compiler vergibt (in C# nicht schreibbar), mit
+Nur-Lese-Eigenschaften; die Variable muss `var` sein. Das ist für kurze
 Zwischenergebnisse gedacht, in Level 13 (LINQ) wirst du es ständig sehen.
 `using Koordinate = (double X, double Y);` gibt einem langen Typ einen
 kurzen Namen für eine Datei, ohne einen neuen Typ zu erzeugen.

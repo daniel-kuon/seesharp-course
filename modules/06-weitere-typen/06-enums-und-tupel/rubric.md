@@ -7,8 +7,9 @@
   Anleitung; prüfen, ob der Trainee sie verstanden oder nur umschifft hat.
 - Benannte Tupel-Elemente: `an.First` statt `an.Item1`; Discards (`_`) beim
   Dekonstruieren zeigen.
-- `Deconstruct` mit `out`-Parametern: erster Kontakt mit `out`; kurz
-  erklären, warum kein Rückgabewert nötig ist.
+- `Deconstruct` mit `out`-Parametern: Im Buch stehen sie in 5.3.1.3.2.2
+  (Seite 317), geübt werden sie hier zum ersten Mal; kurz erklären, warum
+  kein Rückgabewert nötig ist.
 
 Modellantwort: `solution/` bzw. `samples/Weitere .NETte Typen/Enumerationen`
 und `Struktur-Tupel/*`.

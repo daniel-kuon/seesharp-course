@@ -31,7 +31,7 @@ items:
       - { de: "Der zweite Wert wird als 1.0 (double) gespeichert.", en: "The second value is stored as 1.0 (double)." }
       - { de: "== ist für object nicht erlaubt; es wird immer False geliefert.", en: "`==` is not allowed for `object`; `False` is always returned." }
     correct: [0]
-    explanation: { de: "Boxing erzeugt pro Zuweisung ein neues Objekt. o1.Equals(o2) vergleicht dagegen den Inhalt und liefert True (6.1.6, Seite 450; 6.10 Aufgabe 1).", en: "Boxing creates a new object per assignment. `o1.Equals(o2)`, on the other hand, compares the content and returns `True` (6.1.6, page 450; 6.10 Exercise 1)." }
+    explanation: { de: "Boxing erzeugt pro Zuweisung ein neues Objekt. o1.Equals(o2) vergleicht dagegen den Inhalt und liefert True (6.1.6, Seite 450; 6.10 Aufgabe 1). object kann sehr wohl Zahlen aufnehmen (eben per Boxing), beide Werte bleiben int, und == ist für object erlaubt: Es vergleicht die Referenzen.", en: "Boxing creates a new object per assignment. `o1.Equals(o2)`, on the other hand, compares the content and returns `True` (6.1.6, page 450; 6.10 Exercise 1). An `object` can certainly hold numbers (by boxing them), both values stay `int`, and `==` is allowed for `object`: it compares the references." }
   - type: multipleChoice
     id: boxing-erkennen
     prompt: { de: "In welcher Zeile findet Boxing statt? int i = 7; object o = i; int j = (int)o; double d = i;", en: "In which line does boxing occur? int i = 7; object o = i; int j = (int)o; double d = i;" }
@@ -50,4 +50,4 @@ items:
       - { de: "meinPunkt wurde um (1; 1) verschoben.", en: "`meinPunkt` was moved by (1; 1)." }
       - { de: "Ein Compilerfehler, weil Strukturen nicht als Parameter erlaubt sind.", en: "A compiler error because structures are not allowed as parameters." }
     correct: [0]
-    explanation: { de: "Werttypen werden als Kopie übergeben (6.1.1, Seite 434). Wer das Original ändern will, braucht ref oder eine Instanzmethode auf der Variablen selbst.", en: "Value types are passed by copy (6.1.1, page 434). To modify the original, you need to use `ref` or an instance method on the variable itself." }
+    explanation: { de: "Werttypen werden als Kopie übergeben (6.1.1, Seite 434). Wer das Original ändern will, braucht einen ref-Parameter oder eine Instanzmethode auf der Variablen selbst. Strukturen sind als Parameter selbstverständlich erlaubt; die Methode verschiebt nur ihre Kopie.", en: "Value types are passed by copy (6.1.1, page 434). To modify the original, you need a `ref` parameter or an instance method on the variable itself. Structures are of course allowed as parameters; the method only moves its copy." }

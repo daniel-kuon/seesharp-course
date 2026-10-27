@@ -8,15 +8,15 @@ A `struct` looks like a class but is a **value type**: `var p3 = p1;` copies all
 
 ## Arrays (6.2, page 455)
 
-An array has a fixed length and a fixed element type; `new int[49]` returns all zeros, and `Length` and the index ranging from 0 to `Length - 1` control the loop. Arrays are **reference types**: `Mische(vektor, rnd)` can modify the caller’s array without returning anything. The `Array` class provides `Sort`, `IndexOf`, `BinarySearch`, and `Copy` (6.2.6, page 463). You should be able to implement three algorithms from Exercise 6.10 by hand: the **Sieve of Eratosthenes** using a `bool[]`, **Fisher-Yates** for shuffling, and **Selection Sort**. Multidimensional arrays (`float[,]`, 6.2.9, page 467) are rectangular; the two-dimensional indexer `m[i, j]` makes working with matrices convenient. A `Random` with a fixed seed always produces the same sequence, which makes randomness testable (6.2.4, page 459).
+An array has a fixed length and a fixed element type; `new int[49]` returns all zeros, and `Length` and the index ranging from 0 to `Length - 1` control the loop. Arrays are **reference types**: `Mische(vektor, rnd)` can modify the caller’s array without returning anything. The `Array` class provides `IndexOf`, `Sort`, and `BinarySearch` (6.2.6, page 463), plus `Resize` (6.2.2, page 458). You should be able to implement three algorithms from the exercises in 6.10 by hand: the **Sieve of Eratosthenes** using a `bool[]`, **Fisher-Yates** for shuffling, and **Selection Sort**. Multidimensional arrays (`float[,]`, 6.2.9, page 467) are rectangular; the two-dimensional indexer `m[i, j]` makes working with matrices convenient. A `Random` with a fixed initial value (seed) always produces the same sequence, which makes randomness testable (6.2.4, page 459).
 
 ## Strings (6.3, page 472)
 
-A `string` is **immutable**: `s.ToUpper()` does not modify `s` but returns a new string; `s += c` in a loop copies the entire text each time. `StringBuilder` with `Append` is available for constructing long texts (6.3.2, page 479). The most important `String` methods are `Split`, `Substring`, `IndexOf`, `Insert`, `Trim`, and `Contains`; `foreach (char c in s)` iterates through the characters, and a `char` is treated directly as an `int`.
+A `string` is **immutable**: `s.ToUpper()` does not modify `s` but returns a new string; `s += c` in a loop copies the entire text each time. `StringBuilder` with `Append` is available for constructing long texts (6.3.2, page 479). In 6.3.1.2 (page 473) the book shows, among others, `IndexOf`, `Substring`, `Replace`, `StartsWith`, `ToUpper`/`ToLower`, and `CompareTo`; `Split`, `Insert`, and `Trim` used in the exercises are not in the book but in the BCL documentation. `foreach (char c in s)` iterates through the characters, and a `char` is treated directly as an `int`.
 
 ## Enumerations (6.4, page 480)
 
-An `enum` assigns names to a handful of integers. The cast `(Temperament)13` always succeeds, even if no such value exists; `Enum.IsDefined` checks for this, and a validating setter prevents it. `ToString()` returns the name, `Enum.Parse` and `TryParse` read it (with `ignoreCase`), and `(int)t` retrieves the number.
+An `enum` assigns names to a handful of integers. The cast `(Temperament)13` always succeeds, even if no such value exists; `Enum.IsDefined` checks for this, and a validating setter prevents it. `(int)t` retrieves the number. Beyond the book: `ToString()` returns the name, and `Enum.Parse` and `TryParse` read it (with `ignoreCase`).
 
 ## Tuples (6.6, page 486)
 
@@ -28,6 +28,6 @@ A tuple `(string First, string Last, bool FirstPalin, bool LastPalin)` returns m
 
 ## Anonymous Classes and `using` Aliases (6.5 and 6.8, pages 483 and 504)
 
-`new { Name = "Otto", Alter = 35 }` creates an object of an unnamed type with read-only properties; the variable must be declared as `var`. This is intended for short-lived intermediate results; you'll see it all the time in Level 13 (LINQ). `using Koordinate = (double X, double Y);` gives a long type a short name for a file without creating a new type.
+`new { Name = "Otto", Alter = 35 }` creates an object of an anonymous class whose name is assigned by the compiler (it cannot be written in C#), with read-only properties; the variable must be declared as `var`. This is intended for short-lived intermediate results; you'll see it all the time in Level 13 (LINQ). `using Koordinate = (double X, double Y);` gives a long type a short name for a file without creating a new type.
 
-Further reading in the book: 6.1 through 6.8 (pages 431 through 505); 6.9 (RSS reader with WPF) is not part of the course. The exercises in 6.10 (page 537) serve as templates for Sieb, Lotto, Matrix, Glückszahl, and line breaks.
+Further reading in the book: 6.1 through 6.8 (pages 431 through 505); 6.9 (RSS reader with WPF) is not part of the course. The exercises in 6.10 (page 537) serve as templates for the sieve, lotto, matrix, lucky number, and line wrapping.

@@ -9,8 +9,9 @@ Anonyme Klassen** (Seite 483) und **6.8 using-Aliasdirektive** (Seite 504).
 `init`-Eigenschaften, Konstruktor und einer handgeschriebenen `Deconstruct`.
 Ein positionaler Record bekommt das alles geschenkt:
 
-1. Ersetze die Klasse durch `public record Artikel(string Name, int Menge)`.
-   Lösche Konstruktor, Eigenschaften und `Deconstruct`; der Compiler
+1. Ersetze den Klassenkopf durch `public record Artikel(string Name, int Menge)`
+   und behalte den Rumpf mit `MitMenge` und `Plus`. Lösche Konstruktor,
+   Eigenschaften und `Deconstruct`; der Compiler
    erzeugt sie, dazu `Equals`, `GetHashCode`, `==`, `!=` und ein
    `ToString()` der Form `Artikel { Name = Apfel, Menge = 3 }`.
 2. `MitMenge(int menge)` und `Plus(int zusatz)` liefern Kopien mit

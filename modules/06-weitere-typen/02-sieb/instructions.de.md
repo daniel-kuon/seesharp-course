@@ -20,5 +20,5 @@ Zahl als Basis genommen, bis die Basis größer als die Wurzel der Grenze ist.
    1000 sind es 168).
 
 Tipp: Die Vielfachen einer Basis `b` kannst du ab `b * b` streichen, kleinere
-Vielfache sind schon weg. Die Tests prüfen auch die Grenze 1 000 000, eine
-Schleife bis zur Grenze pro Basis wäre zu langsam.
+Vielfache sind schon weg. Basen brauchst du nur bis zur Wurzel der Grenze. Die Tests prüfen
+auch die Grenze 1 000 000; ohne diese Abkürzungen dauert das spürbar länger.

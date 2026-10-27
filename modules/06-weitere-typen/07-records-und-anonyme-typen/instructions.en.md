@@ -4,7 +4,7 @@ Read Section **6.7 Record Data Types** (page 495) in the book, with 6.7.1 (Defin
 
 Open `Artikel.cs`. In the starter, `Artikel` is an ordinary class with `init` properties, a constructor, and a hand-written `Deconstruct` method. A positional record gets all of this for free:
 
-1. Replace the class with `public record Artikel(string Name, int Menge)`. Delete the constructor, properties, and `Deconstruct`; the compiler will generate them, along with `Equals`, `GetHashCode`, `==`, `!=`, and a `ToString()` method in the form `Artikel { Name = Apfel, Menge = 3 }`.
+1. Replace the class header with `public record Artikel(string Name, int Menge)` and keep the body with `MitMenge` and `Plus`. Delete the constructor, properties, and `Deconstruct`; the compiler will generate them, along with `Equals`, `GetHashCode`, `==`, `!=`, and a `ToString()` method in the form `Artikel { Name = Apfel, Menge = 3 }`.
 2. `MitMenge(int menge)` and `Plus(int zusatz)` return copies with a modified Menge: `this with { Menge = … }`. The original remains unchanged; records are value-oriented here, just like structures.
 
 In `Program.cs`, try checking what `a == b` returns before and after the refactoring.

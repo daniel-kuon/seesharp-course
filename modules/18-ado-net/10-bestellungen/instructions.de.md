@@ -15,7 +15,9 @@ Konstanten; das Schema steht im Kommentar):
    `Menge * Preis` über alle Positionen aller Bestellungen des Kunden), nur Kunden
    mit Bestellungen, höchster Umsatz zuerst.
 2. **`KundenOhneBestellung`**: Spalte `Name` der Kunden, die nie bestellt haben, nach
-   Name sortiert. Tipp: `LEFT JOIN` auf `Bestellung` und danach `WHERE ... IS NULL`.
+   Name sortiert. Tipp: `LEFT JOIN` auf `Bestellung` und danach `WHERE ... IS NULL`. Anders als der
+   `INNER JOIN` aus 19.6.4.3 behält ein `LEFT JOIN` jede Zeile der linken Tabelle; wo
+   rechts nichts passt, sind die Spalten der rechten Tabelle NULL.
 3. **`Top3Produkte`**: Spalten `Produkt` und `Menge` (Summe der bestellten Menge) der
    drei meistbestellten Produkte; bei gleicher Menge nach Produktname.
    SQLite kennt `LIMIT 3` statt `TOP 3`.

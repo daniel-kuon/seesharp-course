@@ -24,7 +24,7 @@
     von `Microsoft.Data.Sqlite` nicht erkennen (Frage: Was ist das Pooling, warum
     räumen die Tests mit `ClearAllPools` auf?).
 - Gesprächsfrage: Warum liefert `ExecuteNonQuery` bei `UPDATE` die Zahl der Zeilen und
-  bei `CREATE TABLE` etwas Bedeutungsloses (`0`/`-1`)? Wozu nutzt man die Zahl
+  bei `CREATE TABLE` etwas Bedeutungsloses (`0`, oder bei `Microsoft.Data.Sqlite` nach `IF NOT EXISTS` sogar die Zahl des vorigen Befehls)? Wozu nutzt man die Zahl
   (Prüfung, ob der Kontakt überhaupt existierte)?
 - Zur offenen Frage: `DBNull.Value` ist das Singleton, mit dem ADO.NET „kein Wert in der
   Datenbank“ darstellt, weil `null` in ADO.NET „Parameter nicht gesetzt“ bzw. „keine

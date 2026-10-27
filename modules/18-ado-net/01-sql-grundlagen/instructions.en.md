@@ -1,6 +1,6 @@
 # SQL Basics with SQLite
 
-Read Chapter **19.6**, "**SQL,"** starting on page 1296 (especially sections 19.6.2 through 19.6.4). The book uses SQL Server, but we’re working with **SQLite**: no server—the database is stored in memory. The commands are almost the same. Here are some differences you’ll encounter:
+Read **19.6 SQL** in the book, starting on page 1296 (especially sections 19.6.2 through 19.6.4). The book uses SQL Server, but we’re working with **SQLite**: no server—the database is stored in memory. The commands are almost the same. Here are some differences you’ll encounter:
 
 | SQL Server (Book) | SQLite |
 |---|---|
@@ -8,11 +8,21 @@ Read Chapter **19.6**, "**SQL,"** starting on page 1296 (especially sections 19.
 | `SELECT TOP 3 ...` | `SELECT ... LIMIT 3` |
 | Column types: `NVARCHAR(50)`, `MONEY`, `DECIMAL` | `TEXT`, `REAL`, `INTEGER` (SQLite uses loose typing) |
 
+You need a few things here that the book does not show:
+
+- `UNIQUE` after a column forbids duplicate values (a column constraint like `NOT NULL`
+  and `CHECK` from 19.6.2.1).
+- `HAVING condition` follows `GROUP BY` and filters the **groups**; unlike in `WHERE`,
+  the condition may contain aggregate functions (`HAVING COUNT(*) > 1`).
+- A **subquery** is a `SELECT` in parentheses inside another command, for example
+  `WHERE KategorieId = (SELECT Id FROM Kategorie WHERE Name = 'Werkzeug')`.
+- `NOT EXISTS (SELECT ...)` is true if the subquery returns no row.
+
 Open `Skripte.cs`. The static class `Skripte` contains SQL statements; you fill them in. The tests run them against a fresh database (with foreign keys enabled) and compare the results.
 
 1. **`Schema`**: two tables.
-   - `Kategorie(Id, Name)`: `Id` is the primary key; `Name` is text, never empty, and unique (`UNIQUE`).
-   - `Artikel(Id, Name, Preis, KategorieId)`: `Id` is the primary key, `Name` is text and never empty, `Preis` is a floating-point number with a `CHECK (Preis >= 0)` constraint, and `KategorieId` is a foreign key that references `Kategorie(Id)`.
+   - `Kategorie(Id, Name)`: `Id` is the primary key; `Name` is text, never NULL, and unique (`UNIQUE`).
+   - `Artikel(Id, Name, Preis, KategorieId)`: `Id` is the primary key, `Name` is text and never NULL (`NOT NULL`), `Preis` is a floating-point number with a `CHECK (Preis >= 0)` constraint, and `KategorieId` is a foreign key that references `Kategorie(Id)`.
 2. **`Daten`**: Insert these rows using `INSERT` (the IDs are predefined):
 
    | Kategorie | Id | | Artikel | Id | Preis | KategorieId |

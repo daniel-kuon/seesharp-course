@@ -5,7 +5,7 @@ des Buches (Seite 1257) führt in Datenbanken und in **ADO.NET** ein, die .NET-B
 für Datenbankzugriffe. Das Buch arbeitet mit dem SQL Server (`Northwind.mdf`); die
 Übungen hier verwenden **SQLite** im Speicher mit dem Paket `Microsoft.Data.Sqlite`.
 Es braucht keinen Server, und jeder Test bekommt seine eigene frische Datenbank. Die
-Kapitel zu SSMS und Azure Data Studio (19.3 bis 19.5) entfallen.
+Abschnitte zu Visual Studio, SSMS und Azure Data Studio (19.3 bis 19.5) entfallen.
 
 ## Relationale Datenbanken und SQL (19.2, Seite 1264; 19.6, Seite 1296)
 
@@ -18,8 +18,9 @@ Datenbank fehlerhafte Daten selbst abweist.
 **SQL** hat drei Teile: Datendefinition (`CREATE TABLE`), Datenmanipulation
 (`INSERT`, `UPDATE`, `DELETE`) und Abfragen mit `SELECT`. Abfragen filtert man mit
 `WHERE`, sortiert mit `ORDER BY`, verknüpft Tabellen mit `JOIN ... ON` und wertet mit
-Aggregatfunktionen (`COUNT`, `SUM`, `AVG`) und `GROUP BY` aus; `HAVING` filtert die
-Gruppen (19.6.4, Seite 1302). Dialekte unterscheiden sich: SQLite schreibt
+Aggregatfunktionen (`COUNT`, `SUM`, `AVG`) und `GROUP BY` aus (19.6.4, Seite 1302).
+Über das Buch hinaus gehen `HAVING` (filtert die Gruppen), `UNIQUE`, `LEFT JOIN` und
+Unterabfragen; die Übungen erklären sie dort, wo sie gebraucht werden. Dialekte unterscheiden sich: SQLite schreibt
 `LIMIT 3` statt `TOP 3` und kommt mit `INTEGER PRIMARY KEY` ohne `IDENTITY` aus.
 
 ## ADO.NET und das Providermodell (19.7.1 und 19.7.2, Seite 1307)

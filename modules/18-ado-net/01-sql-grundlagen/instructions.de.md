@@ -11,15 +11,25 @@ begegnen:
 | `SELECT TOP 3 ...` | `SELECT ... LIMIT 3` |
 | Spaltentypen `NVARCHAR(50)`, `MONEY`, `DECIMAL` | `TEXT`, `REAL`, `INTEGER` (SQLite typisiert locker) |
 
+Einiges brauchst du hier, was das Buch nicht zeigt:
+
+- `UNIQUE` hinter einer Spalte verbietet doppelte Werte (wie `NOT NULL` und `CHECK`
+  aus 19.6.2.1 eine Spaltenrestriktion).
+- `HAVING bedingung` steht hinter `GROUP BY` und filtert die **Gruppen**; anders als
+  in `WHERE` darf die Bedingung Aggregatfunktionen enthalten (`HAVING COUNT(*) > 1`).
+- Eine **Unterabfrage** ist ein `SELECT` in Klammern innerhalb eines anderen Befehls,
+  etwa `WHERE KategorieId = (SELECT Id FROM Kategorie WHERE Name = 'Werkzeug')`.
+- `NOT EXISTS (SELECT ...)` ist wahr, wenn die Unterabfrage keine Zeile liefert.
+
 Öffne `Skripte.cs`. Die statische Klasse `Skripte` enthält SQL-Texte; du füllst
 sie aus. Die Tests führen sie gegen eine frische Datenbank aus (mit eingeschalteten
 Fremdschlüsseln) und vergleichen die Ergebnisse.
 
 1. **`Schema`**: zwei Tabellen.
-   - `Kategorie(Id, Name)`: `Id` ist Primärschlüssel, `Name` ist Text, nie leer
+   - `Kategorie(Id, Name)`: `Id` ist Primärschlüssel, `Name` ist Text, nie NULL
      und eindeutig (`UNIQUE`).
    - `Artikel(Id, Name, Preis, KategorieId)`: `Id` ist Primärschlüssel, `Name`
-     ist Text und nie leer, `Preis` ist eine Gleitkommazahl mit
+     ist Text und nie NULL (`NOT NULL`), `Preis` ist eine Gleitkommazahl mit
      `CHECK (Preis >= 0)`, `KategorieId` verweist als Fremdschlüssel auf
      `Kategorie(Id)`.
 2. **`Daten`**: füge diese Zeilen mit `INSERT` ein (die Ids sind vorgegeben):

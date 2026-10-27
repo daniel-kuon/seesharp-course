@@ -1,6 +1,6 @@
 # Connection, Commands, and Parameters
 
-Read **sections 19.7.2 through 19.7.5** in the book, especially **19.7.5 DbCommand** (page 1323): `ExecuteNonQuery`, `ExecuteScalar`, Parameter. The book uses `SqlConnection` for SQL Server; we use `SqliteConnection` from `Microsoft.Data.Sqlite` (the classes are derived from the same base classes, `DbConnection` and `DbCommand`, and the methods have the same names).
+Read **sections 19.7.2 through 19.7.5** in the book, especially **19.7.5 DbCommand** (page 1323): `ExecuteNonQuery`, `ExecuteScalar`, parameters. The book uses `SqlConnection` for SQL Server; we use `SqliteConnection` from `Microsoft.Data.Sqlite` (the classes are derived from the same base classes, `DbConnection` and `DbCommand`, and the methods have the same names).
 
 Open `Adressbuch.cs`. The `Adressbuch` class manages the `Kontakt` table (`Id`, `Name`, `Telefon`) via an **open connection that belongs to the caller**: You neither open nor close it here, but create a separate command in each method (in a `using` statement). All values go into the command as **parameters**, never via string concatenation.
 

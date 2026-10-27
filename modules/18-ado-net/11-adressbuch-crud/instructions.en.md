@@ -5,7 +5,7 @@ Reread **19.7.5 DbCommand** (page 1323) and **19.7.15 DbDataReader** (page 1363)
 1. `Neu(name, telefon)`: Insert a contact and return the **new ID** (`SELECT last_insert_rowid()` or `INSERT ... RETURNING Id`).
 2. `Aendern(id, name, telefon)`: `UPDATE`; `true` if the contact existed.
 3. `Loeschen(id)`: `DELETE`; `true` if the contact existed.
-4. Search for `Suche(teil)`: all contacts whose name contains `teil`, sorted by name, including those without a phone number (`null`).
+4. `Suche(teil)`: all contacts whose name contains `teil`, sorted by name, including those without a phone number (`null`).
 
 All values must be included as parameters in the command, never in the SQL text. A `null` for the phone number becomes `DBNull.Value`; a NULL in the database becomes `null` again when read.
 

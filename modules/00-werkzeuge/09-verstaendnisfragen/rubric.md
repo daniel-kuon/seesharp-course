@@ -33,7 +33,7 @@ Typischer Irrtum: `in Name` erscheine nach `SeeSharp` oder gar nicht, oder der R
 
 Kernpunkte:
 - **Syntaxfehler:** verstößt gegen die Sprachregeln (fehlendes Semikolon, Tippfehler im Namen). Der Compiler meldet ihn mit Datei, Zeile, Spalte und Code (`CSxxxx`); es entsteht kein Programm.
-- **Laufzeitfehler:** Das Programm baut und startet, bricht aber beim Ausführen mit einer Ausnahme ab (Beispiel: Division durch 0, Zugriff außerhalb eines Arrays, Datei fehlt).
+- **Laufzeitfehler:** Das Programm baut und startet, bricht aber beim Ausführen mit einer Ausnahme ab (Beispiel: ganzzahlige Division durch 0, Zugriff außerhalb eines Arrays, Datei fehlt). Das Buch (3.1.6) zählt solche Abstürze zu den Logikfehlern; wer sie so einordnet, liegt richtig.
 - **Logikfehler:** Das Programm läuft ohne Absturz durch, liefert aber ein falsches Ergebnis (Beispiel: falsche Formel, `<` statt `<=`, falscher Text). Man findet ihn nur durch Testen, Vergleichen mit dem erwarteten Ergebnis oder im Debugger.
 - Der Trainee sagt, wie man jede Art bemerkt: Compiler-Fehlerliste, Absturzmeldung, falsche Ausgabe oder roter Test.
 
@@ -53,8 +53,9 @@ Typischer Irrtum: Es erscheine `Hallo`, weil die Methode „etwas zurückgibt“
 ## ausgabedateien
 
 Kernpunkte:
-- Mindestens nötig: die **`.dll`** (enthält den IL-Code und die Metadaten, also das eigentliche Programm), die **`.exe`** (Starthilfe für Windows, die die Laufzeit lädt) und die **`.runtimeconfig.json`** (sagt der Laufzeitumgebung, welche .NET-Version das Programm braucht).
-- Weglassen kann man die **`.pdb`**: Sie enthält Debug-Informationen und wird nur vom Debugger gebraucht.
+- Unverzichtbar: die **`.dll`** (enthält den IL-Code und die Metadaten, also das eigentliche Programm) und die **`.runtimeconfig.json`** (sagt der Laufzeitumgebung, welche .NET-Version das Programm braucht; ohne sie scheitert der Start, Buch Seite 75).
+- Die **`.exe`** ist nur eine Starthilfe für Windows (Doppelklick, Aufruf per Namen), die die Laufzeit lädt. Ohne sie startet `dotnet Programm.dll` das Programm. Wer die `.exe` mitliefert, damit die Kollegin bequem starten kann, antwortet ebenfalls richtig.
+- Weglassen kann man die **`.pdb`**: Sie enthält Debug-Informationen und wird zum Ausführen nicht gebraucht.
 - Der Zielrechner braucht die passende .NET-Laufzeit; der Ordner `obj/` gehört nicht dazu (Zwischenergebnisse).
 
 Typische Irrtümer: Die `.exe` allein genüge; die `.pdb` enthalte das Programm; `obj/` müsse mitgeliefert werden; in der `.exe` stehe Maschinencode.

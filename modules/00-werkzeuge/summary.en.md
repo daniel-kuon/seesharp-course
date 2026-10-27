@@ -10,11 +10,11 @@ The SDK includes a compiler, a runtime environment, and the `dotnet` command-lin
 
 `dotnet new console -n Hallo` creates a console project: a project file named `Hallo.csproj` and a source code file. The project file describes what is being built (target framework, output type), while the `.cs` files contain the code. A **solution** (`.sln` or `.slnx`) groups multiple projects together; Rider opens both solutions and projects.
 
-`dotnet build` compiles the source code into IL code and stores the result in `bin/`; `obj/` contains only intermediate results and can be deleted at any time. `dotnet run` builds and runs the application in a single step. The following files must be deployed from the `bin/` directory: the `.dll` file containing the IL code, the `.exe` file as a startup helper for Windows, and the `.runtimeconfig.json` file, which tells the runtime environment which .NET version the program requires. The `.pdb` file is intended solely for the debugger.
+`dotnet build` compiles the source code into IL code and stores the result in `bin/`; `obj/` contains only intermediate results and can be deleted at any time. `dotnet run` builds and runs the application in a single step. Indispensable from `bin/` are the `.dll` file containing the IL code and the `.runtimeconfig.json` file, which tells the runtime environment which .NET version the program requires. The `.exe` file is only a convenient launcher for Windows; without it, `dotnet Hallo.dll` starts the program (page 75). The `.pdb` file supports debugging.
 
 ## Reading Program Errors (3.1.6, page 76)
 
-The book distinguishes between three types of errors: The compiler reports **syntax errors** by providing the filename, line number, column number, and a code such as `CS1002`; the program doesn’t even compile. **Runtime errors** occur during execution and terminate the program with an exception. **Logical errors** run through the program but produce incorrect results; they can only be detected through testing or using the debugger. Get into the habit of reading the line number first and then the error code when you encounter a compiler error; the message is almost always more precise than it appears at first glance.
+The book distinguishes two types of errors: The compiler reports **syntax errors** by providing the filename, line number, column number, and a code such as `CS1002`; no program is produced at all. **Logic errors** (semantic errors) go unnoticed by the compiler: the program behaves differently than expected, for example produces wrong results, hangs in an endless loop, or crashes with a **runtime error** (an exception). Logic errors can only be found through testing or with the debugger. Get into the habit of reading the line number first and then the error code when you encounter a compiler error; the message is almost always more precise than it appears at first glance.
 
 ## The Process in SeeSharp
 
@@ -22,15 +22,15 @@ Each programming exercise in SeeSharp consists of a **starter project**, which y
 
 1. Open the exercise in SeeSharp, read the instructions, and read the section of the book mentioned.
 2. Click “Open in Rider”; Rider will open the file containing the task.
-3. Write the code, press `Strg+F5`, or click the Run button to test it.
+3. Write the code, then press `Ctrl+F5` or click the Run button to try it out.
 4. In SeeSharp, click “Submit.” SeeSharp copies your code to a clean directory, runs the tests, and shows whether each test passed.
-5. Reviewing red tests: The test name indicates what was expected; the message shows the expected value and the actual value. Correct the test and resubmit it.
+5. Reviewing red tests: The test name indicates what was expected; the message shows the expected value and the actual value. Fix your code and resubmit.
 
 You can run the tests in the "Starter" folder directly in Rider (right-click the test project, then select "Run Unit Tests"). However, only the copy that SeeSharp runs counts toward the evaluation.
 
-## Stops in Rider
+## Breakpoints in Rider
 
-The book describes the debugger for Visual Studio (3.3.9, page 126). In Rider, you set a breakpoint by clicking to the left of the line number, start debugging by clicking the bug icon (Debug), and view the current values in the “Variables” window. `F10` executes the next line; `F11` jumps into a method call. Try this out right away in the first exercise: set a breakpoint in `Main()`, start debugging, and view the variables.
+The book describes the debugger for Visual Studio (3.3.5.4, page 98, and in detail 5.3.4, page 329). In Rider, you set a breakpoint by clicking to the left of the line number, start debugging by clicking the bug icon (Debug), and view the current values in the “Variables” window. `F10` executes the next line; `F11` jumps into a method call. Try this out right away in the first exercise: set a breakpoint in `Main()`, start debugging, and view the variables.
 
 ## What is expected of you in this level
 

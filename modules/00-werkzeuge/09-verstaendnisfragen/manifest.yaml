@@ -112,8 +112,8 @@ items:
   - type: open
     id: fehlerarten
     prompt:
-      de: "Das Buch unterscheidet Syntaxfehler, Laufzeitfehler und Logikfehler. Erkläre jede Art in ein bis zwei Sätzen, nenne je ein Beispiel und sage, woran du sie bemerkst."
-      en: "The book distinguishes syntax errors, runtime errors and logic errors. Explain each kind in one or two sentences, give an example of each, and say how you notice it."
+      de: "Das Buch unterscheidet Syntaxfehler und Logikfehler; einen Absturz mit Laufzeitfehler zählt es zu den Logikfehlern. Erkläre Syntaxfehler, Laufzeitfehler (Absturz) und Logikfehler mit falschem Ergebnis in je ein bis zwei Sätzen, nenne je ein Beispiel und sage, woran du sie bemerkst."
+      en: "The book distinguishes syntax errors and logic errors; it counts a crash with a runtime error among the logic errors. Explain syntax errors, runtime errors (crashes) and logic errors with a wrong result in one or two sentences each, give an example of each, and say how you notice it."
   - type: open
     id: rueckgabe-ohne-ausgabe
     prompt:

@@ -6,7 +6,7 @@ Read section **3.1.6**, "**Program Errors"** (page 76): The compiler reports syn
 
 The `Abschied` project cannot be built. The `Abschied.cs` file contains **four compiler errors** and **one logic error**. Build the project, read the error list from top to bottom, and for each error, note down the code (`CS…`) and what it means before you fix it. Rebuild after each correction.
 
-When the project is under construction, the following shall apply:
+Once the project builds, the following must hold:
 
 - `Text()` returns `Tschüss, SeeSharp!`
 - `Unterschrift()` returns `Bis morgen!` (with an exclamation point; only the test detects this error)

@@ -4,7 +4,7 @@ This exercise checks whether your build chain is working: Rider opens the projec
 
 Open `Hallo.cs`. The `Hallo` class has a `Main` method that already calls `Gruss()`. Complete the static method `Gruss()` so that it returns exactly the text `Hallo, echt .NET hier!`
 
-Run the program once using `Strg+F5` to see the output. Then set a breakpoint in `Main()` and run the program in debug mode.
+Run the program once using `Ctrl+F5` to see the output. Then set a breakpoint in `Main()` and run the program in debug mode.
 
 The following tests must be passed:
 

@@ -27,18 +27,20 @@ Solutions und Projekte gleichermaßen.
 
 `dotnet build` übersetzt den Quellcode in IL-Code und legt das Ergebnis unter
 `bin/` ab; `obj/` enthält nur Zwischenergebnisse und darf jederzeit gelöscht
-werden. `dotnet run` baut und startet in einem Schritt. Ausgeliefert werden muss
-aus `bin/` die `.dll` mit dem IL-Code, die `.exe` als Starthilfe für Windows und
-die `.runtimeconfig.json`, die der Laufzeitumgebung sagt, welche .NET-Version
-das Programm braucht. Die `.pdb`-Datei dient nur dem Debugger.
+werden. `dotnet run` baut und startet in einem Schritt. Unverzichtbar sind aus
+`bin/` die `.dll` mit dem IL-Code und die `.runtimeconfig.json`, die der
+Laufzeitumgebung sagt, welche .NET-Version das Programm braucht. Die `.exe` ist
+nur eine bequeme Starthilfe für Windows; ohne sie startet `dotnet Hallo.dll` das
+Programm (Seite 75). Die `.pdb`-Datei dient der Fehlersuche.
 
 ## Programmfehler lesen (3.1.6, Seite 76)
 
-Das Buch unterscheidet drei Fehlerarten: **Syntaxfehler** meldet der Compiler
+Das Buch unterscheidet zwei Fehlerarten: **Syntaxfehler** meldet der Compiler
 mit Dateiname, Zeile, Spalte und einem Code wie `CS1002`; das Programm entsteht
-gar nicht erst. **Laufzeitfehler** treten beim Ausführen auf und beenden das
-Programm mit einer Ausnahme. **Logikfehler** laufen durch, liefern aber falsche
-Ergebnisse; sie findet man nur mit Tests oder dem Debugger. Gewöhne dir an, bei
+gar nicht erst. **Logikfehler** (Semantikfehler) bemerkt der Compiler nicht:
+Das Programm verhält sich anders als erwartet, liefert z. B. falsche Ergebnisse,
+hängt in einer Endlosschleife oder stürzt mit einem **Laufzeitfehler** (einer
+Ausnahme) ab. Logikfehler findet man nur mit Tests oder dem Debugger. Gewöhne dir an, bei
 einem Compilerfehler zuerst die Zeile und dann den Fehlercode zu lesen; die
 Meldung ist fast immer präziser, als sie auf den ersten Blick wirkt.
 
@@ -63,7 +65,8 @@ die SeeSharp ausführt.
 
 ## Haltepunkte in Rider
 
-Das Buch beschreibt den Debugger für Visual Studio (3.3.9, Seite 126). In Rider
+Das Buch beschreibt den Debugger für Visual Studio (3.3.5.4, Seite 98, und
+ausführlich 5.3.4, Seite 329). In Rider
 setzt du einen Haltepunkt durch Klick links neben die Zeilennummer, startest mit
 dem Käfer-Symbol (Debug) und siehst im Fenster „Variables“ die aktuellen Werte.
 `F10` führt die nächste Zeile aus, `F11` springt in einen Methodenaufruf hinein.

@@ -1,7 +1,7 @@
 # Compilerfehler beheben
 
-Lies im Buch Abschnitt **3.1.6 Programmfehler** (Seite 76) über Syntax-,
-Laufzeit- und Logikfehler.
+Lies im Buch Abschnitt **3.1.6 Programmfehler** (Seite 76) über Syntax- und
+Logikfehler.
 
 Das Projekt `Reparatur` lässt sich nicht bauen. In `Hallo.cs` stecken **vier
 Fehler**. Baue das Projekt in Rider (`Strg+F5` oder Build > Build Solution),

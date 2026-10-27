@@ -23,6 +23,6 @@ Ausnahme:
 
 Die Tests prüfen Ausnahmetyp, Eigenschaften und dass ein fehlgeschlagener
 Aufruf die Kontostände nicht verändert: `Abheben_ueber_das_Guthaben_wirft_GuthabenZuNiedrigException_mit_Fehlbetrag`,
-`GuthabenZuNiedrigException_ist_eine_InvalidOperationException_mit_Fehlbetrag`,
+`GuthabenZuNiedrig_ist_eine_InvalidOperationException_mit_Fehlbetrag`,
 `Ueberweisen_an_null_wirft_ArgumentNullException_und_aendert_nichts` und
 `Ueberweisen_ohne_Deckung_laesst_beide_Konten_unveraendert`.

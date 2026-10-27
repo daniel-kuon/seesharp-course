@@ -2,7 +2,7 @@ id: ausnahmen-eigene-ausnahme
 title: { de: "Eigene Ausnahmeklasse mit Zusatzinformationen", en: "Custom exception class with additional information" }
 reading:
   section: "13.7"
-  title: { de: "Ausnahmen definieren", en: "Define Exceptions" }
+  title: { de: "Ausnahmen definieren", en: "Defining Exceptions" }
   printedPage: 916
 teaches:
   - exceptions.custom-exception

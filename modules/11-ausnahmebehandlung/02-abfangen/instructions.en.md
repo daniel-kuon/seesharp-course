@@ -1,6 +1,6 @@
 # Handling Exceptions
 
-Read section **13.3**, **“The try Statement**,” in the book, especially **13.3.1** (page 890) on catch blocks, **13.3.2** (page 899) on execution sequences, and **13.5** (page 911) on the hierarchy of BCL exceptions.
+Read section **13.3**, **“Catching Exceptions**,” in the book, especially **13.3.1 “The try Statement”** (page 890) on catch blocks, **13.3.2** (page 899) on execution sequences, and **13.5** (page 911) on the hierarchy of BCL exceptions.
 
 Open *`Taschenrechner.cs`*. **The code won't compile at first.** That's on purpose: Read the compiler's error message; it will tell you what's wrong.
 
@@ -11,7 +11,7 @@ Open *`Taschenrechner.cs`*. **The code won't compile at first.** That's on purpo
    - Any other `ArithmeticException`: `"Rechenfehler"`.
 
    An unknown operator is a programming error on the part of the caller: The `ArgumentException` should be propagated outward and not swallowed by an overly general `catch`. Fix the catch blocks: the order, the block that’s too broad, and the missing block for `ArithmeticException`, the common base class of `OverflowException` and `DivideByZeroException`. The `ArithmeticException` block remains the last one; no test triggers it.
-2. `SummeAusText(text)` splits `"1;2;x;4"` by semicolons and adds the numbers. Each part has its own `try`/`catch` block so that an error in one part does not stop the others. The function returns the sum, the number of errors, and a list of the exception type names (`ex.GetType().Name`, e.g., `"FormatException"`) in the order in which they occurred.
+2. `SummeAusText(text)` splits `"1;2;x;4"` by semicolons (empty parts are skipped) and adds the numbers. `FormatException` and `OverflowException` (number too large) count as errors. Each part has its own `try`/`catch` block so that an error in one part does not stop the others. The function returns the sum, the number of errors, and a list of the exception type names (`ex.GetType().Name`, e.g., `"FormatException"`) in the order in which they occurred.
 
 ## Quiz Text: Sequences (Textbook Exercise 13.8, No. 2)
 

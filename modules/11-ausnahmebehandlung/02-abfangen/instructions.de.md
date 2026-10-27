@@ -1,6 +1,6 @@
 # Ausnahmen abfangen
 
-Lies im Buch **13.3 Die try-Anweisung**, besonders **13.3.1** (Seite 890) mit
+Lies im Buch **13.3 Ausnahmen abfangen**, besonders **13.3.1 Die try-Anweisung** (Seite 890) mit
 den catch-Blöcken, **13.3.2** (Seite 899) zu den Ablaufsequenzen und **13.5**
 (Seite 911) zur Hierarchie der BCL-Ausnahmen.
 
@@ -13,7 +13,7 @@ Lies die Fehlermeldung des Compilers, sie sagt dir, was falsch ist.
    - ein Text ist keine Zahl: `"Keine Zahl: <Text>"` (der Text, der nicht passt),
    - Überlauf (beim Umwandeln oder beim Rechnen): `"Zahl zu groß"`,
    - Division durch null: `"Division durch null"`,
-   - jeder andere `ArithmeticException`: `"Rechenfehler"`.
+   - jede andere `ArithmeticException`: `"Rechenfehler"`.
 
    Ein unbekannter Operator ist ein Programmierfehler des Aufrufers: Die
    `ArgumentException` soll nach außen gelangen und nicht von einem allzu
@@ -22,7 +22,9 @@ Lies die Fehlermeldung des Compilers, sie sagt dir, was falsch ist.
    `ArithmeticException`, die gemeinsame Basisklasse von `OverflowException` und
    `DivideByZeroException`. Der `ArithmeticException`-Block bleibt der letzte; kein
    Test löst ihn aus.
-2. `SummeAusText(text)` zerlegt `"1;2;x;4"` an Semikolons und addiert die Zahlen.
+2. `SummeAusText(text)` zerlegt `"1;2;x;4"` an Semikolons (leere Teile werden
+   übersprungen) und addiert die Zahlen. Als Fehler zählen `FormatException` und
+   `OverflowException` (zu große Zahl).
    Jeder Teil bekommt sein eigenes `try`/`catch`, damit ein fehlerhafter
    Teil die anderen nicht stoppt. Geliefert werden die Summe, die Anzahl der Fehler
    und eine Liste mit den Typnamen der Ausnahmen (`ex.GetType().Name`, z. B.

@@ -9,7 +9,7 @@ The file `Vorgaben.cs` contains an interface `IArbeitsschritt` and a class `Prot
    - `IOException` with a message beginning with `"temporär"`: The exception is ignored, the log shows `"ignoriert"`, and the result is `false`. Use an **exception filter** (`catch (…) when (…)`).
    - Any other `IOException`: Wrap it in an `InvalidOperationException` with the message `"Verarbeitung fehlgeschlagen"`. The original exception becomes its `InnerException`.
    - All other exceptions continue unchanged.
-2. `ProtokolliereUndWirfWeiter(schritt, protokoll)` executes the step. If it fails, the method writes `"fehler: "` and the type name of the exception (`ex.GetType().Name`) to the log and rethrows **the same exception**. The test checks stack tracing: it must continue to specify the method of the step that triggered the error. Using `throw ex;` would cause this information to be lost.
+2. `ProtokolliereUndWirfWeiter(schritt, protokoll)` executes the step. If it fails, the method writes `"fehler: "` and the type name of the exception (`ex.GetType().Name`) to the log and rethrows **the same exception**. The test checks the stack trace: it must still name the method of the step that triggered the error. Using `throw ex;` would cause this information to be lost.
 
 Then answer the two questions.
 

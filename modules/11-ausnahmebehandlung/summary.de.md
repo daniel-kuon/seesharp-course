@@ -4,8 +4,8 @@ Wenn eine Methode ihre Aufgabe nicht erfüllen kann, meldet sie das mit einer
 **Ausnahme**: ein Objekt, das den Fehler beschreibt und vom Ort des Fehlers
 durch die Aufrufer nach oben wandert, bis jemand es behandelt (Kapitel 13,
 Seite 885). Fängt niemand die Ausnahme, beendet die Laufzeit das Programm und
-gibt Meldung und Stapelüberwachung (*Stack Trace*) aus (13.1 und 13.2, Seite 886
-und 888). Der oberste Eintrag der Stapelüberwachung nennt die Methode, in der die
+gibt Meldung und Stapelüberwachung (*Stack Trace*, im Buch die Aufrufreihenfolge
+bzw. die Eigenschaft `StackTrace`) aus (13.1 und 13.2, Seite 886 und 888). Der oberste Eintrag der Stapelüberwachung nennt die Methode, in der die
 Ausnahme ausgelöst wurde, die weiteren Einträge die Aufrufer.
 
 Wichtigste Regel: **Fehlervermeidung geht vor Ausnahmebehandlung.** Wer vor der
@@ -13,23 +13,24 @@ Division prüft, ob der Divisor null ist, braucht keine
 `DivideByZeroException` abzufangen. Ausnahmen sind für Fehler gedacht, die
 man nicht sinnvoll vorher ausschließen kann.
 
-## Die try-Anweisung (13.3, Seite 890)
+## Die try-Anweisung (13.3.1, Seite 890)
 
 ```csharp
 try { /* riskanter Code */ }
 catch (FormatException ex) { /* behandeln */ }
 catch (ArithmeticException) { /* breiter, steht deshalb weiter unten */ }
-finally { /* läuft immer */ }
+finally { /* läuft (fast) immer */ }
 ```
 
 * Die `catch`-Blöcke werden von oben nach unten geprüft: **spezifische Klassen vor
   allgemeinen**. Ein allgemeiner Block vor einem speziellen ist ein Compilerfehler.
 * Über die Variable (`ex`) erhält man `Message`, `StackTrace`, `InnerException` und
   `Data`; `ex.GetType().Name` liefert den Typnamen.
-* Ein **Ausnahmefilter** `catch (IOException ex) when (...)` fängt nur bei
-  erfüllter Bedingung (13.3.1.2, Seite 891).
-* Der `finally`-Block läuft **immer**: nach normalem Ende, nach einem `return`
-  und nach einer Ausnahme. Dort räumt man auf, z. B. Dateien schließen
+* Ein **Ausnahmefilter** (im Buch: `when`-Klausel) `catch (IOException ex) when (...)`
+  fängt nur bei erfüllter Bedingung (13.3.1.2, Seite 891).
+* Der `finally`-Block läuft **fast immer**: nach normalem Ende, nach einem `return`
+  und nach einer Ausnahme. Verhindern können ihn nur eine Endlosschleife oder
+  `Environment.Exit()`. Dort räumt man auf, z. B. Dateien schließen
   (13.3.1.3, Seite 895). Bei verschachtelten `try`-Anweisungen läuft die Ausnahme
   nach oben, und jedes `finally` auf dem Weg wird ausgeführt (13.3.2).
 
@@ -50,8 +51,9 @@ Unterklassen `ArgumentNullException` und `ArgumentOutOfRangeException` (falsches
 Argument), `InvalidOperationException` (Objekt im falschen Zustand),
 `NotSupportedException`, `FormatException`, `ArithmeticException` mit
 `DivideByZeroException` und `OverflowException`, `IndexOutOfRangeException`,
-`KeyNotFoundException`. `checked`-Arithmetik und `int.Parse()` aus Level 2 und 3
-lösen `OverflowException` und `FormatException` aus.
+`KeyNotFoundException`. `checked`-Arithmetik (Level 3, Buch 4.6.1) löst bei Überlauf
+`OverflowException` aus, `int.Parse()` bei ungültigem Text `FormatException` und bei
+zu großen Zahlen `OverflowException`.
 
 ## Ausnahmen werfen (13.6, Seite 913)
 

@@ -12,8 +12,9 @@ zeigen den Fehler erst Schritte später. Öffne `Dualog.cs`:
    Der Parametername ist `"x"`, die Meldung ist eine eigene deutsche (Konstruktor
    mit `paramName`, `actualValue` und `message`). Gültige Argumente liefern
    den Logarithmus: `Log2(1) = 0`, `Log2(8) = 3`.
-2. `Wurzel(double x)` wirft für negative `x` dieselbe Ausnahme.
-3. `Fakultaet(int n)` wirft für `n < 0` (Parametername `"n"`) und liefert
+2. `Wurzel(double x)` wirft für negative `x` dieselbe Ausnahme, ebenfalls mit
+   Parametername `"x"` und eigener Meldung.
+3. `Fakultaet(int n)` wirft für `n < 0` (Parametername `"n"`, eigene Meldung) und liefert
    sonst `n!` als `long`. Gültig ist `n` von 0 bis 20; für größere Zahlen
    passt das Ergebnis nicht mehr in ein `long`, das ist nicht Teil der Tests.
 
@@ -32,5 +33,6 @@ Der tatsächliche Wert war -1.
 
 Tests: `Log2_wirft_fuer_Argumente_kleiner_gleich_null`,
 `Log2_hat_eine_eigene_Meldung`, `Wurzel_wirft_fuer_negative_Zahlen`,
+`Wurzel_liefert_die_Quadratwurzel`,
 `Fakultaet_wirft_fuer_negative_n` und die Tests für gültige Werte
 (`Log2_liefert_den_Logarithmus_gueltiger_Argumente`, `Fakultaet_liefert_n_Fakultaet`).

@@ -9,8 +9,8 @@ Lies noch einmal **13.3.1.2 Ausnahmebehandlung per catch-Block** (Seite 891).
    Semikolons (leere Teile werden übersprungen) und wandelt jeden Teil mit
    `int.Parse` um. Gültige Zahlen kommen in `Werte`. Für jeden Teil, der
    scheitert, steht ein Eintrag in `Fehler`:
-   - `FormatException`: `"abc: keine Zahl"`
-   - `OverflowException`: `"99999999999: zu groß"`
+   - `FormatException`: `"<Teil>: keine Zahl"`, z. B. `"abc: keine Zahl"`
+   - `OverflowException`: `"<Teil>: zu groß"`, z. B. `"99999999999: zu groß"`
 
    Ein fehlerhafter Teil stoppt die anderen nicht: Das `try` gehört in die
    Schleife.

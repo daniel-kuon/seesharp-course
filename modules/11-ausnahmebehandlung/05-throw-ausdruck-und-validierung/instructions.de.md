@@ -5,8 +5,8 @@ Lies im Buch **13.6 Ausnahmen werfen (throw)** (Seite 913) mit dem
 generischen `SimpleStack<T>` kennst du aus Level 8 (Buch 8.2.1).
 
 Der Stapel in `SimpleStack.cs` hat eine feste Kapazität, reagiert aber auf
-Fehler zufällig: Ein volles `Push` löst eine `IndexOutOfRangeException`
-aus, ein leeres `Pop` verdirbt `Count`. Erkläre jeden Fehler mit einer
+Fehler zufällig: `Push` auf den vollen Stapel löst eine `IndexOutOfRangeException`
+aus, `Pop` auf den leeren verdirbt `Count`. Melde jeden Fehler mit einer
 Ausnahme, die zur Situation passt:
 
 1. **Konstruktor:** Eine Kapazität `<= 0` löst eine
@@ -16,7 +16,7 @@ Ausnahme, die zur Situation passt:
    `InvalidOperationException` mit deutscher Meldung. Das Objekt befindet sich
    dann im falschen Zustand für diese Operation (kein falsches Argument). Der Stapel
    darf nach dem Fehler nicht beschädigt sein.
-3. **`Peek()`** soll als Ausdruckskörper stehen:
+3. **`Peek()`** wird per Lambda-Symbol und Ausdruck definiert (Buch 5.9.1):
    `=> anzahl > 0 ? items[anzahl - 1] : throw new InvalidOperationException(…);`
 4. **`Name`:** Der Setter wirft bei `null` eine `ArgumentNullException`
    (Parametername `"value"`), geschrieben als throw-Ausdruck

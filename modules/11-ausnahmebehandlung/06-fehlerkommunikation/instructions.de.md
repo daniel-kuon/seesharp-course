@@ -10,7 +10,7 @@ Nenner 0 löst dort eine `ArgumentException` aus). Öffne `BruchParser.cs` und
 implementiere dieselbe Aufgabe auf mehreren Wegen:
 
 1. `Parse(string s)` wandelt `"3/4"` in einen `Bruch` um. Ein ungültiges Format
-   (`"3/"`, `"a/b"`, `""`, mehr als ein Schrägstrich) löst eine
+   (`"3/"`, `"a/b"`, `""`, kein oder mehr als ein Schrägstrich) löst eine
    `FormatException` aus, der Nenner 0 (`"1/0"`) eine `ArgumentException`
    (sie kommt vom `Bruch`-Konstruktor), Zahlen jenseits des `int`-Bereichs
    eine `OverflowException` (sie kommt von `int.Parse`).

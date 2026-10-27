@@ -5,12 +5,12 @@ Read section **13.6, “Throwing Exceptions,”** in the book (page 913), along 
 The `Dualog.Log2` method currently returns `NaN` or `-Infinity` for invalid arguments. Such special values pass through the program unnoticed and only reveal the error several steps later. Open `Dualog.cs`:
 
 1. `Log2(double x)` throws an `ArgumentOutOfRangeException` for `x <= 0`. The parameter name is `"x"`; the message is a custom German message (constructor with `paramName`, `actualValue`, and `message`). Valid arguments yield the logarithm: `Log2(1) = 0`, `Log2(8) = 3`.
-2. `Wurzel(double x)` throws the same exception for negative `x`.
-3. `Fakultaet(int n)` throws an exception for `n < 0` (parameter name `"n"`) and otherwise returns `n!` as a `long`. Valid values for `n` range from 0 to 20; for larger numbers, the result no longer fits into a `long`, which is not part of the tests.
+2. `Wurzel(double x)` throws the same exception for negative `x`, also with the parameter name `"x"` and a custom message.
+3. `Fakultaet(int n)` throws it for `n < 0` (parameter name `"n"`, custom message) and otherwise returns `n!` as a `long`. Valid values for `n` range from 0 to 20; for larger numbers, the result no longer fits into a `long`, which is not part of the tests.
 
-Then answer the two questions. For the first one, you'll need this stack monitoring:
+Then answer the two questions. For the first one, you'll need this stack trace:
 
-## Question About Batch Monitoring
+## Question About the Stack Trace
 
 ```text
 Unbehandelte Ausnahme: System.ArgumentOutOfRangeException: Der duale Logarithmus ist nur für Zahlen größer als 0 definiert. (Parameter 'x')
@@ -20,4 +20,4 @@ Der tatsächliche Wert war -1.
    bei Programm.Main() in C:\Kurs\Rechner\Programm.cs:Zeile 6.
 ```
 
-Tests: `Log2_wirft_fuer_Argumente_kleiner_gleich_null`, `Log2_hat_eine_eigene_Meldung`, `Wurzel_wirft_fuer_negative_Zahlen`, `Fakultaet_wirft_fuer_negative_n`, and the tests for valid values (`Log2_liefert_den_Logarithmus_gueltiger_Argumente`, `Fakultaet_liefert_n_Fakultaet`).
+Tests: `Log2_wirft_fuer_Argumente_kleiner_gleich_null`, `Log2_hat_eine_eigene_Meldung`, `Wurzel_wirft_fuer_negative_Zahlen`, `Wurzel_liefert_die_Quadratwurzel`, `Fakultaet_wirft_fuer_negative_n`, and the tests for valid values (`Log2_liefert_den_Logarithmus_gueltiger_Argumente`, `Fakultaet_liefert_n_Fakultaet`).

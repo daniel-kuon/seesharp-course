@@ -37,10 +37,11 @@ passenden); die falsche Reihenfolge sei nur eine Warnung oder ein Laufzeitfehler
 ## finally-wann
 
 Wesentliche Punkte:
-- `finally` läuft **immer**: nach normalem Ende des `try`-Blocks, nach einem Verlassen durch
+- `finally` läuft **(fast) immer**: nach normalem Ende des `try`-Blocks, nach einem Verlassen durch
   `return` (der Rückgabewert ist dann schon berechnet) und nach einer Ausnahme, auch wenn kein
   `catch` dieses `try` passt und die Ausnahme zu einer äußeren Methode weiterwandert (jedes
-  `finally` auf dem Weg nach oben läuft).
+  `finally` auf dem Weg nach oben läuft). Verhindern können es nur eine Endlosschleife
+  oder `Environment.Exit()` (13.3.1.3, Seite 895); das muss die Antwort nicht nennen.
 - Verwendung: **Aufräumarbeiten**, die unabhängig vom Ergebnis passieren müssen: Datei oder
   Verbindung **schließen**, Ressource freigeben.
 - Beispiel: Eine Datei im `try` lesen, im `finally` schließen.

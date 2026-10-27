@@ -36,7 +36,7 @@ items:
     prompt: { de: "Was ist der Unterschied zwischen throw; und throw ex; in einem catch-Block?", en: "What is the difference between `throw;` and `throw ex;` in a `catch` block?" }
     options:
       - { de: "throw; reicht dieselbe Ausnahme samt ursprünglicher Stapelüberwachung weiter; throw ex; wirft sie neu, und die Stapelüberwachung beginnt erst an dieser Stelle (der eigentliche Ursprung geht verloren).", en: "throw; passes on the same exception along with the original stack trace; throw ex; rethrows it, and the stack trace begins anew at this point (the original source is lost)." }
-      - { de: "Es gibt keinen Unterschied, throw; ist nur eine Kurzschreibweise.", en: "There is no difference; \"throw\" is just a shorthand notation." }
-      - { de: "throw ex; erhält die Stapelüberwachung, throw; verwirft sie.", en: "\"throw ex;\" enables stack monitoring; \"throw;\" disables it." }
+      - { de: "Es gibt keinen Unterschied, throw; ist nur eine Kurzschreibweise.", en: "There is no difference; throw; is just a shorthand notation." }
+      - { de: "throw ex; erhält die Stapelüberwachung, throw; verwirft sie.", en: "throw ex; preserves the stack trace; throw; discards it." }
     correct: [0]
-    explanation: { de: "13.6 (Seite 913): Zum Weiterreichen nimmt man throw;. Wer die Ursache in eine andere Ausnahme packt, gibt die ursprüngliche als InnerException mit und verliert so nichts.", en: "13.6 (page 913): To pass it on, use `throw;`. If you wrap the cause in another exception, you pass the original one as an `InnerException`, so nothing is lost." }
+    explanation: { de: "13.6 (Seite 914): Zum Weiterreichen nimmt man throw;. Wer die Ursache in eine andere Ausnahme packt, gibt die ursprüngliche als InnerException mit und verliert so nichts.", en: "13.6 (page 914): To pass it on, use `throw;`. If you wrap the cause in another exception, you pass the original one as an `InnerException`, so nothing is lost." }

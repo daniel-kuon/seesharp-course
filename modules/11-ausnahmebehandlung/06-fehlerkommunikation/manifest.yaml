@@ -25,25 +25,25 @@ items:
     prompt: { de: "Wahl der Fehlerkommunikation nach der Fehlerwahrscheinlichkeit (13.4.4). Eine Methode wandelt Eingaben eines Benutzers in Zahlen um, und Tippfehler kommen häufig vor. Welche Technik passt am besten?", en: "Selecting an Error Communication Method Based on Error Probability (13.4.4). A method converts user input into numbers, and typos occur frequently. Which technique is most appropriate?" }
     options:
       - { de: "Rückgabewert oder Try-Muster (z. B. bool TryParse(…, out int ergebnis)): Der Fehler ist erwartbar, eine Prüfung ist billiger als eine Ausnahme.", en: "Return value or try pattern (e.g., bool TryParse(…, out int result)): The error is expected, and checking for it is more efficient than throwing an exception." }
-      - { de: "Eine Ausnahme: Ausnahmen sind immer die beste Technik.", en: "One exception: Exceptions are always the best approach." }
-      - { de: "Gar nicht melden, das Ergebnis 0 genügt.", en: "Don't report it at all; a score of 0 is enough." }
+      - { de: "Eine Ausnahme: Ausnahmen sind immer die beste Technik.", en: "An exception: Exceptions are always the best approach." }
+      - { de: "Gar nicht melden, das Ergebnis 0 genügt.", en: "Don't report it at all; the result 0 is enough." }
     correct: [0]
     explanation: { de: "Häufige Fehler meldet man per Rückgabe; die Ausnahmebehandlung soll kein Bestandteil der Programmablaufsteuerung sein (13.4.4, Seite 910). Das Ergebnis 0 ohne Hinweis zu verarbeiten wäre „ein gravierender Programmierfehler“ (Seite 911).", en: "Common errors are reported by returning a value; exception handling should not be part of program flow control (13.4.4, page 910). Processing the result 0 without any indication would be “a serious programming error” (page 911)." }
   - type: multipleChoice
     id: technik-konfiguration
     prompt: { de: "Eine Konfigurationsdatei muss laut Installation immer vorhanden sein. Fehlt sie doch einmal, kann das Programm nicht sinnvoll weiterlaufen. Welche Technik passt am besten?", en: "According to the installation instructions, a configuration file must always be present. If it is missing, the program cannot continue to run properly. Which approach works best?" }
     options:
-      - { de: "Eine Ausnahme: Der Fehler ist selten, ein try-Block kostet nur bei Auftreten etwas, und eine höhere Methode kann entscheiden, wie es weitergeht.", en: "One exception: The error is rare, a `try` block only incurs a cost when an error occurs, and a higher-level method can decide how to proceed." }
+      - { de: "Eine Ausnahme: Der Fehler ist selten, ein try-Block kostet nur bei Auftreten etwas, und eine höhere Methode kann entscheiden, wie es weitergeht.", en: "An exception: The error is rare, a `try` block only incurs a cost when an error occurs, and a higher-level method can decide how to proceed." }
       - { de: "Ein Rückgabecode, den jede aufrufende Methode prüfen und weitergeben muss.", en: "A return code that every calling method must check and pass on." }
-      - { de: "Das Try-Muster mit einem bool-Rückgabewert, dessen Wert niemand abfragen muss.", en: "The try block with a boolean return value that no one needs to check." }
+      - { de: "Das Try-Muster mit einem bool-Rückgabewert, dessen Wert niemand abfragen muss.", en: "The Try pattern with a bool return value that no one needs to check." }
     correct: [0]
-    explanation: { de: "Seltene Fehler meldet man per Ausnahme (13.4.4). Ausnahmen wandern automatisch zur bestgerüsteten Methode und können nicht übersehen werden (13.4.3, Seite 909).", en: "Rare errors are reported via exceptions (13.4.4). Exceptions are automatically propagated to the best-suited method and cannot be overlooked (13.4.3, page 909)." }
+    explanation: { de: "Seltene Fehler meldet man per Ausnahme (13.4.4, Seite 910). Ausnahmen wandern automatisch zur bestgerüsteten Methode und können nicht übersehen werden (13.4.3, Seite 909).", en: "Rare errors are reported via exceptions (13.4.4, page 910). Exceptions are automatically propagated to the best-suited method and cannot be overlooked (13.4.3, page 909)." }
   - type: multipleChoice
     id: technik-dateiende
     prompt: { de: "Eine Methode liest Zeile für Zeile aus einer Datei. Das Dateiende wird irgendwann sicher erreicht. Welche Technik passt am besten, um es zu melden?", en: "A method reads a file line by line. It will eventually reach the end of the file. What is the best way to signal that it has reached the end?" }
     options:
-      - { de: "Ein spezieller Rückgabewert (z. B. null oder -1): Das Ende ist der Normalfall, keine Ausnahmesituation.", en: "A specific return value (e.g., zero or -1): Reaching the end is the normal case, not an exception." }
-      - { de: "Eine EndOfFileException, die in einem catch-Block die Schleife beendet.", en: "An EndOfFileException that terminates the loop in a catch block." }
+      - { de: "Ein spezieller Rückgabewert (z. B. null oder -1): Das Ende ist der Normalfall, keine Ausnahmesituation.", en: "A special return value (e.g., null or -1): Reaching the end is the normal case, not an exception." }
+      - { de: "Eine EndOfStreamException, die in einem catch-Block die Schleife beendet.", en: "An EndOfStreamException that terminates the loop in a catch block." }
       - { de: "Ein Absturz des Programms, der vom Betriebssystem behandelt wird.", en: "A program crash that is handled by the operating system." }
     correct: [0]
     explanation: { de: "Das Beispiel „keine weiteren Daten beim Lesen einer Datei“ nennt das Buch ausdrücklich für den Rückgabewert (13.4.4, Seite 910); ReadByte() liefert -1 (13.4.1.1, Seite 906).", en: "The book specifically cites the example “no further data when reading a file” for the return value (13.4.4, page 910); ReadByte() returns -1 (13.4.1.1, page 906)." }
@@ -51,9 +51,9 @@ items:
     id: technik-dienst
     prompt: { de: "Ein Programm ruft einen Netzwerkdienst auf, der nur sehr selten ausfällt. Welche Technik passt am besten?", en: "A program calls a network service that rarely goes down. Which approach is best?" }
     options:
-      - { de: "Eine Ausnahme: Bei geringer Fehlerwahrscheinlichkeit wären ständige Kontrollen von Rückgabewerten meist überflüssig.", en: "One exception: If the probability of an error is low, constant checks of return values would usually be unnecessary." }
+      - { de: "Eine Ausnahme: Bei geringer Fehlerwahrscheinlichkeit wären ständige Kontrollen von Rückgabewerten meist überflüssig.", en: "An exception: If the probability of an error is low, constant checks of return values would usually be unnecessary." }
       - { de: "Ein Rückgabecode, der nach jedem Aufruf geprüft wird.", en: "A return code that is checked after every call." }
-      - { de: "Das Try-Muster mit einem out-Parameter für jeden Aufruf.", en: "The try block with an out parameter for each call." }
+      - { de: "Das Try-Muster mit einem out-Parameter für jeden Aufruf.", en: "The Try pattern with an out parameter for each call." }
     correct: [0]
     explanation: { de: "Bei Fehlern mit geringer Wahrscheinlichkeit haben häufige Kontrollen eine Leistungseinbuße zur Folge; hier lässt man es besser auf eine Ausnahme ankommen (13.4.4, Seite 910).", en: "In the case of low-probability errors, frequent checks result in a loss of performance; in such cases, it is better to allow for an exception (13.4.4, page 910)." }
   - type: multipleChoice
@@ -86,7 +86,7 @@ items:
       - { de: "KeyNotFoundException", en: "KeyNotFoundException" }
       - { de: "IndexOutOfRangeException", en: "IndexOutOfRangeException" }
     correct: [1]
-    explanation: { de: "Der Aufruf passt nicht zum Zustand des Objekts; kein Argument ist falsch. Dafür gibt es InvalidOperationException (13.5, Seite 912).", en: "The call does not match the object's state; no argument is incorrect. This results in an InvalidOperationException (13.5, page 912)." }
+    explanation: { de: "Der Aufruf passt nicht zum Zustand des Objekts; kein Argument ist falsch. Dafür gibt es InvalidOperationException (13.5, Seite 913).", en: "The call does not match the object's state; no argument is incorrect. That is what InvalidOperationException is for (13.5, page 913)." }
   - type: multipleChoice
     id: bcl-nicht-unterstuetzt
     prompt: { de: "Welche BCL-Ausnahme passt, wenn man versucht, eine Operation auszuführen, die der Typ grundsätzlich nicht anbietet, z. B. Add() auf einer schreibgeschützten Liste?", en: "Which BCL exception is thrown when you try to perform an operation that the type does not support, such as Add() on a read-only list?" }
@@ -97,7 +97,7 @@ items:
       - { de: "KeyNotFoundException", en: "KeyNotFoundException" }
       - { de: "IndexOutOfRangeException", en: "IndexOutOfRangeException" }
     correct: [2]
-    explanation: { de: "Die Operation wird vom Typ nicht unterstützt, unabhängig vom aktuellen Zustand: NotSupportedException (13.5, Seite 912).", en: "The operation is not supported by this type, regardless of its current state: NotSupportedException (13.5, page 912)." }
+    explanation: { de: "Die Operation wird vom Typ nicht unterstützt, unabhängig vom aktuellen Zustand: NotSupportedException (13.5, Seite 913).", en: "The operation is not supported by this type, regardless of its current state: NotSupportedException (13.5, page 913)." }
   - type: multipleChoice
     id: bcl-schluessel
     prompt: { de: "Welche BCL-Ausnahme löst der Indexer eines Dictionary<K,V> aus, wenn der Schlüssel nicht vorhanden ist?", en: "Which BCL exception does the indexer of a Dictionary<K,V> throw if the key does not exist?" }
@@ -119,7 +119,7 @@ items:
       - { de: "KeyNotFoundException", en: "KeyNotFoundException" }
       - { de: "IndexOutOfRangeException", en: "IndexOutOfRangeException" }
     correct: [4]
-    explanation: { de: "Beim Array-Indexzugriff meldet die Laufzeit IndexOutOfRangeException (13.5, Seite 911).", en: "When accessing an array index, the runtime throws an IndexOutOfRangeException (13.5, page 911)." }
+    explanation: { de: "Beim Array-Indexzugriff meldet die Laufzeit IndexOutOfRangeException (13.5, Seite 913).", en: "When accessing an array index, the runtime throws an IndexOutOfRangeException (13.5, page 913)." }
   - type: open
     id: syntaxdiagramm
     prompt: { de: "Buchaufgabe 13.8 Nr. 1: Skizziere ein Syntaxdiagramm (oder eine Schreibweise mit eckigen Klammern für Optionales) der try-Anweisung. Welche Kombinationen aus try, catch und finally sind erlaubt (13.3.1, Seite 890)?", en: "Textbook Exercise 13.8, No. 1: Sketch a syntax diagram (or a notation using square brackets for optional elements) for the try statement. What combinations of try, catch, and finally are allowed (13.3.1, page 890)?" }

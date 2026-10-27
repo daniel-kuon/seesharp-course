@@ -183,8 +183,8 @@ items:
           ```
     correct: [2]
     explanation:
-      de: "Die erste Variante reicht dieselbe Ausnahme weiter, überschreibt aber die Stapelüberwachung: Sie beginnt erst in `Aufrufer()`, der Ursprung geht verloren. Die zweite wirft eine neue allgemeine `Exception`; Typ und Stapelüberwachung sind weg, und die Ursache wurde nicht als zweites Argument mitgegeben. Die vierte fängt die Ausnahme und schluckt sie: Der Aufrufer erfährt nichts. Die dritte ist richtig: `throw;` ohne Ausdruck behält alles (13.6, Seite 913)."
-      en: "The first variant passes on the same exception but overwrites the stack trace: it begins only in `Aufrufer()`, and the origin is lost. The second throws a new general `Exception`; type and stack trace are gone, and the cause was not passed as the second argument. The fourth catches the exception and swallows it: the caller learns nothing. The third is correct: `throw;` without an expression keeps everything (13.6, page 913)."
+      de: "Die erste Variante reicht dieselbe Ausnahme weiter, überschreibt aber die Stapelüberwachung: Sie beginnt erst in `Aufrufer()`, der Ursprung geht verloren. Die zweite wirft eine neue allgemeine `Exception`; Typ und Stapelüberwachung sind weg, und die Ursache wurde nicht als zweites Argument mitgegeben. Die vierte fängt die Ausnahme und schluckt sie: Der Aufrufer erfährt nichts. Die dritte ist richtig: `throw;` ohne Ausdruck behält alles (13.6, Seite 914)."
+      en: "The first variant passes on the same exception but overwrites the stack trace: it begins only in `Aufrufer()`, and the origin is lost. The second throws a new general `Exception`; type and stack trace are gone, and the cause was not passed as the second argument. The fourth catches the exception and swallows it: the caller learns nothing. The third is correct: `throw;` without an expression keeps everything (13.6, page 914)."
   - type: multipleChoice
     id: try-syntax
     prompt:

@@ -1,7 +1,7 @@
 # Zusatz: Ressourcen sicher schließen
 
 Lies noch einmal **13.3.1.3 Aufräumarbeiten im finally-Block** (Seite 895) und
-in **13.6** (Seite 913) den Abschnitt zum Weiterreichen mit `throw;`.
+in **13.6** (Seite 914) den Abschnitt zum Weiterreichen mit `throw;`.
 
 Das Interface `IVerbindung` in `Sender.cs` beschreibt eine Verbindung, die
 geöffnet (`Oeffnen`), benutzt (`Senden`) und wieder geschlossen (`Schliessen`)

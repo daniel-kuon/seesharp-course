@@ -224,7 +224,7 @@ items:
     id: code-konflikt
     prompt:
       de: |
-        `Konto` hat `Id`, `Saldo` und `[ConcurrencyCheck] int Version`. Die Tabelle enthält ein Konto mit Saldo 100 und Version 1; alle Kontexte benutzen dieselbe Datenbank. Was gibt das Programm aus (zwei Zeilen), und warum?
+        `Konto` hat `int Id`, `int Saldo` und `[ConcurrencyCheck] int Version`. Die Tabelle enthält ein Konto mit Saldo 100 und Version 1; alle Kontexte benutzen dieselbe Datenbank. Was gibt das Programm aus (zwei Zeilen), und warum?
 
         ```csharp
         using var a = new KontoContext(options);
@@ -243,7 +243,7 @@ items:
         Console.WriteLine(c.Konten.Single().Saldo);
         ```
       en: |
-        `Konto` has `Id`, `Saldo` and `[ConcurrencyCheck] int Version`. The table contains one account with balance 100 and version 1; all contexts use the same database. What does the program print (two lines), and why?
+        `Konto` has `int Id`, `int Saldo` and `[ConcurrencyCheck] int Version`. The table contains one account with balance 100 and version 1; all contexts use the same database. What does the program print (two lines), and why?
 
         ```csharp
         using var a = new KontoContext(options);

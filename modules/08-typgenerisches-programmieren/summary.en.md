@@ -8,7 +8,7 @@ C# checks types during compilation. For a long time, a stack meant to hold "anyt
 
 ## Constraints (8.2.2, page 593)
 
-Without a constraint, all the compiler knows about `T` is what every `object` can do. With `where T : IComparable<T>`, the class may call `element.CompareTo(other)`, and at the same time types that cannot do this are ruled out. Other kinds: a base class, `class`, `struct`, `new()` (for `new T()`), `notnull`, `unmanaged`; several are combined with commas, `struct` or `class` first, `new()` last. The sorted list in this level shows the typical case: inserting at the right position needs a comparison.
+Without a constraint, all the compiler knows about `T` is what every `object` can do. With `where T : IComparable<T>`, the class may call `element.CompareTo(other)`, and at the same time types that cannot do this are ruled out. Other kinds: a base class, `class`, `struct`, `new()` (for `new T()`); `notnull` comes in Chapter 15 (15.1.1, page 952). Several are combined with commas, `struct` or `class` first, `new()` last. The sorted list in this level shows the typical case: inserting at the right position needs a comparison.
 
 Generic classes can inherit from other classes and be inherited from (8.2.3, page 596); an open generic base needs its own type parameter in the derived class. What does not work: `List<object> lo = new List<string>()`. Generic classes are **invariant**; otherwise one could use `lo` to write an `int` into a list of strings. Generic variance exists only for interfaces and delegates (Levels 9 and 12). Arrays, by contrast, are covariant (`object[] oa = new string[2];` compiles), and the book shows the consequence: a wrong element type is only caught at run time, as an `ArrayTypeMismatchException` (page 597).
 
@@ -29,3 +29,9 @@ The extension block from Level 7 becomes generic: `extension<T>(T[] arr) where T
 `default(T)`, or `default` for short, returns the default value of a type: 0, `false`, `null` for reference types and for `Nullable<T>`. Generic code needs this when it has to initialize a `T` without knowing the type; only `new T()` with the constraint `new()` creates an object.
 
 Further reading in the book: Chapter 8 (pages 589–607); the exercises in 8.8 (page 607) provide the quiz and `Max<T>()` for this level. `Listenwerte` in the sample folder measures the boxing overhead of `ArrayList`.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- The constraint `where T : unmanaged` allows only value types that contain no references (in any of their fields either), such as `int`, `double` or structs made of such fields. The book only names `unmanaged` in its list of keywords.

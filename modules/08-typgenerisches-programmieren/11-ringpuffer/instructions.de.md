@@ -22,7 +22,9 @@ herum, statt Elemente zu verschieben. Öffne `Ringpuffer.cs`:
    gewordenen Platz mit `default`, damit der Puffer keine Referenzen auf
    alte Objekte festhält.
 4. `EntnehmenOderDefault()` liefert bei leerem Puffer `default(T)` statt
-   einer Ausnahme: 0 für `int`, `null` für `string`.
+   einer Ausnahme: 0 für `int`, `null` für `string`. Der vorgegebene
+   Rückgabetyp `T?` ist bei `T = int` einfach `int`, kein `Nullable<int>`
+   (mehr dazu in 15.1.1, Seite 952).
 5. Der Indexer zählt ab dem ältesten Element (`[0]` ist das älteste);
    Indizes außerhalb `0 .. Count - 1` werfen
    `ArgumentOutOfRangeException`. `AlsArray()` liefert alle Elemente vom

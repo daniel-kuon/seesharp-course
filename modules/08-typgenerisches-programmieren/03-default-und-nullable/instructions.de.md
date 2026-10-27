@@ -22,3 +22,8 @@ aufgerufen. Öffne `Werte.cs`:
 
 Beim Aufruf von `ErstesOderDefault([5, 6])` musst du `<int>` nicht
 hinschreiben: Der Compiler leitet `T` aus dem Argument ab (Typinferenz).
+
+Die Signatur `T? ErstesOderDefault<T>` ist vorgegeben. Das `?` hinter
+einem uneingeschränkten `T` macht daraus **kein** `Nullable<T>`: Für
+`T = int` bleibt der Rückgabetyp `int`. Was es genau bedeutet, kommt in
+Kapitel 15 (15.1.1, Seite 952); für diese Übung musst du es nicht wissen.

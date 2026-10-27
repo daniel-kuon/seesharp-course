@@ -10,3 +10,5 @@ A generic method has its own type parameter: `BeschreibeDefault<T>()` is called 
 4. `OderErsatz(int? wert, int ersatz)`: The null-coalescing operator `??` does this in a single line.
 
 When calling `ErstesOderDefault([5, 6])`, you don't need to specify `<int>`: The compiler infers `T` from the argument (type inference).
+
+The signature `T? ErstesOderDefault<T>` is given. The `?` after an unconstrained `T` does **not** make it a `Nullable<T>`: for `T = int` the return type stays `int`. What exactly it means comes in Chapter 15 (15.1.1, page 952); you do not need it for this exercise.

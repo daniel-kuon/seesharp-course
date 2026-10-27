@@ -7,7 +7,7 @@ A circular buffer is a fixed-size queue: first-in, first-out. When it is full, a
 1. The constructor creates the array; a capacity less than 1 throws an `ArgumentOutOfRangeException`. `Kapazitaet`, `Count`, and `IstVoll` are calculated properties.
 2. `Hinzufuegen(element)` writes to the position after the most recent element. If the buffer is full, the oldest element is overwritten, and `anfang` moves one position forward.
 3. `Entnehmen()` removes the oldest element and returns it; an empty buffer throws an `InvalidOperationException`. Overwrite the freed space with `default` so that the buffer does not retain references to old objects.
-4. If the buffer is empty, `EntnehmenOderDefault()` returns `default(T)` instead of throwing an exception: 0 for `int`, `null` for `string`.
+4. If the buffer is empty, `EntnehmenOderDefault()` returns `default(T)` instead of throwing an exception: 0 for `int`, `null` for `string`. The given return type `T?` is simply `int` for `T = int`, not `Nullable<int>` (more on this in 15.1.1, page 952).
 5. The indexer starts counting from the oldest element (`[0]` is the oldest); indices outside the range `0 .. Count - 1` throw an `ArgumentOutOfRangeException`. `AlsArray()` returns all elements from the oldest to the newest.
 
 These tests must pass:

@@ -8,7 +8,7 @@ A cache stores computationally expensive values under a key, but only a limited 
 2. Constructor: A capacity less than 1 throws an `ArgumentOutOfRangeException`. `Count` and `Kapazitaet` are computed properties.
 3. Two private helper methods eliminate duplicate code: `Suche(key)` returns the index of the key or -1; `NachHinten(index)` moves the entry at `index` to the end (shifting the entries that follow it one position forward).
 4. `Setze(key, wert)`: If the key exists, its value is replaced; otherwise, a new entry is added. If the cache is full, the new entry replaces the one at index 0. In either case, the entry is then considered the most recently used.
-5. `HoleOderDefault(key)`: the value; the entry is considered to be the most recently used; an unknown key returns the `default` value (0, `null`, ...). `Enthaelt(key)` only checks and **does not** count as a use.
+5. `HoleOderDefault(key)`: the value; the entry is considered to be the most recently used; an unknown key returns the `default` value (0, `null`, ...); the given return type `TValue?` is simply `int` for `int` (more on this in 15.1.1, page 952). `Enthaelt(key)` only checks and **does not** count as a use.
 6. `Schluessel()` returns the keys in order from the one that has been unused the longest to the one that was used most recently.
 
 These tests must pass:

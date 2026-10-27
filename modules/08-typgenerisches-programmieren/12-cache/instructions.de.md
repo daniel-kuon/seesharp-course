@@ -24,7 +24,9 @@ Benutzungsreihenfolge: Index 0 ist am längsten unbenutzt, Index
    sonst kommt ein neuer Eintrag dazu, bei vollem Cache verdrängt er den an
    Index 0. In beiden Fällen gilt der Eintrag danach als zuletzt benutzt.
 5. `HoleOderDefault(key)`: der Wert, und der Eintrag gilt als zuletzt
-   benutzt; ein unbekannter Schlüssel liefert `default` (0, `null`, ...).
+   benutzt; ein unbekannter Schlüssel liefert `default` (0, `null`, ...); der vorgegebene
+   Rückgabetyp `TValue?` ist bei `int` einfach `int` (mehr dazu in 15.1.1,
+   Seite 952).
    `Enthaelt(key)` prüft nur und zählt **nicht** als Benutzung.
 6. `Schluessel()` liefert die Schlüssel vom am längsten unbenutzten zum
    zuletzt benutzten.

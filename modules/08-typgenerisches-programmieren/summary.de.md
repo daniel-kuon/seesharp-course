@@ -22,8 +22,8 @@ ausdrücklich erlaubt und werden nicht geboxt; daher ist `List<int>` dem alten
 Ohne Zusatz weiß der Compiler über `T` nur, was jedes `object` kann. Mit
 `where T : IComparable<T>` darf die Klasse `element.CompareTo(other)`
 aufrufen und schließt zugleich Typen aus, die das nicht können. Weitere
-Arten: eine Basisklasse, `class`, `struct`, `new()` (für `new T()`),
-`notnull`, `unmanaged`; mehrere werden mit Komma kombiniert, `struct` oder
+Arten: eine Basisklasse, `class`, `struct`, `new()` (für `new T()`);
+`notnull` kommt in Kapitel 15 (15.1.1, Seite 952). Mehrere werden mit Komma kombiniert, `struct` oder
 `class` zuerst, `new()` zuletzt. Die sortierte Liste des Levels zeigt den
 typischen Fall: Einfügen an der richtigen Stelle braucht einen Vergleich.
 
@@ -74,3 +74,12 @@ ein Objekt erzeugt nur `new T()` mit der Einschränkung `new()`.
 Vertiefung im Buch: Kapitel 8 (Seite 589 bis 607); die Übungsaufgaben in
 8.8 (Seite 607) liefern das Quiz und `Max<T>()` dieses Levels. `Listenwerte`
 im Beispielordner misst den Boxing-Aufwand von `ArrayList`.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- Die Einschränkung `where T : unmanaged` lässt nur Werttypen zu, die
+  (auch in allen Feldern) keine Referenzen enthalten, etwa `int`, `double`
+  oder Strukturen aus solchen Feldern. Das Buch nennt `unmanaged` nur in
+  der Liste der Schlüsselwörter.

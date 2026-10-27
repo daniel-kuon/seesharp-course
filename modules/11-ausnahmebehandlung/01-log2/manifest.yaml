@@ -23,7 +23,7 @@ items:
     testProject: "DuaLog Tests/DuaLog.Tests.csproj"
   - type: multipleChoice
     id: stacktrace
-    prompt: { de: "Die Stapelüberwachung (Stack Trace) im Abschnitt „Frage zur Stapelüberwachung“ der Aufgabenbeschreibung gehört zu einer unbehandelten Ausnahme. Wo wurde die Ausnahme ausgelöst, und wo ist vermutlich die Ursache des falschen Werts?", en: "The stack trace in the “Question about the stack trace” section of the problem description is associated with an unhandled exception. Where was the exception thrown, and where is the likely cause of the incorrect value?" }
+    prompt: { de: "Der Stack Trace im Abschnitt „Frage zum Stack Trace“ der Aufgabenbeschreibung gehört zu einer unbehandelten Ausnahme. Wo wurde die Ausnahme ausgelöst, und wo ist vermutlich die Ursache des falschen Werts?", en: "The stack trace in the “Question about the stack trace” section of the problem description is associated with an unhandled exception. Where was the exception thrown, and where is the likely cause of the incorrect value?" }
     options:
       - { de: "Ausgelöst in Dualog.Log2 (oberster Eintrag, Dualog.cs, Zeile 9). Den ungültigen Wert hat der Aufrufer Messung.Dezibel (Messung.cs, Zeile 14) übergeben; dort ist nach der Ursache zu suchen.", en: "Thrown in Dualog.Log2 (top entry, Dualog.cs, line 9). The caller Messung.Dezibel (Messung.cs, line 14) passed the invalid value; that is where to look for the cause." }
       - { de: "Ausgelöst in Programm.Main (unterster Eintrag), denn dort beginnt das Programm; die anderen Einträge sind nur Folgefehler.", en: "Thrown in `Programm.Main` (bottom entry), because the program starts there; the other entries are only consequential errors." }

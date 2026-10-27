@@ -16,7 +16,7 @@ public static class Ablauf
 
     // Führt den Schritt aus. Scheitert er, steht im Protokoll "fehler: <Typname>"
     // (ex.GetType().Name) und dieselbe Ausnahme wird weitergereicht. Nimm throw; und nicht
-    // throw ex; : Nur so zeigt die Stapelüberwachung weiter den Schritt, der den Fehler
+    // throw ex; : Nur so zeigt der Stack Trace weiter den Schritt, der den Fehler
     // ausgelöst hat.
     public static void ProtokolliereUndWirfWeiter(IArbeitsschritt schritt, Protokoll protokoll)
     {

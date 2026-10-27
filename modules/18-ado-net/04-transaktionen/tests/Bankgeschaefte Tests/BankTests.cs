@@ -81,7 +81,7 @@ public class BankTests : IDisposable
     {
         var ex = Assert.Throws<IOException>(() => Bank.Ueberweise(_c, 1, 2, 40m, nachAbbuchung: WirfIoFehler));
         AssertSalden(100, 50, 0);
-        // "throw;" behält die Stapelüberwachung bis zur Stelle, an der die Ausnahme entstand; "throw ex;" würde sie abschneiden.
+        // "throw;" behält den Stack Trace bis zur Stelle, an der die Ausnahme entstand; "throw ex;" würde ihn abschneiden.
         Assert.Contains(nameof(WirfIoFehler), ex.StackTrace);
     }
 

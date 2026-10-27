@@ -4,8 +4,8 @@ Wenn eine Methode ihre Aufgabe nicht erfüllen kann, meldet sie das mit einer
 **Ausnahme**: ein Objekt, das den Fehler beschreibt und vom Ort des Fehlers
 durch die Aufrufer nach oben wandert, bis jemand es behandelt (Kapitel 13,
 Seite 885). Fängt niemand die Ausnahme, beendet die Laufzeit das Programm und
-gibt Meldung und Stapelüberwachung (*Stack Trace*, im Buch die Aufrufreihenfolge
-bzw. die Eigenschaft `StackTrace`) aus (13.1 und 13.2, Seite 886 und 888). Der oberste Eintrag der Stapelüberwachung nennt die Methode, in der die
+gibt Meldung und Stack Trace (im Buch die Aufrufreihenfolge
+bzw. die Eigenschaft `StackTrace`) aus (13.1 und 13.2, Seite 886 und 888). Der oberste Eintrag des Stack Trace nennt die Methode, in der die
 Ausnahme ausgelöst wurde, die weiteren Einträge die Aufrufer.
 
 Wichtigste Regel: **Fehlervermeidung geht vor Ausnahmebehandlung.** Wer vor der
@@ -60,8 +60,8 @@ zu großen Zahlen `OverflowException`.
 * `throw new ArgumentOutOfRangeException(nameof(x), x, "…")` löst eine Ausnahme aus.
   Als Ausdruck geht `throw` auch in `a ?? throw …` oder `cond ? x : throw …`.
   `ArgumentNullException.ThrowIfNull(arg)` ist die Kurzform für Null-Prüfungen.
-* In einem `catch` reicht **`throw;`** dieselbe Ausnahme weiter und behält die
-  Stapelüberwachung. `throw ex;` wirft sie neu und überschreibt den Ursprung: ein
+* In einem `catch` reicht **`throw;`** dieselbe Ausnahme weiter und behält den
+  Stack Trace. `throw ex;` wirft sie neu und überschreibt den Ursprung: ein
   klassischer Fehler.
 * Wer die Ursache in eine aussagekräftigere Ausnahme packt, gibt die ursprüngliche
   als **`InnerException`** mit: `throw new InvalidOperationException("…", ex);`

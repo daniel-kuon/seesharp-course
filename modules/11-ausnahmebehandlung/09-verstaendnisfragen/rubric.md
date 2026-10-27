@@ -11,7 +11,7 @@ dann allgemeiner, dann `finally`, `eigene-ausnahme-richtig` = Ableitung von `Exc
 Wesentliche Punkte:
 - Ein Fehler, den man **vorher ausschließen** kann, wird vorher geprüft, statt die Ausnahme zu
   fangen: `if (b != 0) ergebnis = a / b;` statt `try { a / b } catch (DivideByZeroException)`.
-  Eine Prüfung ist billig, eine Ausnahme teuer (Stapelüberwachung aufbauen und abbauen) und
+  Eine Prüfung ist billig, eine Ausnahme teuer (Stack Trace aufbauen und abbauen) und
   macht den Ablauf unübersichtlich.
 - Ausnahmen sind für Fehler gedacht, die man **nicht sinnvoll vorher ausschließen** kann
   oder die **selten** sind: fehlende Datei, Netzwerkausfall, ein Argument, das eine Methode
@@ -52,9 +52,9 @@ Typische Missverständnisse: `finally` laufe nur bei einer Ausnahme (oder nur oh
 ## weiterreichen-verpacken
 
 Wesentliche Punkte:
-- **`throw;`** reicht **dieselbe** Ausnahme weiter und **behält** die ursprüngliche
-  Stapelüberwachung (sie zeigt, wo der Fehler wirklich entstand).
-- **`throw ex;`** wirft die Ausnahme **neu** und **überschreibt** die Stapelüberwachung: Der
+- **`throw;`** reicht **dieselbe** Ausnahme weiter und **behält** den ursprünglichen
+  Stack Trace (er zeigt, wo der Fehler wirklich entstand).
+- **`throw ex;`** wirft die Ausnahme **neu** und **überschreibt** den Stack Trace: Der
   Ursprung geht verloren; ein klassischer Fehler.
 - Verpacken: Wenn man eine **aussagekräftigere** Ausnahme auf der Ebene der eigenen Methode
   werfen will (`throw new InvalidOperationException("…", ex);`), gibt man die ursprüngliche

@@ -15,7 +15,7 @@
   nimmt, fällt beim Test `…nur_irgendwo_temporaer_enthaelt…` durch.
 - Verpacken: Ohne `ex` als zweites Argument geht die Ursache verloren. Der Test
   verlangt `Assert.Same(original, ex.InnerException)`.
-- `throw;` gegen `throw ex;`: Der Stapelüberwachungstest ist die Kontrolle.
+- `throw;` gegen `throw ex;`: Der Stack-Trace-Test ist die Kontrolle.
   Der Test markiert die Schrittmethode mit `NoInlining`, damit ihr Eintrag
   im Stack Trace sicher erscheint. Nachfragen, wann man `throw;` und wann
   Verpacken wählt (nur weiterreichen / Kontext hinzufügen).

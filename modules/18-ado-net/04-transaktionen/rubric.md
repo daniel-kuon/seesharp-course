@@ -9,7 +9,7 @@
     laufender Transaktion und wirft eine `InvalidOperationException`, die leicht mit
     der fachlichen Ausnahme verwechselt wird; die Tests zeigen dann Fehler an
     unerwarteter Stelle;
-  - `catch { ...; throw ex; }`: Die Stapelüberwachung beginnt neu, der Test
+  - `catch { ...; throw ex; }`: Der Stack Trace beginnt neu, der Test
     `Ausnahme_in_der_Transaktion_...` erkennt das; im Gespräch den Unterschied
     zu `throw;` erklären lassen;
   - `catch (Exception) { Rollback(); }` ohne `throw;`: Der Fehler verschwindet,

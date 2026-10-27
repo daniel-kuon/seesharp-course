@@ -24,7 +24,7 @@ liefern kleine Arbeitsschritte, die gelingen oder mit einer Ausnahme scheitern.
 2. `ProtokolliereUndWirfWeiter(schritt, protokoll)` führt den Schritt aus.
    Scheitert er, schreibt die Methode `"fehler: "` und den Typnamen der Ausnahme
    (`ex.GetType().Name`) ins Protokoll und reicht **dieselbe Ausnahme** weiter.
-   Der Test prüft die Stapelüberwachung: Sie muss weiter die Methode des
+   Der Test prüft den Stack Trace: Er muss weiter die Methode des
    Schritts nennen, der den Fehler ausgelöst hat. Mit `throw ex;` ginge
    das verloren.
 
@@ -72,4 +72,4 @@ Tests: `Verarbeite_ohne_Fehler_schreibt_start_und_ende`,
 `Andere_IOException_wird_verpackt_und_die_Ursache_bleibt_InnerException`,
 `Ende_wird_in_jedem_Fall_genau_einmal_geschrieben`,
 `ProtokolliereUndWirfWeiter_reicht_dieselbe_Ausnahme_weiter` und
-`ProtokolliereUndWirfWeiter_erhaelt_die_Stapelueberwachung_des_Ursprungs`.
+`ProtokolliereUndWirfWeiter_erhaelt_den_StackTrace_des_Ursprungs`.

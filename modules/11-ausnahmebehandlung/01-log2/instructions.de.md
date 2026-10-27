@@ -18,10 +18,10 @@ zeigen den Fehler erst Schritte später. Öffne `Dualog.cs`:
    sonst `n!` als `long`. Gültig ist `n` von 0 bis 20; für größere Zahlen
    passt das Ergebnis nicht mehr in ein `long`, das ist nicht Teil der Tests.
 
-Beantworte danach die beiden Fragen. Für die erste brauchst du diese
-Stapelüberwachung:
+Beantworte danach die beiden Fragen. Für die erste brauchst du diesen
+Stack Trace:
 
-## Frage zur Stapelüberwachung
+## Frage zum Stack Trace
 
 ```text
 Unbehandelte Ausnahme: System.ArgumentOutOfRangeException: Der duale Logarithmus ist nur für Zahlen größer als 0 definiert. (Parameter 'x')

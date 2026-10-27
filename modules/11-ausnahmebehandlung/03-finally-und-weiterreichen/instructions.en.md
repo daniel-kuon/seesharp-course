@@ -50,4 +50,4 @@ static void Main() {
 }
 ```
 
-Tests: `Verarbeite_ohne_Fehler_schreibt_start_und_ende`, `Voruebergehende_IOException_wird_ignoriert`, `Andere_IOException_wird_verpackt_und_die_Ursache_bleibt_InnerException`, `Ende_wird_in_jedem_Fall_genau_einmal_geschrieben`, `ProtokolliereUndWirfWeiter_reicht_dieselbe_Ausnahme_weiter`, and `ProtokolliereUndWirfWeiter_erhaelt_die_Stapelueberwachung_des_Ursprungs`.
+Tests: `Verarbeite_ohne_Fehler_schreibt_start_und_ende`, `Voruebergehende_IOException_wird_ignoriert`, `Andere_IOException_wird_verpackt_und_die_Ursache_bleibt_InnerException`, `Ende_wird_in_jedem_Fall_genau_einmal_geschrieben`, `ProtokolliereUndWirfWeiter_reicht_dieselbe_Ausnahme_weiter`, and `ProtokolliereUndWirfWeiter_erhaelt_den_StackTrace_des_Ursprungs`.

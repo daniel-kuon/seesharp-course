@@ -31,7 +31,7 @@ public static class Ablauf
     }
 
     // Führt den Schritt aus. Scheitert er, steht im Protokoll "fehler: <Typname>"
-    // und dieselbe Ausnahme wird mit throw; weitergereicht: Die Stapelüberwachung
+    // und dieselbe Ausnahme wird mit throw; weitergereicht: Der Stack Trace
     // zeigt weiterhin den Schritt, der den Fehler ausgelöst hat.
     public static void ProtokolliereUndWirfWeiter(IArbeitsschritt schritt, Protokoll protokoll)
     {

@@ -16,7 +16,7 @@
   Zuweisung auf jedem Pfad).
 - `ParseAlleMit…`: Der 2000er-Test erzeugt 1500 Ausnahmeobjekte in der einen
   Variante, keine in der anderen. Gespräch: Warum ist das für eine Datei mit
-  vielen fehlerhaften Zeilen wichtig? (Ausnahmen sind langsam: Stapelüberwachung
+  vielen fehlerhaften Zeilen wichtig? (Ausnahmen sind langsam: Stack Trace
   aufbauen, Stapel abbauen.) Gemessen wird nichts.
 - Quiz: Lösungen sind Try-Muster, Ausnahme, Rückgabewert, Ausnahme, Try-Muster;
   `ArgumentNullException`, `InvalidOperationException`, `NotSupportedException`,

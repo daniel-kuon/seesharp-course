@@ -17,7 +17,7 @@ public class Sender
     // - Scheitert Oeffnen(): Die Ausnahme wird in eine InvalidOperationException mit der Meldung
     //   "Verbindung konnte nicht geöffnet werden" verpackt; die ursprüngliche ist InnerException.
     // - Scheitert Senden(): Fehlschlaege wird erhöht und DIESELBE Ausnahme wird weitergereicht.
-    //   Nimm throw; (nicht throw ex;), damit die Stapelüberwachung erhalten bleibt.
+    //   Nimm throw; (nicht throw ex;), damit der Stack Trace erhalten bleibt.
     public void SendeAlle(IVerbindung verbindung, string[] nachrichten)
     {
         // TODO

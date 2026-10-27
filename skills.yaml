@@ -761,7 +761,7 @@ skills:
   # ---------------------------------------------------------------------------
   - id: exceptions.unhandled-stacktrace
     category: exceptions
-    label: { de: "Meldung und Stapelüberwachung einer unbehandelten Ausnahme lesen", en: "Read the message and stack trace of an unhandled exception" }
+    label: { de: "Meldung und Stack Trace einer unbehandelten Ausnahme lesen", en: "Read the message and stack trace of an unhandled exception" }
   - id: exceptions.prevent-vs-catch
     category: exceptions
     label: { de: "Fehler durch Vorabprüfung vermeiden statt die Ausnahme abzufangen", en: "Prevent errors by checking first instead of catching the exception" }
@@ -803,7 +803,7 @@ skills:
     label: { de: "Aufräumcode in einem finally-Block ausführen", en: "Run clean-up code in a finally block" }
   - id: exceptions.rethrow
     category: exceptions
-    label: { de: "Eine Ausnahme mit throw; weiterreichen und die Stapelüberwachung erhalten", en: "Rethrow an exception with throw; preserving the stack trace" }
+    label: { de: "Eine Ausnahme mit throw; weiterreichen und den Stack Trace erhalten", en: "Rethrow an exception with throw; preserving the stack trace" }
   - id: exceptions.inner-exception
     category: exceptions
     label: { de: "Eine Ausnahme verpacken und die ursprüngliche als InnerException mitgeben", en: "Wrap an exception and pass the original as InnerException" }

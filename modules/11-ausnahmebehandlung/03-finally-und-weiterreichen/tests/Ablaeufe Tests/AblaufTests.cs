@@ -138,7 +138,7 @@ public class AblaufTests
     }
 
     [Fact]
-    public void ProtokolliereUndWirfWeiter_erhaelt_die_Stapelueberwachung_des_Ursprungs()
+    public void ProtokolliereUndWirfWeiter_erhaelt_den_StackTrace_des_Ursprungs()
     {
         var protokoll = new Protokoll();
 

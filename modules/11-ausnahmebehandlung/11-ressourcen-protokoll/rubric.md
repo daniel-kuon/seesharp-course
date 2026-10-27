@@ -8,7 +8,7 @@
 - Häufige Fehler: `Schliessen()` am Ende des `try` (der Fehlerfall verpasst es,
   der Test `Sendefehler_…` fällt durch); `Schliessen()` zusätzlich in jedem `catch`
   (dann zweimal bei Fehlern); `throw ex;` statt `throw;` (die Tests prüfen
-  nur die Identität der Ausnahme, nicht die Stapelüberwachung; den Unterschied
+  nur die Identität der Ausnahme, nicht den Stack Trace; den Unterschied
   bitte besprechen, siehe `ausnahmen-finally-und-weiterreichen`).
 - Der Test verlangt, dass `Schliessen()` auch nach einem Fehler beim Öffnen
   genau einmal läuft; das ist eine Festlegung der Aufgabe (eine halb geöffnete

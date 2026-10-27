@@ -236,8 +236,8 @@ items:
           ```
     correct: [3]
     explanation:
-      de: "Die erste Variante gibt keinen Basiskonstruktor an; der Compiler sucht einen parameterlosen und findet keinen (CS7036). In der zweiten steht der Klassenname statt `base`; die Schreibweise `: Figur(x, y)` gibt es nur bei Records (Syntaxfehler). In der dritten steht der Basisaufruf im Rumpf; er gehört in die Initialisierungsliste vor dem Rumpf, `base(...)` ist kein Befehl (CS0175). Die vierte ist richtig (7.4.1, Seite 549)."
-      en: "The first variant names no base constructor; the compiler looks for a parameterless one and finds none (CS7036). The second uses the class name instead of `base`; the notation `: Figur(x, y)` only exists for records (syntax error). The third puts the base call in the body; it belongs in the initializer list before the body, and `base(...)` is not a statement (CS0175). The fourth is correct (7.4.1, page 549)."
+      de: "Die erste Variante gibt keinen Basiskonstruktor an; der Compiler sucht einen parameterlosen und findet keinen (CS7036). In der zweiten steht der Klassenname statt `base` (Syntaxfehler CS1018); die Schreibweise `: Figur(x, y)` gibt es nur im Kopf einer Klasse oder eines Records mit primärem Konstruktor (7.4.3.1, Seite 552), nicht an einem Konstruktor. In der dritten steht der Basisaufruf im Rumpf; er gehört in die Initialisierungsliste vor dem Rumpf, `base(...)` ist kein Befehl (CS0175). Die vierte ist richtig (7.4.1, Seite 549)."
+      en: "The first variant names no base constructor; the compiler looks for a parameterless one and finds none (CS7036). The second uses the class name instead of `base` (syntax error CS1018); the notation `: Figur(x, y)` only exists in the header of a class or record with a primary constructor (7.4.3.1, page 552), not on a constructor. The third puts the base call in the body; it belongs in the initializer list before the body, and `base(...)` is not a statement (CS0175). The fourth is correct (7.4.1, page 549)."
   - type: multipleChoice
     id: abstrakt-richtig
     prompt:

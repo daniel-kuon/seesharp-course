@@ -1,9 +1,11 @@
 # Rubrik — Erweiterungsmitglieder (nur für die Betreuung)
 
 - Unterschied `extension(double arg)` (Instanz) und `extension(double)`
-  (statisch) klar? Der Operator `^` muss in den statischen Block.
-- Erweiterungsmethoden sehen nur die öffentliche Schnittstelle; sie sind
-  keine Vererbung. Die Quizfrage zur Priorität (echtes Mitglied gewinnt)
+  (statisch) klar? Statische Mitglieder und der Operator `^` brauchen keinen
+  Empfänger und stehen deshalb im Block ohne Empfängerparameter (erlaubt
+  wären sie auch im Block mit `arg`).
+- Erweiterungsmethoden haben keinen Zugriff auf private Mitglieder des
+  erweiterten Typs (7.15.1); sie sind keine Vererbung. Die Quizfrage zur Priorität (echtes Mitglied gewinnt)
   im Gespräch vertiefen: Was passiert, wenn .NET eines Tages
   `double.High` einbaut?
 - `null`-Empfänger bei `s.Empty()`: Gelegenheit, über Nullable-Annotationen

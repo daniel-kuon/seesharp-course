@@ -20,4 +20,4 @@ items:
     testProject: "Reparatur Tests/Reparatur.Tests.csproj"
   - type: open
     id: erklaerung
-    prompt: { de: "Erkläre in zwei Sätzen: Warum hat Abgeleitet im Starter keinen brauchbaren Konstruktor, obwohl keiner deklariert ist? Und warum sind die privaten Felder xpos/ypos in Kreis zwar vorhanden, aber nicht zugänglich?", en: "Explain in two sentences: Why doesn't `Abgeleitet` in the `Starter` class have a usable constructor, even though none is declared? And why are the private fields `xpos` and `ypos` in `Kreis` present but inaccessible?" }
+    prompt: { de: "Erkläre in zwei Sätzen: Warum hat Abgeleitet im Starter keinen brauchbaren Konstruktor, obwohl keiner deklariert ist? Und warum sind die privaten Felder xpos/ypos in Kreis zwar vorhanden, aber nicht zugänglich?", en: "Explain in two sentences: Why doesn't `Abgeleitet` in the starter have a usable constructor, even though none is declared? And why are the private fields `xpos` and `ypos` in `Kreis` present but inaccessible?" }

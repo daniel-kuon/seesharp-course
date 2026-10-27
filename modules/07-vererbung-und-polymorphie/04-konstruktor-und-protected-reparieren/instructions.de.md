@@ -4,8 +4,9 @@ Lies im Buch **7.16 Übungsaufgaben zum Kapitel 7**, Aufgaben 1 und 2 (Seite
 586); zur Erklärung **7.4.1 base-Konstruktoren** (Seite 549) und **7.5
 Zugriffsmodifikator protected** (Seite 554).
 
-Der Starter **kompiliert nicht**. Baue das Projekt, lies die beiden
-Fehlermeldungen und repariere:
+Der Starter **kompiliert nicht**. Baue das Projekt, lies die
+Fehlermeldungen (CS7036 und CS1729 zu `Abgeleitet`, CS0122 zu `xpos` und
+`ypos`) und repariere die beiden Ursachen:
 
 1. `Basisklasse.cs`: `Abgeleitet` deklariert keinen Konstruktor, also
    erzeugt der Compiler einen parameterlosen, der `base()` aufruft. Den gibt

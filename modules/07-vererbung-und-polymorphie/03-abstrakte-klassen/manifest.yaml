@@ -34,6 +34,6 @@ items:
     options:
       - { de: "Einen Fehler: Dreieck muss entweder Breite implementieren oder selbst abstract sein.", en: "An error: `Dreieck` must either implement `Breite` or be `abstract` itself." }
       - { de: "Nichts; Breite wird mit der Basisfassung ergänzt.", en: "Nothing; `Breite` is filled in with the base version." }
-      - { de: "Eine Warnung, aber das Programm läuft.", en: "A warning, but the program is running." }
+      - { de: "Eine Warnung, aber das Programm läuft.", en: "A warning, but the program runs." }
     correct: [0]
     explanation: { de: "Jedes abstrakte Mitglied muss in der ersten konkreten Unterklasse mit override implementiert werden.", en: "Every abstract member must be implemented with `override` in the first concrete subclass." }

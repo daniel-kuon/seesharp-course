@@ -29,4 +29,4 @@ items:
       - { de: "Die Figur-Fassung; entscheidend ist der Typ der Variablen.", en: "The `Figur` version; the type of the variable decides." }
       - { de: "Beide nacheinander, erst Figur, dann Kreis.", en: "Both in sequence, first `Figur`, then `Kreis`." }
     correct: [0]
-    explanation: { de: "Virtuelle Methoden werden zur Laufzeit über den dynamischen Typ aufgelöst (7.9, Seite 566). Mit new statt override liefe dagegen die Figur-Fassung, weil new nur verdeckt.", en: "Virtual methods are resolved at runtime based on the dynamic type (7.9, page 566). If you used `new` instead of `override`, however, the `Figur` version would be called, because `new` only masks the method." }
+    explanation: { de: "Virtuelle Methoden werden zur Laufzeit über den dynamischen Typ aufgelöst (7.9, Seite 566). Mit new statt override liefe dagegen die Figur-Fassung, weil new nur verdeckt.", en: "Virtual methods are resolved at runtime based on the dynamic type (7.9, page 566). If you used `new` instead of `override`, however, the `Figur` version would be called, because `new` only hides the method." }

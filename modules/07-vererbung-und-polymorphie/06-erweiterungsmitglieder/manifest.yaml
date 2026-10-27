@@ -31,10 +31,10 @@ items:
     explanation: { de: "Erweiterungsmitglieder sind syntaktischer Zucker für statische Methoden (7.15.1, Seite 582). Sie haben keinen Zugriff auf private Mitglieder des erweiterten Typs.", en: "Extension members are syntactic sugar for static methods (7.15.1, page 582). They do not have access to private members of the extended type." }
   - type: multipleChoice
     id: instanz-vs-erweiterung
-    prompt: { de: "Ein Typ hat eine Instanzmethode M() und es gibt zusätzlich eine Erweiterungsmethode M() für ihn. Was ruft x.M() auf?", en: "A class has an instance method M(), and there is also an extension method M() for it. What does x.M() call?" }
+    prompt: { de: "Ein Typ hat eine Instanzmethode M() und es gibt zusätzlich eine Erweiterungsmethode M() für ihn. Was ruft x.M() auf?", en: "A type has an instance method `M()`, and there is also an extension method `M()` for it. What does `x.M()` call?" }
     options:
-      - { de: "Immer die Instanzmethode; Erweiterungen kommen nur zum Zug, wenn der Typ nichts Passendes hat.", en: "Always use the instance method; extensions are only used if the type doesn't have a suitable one." }
+      - { de: "Immer die Instanzmethode; Erweiterungen kommen nur zum Zug, wenn der Typ nichts Passendes hat.", en: "Always the instance method; extensions only come into play if the type has nothing suitable." }
       - { de: "Die Erweiterungsmethode, weil sie später definiert wurde.", en: "The extension method, because it was defined later." }
       - { de: "Compilerfehler wegen Mehrdeutigkeit.", en: "Compiler error due to ambiguity." }
     correct: [0]
-    explanation: { de: "Erweiterungsmitglieder haben niedrigere Priorität als echte Mitglieder (7.15.1). Das gilt auch, wenn der erweiterte Typ das Mitglied später nachrüstet.", en: "Extension members have lower priority than regular members (7.15.1). This also applies if the extension type adds the member later." }
+    explanation: { de: "Erweiterungsmitglieder haben niedrigere Priorität als echte Mitglieder (7.15.1). Das gilt auch, wenn der erweiterte Typ das Mitglied später nachrüstet.", en: "Extension members have lower priority than regular members (7.15.1). This also applies if the extended type adds the member later." }

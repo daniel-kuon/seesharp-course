@@ -1,6 +1,6 @@
 # Extension Members (C# 14)
 
-Read section **7.15**, "**Extension Members"** (page 581): 7.15.1 General Rules (page 582), 7.15.2 Extension Blocks Starting with C# 14 (page 583), and 7.15.3 Extension Methods with a `this` Parameter (page 585). This is new material from C# 14; there isn’t much about it online yet—the book is the primary source.
+Read section **7.15**, "**Extension Members"** (page 581): 7.15.1 General Rules (page 582), 7.15.2 Extension Blocks Starting with C# 14 (page 583), and 7.15.3 Extension Methods with a `this` Parameter (page 585). This is new C# 14 material; many sources on the web only know the classic form with `this`, so stick to the book.
 
 With extension members, you can extend third-party types, even sealed ones like `double` or `string`. Open `DoubleExtensions.cs`; the blocks are already there, but the bodies are missing:
 

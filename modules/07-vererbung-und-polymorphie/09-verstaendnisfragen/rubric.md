@@ -13,9 +13,9 @@ Wesentliche Punkte:
 - **Überschreiben**: Basis `virtual`, Unterklasse `override`. Die Methode ersetzt die
   Basisfassung **für das Objekt**; es zählt der **dynamische Typ** (das tatsächliche Objekt),
   egal über welche Referenz man aufruft. Das ist Polymorphie.
-- **Verdecken** (`new`, oder ohne Modifizierer mit Warnung CS0114): Die Unterklasse führt
-  eine zweite, unabhängige Methode gleicher Signatur ein. Es zählt der **statische Typ**
-  der Referenz: Über `Figur f` läuft die Basisfassung, über `Kreis k` die verdeckende.
+- **Verdecken** (`new`, oder ohne Modifizierer mit Warnung CS0108, bei `virtual` in der
+  Basis CS0114): Die Unterklasse führt eine zweite, unabhängige Methode gleicher
+  Signatur ein. Es zählt der **statische Typ** der Referenz: Über `Figur f` läuft die Basisfassung, über `Kreis k` die verdeckende.
 - Bei `Figur f = new Kreis(); f.Beschreibe();` läuft mit `override` die Kreis-Version,
   mit `new` die Figur-Version.
 
@@ -55,8 +55,10 @@ enthalten (sie darf beides); `abstract` und `virtual` seien dasselbe.
 ## basiskonstruktor-protected
 
 Wesentliche Punkte:
-- Ein `Kreis`-Objekt enthält den `Figur`-Teil; die Basisklasse wird **zuerst**
-  initialisiert, deshalb läuft ihr Konstruktor vor dem Rumpf des abgeleiteten.
+- Ein `Kreis`-Objekt enthält den `Figur`-Teil, und der muss initialisiert sein, bevor
+  der `Kreis`-Rumpf ihn benutzt: Jeder Konstruktor ruft (nach den Feldinitialisierern
+  der eigenen Klasse) **zuerst** einen Basiskonstruktor auf, erst danach läuft sein Rumpf
+  (7.4.2).
 - Fehlt `: base(...)`, ruft der Compiler den **parameterlosen** Basiskonstruktor. Gibt es den
   nicht, **kompiliert es nicht** (Fehler CS7036); die Lösung ist `: base(x, y)`.
 - `private`: nur in der eigenen Klasse zugänglich; die Mitglieder werden zwar vererbt (sind im
@@ -74,8 +76,8 @@ Wesentliche Punkte:
   nach, **ohne sie zu verändern**; `pi.High(2)` ist in Wahrheit ein Aufruf einer statischen
   Methode. Klassisch: statische Methode in statischer Klasse mit `this`-Parameter; seit C# 14
   der Erweiterungsblock `extension(...)`.
-- Grenzen (mindestens zwei von drei genügen): Sie sehen nur die **öffentliche**
-  Schnittstelle (kein Zugriff auf `private`/`protected`); sie können keine Instanzfelder
+- Grenzen (mindestens zwei von drei genügen): Sie sehen nur, was **von außen**
+  zugänglich ist (kein Zugriff auf `private`/`protected`); sie können keine Instanzfelder
   hinzufügen; sie sind nicht virtuell; **echte Mitglieder haben Vorrang**: Hat der Typ
   selbst schon ein gleichnamiges Mitglied, gewinnt dieses, die Erweiterung wird nie aufgerufen.
 

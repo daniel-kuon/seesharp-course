@@ -18,5 +18,5 @@ Mitglieder liefert:
 3. `Figur.Gesamtflaeche(Figur[])` summiert `Inhalt` über alle Figuren. Das
    geht nur, weil jede Figur garantiert einen Inhalt hat.
 
-Beobachte, dass `new Figur(...)` in `Program.cs` danach nicht mehr
-kompiliert, `Figur[]` als Typ aber weiterhin erlaubt ist.
+Probiere danach aus, dass eine Zeile `new Figur(1.0, 2.0)` in `Program.cs`
+nicht mehr kompiliert, `Figur[]` als Typ aber weiterhin erlaubt ist.

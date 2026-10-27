@@ -10,11 +10,13 @@ Levels arbeiten damit.
 
 `class Kreis : Figur` macht `Kreis` zur Unterklasse: Jedes Kreis-Objekt
 enthält alle Felder von `Figur` und kann überall verwendet werden, wo eine
-`Figur` erwartet wird (7.2, das allgemeine Typsystem, Seite 545). Die
-Basisklasse wird immer zuerst initialisiert; mit `: base(x, y)` wählst du,
-welcher Basiskonstruktor läuft (7.4.1, Seite 549). Fehlt die Angabe, ruft der
-Compiler den parameterlosen Basiskonstruktor; gibt es den nicht, scheitert
-die Übersetzung (7.16 Aufgabe 1). Private Mitglieder werden vererbt, sind in
+`Figur` erwartet wird (7.2, das allgemeine Typsystem, Seite 545). Jeder
+Konstruktor ruft einen Basiskonstruktor auf, bevor sein eigener Rumpf läuft;
+mit `: base(x, y)` wählst du, welcher es ist (7.4.1, Seite 549). Nur die
+Feldinitialisierer der abgeleiteten Klasse laufen noch davor (7.4.2, Seite
+550). Fehlt `: base(...)`, ruft der Compiler den parameterlosen
+Basiskonstruktor; gibt es den nicht, scheitert die Übersetzung (7.16
+Aufgabe 1). Private Mitglieder werden vererbt, sind in
 der Unterklasse aber nicht zugänglich; `protected` öffnet sie für Erben und
 sonst niemanden (7.5, Seite 554).
 
@@ -65,11 +67,13 @@ Erweiterungsmitglieder rüsten fremde, auch versiegelte Typen nach, ohne sie
 zu verändern: `pi.High(2)` ist in Wahrheit `DoubleExtensions.High(pi, 2)`.
 Die klassische Form ist eine statische Methode mit `this`-Parameter (7.15.3,
 Seite 585). Seit C# 14 bündelt ein **Erweiterungsblock** `extension(double
-arg) { … }` Methoden und Eigenschaften, und `extension(double) { … }` ohne
-Empfänger erlaubt sogar statische Mitglieder und Operatoren (7.15.2, Seite
-583). Echte Mitglieder haben immer Vorrang vor Erweiterungen, und
-Erweiterungen sehen nur die öffentliche Schnittstelle. Das Material ist neu;
-das Buch ist hier die verlässlichere Quelle als das Netz.
+arg) { … }` Methoden und Eigenschaften und erlaubt auch statische Mitglieder
+und Operatoren; weil die keinen Empfänger brauchen, stellt das Buch sie in
+einen eigenen Block `extension(double) { … }` ohne Empfängerparameter (7.15.2,
+Seite 583). Echte Mitglieder haben immer Vorrang vor Erweiterungen, und
+Erweiterungen haben keinen Zugriff auf private Mitglieder des erweiterten Typs
+(7.15.1, Seite 582). Das Material ist neu; viele Quellen im Netz kennen nur
+die klassische Form mit `this`.
 
 Vertiefung im Buch: Kapitel 7, Abschnitte 7.1 bis 7.15 (Seite 543 bis 586);
 die Übungsaufgaben in 7.16 (Seite 586) liefern Reparatur, Quiz und

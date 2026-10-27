@@ -3,8 +3,8 @@
 Lies im Buch **7.15 Erweiterungsmitglieder** (Seite 581): 7.15.1 generelle
 Regeln (Seite 582), 7.15.2 Erweiterungsblöcke ab C# 14 (Seite 583) und
 7.15.3 Erweiterungsmethoden mit `this`-Parameter (Seite 585). Das ist
-neues C#-14-Material; im Netz findest du dazu noch wenig, das Buch ist die
-Quelle.
+neues C#-14-Material; viele Quellen im Netz kennen nur die klassische Form
+mit `this`, halte dich an das Buch.
 
 Mit Erweiterungsmitgliedern rüstest du fremde Typen nach, sogar versiegelte
 wie `double` oder `string`. Öffne `DoubleExtensions.cs`; die Blöcke stehen

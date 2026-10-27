@@ -1,6 +1,6 @@
 # A Shape Hierarchy
 
-Read sections **7.3 “Defining a Derived Class”** (page 547), **7.4 “Constructors and Inheritance”** (page 549), **7.5 The `protected` Access Modifier** (page 554), **7.7 Managing Objects via Base Class References** (page 561), and **7.8 Type Cast Operators** (page 563).
+Read sections **7.3 “Defining a Derived Class”** (page 547), **7.4 “Constructors and Inheritance”** (page 549), **7.5 The `protected` Access Modifier** (page 554), **7.7 Managing Objects via Base Class References** (page 561), and **7.8 Type-Test Operators** (page 563).
 
 `Figur` is finished: position `xpos`/`ypos` (as `protected`), a validating constructor, the property `Wo`. `Kreis` and `Rechteck` are meant to inherit from it:
 

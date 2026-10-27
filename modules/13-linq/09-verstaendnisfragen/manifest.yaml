@@ -15,7 +15,6 @@ requires:
   - linq.aggregates
   - linq.materialize
   - linq.groupby
-  - linq.countby
   - linq.groupjoin
   - linq.query-syntax
 items:
@@ -27,8 +26,8 @@ items:
   - type: open
     id: groupby-countby
     prompt:
-      de: "Was liefert `GroupBy` genau, und wie liest du den Schlüssel und die Elemente einer Gruppe? Wann ist `CountBy(f)` die bessere Wahl gegenüber `GroupBy(f).Select(g => (g.Key, g.Count()))`?"
-      en: "What exactly does `GroupBy` return, and how do you read the key and the elements of a group? When is `CountBy(f)` the better choice compared to `GroupBy(f).Select(g => (g.Key, g.Count()))`?"
+      de: "Was liefert `GroupBy` genau, und wie liest du den Schlüssel und die Elemente einer Gruppe? Wie zählst du damit, wie oft jeder Schlüssel vorkommt?"
+      en: "What exactly does `GroupBy` return, and how do you read the key and the elements of a group? How do you use it to count how often each key occurs?"
   - type: open
     id: join-vs-groupjoin
     prompt:

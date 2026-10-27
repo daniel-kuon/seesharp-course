@@ -1,7 +1,9 @@
 # Zusatz: Notenstatistik
 
 Lies im Buch **18.2.11 Weitere LINQ-Operatoren** (Seite 1228) und
-wiederhole `GroupBy` aus 18.2.9 (Seite 1222).
+wiederhole `GroupBy` aus 18.2.9 (Seite 1222). `OrderBy`/`ThenBy` mit
+`StringComparer.Ordinal` als zweitem Argument kennst du aus Aufgabe 13/04
+(nicht im Buch).
 
 Der Record `Pruefung(Fach, Student, Note)` hält eine Note (1,0 ist die
 beste, 5,0 die schlechteste). `Notenstatistik` bekommt alle Prüfungen im

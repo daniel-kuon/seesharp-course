@@ -7,7 +7,7 @@
   bleibt es eine nicht ausgeführte Abfrage (Vertiefung in 13/03).
 - `ToDictionary` wirft bei doppeltem Schlüssel `ArgumentException`; die
   Testdaten haben eindeutige Namen. Nachfrage: Was wäre bei zwei Produkten
-  gleichen Namens zu tun? (`ToLookup` oder `GroupBy`, 13/04.)
+  gleichen Namens zu tun? (`GroupBy`, 13/04; Bonus (Deep Dive): `ToLookup`.)
 - Tupel statt anonymer Typ für `Etiketten`, weil der Rückgabetyp benannt
   werden muss; das ist der Zusammenhang zur Quizfrage.
 - Typischer Fehler: `Where(p => p.Lager > 0 && ...)` ist ebenso richtig wie zwei

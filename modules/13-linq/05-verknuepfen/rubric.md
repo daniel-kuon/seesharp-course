@@ -11,7 +11,8 @@
   äußeren Sequenz (Kunden), innerhalb eines Kunden der inneren.
 - `Zip` stoppt bei der kürzeren Folge ohne Fehler (seit .NET Core 3.0 gibt es
   auch die Überladung ohne Ergebnisfunktion, die Tupel liefert).
-- `TopKunde`: `OrderByDescending(...).FirstOrDefault()` bewahrt bei Gleichstand
-  die Kundenreihenfolge, weil die Sortierung stabil ist.
+- `TopKunde`: Eine Schleife mit `>` oder `OrderByDescending(...).FirstOrDefault()`
+  liefert bei Gleichstand den ersten Kunden. Bonus (Deep Dive): Bei der
+  LINQ-Variante liegt das daran, dass `OrderByDescending` stabil sortiert (nicht im Buch).
 
 Modellantwort: `solution/` bzw. `samples/LINQ-to-Objects/Join`, `GroupJoin`, `Zip`.

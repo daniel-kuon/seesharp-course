@@ -1,7 +1,9 @@
 # Zusatz: Bibliotheksauskunft
 
 Lies im Buch **18.2.10 Verknüpfen von zwei Sequenzen** (Seite 1224) und
-wiederhole `Join` und `GroupJoin` aus Aufgabe 13/05.
+wiederhole `Join` und `GroupJoin` aus Aufgabe 13/05. `OrderBy` mit
+`StringComparer.Ordinal` als zweitem Argument kennst du aus Aufgabe 13/04
+(nicht im Buch).
 
 Die Records `Autor(Id, Name)`, `Buch(Id, Titel, AutorId)` und
 `Ausleihe(BuchId, Leser)` sind vorgegeben. `Auskunft` bekommt die drei

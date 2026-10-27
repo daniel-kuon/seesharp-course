@@ -9,10 +9,11 @@
 - Mengenoperatoren entfernen Wiederholungen; `Union` ohne `Distinct` genügt.
   Nachfrage: Wie vergleicht `Except` Records? (Wertgleichheit über `Equals` und
   `GetHashCode`; bei eigenen Klassen müssten beide überschrieben werden.)
-- `CountBy`/`AggregateBy` ersetzen `GroupBy(...).Select(g => (g.Key, g.Count()))`
-  bzw. `GroupBy(...).ToDictionary(g => g.Key, g => g.Sum(...))`; beide Formen
-  sollen erkannt werden, wenn man fremden Code liest.
-- `Order(StringComparer.Ordinal)` macht die Ausgabe unabhängig von der
-  Spracheinstellung des Rechners.
+- Bonus (Deep Dive): `CountBy`/`AggregateBy` (nicht im Buch, Tests
+  `Haeufigkeiten_*` und `GroesseProEndung_*` sind Zusatz) ersetzen
+  `GroupBy(...).Select(g => (g.Key, g.Count()))` bzw.
+  `GroupBy(...).ToDictionary(g => g.Key, g => g.Sum(...))`.
+- `Order(StringComparer.Ordinal)` (in der Aufgabe vorgegeben) macht die Ausgabe
+  unabhängig von der Spracheinstellung des Rechners.
 
 Modellantwort: `solution/` bzw. `samples/LINQ-to-Objects/GroupBy`, `FindDuplicate`.

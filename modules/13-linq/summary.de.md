@@ -23,9 +23,9 @@ materialisiert es einmal mit `ToList()`.
 
 `Where` filtert, `OfType<T>()` filtert nach Laufzeittyp, `Select` formt in
 einen neuen Elementtyp um, auch in Tupel oder anonyme Typen. `OrderBy`,
-`ThenBy` und die `...Descending`-Varianten sortieren (18.2.7, Seite 1218),
-und zwar **stabil**: Elemente mit gleichem Schlüssel behalten ihre
-Quellreihenfolge (das Buch erwähnt das nicht, .NET garantiert es). `SelectMany` flacht eine Sequenz von Sequenzen ab (18.2.8.2,
+`ThenBy` und die `...Descending`-Varianten sortieren (18.2.7, Seite 1218);
+zwei `OrderBy` hintereinander sortieren neu, weitere Kriterien hängt man mit
+`ThenBy` an (Seite 1219). `SelectMany` flacht eine Sequenz von Sequenzen ab (18.2.8.2,
 Seite 1220).
 
 ## Gruppieren und Verknüpfen (18.2.9 und 18.2.10, Seite 1222 bis 1228)
@@ -33,8 +33,7 @@ Seite 1220).
 `GroupBy` liefert Gruppen (`IGrouping<TKey, T>`), die selbst Sequenzen sind
 und ihren Schlüssel in `Key` tragen. `Join` ist ein innerer Join; `GroupJoin`
 hängt jedem Element der äußeren Sequenz die (auch leere) Gruppe seiner Partner
-an (das Buch nennt das einen Left Outer Join, Seite 1228; seit .NET 10 gibt
-es dafür auch `LeftJoin`). `Zip` paart zwei Sequenzen elementweise
+an (das Buch nennt das einen Left Outer Join, Seite 1228). `Zip` paart zwei Sequenzen elementweise
 (18.2.8.3, Seite 1221).
 
 ## Weitere Operatoren (18.2.11, Seite 1228)
@@ -44,11 +43,9 @@ Quantoren (`Any`, `All`, `Contains`), Elementoperatoren (`First`,
 (`Distinct`, `Union`, `Intersect`, `Except`), Aggregate (`Count`, `Sum`,
 `Average`, `Min`, `Max`; auf einer leeren Zahlenfolge werfen `Average`, `Min`
 und `Max`, `Sum` und `Count` liefern 0) und
-Teilfolgen (`Take`, `Skip`, `TakeWhile`, `Chunk`, Seite 1234). Das Buch ist
-auf dem Stand .NET 8: `CountBy`, `AggregateBy` und `Index` (ab .NET 9) fehlen
-dort. `CountBy(f)` zählt je Schlüssel in einem Durchlauf und ersetzt
-`GroupBy(f).Select(g => (g.Key, g.Count()))`; `AggregateBy` verdichtet je
-Schlüssel zu einem beliebigen Wert.
+Teilfolgen (`Take`, `Skip`, `TakeWhile`, `Chunk`, Seite 1234). Häufigkeiten
+zählt man mit `GroupBy(f).Select(g => (g.Key, g.Count()))`; kürzere Wege
+siehe Deep Dive.
 
 ## Abfragesyntax und Unterabfragen (18.3 und 18.4, Seite 1235 bis 1244)
 
@@ -69,3 +66,24 @@ Quellen brauchbar. PLINQ (18.5) gehört zum Wahlmodul Multithreading.
 
 Vertiefung im Buch: Kapitel 18 (Seite 1209 bis 1256); die Übungsaufgaben in
 18.6 (Seite 1255) liefern die Quizfragen und die Dublettensuche dieses Levels.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **Stabile Sortierung:** `OrderBy` und `OrderByDescending` sind stabil:
+  Elemente mit gleichem Schlüssel behalten ihre Quellreihenfolge. .NET
+  garantiert das, `List<T>.Sort` dagegen nicht.
+- **Neuere Operatoren:** Das Buch ist auf dem Stand .NET 8. `CountBy(f)`
+  (ab .NET 9) zählt je Schlüssel in einem Durchlauf und ersetzt
+  `GroupBy(f).Select(g => (g.Key, g.Count()))`; `AggregateBy` verdichtet je
+  Schlüssel zu einem beliebigen Wert; `Index()` liefert Paare (Position,
+  Element). Seit .NET 10 gibt es `LeftJoin` für den Left Outer Join als flache
+  Folge. `Order()` (ab .NET 7) sortiert nach den Elementen selbst
+  (wie `OrderBy(x => x)`), `MaxBy`/`MinBy` liefern das Element mit dem
+  größten bzw. kleinsten Schlüssel.
+- **Vergleicher beim Sortieren:** `OrderBy`, `ThenBy` und `Order` haben
+  Überladungen mit einem Vergleicher, z. B.
+  `OrderBy(t => t, StringComparer.Ordinal)`; dann zählen die Zeichencodes, nicht
+  die Spracheinstellung des Rechners. `FirstOrDefault(standard)` liefert statt
+  des Typ-Standardwerts einen selbst gewählten Wert.

@@ -11,7 +11,8 @@ Das ist praktisch, aber tückisch. Öffne `Ausfuehrung.cs`:
 1. `Pruefungen`: `AlleVolljaehrig` (`All`, Alter >= 18), `HatNegativenWert`
    (`Any` mit Bedingung) und `Enthaelt(texte, text)` mit
    `StringComparer.OrdinalIgnoreCase` (`Contains` mit Vergleicher).
-2. `Zugriff`: `ErstesOderStandard` (`FirstOrDefault` mit Standardwert),
+2. `Zugriff`: `ErstesOderStandard` (`werte.FirstOrDefault(standard)`; die
+   Überladung mit eigenem Standardwert ist nicht im Buch, hier vorgegeben),
    `EindeutigerTreffer` (`Single`; wirft bei keinem und bei mehreren
    Treffern `InvalidOperationException`), `EindeutigerTrefferText` (fängt
    diese Ausnahme und liefert `"Treffer: N"` bzw. `"kein eindeutiger

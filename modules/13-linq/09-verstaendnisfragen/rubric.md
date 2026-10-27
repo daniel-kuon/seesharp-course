@@ -17,9 +17,10 @@ Typische Irrtümer: `Where` filtere sofort bei der Zeile selbst; die Abfrage spe
 
 Kernpunkte:
 - `GroupBy` liefert eine Folge von Gruppen (`IGrouping<TKey, T>`); jede Gruppe ist selbst eine Sequenz der zugehörigen Elemente (mit `foreach`, `Count()`, `Select` … durchlaufbar) und trägt ihren Schlüssel in der Eigenschaft `Key`.
-- `CountBy(f)` (ab .NET 9) zählt je Schlüssel in **einem Durchlauf** und liefert direkt Schlüssel-Anzahl-Paare; es baut keine Gruppen mit allen Elementen auf. Es ist die bessere Wahl, wenn nur die Anzahl je Schlüssel gebraucht wird; `GroupBy` nimmt man, wenn man die Elemente der Gruppen selbst weiterverarbeitet.
+- Zählen je Schlüssel: `GroupBy(f).Select(g => (g.Key, g.Count()))`; `Count()` auf der Gruppe liefert ihre Größe.
+- Bonus (Deep Dive, nicht im Buch): `CountBy(f)` (ab .NET 9) zählt je Schlüssel in einem Durchlauf, ohne Gruppen mit allen Elementen aufzubauen.
 
-Typische Irrtümer: `GroupBy` liefere ein Dictionary oder eine Liste von Listen mit Indexzugriff; `Key` sei ein Element der Gruppe; `CountBy` und `GroupBy` seien völlig gleichwertig.
+Typische Irrtümer: `GroupBy` liefere ein Dictionary oder eine Liste von Listen mit Indexzugriff; `Key` sei ein Element der Gruppe; `Count()` auf dem Ergebnis von `GroupBy` zähle die Elemente statt der Gruppen.
 
 ## join-vs-groupjoin
 
@@ -77,6 +78,6 @@ Typische Irrtümer: Gruppen alphabetisch sortiert erwartet (hier zufällig gleic
 Ausgabe, drei Zeilen: `0`, `0`, `leer`.
 Kernpunkte:
 - `Sum()` einer leeren Folge ist `0` (neutrales Element, kein Fehler); `FirstOrDefault()` liefert den Standardwert des Typs (`0` für `int`, bei Referenztypen `null`).
-- `Average()` hat bei einer leeren Folge keinen sinnvollen Wert (Division durch 0 wäre `NaN`, ein Mittelwert ist hier nicht definiert) und wirft eine `InvalidOperationException`, die der `catch` abfängt → „leer“. Dasselbe gilt für `Min`, `Max`, `First`, `Single` auf einer leeren Folge. Man prüft vorher mit `Any()` oder weicht auf `DefaultIfEmpty()` aus.
+- `Average()` hat bei einer leeren Folge keinen sinnvollen Wert (Division durch 0 wäre `NaN`, ein Mittelwert ist hier nicht definiert) und wirft eine `InvalidOperationException`, die der `catch` abfängt → „leer“. Dasselbe gilt für `Min`, `Max`, `First`, `Single` auf einer leeren Folge. Man prüft vorher mit `Any()` (Bonus (Deep Dive): `DefaultIfEmpty()`).
 
 Typische Irrtümer: `Average()` liefere `0` oder `NaN`; `FirstOrDefault()` werfe eine Ausnahme; `Sum()` werfe eine Ausnahme.

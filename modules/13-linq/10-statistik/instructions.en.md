@@ -1,6 +1,6 @@
 # Extra: Grade Statistics
 
-Read **18.2.11 Additional LINQ Operators** (page 1228) in the book and review `GroupBy` from 18.2.9 (page 1222).
+Read **18.2.11 Additional LINQ Operators** (page 1228) in the book and review `GroupBy` from 18.2.9 (page 1222). `OrderBy`/`ThenBy` with `StringComparer.Ordinal` as a second argument is known from Exercise 13/04 (not in the book).
 
 The record `Pruefung(Fach, Student, Note)` holds a grade (1.0 is the best, 5.0 is the worst). `Notenstatistik` receives all exams in its constructor; write the following in `Notenstatistik.cs`:
 

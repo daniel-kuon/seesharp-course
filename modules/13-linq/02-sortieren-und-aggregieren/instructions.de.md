@@ -8,7 +8,9 @@ Der Record `Produkt` kennst du aus der vorigen Aufgabe. Öffne
 lassen die Quelle unverändert:
 
 1. `Teuerste(produkte, n)`: die `n` teuersten Produkte, teuerstes zuerst,
-   bei gleichem Preis in der Reihenfolge der Quelle (`OrderByDescending`, `Take`).
+   bei gleichem Preis in der Reihenfolge der Quelle (`OrderByDescending`, `Take`;
+   die Quellreihenfolge bei Gleichstand ergibt sich von selbst, warum, steht
+   im Deep Dive der Zusammenfassung).
 2. `NachKategorieDannPreis(produkte)`: nach Kategorie aufsteigend, innerhalb
    der Kategorie nach Preis absteigend (`OrderBy`, `ThenByDescending`).
 3. `Seite(produkte, seite, groesse)`: eine Seite der Liste in der gegebenen

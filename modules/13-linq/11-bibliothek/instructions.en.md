@@ -1,6 +1,6 @@
 # Extra: Library Information
 
-Read **18.2.10 Linking Two Sequences** (page 1224) in the book and review `Join` and `GroupJoin` from Exercise 13/05.
+Read **18.2.10 Linking Two Sequences** (page 1224) in the book and review `Join` and `GroupJoin` from Exercise 13/05. `OrderBy` with `StringComparer.Ordinal` as a second argument is known from Exercise 13/04 (not in the book).
 
 The records `Autor(Id, Name)`, `Buch(Id, Titel, AutorId)`, and `Ausleihe(BuchId, Leser)` are predefined. `Auskunft` receives the three sequences in its constructor; write the following in `Auskunft.cs`:
 

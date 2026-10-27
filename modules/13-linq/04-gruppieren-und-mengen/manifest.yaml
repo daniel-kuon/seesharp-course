@@ -21,15 +21,21 @@ items:
     openFile: "Gruppen/Auswertung.cs"
     openLine: 1
     testProject: "Gruppen Tests/Gruppen.Tests.csproj"
+    requiredTests:
+      - AuswertungTests.Duplikate_findet_gleiche_Groesse_und_Hash
+      - AuswertungTests.Duplikate_ohne_Treffer_ist_leer
+      - AuswertungTests.SpeicherProEndung_summiert_und_sortiert
+      - AuswertungTests.SpeicherProEndung_bricht_Gleichstand_nach_Endung
+      - AuswertungTests.Mengenoperatoren_auf_Tags
   - type: multipleChoice
     id: countby-oder-groupby
-    prompt: { de: "Welche Variante zählt Häufigkeiten ohne unnötige Zwischenobjekte?  (a) werte.GroupBy(w => w).Select(g => (g.Key, g.Count()))   (b) werte.CountBy(w => w)", en: "Which option counts frequencies without unnecessary intermediate objects?  (a) values.GroupBy(w => w).Select(g => (g.Key, g.Count()))   (b) values.CountBy(w => w)" }
+    prompt: { de: "Welcher Ausdruck liefert für  string[] werte = { \"a\", \"b\", \"a\" };  die Häufigkeit jedes Werts, also (a, 2) und (b, 1)?", en: "Which expression returns the frequency of each value for `string[] werte = { \"a\", \"b\", \"a\" };`, that is (a, 2) and (b, 1)?" }
     options:
-      - { de: "(b): CountBy (ab .NET 9) zählt direkt je Schlüssel und baut keine Gruppen mit allen Elementen auf; GroupBy muss alle Elemente jeder Gruppe zwischenspeichern, obwohl nur ihre Zahl gebraucht wird.", en: "(b): CountBy (starting with .NET 9) counts directly per key and does not create groups containing all elements; GroupBy must temporarily store all elements of each group, even though only their count is needed." }
-      - { de: "(a): GroupBy ist immer die sparsamere Lösung.", en: "(a): GroupBy is always the more efficient solution." }
-      - { de: "Beide sind gleich; der Compiler macht aus (a) intern (b).", en: "They are both the same; the compiler internally converts (a) to (b)." }
+      - { de: "werte.GroupBy(w => w).Select(g => (g.Key, g.Count()))", en: "werte.GroupBy(w => w).Select(g => (g.Key, g.Count()))" }
+      - { de: "werte.Distinct().Count()", en: "werte.Distinct().Count()" }
+      - { de: "werte.Select(w => (w, werte.Count()))", en: "werte.Select(w => (w, werte.Count()))" }
     correct: [0]
-    explanation: { de: "CountBy und AggregateBy stehen nicht im Buch (Kapitel 18 ist auf dem Stand .NET 8); sie verdichten pro Schlüssel in einem Durchlauf. GroupBy bleibt richtig, wenn man die Elemente der Gruppen selbst braucht.", en: "CountBy and AggregateBy are not covered in the book (Chapter 18 is based on .NET 8); they aggregate by key in a single pass. GroupBy remains the correct choice if you need the elements of the groups themselves." }
+    explanation: { de: "18.2.9 (Seite 1222): GroupBy fasst gleiche Schlüssel zu Gruppen zusammen; Key ist der Wert, Count() die Größe der Gruppe. Distinct().Count() liefert nur die Zahl der verschiedenen Werte (2). Die dritte Variante liefert für jedes Element die Gesamtzahl 3 und wiederholt \"a\".", en: "18.2.9 (page 1222): GroupBy combines equal keys into groups; Key is the value, Count() the size of the group. Distinct().Count() only returns the number of distinct values (2). The third option returns the total 3 for every element and repeats \"a\"." }
   - type: multipleChoice
     id: groupby-gruppen
     prompt: { de: "Was ist ein Element der Sequenz, die  eintraege.GroupBy(e => e.Hash)  liefert?", en: "What is an element of the sequence returned by `eintraege.GroupBy(e => e.Hash)`?" }

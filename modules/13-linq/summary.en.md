@@ -8,15 +8,15 @@
 
 ## Filtering, Sorting, Projecting (18.2.6 through 18.2.8, pages 1217 through 1222)
 
-`Where` filters; `OfType<T>()` filters by runtime type; `Select` converts to a new element type, including tuples and anonymous types. `OrderBy`, `ThenBy`, and the `...Descending` variants sort (18.2.7, page 1218), and they do so **stably**: elements with equal keys keep their source order (the book does not mention this; .NET guarantees it). `SelectMany` flattens a sequence of sequences (18.2.8.2, page 1220).
+`Where` filters; `OfType<T>()` filters by runtime type; `Select` converts to a new element type, including tuples and anonymous types. `OrderBy`, `ThenBy`, and the `...Descending` variants sort (18.2.7, page 1218), two `OrderBy` calls in a row sort anew; further criteria are added with `ThenBy` (page 1219). `SelectMany` flattens a sequence of sequences (18.2.8.2, page 1220).
 
 ## Grouping and Linking (18.2.9 and 18.2.10, pages 1222–1228)
 
-`GroupBy` returns groups (`IGrouping<TKey, T>`) that are themselves sequences and have their key stored in `Key`. `Join` is an inner join; `GroupJoin` appends the group of its partners (which may be empty) to each element of the outer sequence (the book calls this a left outer join, page 1228; since .NET 10 there is also `LeftJoin` for it). `Zip` pairs two sequences element by element (18.2.8.3, page 1221).
+`GroupBy` returns groups (`IGrouping<TKey, T>`) that are themselves sequences and have their key stored in `Key`. `Join` is an inner join; `GroupJoin` appends the group of its partners (which may be empty) to each element of the outer sequence (the book calls this a left outer join, page 1228). `Zip` pairs two sequences element by element (18.2.8.3, page 1221).
 
 ## Additional Operators (18.2.11, page 1228)
 
-Quantifiers (`Any`, `All`, `Contains`), element operators (`First`, `FirstOrDefault`, `Single`, `Last`, `ElementAt`), set operators (`Distinct`, `Union`, `Intersect`, `Except`), aggregates (`Count`, `Sum`, `Average`, `Min`, `Max`; on an empty sequence of numbers `Average`, `Min` and `Max` throw, while `Sum` and `Count` return 0) and subsequences (`Take`, `Skip`, `TakeWhile`, `Chunk`, page 1234). The book is based on .NET 8: `CountBy`, `AggregateBy`, and `Index` (available starting with .NET 9) are not included. `CountBy(f)` counts per key in a single pass and replaces `GroupBy(f).Select(g => (g.Key, g.Count()))`; `AggregateBy` aggregates by key to any value.
+Quantifiers (`Any`, `All`, `Contains`), element operators (`First`, `FirstOrDefault`, `Single`, `Last`, `ElementAt`), set operators (`Distinct`, `Union`, `Intersect`, `Except`), aggregates (`Count`, `Sum`, `Average`, `Min`, `Max`; on an empty sequence of numbers `Average`, `Min` and `Max` throw, while `Sum` and `Count` return 0) and subsequences (`Take`, `Skip`, `TakeWhile`, `Chunk`, page 1234). Frequencies are counted with `GroupBy(f).Select(g => (g.Key, g.Count()))`; for shorter ways, see Deep Dive.
 
 ## Query Syntax and Subqueries (18.3 and 18.4, pages 1235–1244)
 
@@ -27,3 +27,11 @@ Quantifiers (`Any`, `All`, `Contains`), element operators (`First`, `FirstOrDefa
 An extension method on `IEnumerable<T>` that uses `yield return` behaves like the built-in operators: it is deferred and can also be used on infinite sources. PLINQ (18.5) belongs to the optional Multithreading module.
 
 Further study in the book: Chapter 18 (pages 1209–1256); the exercises in 18.6 (page 1255) provide the quiz questions and the duplicate search for this level.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **Stable sorting:** `OrderBy` and `OrderByDescending` are stable: elements with equal keys keep their source order. .NET guarantees this; `List<T>.Sort` does not.
+- **Newer operators:** The book is based on .NET 8. `CountBy(f)` (from .NET 9) counts per key in a single pass and replaces `GroupBy(f).Select(g => (g.Key, g.Count()))`; `AggregateBy` aggregates per key to any value; `Index()` returns (position, element) pairs. Since .NET 10, `LeftJoin` produces the left outer join as a flat sequence. `Order()` (from .NET 7) sorts by the elements themselves (like `OrderBy(x => x)`), and `MaxBy`/`MinBy` return the element with the largest or smallest key.
+- **Comparers when sorting:** `OrderBy`, `ThenBy` and `Order` have overloads that take a comparer, e.g. `OrderBy(t => t, StringComparer.Ordinal)`; then character codes count, not the computer's language settings. `FirstOrDefault(standard)` returns a value of your choice instead of the type's default value.

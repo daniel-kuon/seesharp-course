@@ -10,7 +10,8 @@ und **16.5.5 Zirkuläre Referenzen** (Seite 1050).
 1. **Einstellungen**: Lege einmal `JsonSerializerOptions` an und verwende sie
    in allen Methoden (so passen Schreiben und Lesen zusammen): `WriteIndented
    = true`, `PropertyNamingPolicy = JsonNamingPolicy.CamelCase` und
-   `Converters = { new JsonStringEnumConverter() }`.
+   `Converters = { new JsonStringEnumConverter() }` (der Konverter für Enums als
+   Text ist nicht im Buch, hier vorgegeben).
 2. `ZuJson(person)` und `AusJson(json)`: `JsonSerializer.Serialize` und
    `Deserialize<Person>`. Das JSON ist mehrzeilig, die Namen sind camelCase
    (`vorname`) und `Status` steht als Text (`"status": "Aktiv"`). Unbekannte
@@ -21,8 +22,9 @@ und **16.5.5 Zirkuläre Referenzen** (Seite 1050).
    16.5.3.2 (Seite 1048); `[JsonPropertyName("familienname")]` aus demselben
    Namensraum `System.Text.Json.Serialization` schreibt man genauso, mit dem
    neuen Namen als Argument. Attribute allgemein kommen erst in Level 16.
-4. `Speichern(person, pfad)` und `Laden(pfad)` mit `File.WriteAllText` und
-   `ReadAllText`; der Test benutzt einen Ordner mit Leerzeichen, Komma und
+4. `Speichern(person, pfad)` und `Laden(pfad)` mit `File.WriteAllText(pfad, json)`
+   und `File.ReadAllText(pfad)` (nicht im Buch, hier vorgegeben: schreiben bzw.
+   lesen einen ganzen String); der Test benutzt einen Ordner mit Leerzeichen, Komma und
    Umlaut.
 5. `ZuJsonMitZyklen(abteilung)`: `Abteilung` und `Mitarbeiter` verweisen
    aufeinander. Ohne Behandlung wirft `Serialize` eine `JsonException`;

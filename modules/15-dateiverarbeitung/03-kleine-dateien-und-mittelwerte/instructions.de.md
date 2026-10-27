@@ -4,9 +4,10 @@ Lies im Buch **16.4 Schreiben und Lesen von kleinen Dateien mit Bytes
 oder Texten** (Seite 1041) und die Übungsaufgabe **16.7/1** (Seite 1060).
 
 Öffne `Mittelwerte.cs`. Für Dateien, die ganz in den Speicher passen, braucht
-man keinen Datenstrom: `File.ReadAllText`, `ReadAllLines`, `ReadAllBytes`,
-`WriteAllText`, `WriteAllLines` und `AppendAllText` öffnen, lesen oder
-schreiben und schließen in einem Aufruf.
+man keinen Datenstrom: `File.ReadAllLines`, `ReadAllBytes` und
+`WriteAllLines` öffnen, lesen oder schreiben und schließen in einem Aufruf.
+`File.AppendAllText(pfad, text)` arbeitet genauso, hängt aber einen String an
+(nicht im Buch, hier vorgegeben; das Buch zeigt `AppendAllLines`).
 
 1. `Berechne(pfad)`: Die Datei enthält Zahlen, durch `;` getrennt, eine
    Tabellenzeile pro Textzeile. Liefere `(double[] mittel, List<string>
@@ -16,10 +17,13 @@ schreiben und schließen in einem Aufruf.
    Mittelwertbildung ausgelassen. Das Beispiel aus dem Buch steht in den
    Tests. Einzelheiten stehen als Kommentar im Code; wichtig:
    - Zahlen haben in der Datei **immer** den Punkt als Dezimaltrennzeichen,
-     egal welche Sprache der Rechner hat. Parse mit `CultureInfo.InvariantCulture`
-     und `NumberStyles.Float`. Ein Test stellt die Kultur auf `de-DE` um.
+     egal welche Sprache der Rechner hat. Ein Test stellt die Kultur auf
+     `de-DE` um. Nicht im Buch, hier vorgegeben: Parse jedes Feld mit
+     `double.TryParse(feld, NumberStyles.Float, CultureInfo.InvariantCulture, out double wert)`
+     (dazu `using System.Globalization;`). Warum, steht im Deep Dive der
+     Zusammenfassung.
    - Ein Komma wie in `4,5` ist keine Zahl und ergibt eine Warnung.
-2. `Kopiere(quelle, ziel)`: Großbuchstaben (`ToUpperInvariant`) mit
+2. `Kopiere(quelle, ziel)`: Großbuchstaben (`ToUpper()` oder `ToUpperInvariant()`) mit
    `ReadAllLines` und `WriteAllLines`.
 3. `Bytes(pfad)`: Dateigröße per `File.ReadAllBytes`. `Anhaengen(pfad, text)`:
    `File.AppendAllText`.

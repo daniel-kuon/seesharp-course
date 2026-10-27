@@ -10,6 +10,20 @@ nicht Teil der Aufgabe.
 damit, nie mit `+` und `\`. Die Tests arbeiten wieder in einem Temp-Ordner mit
 Leerzeichen, Komma und Umlaut im Namen.
 
+Nicht im Buch, hier vorgegeben (die Kommentare im Code nennen sie an der
+passenden Stelle):
+
+- `Path.GetFileNameWithoutExtension(pfad)`: Dateiname ohne Ordner und Endung.
+- `Path.GetDirectoryName(pfad)`: der Ordner eines Pfads.
+- `Directory.EnumerateFiles(ordner, muster, SearchOption.AllDirectories)`: alle
+  passenden Dateien, auch in Unterordnern.
+- `Path.GetRelativePath(ordner, pfad)`: `pfad` relativ zu `ordner`.
+- `File.Move(von, nach, overwrite: true)`: verschiebt und überschreibt ein
+  vorhandenes Ziel.
+- `Path.ChangeExtension(pfad, neu)`: tauscht die letzte Endung.
+- `Path.GetTempPath()` und `Path.GetRandomFileName()`: der Temp-Ordner und ein
+  zufälliger Name.
+
 1. `Sichere(datei, zielOrdner)`: legt den Zielordner an, falls er fehlt, und
    kopiert die Datei dorthin als `<name>_backup<endung>` (`bericht.txt` wird zu
    `bericht_backup.txt`). Ein vorhandenes Backup wird überschrieben. Rückgabe ist

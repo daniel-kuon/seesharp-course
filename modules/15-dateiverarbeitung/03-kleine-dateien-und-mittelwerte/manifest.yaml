@@ -23,11 +23,11 @@ items:
     testProject: "Mittelwertrechnung Tests/Mittelwertrechnung.Tests.csproj"
   - type: multipleChoice
     id: kultur
-    prompt: { de: "Eine Datei enthält 1.5. Ein Programm parst sie mit double.Parse(text) auf einem deutschen Windows (Sprache de-DE). Was kommt heraus?", en: "A file contains 1.5. A program parses it using `double.Parse(text)` on a German Windows system (language: de-DE). What is the result?" }
+    prompt: { de: "Die Datei daten.txt existiert schon und hat 10 Zeilen. Was passiert bei File.WriteAllLines(\"daten.txt\", [\"a\", \"b\"])?", en: "The file daten.txt already exists and has 10 lines. What happens with File.WriteAllLines(\"daten.txt\", [\"a\", \"b\"])?" }
     options:
-      - { de: "15: Der Punkt gilt in de-DE als Tausendertrennzeichen. Dateien mit festem Format parst man deshalb mit CultureInfo.InvariantCulture.", en: "15: In de-DE, the period is used as the thousands separator. Therefore, fixed-format files are parsed using CultureInfo.InvariantCulture." }
-      - { de: "1,5: Der Punkt wird als Dezimaltrennzeichen erkannt.", en: "1.5: The period is recognized as a decimal separator." }
-      - { de: "Eine FormatException, weil nur das Komma erlaubt ist.", en: "A FormatException because only a comma is allowed." }
-      - { de: "0, weil der Parser bei unbekannten Zeichen abbricht.", en: "0, because the parser stops when it encounters unknown characters." }
+      - { de: "Die Datei wird überschrieben und enthält danach nur die zwei Zeilen a und b. Zum Anhängen gibt es AppendAllLines.", en: "The file is overwritten and afterwards contains only the two lines a and b. To append, there is AppendAllLines." }
+      - { de: "Die zwei Zeilen werden hinten angehängt; die Datei hat danach 12 Zeilen.", en: "The two lines are appended at the end; the file then has 12 lines." }
+      - { de: "Es gibt eine IOException, weil die Datei schon existiert.", en: "An IOException is thrown because the file already exists." }
+      - { de: "Die Datei bleibt geöffnet, bis man Close() aufruft.", en: "The file stays open until you call Close()." }
     correct: [0]
-    explanation: { de: "Zu 16.4 (Seite 1041) und Übung 16.7/1 (Seite 1060); die Kultur selbst behandelt das Buch dort nicht. Ohne Kultur nutzt .NET die aktuelle Kultur des Threads, und das ändert das Ergebnis still. Für Dateien, Protokolle und JSON gilt immer InvariantCulture (JsonSerializer, 16.5, macht das von selbst).", en: "On 16.4 (page 1041) and exercise 16.7/1 (page 1060); the book does not cover culture there. Without a culture specified, .NET uses the thread's current culture, which silently changes the result. For files, protocols, and JSON, always use InvariantCulture (JsonSerializer, 16.5, does this automatically)." }
+    explanation: { de: "16.4 (Seite 1042 f.): Die File-Methoden öffnen intern einen FileStream mit FileMode.Create (eine vorhandene Datei wird überschrieben) und schließen die Datei selbst, auch im Fehlerfall. Erweitern statt überschreiben: AppendAllLines.", en: "16.4 (pages 1042–1043): The File methods internally open a FileStream with FileMode.Create (an existing file is overwritten) and close the file themselves, even if an error occurs. To extend instead of overwrite: AppendAllLines." }

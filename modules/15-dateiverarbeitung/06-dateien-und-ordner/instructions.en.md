@@ -4,6 +4,16 @@ See the book, **Section 16.6 Managing Files and Directories** (page 1052), inclu
 
 Open `Dateien.cs`. Paths are constructed using `Path` and split using it; never use `+` or `\`. The tests are running again in a temp folder with spaces, commas, and umlauts in the name.
 
+Not in the book, given here (the comments in the code name them where they fit):
+
+- `Path.GetFileNameWithoutExtension(pfad)`: file name without folder and extension.
+- `Path.GetDirectoryName(pfad)`: the folder of a path.
+- `Directory.EnumerateFiles(ordner, muster, SearchOption.AllDirectories)`: all matching files, including those in subfolders.
+- `Path.GetRelativePath(ordner, pfad)`: `pfad` relative to `ordner`.
+- `File.Move(von, nach, overwrite: true)`: moves and overwrites an existing target.
+- `Path.ChangeExtension(pfad, neu)`: replaces the last extension.
+- `Path.GetTempPath()` and `Path.GetRandomFileName()`: the temp folder and a random name.
+
 1. `Sichere(datei, zielOrdner)`: Creates the destination folder if it does not exist and copies the file there as `<name>_backup<endung>` (`bericht.txt` becomes `bericht_backup.txt`). An existing backup will be overwritten. The function returns the new path.
 2. `ListeRekursiv(ordner, muster)`: All files within the folder (including those in subfolders) that match the pattern, listed as paths **relative** to the folder and sorted ordinally.
 3. `Verschiebe(von, nach)`: moves a file and creates the destination folder if necessary; an existing destination file is overwritten (`File.Move` with `overwrite: true`; without it, `Move` throws an `IOException`, page 1054). If the source is missing, returns `false`.

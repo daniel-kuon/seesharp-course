@@ -5,13 +5,13 @@
   und fehlerhafte Felder melden, nicht abstürzen. Der Trainee soll `TryParse`
   statt `Parse` mit `try/catch` bevorzugen und begründen können (kein
   Ausnahmefall, sondern ein erwarteter Datenfehler).
-- Die Falle des Levels ist die Kultur: `double.Parse("1.5")` ergibt unter
-  `de-DE` 15 (Punkt = Tausendertrennzeichen), unter `en-US` 1,5. Der Test
-  `Berechne_ist_unabhaengig_von_der_Spracheinstellung` stellt die Kultur um und
-  entlarvt Lösungen ohne `InvariantCulture`. Wer nur `InvariantCulture` ohne
-  `NumberStyles.Float` angibt, wird bei `4,5` erwischt: Die Standardstile von
-  `TryParse` erlauben Tausendertrennzeichen, `4,5` ergäbe 45 statt einer Warnung
-  (`Berechne_meldet_ein_Komma_als_Warnung`). Beides gemeinsam besprechen.
+- Der `TryParse`-Aufruf mit `NumberStyles.Float` und `CultureInfo.InvariantCulture`
+  ist in der Aufgabe vorgegeben (nicht im Buch). Erwartet wird, dass er benutzt
+  wird; die Tests `Berechne_ist_unabhaengig_von_der_Spracheinstellung` und
+  `Berechne_meldet_ein_Komma_als_Warnung` fangen Lösungen ohne ihn.
+- Bonus (Deep Dive): erklären können, warum: `double.Parse("1.5")` ergibt unter
+  `de-DE` 15 (Punkt = Tausendertrennzeichen), unter `en-US` 1,5; ohne
+  `NumberStyles.Float` gilt das Komma in `4,5` als Tausendertrennzeichen (45).
   Läuft der Test in einer Umgebung ohne Kulturdaten (invariante Globalisierung),
   ist die Kultur-Falle nicht nachstellbar; der Test besteht dann trotzdem.
 - Die Rückgabe `(double[] mittel, List<string> warnungen)` ist ein benanntes

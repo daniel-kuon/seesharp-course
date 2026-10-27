@@ -24,12 +24,16 @@ Typische Irrtümer: Der StreamReader erkenne jede Codierung von selbst (er erken
 
 ## kultur
 
-Kernpunkte:
-- Ohne Angabe gilt die **Spracheinstellung des Rechners**: Dezimaltrenner, Tausendertrenner und Datumsformat unterscheiden sich (`"1.5"` ergibt unter `de-DE` 15, weil der Punkt dort Tausendertrenner ist; `1,5` unter `en-US`).
-- Dateien mit festem Format müssen auf jedem Rechner gleich gelesen und geschrieben werden: deshalb `CultureInfo.InvariantCulture` beim Parsen **und** beim Formatieren.
-- Der Fehler fällt auf dem eigenen Rechner nicht auf, weil dort Lese- und Schreibkultur übereinstimmen; er tritt erst auf einem Rechner mit anderer Spracheinstellung auf (oder Datei von dort), und oft **ohne Ausnahme** mit falschen Werten.
+(Die Item-ID stammt aus einer früheren Frage zur Kultur; die Frage behandelt jetzt 16.4.)
 
-Typische Irrtümer: Es gebe immer eine `FormatException`; die Kultur spiele nur bei der Ausgabe auf dem Bildschirm eine Rolle.
+Kernpunkte:
+- Die `File`-Methoden eignen sich für **kleine Dateien**, die ganz in den Hauptspeicher passen: ein Aufruf statt Öffnen, Lesen bzw. Schreiben und Schließen (16.4, Seite 1041 f.).
+- Sie öffnen und **schließen die Datei selbst**, auch wenn ein Fehler auftritt; kein `using`, kein `Close()` nötig. `WriteAllLines` überschreibt eine vorhandene Datei (`FileMode.Create`), `AppendAllLines` hängt an.
+- Ungeeignet bei **großen Dateien** (alles liegt auf einmal im Speicher) und wenn man paketweise lesen, mit `Seek`/`Position` springen oder `FileMode`, `FileAccess` und `FileShare` selbst bestimmen will; dann nimmt man einen Datenstrom.
+
+Typische Irrtümer: Die `File`-Methoden ließen die Datei offen; `WriteAllLines` hänge an; sie seien bei großen Dateien schneller.
+
+Bonus (Deep Dive, nicht im Buch): Zahlen in Dateien mit `CultureInfo.InvariantCulture` lesen und schreiben, damit die Spracheinstellung des Rechners keine Rolle spielt.
 
 ## eigene-ressource
 
@@ -62,13 +66,15 @@ Typische Irrtümer: `eins|zwei|drei|neu` (Standard hänge an); die Datei sei nac
 
 ## code-kultur
 
-Ausgabe, vier Zeilen: `15`, `1.5`, `1.5`, `15`.
-Kernpunkte:
-- Unter `de-DE` ist der Punkt der Tausendertrenner und das Komma das Dezimalzeichen: `"1.5"` → 15, `"1,5"` → 1,5 (ausgegeben mit Punkt: `1.5`).
-- Unter der invarianten Kultur ist der Punkt das Dezimalzeichen: `"1.5"` → 1,5. Das Komma wird dort als Tausendertrenner akzeptiert, also `"1,5"` → 15 (keine Ausnahme!).
-- Das Beispiel zeigt: Dieselbe Zeichenkette ergibt je nach Kultur andere Werte, meist ohne Fehlermeldung.
+(Die Item-ID stammt aus einer früheren Frage zur Kultur; die Frage behandelt jetzt 16.4.)
 
-Typische Irrtümer: `"1.5"` unter `de-DE` ergebe 1,5 oder eine `FormatException`; die vierte Zeile werfe eine Ausnahme (dort ist das Komma Tausendertrenner).
+Ausgabe, zwei Zeilen: `3` und `d,e,f`.
+Kernpunkte:
+- `WriteAllLines` **überschreibt** die Datei (16.4, Seite 1042: intern `FileMode.Create`): Nach dem zweiten `WriteAllLines` steht nur noch `d` darin; `a`, `b` und `c` sind weg.
+- `AppendAllLines` **hängt an** (Seite 1043): danach `d`, `e`, `f`.
+- `ReadAllLines` liefert ein Array mit einer Zeile je Element, also Länge 3.
+
+Typische Irrtümer: `6` und `a,b,c,d,e,f` (`WriteAllLines` hänge an); `2` und `e,f` (`AppendAllLines` überschreibe); die Datei sei zwischen den Aufrufen noch gesperrt.
 
 ## code-binaer
 

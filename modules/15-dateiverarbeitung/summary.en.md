@@ -12,18 +12,29 @@ The garbage collector frees up memory, but not at a specific time; a file remain
 
 ## Binary and Text (16.3, pages 1032–1041)
 
-`BinaryWriter` and `BinaryReader` (16.3.1, page 1032) write and read values of primitive types in their binary format (an `int` is 4 bytes, a `double` is 8 bytes). `StreamWriter` and `StreamReader` (16.3.2, page 1036) work with text and a character encoding: If not specified, UTF-8 is used; the encoding is not stored in the file (at most a BOM reveals UTF-8 or UTF-16). Windows-1252 is only provided by the `CodePagesEncodingProvider` (16.3.3, page 1040): after `Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)`, use `Encoding.GetEncoding(1252)`. `ReadLine()` returns `null` at the end of the file. A `StreamWriter` buffers; `Flush()` empties the buffer; `AutoFlush = true` does this after every write (safe, but slow with large amounts of data; Exercise 16.7/2, page 1060).
+`BinaryWriter` and `BinaryReader` (16.3.1, page 1032) write and read values of primitive types in their binary format (an `int` is 4 bytes, a `double` is 8 bytes). `StreamWriter` and `StreamReader` (16.3.2, page 1036) work with text and a character encoding: If not specified, UTF-8 is used; the encoding is not stored in the file (for the BOM, see Deep Dive). Windows-1252 is only provided by the `CodePagesEncodingProvider` (16.3.3, page 1040): after `Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)`, use `Encoding.GetEncoding(1252)`. `ReadLine()` returns `null` at the end of the file. A `StreamWriter` buffers; `Flush()` empties the buffer; `AutoFlush = true` does this after every write (safe, but slow with large amounts of data; Exercise 16.7/2, page 1060).
 
-## Small Files and Culture (16.4, page 1041)
+## Small Files (16.4, page 1041)
 
-`File.ReadAllText`, `ReadAllLines`, `ReadAllBytes`, `WriteAllText`, `WriteAllLines`, and `AppendAllText` handle opening, reading or writing, and closing in a single call. Numbers in files are parsed and formatted using `CultureInfo.InvariantCulture`; otherwise, the computer's language settings determine the result: `"1.5"` equals 15 under `de-DE`.
+`File.ReadAllBytes`, `WriteAllBytes`, `ReadAllLines`, `WriteAllLines`, and `AppendAllLines` handle opening, reading or writing, and closing in a single call; `WriteAll…` overwrites an existing file, `AppendAllLines` appends. For more methods of this kind and for numbers in files, see Deep Dive.
 
 ## JSON (16.5, pages 1043–1051)
 
-`JsonSerializer.Serialize` and `Deserialize<T>` (System.Text.Json, part of the framework) convert public properties to JSON and back. `JsonSerializerOptions` control indentation, camelCase, and enums as text; `[JsonPropertyName]` and `[JsonIgnore]` control individual properties. Unknown JSON fields are ignored during parsing. Circular references cause serialization to fail unless you set `ReferenceHandler.IgnoreCycles` or `Preserve` (16.5.5, page 1050).
+`JsonSerializer.Serialize` and `Deserialize<T>` (System.Text.Json, part of the framework) convert public properties to JSON and back. `JsonSerializerOptions` control indentation and camelCase; `[JsonPropertyName]` and `[JsonIgnore]` control individual properties. Unknown JSON fields are ignored during parsing. Circular references cause serialization to fail unless you set `ReferenceHandler.Preserve` (16.5.5, page 1050).
 
 ## Files and Folders (16.6, pages 1052–1058)
 
-`File`, `Directory`, and `Path` manage the file system: copying, moving, deleting, creating folders, and listing them. Paths are built with `Path.Combine` (an absolute part discards everything before it) and taken apart with `GetFileName`, `GetExtension`, and `GetRelativePath`. `Path.GetTempPath()` and `Environment.GetFolderPath(…)` provide special folders; `DriveInfo` and `FileSystemWatcher` (16.6.5, 16.6.6) are demonstration material only. In the exercises, each test runs in its own temp folder, whose name contains spaces, commas, and umlauts.
+`File`, `Directory`, and `Path` manage the file system: copying, moving, deleting, creating folders, and listing them. Paths are built with `Path.Combine` (an absolute part discards everything before it) and taken apart with `GetExtension`. `Environment.GetFolderPath(…)` provides special folders; `DriveInfo` and `FileSystemWatcher` (16.6.5, 16.6.6) are demonstration material only. In the exercises, each test runs in its own temp folder, whose name contains spaces, commas, and umlauts.
 
 Further study in the book: Chapter 16 (pages 1013–1060); the exercises in 16.7 (page 1060) provide the column averages and the AutoFlush question for this level.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **Numbers and culture:** Without a culture, .NET parses and formats numbers according to the computer's language settings: `"1.5"` becomes 15 under `de-DE`, because the period is the thousands separator there. For files with a fixed format, use `CultureInfo.InvariantCulture` (namespace `System.Globalization`), and `NumberStyles.Float` when parsing, so that a comma does not become a thousands separator. The error often goes unnoticed on your own machine and usually throws no exception.
+- **BOM:** At the start of a file, at most a byte order mark (`EF BB BF`) reveals UTF-8 or UTF-16. `Encoding.UTF8` writes one, `new UTF8Encoding(false)` does not.
+- **More `File` methods:** `ReadAllText`, `WriteAllText` and `AppendAllText` work with one whole string instead of lines; `File.Move(von, nach, overwrite: true)` overwrites an existing target.
+- **More path and folder methods:** `Path.GetFileName`, `GetFileNameWithoutExtension`, `GetDirectoryName`, `ChangeExtension`, `GetRelativePath`, `GetTempPath` and `GetRandomFileName`; `Directory.EnumerateFiles(ordner, muster, SearchOption.AllDirectories)` also lists subfolders.
+- **JSON:** `JsonStringEnumConverter` writes enums as text; `ReferenceHandler.IgnoreCycles` replaces back references with `null`.
+- `ObjectDisposedException.ThrowIf(bedingung, this)` throws the exception in one line.

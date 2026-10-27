@@ -7,7 +7,6 @@ reading:
 teaches:
   - files.filestream-bytes
   - files.binary-readwrite
-  - files.invariant-culture
   - resources.implement-idisposable
 requires:
   - files.streamwriter
@@ -31,8 +30,8 @@ items:
   - type: open
     id: kultur
     prompt:
-      de: "Warum parst und schreibt man Zahlen in Dateien mit `CultureInfo.InvariantCulture`? Was kann ohne diese Angabe passieren, und warum fällt der Fehler oft nicht auf dem eigenen Rechner auf?"
-      en: "Why do you parse and write numbers in files using `CultureInfo.InvariantCulture`? What can happen without it, and why is the error often not noticed on your own machine?"
+      de: "Wann liest oder schreibst du eine Datei mit `File.ReadAllLines` bzw. `File.WriteAllLines` statt mit `StreamReader` bzw. `StreamWriter`? Was nehmen dir die `File`-Methoden ab, und wann sind sie ungeeignet?"
+      en: "When do you read or write a file with `File.ReadAllLines` or `File.WriteAllLines` instead of a `StreamReader` or `StreamWriter`? What do the `File` methods do for you, and when are they unsuitable?"
   - type: open
     id: eigene-ressource
     prompt:
@@ -126,26 +125,30 @@ items:
     id: code-kultur
     prompt:
       de: |
-        Was geben die vier Zeilen aus? (Die Ausgabe erfolgt jeweils mit der invarianten Kultur, also mit Punkt als Dezimaltrennzeichen.)
+        Was geben die beiden Ausgabezeilen aus, und warum?
 
         ```csharp
-        var de = new CultureInfo("de-DE");
-        var inv = CultureInfo.InvariantCulture;
-        Console.WriteLine(double.Parse("1.5", de).ToString(inv));
-        Console.WriteLine(double.Parse("1,5", de).ToString(inv));
-        Console.WriteLine(double.Parse("1.5", inv).ToString(inv));
-        Console.WriteLine(double.Parse("1,5", inv).ToString(inv));
+        string pfad = Path.GetTempFileName();
+        File.WriteAllLines(pfad, ["a", "b"]);
+        File.AppendAllLines(pfad, ["c"]);
+        File.WriteAllLines(pfad, ["d"]);
+        File.AppendAllLines(pfad, ["e", "f"]);
+        string[] zeilen = File.ReadAllLines(pfad);
+        Console.WriteLine(zeilen.Length);
+        Console.WriteLine(string.Join(",", zeilen));
         ```
       en: |
-        What do the four lines print? (The output is always done with the invariant culture, i.e., with a period as the decimal separator.)
+        What do the two output lines print, and why?
 
         ```csharp
-        var de = new CultureInfo("de-DE");
-        var inv = CultureInfo.InvariantCulture;
-        Console.WriteLine(double.Parse("1.5", de).ToString(inv));
-        Console.WriteLine(double.Parse("1,5", de).ToString(inv));
-        Console.WriteLine(double.Parse("1.5", inv).ToString(inv));
-        Console.WriteLine(double.Parse("1,5", inv).ToString(inv));
+        string pfad = Path.GetTempFileName();
+        File.WriteAllLines(pfad, ["a", "b"]);
+        File.AppendAllLines(pfad, ["c"]);
+        File.WriteAllLines(pfad, ["d"]);
+        File.AppendAllLines(pfad, ["e", "f"]);
+        string[] zeilen = File.ReadAllLines(pfad);
+        Console.WriteLine(zeilen.Length);
+        Console.WriteLine(string.Join(",", zeilen));
         ```
   - type: open
     id: code-binaer

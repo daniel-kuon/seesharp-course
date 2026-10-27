@@ -6,7 +6,7 @@ If you hold a file or another external resource in a field, you must let your us
 
 1. `Dispose()` closes the `StreamWriter` (and thus the file).
 2. `Dispose()` is **idempotent**: A second or third call has no effect.
-3. After `Dispose()`, `Eintrag(…)` throws an `ObjectDisposedException` (Tip: `ObjectDisposedException.ThrowIf(bedingung, this)`; it is derived from `InvalidOperationException`).
+3. After `Dispose()`, `Eintrag(…)` throws an `ObjectDisposedException` (Tip, not in the book, given here: `ObjectDisposedException.ThrowIf(bedingung, this)` throws it if the condition is true; it is derived from `InvalidOperationException`).
 4. The static property `Offene` counts logbooks that have been created but not yet released: It is incremented in the constructor after the file has been successfully opened (if the constructor fails, there is nothing to release) and decremented exactly once in `Dispose()`.
 
 You don't need a finalizer (`~Logbuch`): The class holds only one managed object, which handles the file on its own (16.2.2).

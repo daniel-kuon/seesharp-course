@@ -12,7 +12,8 @@ schreibt mit `Eintrag(text)` Zeilen hinein:
 1. `Dispose()` schließt den `StreamWriter` (und damit die Datei).
 2. `Dispose()` ist **idempotent**: Ein zweiter oder dritter Aufruf tut nichts.
 3. Nach `Dispose()` wirft `Eintrag(…)` eine `ObjectDisposedException`
-   (Tipp: `ObjectDisposedException.ThrowIf(bedingung, this)`; sie ist von
+   (Tipp, nicht im Buch, hier vorgegeben: `ObjectDisposedException.ThrowIf(bedingung, this)`
+   wirft sie, wenn die Bedingung wahr ist; sie ist von
    `InvalidOperationException` abgeleitet).
 4. Die statische Eigenschaft `Offene` zählt Logbücher, die erzeugt und noch
    nicht freigegeben wurden: Sie wird nach dem erfolgreichen Öffnen der Datei im

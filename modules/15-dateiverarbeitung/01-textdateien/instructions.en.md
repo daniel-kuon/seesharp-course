@@ -8,7 +8,7 @@ All tests run in their own temp folder, whose name contains a space, a comma, an
 2. `LiesZeilen(pfad)`: reads using `ReadLine()` until `null` and returns a `List<string>`. `LiesOderLeer(pfad)` catches `FileNotFoundException` and `DirectoryNotFoundException` and then returns an empty list; other exceptions are not caught.
 3. `Anhaengen(pfad, zeile)`: `new StreamWriter(pfad, append: true)`.
 4. `LiesAnsi(pfad)` and `SchreibeAnsi(pfad, text)`: Windows-1252 using `Encoding.GetEncoding(1252)` (the provider is already registered in the static constructor). The "ä" is represented by the byte `0xE4` there.
-5. `SchreibeUtf8(pfad, text)`: UTF-8 **without** a byte order mark. The test checks the raw bytes.
+5. `SchreibeUtf8(pfad, text)`: UTF-8 **without** a byte order mark. The test checks the raw bytes. Not in the book, given here: the encoding for this is `new UTF8Encoding(false)` (`Encoding.UTF8` would write the three bytes `EF BB BF` at the start).
 
 The following tests must be passed:
 

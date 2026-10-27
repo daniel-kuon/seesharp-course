@@ -11,7 +11,7 @@ Leerzeichen und Umlauten in den Namen auf, darunter `Büro Ordner` und
 
 1. `AnzahlDateien(ordner)`: alle Dateien, auch in Unterordnern.
 2. `GroessteDatei(ordner)`: Pfad der größten Datei **relativ** zum Ordner
-   (`Path.GetRelativePath`, `FileInfo.Length`); bei Gleichstand gewinnt der
+   (`Path.GetRelativePath`, nicht im Buch, siehe Aufgabe 15/06; `FileInfo.Length`); bei Gleichstand gewinnt der
    ordinal kleinere Pfad; ohne Datei `null`.
 3. `ProEndung(ordner)`: Dictionary mit der Zahl der Dateien je Endung; der
    Schlüssel ist die Endung klein geschrieben und mit Punkt (`".txt"`), Dateien

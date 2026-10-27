@@ -3,7 +3,8 @@
 - Kern: `File`, `Directory` und `Path` sind statische Hilfsklassen für das
   Dateisystem. Pfade sind Zeichenfolgen mit Regeln; `Path.Combine`,
   `GetFileNameWithoutExtension`, `GetExtension`, `GetRelativePath`,
-  `ChangeExtension` kennen sie. Wer `ordner + "\\" + name` schreibt, scheitert
+  `ChangeExtension` kennen sie (alle außer `Combine` und `GetExtension` sind nicht
+  im Buch und in der Aufgabe vorgegeben). Wer `ordner + "\\" + name` schreibt, scheitert
   auf Linux und bei doppelten Trennzeichen.
 - `ErsetzeEndung_laesst_Ordner_mit_Punkt_und_Umlaut_in_Ruhe` fängt Lösungen
   mit `pfad.Replace(".txt", …)` oder `Substring(IndexOf('.'))`: Im Ordner

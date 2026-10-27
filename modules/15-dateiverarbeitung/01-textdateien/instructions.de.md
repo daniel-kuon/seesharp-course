@@ -23,7 +23,9 @@ erst in Aufgabe 4: Schließe Dateien hier mit `Close()` in einem
    `Encoding.GetEncoding(1252)` (der Provider ist im statischen Konstruktor
    schon registriert). Das ä ist dort das Byte `0xE4`.
 5. `SchreibeUtf8(pfad, text)`: UTF-8 **ohne** Byte-Order-Mark. Der Test prüft
-   die Rohbytes.
+   die Rohbytes. Nicht im Buch, hier vorgegeben: Die Codierung dafür ist
+   `new UTF8Encoding(false)` (`Encoding.UTF8` würde die drei Bytes `EF BB BF`
+   an den Anfang schreiben).
 
 Diese Tests müssen bestehen:
 

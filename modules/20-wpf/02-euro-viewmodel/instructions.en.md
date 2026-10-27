@@ -1,6 +1,6 @@
 # Euro Converter as a ViewModel
 
-Read section **12.10.4, "Change Notifications**" (page 792), along with **12.10.4.1, "INotifyPropertyChanged**" (page 793), and **12.13.1, "Distribution of Responsibilities"** (page 857). The task is the logic from Book Exercise **12.14/2** (page 884): a euro/DM converter where you can type in both fields. You’ll build the user interface in Exercise 5; here, you’re only creating the ViewModel in a standard class library (without a WPF reference). That’s why the tests run everywhere.
+Read section **12.10.4, "Change Notifications**" (page 792), along with **12.10.4.1, "INotifyPropertyChanged**" (page 793), and **12.13.1, "Distribution of Responsibilities"** (page 857). The task takes up book exercise **12.14/2** (page 884), the bidirectional euro/DM converter. Instead of choosing the direction with radio buttons and filling an output-only field as in the book, you can type into both fields here. You’ll build the user interface in Exercise 5; here, you’re only creating the ViewModel in a standard class library (without a WPF reference). That’s why the tests run everywhere.
 
 Open `ViewModelBase.cs`:
 
@@ -9,10 +9,10 @@ Open `ViewModelBase.cs`:
 
 Open `UmrechnerViewModel.cs` (exchange rate: 1 euro = 1.95583 DM, numbers with commas):
 
-3. `EuroText` and `DmText` are the text labels for the two input fields. If the user changes one of them, the other field displays the converted amount rounded to two decimal places (commercial rounding, `"F2"`).
-4. **No ping-pong:** If the user sets `EuroText = "10"`, the ViewModel must not overwrite `EuroText` via `DmText` (`"10"` would become `"10,00"`). Therefore, set the partner field using `SetProperty`. Each affected property is updated exactly once.
-5. Invalid text triggers an `Fehlermeldung` and leaves the partner field unchanged. Empty text clears the partner field without generating an error. Valid text clears the error message.
-6. `HatFehler` is **calculated** (`Fehlermeldung` is not empty) and notifies the user along with `Fehlermeldung` whenever the latter changes.
+3. `EuroText` and `DmText` are the texts of the two input fields. If the user changes one of them, the other field displays the converted amount rounded to two decimal places (commercial rounding, `"F2"`).
+4. **No ping-pong:** If the user sets `EuroText = "10"`, the ViewModel must not overwrite `EuroText` via `DmText` (`"10"` would become `"10,00"`). Therefore, set the partner field using `SetProperty`. Each affected property reports its change exactly once.
+5. Invalid text sets `Fehlermeldung` and leaves the partner field unchanged. Empty text clears the partner field without generating an error. Valid text clears the error message.
+6. `HatFehler` is **calculated** (`Fehlermeldung` is not empty) and is reported together with `Fehlermeldung` whenever the latter changes.
 
 The following tests must be passed:
 

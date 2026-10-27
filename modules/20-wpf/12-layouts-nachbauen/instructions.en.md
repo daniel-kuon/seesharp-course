@@ -4,7 +4,7 @@ Extra exercise: optional; it unlocks nothing and will be reviewed by the supervi
 
 Recreate two windows. The sketches are just guidelines: What matters is how the windows behave when their size is changed, not the exact pixel dimensions.
 
-**Sketch 1: Registration**
+**Sketch 1: Login**
 
 ```text
 +--------------------------------------+

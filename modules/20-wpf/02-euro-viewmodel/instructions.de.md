@@ -2,9 +2,10 @@
 
 Lies im Buch **12.10.4 Änderungsbenachrichtigungen** (Seite 792) mit
 **12.10.4.1 INotifyPropertyChanged** (Seite 793) sowie **12.13.1 Verteilung
-von Zuständigkeiten** (Seite 857). Die Aufgabe ist die Logik der Buchaufgabe
-**12.14/2** (Seite 884): ein Euro/DM-Umrechner, bei dem man in beide Felder
-tippen kann. Die Oberfläche baust du erst in Aufgabe 5; hier entsteht nur das
+von Zuständigkeiten** (Seite 857). Die Aufgabe greift die Buchaufgabe
+**12.14/2** (Seite 884) auf, den bidirektionalen Euro/DM-Umrechner. Statt wie im
+Buch die Richtung mit Optionsfeldern zu wählen und ein reines Ausgabefeld zu
+füllen, kann man hier in beide Felder tippen. Die Oberfläche baust du erst in Aufgabe 5; hier entsteht nur das
 ViewModel in einer normalen Klassenbibliothek (ohne WPF-Verweis). Deshalb
 laufen die Tests überall.
 

@@ -41,7 +41,8 @@ Ein `Binding` verbindet eine Zielobjekt-Eigenschaft (Abhängigkeitseigenschaft)
 mit einer Quelleigenschaft. Der Modus (`OneWay`, `TwoWay`, `OneWayToSource`)
 legt die Richtung fest; `UpdateSourceTrigger` bestimmt, wann eine Eingabe
 zurückgeschrieben wird. Bei `TextBox.Text` ist das standardmäßig erst beim
-Fokusverlust, mit `UpdateSourceTrigger=PropertyChanged` bei jedem Tastendruck.
+Fokusverlust, mit `UpdateSourceTrigger=PropertyChanged` bei jedem Tastendruck
+(im Buch erst in 12.13.3.2, Seite 870).
 Damit die Quelle die Oberfläche aktualisieren kann, muss sie
 `INotifyPropertyChanged` implementieren (12.10.4.1); Kollektionen melden
 Änderungen über `INotifyCollectionChanged`, praktisch also

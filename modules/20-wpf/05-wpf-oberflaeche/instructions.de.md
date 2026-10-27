@@ -19,7 +19,7 @@ Vorgehen:
    neu anlegst**, und eine **WPF-Anwendung** (`net10.0-windows`), die per
    Projektverweis auf die Bibliothek zugreift. Die Bibliothek bekommt keinen
    WPF-Verweis, damit sie testbar bleibt.
-2. Wähle **ein** der drei ViewModels und baue das Fenster dazu.
+2. Wähle **eines** der drei ViewModels und baue das Fenster dazu.
    - Setze den `DataContext` in `App.xaml.cs` oder im Fenster.
    - Ordne die Elemente mit `Grid` (Zeilen und Spalten mit `Auto` und `*`)
      und, wo es passt, `DockPanel` oder `StackPanel` an.

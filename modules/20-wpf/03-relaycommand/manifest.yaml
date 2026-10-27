@@ -54,6 +54,6 @@ items:
     options:
       - { de: "string, denn ein Attributwert in XAML ist Text; ein int wäre nur über Binding oder eine passende Markuperweiterung möglich. Deshalb muss der Befehl den Parameter selbst umwandeln.", en: "string, because an attribute value in XAML is text; an int would only be possible via binding or a suitable markup extension. Therefore, the command must convert the parameter itself." }
       - { de: "int, WPF erkennt die Zahl automatisch.", en: "int; WPF automatically recognizes the number." }
-      - { de: "Der Parameter ist immer null.", en: "The parameter is always zero." }
+      - { de: "Der Parameter ist immer null.", en: "The parameter is always null." }
     correct: [0]
-    explanation: { de: "12.13.3.2 (Seite 867). Die Aufgabe SetzeAuf akzeptiert deshalb beides: int (aus dem Code) und string (aus XAML).", en: "12.13.3.2 (page 867). The SetzeAuf method therefore accepts both: int (from the code) and string (from XAML)." }
+    explanation: { de: "12.13.3.2 (Seite 867). Die Aufgabe SetzeAuf akzeptiert deshalb beides: int (aus dem Code) und string (aus XAML).", en: "12.13.3.2 (page 867). The SetzeAuf command therefore accepts both: int (from the code) and string (from XAML)." }

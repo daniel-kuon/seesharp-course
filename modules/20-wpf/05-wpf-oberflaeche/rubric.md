@@ -18,7 +18,7 @@ Checkliste:
   sich bei geänderter Ausführbarkeit deaktivieren (liefert der
   `RelayCommand` aus Aufgabe 3 `CanExecuteChanged`?).
 - Validierung: Fehler sichtbar (z. B. `TextBlock` mit `Fehlermeldung` oder
-  `Validation.ErrorTemplate`); beim Aufgaben-ViewModel muss die Quelle
+  `Validation.ErrorTemplate`); beim Aufgaben-ViewModel muss die Bindung
   `NotifyOnValidationError` bzw. `ValidatesOnNotifyDataErrors` verwenden
   (Standard bei `INotifyDataErrorInfo`).
 - Layout: Fenster verkleinern und vergrößern lassen; `Grid`-Zeilen und

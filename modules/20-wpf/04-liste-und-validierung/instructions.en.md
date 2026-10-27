@@ -5,11 +5,11 @@ See section **12.10.2**, "**Binding the ItemsControl to a Collection**" (page 78
 The `ViewModelBase`, `RelayCommand`, and `Aufgabe` (Titel, `Erledigt`) classes are already included; you can also use your own from the previous exercises. Open `AufgabenViewModel.cs`:
 
 1. The constructor sets everything up (see the `TODO` notes) and checks the initial state: An empty title is invalid, so `HasErrors` is `true` at the beginning.
-2. `NeuerTitel` has been validated: if it is empty or contains only whitespace, the error message is `"Titel darf nicht leer sein"`; if it contains more than 50 characters, the error message is `"Titel zu lang"`. If the error message changes, `ErrorsChanged` is triggered exactly once, and `HasErrors` and `HinzufuegenCommand` report the change.
+2. `NeuerTitel` is validated: if it is empty or contains only whitespace, the error message is `"Titel darf nicht leer sein"`; if it contains more than 50 characters, the error message is `"Titel zu lang"`. If the error message changes, `ErrorsChanged` is triggered exactly once, and `HasErrors` and `HinzufuegenCommand` report the change.
 3. `HasErrors`, `GetErrors(propertyName)`, and `ErrorsChanged` implement `INotifyDataErrorInfo`. `GetErrors("NeuerTitel")` returns the message; for unknown names, it returns an empty list; `null` or `""` return all messages.
 4. `Aufgaben` is an `ObservableCollection<Aufgabe>`. The ViewModel subscribes to its `CollectionChanged` and the `PropertyChanged` **of each** task it contains (and unsubscribes when a task is removed).
 5. `OffeneAnzahl` is calculated (tasks excluding those marked as `Erledigt`) and updates when tasks are added, removed, or checked off.
-6. `HinzufuegenCommand` (only if there are no errors) adds a task with a truncated title and clears `NeuerTitel`. `ErledigteEntfernenCommand` (only if there are completed tasks) removes all completed tasks.
+6. `HinzufuegenCommand` (only if there are no errors) adds a task with a trimmed title and clears `NeuerTitel`. `ErledigteEntfernenCommand` (only if there are completed tasks) removes all completed tasks.
 
 The following tests must be passed:
 

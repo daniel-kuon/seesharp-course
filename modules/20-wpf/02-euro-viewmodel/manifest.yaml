@@ -37,7 +37,7 @@ items:
     prompt: { de: "Wohin gehört der Zustand „Text, den der Benutzer gerade im Eingabefeld stehen hat, samt Fehlermeldung dazu“?", en: "Where does the state “text currently in the user’s input field, including any error messages” belong?" }
     options:
       - { de: "Ins ViewModel: Es hält den Zustand der Ansicht und stellt ihn zur Bindung bereit.", en: "In the ViewModel: It maintains the view's state and makes it available for binding." }
-      - { de: "Ins Modell, denn dort liegen alle Daten.", en: "Import it into the model, because that's where all the data is." }
+      - { de: "Ins Modell, denn dort liegen alle Daten.", en: "In the model, because that's where all the data is." }
       - { de: "In die Ansicht, als Feld der Fensterklasse.", en: "In the view, as a field of the window class." }
     correct: [0]
     explanation: { de: "12.13.1.2 (Seite 858): Das ViewModel bereitet Daten für die Ansicht auf (hier: Text mit Komma, Fehlermeldung) und hält ihren Zustand. Das Modell kennt keine Eingabetexte.", en: "12.13.1.2 (page 858): The ViewModel prepares data for the view (in this case: text with a comma, error message) and maintains its state. The model does not handle any input text." }
@@ -52,11 +52,11 @@ items:
     explanation: { de: "12.13.1.3 (Seite 860): Die Ansicht legt Layout und Darstellung fest und bindet sich an das ViewModel. Ein ViewModel mit Farbobjekten wäre ohne WPF nicht testbar.", en: "12.13.1.3 (page 860): The view defines the layout and presentation and binds to the ViewModel. A ViewModel containing color objects would not be testable without WPF." }
   - type: multipleChoice
     id: zustaendigkeit-kenntnis
-    prompt: { de: "Wer darf wen kennen?", en: "Who is allowed to date whom?" }
+    prompt: { de: "Wer darf wen kennen?", en: "Who may know whom?" }
     options:
       - { de: "Die Ansicht kennt das ViewModel (per Bindung), das ViewModel kennt das Modell, aber nie die Ansicht; das Modell kennt keinen von beiden.", en: "The view knows the ViewModel (via binding), the ViewModel knows the model, but never the view; the model knows neither of them." }
       - { de: "Das ViewModel hält eine Referenz auf das Fenster, damit es Steuerelemente ändern kann.", en: "The ViewModel holds a reference to the window so that it can modify controls." }
-      - { de: "Alle drei Schichten kennen sich gegenseitig.", en: "All three shifts know each other." }
+      - { de: "Alle drei Schichten kennen sich gegenseitig.", en: "All three layers know each other." }
     correct: [0]
     explanation: { de: "12.13.1 (Seite 857) und 12.13.4.5 (Seite 884): Ein ViewModel darf keine Fensterklasse kennen. Daran liegt es auch, dass die Tests dieser Aufgabe ganz ohne WPF laufen.", en: "12.13.1 (page 857) and 12.13.4.5 (page 884): A ViewModel must not be aware of any window class. This is also why the tests for this exercise run entirely without WPF." }
   - type: multipleChoice

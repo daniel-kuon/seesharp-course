@@ -11,7 +11,7 @@ The `ViewModelBase` from the last exercise is ready. Open `RelayCommand.cs`:
 
 Open `ZaehlerViewModel.cs`:
 
-5. The constructor creates the commands `Erhoehen`, `Verringern` (executable only as long as `Wert > 0`), and `SetzeAuf`, each with a `CommandParameter`. `SetzeAuf` accepts an `int` (from the code) and a `string` (from XAML, where `CommandParameter="10"` is the text); invalid parameters (`null`, non-numeric text, negative number) prevent the command from executing. The helper method `LiesZahl` is complete.
+5. The constructor creates the commands `Erhoehen`, `Verringern` (executable only as long as `Wert > 0`), and `SetzeAuf` with a `CommandParameter`. `SetzeAuf` accepts an `int` (from the code) and a `string` (from XAML, where `CommandParameter="10"` is text); invalid parameters (`null`, non-numeric text, negative number) prevent the command from executing. The helper method `LiesZahl` is complete.
 6. If the `Wert` property changes, the ViewModel raises a `PropertyChanged` event, and `Verringern` raises a `CanExecuteChanged` event.
 
 The following tests must be passed:

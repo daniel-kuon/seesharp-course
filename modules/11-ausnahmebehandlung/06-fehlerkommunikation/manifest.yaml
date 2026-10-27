@@ -100,15 +100,15 @@ items:
     explanation: { de: "Die Operation wird vom Typ nicht unterstützt, unabhängig vom aktuellen Zustand: NotSupportedException (13.5, Seite 913).", en: "The operation is not supported by this type, regardless of its current state: NotSupportedException (13.5, page 913)." }
   - type: multipleChoice
     id: bcl-schluessel
-    prompt: { de: "Welche BCL-Ausnahme löst der Indexer eines Dictionary<K,V> aus, wenn der Schlüssel nicht vorhanden ist?", en: "Which BCL exception does the indexer of a Dictionary<K,V> throw if the key does not exist?" }
+    prompt: { de: "Welche BCL-Ausnahme löst die Methode Add(key, value) eines Dictionary<K,V> aus, wenn der Schlüssel schon vorhanden ist?", en: "Which BCL exception does the method Add(key, value) of a Dictionary<K,V> throw if the key already exists?" }
     options:
       - { de: "ArgumentNullException", en: "ArgumentNullException" }
       - { de: "InvalidOperationException", en: "InvalidOperationException" }
       - { de: "NotSupportedException", en: "NotSupportedException" }
-      - { de: "KeyNotFoundException", en: "KeyNotFoundException" }
+      - { de: "ArgumentException", en: "ArgumentException" }
       - { de: "IndexOutOfRangeException", en: "IndexOutOfRangeException" }
     correct: [3]
-    explanation: { de: "KeyNotFoundException; mit TryGetValue() lässt sie sich vermeiden (Level 10, 11.6 Seite 714).", en: "KeyNotFoundException; this can be avoided by using TryGetValue() (Level 10, 11.6, page 714)." }
+    explanation: { de: "Ein Dictionary verhindert Dubletten; ein schon vorhandener Schlüssel ist ein unzulässiges Argument, deshalb wirft Add() eine ArgumentException (13.5, Seite 912; 11.6, Seite 714). Der Indexer dagegen überschreibt den vorhandenen Eintrag.", en: "A dictionary prevents duplicates; a key that already exists is an invalid argument, so Add() throws an ArgumentException (13.5, page 912; 11.6, page 714). The indexer, by contrast, overwrites the existing entry." }
   - type: multipleChoice
     id: bcl-index
     prompt: { de: "Welche BCL-Ausnahme löst der Zugriff a[5] auf ein Array mit drei Elementen aus?", en: "Which BCL exception is triggered by accessing a[5] in an array with three elements?" }

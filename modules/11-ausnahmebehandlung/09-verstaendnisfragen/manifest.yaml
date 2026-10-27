@@ -138,7 +138,7 @@ items:
     id: code-throw-ausdruck
     prompt:
       de: |
-        Was gibt das Programm in den beiden Zeilen aus? Was bewirkt `??` hier zusammen mit `throw`, und wozu dient `nameof(s)`?
+        Was gibt das Programm in den beiden Zeilen aus? Was bewirkt `??` hier zusammen mit `throw`, und wozu dient `nameof(s)`? (`ex.ParamName` liefert den Parameternamen, den die Ausnahme im Konstruktor erhalten hat; nicht im Buch, hier vorgegeben.)
 
         ```csharp
         try { Console.WriteLine(Laenge(null)); }
@@ -148,7 +148,7 @@ items:
         static int Laenge(string? s) => (s ?? throw new ArgumentNullException(nameof(s))).Length;
         ```
       en: |
-        What does the program print on its two lines? What does `??` do here together with `throw`, and what is `nameof(s)` for?
+        What does the program print on its two lines? What does `??` do here together with `throw`, and what is `nameof(s)` for? (`ex.ParamName` returns the parameter name the exception received in its constructor; not in the book, given here.)
 
         ```csharp
         try { Console.WriteLine(Laenge(null)); }

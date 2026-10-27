@@ -29,7 +29,9 @@ Wesentliche Punkte:
   `ArithmeticException`. Stünde der allgemeine Block zuerst, würde er alles abfangen und der
   spezielle wäre unerreichbar: **Compilerfehler** (CS0160).
 - Ausnahmefilter `catch (… ex) when (Bedingung)`: Der Block fängt die Ausnahme **nur**, wenn
-  die Bedingung zutrifft; sonst läuft sie weiter nach oben (der Stapel wird nicht abgebaut).
+  die Bedingung zutrifft; sonst sucht die Laufzeit weiter nach einem passenden Block, notfalls
+  weiter oben. Bonus (Deep Dive, nicht im Buch): Die Bedingung wird geprüft, bevor der Stapel
+  abgebaut wird.
 
 Typische Missverständnisse: Die Laufzeit suche den "besten" Block (sie nimmt den ersten
 passenden); die falsche Reihenfolge sei nur eine Warnung oder ein Laufzeitfehler.

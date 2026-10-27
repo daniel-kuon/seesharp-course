@@ -9,8 +9,8 @@
   Bedingung stimmt; sonst bleibt die Ausnahme für den nächsten passenden Block
   frei. Die Reihenfolge zählt: Der Block mit Filter steht **vor** dem allgemeinen
   `catch (IOException)`. Alternative ohne Filter (ein `if` im Block mit
-  erneutem `throw;`) funktioniert ebenfalls; den Unterschied ansprechen
-  (Der Filter entscheidet, bevor der Stapel abgebaut wird).
+  erneutem `throw;`) funktioniert ebenfalls. Bonus (Deep Dive, nicht im Buch):
+  der Unterschied, dass der Filter entscheidet, bevor der Stapel abgebaut wird.
 - `StartsWith("temporär", …)` wird in der Meldung geprüft: Wer `Contains`
   nimmt, fällt beim Test `…nur_irgendwo_temporaer_enthaelt…` durch.
 - Verpacken: Ohne `ex` als zweites Argument geht die Ursache verloren. Der Test

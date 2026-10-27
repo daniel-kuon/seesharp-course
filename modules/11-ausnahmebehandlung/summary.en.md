@@ -24,7 +24,7 @@ A method can report errors via a return value or an exception. The caller must c
 
 ## BCL Exception Classes (13.5, page 911)
 
-All of them extend `Exception`. The most important ones are: `ArgumentException` and its subclasses `ArgumentNullException` and `ArgumentOutOfRangeException` (incorrect argument), `InvalidOperationException` (object in an invalid state), `NotSupportedException`, `FormatException`, `ArithmeticException` (including `DivideByZeroException` and `OverflowException`), `IndexOutOfRangeException`, and `KeyNotFoundException`. `checked` arithmetic (Level 3, book 4.6.1) throws `OverflowException` on overflow; `int.Parse()` throws `FormatException` for invalid text and `OverflowException` for numbers that are too large.
+All of them extend `Exception`. The most important ones are: `ArgumentException` and its subclasses `ArgumentNullException` and `ArgumentOutOfRangeException` (incorrect argument), `InvalidOperationException` (object in an invalid state), `NotSupportedException`, `FormatException`, `ArithmeticException` (including `DivideByZeroException` and `OverflowException`), and `IndexOutOfRangeException` (for the exception thrown when reading a missing dictionary key, see Deep Dive). `checked` arithmetic (Level 3, book 4.6.1) throws `OverflowException` on overflow; `int.Parse()` throws `FormatException` for invalid text and `OverflowException` for numbers that are too large.
 
 ## Throwing Exceptions (13.6, page 913)
 
@@ -35,3 +35,10 @@ All of them extend `Exception`. The most important ones are: `ArgumentException`
 ## Custom Exceptions (13.7, page 916)
 
 You subclass `Exception` (or an appropriate subclass), provide the `()`, `(string)`, and `(string, Exception)` constructors, and add properties for additional information. For a single detail, the `Data` collection of a BCL exception is often sufficient. The exercises at the end of the chapter (13.8, page 920) review all of this: the syntax diagram for `try`, the effect of `OverflowException` in the `Sequenzen` example, `Log2` with argument validation, and the `SimpleStack` with `ArgumentOutOfRangeException`.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **`KeyNotFoundException`:** This exception (namespace `System.Collections.Generic`) is thrown by the indexer of a `Dictionary<K,V>` when you read a missing key. You can avoid it with `TryGetValue()` or `ContainsKey()` (level 10).
+- **Exception filters and stack unwinding:** The condition in `when` is checked before the call stack is unwound. That is why a filter is not the same as a `catch` that checks with `if` inside the block and then rethrows with `throw;`.

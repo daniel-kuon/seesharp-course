@@ -20,7 +20,7 @@
   aufbauen, Stapel abbauen.) Gemessen wird nichts.
 - Quiz: Lösungen sind Try-Muster, Ausnahme, Rückgabewert, Ausnahme, Try-Muster;
   `ArgumentNullException`, `InvalidOperationException`, `NotSupportedException`,
-  `KeyNotFoundException`, `IndexOutOfRangeException`. Bei der offenen Frage
+  `ArgumentException` (`Add` mit vorhandenem Schlüssel), `IndexOutOfRangeException`. Bei der offenen Frage
   zum Syntaxdiagramm: `try`-Block, dann entweder ein oder mehrere
   `catch`-Blöcke (optional mit `when`), optional `finally`, **oder** nur `finally`.
   Ein `try` ohne `catch` und `finally` ist ungültig.

@@ -50,8 +50,8 @@ Alle erben von `Exception`. Die wichtigsten: `ArgumentException` und ihre
 Unterklassen `ArgumentNullException` und `ArgumentOutOfRangeException` (falsches
 Argument), `InvalidOperationException` (Objekt im falschen Zustand),
 `NotSupportedException`, `FormatException`, `ArithmeticException` mit
-`DivideByZeroException` und `OverflowException`, `IndexOutOfRangeException`,
-`KeyNotFoundException`. `checked`-Arithmetik (Level 3, Buch 4.6.1) löst bei Überlauf
+`DivideByZeroException` und `OverflowException`, `IndexOutOfRangeException`
+(zur Ausnahme beim Lesen eines fehlenden Dictionary-Schlüssels siehe Deep Dive). `checked`-Arithmetik (Level 3, Buch 4.6.1) löst bei Überlauf
 `OverflowException` aus, `int.Parse()` bei ungültigem Text `FormatException` und bei
 zu großen Zahlen `OverflowException`.
 
@@ -75,3 +75,15 @@ die `Data`-Kollektion einer BCL-Ausnahme. Die Übungsaufgaben am Kapitelende
 (13.8, Seite 920) wiederholen das alles: Syntaxdiagramm von `try`, die Wirkung von
 `OverflowException` im Beispiel `Sequenzen`, `Log2` mit Argumentprüfung und der
 `SimpleStack` mit `ArgumentOutOfRangeException`.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **`KeyNotFoundException`:** Diese Ausnahme (Namensraum
+  `System.Collections.Generic`) löst der Indexer eines `Dictionary<K,V>` aus,
+  wenn man einen fehlenden Schlüssel liest. Vermeiden lässt sie sich mit
+  `TryGetValue()` oder `ContainsKey()` (Level 10).
+- **Ausnahmefilter und Stapelabbau:** Die Bedingung in `when` wird geprüft,
+  bevor der Aufrufstapel abgebaut wird. Darum ist ein Filter nicht dasselbe wie
+  ein `catch`, der im Block per `if` prüft und dann mit `throw;` weiterreicht.

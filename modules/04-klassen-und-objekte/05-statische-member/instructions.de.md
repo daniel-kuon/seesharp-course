@@ -22,6 +22,10 @@ Eigenschaften ohne eigene Felder. Vervollständige:
 4. `BenDef(string e)` ist eine statische Fabrikmethode: Sie erzeugt einen
    Bruch 0/1 mit Etikett `e`, lässt ihn per `Frage()` vom Benutzer füllen,
    kürzt ihn und liefert ihn zurück. Scheitert `Frage()`, liefert sie `null`.
+   Das Fragezeichen im vorgegebenen Rückgabetyp `Bruch?` sagt dem Compiler,
+   dass `null` erlaubt ist (Buch Seite 338, Fußnote; ausführlich kommt das in
+   Kapitel 15.1.1). Das Buchbeispiel auf Seite 377 schreibt nur `Bruch`; du
+   musst am Kopf nichts ändern.
 
 Diese Tests müssen bestehen:
 

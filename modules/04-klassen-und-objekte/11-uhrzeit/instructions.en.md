@@ -10,7 +10,7 @@ Open `Uhrzeit.cs` and complete it:
 2. Both constructors normalize the values: `new Uhrzeit(25, 70)` is 02:10, `new Uhrzeit(-1, 0)` is 23:00, and `new Uhrzeit(1500)` is 01:00.
 3. `Stunde` and `Minute` calculate their values from the field (integer division and remainder).
 4. Two overloads of the `Addiere` function: one with minutes and one with hours and minutes. The second one calls the first.
-5. `Text()` returns `"07:05"`. Tip: `$"{Stunde:D2}"` pads with zeros.
+5. `Text()` returns `"07:05"`. Tip: `$"{Stunde:D2}"` pads with zeros (not in the book, given here).
 6. The `operator +(Uhrzeit, int)` returns a **new** time; the original remains unchanged.
 7. The `operator -(Uhrzeit a, Uhrzeit b)` operator returns the number of minutes that elapse from `b` to `a`, counted forward: from 10:45 p.m. to 1:15 a.m., it is 150.
 

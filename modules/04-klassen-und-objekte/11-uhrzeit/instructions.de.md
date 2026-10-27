@@ -20,7 +20,8 @@ berechnet. So kann der Zustand nie ungültig werden.
    und Rest).
 4. Zwei Überladungen von `Addiere`: mit Minuten und mit Stunden und Minuten.
    Die zweite ruft die erste auf.
-5. `Text()` liefert `"07:05"`. Tipp: `$"{Stunde:D2}"` füllt mit Nullen auf.
+5. `Text()` liefert `"07:05"`. Tipp: `$"{Stunde:D2}"` füllt mit Nullen auf
+   (nicht im Buch, hier vorgegeben).
 6. `operator +(Uhrzeit, int)` liefert eine **neue** Uhrzeit; das Original
    bleibt unverändert.
 7. `operator -(Uhrzeit a, Uhrzeit b)` liefert, wie viele Minuten von `b` bis

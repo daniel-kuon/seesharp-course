@@ -13,7 +13,8 @@ bleiben unverändert.
 3. Den Operator `*`: Zähler mal Zähler, Nenner mal Nenner.
 4. `Kehrwert()`: `3/4` wird `4/3`, `-2/5` wird `-5/2`. Ein Bruch mit Zähler 0
    hat keinen Kehrwert; dann liefert die Methode `null`. Der Rückgabetyp
-   `Bruch?` sagt genau das.
+   `Bruch?` sagt genau das (Buch Seite 338, Fußnote; ausführlich kommt das in
+   Kapitel 15.1.1).
 5. Den Operator `/`: `b1` mal Kehrwert von `b2`. Ist `b2` gleich 0, liefert
    er `null`.
 6. `Vergleiche(b)`: -1, wenn dieser Bruch kleiner ist als `b`, 0 bei

@@ -7,7 +7,7 @@ Open `Bruch.cs`. The class now uses automatically implemented properties without
 1. `Nenner` and `Etikett`: Complete the validation in the setter (ignore denominator 0, truncate the label to 40 characters). To do this, use the keyword `field` instead of an explicit field.
 2. `Anzahl` counts the objects created: Increase the static property in **both** constructors. Its setter remains `private`.
 3. Write a **static constructor** `static Bruch()` that sets `ZaehlerVoreinst` to a random number between 1 and 6 and `NennerVoreinst` to a random number between `ZaehlerVoreinst` and 8 (`Random.Next(min, max)`; `max` is excluded). The parameterless constructor already uses these default values.
-4. `BenDef(string e)` is a static factory method: It creates a 0/1 fraction labeled `e`, has the user fill it in using `Frage()`, reduces it, and returns it. If `Frage()` fails, it returns `null`.
+4. `BenDef(string e)` is a static factory method: It creates a 0/1 fraction labeled `e`, has the user fill it in using `Frage()`, reduces it, and returns it. If `Frage()` fails, it returns `null`. The question mark in the given return type `Bruch?` tells the compiler that `null` is allowed (book page 338, footnote; it is covered in detail in chapter 15.1.1). The book example on page 377 writes just `Bruch`; you do not need to change the method header.
 
 The following tests must be passed:
 

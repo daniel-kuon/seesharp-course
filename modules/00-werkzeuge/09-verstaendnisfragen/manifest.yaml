@@ -254,19 +254,19 @@ items:
       de: "Beschreibe, was SeeSharp tut, wenn du bei einer Programmierübung auf „Abgeben“ klickst. Warum zählt nur diese Prüfung und nicht ein grüner Testlauf in Rider? Und wie liest du einen roten Test?"
       en: "Describe what SeeSharp does when you click “Submit” on a coding exercise. Why does only this check count, and not a green test run in Rider? And how do you read a red test?"
   - type: multipleChoice
-    id: variable-deklarieren
+    id: text-ausgeben
     prompt:
-      de: "Welche Zeile legt eine Variable `gruss` vom Typ `string` an und setzt sie auf den Text `Moin, SeeSharp!`?"
-      en: "Which line declares a variable `gruss` of type `string` and sets it to the text `Moin, SeeSharp!`?"
+      de: "Welche Zeile in `Main()` gibt den Text `Moin, SeeSharp!` auf der Konsole aus?"
+      en: "Which line in `Main()` prints the text `Moin, SeeSharp!` to the console?"
     options:
-      - de: "string gruss = 'Moin, SeeSharp!';"
-      - de: "gruss string = \"Moin, SeeSharp!\";"
-      - de: "string gruss = \"Moin, SeeSharp!\";"
-      - de: "String gruss = \"Moin, SeeSharp!\""
+      - de: "Console.WriteLine('Moin, SeeSharp!');"
+      - de: "Console.WriteLine(Moin, SeeSharp!);"
+      - de: "Console.WriteLine(\"Moin, SeeSharp!\");"
+      - de: "Console.WriteLine(„Moin, SeeSharp!“);"
     correct: [2]
     explanation:
-      de: "Einfache Anführungszeichen sind für ein einzelnes Zeichen (`char`) gedacht; bei einem ganzen Text meldet der Compiler „zu viele Zeichen“ (CS1012). `gruss string` vertauscht Typ und Namen (CS1001). Bei der letzten Zeile fehlt das abschließende Semikolon (CS1002)."
-      en: "Single quotes are meant for a single character (`char`); for a whole text the compiler reports “too many characters” (CS1012). `gruss string` swaps type and name (CS1001). In the last line the terminating semicolon is missing (CS1002)."
+      de: "`WriteLine()` bekommt den Text als Zeichenfolge in geraden doppelten Anführungszeichen (Buch Seite 70). Einfache Anführungszeichen sind etwas anderes (kommt in Kapitel 4); bei einem ganzen Text meldet der Compiler „zu viele Zeichen“ (CS1012). Ohne Anführungszeichen hält der Compiler `Moin` und `SeeSharp` für Namen, die es nicht gibt (CS0103). Die typografischen Anführungszeichen `„…“`, wie sie etwa ein Textprogramm setzt, kennt C# nicht (CS1056)."
+      en: "`WriteLine()` receives the text as a string in straight double quotes (book page 70). Single quotes are something else (coming in chapter 4); for a whole text the compiler reports “too many characters” (CS1012). Without quotes the compiler takes `Moin` and `SeeSharp` for names that do not exist (CS0103). C# does not know typographic quotes `„…“`, such as a word processor inserts (CS1056)."
   - type: multipleChoice
     id: debugger-schritt
     prompt:

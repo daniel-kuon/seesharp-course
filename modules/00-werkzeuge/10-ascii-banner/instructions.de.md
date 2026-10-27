@@ -6,6 +6,9 @@ die Tests prüfen nur die Form.
 Lies im Buch noch einmal **3.1.5 Ausführen** (Seite 74). Wer mehrzeiligen Text
 in einem einzigen Literal schreiben möchte, findet das Rohzeichenfolgenliteral
 (`"""`) als Vorgriff in **4.3.10.5 Zeichenfolgenliterale** (Seite 208 f.).
+Ebenfalls ein Vorgriff: `+` hängt Zeichenfolgen aneinander, und `"\n"`
+steht für einen Zeilenwechsel; beides kommt in **4.2.2 Ausgabe einer
+(zusammengesetzten) Zeichenfolge** (Seite 176).
 
 Öffne `Banner.cs` und vervollständige die drei statischen Methoden:
 

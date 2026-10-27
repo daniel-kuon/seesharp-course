@@ -2,7 +2,7 @@
 
 Extra exercise: optional; it blocks nothing. You're free to structure this however you like; the tests only check the format.
 
-Read **section 3.1.5**, **"Execution"** (page 74), in the book again. If you want to write multi-line text in a single literal, you'll find the raw string literal (`"""`) discussed in advance in **section 4.3.10.5**, **"String Literals**" (page 208 ff.).
+Read **section 3.1.5**, **"Execution"** (page 74), in the book again. If you want to write multi-line text in a single literal, you'll find the raw string literal (`"""`) discussed in advance in **section 4.3.10.5**, **"String Literals**" (page 208 ff.). Also a preview: `+` joins strings together, and `"\n"` stands for a line break; both come in **section 4.2.2, "Output of a (Composite) String"** (page 176).
 
 Open `Banner.cs` and complete the three static methods:
 

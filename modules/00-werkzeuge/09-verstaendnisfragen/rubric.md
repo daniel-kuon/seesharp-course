@@ -1,6 +1,6 @@
 # Rubrik: Verständnisfragen Level 0 (nur für die Betreuung und den KI-Tutor)
 
-Offene Antworten bestehen, wenn die genannten Kernpunkte sinngemäß vorkommen. Die Wortwahl ist egal, Fachbegriffe sollen aber stimmen. Die Auswahlfragen (`gueltiges-programm`, `gruss-methode`, `projekt-anlegen`, `variable-deklarieren`, `debugger-schritt`) sind automatisch bewertet und haben hier keinen Eintrag.
+Offene Antworten bestehen, wenn die genannten Kernpunkte sinngemäß vorkommen. Die Wortwahl ist egal, Fachbegriffe sollen aber stimmen. Die Auswahlfragen (`gueltiges-programm`, `gruss-methode`, `projekt-anlegen`, `text-ausgeben`, `debugger-schritt`) sind automatisch bewertet und haben hier keinen Eintrag.
 
 ## global-json
 

@@ -1,5 +1,5 @@
 id: netz-chat-protokoll
-title: { de: "Zusatz: Mini-Chat-Protokoll", en: "Extra: Mini Chat Log" }
+title: { de: "Zusatz: Mini-Chat-Protokoll", en: "Extra: Mini Chat Protocol" }
 optional: true
 reading:
   section: "21.6.2"

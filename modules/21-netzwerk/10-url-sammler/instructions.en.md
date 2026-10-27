@@ -2,14 +2,14 @@
 
 Extra exercise: optional; it unlocks nothing. For further reading: **21.2 URI or URL** (page 1505) and **21.3.3 Request Parameters** (page 1512).
 
-A small tool cleans up a list of URLs, such as those from a log file. The input is disorganized: it contains relative paths, empty lines, text, and URLs with different formats. Only absolute `http` and `https` URLs are valid; the finished helper method `Lese` determines this. Open `UrlSammler.cs`:
+A small tool cleans up a list of URLs, such as those from a log file. The input is disorganized: it contains relative paths, empty lines, text, and URLs with other schemes. Only absolute `http` and `https` URLs are valid; the finished helper method `Lese` determines this. Open `UrlSammler.cs`:
 
 1. `Hosts(urls)` lists the various hosts, sorted in ascending order.
 2. `OhneParameter(url)` returns the URL without the query string (the fragment remains).
 3. `MitParameter(url, name, wert)` sets the parameter: If a value already exists, it is replaced; otherwise, the parameter is appended to the end. Names and values are encoded correctly, and existing parameters are not duplicated.
 4. Invalid or relative entries result in `null` for 2 and 3; for 1, they are skipped.
 
-Among other things, the tests use a list of ten random addresses.
+Among other things, the tests use a list of ten mixed addresses.
 
 The following tests must be passed:
 

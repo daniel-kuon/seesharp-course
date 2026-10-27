@@ -16,8 +16,8 @@ items:
     id: schichten
     prompt: { de: "Welche Zuordnung von Protokoll zu Schicht des TCP/IP-Modells (bzw. OSI-Modells) stimmt?", en: "Which correspondence between protocols and layers in the TCP/IP model (or OSI model) is correct?" }
     options:
-      - { de: "Ethernet: Sicherung/Netzzugang (Link Layer); IP: Vermittlung (Network Layer); TCP: Transport (Transport Layer); HTTP und DNS: Anwendung (Application Layer).", en: "Ethernet: Security/Network Access (Link Layer); IP: Routing (Network Layer); TCP: Transport (Transport Layer); HTTP and DNS: Application (Application Layer)." }
-      - { de: "Ethernet: Anwendung; IP: Transport; TCP: Vermittlung; HTTP: Bitübertragung.", en: "Ethernet: Application; IP: Transport; TCP: Switching; HTTP: Data Transmission." }
+      - { de: "Ethernet: Sicherung/Netzzugang (Link Layer); IP: Vermittlung (Network Layer); TCP: Transport (Transport Layer); HTTP und DNS: Anwendung (Application Layer).", en: "Ethernet: Data Link/Network Access (Link Layer); IP: Network (Network Layer); TCP: Transport (Transport Layer); HTTP and DNS: Application (Application Layer)." }
+      - { de: "Ethernet: Anwendung; IP: Transport; TCP: Vermittlung; HTTP: Bitübertragung.", en: "Ethernet: Application; IP: Transport; TCP: Network; HTTP: Physical." }
       - { de: "HTTP: Transport; TCP: Anwendung; IP: Anwendung; Ethernet: Vermittlung.", en: "HTTP: Transport; TCP: Application; IP: Application; Ethernet: Network." }
     correct: [0]
     explanation: { de: "21.1.1.2 bis 21.1.1.7 (Seite 1499 bis 1502) und 21.1.2 (Seite 1503). Jede Schicht verpackt die Daten der Schicht darüber und gibt sie an die darunter weiter.", en: "21.1.1.2 through 21.1.1.7 (pages 1499 through 1502) and 21.1.2 (page 1503). Each layer encapsulates the data from the layer above it and passes it on to the layer below." }
@@ -29,25 +29,25 @@ items:
       - { de: "Die IP-Adresse bezeichnet ein Programm, die Portnummer den Rechner.", en: "The IP address identifies a program; the port number identifies the computer." }
       - { de: "Beide bezeichnen den Rechner; der Port ist nur eine Prüfsumme.", en: "Both refer to the computer; the port is just a checksum." }
     correct: [0]
-    explanation: { de: "21.1.1.3 und 21.1.1.4 (Seite 1499 bis 1500). Ein Webserver lauscht üblicherweise auf Port 80 (HTTP) oder 443 (HTTPS); wer einen eigenen Server schreibt, wählt einen freien Port oder lässt das Betriebssystem einen zuteilen (Port 0).", en: "21.1.1.3 and 21.1.1.4 (pages 1499–1500). A web server typically listens on port 80 (HTTP) or 443 (HTTPS); if you’re writing your own server, choose an available port or let the operating system assign one (port 0)." }
+    explanation: { de: "21.1.1.3 und 21.1.1.5 (Seite 1499 bis 1501; das Buch ordnet die Ports der Sitzungsschicht zu, andere Autoren der Transportschicht). Ein Webserver lauscht üblicherweise auf Port 80 (HTTP) oder 443 (HTTPS); wer einen eigenen Server schreibt, wählt einen freien Port oder lässt das Betriebssystem einen zuteilen (Port 0).", en: "21.1.1.3 and 21.1.1.5 (pages 1499–1501; the book assigns ports to the session layer, other authors to the transport layer). A web server typically listens on port 80 (HTTP) or 443 (HTTPS); if you’re writing your own server, choose an available port or let the operating system assign one (port 0)." }
   - type: multipleChoice
     id: tcp-udp
     prompt: { de: "Worin unterscheiden sich TCP und UDP?", en: "How do TCP and UDP differ?" }
     options:
       - { de: "TCP baut eine Verbindung auf und sichert die Übertragung (Reihenfolge, Wiederholung bei Verlust); UDP schickt einzelne Datagramme ohne Verbindung und ohne Garantie.", en: "TCP establishes a connection and ensures reliable transmission (sequence, retransmission in case of loss); UDP sends individual datagrams without a connection and without any guarantee." }
-      - { de: "UDP ist die gesicherte, TCP die ungesicherte Variante.", en: "UDP is the secure version, while TCP is the unsecured version." }
+      - { de: "UDP ist die gesicherte, TCP die ungesicherte Variante.", en: "UDP is the reliable version, TCP the unreliable one." }
       - { de: "TCP gibt es nur im Browser, UDP nur in C#.", en: "TCP is available only in the browser, while UDP is available only in C#." }
     correct: [0]
-    explanation: { de: "21.1.1.4 (Seite 1500). HTTP und die Socket-Aufgaben dieses Moduls laufen über TCP.", en: "21.1.1.4 (page 1500). HTTP and the socket functions in this module run over TCP." }
+    explanation: { de: "21.1.1.4 und 21.1.1.5 (Seite 1500 und 1501). HTTP und die Socket-Aufgaben dieses Moduls laufen über TCP.", en: "21.1.1.4 and 21.1.1.5 (pages 1500 and 1501). HTTP and the socket exercises in this module run over TCP." }
   - type: multipleChoice
     id: dns
     prompt: { de: "Was löst DNS auf?", en: "What does DNS resolve?" }
     options:
       - { de: "Hostnamen (z. B. www.example.com) in IP-Adressen.", en: "Hostnames (e.g., www.example.com) into IP addresses." }
-      - { de: "IP-Adressen in Portnummern.", en: "IP addresses in port numbers." }
-      - { de: "HTML-Seiten in Text.", en: "HTML pages as text." }
+      - { de: "IP-Adressen in Portnummern.", en: "IP addresses into port numbers." }
+      - { de: "HTML-Seiten in Text.", en: "HTML pages into text." }
     correct: [0]
-    explanation: { de: "21.1.1.7 und 21.5 (Seite 1502 und 1523). In C# erledigt Dns.GetHostAddresses(name) das; der Name localhost wird lokal aufgelöst und braucht kein Internet.", en: "21.1.1.7 and 21.5 (pages 1502 and 1523). In C#, `Dns.GetHostAddresses(name)` handles this; the name `localhost` is resolved locally and does not require an Internet connection." }
+    explanation: { de: "21.2 und 21.5 (Seite 1505 und 1523). In C# erledigt Dns.GetHostAddresses(name) das; der Name localhost wird lokal aufgelöst und braucht kein Internet.", en: "21.2 and 21.5 (pages 1505 and 1523). In C#, `Dns.GetHostAddresses(name)` handles this; the name `localhost` is resolved locally and does not require an Internet connection." }
   - type: multipleChoice
     id: http-methoden
     prompt: { de: "Welche HTTP-Methode passt? (a) eine Ressource lesen, (b) Daten zum Anlegen an den Server senden, (c) nur prüfen, ob die Ressource existiert und wie groß sie ist, ohne sie zu laden.", en: "Which HTTP method is appropriate? (a) Read a resource, (b) send data to the server to create a resource, (c) simply check whether the resource exists and how large it is, without loading it." }
@@ -96,7 +96,7 @@ items:
       - { de: "Ein beliebiges eigenes Zeilenprotokoll; der Browser versteht jedes.", en: "Any custom line protocol; the browser understands them all." }
       - { de: "Nur UDP.", en: "UDP only." }
     correct: [0]
-    explanation: { de: "21.1.2 (Seite 1503). Ein eigenes Zeilenprotokoll (wie in Aufgabe 4) funktioniert nur mit einem passenden eigenen Klienten.", en: "21.1.2 (page 1503). A custom line-by-line log (as in Exercise 4) only works with a compatible custom client." }
+    explanation: { de: "21.1.2 (Seite 1503). Ein eigenes Zeilenprotokoll (wie in Aufgabe 4) funktioniert nur mit einem passenden eigenen Klienten.", en: "21.1.2 (page 1503). A custom line protocol (as in Exercise 4) only works with a compatible custom client." }
   - type: open
     id: browseraufruf
     prompt: { de: "Beschreibe in eigenen Worten, welche Schritte im Netzwerk ablaufen, wenn ein Browser die Adresse http://www.example.com/index.html aufruft. Gehe auf Namensauflösung, Verbindungsaufbau, Anforderung und Antwort ein.", en: "In your own words, describe the steps that take place on the network when a browser accesses the address http://www.example.com/index.html. Discuss name resolution, establishing a connection, the request, and the response." }

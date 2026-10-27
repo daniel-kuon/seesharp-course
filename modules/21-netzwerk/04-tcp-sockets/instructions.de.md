@@ -38,8 +38,6 @@ bleibt (zum Beispiel, wenn der Server nie antwortet).
 
 Diese Tests müssen bestehen:
 
-- `RechenserverTests.WarteAufServerAsync`
-- `RechenserverTests.Dispose`
 - `RechenserverTests.Addiert_und_multipliziert_und_beendet_sich_nach_ENDE`
 - `RechenserverTests.Negative_und_grosse_Zahlen`
 - `RechenserverTests.Unbekanntes_und_Fehlerhaftes_ergibt_FEHLER`

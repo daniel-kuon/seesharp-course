@@ -10,7 +10,7 @@ A **Typed Client** is a class that takes an `HttpClient` as input and hides the 
 - Any other error status: `HttpRequestException`; no retry.
 - `anzahl <= 0`: `ArgumentOutOfRangeException` before anything is sent.
 
-The tests count the requirements in the handler.
+The tests count the requests in the handler.
 
 The following tests must be passed:
 

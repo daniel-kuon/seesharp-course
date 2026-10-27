@@ -1,12 +1,12 @@
-# Extra: Mini Chat Log
+# Extra: Mini Chat Protocol
 
 Extra exercise: optional; it unlocks nothing. For further reading: **21.6.1 TCP Server** (page 1526) and **21.6.2 TCP Client** (page 1530).
 
-Here, you'll design your own small text-based chat application: a chat for **a** client. The server recognizes three commands:
+Here, you design your own small line protocol: a chat for **one** client. The server recognizes three commands:
 
-| Row | Answer |
+| Line | Response |
 |---|---|
-| `NAME x` | `OK`; from now on, the client is called `x` (previously `Gast`) |
+| `NAME x` | `OK`; from now on, the client is called `x` (initially `Gast`) |
 | `SAGE text` | `x: text` |
 | `ENDE` | No response; the server ends the session |
 | anything else, including `NAME` or `SAGE` without a remainder | `FEHLER` |

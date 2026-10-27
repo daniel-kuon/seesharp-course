@@ -47,6 +47,6 @@ items:
     options:
       - { de: "GetAsync wirft keine Ausnahme; die Antwort hat den Statuscode 404 (IsSuccessStatusCode ist false). Erst EnsureSuccessStatusCode() macht daraus eine HttpRequestException mit StatusCode.", en: "GetAsync does not throw an exception; the response has a status code of 404 (IsSuccessStatusCode is false). Only EnsureSuccessStatusCode() converts this into an HttpRequestException with a status code." }
       - { de: "GetAsync wirft sofort eine FileNotFoundException.", en: "GetAsync immediately throws a FileNotFoundException." }
-      - { de: "Der Aufruf liefert null.", en: "The call returns zero." }
+      - { de: "Der Aufruf liefert null.", en: "The call returns null." }
     correct: [0]
     explanation: { de: "21.3.2.1 (Seite 1509). Dagegen werfen GetStringAsync und GetFromJsonAsync bei Fehlerstatus selbst eine HttpRequestException mit gesetztem StatusCode (seit .NET 5).", en: "21.3.2.1 (page 1509). In contrast, GetStringAsync and GetFromJsonAsync throw an HttpRequestException with a set StatusCode in the event of an error (since .NET 5)." }

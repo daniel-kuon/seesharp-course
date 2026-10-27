@@ -37,8 +37,9 @@ und kann Ports erschöpfen. Anforderungsmethoden sind `GET` (lesen), `POST`
 (21.3.1). `GetStringAsync` liefert den Text, `GetAsync` die ganze Antwort mit
 Statuscode: 2xx Erfolg, 3xx Umleitung, 4xx Fehler des Klienten, 5xx Fehler
 des Servers. `EnsureSuccessStatusCode()` wirft bei Misserfolg
-`HttpRequestException` mit `StatusCode`. Mit `GetFromJsonAsync<T>` und
-`PostAsJsonAsync` überträgt man JSON (21.3.3). Die Methoden sind asynchron
+`HttpRequestException` mit `StatusCode`. JSON überträgt das Buch mit `JsonSerializer`
+und `StringContent` (21.3.3); kürzer geht es mit `GetFromJsonAsync<T>` und
+`PostAsJsonAsync` aus `System.Net.Http.Json`. Die Methoden sind asynchron
 (`Task<T>`); mit `await` wartet man auf das Ergebnis, ohne einen Thread zu
 blockieren.
 
@@ -48,7 +49,7 @@ blockieren.
 `IPAddress.IsLoopback` erkennt die lokale Schleife, `Dns.GetHostAddresses`
 löst einen Namen auf (`localhost` klappt auch ohne Internet).
 
-## Sockets (21.6, Seite 1525 bis 1531)
+## Sockets (21.6, Seite 1525 bis 1536)
 
 Ein `TcpListener` wartet auf einem Port auf Verbindungen; `AcceptTcpClient()`
 liefert einen `TcpClient`, dessen `NetworkStream` man wie eine Datei mit

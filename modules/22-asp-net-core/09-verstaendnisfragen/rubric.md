@@ -1,9 +1,9 @@
 # Rubrik: Verständnisfragen ASP.NET Core Razor Pages (nur für die Betreuung)
 
 Die Multiple-Choice-Fragen `mc-program-cs` (richtig: Option 2), `mc-redirect` (Option 3) und `mc-overposting` (Option 1) wertet
-das Programm selbst aus. Geprüft wurde so: Die Code-Listings `code-onpost`, `code-lebensdauer` und `code-validierung` liefen in
+das Programm selbst aus. Geprüft wurde so: Die Code-Listings `code-onpost`, `code-zustand` und `code-validierung` liefen in
 einer `net10.0`-Webprojekt-Konsole; `code-routing` und die Option „ohne `MapRazorPages()`" in der echten Anwendung aus Aufgabe 4
-mit `WebApplicationFactory<Program>`; der Fehler bei Dienstregistrierung nach `Build()` ebenfalls. Die Ausgaben unten sind echt.
+mit `WebApplicationFactory<Program>`; der Fehler bei Dienstregistrierung nach `Build()` ebenfalls; die Option ohne `AddRazorPages()` (Startabbruch mit InvalidOperationException) als Webprojekt-Konsole. Die Ausgaben unten sind echt.
 
 ## pipeline-und-program
 
@@ -31,24 +31,29 @@ Typische Fehlvorstellungen: Beide Aufrufe liefern `RedirectToPageResult` (die Pr
 ## di-lebensdauer
 
 Wesentlich:
-- Konstruktorinjektion: Die Klasse fordert ihre Abhängigkeiten als Konstruktorparameter an; der Service-Container erzeugt sie und reicht sie hinein (die Klasse erzeugt sie nicht selbst mit `new`).
+- Konstruktorinjektion: Die Klasse fordert ihre Abhängigkeiten als Konstruktorparameter an; der Service-Container erzeugt sie und reicht sie hinein (die Klasse erzeugt sie nicht selbst mit `new`, 22.3).
 - Als Schnittstelle: Die Klasse kennt nur den Vertrag, nicht die Implementierung; sie lässt sich austauschen (Speicher, Datenbank) und im Test durch einen **Fake** ersetzen, ohne die Seite zu ändern.
-- Lebensdauer: `AddSingleton`: eine Instanz für die ganze Anwendung; `AddScoped`: eine Instanz je Anforderung; `AddTransient`: eine neue Instanz bei jedem Abruf des Dienstes (jeder Injektion).
-  Der Speicher, der die Stimmen aller Besucher hält, muss `Singleton` sein, sonst beginnt jede Anforderung mit einem leeren Speicher.
+- Registriert wird in `Program.cs` über `builder.Services` vor `Build()`. Das PageModel lebt nur eine Anforderung lang (22.5.4); der Speicher muss länger leben, sonst beginnt jede Anforderung mit einem leeren Speicher (in Aufgabe 4 deshalb die vorgegebene `AddSingleton`-Zeile).
+- Bonus (Deep Dive): die Lebensdauern `AddSingleton` (eine Instanz für die ganze Anwendung), `AddScoped` (eine je Anforderung) und `AddTransient` (eine neue bei jedem Abruf) unterscheiden; nicht im Buch, nicht verlangt.
 
-Typische Fehlvorstellungen: Scoped sei „ein Objekt je Benutzer"; Transient sei „der Standard und passe für den Speicher"; Konstruktorinjektion sei ein Entwurfsmuster nur für Tests.
+Typische Fehlvorstellungen: Das PageModel bleibe zwischen Anforderungen erhalten; Konstruktorinjektion sei ein Entwurfsmuster nur für Tests.
 
-## code-lebensdauer
+## code-zustand
 
-Ausgabe: `True True False False`.
+Ausgabe:
+
+```
+1 / 1
+1 / 2
+1 / 3
+```
 
 Wesentlich:
-- `a` (Singleton, zwei Scopes): dieselbe Instanz: `True`.
-- `b` (Scoped, derselbe Scope): dieselbe Instanz: `True`.
-- `c` (Scoped, zwei Scopes, also zwei Anforderungen): verschiedene Instanzen: `False`.
-- `d` (Transient, derselbe Scope): bei jedem Abruf eine neue Instanz: `False`.
+- Für jede Anforderung entsteht ein neues `ZaehlerModel`; sein Feld `_anzahl` beginnt jedes Mal bei 0 und steht nach `OnGet` auf 1 (HTTP ist zustandslos, 22.5.4).
+- Der Dienst ist derselbe für alle drei Anforderungen (Singleton aus Aufgabe 4): `Stand` zählt weiter, 1, 2, 3.
+- Folgerung: Zustand über Anforderungen hinweg gehört in einen langlebigen Dienst, eine Datenbank oder ein Cookie, nicht in Felder des PageModels.
 
-Typische Fehlvorstellungen: `True True True False` (Scoped wie Singleton gedacht); `True False False False` (Scoped wie Transient gedacht); `==` vergleiche den Inhalt (bei Klassen ohne eigenen Operator vergleicht es die Referenz).
+Typische Fehlvorstellungen: `1 / 1`, `2 / 2`, `3 / 3` (das PageModel bleibe erhalten); `1 / 1` dreimal (der Dienst sei auch neu).
 
 ## pagemodel-und-zustand
 
@@ -80,7 +85,7 @@ Typische Fehlvorstellungen: Ausgabe `False 1` (nur ein Fehler gezählt) oder `Tr
 
 Wesentlich:
 - Modellbindung schreibt Formularwerte in PageModel-Eigenschaften, die mit `[BindProperty]` markiert sind; fehlende oder nicht umwandelbare Werte (z. B. Text statt Zahl) landen als Fehler im `ModelState`.
-- Regeln stehen als Attribute am Modell (`[Required]`, `[Range]`, `[StringLength]`, `[EmailAddress]`); `IValidatableObject` für Regeln über mehrere Eigenschaften (z. B. Ende nach Beginn).
+- Regeln stehen als Attribute am Modell (`[Required]`, `[Range]`, `[StringLength]`). Bonus (Deep Dive): `IValidatableObject` für Regeln über mehrere Eigenschaften (z. B. Ende nach Beginn); nicht im Buch, nicht verlangt.
   `OnPost` fragt `ModelState.IsValid` ab.
 - Der Server prüft immer: Die Prüfung im Browser ist nur Komfort und lässt sich umgehen (z. B. mit einem selbst gebauten POST).
 - Overposting: Die Modellbindung füllt jede bindbare Eigenschaft, die in der Anforderung vorkommt, auch solche, die das Formular gar nicht anbietet (z. B. `IstAdmin`, `Gezaehlt`).

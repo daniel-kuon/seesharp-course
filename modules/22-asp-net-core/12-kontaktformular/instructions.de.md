@@ -7,14 +7,16 @@ Wiederhole **22.9 Validierung** (Seite 1608), vor allem **22.9.1** (Seite
 eines Kontaktformulars, `KontaktModel` die zugehörige Seite:
 
 1. `Anfrage`: Deklariere die Regeln mit Attributen. Name, E-Mail und Nachricht
-   sind Pflicht; die E-Mail muss eine Adresse sein; die Nachricht braucht
+   sind Pflicht; die E-Mail muss eine Adresse sein (dafür gibt es
+   `[EmailAddress(ErrorMessage = "...")]`, nicht im Buch, hier vorgegeben); die Nachricht braucht
    mindestens 10 Zeichen. Die Meldungen stehen in den TODO-Kommentaren.
 2. `KontaktModel.Eingabe` wird per Modellbindung aus dem Formular gefüllt.
 3. `OnPost()`: Ungültig gibt `Page()` zurück, gültig leitet auf die Seite
    `Danke` um.
 
 Die Tests ersetzen die Modellbindung: Sie prüfen `Eingabe` mit dem
-`Validator`, tragen die Fehler in `ModelState` ein und rufen `OnPost()` auf.
+`Validator` (nicht im Buch; du rufst ihn nicht selbst auf), tragen die Fehler
+in `ModelState` ein und rufen `OnPost()` auf.
 
 Tests:
 

@@ -17,9 +17,10 @@ Anforderung in der Reihenfolge ihrer Vereinbarung durchläuft
 `MapRazorPages`). Die Reihenfolge ist Teil des Programms. Der
 **Service-Container** erzeugt und entsorgt die Dienstobjekte; eine Klasse
 fordert ihre Abhängigkeiten im Konstruktor an (Konstruktorinjektion) und
-kennt dabei nur eine Schnittstelle. Registriert man den Typ mit `AddSingleton`,
-`AddScoped` oder `AddTransient`, legt man seine Lebensdauer fest (das Buch zeigt nur
-`AddTransient`; die Lebensdauern kommen in Aufgabe 4 und im Quiz vor).
+kennt dabei nur eine Schnittstelle. Registriert wird er mit
+`builder.Services.AddTransient<Schnittstelle, Klasse>()` (22.3). Der Speicher der
+Umfrage muss länger leben als eine Anforderung; Aufgabe 4 gibt dafür die Zeile mit
+`AddSingleton` vor (siehe Deep Dive).
 
 ## Seiten und PageModel (22.4 und 22.5, Seite 1556 bis 1572)
 
@@ -50,8 +51,8 @@ besser eine eigene Eingabemodellklasse.
 ## Validierung (22.9, Seite 1608 bis 1619)
 
 Regeln stehen als Attribute am Modell (`[Required]`, `[Range]`,
-`[StringLength]`, `[EmailAddress]`); Regeln über mehrere Eigenschaften
-implementieren `IValidatableObject` (nicht im Buch, Aufgabe 3 erklärt es). Der Server prüft immer, die
+`[StringLength]`; `[EmailAddress]` geben die Aufgaben vor). Für Regeln über
+mehrere Eigenschaften siehe Deep Dive. Der Server prüft immer, die
 Klienten-seitige Validierung ist nur Komfort. `OnPost` fragt
 `ModelState.IsValid` ab. Ein null-unzulässiger Referenztyp gilt implizit als
 `[Required]` (22.9.6); `[BindRequired]` fordert dagegen, dass der Wert in der
@@ -66,7 +67,22 @@ Wiederkehrendes, und Dateien aus `wwwroot` liefert `UseStaticFiles` aus.
 
 ## Testen
 
-Im Kurs prüfen Tests zweierlei: Die PageModel-Logik wird als normale Klasse
-ohne Host getestet (Fake-Dienst, `PageContext`, Ergebnistyp prüfen). Ganze
-Seiten testet `WebApplicationFactory<Program>` mit HTTP-Anforderungen im
-Speicher. Die Gestaltung der Oberfläche prüft die Betreuung.
+Weil ein PageModel eine normale Klasse ist, testen die Aufgaben seine Logik ohne
+Webserver: Fake-Dienst, `PageContext`, Ergebnistyp prüfen. Die Gestaltung der
+Oberfläche prüft die Betreuung.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **Lebensdauer von Diensten:** Neben `AddTransient` (bei jedem Abruf eine neue
+  Instanz) gibt es `AddScoped` (eine Instanz je Anforderung) und `AddSingleton`
+  (eine Instanz für die ganze Anwendung). Der Speicher der Umfrage ist ein
+  Singleton, sonst begänne jede Anforderung mit leerem Speicher.
+- **`IValidatableObject`:** Regeln über mehrere Eigenschaften (etwa *Ende nicht
+  vor Beginn*) stehen in einer Methode `Validate`, die `ValidationResult`s
+  liefert; sie läuft erst, wenn alle Attributregeln erfüllt sind (Aufgabe 3).
+- **Integrationstests:** `WebApplicationFactory<Program>` (Paket
+  `Microsoft.AspNetCore.Mvc.Testing`) startet die ganze Anwendung im Speicher und
+  schickt echte HTTP-Anforderungen, ohne Port und ohne Browser; so prüfen die
+  Tests der Aufgaben 4 und 11 ganze Seiten.

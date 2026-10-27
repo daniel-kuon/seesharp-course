@@ -1,5 +1,5 @@
 id: aspnet-validierung
-title: { de: "Validierung per Attribut und IValidatableObject", en: "Validation Using Attributes and IValidatableObject" }
+title: { de: "Validierung per Attribut", en: "Validation Using Attributes" }
 reading:
   section: "22.9.1"
   title: { de: "Deklaration von Validierungsregeln in Modellklassen", en: "Declaration of Validation Rules in Model Classes" }
@@ -20,6 +20,24 @@ items:
     openFile: "Anmeldung/Anmeldung.cs"
     openLine: 6
     testProject: "Anmeldung Tests/Anmeldung.Tests.csproj"
+    # Die Tests zu Validate (IValidatableObject, nicht im Buch) gehören zum Deep Dive und sind nicht verlangt.
+    requiredTests:
+      - 'AnmeldungTests.Gueltige_Anmeldung_hat_keine_Fehler'
+      - 'AnmeldungTests.Name_fehlt(name: "")'
+      - 'AnmeldungTests.Name_fehlt(name: "   ")'
+      - 'AnmeldungTests.Name_fehlt(name: null)'
+      - 'AnmeldungTests.Name_Laenge_hat_die_Grenzen_2_und_50(laenge: 1, gueltig: False)'
+      - 'AnmeldungTests.Name_Laenge_hat_die_Grenzen_2_und_50(laenge: 2, gueltig: True)'
+      - 'AnmeldungTests.Name_Laenge_hat_die_Grenzen_2_und_50(laenge: 50, gueltig: True)'
+      - 'AnmeldungTests.Name_Laenge_hat_die_Grenzen_2_und_50(laenge: 51, gueltig: False)'
+      - 'AnmeldungTests.Alter_hat_die_Grenzen_18_und_120(alter: 17, gueltig: False)'
+      - 'AnmeldungTests.Alter_hat_die_Grenzen_18_und_120(alter: 18, gueltig: True)'
+      - 'AnmeldungTests.Alter_hat_die_Grenzen_18_und_120(alter: 120, gueltig: True)'
+      - 'AnmeldungTests.Alter_hat_die_Grenzen_18_und_120(alter: 121, gueltig: False)'
+      - 'AnmeldungTests.Email_darf_fehlen'
+      - 'AnmeldungTests.Email_gueltig_wird_akzeptiert'
+      - 'AnmeldungTests.Email_ungueltig_wird_gemeldet'
+      - 'AnmeldungTests.Mehrere_Eigenschaftsfehler_werden_alle_gemeldet'
   - type: multipleChoice
     id: implizites-required
     prompt: { de: "Ein Eingabemodell hat die Eigenschaft `public string S1 { get; set; } = default!;` (ohne Attribut). Das Formularfeld wird leer abgeschickt. Was meldet ASP.NET Core auf dem Server?", en: "An input model has the property `public string S1 { get; set; } = default!;` (without an attribute). The form field is submitted as empty. What does ASP.NET Core report on the server?" }

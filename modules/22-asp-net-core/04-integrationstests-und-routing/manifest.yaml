@@ -35,10 +35,10 @@ items:
     explanation: { de: "22.7.2.4 (Seite 1581): Eine Typrestriktion verhindert die Abbildung der URL auf die Seite; es wird keine Behandlungsmethode aufgerufen.", en: "22.7.2.4 (page 1581): A type restriction prevents the URL from being mapped to the page; no handler is called." }
   - type: multipleChoice
     id: singleton
-    prompt: { de: "Der Dienst wird mit `AddSingleton<IUmfrageDienst, SpeicherDienst>()` registriert. Was würde sich bei `AddTransient` für die Umfrage ändern?", en: "The service is registered using `AddSingleton<IUmfrageDienst, SpeicherDienst>()`. How would using `AddTransient` affect the survey?" }
+    prompt: { de: "Statt im Dienst würde `UmfrageModel` die Stimmen in einem eigenen Feld `List<Stimme> _stimmen` sammeln. Was passiert?", en: "Instead of in the service, `UmfrageModel` would collect the votes in a field of its own, `List<Stimme> _stimmen`. What happens?" }
     options:
-      - { de: "Jede Injektion bekäme eine neue, leere SpeicherDienst-Instanz; abgegebene Stimmen wären bei der nächsten Anforderung nicht mehr da.", en: "Each injection would receive a new, empty SpeicherDienst instance; votes cast would no longer be present at the next request." }
-      - { de: "Nichts; der Container erzeugt immer nur eine Instanz.", en: "Nothing; the container always creates only one instance." }
-      - { de: "Der Dienst würde nicht mehr in das PageModel injiziert.", en: "The service would no longer be injected into the PageModel." }
+      - { de: "Bei der nächsten Anforderung sind die Stimmen weg: Das PageModel entsteht bei jeder Anforderung neu, sein Feld beginnt wieder leer.", en: "At the next request the votes are gone: the PageModel is created anew for every request, and its field starts empty again." }
+      - { de: "Nichts; das PageModel bleibt erhalten, solange die Anwendung läuft.", en: "Nothing; the PageModel is kept as long as the application runs." }
+      - { de: "Die Stimmen bleiben erhalten, aber jeder Browser sieht nur seine eigenen.", en: "The votes are kept, but every browser sees only its own." }
     correct: [0]
-    explanation: { de: "22.3 (Seite 1554) und 22.5.4 (Seite 1571): Das PageModel lebt nur eine Anforderung lang; Zustand über Anforderungen hinweg braucht einen langlebigen Dienst, eine Datenbank oder Cookies.", en: "22.3 (page 1554) and 22.5.4 (page 1571): The PageModel exists only for the duration of a single request; state that persists across requests requires a long-running service, a database, or cookies." }
+    explanation: { de: "22.5.4 (Seite 1571): Page- und PageModel-Objekte leben nur eine Anforderung lang (HTTP ist zustandslos). Zustand über Anforderungen hinweg braucht einen langlebigen Dienst, eine Datenbank oder Cookies; deshalb liegt der Speicher im Singleton-Dienst.", en: "22.5.4 (page 1571): Page and PageModel objects live for a single request only (HTTP is stateless). State across requests needs a long-lived service, a database or cookies; that is why the store lives in the singleton service." }

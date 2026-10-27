@@ -10,16 +10,20 @@ sind fertig. Du schreibst:
 
 1. `Pages/Produkte/Index.cshtml`: Liste aller Produkte; jeder Name ist ein
    Link auf `/Produkte/Detail/<Id>` (Tag-Helfer `asp-page` mit
-   `asp-route-id`).
+   `asp-route-id`; das Markup steht im Starter, nicht im Buch, hier vorgegeben).
 2. `Pages/Produkte/Detail.cshtml`: Route mit `int`-Parameter `id`, Name und
    Beschreibung anzeigen.
 3. `Pages/Produkte/Detail.cshtml.cs`: `OnGet(int id)` sucht das Produkt;
    gibt es keins, ist die Antwort `NotFound()`.
 
-Die Tests starten die Anwendung mit `WebApplicationFactory<Program>` (NuGet-Paket
-`Microsoft.AspNetCore.Mvc.Testing`) und prüfen HTML und Statuscodes. Ein Test
-ersetzt den Katalog durch ein Fake, um zu beweisen, dass die Seiten den
-registrierten Dienst benutzen. Beim ersten Lauf braucht das Paket Netzzugang.
+> **Deep Dive (optional):** Nicht im Buch, und du schreibst diese Tests nicht
+> selbst; ein Beispiel dafür, was du dir als Nächstes ansehen kannst. Die Tests
+> starten die Anwendung mit `WebApplicationFactory<Program>` (NuGet-Paket
+> `Microsoft.AspNetCore.Mvc.Testing`) und prüfen HTML und Statuscodes. Ein Test
+> ersetzt den Katalog durch ein Fake, um zu beweisen, dass die Seiten den
+> registrierten Dienst benutzen.
+
+Beim ersten Lauf braucht das Testpaket Netzzugang.
 
 Tests:
 

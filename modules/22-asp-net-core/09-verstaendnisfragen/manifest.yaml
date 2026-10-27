@@ -109,8 +109,7 @@ items:
       - de: |
           ```csharp
           var builder = WebApplication.CreateBuilder(args);
-          builder.Services.AddRazorPages();
-          builder.Services.AddTransient<IUmfrageDienst, SpeicherDienst>();
+          builder.Services.AddSingleton<IUmfrageDienst, SpeicherDienst>();
           var app = builder.Build();
           app.UseRouting();
           app.MapRazorPages();
@@ -118,51 +117,87 @@ items:
           ```
     correct: [1]
     explanation:
-      de: "Option 1 ordnet die Seiten nie einer Adresse zu (`MapRazorPages()` fehlt): Jede Anforderung endet mit 404. Option 3 ändert die Dienstesammlung nach `Build()`: Das wirft eine InvalidOperationException (die Sammlung ist dann schreibgeschützt). Option 4 kompiliert und startet, registriert den Speicher aber als `Transient`: Jede Anforderung bekommt einen neuen, leeren Speicher, die abgegebenen Stimmen gehen verloren; hier braucht man `AddSingleton`."
-      en: "Option 1 never maps the pages to an address (`MapRazorPages()` is missing): every request ends with 404. Option 3 changes the service collection after `Build()`: this throws an InvalidOperationException (the collection is read-only by then). Option 4 compiles and starts, but registers the store as `Transient`: every request gets a new, empty store and the votes cast are lost; `AddSingleton` is needed here."
+      de: "Option 1 ordnet die Seiten nie einer Adresse zu (`MapRazorPages()` fehlt): Jede Anforderung endet mit 404. Option 3 ändert die Dienstesammlung nach `Build()`: Das wirft eine InvalidOperationException (die Sammlung ist dann schreibgeschützt). Option 4 kompiliert, registriert aber die Dienste für Razor Pages nicht (`AddRazorPages()` fehlt, 22.3): `MapRazorPages()` findet sie nicht, und die Anwendung bricht schon beim Start mit einer InvalidOperationException ab. (`AddSingleton` für den Speicher ist die in Aufgabe 4 vorgegebene Zeile.)"
+      en: "Option 1 never maps the pages to an address (`MapRazorPages()` is missing): every request ends with 404. Option 3 changes the service collection after `Build()`: this throws an InvalidOperationException (the collection is read-only by then). Option 4 compiles but does not register the services for Razor Pages (`AddRazorPages()` is missing, 22.3): `MapRazorPages()` cannot find them, and the application stops at startup with an InvalidOperationException. (`AddSingleton` for the store is the line given in exercise 4.)"
   - type: open
     id: di-lebensdauer
     prompt:
-      de: "Was ist Konstruktorinjektion, und warum fordert ein PageModel einen Dienst als Schnittstelle (`IUmfrageDienst`) statt als konkrete Klasse an? Was ist der Unterschied zwischen `AddSingleton`, `AddScoped` und `AddTransient`, und welche Lebensdauer wählst du für einen Speicher, der die Stimmen aller Besucher halten soll? Welchen Vorteil bringt die Schnittstelle beim Testen?"
-      en: "What is constructor injection, and why does a PageModel request a service as an interface (`IUmfrageDienst`) rather than as a concrete class? What is the difference between `AddSingleton`, `AddScoped` and `AddTransient`, and which lifetime do you choose for a store that is to hold the votes of all visitors? What advantage does the interface bring for testing?"
+      de: "Was ist Konstruktorinjektion, und warum fordert ein PageModel einen Dienst als Schnittstelle (`IUmfrageDienst`) statt als konkrete Klasse an? Wo wird der Dienst registriert, und warum muss ein Speicher, der die Stimmen aller Besucher hält, länger leben als das PageModel? Welchen Vorteil bringt die Schnittstelle beim Testen?"
+      en: "What is constructor injection, and why does a PageModel request a service as an interface (`IUmfrageDienst`) rather than as a concrete class? Where is the service registered, and why must a store that holds the votes of all visitors live longer than the PageModel? What advantage does the interface bring for testing?"
   - type: open
-    id: code-lebensdauer
+    id: code-zustand
     prompt:
       de: |
-        `Einmal`, `ProAnforderung` und `Immer` sind leere Klassen. Jeder `CreateScope()`-Aufruf entspricht einer Anforderung. Was gibt das Programm aus (vier Werte), und warum?
+        Der Dienst ist mit `AddSingleton` registriert (wie in Aufgabe 4); für jede Anforderung erzeugt ASP.NET Core ein neues PageModel und übergibt ihm diesen einen Dienst. Die Schleife spielt drei Anforderungen von Hand nach. Was gibt das Programm aus (drei Zeilen), und warum?
 
         ```csharp
-        var services = new ServiceCollection();
-        services.AddSingleton<Einmal>();
-        services.AddScoped<ProAnforderung>();
-        services.AddTransient<Immer>();
-        using var provider = services.BuildServiceProvider();
+        // drei Anforderungen
+        var dienst = new ZaehlerDienst();
+        for (int i = 0; i < 3; i++)
+        {
+            var model = new ZaehlerModel(dienst);
+            model.OnGet();
+            Console.WriteLine(model.Text);
+        }
 
-        using var s1 = provider.CreateScope();
-        using var s2 = provider.CreateScope();
-        bool a = s1.ServiceProvider.GetRequiredService<Einmal>() == s2.ServiceProvider.GetRequiredService<Einmal>();
-        bool b = s1.ServiceProvider.GetRequiredService<ProAnforderung>() == s1.ServiceProvider.GetRequiredService<ProAnforderung>();
-        bool c = s1.ServiceProvider.GetRequiredService<ProAnforderung>() == s2.ServiceProvider.GetRequiredService<ProAnforderung>();
-        bool d = s1.ServiceProvider.GetRequiredService<Immer>() == s1.ServiceProvider.GetRequiredService<Immer>();
-        Console.WriteLine($"{a} {b} {c} {d}");
+        public interface IZaehlerDienst { int Stand { get; } void Erhoehe(); }
+        public class ZaehlerDienst : IZaehlerDienst
+        {
+            public int Stand { get; private set; }
+            public void Erhoehe() => Stand++;
+        }
+
+        public class ZaehlerModel : PageModel
+        {
+            private readonly IZaehlerDienst _dienst;
+            private int _anzahl;
+            public string Text { get; private set; } = "";
+
+            public ZaehlerModel(IZaehlerDienst dienst) => _dienst = dienst;
+
+            public void OnGet()
+            {
+                _anzahl++;
+                _dienst.Erhoehe();
+                Text = $"{_anzahl} / {_dienst.Stand}";
+            }
+        }
         ```
       en: |
-        `Einmal`, `ProAnforderung` and `Immer` are empty classes. Each `CreateScope()` call corresponds to one request. What does the program print (four values), and why?
+        The service is registered with `AddSingleton` (as in exercise 4); for every request ASP.NET Core creates a new PageModel and passes it this one service. The loop replays three requests by hand. What does the program print (three lines), and why?
 
         ```csharp
-        var services = new ServiceCollection();
-        services.AddSingleton<Einmal>();
-        services.AddScoped<ProAnforderung>();
-        services.AddTransient<Immer>();
-        using var provider = services.BuildServiceProvider();
+        // three requests
+        var dienst = new ZaehlerDienst();
+        for (int i = 0; i < 3; i++)
+        {
+            var model = new ZaehlerModel(dienst);
+            model.OnGet();
+            Console.WriteLine(model.Text);
+        }
 
-        using var s1 = provider.CreateScope();
-        using var s2 = provider.CreateScope();
-        bool a = s1.ServiceProvider.GetRequiredService<Einmal>() == s2.ServiceProvider.GetRequiredService<Einmal>();
-        bool b = s1.ServiceProvider.GetRequiredService<ProAnforderung>() == s1.ServiceProvider.GetRequiredService<ProAnforderung>();
-        bool c = s1.ServiceProvider.GetRequiredService<ProAnforderung>() == s2.ServiceProvider.GetRequiredService<ProAnforderung>();
-        bool d = s1.ServiceProvider.GetRequiredService<Immer>() == s1.ServiceProvider.GetRequiredService<Immer>();
-        Console.WriteLine($"{a} {b} {c} {d}");
+        public interface IZaehlerDienst { int Stand { get; } void Erhoehe(); }
+        public class ZaehlerDienst : IZaehlerDienst
+        {
+            public int Stand { get; private set; }
+            public void Erhoehe() => Stand++;
+        }
+
+        public class ZaehlerModel : PageModel
+        {
+            private readonly IZaehlerDienst _dienst;
+            private int _anzahl;
+            public string Text { get; private set; } = "";
+
+            public ZaehlerModel(IZaehlerDienst dienst) => _dienst = dienst;
+
+            public void OnGet()
+            {
+                _anzahl++;
+                _dienst.Erhoehe();
+                Text = $"{_anzahl} / {_dienst.Stand}";
+            }
+        }
         ```
   - type: multipleChoice
     id: mc-redirect
@@ -216,7 +251,7 @@ items:
     id: code-validierung
     prompt:
       de: |
-        Was gibt das Programm aus (zwei Zeilen), und welche Regeln werden verletzt? Wo findest du dieselben Ergebnisse in einer Razor Page wieder?
+        `Validator.TryValidateObject` prüft alle Validierungsattribute eines Objekts, so wie ASP.NET Core nach der Modellbindung (nicht im Buch; die Tests aus Aufgabe 3 benutzen es). Was gibt das Programm aus (zwei Zeilen), und welche Regeln werden verletzt? Wo findest du dieselben Ergebnisse in einer Razor Page wieder?
 
         ```csharp
         class Anmeldung
@@ -232,7 +267,7 @@ items:
         Console.WriteLine(string.Join("|", fehler.SelectMany(f => f.MemberNames)));
         ```
       en: |
-        What does the program print (two lines), and which rules are violated? Where do you find the same results in a Razor Page?
+        `Validator.TryValidateObject` checks all validation attributes of an object, just as ASP.NET Core does after model binding (not in the book; the tests of exercise 3 use it). What does the program print (two lines), and which rules are violated? Where do you find the same results in a Razor Page?
 
         ```csharp
         class Anmeldung
@@ -250,8 +285,8 @@ items:
   - type: open
     id: validierung-und-bindung
     prompt:
-      de: "Wie kommen Formularwerte in ein PageModel (`[BindProperty]`, Modellbindung), und was passiert mit Werten, die fehlen oder sich nicht umwandeln lassen? Welche Aufgabe haben Validierungsattribute und `IValidatableObject`, und warum reicht eine Prüfung im Browser nicht aus? Was ist Overposting, und wie schützt man sich davor?"
-      en: "How do form values get into a PageModel (`[BindProperty]`, model binding), and what happens to values that are missing or cannot be converted? What are validation attributes and `IValidatableObject` for, and why is a check in the browser not enough? What is overposting, and how do you protect against it?"
+      de: "Wie kommen Formularwerte in ein PageModel (`[BindProperty]`, Modellbindung), und was passiert mit Werten, die fehlen oder sich nicht umwandeln lassen? Welche Aufgabe haben Validierungsattribute, und warum reicht eine Prüfung im Browser nicht aus? Was ist Overposting, und wie schützt man sich davor?"
+      en: "How do form values get into a PageModel (`[BindProperty]`, model binding), and what happens to values that are missing or cannot be converted? What are validation attributes for, and why is a check in the browser not enough? What is overposting, and how do you protect against it?"
   - type: multipleChoice
     id: mc-overposting
     prompt:

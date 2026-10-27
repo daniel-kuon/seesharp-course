@@ -4,7 +4,7 @@ A Razor web application is a program that accepts HTTP requests and returns HTML
 
 ## Program Startup and Services (22.2 and 22.3, pages 1552–1555)
 
-`Program.cs` consists of top-level statements. `WebApplicationBuilder` collects the application's **services** in `builder.Services` (`AddRazorPages()`); `Build()` returns the `WebApplication`. Next comes the **request pipeline**: a chain of middleware components that each request passes through in the order in which they are configured (`UseHttpsRedirection`, `UseStaticFiles`, `UseRouting`, `UseAuthorization`, `MapRazorPages`). The order is part of the program. The **service container** creates and disposes of the service objects; A class requests its dependencies in the constructor (constructor injection) and knows only an interface. When you register a type using `AddSingleton`, `AddScoped`, or `AddTransient`, you define its lifetime (the book shows only `AddTransient`; the lifetimes come up in exercise 4 and the quiz).
+`Program.cs` consists of top-level statements. `WebApplicationBuilder` collects the application's **services** in `builder.Services` (`AddRazorPages()`); `Build()` returns the `WebApplication`. Next comes the **request pipeline**: a chain of middleware components that each request passes through in the order in which they are configured (`UseHttpsRedirection`, `UseStaticFiles`, `UseRouting`, `UseAuthorization`, `MapRazorPages`). The order is part of the program. The **service container** creates and disposes of the service objects; A class requests its dependencies in the constructor (constructor injection) and knows only an interface. It is registered with `builder.Services.AddTransient<Interface, Class>()` (22.3). The survey's store must outlive a single request; exercise 4 gives the line with `AddSingleton` for that (see Deep Dive).
 
 ## Pages and PageModel (22.4 and 22.5, pages 1556–1572)
 
@@ -16,7 +16,7 @@ A page consists of a markup file (`.cshtml`, Razor syntax: `@model`, `@foreach`,
 
 ## Validation (22.9, pages 1608–1619)
 
-Rules are defined as attributes on the model (`[Required]`, `[Range]`, `[StringLength]`, `[EmailAddress]`); rules that span multiple properties implement `IValidatableObject` (not in the book; exercise 3 explains it). The server always performs validation; client-side validation is merely a convenience. `OnPost` checks `ModelState.IsValid`. A reference type that does not allow null values is implicitly considered `[Required]` (22.9.6); `[BindRequired]`, on the other hand, requires that the value be present in the request at all (22.9.2).
+Rules are defined as attributes on the model (`[Required]`, `[Range]`, `[StringLength]`; the exercises give `[EmailAddress]`). For rules spanning several properties, see Deep Dive. The server always performs validation; client-side validation is merely a convenience. `OnPost` checks `ModelState.IsValid`. A reference type that does not allow null values is implicitly considered `[Required]` (22.9.6); `[BindRequired]`, on the other hand, requires that the value be present in the request at all (22.9.2).
 
 ## Layout (22.10 and 22.11, pages 1620–1636)
 
@@ -24,4 +24,12 @@ Rules are defined as attributes on the model (`[Required]`, `[Range]`, `[StringL
 
 ## Testing
 
-In the course, tests assess two things: The PageModel logic is tested as a regular class without a host (fake service, `PageContext`, checking the result type). `WebApplicationFactory<Program>` tests entire pages using in-memory HTTP requests. The supervisor evaluates the user interface design.
+Because a PageModel is a regular class, the exercises test its logic without a web server: fake service, `PageContext`, checking the result type. The supervisor evaluates the user interface design.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **Service lifetimes:** Besides `AddTransient` (a new instance on every request for the service) there are `AddScoped` (one instance per HTTP request) and `AddSingleton` (one instance for the whole application). The survey's store is a singleton; otherwise every request would start with an empty store.
+- **`IValidatableObject`:** Rules spanning several properties (such as *end not before start*) go into a method `Validate` that returns `ValidationResult`s; it runs only once all attribute rules are satisfied (exercise 3).
+- **Integration tests:** `WebApplicationFactory<Program>` (package `Microsoft.AspNetCore.Mvc.Testing`) starts the whole application in memory and sends real HTTP requests, without a port and without a browser; this is how the tests of exercises 4 and 11 check whole pages.

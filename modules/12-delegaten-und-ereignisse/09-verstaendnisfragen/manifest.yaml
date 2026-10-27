@@ -37,8 +37,8 @@ items:
   - type: open
     id: standardmuster
     prompt:
-      de: "Beschreibe das Standardmuster, mit dem eine Klasse ein Ereignis anbietet (Delegatentyp, Nutzdaten, auslösende Methode). Warum wird mit `Xyz?.Invoke(this, e)` ausgelöst, und warum ist die auslösende Methode `protected virtual`?"
-      en: "Describe the standard pattern a class uses to provide an event (delegate type, payload, raising method). Why is the event raised with `Xyz?.Invoke(this, e)`, and why is the raising method `protected virtual`?"
+      de: "Beschreibe das Standardmuster, mit dem eine Klasse ein Ereignis anbietet (Delegatentyp, Nutzdaten, auslösende Methode). Warum braucht das Auslösen einen null-Test (kurz: `Xyz?.Invoke(this, e)`), und warum ist die auslösende Methode `protected virtual`?"
+      en: "Describe the standard pattern a class uses to provide an event (delegate type, payload, raising method). Why does raising the event need a null check (short form: `Xyz?.Invoke(this, e)`), and why is the raising method `protected virtual`?"
   - type: open
     id: abmelden
     prompt:

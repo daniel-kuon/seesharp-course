@@ -2,6 +2,8 @@
 
 Lies im Buch **10.3 Übungsaufgaben zum Kapitel 10** (Seite 688) und
 wiederhole `Sort`, `FindAll` und `RemoveAll` mit Lambdas aus Aufgabe 12/03.
+`RemoveAll`, `ForEach` und `string.CompareOrdinal` sind nicht im Buch; ihre
+Beschreibung steht in Aufgabe 12/03.
 
 `Person` ist ein Record (`Name`, `Alter`). In `Sortierer.cs`:
 

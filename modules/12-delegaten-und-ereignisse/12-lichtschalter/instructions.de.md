@@ -9,7 +9,10 @@ hört zu. Öffne `Lichtschalter.cs`:
 1. `Lichtschalter`: Mache aus den öffentlichen Delegatenfeldern `Eingeschaltet`
    und `Ausgeschaltet` echte Ereignisse (`event EventHandler?`).
    `Umschalten()` kehrt `IstAn` um und löst danach das passende Ereignis aus
-   (`?.Invoke(this, EventArgs.Empty)`); ohne Abonnenten darf nichts passieren.
+   (`?.Invoke(this, EventArgs.Empty)`; `?.` ist der null-bedingte Operator,
+   Vorgriff auf 15.1.5.2, Seite 971; `EventArgs.Empty` ist nicht im Buch, hier
+   vorgegeben: ein fertiges leeres `EventArgs`-Objekt); ohne Abonnenten darf
+   nichts passieren.
 2. `Lampe`: Der Konstruktor meldet zwei Behandlungsmethoden am Schalter an;
    `Einschaltungen` und `Ausschaltungen` zählen mit. `Abkoppeln()` meldet
    beide wieder ab.

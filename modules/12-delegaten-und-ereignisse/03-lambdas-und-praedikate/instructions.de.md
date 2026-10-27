@@ -5,7 +5,19 @@ Lies im Buch **10.1.5.2 Lambda-Ausdrücke** (Seite 667) und die Übungsaufgabe
 
 Die Methoden `FindAll`, `Exists`, `Find`, `RemoveAll`, `Sort` und `ForEach`
 von `List<T>` erwarten Delegaten; Lambda-Ausdrücke liefern sie an Ort und
-Stelle. Öffne `Filter.cs`:
+Stelle. Das Buch zeigt `FindAll` (Seite 670) und `Sort` (Seite 664). Die übrigen
+sind nicht im Buch, hier vorgegeben:
+
+- `bool Exists(Predicate<T> match)`: `true`, wenn mindestens ein Element passt.
+- `T? Find(Predicate<T> match)`: das erste passende Element, sonst `default`
+  (bei `string` also `null`).
+- `int RemoveAll(Predicate<T> match)`: löscht alle passenden Elemente aus der
+  Liste selbst und liefert ihre Anzahl.
+- `void ForEach(Action<T> action)`: ruft die Aktion für jedes Element auf.
+- `string.CompareOrdinal(a, b)`: vergleicht zwei Strings Zeichen für Zeichen
+  (negativ, 0 oder positiv wie `CompareTo`).
+
+Öffne `Filter.cs`:
 
 1. `LangeWoerter`: Wörter mit mehr als 5 Zeichen (`FindAll`, Ausdruckslambda).
 2. `OhneLeere`: Einträge, die `null`, leer oder nur Leerraum sind, mit

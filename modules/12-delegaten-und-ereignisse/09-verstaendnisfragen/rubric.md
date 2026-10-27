@@ -35,7 +35,7 @@ Typische Irrtümer: Ein Ereignis sei ein Datenobjekt oder ein Array von Delegate
 
 Kernpunkte:
 - Typ `EventHandler<TEventArgs>` (bzw. `EventHandler`), Nutzdaten in einer von `EventArgs` abgeleiteten Klasse, Behandlungsmethoden haben die Parameter `(object? sender, TEventArgs e)`.
-- Ausgelöst wird in einer Methode `OnXyz(...)`; `?.Invoke(this, e)`, weil die Aufrufliste **`null`** ist, solange niemand abonniert hat (ohne `?.` droht eine `NullReferenceException`); `this` ist der `sender`.
+- Ausgelöst wird in einer Methode `OnXyz(...)`; null-Test (`if (Xyz != null)` wie im Buch, Seite 664, oder kurz `?.Invoke(this, e)`), weil die Aufrufliste **`null`** ist, solange niemand abonniert hat (ohne Test droht eine `NullReferenceException`); `this` ist der `sender`.
 - `protected virtual`, damit **abgeleitete Klassen** die Auslösung überschreiben und steuern können (unterdrücken, ergänzen), ohne an die private Delegatenvariable zu kommen.
 
 Typische Irrtümer: Das Ereignis sei ohne `?.` immer sicher; `virtual` mache die Methode schneller; `On…` sei ein vorgeschriebener Name, ohne den der Compiler das Ereignis nicht auslöst.

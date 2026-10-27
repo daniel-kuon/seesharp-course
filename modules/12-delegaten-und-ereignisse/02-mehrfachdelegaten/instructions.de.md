@@ -11,7 +11,10 @@ eine Methode an, `-=` entfernt sie; ist die Liste leer, ist die Variable
    und darf ohne Ziele nicht abstürzen: null-Test wie im Buch (Seite 664) oder
    kürzer `ziele?.Invoke(text)` (null-bedingter Operator, Vorgriff auf
    15.1.5.2, Seite 971). `AnzahlZiele()` zählt
-   die Einträge der Aufrufliste (`GetInvocationList()`), ohne Ziele 0.
+   die Einträge der Aufrufliste, ohne Ziele 0:
+   `ziele == null ? 0 : ziele.GetInvocationList().Length`
+   (`GetInvocationList()` ist nicht im Buch, hier vorgegeben: Die Methode liefert
+   die Aufrufliste als Array von Delegaten).
 2. `Ketten.Kette(params Schritt[] schritte)` fasst die Schritte zu einem
    Delegaten zusammen (ohne Schritte: `null`). Beobachte: Der Aufruf liefert
    nur das Ergebnis des **letzten** Schritts, alle Schritte laufen aber, und

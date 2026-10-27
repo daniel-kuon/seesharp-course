@@ -24,7 +24,8 @@ erhalten.
 Mit `+=` und `-=` wächst oder schrumpft die **Aufrufliste** eines
 Delegaten; jede Änderung erzeugt ein neues Objekt. Der Aufruf startet alle
 Ziele in Anmeldereihenfolge; bei einem Rückgabewert zählt nur das **letzte**
-Ziel. Wer alle Ergebnisse braucht, durchläuft `GetInvocationList()`. Ist die
+Ziel. Wer alle Ergebnisse braucht, muss die Ziele einzeln aufrufen (siehe
+Deep Dive). Ist die
 Liste leer, ist die Variable `null`; vor dem Aufruf steht deshalb ein
 null-Test (Seite 664) oder kürzer `aktion?.Invoke(...)` (null-bedingter
 Operator, Vorgriff auf 15.1.5.2, Seite 971). Ob man einen Delegaten oder ein Interface als
@@ -41,9 +42,9 @@ als **anonyme Methode** (`delegate (int x) { ... }`, älter) oder als
 `(a, b) => { ...; return ...; }` (Anweisungsblock). Welcher Delegatentyp
 entsteht, entscheidet der Zieltyp. Die vordefinierten generischen
 Delegaten decken fast alles ab: `Func<..., TResult>` mit Rückgabewert,
-`Action<...>` ohne, `Predicate<T>` für Bedingungen. `List<T>` nutzt sie
-(10.3 Aufgabe 2, Seite 688): `FindAll(Predicate<T>)`, `Exists`, `Find`,
-`RemoveAll`, `ForEach(Action<T>)` und `Sort(Comparison<T>)`.
+`Action<...>` ohne, `Predicate<T>` für Bedingungen. `List<T>` nutzt sie:
+`FindAll(Predicate<T>)` (Seite 670 und 10.3 Aufgabe 2, Seite 688) und
+`Sort(Comparison<T>)` (10.1.4, Seite 664); weitere Listenmethoden siehe Deep Dive.
 
 Ein Lambda darf Variablen der umgebenden Methode benutzen. Es **fängt die
 Variable ein**, nicht ihren Wert, und hält sie so lange am Leben wie das
@@ -79,3 +80,19 @@ abmelden, wenn man dasselbe Delegatenobjekt aufbewahrt hat.
 
 Vertiefung im Buch: Kapitel 10 (Seite 657 bis 689); die Übungsaufgaben
 in 10.3 (Seite 688 f.) liefern die Quizfragen und `ListLE(k)` dieses Levels.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- `GetInvocationList()` liefert die Aufrufliste eines Delegaten als Array.
+  Damit erreicht man jedes Ziel einzeln, etwa um die Ziele zu zählen
+  (Aufgabe 02) oder alle Rückgabewerte einzusammeln.
+- Weitere Methoden von `List<T>`, die Delegaten erwarten (Aufgaben 03 und 11):
+  `Exists(Predicate<T>)`, `Find(Predicate<T>)` (erstes passendes Element oder
+  `default`), `RemoveAll(Predicate<T>)` (löscht in der Liste selbst und liefert
+  die Anzahl) und `ForEach(Action<T>)`.
+- `string.CompareOrdinal(a, b)` vergleicht Strings Zeichen für Zeichen nach
+  ihren Zahlencodes, unabhängig von Sprache und Kultur.
+- `EventArgs.Empty` ist ein fertiges leeres `EventArgs`-Objekt für Ereignisse
+  ohne Nutzdaten.

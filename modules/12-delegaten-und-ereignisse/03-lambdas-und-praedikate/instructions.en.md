@@ -2,7 +2,15 @@
 
 Read **Section 10.1.5.2, “Lambda Expressions”** (page 667), and Exercise **10.3, Problem 2** (page 688) in the book regarding `Predicate<T>` and `FindAll`.
 
-The `FindAll`, `Exists`, `Find`, `RemoveAll`, `Sort`, and `ForEach` methods of `List<T>` expect delegates; lambda expressions provide them in place. Open `Filter.cs`:
+The `FindAll`, `Exists`, `Find`, `RemoveAll`, `Sort`, and `ForEach` methods of `List<T>` expect delegates; lambda expressions provide them in place. The book shows `FindAll` (page 670) and `Sort` (page 664). The others are not in the book, given here:
+
+- `bool Exists(Predicate<T> match)`: `true` if at least one element matches.
+- `T? Find(Predicate<T> match)`: the first matching element, otherwise `default` (`null` for `string`).
+- `int RemoveAll(Predicate<T> match)`: removes all matching elements from the list itself and returns how many.
+- `void ForEach(Action<T> action)`: calls the action for every element.
+- `string.CompareOrdinal(a, b)`: compares two strings character by character (negative, 0 or positive, like `CompareTo`).
+
+Open `Filter.cs`:
 
 1. `LangeWoerter`: Words with more than 5 characters (`FindAll`, expression lambda).
 2. `OhneLeere`: Use `RemoveAll` to remove entries that are `null`, empty, or consist only of whitespace from the list itself; Return value: Number of entries removed.

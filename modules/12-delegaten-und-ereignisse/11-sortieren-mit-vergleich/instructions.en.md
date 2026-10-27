@@ -1,6 +1,6 @@
 # Extra: Sorting with a Comparison Lambda
 
-Read **10.3 Exercises for Chapter 10** (page 688) in the book and review the `Sort`, `FindAll`, and `RemoveAll` methods using lambdas from Exercise 12/03.
+Read **10.3 Exercises for Chapter 10** (page 688) in the book and review the `Sort`, `FindAll`, and `RemoveAll` methods using lambdas from Exercise 12/03. `RemoveAll`, `ForEach` and `string.CompareOrdinal` are not in the book; Exercise 12/03 describes them.
 
 A `Person` is a record (`Name`, `Alter`). In `Sortierer.cs`:
 

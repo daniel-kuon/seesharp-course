@@ -1,6 +1,6 @@
 # Strings and Formatting
 
-Read sections **4.2.2, “Outputting a (Composite) String”** (page 176), and **4.2.3, “Formatted Output”** (page 176), in the book—especially 4.2.3.2 on string interpolation (page 178). For escape sequences, see **4.3.10.5** (page 208).
+Read sections **4.2.2, “Outputting a (Composite) String”** (page 176), and **4.2.3, “Formatted Output”** (page 176), in the book—especially 4.2.3.2 on string interpolation (page 178). For escape sequences, see **4.3.10.4** (page 206).
 
 Open `Formatierung.cs`:
 
@@ -22,7 +22,7 @@ Open `Formatierung.cs`:
    	4    (m)
    ```
 
-   Every line except the first begins with a tab; there is no line break after the last line. There is a blank line between blocks.
+   Every line with a number begins with a tab, the two headings do not; there is no line break after the last line. There is a blank line between blocks.
 
 The following tests must be passed:
 

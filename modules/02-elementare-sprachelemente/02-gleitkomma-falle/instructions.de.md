@@ -2,8 +2,8 @@
 
 Lies im Buch Abschnitt **4.3.5 Darstellung von Gleitkommazahlen im
 Arbeitsspeicher** (Seite 189) und **4.5.4 Identitätsprüfung bei
-Gleitkommawerten** (Seite 223). Zur Klasse `Math` genügt die Tabelle in
-4.5.1 (Seite 216).
+Gleitkommawerten** (Seite 223). Zur Klasse `Math` genügt **4.5.2
+Methodenaufruf** (Seite 220).
 
 Öffne `Gleitkomma.cs` und vervollständige:
 
@@ -15,7 +15,9 @@ Gleitkommawerten** (Seite 223). Zur Klasse `Math` genügt die Tabelle in
 3. `EinsPlusZweiHochMinus(int i)` liefert `1.0 + 2^-i` (mit `Math.Pow`). Bei
    `i = 52` ist das Ergebnis noch größer als 1,0, bei `i = 53` nicht mehr.
 4. `IstUngefaehrGleich(double a, double b, double toleranz)` liefert `true`,
-   wenn der Abstand (`Math.Abs`) kleiner als die Toleranz ist.
+   wenn der Abstand (`Math.Abs`) kleiner als die Toleranz ist. (Das Buch
+   empfiehlt in 4.5.4 allgemein eine Schwelle für die *relative* Abweichung;
+   hier genügt die absolute mit vorgegebener Toleranz.)
 5. `RundeKaufmaennisch(decimal betrag)` rundet auf zwei Nachkommastellen,
    wobei `,005` aufgerundet wird (`Math.Round` mit `MidpointRounding.AwayFromZero`).
 

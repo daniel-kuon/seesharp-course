@@ -7,7 +7,7 @@ Offene Antworten bestehen, wenn die genannten Kernpunkte sinngemäß vorkommen. 
 Kernpunkte:
 - `double` speichert Zahlen **binär** (52 Bit Mantisse). Viele Dezimalbrüche wie 0,1 und 0,2 sind binär **nicht exakt darstellbar**, es werden nur die nächstgelegenen Näherungen gespeichert. Die Summe weicht deshalb minimal von der Näherung für 0,3 ab.
 - `decimal` speichert **dezimal** und ist für Dezimalbrüche exakt (langsamer, kleinerer Bereich). Man nimmt es für **Geldbeträge** und alles, was dezimal exakt sein muss; `double` für Messwerte und wissenschaftliche Rechnungen.
-- `double`-Werte vergleicht man **nicht mit `==`**, sondern mit einer **Toleranz**: der Betrag des Unterschieds (`Math.Abs(a - b)`) ist kleiner als ein kleiner Wert.
+- `double`-Werte vergleicht man **nicht mit `==`**, sondern mit einer **Toleranz**: der Betrag des Unterschieds (`Math.Abs(a - b)`) ist kleiner als ein kleiner Wert. Das Buch (4.5.4) empfiehlt genauer eine Schwelle für die relative Abweichung (`Math.Abs((a - b) / a) < 1e-14`); beides gilt als richtig.
 
 Typische Irrtümer: Der Compiler sei fehlerhaft; `double` sei „zu ungenau“ allgemein (es ist nur für Dezimalbrüche nicht exakt); `float` löse das Problem; `decimal` sei exakt für **alle** Zahlen (1/3 ist auch dort nicht exakt).
 

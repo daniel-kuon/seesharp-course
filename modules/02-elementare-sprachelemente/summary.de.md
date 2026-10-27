@@ -37,8 +37,9 @@ C# ist streng typisiert: Jede Variable hat einen festen Typ, muss vor der
 Verwendung deklariert und initialisiert sein. Die elementaren Typen (4.3.4,
 Seite 186) sind `int` und `long` für ganze Zahlen, `double` und `float` für
 binäre Gleitkommazahlen, `decimal` für dezimale Gleitkommazahlen, `bool` und
-`char`. Literale brauchen Suffixe: `3.5f` für `float`, `3.5m` für `decimal`,
-`10L` für `long`; ohne Suffix ist `3.5` ein `double` und `10` ein `int`.
+`char`. Suffixe legen den Typ eines Literals fest: `3.5f` für `float`, `3.5m`
+für `decimal`, `10L` für `long`; ohne Suffix ist `3.5` ein `double` und `10`
+ein `int`.
 `var` lässt den Compiler den Typ aus dem Initialisierer ableiten; die Variable
 bleibt trotzdem fest typisiert. `const` definiert eine Konstante, die zur
 Übersetzungszeit feststehen muss. Eine lokale Variable gilt nur innerhalb des
@@ -47,7 +48,8 @@ Blocks, in dem sie deklariert wurde (4.3.8, Seite 198).
 **Gleitkommadarstellung (4.3.5, Seite 189):** `double` speichert Zahlen
 binär mit 52 Bit Mantisse. Viele Dezimalbrüche wie 0,1 sind binär nicht exakt
 darstellbar, deshalb ist `0.1 + 0.2 == 0.3` falsch. Der Abstand zur nächsten
-darstellbaren Zahl bei 1,0 ist 2^-52; addiert man weniger, bleibt 1,0 stehen.
+darstellbaren Zahl bei 1,0 ist 2^-52; addiert man höchstens die Hälfte davon
+(2^-53), wird das Ergebnis auf 1,0 gerundet.
 Für Geldbeträge nimmt man `decimal`: langsamer, aber dezimal exakt. Vergleiche
 auf Gleitkommawerten macht man mit einer Toleranz (4.5.4, Seite 223).
 

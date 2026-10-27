@@ -98,7 +98,7 @@ items:
     id: kurzschluss
     prompt: { de: "`int n = 0; bool ok = n != 0 && 10 / n > 1;` Was passiert?", en: "`int n = 0; bool ok = n != 0 && 10 / n > 1;` What happens?" }
     options:
-      - { de: "ok ist false; die Division wird nicht ausgeführt, weil && den rechten Operanden bei false links überspringt.", en: "ok is false; the division is not performed because && skips the right operand when false." }
+      - { de: "ok ist false; die Division wird nicht ausgeführt, weil && den rechten Operanden bei false links überspringt.", en: "ok is false; the division is not performed because && skips the right operand when the left one is false." }
       - { de: "Es kommt zu einer Division durch null.", en: "A division by zero occurs." }
       - { de: "ok ist true.", en: "ok is true." }
       - { de: "Der Compiler meldet einen Fehler.", en: "The compiler reports an error." }

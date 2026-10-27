@@ -52,15 +52,15 @@ items:
       - { de: "long l = 7;", en: "long l = 7;" }
       - { de: "char c = 65;", en: "char c = 65;" }
     correct: [0, 1, 3]
-    explanation: { de: "char nach int, int nach double und int nach long sind erweiternd und implizit. double nach int verliert Nachkommastellen, int nach char ist verengend; beide brauchen einen Cast. (Ein konstantes Literal wie 65 ließe der Compiler ausnahmsweise durch, eine int-Variable nicht.)", en: "Converting char to int, int to double, and int to long are widening conversions and are implicit. Converting double to int loses decimal places, while converting int to char is a narrowing conversion; both require a cast. (As an exception, the compiler would allow a constant literal such as 65, but not an int variable.)" }
+    explanation: { de: "char nach int, int nach double und int nach long sind erweiternd und implizit. double nach int verliert Nachkommastellen, int nach char ist verengend; beide brauchen einen Cast. Das gilt auch für ein konstantes Literal: char c = 65; meldet CS0266, erst char c = (char)65; kompiliert.", en: "Converting char to int, int to double, and int to long are widening conversions and are implicit. Converting double to int loses decimal places, while converting int to char is a narrowing conversion; both require a cast. This also applies to a constant literal: char c = 65; reports CS0266, only char c = (char)65; compiles." }
   - type: multipleChoice
     id: unicode
     prompt: { de: "Warum darf ein char-Wert ohne Cast einer int-Variablen zugewiesen werden?", en: "Why can a char value be assigned to an int variable without a cast?" }
     options:
       - { de: "Ein char ist intern eine 16-Bit-Zahl (der Unicode-Code); jeder char-Wert passt verlustfrei in ein int.", en: "A `char` is internally a 16-bit number (the Unicode code); every `char` value fits into an `int` without any loss of information." }
-      - { de: "Weil der Compiler Zeichen in ihre Ziffer umrechnet ('7' wird 7).", en: "Because the compiler converts characters to their numerical values (\"'7'\" becomes 7)." }
+      - { de: "Weil der Compiler Zeichen in ihre Ziffer umrechnet ('7' wird 7).", en: "Because the compiler converts characters to their digit value ('7' becomes 7)." }
       - { de: "Das geht nicht, es ist immer ein Cast nötig.", en: "That won't work; casting is always required." }
-      - { de: "Weil char und int derselbe Typ sind.", en: "Because Char and Int are the same type." }
+      - { de: "Weil char und int derselbe Typ sind.", en: "Because char and int are the same type." }
     correct: [0]
   - type: multipleChoice
     id: string
@@ -78,7 +78,7 @@ items:
       - { de: "4you", en: "4you" }
       - { de: "maiLink", en: "maiLink" }
       - { de: "else", en: "else" }
-      - { de: "Lösung", en: "Solution" }
+      - { de: "Lösung", en: "Lösung" }
       - { de: "b_3", en: "b_3" }
     correct: [0, 2]
     explanation: { de: "Bezeichner dürfen nicht mit einer Ziffer beginnen und kein Schlüsselwort sein. Umlaute und Unterstriche sind erlaubt.", en: "Identifiers must not begin with a digit and must not be keywords. Umlauts and underscores are allowed." }

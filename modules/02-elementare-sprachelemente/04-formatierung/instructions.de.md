@@ -3,7 +3,7 @@
 Lies im Buch Abschnitt **4.2.2 Ausgabe einer (zusammengesetzten)
 Zeichenfolge** (Seite 176) und **4.2.3 Formatierte Ausgabe** (Seite 176),
 besonders 4.2.3.2 zur Zeichenfolgeninterpolation (Seite 178). Zu
-Escape-Sequenzen siehe **4.3.10.5** (Seite 208).
+Escape-Sequenzen siehe **4.3.10.4** (Seite 206).
 
 Öffne `Formatierung.cs`:
 
@@ -29,8 +29,9 @@ Escape-Sequenzen siehe **4.3.10.5** (Seite 208).
    	4    (m)
    ```
 
-   Jede Zeile außer der ersten beginnt mit einem Tabulator; nach der letzten
-   Zeile folgt kein Zeilenumbruch. Zwischen den Blöcken steht eine Leerzeile.
+   Jede Zeile mit einer Zahl beginnt mit einem Tabulator, die beiden
+   Überschriften nicht; nach der letzten Zeile folgt kein Zeilenumbruch.
+   Zwischen den Blöcken steht eine Leerzeile.
 
 Diese Tests müssen bestehen:
 

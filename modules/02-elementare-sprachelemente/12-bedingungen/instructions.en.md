@@ -10,7 +10,7 @@ Open `Bedingungen.cs`:
 2. `ImBereich(int x, int min, int max)`: `true` if `min <= x <= max`.
 3. `AusserhalbBereich(int x, int min, int max)`: the opposite of `ImBereich`—write it **without `!`** by applying De Morgan's theorem to the condition.
 4. `Vorzeichen(int x)`: `-1` for negative numbers, `0` for 0, `1` for positive numbers — with two nested `?:` operators.
-5. `Maximum(int a, int b, int c)`: the largest of the three numbers, but with `?:` (not `Math.Max`).
+5. `Maximum(int a, int b, int c)`: the largest of the three numbers, using only `?:` (no `Math.Max`).
 
 The following tests must be passed:
 

@@ -4,7 +4,7 @@ Chapter 4 of the book (starting on page 161) lays the foundation for everything 
 
 ## Program Structure and Names (4.1, page 161)
 
-A C# program consists of classes with methods; the entry point class contains the `Main()` method. Using top-level directives (4.1.2, page 163), the compiler generates this class automatically. The exercises in SeeSharp almost always use an explicit class with static methods because the tests need to call methods. Identifiers (4.1.6, page 171) consist of letters, digits, and underscores; they must not begin with a digit and must not be keywords; diacritical marks are allowed but uncommon. Convention: `PascalCase` for classes, methods, and properties; `camelCase` for local variables and parameters.
+A C# program consists of classes with methods; the entry point class contains the `Main()` method. Using top-level statements (4.1.2, page 163), the compiler generates this class automatically. The exercises in SeeSharp almost always use an explicit class with static methods because the tests need to call methods. Identifiers (4.1.6, page 171) consist of letters, digits, and underscores; they must not begin with a digit and must not be keywords; umlauts are allowed but uncommon. Convention: `PascalCase` for classes, methods, and properties; `camelCase` for local variables and parameters.
 
 ## Output and Formatting (4.2, page 175)
 
@@ -12,13 +12,13 @@ A C# program consists of classes with methods; the entry point class contains th
 
 ## Variables and Data Types (4.3, page 180)
 
-C# is strictly typed: Every variable has a fixed type and must be declared and initialized before use. The basic types (4.3.4, page 186) are `int` and `long` for integers, `double` and `float` for binary floating-point numbers, `decimal` for decimal floating-point numbers, `bool`, and `char`. Literals require suffixes: `3.5f` for `float`, `3.5m` for `decimal`, `10L` for `long`; without a suffix, `3.5` is a `double` and `10` is an `int`. `var` allows the compiler to infer the type from the initializer; the variable remains strictly typed nonetheless. `const` defines a constant that must be fixed at compile time. A local variable is valid only within the block in which it was declared (4.3.8, page 198).
+C# is strictly typed: Every variable has a fixed type and must be declared and initialized before use. The basic types (4.3.4, page 186) are `int` and `long` for integers, `double` and `float` for binary floating-point numbers, `decimal` for decimal floating-point numbers, `bool`, and `char`. Suffixes determine the type of a literal: `3.5f` for `float`, `3.5m` for `decimal`, `10L` for `long`; without a suffix, `3.5` is a `double` and `10` is an `int`. `var` allows the compiler to infer the type from the initializer; the variable remains strictly typed nonetheless. `const` defines a constant that must be fixed at compile time. A local variable is valid only within the block in which it was declared (4.3.8, page 198).
 
-**Floating-point representation (4.3.5, page 189):** `double` stores numbers in binary with a 52-bit mantissa. Many decimal fractions such as 0.1 cannot be represented exactly in binary, which is why `0.1 + 0.2 == 0.3` is false. The distance to the next representable number at 1.0 is 2^-52; if you add less than that, 1.0 stays unchanged. For monetary amounts, use `decimal`: slower, but exact in decimal. Comparisons on floating-point values are done with a tolerance (4.5.4, page 223).
+**Floating-point representation (4.3.5, page 189):** `double` stores numbers in binary with a 52-bit mantissa. Many decimal fractions such as 0.1 cannot be represented exactly in binary, which is why `0.1 + 0.2 == 0.3` is false. The distance to the next representable number at 1.0 is 2^-52; if you add at most half of that (2^-53), the result is rounded to 1.0. For monetary amounts, use `decimal`: slower, but exact in decimal. Comparisons on floating-point values are done with a tolerance (4.5.4, page 223).
 
 ## Type Conversion (4.5.7, page 229)
 
-Upcasts occur implicitly: `int` to `long`, `int` to `double`, `char` to `int` (the character's Unicode code). Downcasts require an explicit cast `(int)d`, which truncates decimal places rather than rounding. The `Math` class provides `Round`, `Abs`, `Sqrt`, `Pow`, and more.
+Widening conversions happen implicitly: `int` to `long`, `int` to `double`, `char` to `int` (the character's Unicode code). Narrowing conversions require an explicit cast `(int)d`, which truncates decimal places rather than rounding. The `Math` class provides `Round`, `Abs`, `Sqrt`, `Pow`, and more.
 
 ## Operators (4.5, page 215)
 

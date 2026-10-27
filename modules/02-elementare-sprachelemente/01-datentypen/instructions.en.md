@@ -10,7 +10,7 @@ Open `Typen.cs` and complete the five static methods:
 4. `Mittelwert(int a, int b)` returns the average as a `double`; be aware of integer division—`Mittelwert(1, 2)` must equal `1.5`.
 5. `Rest(int a, int b)` returns the remainder of an integer division.
 
-`Program.cs` calls the methods to test.
+`Program.cs` calls the methods so you can try them out.
 
 The following tests must be passed:
 

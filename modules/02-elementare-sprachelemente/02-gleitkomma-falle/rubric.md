@@ -7,7 +7,9 @@
   halbe Auflösung bei 1,0 und wird weggerundet. Nicht jeder Trainee muss das
   bis ins Bit verstehen, aber die Größenordnung „etwa 16 Dezimalstellen“ schon.
 - `IstUngefaehrGleich`: `<` oder `<=`? Beides besteht die Tests; kurz
-  besprechen.
+  besprechen. Das Buch (4.5.4, Seite 223 f.) rät von der absoluten Differenz
+  ab, weil die passende Schwelle von der Größenordnung abhängt, und empfiehlt
+  `|d1 - d2| / |d1| < 1e-14` (absolute Schwelle nur beim Vergleich mit 0).
 - Hat der Trainee `Math.Round(betrag, 2)` ohne `AwayFromZero` probiert und den
   Unterschied gesehen (Banker's Rounding)?
 

@@ -21,9 +21,9 @@ items:
       - { de: "Alle Methoden einer Klasse sind grundsätzlich öffentlich.", en: "All methods of a class are public by default." }
       - { de: "Eine Eigenschaft besteht meist aus einem Paar von Zugriffsmethoden, lässt sich aber wie ein Feld verwenden.", en: "A property usually consists of a pair of access methods, but can be used like a field." }
       - { de: "Jede Klasse besitzt eine Methode Main().", en: "Every class has a Main() method." }
-      - { de: "Fremde Klassen können den Zustand eines Objekts nur über dessen öffentliche Methoden oder Eigenschaften ändern.", en: "External classes can only change an object's state through its public methods or properties." }
+      - { de: "Sind die Felder gekapselt, können fremde Klassen den Zustand eines Objekts nur über dessen Methoden oder Eigenschaften ändern.", en: "If the fields are encapsulated, other classes can change an object's state only through its methods or properties." }
     correct: [0, 2, 4]
-    explanation: { de: "Methoden können privat sein, und nur die Startklasse braucht Main(). Kapselung heißt: Zugriff von außen nur über die öffentliche Schnittstelle.", en: "Methods can be private, and only the constructor needs `Main()`. Encapsulation means that access from outside is only possible through the public interface." }
+    explanation: { de: "Methoden können privat sein, und nur die Startklasse braucht Main(). Kapselung heißt: Zugriff von außen nur über die öffentliche Schnittstelle.", en: "Methods can be private, and only the startup class needs `Main()`. Encapsulation means that access from outside is only possible through the public interface." }
   - type: multipleChoice
     id: klasse-objekt
     prompt: { de: "Was unterscheidet eine Klasse von einem Objekt?", en: "What is the difference between a class and an object?" }
@@ -46,7 +46,7 @@ items:
     id: nachricht
     prompt: { de: "Im Aufruf b.Kuerze() auf einem Bruch-Objekt b: Wer ist in der OOP-Sprechweise Empfänger der Nachricht, und wer entscheidet, wie sie ausgeführt wird?", en: "In the call `b.Kuerze()` on a `Bruch` object `b`: In OOP terminology, who is the recipient of the message, and who decides how it is executed?" }
     options:
-      - { de: "Empfänger ist das Objekt b; wie gekürzt wird, legt die Klasse Bruch in der Methode fest.", en: "The receiver is the object b; the `Bruch` class specifies how the name is abbreviated in the method." }
+      - { de: "Empfänger ist das Objekt b; wie gekürzt wird, legt die Klasse Bruch in der Methode fest.", en: "The receiver is the object b; how the fraction is reduced is defined by the class `Bruch` in the method." }
       - { de: "Empfänger ist die Startklasse; sie führt die Berechnung selbst durch.", en: "The recipient is the start class; it performs the calculation itself." }
       - { de: "Empfänger ist die Laufzeitumgebung; sie wählt zufällig einen Algorithmus.", en: "The recipient is the runtime environment; it randomly selects an algorithm." }
       - { de: "Empfänger ist der Aufrufer; er muss die Felder von b selbst ändern.", en: "The recipient is the caller; the caller must modify the fields of b themselves." }

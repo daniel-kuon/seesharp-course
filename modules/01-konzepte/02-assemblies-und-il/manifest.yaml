@@ -41,7 +41,7 @@ items:
       - { de: "Namensräume sind die ausführbare Form von Assemblies.", en: "Namespaces are the executable form of assemblies." }
       - { de: "Die using-Direktive bindet ein Assembly ein.", en: "The \"using\" directive imports an assembly." }
     correct: [0]
-    explanation: { de: "using importiert einen Namensraum. Assemblies werden über Projekt- oder Paketverweise eingebunden.", en: "The `using` statement imports a namespace. Assemblies are included via project or package references." }
+    explanation: { de: "using importiert einen Namensraum. Assemblies werden über Projekt- oder Paketverweise eingebunden.", en: "The `using` directive imports a namespace. Assemblies are included via project or package references." }
   - type: multipleChoice
     id: il
     prompt: { de: "Was erzeugt der C#-Compiler aus dem Quellcode?", en: "What does the C# compiler generate from the source code?" }
@@ -56,7 +56,7 @@ items:
     prompt: { de: "Was macht der JIT-Compiler?", en: "What does the JIT compiler do?" }
     options:
       - { de: "Er übersetzt IL-Code beim ersten Aufruf einer Methode zur Laufzeit in Maschinencode für die lokale CPU.", en: "It translates IL code into machine code for the local CPU the first time a method is called at runtime." }
-      - { de: "Er prüft den Quellcode auf Tippfehler.", en: "He checks the source code for typos." }
+      - { de: "Er prüft den Quellcode auf Tippfehler.", en: "It checks the source code for typos." }
       - { de: "Er übersetzt C# in VB.NET.", en: "It translates C# into VB.NET." }
       - { de: "Er komprimiert das Assembly beim Ausliefern.", en: "It compresses the assembly during deployment." }
     correct: [0]

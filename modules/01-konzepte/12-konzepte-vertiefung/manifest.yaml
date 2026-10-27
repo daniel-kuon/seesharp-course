@@ -18,12 +18,12 @@ items:
     options:
       - { de: "Ein C#-Programm besteht aus Klassen; praxisnahe Programme meist aus sehr vielen.", en: "A C# program consists of classes; real-world programs usually consist of a large number of them." }
       - { de: "Eine Klasse beschreibt einen Zustand (gespeichert in Feldern) und Handlungskompetenzen (realisiert durch Methoden).", en: "A class describes a state (stored in fields) and behavior (implemented through methods)." }
-      - { de: "Merkmale und Methoden gehören immer zu den Objekten; eine Klasse selbst kann niemals Methoden ausführen.", en: "Properties and methods are always associated with objects; a class itself can never execute methods." }
+      - { de: "Merkmale und Methoden gehören immer zu den Objekten; eine Klasse selbst kann niemals Methoden ausführen.", en: "Features and methods always belong to the objects; a class itself can never execute methods." }
       - { de: "Beim Programmstart fordert das Laufzeitsystem die Startklasse auf, ihre Methode Main() auszuführen.", en: "When the program starts, the runtime system prompts the startup class to execute its Main() method." }
       - { de: "Vor dem Programmieren werden in der objektorientierten Analyse per Abstraktion die beteiligten Klassen und ihre Beziehungen bestimmt.", en: "In object-oriented analysis, the classes involved and their relationships are determined through abstraction before programming begins." }
       - { de: "Eine Eigenschaft ist ein öffentliches Feld, bei dem die Klasse keine Regeln durchsetzen kann.", en: "A property is a public field for which the class cannot enforce any rules." }
     correct: [0, 1, 3, 4]
-    explanation: { de: "Merkmale und Methoden können auch der Klasse selbst gehören (static), so wie Main(). Eine Eigenschaft besteht aus Zugriffsmethoden und kann deshalb Regeln durchsetzen, etwa dass ein Nenner nie 0 wird.", en: "Properties and methods can also belong to the class itself (static), just like Main(). A property consists of accessors and can therefore enforce rules, such as ensuring that a denominator never equals 0." }
+    explanation: { de: "Merkmale und Methoden können auch der Klasse selbst gehören (static), so wie Main(). Eine Eigenschaft besteht aus Zugriffsmethoden und kann deshalb Regeln durchsetzen, etwa dass ein Nenner nie 0 wird.", en: "Features and methods can also belong to the class itself (static), just like Main(). A property consists of accessors and can therefore enforce rules, such as ensuring that a denominator never equals 0." }
   - type: multipleChoice
     id: static-oder-objekt
     prompt: { de: "In der Klasse Bruch ist Kuerze() ohne static deklariert. Wie wird die Methode aufgerufen?", en: "In the `Bruch` class, `Kuerze()` is declared without the `static` keyword. How is the method called?" }
@@ -33,7 +33,7 @@ items:
       - { de: "Gar nicht, Methoden ohne static sind privat.", en: "Not at all; methods without `static` are private." }
       - { de: "Nur aus Main() heraus.", en: "Only from within Main()." }
     correct: [0]
-    explanation: { de: "Eine Methode ohne static gehört zu den Objekten der Klasse; jedes Objekt kürzt seinen eigenen Bruch. Eine static-Methode gehört zur Klasse selbst.", en: "A method without `static` belongs to the objects of the class; each object shortens its own fraction. A `static` method belongs to the class itself." }
+    explanation: { de: "Eine Methode ohne static gehört zu den Objekten der Klasse; jedes Objekt kürzt seinen eigenen Bruch. Eine static-Methode gehört zur Klasse selbst.", en: "A method without `static` belongs to the objects of the class; each object reduces its own fraction. A `static` method belongs to the class itself." }
   - type: multipleChoice
     id: kapitel-2
     prompt: { de: "Welche Aussagen über Assemblies und IL treffen zu? (mehrere möglich)", en: "Which of the following statements about assemblies and IL are true? (More than one may apply.)" }
@@ -50,9 +50,9 @@ items:
     id: namensraum-zweck
     prompt: { de: "Wozu dienen Namensräume? (mehrere möglich)", en: "What are namespaces used for? (multiple answers possible)" }
     options:
-      - { de: "Sie ergänzen den Namen eines Typs um ein Präfix und vermeiden so Namenskollisionen.", en: "You add a prefix to a type's name to avoid name collisions." }
+      - { de: "Sie ergänzen den Namen eines Typs um ein Präfix und vermeiden so Namenskollisionen.", en: "They add a prefix to a type's name and thus avoid name collisions." }
       - { de: "Sie fassen funktional verwandte Typen zusammen.", en: "They group together types that are functionally related." }
-      - { de: "Sie legen fest, in welcher .dll-Datei ein Typ landet.", en: "You specify which .dll file a type is placed in." }
+      - { de: "Sie legen fest, in welcher .dll-Datei ein Typ landet.", en: "They determine which .dll file a type ends up in." }
       - { de: "Sie beschleunigen die JIT-Übersetzung.", en: "They speed up JIT compilation." }
     correct: [0, 1]
     explanation: { de: "Welche Datei einen Typ enthält, bestimmt das Projekt, nicht der Namensraum. Ein Namensraum kann sich über mehrere Assemblies erstrecken.", en: "The project, not the namespace, determines which file contains a type. A namespace can span multiple assemblies." }
@@ -61,9 +61,9 @@ items:
     prompt: { de: "Dein Hallo-Programm aus Level 0 ruft Console.WriteLine() auf. Woher kommt die Klasse Console?", en: "Your `Hallo` program from Level 0 calls `Console.WriteLine()`. Where does the `Console` class come from?" }
     options:
       - { de: "Aus der BCL, genauer aus dem Namensraum System; sie wird mit der .NET-Laufzeit installiert.", en: "From the BCL, specifically from the System namespace; it is installed with the .NET runtime." }
-      - { de: "Der C#-Compiler erzeugt sie bei jedem Build neu.", en: "The C# compiler regenerates them with every build." }
+      - { de: "Der C#-Compiler erzeugt sie bei jedem Build neu.", en: "The C# compiler regenerates it with every build." }
       - { de: "Aus dem Projektordner obj.", en: "From the \"obj\" project folder." }
-      - { de: "Aus Rider; ohne Rider gäbe es keine Konsolenausgabe.", en: "From Rider; without Rider, there would be no console version." }
+      - { de: "Aus Rider; ohne Rider gäbe es keine Konsolenausgabe.", en: "From Rider; without Rider, there would be no console output." }
     correct: [0]
   - type: open
     id: weg-des-codes

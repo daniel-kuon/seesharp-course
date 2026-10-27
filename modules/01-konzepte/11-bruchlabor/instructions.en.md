@@ -8,7 +8,7 @@ Read sections **1.3, "Object-Oriented Programming"** (page 9), and **1.5, "The S
 
 Open `Bruchlabor.cs` and complete the three static methods. Each one generates its own fractions and returns `Text()` at the end:
 
-1. `KuerzeVierAchtel()`: Create the fraction 4/8 and pass it to `Kuerze()`. Result: `1/2`.
+1. `KuerzeVierAchtel()`: Create the fraction 4/8 and send it `Kuerze()`. Result: `1/2`.
 2. `NennerNull()`: Create a fraction, set the numerator to 3 and **the denominator to 0**. What happens? The result is `3/1`. Check out `Bruch.cs` to see why.
 3. `EinHalbPlusEinDrittel()`: Create two fractions, 1/2 and 1/3; send the message `Addiere(...)` to the first one using the second one. Result: `5/6`.
 

@@ -22,7 +22,7 @@ A **namespace** is something else: a logical prefix for type names that prevents
 
 ## CLR, JIT, and AOT (2.5, page 42)
 
-The **Common Language Runtime** executes IL code. Its **JIT** (Just-In-Time) **compiler** translates each method into machine code for the local CPU the first time it is called. In addition, the CLR handles automatic memory deallocation (**garbage collection**), exception handling, type safety, and multithreading; because of this support, IL code is also referred to as **managed code**. Alternatively, you can compile to machine code at build time (**AOT**, Ahead-Of-Time): this results in a faster startup, but the code is platform-specific and has limitations.
+The **Common Language Runtime** executes IL code. Its **JIT** (Just-In-Time) **compiler** translates each method into machine code for the local CPU the first time it is called. In addition, the CLR handles automatic memory deallocation (**garbage collection**), exception handling, type safety, and multithreading; because of this support, IL code is also referred to as **managed code**. Alternatively, you can compile to machine code already at publish time (**AOT**, Ahead-Of-Time): this results in a faster startup, but the code is platform-specific and has limitations.
 
 ## BCL (2.6, page 47)
 

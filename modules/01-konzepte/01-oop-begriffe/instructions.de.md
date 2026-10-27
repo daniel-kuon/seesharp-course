@@ -5,4 +5,5 @@ Lies im Buch Abschnitt **1.3 Objektorientierte Programmierung** (Seite 9) und
 **1.7** (Seite 16) hilft beim Wiederholen.
 
 Beantworte die Fragen. Die letzte Frage ist offen; schreibe zwei bis drei
-Sätze in eigenen Worten, sie wird in der Betreuung besprochen.
+Sätze in eigenen Worten. Deine Antwort prüfen zwei: der KI-Tutor
+beim Absenden (er gibt dir eine Korrekturrunde) und danach deine Betreuung.

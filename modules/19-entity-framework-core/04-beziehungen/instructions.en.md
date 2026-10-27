@@ -5,10 +5,10 @@ See the book, section **20.5.11 "Master Details - Relationship**" (page 1429), s
 The data model (`Blog`, `Beitrag`, `Autor`) is defined in `Datenmodell.cs`; the methods for creating entries are provided in `BlogDienst.cs`.
 
 1. **`OnModelCreating`** (Fluent API) in `BlogContext`:
-   - A blog has many posts, and each post belongs to a blog: `HasMany(...).WithOne(...).HasForeignKey(...).OnDelete(DeleteBehavior.Cascade)`).
+   - A blog has many posts, and each post belongs to a blog: `HasMany(...).WithOne(...).HasForeignKey(...).OnDelete(DeleteBehavior.Cascade)`.
    - The blog name is unique (`HasIndex(...).IsUnique()`); a duplicate name triggers a `DbUpdateException`.
    - A post may optionally have an author (`AutorId` is `int?`). If the author is deleted, the post remains with `AutorId == null`: `DeleteBehavior.SetNull`.
-2. **`BlogMitBeitraegen(id)`**: returns the blog along with its posts using `Include` (eager loading), or `null`. Lazy loading is not configured; the test initializes the context and then reads the `Beitraege`.
+2. **`BlogMitBeitraegen(id)`**: returns the blog along with its posts using `Include` (eager loading), or `null`. Lazy loading is not configured; the test disposes the context and then reads `Beitraege`.
 3. **`LoescheBlog(id)`**: `Find`, `Remove`, `SaveChanges`. The blog's posts disappear as part of the cascade; posts from other blogs remain.
 4. **`LoescheAutor(id)`**: the same applies to an author; their posts remain.
 

@@ -4,7 +4,7 @@
   Arbeitseinheit, die Änderungen beobachtet (Nachverfolgung) und mit `SaveChanges`
   gesammelt in die Datenbank schreibt. Bis dahin sieht kein anderer Kontext sie. Ein
   Kontext lebt kurz und wird mit `using` freigegeben. Konventionen (Eigenschaft `Id`
-  = Schlüssel, Klassenname im Plural = Tabelle) und Annotationen steuern das Schema.
+  = Schlüssel, Name der `DbSet`-Eigenschaft = Tabelle, 20.5.2) und Annotationen steuern das Schema.
 - Typische Fehler:
   - Konstruktor ohne `base(options)`: Fehlermeldung „No database provider has been
     configured“; im Gespräch erklären, wofür die Optionen da sind;

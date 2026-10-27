@@ -8,7 +8,7 @@ You need three things: an **entity class** (`Blog`), a **context** (`BlogContext
 2. `BlogContext.cs`: The constructor accepts `DbContextOptions<BlogContext>` and passes it to the base class. The options specify which database is used; the tests pass an open SQLite connection. Convert `Blogs` to a true `DbSet<Blog>` (property with `get` and `set`).
 3. `BlogRepository.cs`:
    - `Anlegen(name)` creates a new context (`using var`), creates the schema using `Database.EnsureCreated()`, adds the blog using `Add`, saves it using `SaveChanges()`, and returns the new `Id` (which is greater than 0 after saving). A `null` value for the name violates the NOT NULL constraint: the `DbUpdateException` remains unhandled.
-   - `Alle()` reads using a **new context for each call**. A context is a short unit of work; one that were persistently stored would display outdated data.
+   - `Alle()` reads using a **new context for each call**. A context is a short unit of work; one kept around permanently would show outdated data.
 
 Then answer the quiz question.
 

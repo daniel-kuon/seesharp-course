@@ -12,7 +12,8 @@ Eine **Entitätsklasse** beschreibt eine Zeile: Eigenschaften werden zu Spalten,
 (oder `<Klasse>Id`) ist per Konvention der Primärschlüssel. Der **`DbContext`** ist die
 Brücke zur Datenbank. Er hat je Tabelle ein `DbSet<T>` und bekommt seine Konfiguration
 (Provider, Verbindung) als `DbContextOptions`. Ein Kontext ist eine kurze Arbeitseinheit:
-erzeugen, benutzen, mit `using` freigeben. `Database.EnsureCreated()` legt das Schema an,
+erzeugen, benutzen, mit `using` freigeben. `Database.EnsureCreated()` legt das Schema an
+(kommt im Buch nicht vor, das dafür Migrationen benutzt, 20.3; für Tests ist es der kürzere Weg),
 `Add` merkt Entitäten zum Einfügen vor, `SaveChanges()` schreibt alle Änderungen.
 
 ## Abbildung und Konfiguration (20.5, Seite 1420 bis 1435)
@@ -24,7 +25,7 @@ in `OnModelCreating` (Beziehungen, Indizes, Löschverhalten, **Wertkonverter** w
 Datenbanksystem: SQLite erzwingt `NOT NULL`, aber keine Textlängen. Eine **1:n-Beziehung**
 besteht aus einem Fremdschlüssel (`BlogId`) und Navigationseigenschaften (20.5.11, Seite 1429).
 
-## Abfragen mit LINQ-to-Entities (20.9, Seite 1451 bis 1464)
+## Abfragen mit LINQ-to-Entities (20.9, Seite 1451 bis 1465)
 
 LINQ-Ausdrücke auf einem `DbSet` übersetzt EF Core in SQL (`Where`, `OrderBy`, `Take`,
 `Select`, `Count`, `Sum`, `Average`). Die Abfrage läuft erst bei `ToList()`, `First...`

@@ -16,7 +16,9 @@ Lies im Buch **20.13 Konflikte durch parallele Zugriffe** (Seite 1482), **20.14*
    Kontext die Zeile inzwischen geändert, trifft das keine Zeile und `SaveChanges` wirft eine
    `DbUpdateConcurrencyException`.
 3. **`Konfliktloeser.Speichere(kontext, konto, aenderung)`**: wendet `aenderung` an, zählt die
-   Version hoch und speichert. Bei einer `DbUpdateConcurrencyException`: `Entry(konto).Reload()`,
+   Version hoch und speichert. Bei einer `DbUpdateConcurrencyException` (20.13.2):
+   `kontext.Entry(konto).Reload();` lädt den aktuellen Stand aus der Datenbank (nicht im Buch,
+   hier vorgegeben),
    die Änderung auf den frischen Stand **erneut** anwenden, Version hochzählen und **ein Mal**
    wiederholen. Scheitert auch das, geht die Ausnahme an den Aufrufer. Rückgabe: die Zahl der
    Versuche (1 oder 2).

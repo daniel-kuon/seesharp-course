@@ -27,10 +27,10 @@ items:
     testProject: "Blogging Tests/Blogging.Tests.csproj"
   - type: multipleChoice
     id: maxlength-sqlite
-    prompt: { de: "Dein Blog hat [MaxLength(100)] am Namen. Du speicherst mit SQLite einen Namen mit 150 Zeichen. Was geschieht?", en: "Your `Blog` has `[MaxLength(100)]` on the name. With SQLite you save a name with 150 characters. What happens?" }
+    prompt: { de: "Die Eigenschaft Title einer Entität trägt [MaxLength(200), MinLength(5)]. Welchen Spaltentyp legt eine Migration für den SQL Server an?", en: "The property `Title` of an entity carries `[MaxLength(200), MinLength(5)]`. Which column type does a migration create for SQL Server?" }
     options:
-      - { de: "SaveChanges wirft immer eine DbUpdateException, weil EF Core die Länge prüft.", en: "SaveChanges always throws a DbUpdateException because EF Core checks the length." }
-      - { de: "Es wird gespeichert: EF Core legt die Spalte als TEXT an und SQLite erzwingt keine Längen. Beim SQL Server (nvarchar(100)) würde der Name abgewiesen. [MaxLength] ist hier nur ein Hinweis für das Schema.", en: "It is stored: EF Core creates the column as TEXT, and SQLite does not enforce any length limits. In SQL Server (nvarchar(100)), the name would be rejected. [MaxLength] is only a note for the schema here." }
-      - { de: "Der Name wird beim Speichern automatisch auf 100 Zeichen gekürzt.", en: "The name is automatically truncated to 100 characters when saved." }
+      - { de: "nvarchar(max): Annotationen wirken sich nie auf das Schema aus.", en: "nvarchar(max): annotations never affect the schema." }
+      - { de: "nvarchar(200); die Mindestlänge wirkt sich nicht auf das Datenbankschema aus.", en: "nvarchar(200); the minimum length does not affect the database schema." }
+      - { de: "nvarchar(200) und zusätzlich eine CHECK-Restriktion für mindestens 5 Zeichen.", en: "nvarchar(200) plus a CHECK constraint for at least 5 characters." }
     correct: [1]
-    explanation: { de: "20.5 (Annotationen): Annotationen beeinflussen das erzeugte Schema; ob eine Regel durchgesetzt wird, entscheidet das Datenbanksystem. [Required] wird zu NOT NULL und von SQLite durchgesetzt, die Länge nicht. Wer die Länge sicher prüfen will, validiert zusätzlich im Programm.", en: "20.5 (Annotations): Annotations affect the generated schema; the database system determines whether a rule is enforced. [Required] becomes NOT NULL and is enforced by SQLite, but the length is not. If you want to ensure the length is correct, you must also validate it within the program." }
+    explanation: { de: "20.5.5 (Seite 1423): MaxLength wird zum Spaltentyp nvarchar(200), der überlange Zeichenfolgen abweist; die Mindestlänge taucht im Schema nicht auf. Annotationen beeinflussen also das erzeugte Schema, aber nicht jede Annotation wird zu einer Datenbankregel.", en: "20.5.5 (page 1423): MaxLength becomes the column type nvarchar(200), which rejects overlong strings; the minimum length does not show up in the schema. Annotations thus affect the generated schema, but not every annotation becomes a database rule." }

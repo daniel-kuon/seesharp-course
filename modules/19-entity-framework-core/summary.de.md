@@ -12,8 +12,8 @@ Eine **Entitätsklasse** beschreibt eine Zeile: Eigenschaften werden zu Spalten,
 (oder `<Klasse>Id`) ist per Konvention der Primärschlüssel. Der **`DbContext`** ist die
 Brücke zur Datenbank. Er hat je Tabelle ein `DbSet<T>` und bekommt seine Konfiguration
 (Provider, Verbindung) als `DbContextOptions`. Ein Kontext ist eine kurze Arbeitseinheit:
-erzeugen, benutzen, mit `using` freigeben. `Database.EnsureCreated()` legt das Schema an
-(kommt im Buch nicht vor, das dafür Migrationen benutzt, 20.3; für Tests ist es der kürzere Weg),
+erzeugen, benutzen, mit `using` freigeben. Das Schema legen im Buch Migrationen an (20.3);
+die Übungen geben dafür den kürzeren Aufruf `Database.EnsureCreated()` vor (siehe Deep Dive).
 `Add` merkt Entitäten zum Einfügen vor, `SaveChanges()` schreibt alle Änderungen.
 
 ## Abbildung und Konfiguration (20.5, Seite 1420 bis 1435)
@@ -21,8 +21,9 @@ erzeugen, benutzen, mit `using` freigeben. `Database.EnsureCreated()` legt das S
 Das Schema ergibt sich aus Konventionen und lässt sich auf zwei Wegen ändern:
 **Annotationen** an den Klassen (`[Required]`, `[MaxLength]`, `[Key]`) und die **Fluent API**
 in `OnModelCreating` (Beziehungen, Indizes, Löschverhalten, **Wertkonverter** wie
-`HasConversion<string>()` für Aufzählungen). Welche Regeln durchgesetzt werden, bestimmt das
-Datenbanksystem: SQLite erzwingt `NOT NULL`, aber keine Textlängen. Eine **1:n-Beziehung**
+`HasConversion<string>()` für Aufzählungen). Annotationen prägen das erzeugte Schema:
+`[MaxLength(200)]` wird beim SQL Server zu `nvarchar(200)`, `[MinLength]` wirkt sich nicht auf
+das Schema aus (20.5.5). Eine **1:n-Beziehung**
 besteht aus einem Fremdschlüssel (`BlogId`) und Navigationseigenschaften (20.5.11, Seite 1429).
 
 ## Abfragen mit LINQ-to-Entities (20.9, Seite 1451 bis 1465)
@@ -54,7 +55,7 @@ mehrere Schritte fasst `Database.BeginTransaction()` mit `Commit` und `Rollback`
 ## Migrationen (20.3, Seite 1404)
 
 Wächst das Modell, ändern **Migrationen** (`dotnet ef migrations add`) das Schema schrittweise
-und versioniert. `EnsureCreated` und Migrationen schließen sich auf derselben Datenbank aus.
+und versioniert.
 Migrationen sind nicht automatisch prüfbar und werden in einer Review-Aufgabe geübt.
 
 ## Übungen
@@ -64,3 +65,17 @@ Migrationen sind nicht automatisch prüfbar und werden in einer Review-Aufgabe g
 3. Ändern, Löschen und Änderungsnachverfolgung, `ExecuteUpdate`/`ExecuteDelete`.
 4. Beziehungen: `Include`, Kaskade und Fluent API.
 5. Wertkonverter, Concurrency Token, Transaktion; Review: erste Migration.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **`Database.EnsureCreated()`** legt die Tabellen zum Modell an, wenn es sie noch nicht gibt,
+  und ändert ein vorhandenes Schema nie. Für Tests und Prototypen ist das der kurze Weg; auf
+  derselben Datenbank schließt es sich mit Migrationen aus.
+- **SQLite und Annotationen:** SQLite legt Textspalten als `TEXT` an und erzwingt `NOT NULL`,
+  aber keine Längen. Welche Regel durchgesetzt wird, entscheidet das Datenbanksystem.
+- **Weitere Konfiguration:** `HasIndex(...).IsUnique()` macht einen Index eindeutig,
+  `Entry(entitaet).Reload()` lädt den aktuellen Stand nach einem Konflikt neu,
+  `GroupBy(x => 1)` fasst alle Zeilen für eine serverseitige Gesamtauswertung zusammen, und
+  Beziehungen lassen sich auch per Annotation konfigurieren (`[Index]`, `[DeleteBehavior]`).

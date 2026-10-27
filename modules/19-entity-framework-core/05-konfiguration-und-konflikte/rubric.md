@@ -21,12 +21,12 @@
     Kontexte oder Roh-SQL beteiligt sind (Gesprächsfrage).
 - Review-Aufgabe: Die Betreuung prüft, ob der Ordner `Migrations` mit der Migration `Anfang`
   und `KontoContextModelSnapshot` vorhanden ist, und lässt erklären:
-  - `EnsureCreated` legt das Schema direkt an und kennt keine Migrationsverfolgung
+  - Zweck der Migrationen: Das Schema entwickelt sich mit dem Modell weiter, ohne Daten zu
+    verlieren, und die Änderungen liegen versioniert im Code.
+  - Bonus (Deep Dive), nicht im Buch, nicht verlangt: `EnsureCreated` legt das Schema direkt an und kennt keine Migrationsverfolgung
     (`__EFMigrationsHistory`). Existiert die Datenbank schon, tut es nichts. Danach schlägt
     `Migrate()` fehl, weil die erste Migration Tabellen anlegen will, die es schon gibt. Entweder `EnsureCreated` (Tests, Prototypen) oder
     Migrationen (echte Projekte, die sich weiterentwickeln), nie beides auf derselben Datenbank.
-  - Zweck der Migrationen: Das Schema entwickelt sich mit dem Modell weiter, ohne Daten zu
-    verlieren, und die Änderungen liegen versioniert im Code.
 - Hinweis: Das Scratch-Projekt (`Microsoft.EntityFrameworkCore.Design`, `dotnet-ef`) braucht
   eine Netzwerkverbindung für NuGet und wird nicht benotet.
 - Modellantwort: `solution/`; Vorlagen `samples/Entity Framework Core/Wertkonverter`,

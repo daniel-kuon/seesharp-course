@@ -4,11 +4,11 @@ With ADO.NET, you write SQL statements and read rows manually. **Entity Framewor
 
 ## Entities and Context (20.1, page 1399; 20.2, page 1402; 20.4, page 1414)
 
-An **entity class** describes a row: properties become columns, and by convention, the `Id` (or `<Klasse>Id`) is the primary key. The **`DbContext`** serves as the bridge to the database. It has one `DbSet<T>` per table and receives its configuration (provider, connection) as `DbContextOptions`. A context is a short-lived unit of work: create it, use it, and release it with `using`. `Database.EnsureCreated()` creates the schema (it is not in the book, which uses migrations for this, 20.3; for tests it is the shorter way), `Add` marks entities for insertion, and `SaveChanges()` commits all changes.
+An **entity class** describes a row: properties become columns, and by convention, the `Id` (or `<Klasse>Id`) is the primary key. The **`DbContext`** serves as the bridge to the database. It has one `DbSet<T>` per table and receives its configuration (provider, connection) as `DbContextOptions`. A context is a short-lived unit of work: create it, use it, and release it with `using`. In the book, migrations create the schema (20.3); the exercises give the shorter call `Database.EnsureCreated()` instead (see Deep Dive). `Add` marks entities for insertion, and `SaveChanges()` commits all changes.
 
 ## Mapping and Configuration (20.5, pages 1420–1435)
 
-The schema follows from conventions and can be changed in two ways: **annotations** on the classes (`[Required]`, `[MaxLength]`, `[Key]`) and the **Fluent API** in `OnModelCreating` (relationships, indexes, delete behavior, **value converters** such as `HasConversion<string>()` for enumerations). Which rules are enforced is determined by the database system: SQLite enforces `NOT NULL`, but not text lengths. A **1:n relationship** consists of a foreign key (`BlogId`) and navigation properties (20.5.11, page 1429).
+The schema follows from conventions and can be changed in two ways: **annotations** on the classes (`[Required]`, `[MaxLength]`, `[Key]`) and the **Fluent API** in `OnModelCreating` (relationships, indexes, delete behavior, **value converters** such as `HasConversion<string>()` for enumerations). Annotations shape the generated schema: `[MaxLength(200)]` becomes `nvarchar(200)` on SQL Server, `[MinLength]` does not affect the schema (20.5.5). A **1:n relationship** consists of a foreign key (`BlogId`) and navigation properties (20.5.11, page 1429).
 
 ## Queries with LINQ to Entities (20.9, pages 1451–1465)
 
@@ -24,7 +24,7 @@ EF Core operates **in an optimistic mode**: Two users can load the same row. A *
 
 ## Migrations (20.3, page 1404)
 
-As the model grows, **migrations** (`dotnet ef migrations add`) update the schema incrementally and are versioned. `EnsureCreated` and migrations are mutually exclusive on the same database. Migrations are not automatically testable and are practiced in a review task.
+As the model grows, **migrations** (`dotnet ef migrations add`) update the schema incrementally and are versioned. Migrations are not automatically testable and are practiced in a review task.
 
 ## Exercises
 
@@ -33,3 +33,11 @@ As the model grows, **migrations** (`dotnet ef migrations add`) update the schem
 3. Modify, Delete, and Change Tracking; `ExecuteUpdate`/`ExecuteDelete`.
 4. Relationships: `Include`, cascade, and Fluent API.
 5. Value Converter, Concurrency Token, Transaction; Review: First Migration.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **`Database.EnsureCreated()`** creates the tables for the model if they do not exist yet and never changes an existing schema. For tests and prototypes it is the short way; on the same database it excludes migrations.
+- **SQLite and annotations:** SQLite creates text columns as `TEXT` and enforces `NOT NULL`, but no lengths. Which rule is enforced is decided by the database system.
+- **More configuration:** `HasIndex(...).IsUnique()` makes an index unique, `Entry(entity).Reload()` reloads the current state after a conflict, `GroupBy(x => 1)` combines all rows for a server-side overall evaluation, and relationships can also be configured by annotation (`[Index]`, `[DeleteBehavior]`).

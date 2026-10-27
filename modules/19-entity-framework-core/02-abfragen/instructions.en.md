@@ -8,7 +8,7 @@ The context `BeitragContext`, which contains the entity `Beitrag` (`Id`, `Titel`
 2. `Neueste(n)`: the `n` latest posts, newest first (`OrderByDescending`, `Take`).
 3. `Finde(id)` using `Find`; `ErsterMit(teil)` using `FirstOrDefault` (smallest ID, `null` if there is no match).
 4. `TitellisteAbfrage(kontext)`: uses `Select` to project onto the title and returns an `IQueryable<string>` that has not yet been executed; the test uses `ToQueryString()` to examine the SQL and requires that only the `Titel` column be retrieved, not the `Inhalt`.
-5. `StatistikAbfrage(kontext)`: Number and average length of the content in **a server-side** query: `GroupBy(b => 1)` groups all rows into a single group; `Select` calculates `Count()` and `Average()`. The test requires `COUNT` and `AVG` in SQL. `Statistik()` returns the result; for an empty table, it returns `(0, 0)`.
+5. `StatistikAbfrage(kontext)`: Number and average length of the content in **a server-side** query: `GroupBy(b => 1)` groups all rows into a single group (not in the book, given here); `Select` calculates `Count()` and `Average()`. The test requires `COUNT` and `AVG` in SQL. `Statistik()` returns the result; for an empty table, it returns `(0, 0)`.
 6. `ClientAuswertung()`—the same result, but intentionally **on the client side**: first `AsEnumerable()` (all posts, including their content, are loaded), then C# performs the calculation. This is the contrast described in section 20.9.6 of the book.
 
 Then answer the quiz question.

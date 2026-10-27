@@ -18,9 +18,9 @@
   - `SetNull` vergessen: `LoescheAutor` wirft eine `DbUpdateException` wegen des Fremdschlüssels;
   - `Blog` zum Löschen vorher mit `Include` laden und die Beiträge einzeln entfernen: richtig im
     Ergebnis, aber überflüssig, die Kaskade erledigt es;
-  - Konfiguration per Annotation statt Fluent API: Das geht auch (`[Index(nameof(Name), IsUnique = true)]`
-    an der Klasse, vgl. 20.5.13, und `[DeleteBehavior(DeleteBehavior.SetNull)]` an der
-    Navigationseigenschaft `Beitrag.Autor`, seit EF Core 7), die Aufgabe verlangt aber die Fluent API (Gesprächsfrage: Wann nimmt man Annotationen, wann die Fluent API?
+  - Bonus (Deep Dive), nicht im Buch: Konfiguration per Annotation statt Fluent API geht auch
+    (`[Index(nameof(Name), IsUnique = true)]` an der Klasse und `[DeleteBehavior(DeleteBehavior.SetNull)]`
+    an der Navigationseigenschaft `Beitrag.Autor`, seit EF Core 7), die Aufgabe verlangt aber die Fluent API (Gesprächsfrage: Wann nimmt man Annotationen, wann die Fluent API?
     Eine `IEntityTypeConfiguration<T>`-Klasse hält `OnModelCreating` übersichtlich).
 - Die Tests schalten `PRAGMA foreign_keys` ein; ohne Fremdschlüsselprüfung würde SQLite auch
   ein falsches `OnDelete` nicht bemerken.

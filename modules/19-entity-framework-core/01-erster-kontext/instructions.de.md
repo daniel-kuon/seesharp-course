@@ -18,7 +18,8 @@ Du brauchst drei Dinge: eine **Entitätsklasse** (`Blog`), einen **Kontext**
    (Eigenschaft mit `get` und `set`).
 3. `BlogRepository.cs`:
    - `Anlegen(name)` erzeugt einen frischen Kontext (`using var`), legt das Schema mit
-     `Database.EnsureCreated()` an, fügt den Blog mit `Add` hinzu, speichert mit
+     `kontext.Database.EnsureCreated();` an (nicht im Buch, hier vorgegeben: legt die Tabellen
+     an, falls es sie noch nicht gibt; das Buch nimmt dafür Migrationen, 20.3), fügt den Blog mit `Add` hinzu, speichert mit
      `SaveChanges()` und liefert die neue `Id` (nach dem Speichern größer als 0).
      Ein Name `null` verletzt die NOT-NULL-Spalte: Die `DbUpdateException` bleibt unbehandelt.
    - `Alle()` liest mit einem **frischen Kontext pro Aufruf**. Ein Kontext ist eine kurze

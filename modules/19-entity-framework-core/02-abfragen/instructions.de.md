@@ -18,7 +18,8 @@ Der Kontext `BeitragContext` mit der Entität `Beitrag` (`Id`, `Titel`, `Inhalt`
    `ToQueryString()` das SQL an und verlangt, dass nur die Spalte `Titel` abgerufen wird, nicht der
    `Inhalt`.
 5. `StatistikAbfrage(kontext)`: Anzahl und durchschnittliche Länge des Inhalts in **einer
-   serverseitigen** Abfrage: `GroupBy(b => 1)` fasst alle Zeilen zu einer Gruppe zusammen,
+   serverseitigen** Abfrage: `GroupBy(b => 1)` fasst alle Zeilen zu einer Gruppe zusammen
+   (nicht im Buch, hier vorgegeben),
    `Select` berechnet `Count()` und `Average()`. Der Test verlangt `COUNT` und `AVG` im SQL.
    `Statistik()` liefert das Ergebnis; bei einer leeren Tabelle `(0, 0)`.
 6. `ClientAuswertung()`: dasselbe Ergebnis, aber absichtlich **clientseitig**: erst

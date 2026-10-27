@@ -5,7 +5,8 @@ Lies noch einmal **20.11 Entitäten erstellen, modifizieren und löschen** (Seit
 In `Buecherei.cs` verwaltest du die Bücher; **jeder Aufruf verwendet einen frischen Kontext**
 in einer `using`-Anweisung.
 
-1. `Aufnehmen(titel, autor, jahr)`: Schema bei Bedarf mit `EnsureCreated`, `Add`, `SaveChanges`;
+1. `Aufnehmen(titel, autor, jahr)`: Schema bei Bedarf mit `kontext.Database.EnsureCreated();`
+   (nicht im Buch, wie in Aufgabe 1 vorgegeben), `Add`, `SaveChanges`;
    liefert die neue `Id`.
 2. `Ausleihen(id)`: setzt `Ausgeliehen = true`. `false`, wenn es das Buch nicht gibt oder es
    schon ausgeliehen ist.

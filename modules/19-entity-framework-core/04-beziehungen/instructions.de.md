@@ -11,8 +11,9 @@ Anlegen in `BlogDienst.cs` sind vorgegeben.
 1. **`OnModelCreating`** (Fluent API) in `BlogContext`:
    - Ein Blog hat viele Beiträge, jeder Beitrag gehört zu einem Blog:
      `HasMany(...).WithOne(...).HasForeignKey(...).OnDelete(DeleteBehavior.Cascade)`.
-   - Der Blogname ist eindeutig (`HasIndex(...).IsUnique()`); ein doppelter Name löst eine
-     `DbUpdateException` aus.
+   - Der Blogname ist eindeutig: `modelBuilder.Entity<Blog>().HasIndex(b => b.Name).IsUnique();`
+     (`HasIndex` steht in 20.5.13, `IsUnique()` nicht im Buch, hier vorgegeben). Ein doppelter
+     Name löst dann eine `DbUpdateException` aus.
    - Ein Beitrag hat optional einen Autor (`AutorId` ist `int?`). Wird der Autor gelöscht,
      bleibt der Beitrag mit `AutorId == null` erhalten: `DeleteBehavior.SetNull`.
 2. **`BlogMitBeitraegen(id)`**: liefert den Blog samt Beiträgen mit `Include` (Eager Loading),

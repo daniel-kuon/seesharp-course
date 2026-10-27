@@ -15,8 +15,11 @@
   - `SaveChanges` vergessen (Id bleibt 0, nichts wird gespeichert);
   - `EnsureCreated` mit Migrationen verwechseln: Es legt das Schema nur an, wenn die Datenbank
     noch leer ist, und aktualisiert nie (Thema von 19/05).
-- Quizfrage: SQLite erzwingt `NOT NULL`, aber keine Längen. `[MaxLength]` beeinflusst das
-  Schema (beim SQL Server `nvarchar(100)`), die Durchsetzung ist Sache der Datenbank.
+- Quizfrage (20.5.5): `[MaxLength(200)]` wird beim SQL Server zu `nvarchar(200)`, `[MinLength]`
+  wirkt sich nicht auf das Schema aus.
+- Bonus (Deep Dive), nicht im Buch: SQLite legt Textspalten als `TEXT` an und erzwingt `NOT NULL`,
+  aber keine Längen; ein Name mit 150 Zeichen wird trotz `[MaxLength(100)]` gespeichert.
+- `EnsureCreated` steht nicht im Buch und ist in der Aufgabe vorgegeben.
 - Hinweis: Die Tests übergeben eine offene Verbindung im Speicher. Würde jeder Kontext
   seine eigene `Data Source=:memory:`-Verbindung öffnen, wäre die Datenbank pro Kontext leer.
 - Modellantwort: `solution/`; Vorlagen `samples/Entity Framework Core/Erster Eindruck`,

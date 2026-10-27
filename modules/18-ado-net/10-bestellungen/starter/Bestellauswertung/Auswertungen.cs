@@ -13,7 +13,7 @@ public static class Auswertungen
     // des Kunden); nur Kunden mit Bestellungen; höchster Umsatz zuerst.
     public const string UmsatzProKunde = "-- TODO";
 
-    // TODO: Spalte Name der Kunden ohne jede Bestellung, nach Name sortiert (LEFT JOIN ... IS NULL).
+    // Deep Dive (optional): Spalte Name der Kunden ohne jede Bestellung, nach Name sortiert (LEFT JOIN ... IS NULL).
     public const string KundenOhneBestellung = "-- TODO";
 
     // TODO: Spalten Produkt und Menge (Summe der bestellten Menge); die drei meistbestellten Produkte:

@@ -24,8 +24,8 @@ items:
   - type: open
     id: schema-regeln
     prompt:
-      de: "Erkläre, was ein Primärschlüssel und ein Fremdschlüssel sind. Warum legt man Einschränkungen wie `NOT NULL`, `UNIQUE` oder `CHECK` ins Datenbankschema, statt nur im C#-Code zu prüfen?"
-      en: "Explain what a primary key and a foreign key are. Why do you put constraints such as `NOT NULL`, `UNIQUE` or `CHECK` into the database schema instead of checking only in C# code?"
+      de: "Erkläre, was ein Primärschlüssel und ein Fremdschlüssel sind. Warum legt man Einschränkungen wie `NOT NULL` oder `CHECK` ins Datenbankschema, statt nur im C#-Code zu prüfen?"
+      en: "Explain what a primary key and a foreign key are. Why do you put constraints such as `NOT NULL` or `CHECK` into the database schema instead of checking only in C# code?"
   - type: open
     id: code-zeilen-und-count
     prompt:
@@ -144,20 +144,20 @@ items:
           ```
       - de: |
           ```csharp
-          string? tel = r.GetString(2);
+          string? tel = (string)r[2];
           ```
       - de: |
           ```csharp
-          string? tel = r.IsDBNull(2) ? null : r.GetInt32(2);
+          string? tel = r[2] is DBNull ? null : (int)r[2];
           ```
       - de: |
           ```csharp
-          string? tel = r.IsDBNull(2) ? null : r.GetString(2);
+          string? tel = r[2] is DBNull ? null : (string)r[2];
           ```
     correct: [3]
     explanation:
-      de: "Option 1 prüft gegen `null`, aber ein fehlender Wert kommt als `DBNull.Value` an, nicht als `null`; der Cast wirft eine InvalidCastException. Option 2 wirft bei NULL eine InvalidOperationException: Die typisierten Get-Methoden vertragen kein NULL, man fragt vorher mit `IsDBNull`. Option 3 liest den Text mit `GetInt32` und lässt sich nicht kompilieren (int ist kein string)."
-      en: "Option 1 checks against `null`, but a missing value arrives as `DBNull.Value`, not as `null`; the cast throws an InvalidCastException. Option 2 throws an InvalidOperationException on NULL: the typed Get methods cannot handle NULL, so you ask `IsDBNull` first. Option 3 reads the text with `GetInt32` and does not compile (an int is not a string)."
+      de: "Der Indexer (19.7.15) liefert ein `object`. Option 1 prüft gegen `null`, aber ein fehlender Wert kommt als `DBNull.Value` an, nicht als `null`; der Cast wirft dann eine InvalidCastException. Option 2 castet ungeprüft und wirft bei NULL ebenfalls eine InvalidCastException. Option 3 castet den Text auf `int` und lässt sich nicht kompilieren (ein `int` passt nicht in ein `string?`)."
+      en: "The indexer (19.7.15) returns an `object`. Option 1 checks against `null`, but a missing value arrives as `DBNull.Value`, not as `null`; the cast then throws an InvalidCastException. Option 2 casts without checking and also throws an InvalidCastException on NULL. Option 3 casts the text to `int` and does not compile (an `int` does not fit into a `string?`)."
   - type: open
     id: code-dbnull-lesen
     prompt:
@@ -169,8 +169,9 @@ items:
         using var r = cmd.ExecuteReader();
         while (r.Read())
         {
-            int? jahrgang = r.IsDBNull(1) ? null : r.GetInt32(1);
-            Console.WriteLine($"{r.GetString(0)}: {jahrgang?.ToString() ?? "unbekannt"}");
+            object wert = r["Jahrgang"];
+            string jahrgang = wert is DBNull ? "unbekannt" : wert.ToString()!;
+            Console.WriteLine($"{r["Name"]}: {jahrgang}");
         }
         ```
       en: |
@@ -181,8 +182,9 @@ items:
         using var r = cmd.ExecuteReader();
         while (r.Read())
         {
-            int? jahrgang = r.IsDBNull(1) ? null : r.GetInt32(1);
-            Console.WriteLine($"{r.GetString(0)}: {jahrgang?.ToString() ?? "unbekannt"}");
+            object wert = r["Jahrgang"];
+            string jahrgang = wert is DBNull ? "unbekannt" : wert.ToString()!;
+            Console.WriteLine($"{r["Name"]}: {jahrgang}");
         }
         ```
   - type: open

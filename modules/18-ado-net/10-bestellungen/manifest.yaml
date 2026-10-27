@@ -18,3 +18,7 @@ items:
     openFile: "Bestellauswertung/Auswertungen.cs"
     openLine: 14
     testProject: "Bestellauswertung Tests/Bestellauswertung.Tests.csproj"
+    # Extra (Deep Dive, LEFT JOIN): die beiden KundenOhneBestellung-Tests.
+    requiredTests:
+      - AuswertungenTests.UmsatzProKunde_summiert_Menge_mal_Preis_und_sortiert_absteigend
+      - AuswertungenTests.Top3Produkte_liefert_die_drei_meistbestellten_Produkte

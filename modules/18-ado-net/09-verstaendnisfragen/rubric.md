@@ -70,22 +70,25 @@ Max: 1990
 ```
 
 Wesentlich:
-- Ein fehlender Wert ist in der Datenbank NULL und kommt in ADO.NET als `DBNull` an; `IsDBNull(1)` ist für
-  Ida `true`, also wird `GetInt32` gar nicht aufgerufen.
-- `GetInt32` auf einem NULL-Wert würde eine `InvalidOperationException` werfen; deshalb fragt man vorher.
-- `int?` (Nullable) bildet den fehlenden Wert in C# ab, `?.ToString() ?? "unbekannt"` macht daraus den Text.
+- Ein fehlender Wert ist in der Datenbank NULL und kommt in ADO.NET als `DBNull.Value` an; der Indexer
+  `r["Jahrgang"]` liefert ihn als `object`, `wert is DBNull` ist für Ida `true`, also wird `"unbekannt"`
+  ausgegeben; bei Max ist der Wert eine Zahl, `ToString()` liefert `1990`.
+- Ein ungeprüfter Cast wie `(long)wert` würde bei Ida eine `InvalidCastException` werfen; deshalb fragt man vorher.
+- Bonus (Deep Dive): Mit den typisierten Methoden (`IsDBNull(1)`, `GetInt32(1)`, in Übung 3 vorgegeben)
+  geht dasselbe ohne Cast.
 
-Typische Fehlvorstellungen: Man erwartet `Ida: 0` (GetInt32 liefere bei NULL 0) oder eine Ausnahme; man glaubt, `ORDER BY`
+Typische Fehlvorstellungen: Man erwartet `Ida: ` (leer, weil NULL wie `null` behandelt werde) oder eine Ausnahme; man glaubt, `ORDER BY`
 ändere die Reihenfolge Max/Ida (Ida kommt alphabetisch vor Max, die Ausgabe stimmt also).
 
 ## leser-und-abbilden
 
 Wesentlich:
 - Der Leser liefert die Ergebniszeilen **vorwärts**, eine nach der anderen: `Read()` rückt zur nächsten Zeile
-  vor und liefert `false`, wenn keine mehr kommt; Spalten liest man typisiert (`GetString`, `GetInt32`,
-  `GetDecimal`), die Position mit `GetOrdinal(spaltenname)` oder direkt als Zahl.
+  vor und liefert `false`, wenn keine mehr kommt; Spalten liest man über den Indexer (`r["Name"]`, 19.7.15)
+  oder typisiert (`GetString`, `GetInt32`, `GetDecimal`; in Übung 3 vorgegeben), die Position mit
+  `GetOrdinal(spaltenname)` oder direkt als Zahl.
 - Abbilden (Mapping): in der Schleife aus jeder Zeile ein Objekt (Klasse oder Record) erzeugen und in eine Liste legen;
-  NULL-Spalten vorher mit `IsDBNull` abfangen.
+  NULL-Spalten vorher abfangen (`is DBNull` bzw. `IsDBNull`).
 - Leser und Verbindung gehören in `using`: Eine offene Verbindung hält Ressourcen (bei Dateidatenbanken eine
   Sperre, auf Servern begrenzte Verbindungen); solange ein Leser offen ist, ist die Verbindung belegt.
   Vergisst man die Freigabe, bleibt die Ressource bis zur Müllabfuhr belegt, und später können Sperren oder erschöpfte Verbindungen
@@ -134,8 +137,9 @@ Wesentlich:
 - Programmiert man gegen die Basisklassen aus `System.Data.Common` (`DbConnection`, `DbCommand`, `DbDataReader`) und lässt eine
   `DbProviderFactory` die Objekte erzeugen, kennt der Code den Provider nicht; das Datenbanksystem lässt sich an einer Stelle
   (Fabrik, Verbindungszeichenfolge) austauschen, und Tests können eine andere Datenbank einsetzen.
-- Nicht austauschbar: der SQL-Dialekt und Besonderheiten (z. B. `LIMIT 3` bei SQLite gegenüber `TOP 3` beim SQL Server,
-  `IDENTITY` gegenüber `AUTOINCREMENT`), sowie die Verbindungszeichenfolge selbst.
+- Nicht austauschbar: der SQL-Dialekt (das Buch nennt T-SQL als Dialekt des SQL Servers, 19.6.1) sowie die
+  Verbindungszeichenfolge selbst. Bonus (Deep Dive): konkrete Beispiele wie `LIMIT 3` bei SQLite gegenüber
+  `TOP 3` beim SQL Server oder `INTEGER PRIMARY KEY` gegenüber `IDENTITY`.
 
 Typische Fehlvorstellungen: „Man kann dann jedes SQL unverändert auf jeder Datenbank laufen lassen"; Provider und
 Datenbankserver verwechseln; die Fabrik für ein Entwurfsmuster ohne Zweck halten.

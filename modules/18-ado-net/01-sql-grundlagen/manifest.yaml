@@ -21,12 +21,25 @@ items:
     openFile: "SqlGrundlagen/Skripte.cs"
     openLine: 11
     testProject: "SqlGrundlagen Tests/SqlGrundlagen.Tests.csproj"
+    # Pflichttests (Buch). Extra (Deep Dive): Schema_verlangt_eindeutige_Kategorienamen,
+    # KategorienMitMehrerenArtikeln_filtert_mit_HAVING, LoescheLeereKategorien_entfernt_nur_Kategorien_ohne_Artikel
+    requiredTests:
+      - SkripteTests.Schema_legt_beide_Tabellen_an
+      - SkripteTests.Schema_deklariert_Primaerschluessel_und_Fremdschluessel
+      - SkripteTests.Schema_weist_Artikel_mit_unbekannter_Kategorie_ab
+      - SkripteTests.Schema_weist_negative_Preise_ab
+      - SkripteTests.Schema_verlangt_Namen
+      - SkripteTests.Daten_fuegt_Kategorien_und_Artikel_ein
+      - SkripteTests.TeureArtikel_liefert_Artikel_ueber_10_absteigend
+      - SkripteTests.ArtikelMitKategorie_verknuepft_und_sortiert
+      - SkripteTests.AnzahlProKategorie_gruppiert_und_zaehlt
+      - SkripteTests.Preiserhoehung_erhoeht_nur_die_Kategorie_Garten
   - type: multipleChoice
     id: where-having
-    prompt: { de: "Du willst nur Kategorien mit mehr als einem Artikel auflisten. Wo gehört die Bedingung COUNT(*) > 1 hin?", en: "You only want to list categories with more than one item. Where should the condition COUNT(*) > 1 go?" }
+    prompt: { de: "Du willst je Kategorie zählen, wie viele Artikel mehr als 10 kosten. Welche Abfrage liefert das?", en: "For each category you want to count how many items cost more than 10. Which query returns that?" }
     options:
-      - { de: "In die WHERE-Klausel, denn WHERE filtert alle Zeilen.", en: "In the WHERE clause, because WHERE filters all rows." }
-      - { de: "In die HAVING-Klausel, denn sie filtert die Gruppen, nachdem GROUP BY und die Aggregatfunktion ausgewertet wurden.", en: "In the HAVING clause, because it filters the groups after the GROUP BY clause and the aggregate function have been evaluated." }
-      - { de: "In die ORDER-BY-Klausel, denn dort stehen alle Bedingungen zur Anzahl.", en: "In the ORDER BY clause, because that's where all the conditions related to the count are listed." }
-    correct: [1]
-    explanation: { de: "WHERE (19.6.4.2) wählt einzelne Zeilen vor dem Gruppieren aus und kennt keine Aggregatergebnisse; HAVING (im Buch nicht behandelt, siehe Aufgabentext) wählt Gruppen nach dem Gruppieren aus. ORDER BY sortiert nur.", en: "WHERE (19.6.4.2) selects individual rows before grouping and knows no aggregate results; HAVING (not covered in the book, see the instructions) selects groups after grouping. ORDER BY only sorts." }
+      - { de: "SELECT KategorieId, COUNT(*) FROM Artikel WHERE Preis > 10 GROUP BY KategorieId", en: "SELECT KategorieId, COUNT(*) FROM Artikel WHERE Preis > 10 GROUP BY KategorieId" }
+      - { de: "SELECT KategorieId, COUNT(*) FROM Artikel WHERE Preis > 10", en: "SELECT KategorieId, COUNT(*) FROM Artikel WHERE Preis > 10" }
+      - { de: "SELECT KategorieId, COUNT(*) FROM Artikel GROUP BY KategorieId ORDER BY Preis > 10", en: "SELECT KategorieId, COUNT(*) FROM Artikel GROUP BY KategorieId ORDER BY Preis > 10" }
+    correct: [0]
+    explanation: { de: "WHERE (19.6.4.2) wählt zuerst die Zeilen mit Preis über 10 aus, GROUP BY (19.6.4.6) bildet daraus je Kategorie eine Gruppe, und COUNT(*) zählt je Gruppe. Ohne GROUP BY zählt COUNT(*) über die ganze Ergebnistabelle statt je Kategorie (19.6.4.5). ORDER BY sortiert nur und filtert nichts.", en: "WHERE (19.6.4.2) first selects the rows priced over 10, GROUP BY (19.6.4.6) forms one group per category from them, and COUNT(*) counts per group. Without GROUP BY, COUNT(*) counts over the whole result table instead of per category (19.6.4.5). ORDER BY only sorts and filters nothing." }

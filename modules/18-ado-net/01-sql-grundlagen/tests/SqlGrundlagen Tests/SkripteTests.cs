@@ -91,14 +91,22 @@ public class SkripteTests
     }
 
     [Fact]
-    public void Schema_verlangt_Namen_und_eindeutige_Kategorienamen()
+    public void Schema_verlangt_Namen()
+    {
+        using var db = Oeffne(mitDaten: false);
+        Ausfuehren(db, "INSERT INTO Kategorie (Id, Name) VALUES (1, 'A')");
+        Assert.Throws<SqliteException>(() => Ausfuehren(db, "INSERT INTO Kategorie (Id, Name) VALUES (3, NULL)"));
+        Assert.Throws<SqliteException>(() =>
+            Ausfuehren(db, "INSERT INTO Artikel (Name, Preis, KategorieId) VALUES (NULL, 1.0, 1)"));
+    }
+
+    // Deep Dive (optional): UNIQUE steht nicht im Buch.
+    [Fact]
+    public void Schema_verlangt_eindeutige_Kategorienamen()
     {
         using var db = Oeffne(mitDaten: false);
         Ausfuehren(db, "INSERT INTO Kategorie (Id, Name) VALUES (1, 'A')");
         Assert.Throws<SqliteException>(() => Ausfuehren(db, "INSERT INTO Kategorie (Id, Name) VALUES (2, 'A')"));
-        Assert.Throws<SqliteException>(() => Ausfuehren(db, "INSERT INTO Kategorie (Id, Name) VALUES (3, NULL)"));
-        Assert.Throws<SqliteException>(() =>
-            Ausfuehren(db, "INSERT INTO Artikel (Name, Preis, KategorieId) VALUES (NULL, 1.0, 1)"));
     }
 
     [Fact]
@@ -134,10 +142,18 @@ public class SkripteTests
     }
 
     [Fact]
-    public void AnzahlProKategorie_gruppiert_und_filtert_mit_HAVING()
+    public void AnzahlProKategorie_gruppiert_und_zaehlt()
     {
         using var db = Oeffne(mitDaten: true);
-        Assert.Equal(new[] { "Garten|4", "Werkzeug|3" }, Zeilen(db, Skripte.AnzahlProKategorie));
+        Assert.Equal(new[] { "Garten|4", "Werkzeug|3", "Buero|1" }, Zeilen(db, Skripte.AnzahlProKategorie));
+    }
+
+    // Deep Dive (optional): HAVING steht nicht im Buch.
+    [Fact]
+    public void KategorienMitMehrerenArtikeln_filtert_mit_HAVING()
+    {
+        using var db = Oeffne(mitDaten: true);
+        Assert.Equal(new[] { "Garten|4", "Werkzeug|3" }, Zeilen(db, Skripte.KategorienMitMehrerenArtikeln));
     }
 
     [Fact]
@@ -151,6 +167,7 @@ public class SkripteTests
             Zeilen(db, "SELECT Name, Preis FROM Artikel WHERE KategorieId IN (1, 3) ORDER BY Id"));
     }
 
+    // Deep Dive (optional): NOT EXISTS und Unterabfragen stehen nicht im Buch.
     [Fact]
     public void LoescheLeereKategorien_entfernt_nur_Kategorien_ohne_Artikel()
     {

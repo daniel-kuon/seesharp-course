@@ -2,9 +2,9 @@
 
 Read **sections 19.7.2 through 19.7.5** in the book, especially **19.7.5 DbCommand** (page 1323): `ExecuteNonQuery`, `ExecuteScalar`, parameters. The book uses `SqlConnection` for SQL Server; we use `SqliteConnection` from `Microsoft.Data.Sqlite` (the classes are derived from the same base classes, `DbConnection` and `DbCommand`, and the methods have the same names).
 
-Open `Adressbuch.cs`. The `Adressbuch` class manages the `Kontakt` table (`Id`, `Name`, `Telefon`) via an **open connection that belongs to the caller**: You neither open nor close it here, but create a separate command in each method (in a `using` statement). All values go into the command as **parameters**, never via string concatenation.
+Open `Adressbuch.cs`. The `Adressbuch` class manages the `Kontakt` table (`Id`, `Name`, `Telefon`) via an **open connection that belongs to the caller**: You neither open nor close it here, but create a separate command in each method (in a `using` statement). All values go into the command as **parameters**, never via string concatenation. The book creates a parameter with `Parameters.Add("@name", SqlDbType...)` and then sets `Value` (19.7.5.2). It is shorter in one step (not in the book, given here): `befehl.Parameters.AddWithValue("@name", name);`
 
-1. `Erzeuge()`: `CREATE TABLE IF NOT EXISTS` (can be called multiple times).
+1. `Erzeuge()`: `CREATE TABLE IF NOT EXISTS Kontakt (...)` (can be called multiple times; not in the book, given here, the counterpart of `DROP TABLE IF EXISTS` from 19.6.2.2).
 2. `Hinzufuegen(name, telefon)`: `INSERT` with `@name` and `@telefon`. A `null` phone number is stored as **NULL** (`DBNull.Value`).
 3. `Anzahl()`: `ExecuteScalar`; SQLite returns a `long` here.
 4. `Aendere(name, neuesTelefon)` and `Entferne(name)` return the **number of affected rows** (`ExecuteNonQuery`).

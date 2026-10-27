@@ -22,10 +22,10 @@ items:
     testProject: "Artikelverwaltung Tests/Artikelverwaltung.Tests.csproj"
   - type: multipleChoice
     id: getstring-null
-    prompt: { de: "In der Spalte Kategorie steht für einen Artikel NULL. Was passiert bei leser.GetString(spalte), wenn du vorher nicht IsDBNull(spalte) geprüft hast?", en: "In the `Kategorie` column, an item has NULL. What happens with `leser.GetString(spalte)` if you have not checked `IsDBNull(spalte)` first?" }
+    prompt: { de: "In der Spalte Kategorie steht für einen Artikel NULL. Was liefert der Indexer leser[\"Kategorie\"] für diese Zeile?", en: "In the `Kategorie` column, an item has NULL. What does the indexer `leser[\"Kategorie\"]` return for this row?" }
     options:
-      - { de: "GetString liefert null, das passt zum Typ string?.", en: "GetString returns null, which is consistent with the string? type." }
-      - { de: "GetString liefert eine leere Zeichenkette.", en: "GetString returns an empty string." }
-      - { de: "GetString löst eine Ausnahme aus, denn die Spalte enthält keinen Wert; null muss man vorher mit IsDBNull abfangen.", en: "GetString throws an exception because the column does not contain a value; you must first check for null using IsDBNull." }
+      - { de: "null, das passt zum Typ string?.", en: "null, which fits the type string?." }
+      - { de: "Eine leere Zeichenkette.", en: "An empty string." }
+      - { de: "DBNull.Value, also ein Objekt und nicht null; man prüft mit is DBNull und macht selbst null daraus. Ein Cast (string)leser[\"Kategorie\"] würde eine InvalidCastException werfen.", en: "DBNull.Value, an object and not null; you check with is DBNull and turn it into null yourself. A cast (string)leser[\"Kategorie\"] would throw an InvalidCastException." }
     correct: [2]
-    explanation: { de: "19.7.15: Die typisierten Get-Methoden (GetString, GetInt32, GetDecimal ...) können NULL nicht darstellen und lösen eine Ausnahme aus. Erst IsDBNull fragen, dann lesen; sonst ist der Programmierfehler nur bei Zeilen mit NULL sichtbar.", en: "19.7.15: The typed Get methods (GetString, GetInt32, GetDecimal, etc.) cannot represent NULL and throw an exception. First ask IsDBNull, then read; otherwise, the programming error will only be visible in rows containing NULL." }
+    explanation: { de: "19.7.15: Der Indexer liefert ein object. Ein fehlender Wert ist in ADO.NET DBNull.Value (wie bei ExecuteScalar in Aufgabe 2 und bei DataRow in 19.7.11), nicht null. Erst prüfen, dann umwandeln; sonst zeigt sich der Fehler nur bei Zeilen mit NULL.", en: "19.7.15: The indexer returns an object. A missing value in ADO.NET is DBNull.Value (as with ExecuteScalar in exercise 2 and with DataRow in 19.7.11), not null. Check first, then convert; otherwise the error only shows up in rows containing NULL." }

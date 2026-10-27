@@ -9,7 +9,7 @@ public static class Skripte
     public const string Schema = """
         CREATE TABLE Kategorie (
             Id   INTEGER PRIMARY KEY,
-            Name TEXT NOT NULL UNIQUE
+            Name TEXT NOT NULL UNIQUE  -- UNIQUE: Deep Dive (optional)
         );
         CREATE TABLE Artikel (
             Id          INTEGER PRIMARY KEY,
@@ -48,16 +48,27 @@ public static class Skripte
         FROM Artikel a
         JOIN Kategorie k ON k.Id = a.KategorieId
         GROUP BY k.Id, k.Name
+        ORDER BY Anzahl DESC, Kategorie
+        """;
+
+    // Deep Dive (optional): HAVING filtert die Gruppen.
+    public const string KategorienMitMehrerenArtikeln = """
+        SELECT k.Name AS Kategorie, COUNT(*) AS Anzahl
+        FROM Artikel a
+        JOIN Kategorie k ON k.Id = a.KategorieId
+        GROUP BY k.Id, k.Name
         HAVING COUNT(*) > 1
         ORDER BY Anzahl DESC, Kategorie
         """;
 
+    // Pflicht (Buch): WHERE KategorieId = 2. Deep Dive (optional): die Id per Unterabfrage suchen.
     public const string Preiserhoehung = """
         UPDATE Artikel
         SET Preis = Preis * 1.10
         WHERE KategorieId = (SELECT Id FROM Kategorie WHERE Name = 'Garten')
         """;
 
+    // Deep Dive (optional): NOT EXISTS mit Unterabfrage.
     public const string LoescheLeereKategorien = """
         DELETE FROM Kategorie
         WHERE NOT EXISTS (SELECT 1 FROM Artikel WHERE Artikel.KategorieId = Kategorie.Id)

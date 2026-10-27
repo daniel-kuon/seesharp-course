@@ -15,8 +15,11 @@ passenden Objekte des jeweiligen Providers.
    `InvalidOperationException`.
 2. `LiesTabelle(verbindung, sql)`: Befehl ausführen und das Ergebnis mit
    `DataTable.Load(leser)` in eine `DataTable` laden. Befehl und Leser gibst du frei.
-3. `Verbindungsstring(fabrik, datei)`: mit `fabrik.CreateConnectionStringBuilder()`
-   die Schlüssel `Data Source` (die Datei) und `Mode` (`ReadOnly`) setzen und
+3. `Verbindungsstring(fabrik, datei)`: Das Buch zeigt den `DbConnectionStringBuilder` in
+   19.7.4.2 provider-spezifisch (`new SqlConnectionStringBuilder()`). Provider-unabhängig
+   liefert ihn die Fabrik (nicht im Buch, hier vorgegeben):
+   `var builder = fabrik.CreateConnectionStringBuilder()!;` Darin die Schlüssel
+   `builder["Data Source"] = datei;` und `builder["Mode"] = "ReadOnly";` setzen und
    `ConnectionString` zurückgeben. Der Builder maskiert Sonderzeichen im Pfad selbst.
 4. LINQ-to-DataSet über `AsEnumerable()` und `Field<T>(spaltenname)`:
    - `TeureArtikel(tabelle)`: Zeilen mit `Preis` über 10 (die Spalte ist `double`, weil

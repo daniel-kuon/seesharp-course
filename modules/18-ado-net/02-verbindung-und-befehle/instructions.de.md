@@ -10,9 +10,13 @@ abgeleitet, die Methoden heißen gleich).
 (`Id`, `Name`, `Telefon`) über eine **geöffnete Verbindung, die dem Aufrufer
 gehört**: Du öffnest und schließt sie hier nicht, sondern erzeugst pro Methode
 einen eigenen Befehl (in einer `using`-Anweisung). Alle Werte kommen als
-**Parameter** in den Befehl, nie per Textverkettung.
+**Parameter** in den Befehl, nie per Textverkettung. Das Buch legt einen Parameter mit
+`Parameters.Add("@name", SqlDbType...)` an und setzt danach `Value` (19.7.5.2). Kürzer
+geht es in einem Schritt (nicht im Buch, hier vorgegeben):
+`befehl.Parameters.AddWithValue("@name", name);`
 
-1. `Erzeuge()`: `CREATE TABLE IF NOT EXISTS` (mehrfach aufrufbar).
+1. `Erzeuge()`: `CREATE TABLE IF NOT EXISTS Kontakt (...)` (mehrfach aufrufbar; nicht im
+   Buch, hier vorgegeben, das Gegenstück zu `DROP TABLE IF EXISTS` aus 19.6.2.2).
 2. `Hinzufuegen(name, telefon)`: `INSERT` mit `@name` und `@telefon`. Ein
    `null` als Telefonnummer wird als **NULL** gespeichert (`DBNull.Value`).
 3. `Anzahl()`: `ExecuteScalar`; SQLite liefert hier ein `long`.

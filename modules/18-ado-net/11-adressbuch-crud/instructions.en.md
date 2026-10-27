@@ -2,7 +2,7 @@
 
 Reread **19.7.5 DbCommand** (page 1323) and **19.7.15 DbDataReader** (page 1363). In `Kontaktdienst.cs`, you manage the `Kontakt(Id, Name, Telefon)` table via an open connection that belongs to the caller. The `record Kontakt` record is predefined; `Telefon` is of type `string?`.
 
-1. `Neu(name, telefon)`: Insert a contact and return the **new ID** (`SELECT last_insert_rowid()` or `INSERT ... RETURNING Id`).
+1. `Neu(name, telefon)`: Insert a contact and return the **new ID** (not in the book, given here: after the `INSERT`, `SELECT last_insert_rowid()` via `ExecuteScalar` returns the Id as a `long`).
 2. `Aendern(id, name, telefon)`: `UPDATE`; `true` if the contact existed.
 3. `Loeschen(id)`: `DELETE`; `true` if the contact existed.
 4. `Suche(teil)`: all contacts whose name contains `teil`, sorted by name, including those without a phone number (`null`).

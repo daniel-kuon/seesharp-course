@@ -12,16 +12,16 @@ Abschnitte zu Visual Studio, SSMS und Azure Data Studio (19.3 bis 19.5) entfalle
 Daten liegen in **Tabellen** aus Zeilen und Spalten. Ein **Primärschlüssel**
 identifiziert eine Zeile eindeutig; ein **Fremdschlüssel** verweist auf den
 Primärschlüssel einer anderen Tabelle und hält so Beziehungen konsistent. Zusätzliche
-Einschränkungen (`NOT NULL`, `UNIQUE`, `CHECK`) gehören ins Schema, damit die
+Einschränkungen (`NOT NULL`, `CHECK`) gehören ins Schema, damit die
 Datenbank fehlerhafte Daten selbst abweist.
 
 **SQL** hat drei Teile: Datendefinition (`CREATE TABLE`), Datenmanipulation
 (`INSERT`, `UPDATE`, `DELETE`) und Abfragen mit `SELECT`. Abfragen filtert man mit
 `WHERE`, sortiert mit `ORDER BY`, verknüpft Tabellen mit `JOIN ... ON` und wertet mit
 Aggregatfunktionen (`COUNT`, `SUM`, `AVG`) und `GROUP BY` aus (19.6.4, Seite 1302).
-Über das Buch hinaus gehen `HAVING` (filtert die Gruppen), `UNIQUE`, `LEFT JOIN` und
-Unterabfragen; die Übungen erklären sie dort, wo sie gebraucht werden. Dialekte unterscheiden sich: SQLite schreibt
-`LIMIT 3` statt `TOP 3` und kommt mit `INTEGER PRIMARY KEY` ohne `IDENTITY` aus.
+Jedes Datenbanksystem spricht seinen eigenen SQL-Dialekt; das Buch zeigt T-SQL des
+SQL Servers. Die wenigen SQLite-Unterschiede, die die Übungen brauchen, geben die
+Aufgaben vor (siehe Deep Dive).
 
 ## ADO.NET und das Providermodell (19.7.1 und 19.7.2, Seite 1307)
 
@@ -45,14 +45,15 @@ Werte gehören als **Parameter** (`@name`) in den Befehl, nie per Textverkettung
 SQL-Text: Sonst kann ein Benutzer mit einer Eingabe wie `'; DROP TABLE ...` eigenes SQL
 einschleusen (**SQL-Injection**). Ein fehlender Wert ist in der Datenbank `NULL`, in
 ADO.NET `DBNull.Value`: Beim Schreiben wird aus `null` ein `DBNull.Value`, beim Lesen
-fragt man mit `IsDBNull` oder `is DBNull` und macht wieder `null` daraus.
+fragt man mit `is DBNull` und macht wieder `null` daraus.
 
 ## DbDataReader und Objekte (19.7.15, Seite 1363)
 
-Ein `DbDataReader` liefert Zeilen vorwärts: `Read()` rückt vor, `GetOrdinal` nennt
-die Spaltennummer, `GetInt32`, `GetString`, `GetDecimal` lesen typisiert. Aus jeder
-Zeile erzeugt man ein Objekt (Abbilden, *Mapping*). Den Leser gibt man sofort wieder
-frei.
+Ein `DbDataReader` liefert Zeilen vorwärts: `Read()` rückt vor und meldet `false`, wenn
+keine Zeile mehr kommt; der Indexer (`leser["Name"]` oder `leser[0]`) liefert den Wert
+als `object`, ein NULL als `DBNull.Value`. Aus jeder Zeile erzeugt man ein Objekt
+(Abbilden, *Mapping*). Den Leser gibt man sofort wieder frei. Typisierte Lesemethoden
+(`GetOrdinal`, `GetString`, `IsDBNull` ...) stehen nicht im Buch; Übung 3 gibt sie vor.
 
 ## Transaktionen (19.7.7 und 19.7.8, Seite 1332 bis 1343)
 
@@ -66,9 +67,9 @@ besprochen.
 ## Provider-unabhängiger Code und DataTable (19.7.3, 19.7.9, 19.7.17)
 
 Wer gegen `DbConnection`, `DbCommand` und `DbProviderFactory` programmiert (19.7.3,
-Seite 1314), kann das Datenbanksystem an einer Stelle austauschen. Einen
-`DbConnectionStringBuilder` baut die Fabrik; er setzt Verbindungszeichenfolgen
-sicher zusammen. Eine `DataTable` (19.7.9, Seite 1343) hält ein Ergebnis im Speicher,
+Seite 1314), kann das Datenbanksystem an einer Stelle austauschen. Ein
+`DbConnectionStringBuilder` (19.7.4.2) setzt Verbindungszeichenfolgen sicher zusammen;
+provider-unabhängig liefert ihn die Fabrik (in Übung 5 vorgegeben). Eine `DataTable` (19.7.9, Seite 1343) hält ein Ergebnis im Speicher,
 mit `Load(leser)` füllt man sie; **LINQ-to-DataSet** (19.7.17, Seite 1365) fragt sie
 über `AsEnumerable()` und `Field<T>("Spalte")` ab.
 
@@ -80,3 +81,19 @@ mit `Load(leser)` füllt man sie; **LINQ-to-DataSet** (19.7.17, Seite 1365) frag
 3. DataReader und Objektabbildung.
 4. Transaktionen: Überweisungen mit Commit und Rollback.
 5. Provider-unabhängiger Code, `DataTable` und LINQ-to-DataSet.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **Mehr SQL:** `UNIQUE` verbietet doppelte Werte in einer Spalte. `HAVING` steht hinter
+  `GROUP BY` und filtert die Gruppen (die Bedingung darf Aggregatfunktionen enthalten).
+  Eine **Unterabfrage** ist ein `SELECT` in Klammern in einem anderen Befehl;
+  `NOT EXISTS (SELECT ...)` ist wahr, wenn sie keine Zeile liefert. Ein `LEFT JOIN`
+  behält alle Zeilen der linken Tabelle; wo rechts nichts passt, stehen NULL-Werte.
+  Übung 1 und Zusatzübung 10 haben dazu freiwillige Teile.
+- **SQLite-Dialekt:** `INTEGER PRIMARY KEY` zählt ohne `IDENTITY` hoch, `LIMIT 3` am Ende
+  ersetzt `TOP 3`, `SELECT last_insert_rowid()` liefert die zuletzt vergebene Id, und
+  SQLite typisiert locker (`TEXT`, `REAL`, `INTEGER`).
+- **Typisierte Lesemethoden** des `DbDataReader`: `GetOrdinal`, `GetInt32`, `GetString`,
+  `GetDecimal`, `IsDBNull`. Sie sparen Casts, vertragen aber kein NULL.

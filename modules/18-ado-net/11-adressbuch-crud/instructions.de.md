@@ -6,7 +6,8 @@ Lies noch einmal **19.7.5 DbCommand** (Seite 1323) und **19.7.15 DbDataReader**
 Das `record Kontakt` ist vorgegeben; `Telefon` ist `string?`.
 
 1. `Neu(name, telefon)`: Kontakt einfügen und die **neue Id** zurückgeben
-   (`SELECT last_insert_rowid()` oder `INSERT ... RETURNING Id`).
+   (nicht im Buch, hier vorgegeben: nach dem `INSERT` liefert
+   `SELECT last_insert_rowid()` per `ExecuteScalar` die Id als `long`).
 2. `Aendern(id, name, telefon)`: `UPDATE`; `true`, wenn es den Kontakt gab.
 3. `Loeschen(id)`: `DELETE`; `true`, wenn es den Kontakt gab.
 4. `Suche(teil)`: alle Kontakte, deren Name `teil` enthält, nach Name sortiert,

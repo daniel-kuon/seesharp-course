@@ -6,7 +6,7 @@ Open `Zugriff.cs`. The `Datenzugriff` project must **not** have a reference to `
 
 1. `OeffneVerbindung(fabrik, verbindungsstring)` : `fabrik.CreateConnection()`, set the string, `Open()`. If the factory returns `null`, throw an `InvalidOperationException`.
 2. `LiesTabelle(verbindung, sql)`: Execute the command and load the result into a `DataTable` using `DataTable.Load(leser)`. Release the command and the reader.
-3. `Verbindungsstring(fabrik, datei)`: Use `fabrik.CreateConnectionStringBuilder()` to set the `Data Source` (the file) and `Mode` (`ReadOnly`) keys, and return `ConnectionString`. The builder escapes special characters in the path itself.
+3. `Verbindungsstring(fabrik, datei)`: The book shows the `DbConnectionStringBuilder` in 19.7.4.2 provider-specifically (`new SqlConnectionStringBuilder()`). Provider-independently, the factory supplies it (not in the book, given here): `var builder = fabrik.CreateConnectionStringBuilder()!;` Set the keys `builder["Data Source"] = datei;` and `builder["Mode"] = "ReadOnly";` and return `ConnectionString`. The builder escapes special characters in the path itself.
 4. LINQ to DataSet using `AsEnumerable()` and `Field<T>(spaltenname)`:
    - `TeureArtikel(tabelle)`: Rows with a `Preis` over 10 (the column is `double` because SQLite stores `REAL`),
    - `Namen(tabelle)`: the `Name` column as a list,

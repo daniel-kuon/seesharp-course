@@ -2,16 +2,24 @@
 
 Lies im Buch **19.7.15 DbDataReader** (Seite 1363). Ein Leser liefert das Ergebnis
 einer Abfrage Zeile für Zeile: `Read()` geht zur nächsten Zeile und meldet `false`,
-wenn es keine mehr gibt. Die Spalten liest man mit `GetOrdinal` (Spaltennummer zum
-Namen) und typisierten Methoden wie `GetInt32`, `GetString`, `GetDecimal`;
-`IsDBNull` fragt, ob die Spalte NULL enthält.
+wenn es keine mehr gibt. Das Buch liest die Spalten über den Indexer
+(`leser["Name"]` oder `leser[0]`), der ein `object` liefert; ein NULL kommt dort als
+`DBNull.Value` an.
+
+Bequemer sind typisierte Methoden (nicht im Buch, hier vorgegeben):
+`int spalte = leser.GetOrdinal("Name");` liefert die Spaltennummer zum Namen,
+`leser.GetInt32(spalte)`, `leser.GetString(spalte)` und `leser.GetDecimal(spalte)`
+lesen den Wert gleich im passenden Typ, und `leser.IsDBNull(spalte)` fragt, ob die
+Spalte NULL enthält. Die typisierten Methoden vertragen kein NULL (sie werfen eine
+Ausnahme), deshalb fragt man vorher `IsDBNull`. Du kannst auch beim Indexer bleiben.
 
 Öffne `ArtikelRepository.cs`. Das `record Artikel` ist vorgegeben (`Kategorie` ist
 `string?`). Du bildest Datenbankzeilen auf diese Objekte ab. Die Verbindung gehört
 dem Aufrufer; Leser und Befehle gibst du jeweils mit `using` frei.
 
 1. `Alle()`: alle Artikel, sortiert nach `Id`. Die vorgegebene Abfrage `Auswahl`
-   verbindet per `LEFT JOIN` die Kategorie; Artikel ohne Kategorie haben dort NULL
+   verbindet per `LEFT JOIN` die Kategorie (nicht im Buch, hier vorgegeben: anders als
+   `INNER JOIN` behält er auch Artikel ohne Kategorie). Diese Artikel haben dort NULL
    und müssen in C# `null` bleiben.
 2. `Suche(teil)`: Artikel, deren Name `teil` enthält, nach Name sortiert. Der
    Suchtext kommt als **Parameter** in einen `LIKE`-Ausdruck. Die Prozentzeichen

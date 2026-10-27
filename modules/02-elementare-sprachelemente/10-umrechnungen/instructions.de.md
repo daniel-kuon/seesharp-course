@@ -18,8 +18,8 @@ Der amtliche Kurs ist 1 Euro = 1,95583 DM.
    `decimal` mit dem Wert 1,95583 an (Suffix `m`) und verwende sie in den
    beiden DM-Methoden.
 4. `EuroInDm(decimal euro)` liefert den DM-Betrag, kaufmännisch auf zwei
-   Nachkommastellen gerundet (`Math.Round` mit
-   `MidpointRounding.AwayFromZero`).
+   Nachkommastellen gerundet: `Math.Round(wert, 2, MidpointRounding.AwayFromZero)`
+   (nicht im Buch, hier vorgegeben).
 5. `DmInEuro(int dm, int pfennig)` rechnet einen Betrag aus Mark und Pfennig
    (100 Pfennig = 1 DM) in Euro um, ebenso auf Cent gerundet. 0 DM und 99
    Pfennig sind 0,51 Euro, nicht 0.

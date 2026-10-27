@@ -2,7 +2,7 @@
 
 Extra exercise: optional; it blocks nothing. Using `/` and `%`, you can break numbers down into their parts—without using any loops. Loops are introduced in Level 3, where there's a continuation of this exercise for numbers of any length.
 
-Read section **4.5.1**, "**Arithmetic Operators**" (page 216), on integer division and modulo, and section **4.2.3, "Formatted Output**" (page 176), on the `d` format specifier with precision (`{x:d2}` outputs at least two digits, i.e., `07`).
+Read section **4.5.1**, "**Arithmetic Operators**" (page 216), on integer division and modulo, and section **4.2.3, "Formatted Output**" (page 176), on the `d` format specifier with precision (`{x:d2}` outputs at least two digits, i.e., `07`; what the precision does with `d` is not in the book, given here).
 
 Open `Ziffern.cs`:
 

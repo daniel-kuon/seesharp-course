@@ -6,7 +6,8 @@ gibt es eine Fortsetzung dieser Aufgabe für beliebig lange Zahlen.
 
 Lies im Buch **4.5.1 Arithmetische Operatoren** (Seite 216) zu Ganzzahldivision
 und Modulo und **4.2.3 Formatierte Ausgabe** (Seite 176) zur Formatangabe `d`
-mit Präzision (`{x:d2}` gibt mindestens zwei Ziffern aus, also `07`).
+mit Präzision (`{x:d2}` gibt mindestens zwei Ziffern aus, also `07`; was die
+Präzision bei `d` bewirkt, steht nicht im Buch, hier vorgegeben).
 
 Öffne `Ziffern.cs`:
 

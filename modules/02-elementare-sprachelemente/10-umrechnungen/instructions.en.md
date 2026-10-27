@@ -9,7 +9,7 @@ Open `Umrechner.cs`:
 1. `CelsiusInFahrenheit(double celsius)` calculates `celsius * 9 / 5 + 32`. Note: `9 / 5` alone is an integer division.
 2. `FahrenheitInCelsius(double fahrenheit)` calculates `(fahrenheit - 32) * 5 / 9`.
 3. In the class, declare a public constant named `DmProEuro` of type `decimal` with the value 1.95583 (suffix `m`) and use it in both DM methods.
-4. `EuroInDm(decimal euro)` returns the amount in DM, commercially rounded to two decimal places (`Math.Round` with `MidpointRounding.AwayFromZero`).
+4. `EuroInDm(decimal euro)` returns the amount in DM, commercially rounded to two decimal places: `Math.Round(wert, 2, MidpointRounding.AwayFromZero)` (not in the book, given here).
 5. `DmInEuro(int dm, int pfennig)` converts an amount in marks and pfennigs (100 pfennigs = 1 DM) to euros, rounded to the nearest cent. 0 DM and 99 pfennigs equal 0.51 euros, not 0.
 6. `Kassenbon(decimal betrag)` returns the text `12 Euro und 34 Cent` for `12.34m`. You get the euros by casting to `int`, and the cents with `* 100` and `%`. The amount is never negative and has at most two decimal places.
 

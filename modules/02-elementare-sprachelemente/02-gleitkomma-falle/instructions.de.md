@@ -19,7 +19,9 @@ Methodenaufruf** (Seite 220).
    empfiehlt in 4.5.4 allgemein eine Schwelle für die *relative* Abweichung;
    hier genügt die absolute mit vorgegebener Toleranz.)
 5. `RundeKaufmaennisch(decimal betrag)` rundet auf zwei Nachkommastellen,
-   wobei `,005` aufgerundet wird (`Math.Round` mit `MidpointRounding.AwayFromZero`).
+   wobei `,005` aufgerundet wird. Der Aufruf dafür ist
+   `Math.Round(betrag, 2, MidpointRounding.AwayFromZero)` (nicht im Buch,
+   hier vorgegeben).
 
 Diese Tests müssen bestehen:
 

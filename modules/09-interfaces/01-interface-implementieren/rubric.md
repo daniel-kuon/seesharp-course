@@ -6,6 +6,6 @@
   Quadrats ins Array? (Boxing.) Was liefert `formen[1].GetType()`?
 - Vergleich mit Level 7: Warum hier Interface statt abstrakter Basisklasse?
   (Struktur kann nicht erben; eine Klasse kann mehrere Interfaces
-  implementieren.) Level 9.7 vertieft das.
+  implementieren.) Das Quiz (Aufgabe 07) vertieft das.
 
 Modellantwort: `solution/`; Vorlagen in `samples/Interfaces/Interface-Datentypen` und `Fimplement`.

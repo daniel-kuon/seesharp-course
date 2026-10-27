@@ -10,8 +10,9 @@ Umfang und eine Skalierung. Öffne `IForm.cs`:
 
 1. Implementiere die vier Mitglieder in `Kreis` (eine Klasse; Fläche
    `π·r²`, Umfang `2·π·r`, Skalieren multipliziert den Radius).
-2. Implementiere sie in `Quadrat` (eine Struktur; Fläche `s²`, Umfang `4·s`).
-   Strukturen dürfen Interfaces implementieren, aber nicht erben.
+2. Implementiere sie in `Quadrat` (eine Struktur; Fläche `s²`, Umfang `4·s`,
+   Skalieren multipliziert die Seite). Strukturen dürfen Interfaces
+   implementieren, aber nicht von einer Basisklasse erben.
 3. `Formen.Gesamt(IForm[])` summiert die Inhalte; `Formen.Groesste(IForm[])`
    liefert den Namen der Form mit dem größten Inhalt (leeres Array: `""`).
    Beide Methoden kennen nur das Interface, nicht die konkreten Typen.

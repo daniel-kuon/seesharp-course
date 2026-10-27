@@ -24,8 +24,8 @@ items:
     id: faul
     prompt: { de: "var r = liste.RangeIt(1, 99); — in RangeIt steht als erste Anweisung eine Bereichsprüfung mit yield break. Wann läuft sie?", en: "var r = list.RangeIt(1, 99); — The first statement in RangeIt is a range check with `yield break`. When does it run?" }
     options:
-      - { de: "Erst beim ersten MoveNext(), also wenn jemand über r iteriert; der Aufruf selbst erzeugt nur ein Iterator-Objekt.", en: "Only when the first `MoveNext()` is called—that is, when someone iterates over `r`—does the call itself create an iterator object." }
-      - { de: "Sofort beim Aufruf von RangeIt.", en: "Immediately upon launching RangeIt." }
+      - { de: "Erst beim ersten MoveNext(), also wenn jemand über r iteriert; der Aufruf selbst erzeugt nur ein Iterator-Objekt.", en: "Only at the first `MoveNext()`, i.e. when someone iterates over `r`; the call itself only creates an iterator object." }
+      - { de: "Sofort beim Aufruf von RangeIt.", en: "Immediately when RangeIt is called." }
       - { de: "Nie; yield break ist nur eine Markierung für den Compiler.", en: "Never; a yield break is just a marker for the compiler." }
     correct: [0]
-    explanation: { de: "Iteratoren sind faul (9.5.2, Seite 651): Der Rumpf wird abschnittsweise bei jedem MoveNext ausgeführt. Deshalb wirkt eine Ausnahme im Rumpf erst beim Durchlaufen.", en: "Iterators are lazy (9.5.2, page 651): The body is executed in chunks each time `MoveNext` is called. Therefore, an exception in the body does not take effect until the iteration is complete." }
+    explanation: { de: "Iteratoren sind faul (9.5.1, Seite 650): Der Aufruf erzeugt nur das Iterator-Objekt, der Rumpf wird abschnittsweise bei jedem MoveNext ausgeführt. Deshalb wirkt eine Ausnahme im Rumpf erst beim Durchlaufen. yield break ist keine bloße Markierung, sondern beendet die Aufzählung: MoveNext liefert false (9.5.3, Seite 652).", en: "Iterators are lazy (9.5.1, page 650): the call only creates the iterator object; the body runs piece by piece on each `MoveNext`. Therefore an exception in the body only surfaces while iterating. `yield break` is not just a marker; it ends the enumeration: `MoveNext` returns `false` (9.5.3, page 652)." }

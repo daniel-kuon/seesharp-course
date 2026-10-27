@@ -3,7 +3,7 @@
 Gilt für alle offenen Fragen. Eine Antwort besteht, wenn alle wesentlichen Punkte
 sinngemäß vorkommen; der Wortlaut ist egal. Die Multiple-Choice-Fragen werten sich
 selbst aus (Lösungen: `icomparable-richtig` = `public int CompareTo(K? o)`,
-`explizit-richtig` = `string IA.Name()` und `string IB.Name()` ohne Modifizierer,
+`explizit-richtig` = `string IA.Name()` und `string IB.Name()` ohne Zugriffsmodifikator,
 `iterator-richtig` = `yield return` von 1 bis `n`, `generische-mathematik-richtig` =
 `where T : IAdditionOperators<T, T, T>`).
 
@@ -26,7 +26,7 @@ Klassen, nicht für Interfaces).
 ## explizit-wann
 
 Wesentliche Punkte:
-- Das Mitglied wird **ohne Zugriffsmodifizierer** mit dem Interface-Namen davor
+- Das Mitglied wird **ohne Zugriffsmodifikator** mit dem Interface-Namen davor
   implementiert (`int IMesser.Wert()`); es ist nicht Teil der öffentlichen Schnittstelle der
   Klasse.
 - Gründe (zwei genügen): (1) zwei Interfaces verlangen **gleichnamige Mitglieder mit
@@ -102,7 +102,7 @@ Ausgabe, zwei Zeilen: `0`, `2`
 - Das Zuweisen einer `struct` an eine Interface-Variable (`IZaehler t = s;`) **boxt** sie:
   Es entsteht eine **Kopie** auf dem Heap; `t` verweist darauf.
 - `t.Erhoehe()` zweimal erhöht die **Kopie**, nicht `s`: `s.N` bleibt `0`, `t.N` ist `2`.
-- Strukturen sind Werttypen; Boxing erzeugt ein unabhängiges Objekt (Level 6, Level 9.3.2).
+- Strukturen sind Werttypen; Boxing erzeugt ein unabhängiges Objekt (Level 6, Buch 9.3.2).
 
 Typische Fehler: `2 2` (wie bei einer `class` ein gemeinsames Objekt angenommen); eine Ausnahme
 erwartet.

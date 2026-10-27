@@ -6,7 +6,7 @@
   der Liste wiederverwendet (verschachtelte Schleifen brechen; der Test
   `Jeder_GetEnumerator_Aufruf_ist_unabhaengig` fängt das).
 - Warum zwei `GetEnumerator`? Explizite Implementierung der
-  nicht-generischen Schnittstelle aus 9.2 wiederholen.
+  nicht-generischen Schnittstelle aus 9.4 (Aufgabe 02) wiederholen.
 - `Dispose()` leer: `foreach` ruft es am Ende; bei Dateien o. Ä. würde man
   hier aufräumen (Level 15).
 - Ausblick: Die nächste Übung ersetzt die ganze Klasse durch `yield`.

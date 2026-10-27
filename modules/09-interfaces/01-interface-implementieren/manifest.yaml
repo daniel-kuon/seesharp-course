@@ -26,7 +26,7 @@ items:
     prompt: { de: "Darf man new IForm() schreiben?", en: "Is it okay to write `new IForm()`?" }
     options:
       - { de: "Nein; ein Interface hat keine Implementierung. IForm ist aber als Typ für Variablen, Parameter und Arrays erlaubt.", en: "No; an interface does not have an implementation. However, IForm is allowed as a type for variables, parameters, and arrays." }
-      - { de: "Ja, wenn alle Mitglieder Standardimplementierungen haben.", en: "Yes, if all members have standard implementations." }
+      - { de: "Ja, wenn alle Mitglieder Standardimplementierungen haben.", en: "Yes, if all members have default implementations." }
       - { de: "Ja; es entsteht ein leeres Objekt.", en: "Yes; an empty object is created." }
     correct: [0]
-    explanation: { de: "Interfaces sind Verpflichtungserklärungen (9, Seite 609); Instanzen entstehen nur von implementierenden Klassen oder Strukturen (9.3, Seite 644).", en: "Interfaces are declarations of commitment (9, p. 609); instances are created only from implementing classes or structures (9.3, p. 644)." }
+    explanation: { de: "Interfaces sind Verpflichtungserklärungen (9, Seite 609) und grundsätzlich abstrakt (9.1, Seite 614), auch wenn alle Mitglieder Standardimplementierungen haben; new IForm() ist ein Compilerfehler, ein leeres Objekt entsteht also nicht. Instanzen entstehen nur von implementierenden Klassen oder Strukturen (9.3, Seite 644).", en: "Interfaces are declarations of commitment (9, p. 609) and always abstract (9.1, p. 614), even if all members have default implementations; `new IForm()` is a compile error, so no empty object is created either. Instances are created only from implementing classes or structures (9.3, p. 644)." }

@@ -10,7 +10,7 @@ Verschiedenes. Mit einer einzigen öffentlichen `Wert()`-Methode bedient
 `Sensor.cs`:
 
 1. `Sensor`: Implementiere beide Mitglieder **explizit** mit dem
-   Interface-Namen davor und ohne Zugriffsmodifizierer:
+   Interface-Namen davor und ohne Zugriffsmodifikator:
    `int IZaehler.Wert() => 1;` und `int IMesser.Wert() => 2;`. Danach gibt
    es kein `s.Wert()` mehr; der Aufruf geht nur über eine Interface-Referenz
    (`((IZaehler)s).Wert()` oder `(s as IMesser).Wert()`).

@@ -258,7 +258,7 @@ items:
           ```
     correct: [3]
     explanation:
-      de: "Die erste Variante kompiliert, aber dieselbe Methode erfüllt beide Interfaces; über `IB` kommt ebenfalls `\"A\"` heraus. In der zweiten steht `public` an einer expliziten Implementierung, das ist nicht erlaubt (CS0106); explizite Implementierungen haben keinen Zugriffsmodifizierer. Die dritte deklariert zweimal dieselbe Signatur (CS0111). Die vierte ist richtig (9.4, Seite 646); aufrufbar sind beide nur über eine Referenz vom Typ `IA` bzw. `IB`."
+      de: "Die erste Variante kompiliert, aber dieselbe Methode erfüllt beide Interfaces; über `IB` kommt ebenfalls `\"A\"` heraus. In der zweiten steht `public` an einer expliziten Implementierung, das ist nicht erlaubt (CS0106); explizite Implementierungen haben keinen Zugriffsmodifikator. Die dritte deklariert zweimal dieselbe Signatur (CS0111). Die vierte ist richtig (9.4, Seite 646); aufrufbar sind beide nur über eine Referenz vom Typ `IA` bzw. `IB`."
       en: "The first variant compiles, but the same method fulfils both interfaces; through `IB` the result is also `\"A\"`. The second puts `public` on an explicit implementation, which is not allowed (CS0106); explicit implementations have no access modifier. The third declares the same signature twice (CS0111). The fourth is correct (9.4, page 646); both can be called only through a reference of type `IA` or `IB`."
   - type: multipleChoice
     id: iterator-richtig

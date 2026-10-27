@@ -1,6 +1,6 @@
 # IEnumerable<T> and a custom IEnumerator<T>
 
-See section **9.5, “IEnumerable<T> and IEnumerator<T>,”** (page 647) along with **9.5.1 Collection Enumerators** (page 648) and **9.1.4.1** on the `IEnumerable<T>` and `IEnumerable` interfaces (page 631).
+Read section **9.5, “IEnumerable<T> and IEnumerator<T>,”** (page 647) along with **9.5.1 Collection Enumerators** (page 648) and **9.1.4.1** on the `IEnumerable<T>` and `IEnumerable` interfaces (page 631).
 
 `foreach` works with any type that implements `IEnumerable<T>`: It retrieves an enumerator using `GetEnumerator()` and calls `MoveNext()` as long as the enumerator returns `true`; `Current` is the current element. In Section 9.5, the book has the compiler do this work (using `yield`; see the next exercise); here, you’ll write the enumerator by hand once to see how it works. Open `SimpleSortedList.cs`:
 
@@ -8,4 +8,4 @@ See section **9.5, “IEnumerable<T> and IEnumerator<T>,”** (page 647) along w
 2. `GetEnumerator()` returns a **new** enumerator each time it is called; two nested `foreach` loops over the same list must run independently.
 3. The non-generic `IEnumerable.GetEnumerator()` is explicitly implemented and simply delegates to the generic version.
 
-The collection initializer `new SimpleSortedList<int> { 11, 2 }` in `Program.cs` works because the class implements `IEnumerable` and has a `Add` method.
+The collection initializer `new SimpleSortedList<int> { 11, 2 }` in `Program.cs` works because the class implements `IEnumerable` and has an `Add` method.

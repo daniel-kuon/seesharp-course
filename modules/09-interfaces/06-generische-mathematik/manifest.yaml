@@ -1,8 +1,8 @@
 id: interfaces-generische-mathematik
-title: { de: "Generische Mathematik: IAdditionOperators und operator checked +", en: "Generic Mathematics: IAdditionOperators and operator checked +" }
+title: { de: "Generische Mathematik: IAdditionOperators und operator checked +", en: "Generic Math: IAdditionOperators and operator checked +" }
 reading:
   section: "9.1.3"
-  title: { de: "Generische Mathematik", en: "Generic Mathematics" }
+  title: { de: "Generische Mathematik", en: "Generic Math" }
   printedPage: 625
 teaches:
   - interfaces.generic-math
@@ -26,7 +26,7 @@ items:
     prompt: { de: "IAdditionOperators definiert operator checked + als statisches virtuelles Mitglied mit der Vorgabe left + right. Was bedeutet das für Bruch ohne eigene checked-Überladung?", en: "`IAdditionOperators` defines `operator checked +` as a static virtual member with the default `left + right`. What does that mean for `Bruch` without its own `checked` overload?" }
     options:
       - { de: "checked { b1 + b2 } ruft die normale Überladung; ein Überlauf bleibt unbemerkt. Erst die eigene checked-Variante mit checked(...) wirft OverflowException.", en: "checked { b1 + b2 } calls the normal overload; an overflow goes unnoticed. Only the custom checked variant with checked(...) throws an OverflowException." }
-      - { de: "Der Compiler erzwingt eine eigene checked-Überladung.", en: "The compiler enforces its own checked overloading." }
+      - { de: "Der Compiler erzwingt eine eigene checked-Überladung.", en: "The compiler requires a custom checked overload." }
       - { de: "checked { b1 + b2 } wirft automatisch bei Überlauf, weil checked alle Operatoren prüft.", en: "`checked { b1 + b2 }` automatically throws an overflow error because `checked` checks all operators." }
     correct: [0]
-    explanation: { de: "9.6 Aufgabe 3 (Seite 655): Die Vorgabe im Interface kümmert sich nicht um Überlauf; checked wirkt nur auf eingebaute Arithmetik und auf ausdrücklich als checked überladene Operatoren.", en: "9.6 Exercise 3 (page 655): The specification in the interface does not account for overflow; `checked` applies only to built-in arithmetic and to operators explicitly overloaded as `checked`." }
+    explanation: { de: "9.6 Aufgabe 3 (Seite 655): Die Vorgabe im Interface kümmert sich nicht um Überlauf, und weil sie konkret und virtuell ist, verlangt der Compiler keine eigene checked-Variante. checked wirkt nur auf die eingebaute Arithmetik im Block selbst und auf ausdrücklich als checked überladene Operatoren; die Rechnung im Rumpf von operator + steht nicht im checked-Block.", en: "9.6 Exercise 3 (page 655): The default implementation in the interface ignores overflow, and because it is concrete and virtual, the compiler does not require a custom checked variant. `checked` applies only to built-in arithmetic in the block itself and to operators explicitly overloaded as `checked`; the arithmetic inside `operator +` is not in the checked block." }

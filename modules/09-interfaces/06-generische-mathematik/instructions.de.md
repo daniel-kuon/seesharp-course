@@ -13,8 +13,9 @@ das Interface bereits durch `operator +` aus Level 4.
 
 1. In `Bruch.cs`: Ergänze `public static Bruch operator checked +(Bruch b1,
    Bruch b2)`. Sie rechnet Zähler und Nenner mit `checked(...)` und wirft
-   dadurch `OverflowException` statt leise überzulaufen; Etikett
-   `"b1 + b2"`, Ergebnis gekürzt. Ebenso `public void operator checked
+   dadurch `OverflowException` statt leise überzulaufen; das Etikett
+   entsteht wie beim normalen `+` (`$"{b1.Etikett} + {b2.Etikett}"`), das
+   Ergebnis wird gekürzt. Ebenso `public void operator checked
    +=(Bruch b)`. In einem `checked`-Block wählt der Compiler diese
    Varianten.
 2. In `Rechner.cs`: `Summe<T>(T first, params T[] rest)` summiert mit `+=`;

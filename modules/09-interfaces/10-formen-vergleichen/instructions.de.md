@@ -3,7 +3,8 @@
 Zusatzaufgabe: freiwillig, sie schaltet nichts frei. Zum Nachlesen:
 **9.1.1.2 Konkrete Instanzmethoden** (Seite 616), **9.2.1 Beispiel
 IComparable<T>** (Seite 640) und **9.1.4 Vererbung bzw. Erweiterung von
-Schnittstellen** (Seite 631).
+Schnittstellen** (Seite 631) mit 9.1.4.2 zum Ersetzen geerbter
+Schnittstellenmethoden (Seite 632).
 
 Kreise, Rechtecke und Dreiecke sollen sich nach ihrer Fläche sortieren
 lassen. Statt `CompareTo` dreimal gleich zu schreiben, bringt das Interface
@@ -18,8 +19,9 @@ die Implementierung gleich mit. Öffne `IForm.cs`:
    `int IComparable<IForm>.CompareTo(IForm? other) => ...`. Vergleiche die
    Flächen; `null` gilt als kleiner als jede Form.
 3. `Kreis(radius)`, `Rechteck(breite, hoehe)` und `Dreieck(a, b, c)`
-   implementieren nur `Flaeche` und `Umfang`; `CompareTo` erben sie vom
-   Interface. Die Dreiecksfläche liefert die Formel von Heron:
+   implementieren nur `Flaeche` und `Umfang`; `CompareTo` liefert das
+   Interface (geerbt wird es nicht; aufrufbar ist es über eine Referenz vom
+   Interface-Typ, 9.1.4.3, Seite 634). Die Dreiecksfläche liefert die Formel von Heron:
    `s = (a + b + c) / 2`, Fläche `√(s·(s−a)·(s−b)·(s−c))`. Seiten, die
    kein Dreieck ergeben (eine Seite ist nicht kürzer als die beiden anderen
    zusammen), werfen im Konstruktor `ArgumentException`.

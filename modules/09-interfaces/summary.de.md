@@ -5,21 +5,21 @@ Eigenschaften, Indexer (und Ereignisse) auf, die ein Typ anbieten muss,
 ohne sie selbst zu implementieren (Kapitel 9, Seite 609). Wer sich mit
 `class Bruch : IComparable<Bruch>` zu einem Interface bekennt, muss liefern
 und wird dafür überall akzeptiert, wo das Interface als Typ steht. Die BCL
-ist voll davon: `String` implementiert acht Interfaces, `Array.Sort`
+ist voll davon: Der Definitionskopf von `String` nennt acht Interfaces, `Array.Sort`
 verlangt `IComparable<T>`, `foreach` verlangt `IEnumerable<T>`.
 
 ## Definieren und implementieren (9.1 bis 9.3, Seite 614 bis 646)
 
-Interface-Mitglieder sind implizit `public` und abstrakt; Instanzfelder gibt
-es nicht. Eine Klasse oder **Struktur** implementiert beliebig viele
+Interface-Mitglieder ohne Rumpf sind implizit `public` und abstrakt;
+Instanzfelder und Konstruktoren gibt es nicht. Eine Klasse oder **Struktur** implementiert beliebig viele
 Interfaces, erbt aber nur von einer Basisklasse. Das ist die Antwort auf
 die Buchfrage nach dem Unterschied zu abstrakten Klassen (9.6 Aufgabe 2):
 Abstrakte Klassen geben Zustand und Code an eine Hierarchie weiter,
 Interfaces beschreiben eine Fähigkeit quer durch alle Hierarchien. Als
 Referenztyp erlaubt ein Interface gemischte Arrays (`IForm[]` mit Kreisen
 und Quadraten); beim Zuweisen einer Struktur an eine Interface-Variable
-wird sie **geboxt**, Änderungen am Original kommen in der Kopie nicht an
-(9.3.2, Seite 645). Seit C# 8 dürfen Interfaces konkrete Mitglieder mit
+wird sie **geboxt**: Änderungen über die Interface-Variable treffen nur die
+geboxte Kopie, nicht das Original (9.3.2, Seite 645). Seit C# 8 dürfen Interfaces konkrete Mitglieder mit
 Standardimplementierung enthalten (9.1.1.2, Seite 616).
 
 ## Explizite Implementierung (9.4, Seite 646)
@@ -27,7 +27,7 @@ Standardimplementierung enthalten (9.1.1.2, Seite 616).
 Verlangen zwei Interfaces gleichnamige Mitglieder mit verschiedener
 Bedeutung, oder soll ein Mitglied nicht in der öffentlichen Schnittstelle
 der Klasse auftauchen, implementiert man es **explizit**: `int
-IMesser.Wert() => 2;` ohne Modifizierer. Der Aufruf geht dann nur über eine
+IMesser.Wert() => 2;` ohne Zugriffsmodifikator. Der Aufruf geht dann nur über eine
 Referenz vom Interface-Typ. Die BCL macht das ständig: Das nicht-generische
 `IEnumerable.GetEnumerator()` ist meist explizit, damit nur die generische
 Fassung sichtbar bleibt.
@@ -48,16 +48,16 @@ daneben sinnvoll; `MemberwiseClone()` liefert die flache Kopie.
 `MoveNext()` auf, bis es `false` liefert; `Current` ist das aktuelle
 Element. Einen Enumerator von Hand zu schreiben (geschachtelte Klasse mit
 Position, `MoveNext`, `Current`, `Reset`) zeigt das Protokoll; mit `yield
-return` erzeugt der Compiler die Zustandsmaschine selbst (9.5.2, Seite 651).
+return` erzeugt der Compiler die Zustandsmaschine selbst (9.5.1, Seite 648).
 Iteratoren können auch benannte Methoden oder Eigenschaften sein
-(`RangeIt`, `DownIt`, `RangeItUpDown`; 9.5.3, Seite 652), `yield break`
+(`RangeIt`, `DownIt`; 9.5.3, Seite 652; `RangeItUpDown` ist 9.6 Aufgabe 4), `yield break`
 beendet sie vorzeitig. Wichtig: Iteratoren sind **faul**, ihr Rumpf läuft
 erst beim Durchlaufen. LINQ in Level 13 baut vollständig darauf auf.
 
-## Statische abstrakte Mitglieder und generische Mathematik (9.1.2, 9.1.3, Seite 622 bis 630)
+## Statische abstrakte Mitglieder und generische Mathematik (9.1.2, 9.1.3, Seite 622 bis 631)
 
-Seit C# 11 kann ein Interface statische Mitglieder und sogar Operatoren
-verlangen (`static abstract TSelf operator +`). Die BCL nutzt das für
+Seit C# 11 kann ein Interface statische abstrakte Mitglieder und sogar
+Operatoren verlangen (`static abstract TSelf operator +`). Die BCL nutzt das für
 `IAdditionOperators<T, T, T>`, `INumber<T>` und Verwandte: Generischer
 Code darf `a + b` schreiben, sobald `T` das Interface zusichert, und das
 gilt für `int`, `double`, `decimal` und eigene Typen wie `Bruch`
@@ -72,11 +72,11 @@ Generische Klassen sind invariant (Level 8). Generische Interfaces dürfen
 Typformalparameter als `out` (nur Ausgabe) oder `in` (nur Eingabe)
 markieren: `IEnumerable<out T>` ist **kovariant**, eine Folge von Kreisen
 geht als Folge von Figuren durch (9.1.5.1); `IComparable<in T>` ist
-**kontravariant**, ein Vergleicher für Figuren sortiert auch Kreise
-(9.1.5.2). Kommt `T` in beiden Positionen vor (`IList<T>`), bleibt nur
+**kontravariant**: `Kreis` erbt von `Figur` nur `IComparable<Figur>`, und
+trotzdem sortiert `List<Kreis>.Sort()` die Kreise (9.1.5.2). Kommt `T` in beiden Positionen vor (`IList<T>`), bleibt nur
 Invarianz.
 
 Vertiefung im Buch: Kapitel 9 (Seite 609 bis 656); die Übungsaufgaben in
 9.6 (Seite 655) liefern `IComparable`/`ICloneable`, `operator checked +`
-und `RangeItUpDown` dieses Levels. Statische Polymorphie (CRTP, 9.1.2.3)
-ist Zusatzstoff.
+und `RangeItUpDown` dieses Levels. Statische Polymorphie (9.1.2.3) und
+das CRTP (9.1.3.3) sind Zusatzstoff.

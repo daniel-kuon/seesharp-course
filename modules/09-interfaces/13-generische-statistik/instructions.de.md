@@ -9,7 +9,7 @@ verlangt. `INumber<T>` fasst alles zusammen, was eine Zahl kann: die
 Operatoren `+ - * /`, Vergleiche mit `<` und `>`, und **statische**
 Mitglieder wie `T.Zero`, `T.One` und `T.CreateChecked(...)`. Statische
 Mitglieder ruft man am Typparameter auf (`T.Zero`); das geht nur, weil das
-Interface sie als `static abstract` verlangt und `int`, `double`,
+Interface sie als `static abstract` (bzw. `static virtual`) verlangt und `int`, `double`,
 `decimal` usw. sie implementieren. Öffne `Statistik.cs`:
 
 1. Ergänze bei jeder Methode die Einschränkung `where T : INumber<T>`

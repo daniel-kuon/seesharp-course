@@ -1,6 +1,6 @@
 # Rubrik — IComparable/ICloneable (nur für die Betreuung)
 
-- Das Buch-Beispiel rechnet `long z1hn = Zaehler * b.Nenner;` ohne Cast,
+- Die Beispiellösung zum Buch (`samples/`) rechnet `long z1hn = Zaehler * b.Nenner;` ohne Cast,
   also in `int`, und läuft bei großen Werten über. Der Test
   `CompareTo_ueberlaeuft_nicht_bei_grossen_Werten` fängt das; wer abgetippt
   hat, lernt den Unterschied zwischen Deklaration und Rechentyp.
@@ -8,6 +8,9 @@
   kurz einordnen.
 - Nachfrage: Warum ist `CompareTo` mit `Bruch?` deklariert? (Das Interface
   erlaubt null; Nullable-Annotation.)
+- Die Kreuzmultiplikation setzt positive Nenner voraus; `Bruch` erlaubt aber
+  negative (`1/-2`), dann kehrt sich der Vergleich um. Die Tests nutzen nur
+  positive Nenner; gute Nachfrage.
 - `Array.Sort` ohne `IComparable<T>` wirft `InvalidOperationException`;
   einmal zeigen, indem man die Interface-Angabe entfernt.
 

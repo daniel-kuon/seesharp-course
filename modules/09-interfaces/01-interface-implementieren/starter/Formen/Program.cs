@@ -3,7 +3,7 @@ foreach (var f in formen)
     Console.WriteLine($"{f.Name}: Inhalt {f.Inhalt:f2}, Umfang {f.Umfang():f2}");
 Console.WriteLine($"Gesamt: {Formen.Gesamt(formen):f2}, größte Form: {Formen.Groesste(formen)}");
 
-// Tückisches Boxing (9.3.2): q ist eine Struktur, f eine geboxte Kopie davon.
+// Tückisches Boxing (9.3.2): q ist eine Struktur, geboxt eine geboxte Kopie davon.
 var q = new Quadrat(1.0);
 IForm geboxt = q;
 q.Skaliere(3.0);

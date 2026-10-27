@@ -1,5 +1,5 @@
 // Ein Interface beschreibt Handlungskompetenzen ohne Implementierung.
-// Mitglieder sind implizit public; Felder gibt es nicht.
+// Mitglieder sind implizit public; Instanzfelder gibt es nicht.
 public interface IForm {
     string Name { get; }
     double Inhalt { get; }

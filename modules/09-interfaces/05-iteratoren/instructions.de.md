@@ -10,7 +10,7 @@ In der vorigen Übung hast du einen Enumerator von Hand geschrieben. Mit
 einer Zustandsmaschine, die bei jedem `MoveNext()` bis zum nächsten `yield`
 läuft. Öffne `SimpleSortedList.cs`:
 
-1. `GetEnumerator()`: Schleife über `data[0 .. size - 1]` mit `yield return`.
+1. `GetEnumerator()`: Schleife über `data[0]` bis `data[size - 1]` mit `yield return`.
 2. `RangeIt(first, last)`: liefert die Elemente von `first` bis `last`
    einschließlich; liegt der Bereich außerhalb (`first < 0` oder
    `last >= size`), beendet `yield break` den Iterator, ohne etwas zu

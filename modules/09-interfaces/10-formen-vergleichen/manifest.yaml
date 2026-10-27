@@ -3,7 +3,7 @@ title: { de: "Zusatz: Formen vergleichen und sortieren", en: "Extra: Comparing a
 optional: true
 reading:
   section: "9.1.1.2"
-  title: { de: "Konkrete Instanzmethoden", en: "Specific instance methods" }
+  title: { de: "Konkrete Instanzmethoden", en: "Concrete instance methods" }
   printedPage: 616
 teaches:
   - interfaces.declare

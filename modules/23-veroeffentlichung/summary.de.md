@@ -46,8 +46,8 @@ Datei wird größer, und sie ist nicht portabel.
 ## Beispiele (23.2, Seite 1649 bis 1662)
 
 Das Buch veröffentlicht ein Konsolenprogramm als getrimmte Einzeldatei und als
-R2R-Einzeldatei für `win-x86`, `linux-x64` und `osx-x64`; das Kommando ist
-`dotnet publish -r win-x64 -p:PublishSingleFile=true`. Die Visual-Studio-
+R2R-Einzeldatei für `win-x86`, `linux-x64` und `osx-x64`; das Kommando für die getrimmte Einzeldatei ist
+`dotnet publish -r win-x86 -p:PublishSingleFile=true -p:PublishTrimmed=true` (23.2.1, Seite 1652). Die Visual-Studio-
 Veröffentlichungsprofile (23.1.3, Seite 1639) ersetzen wir durch
 `dotnet publish` im Terminal oder in Rider. Eine Webanwendung wird lokal als
 Ordner veröffentlicht und startet mit dem eingebauten Webserver Kestrel

@@ -2,7 +2,7 @@ id: publish-einzeldatei-und-readytorun
 title: { de: "Einzeldatei und ReadyToRun", en: "Single File and ReadyToRun" }
 reading:
   section: "23.1.6"
-  title: { de: "Zusammenfassung in einer einzelnen Datei", en: "Summary in a single file" }
+  title: { de: "Zusammenfassung in einer einzelnen Datei", en: "Combining into a single file" }
   printedPage: 1646
 teaches:
   - publish.single-file

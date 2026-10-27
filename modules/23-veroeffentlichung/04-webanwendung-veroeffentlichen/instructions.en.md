@@ -1,8 +1,8 @@
 # Publish and Host a Web Application
 
 Read section **23.2.3, "Web Application with ASP.NET Core Razor Pages**," in the book (page
-1658) with **23.2.3.1 Local Installation** (page 1658), **23.2.3.2 Hosting,** and **23.2.3.3 Reverse Proxy** (page 1662). Section 22.2.2 (page
-1553) Have you seen this yet? It explains what `launchSettings.json` controls.
+1658) with **23.2.3.1 Local Installation** (page 1658), **23.2.3.2 Hosting,** and **23.2.3.3 Reverse Proxy** (page 1662). You already know section 22.2.2 (page
+1553): it explains what `launchSettings.json` controls.
 
 Answer the quiz questions. Then publish a web application yourself and run it from the publish folder:
 

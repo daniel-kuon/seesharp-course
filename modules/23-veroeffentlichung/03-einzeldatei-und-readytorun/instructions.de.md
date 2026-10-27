@@ -5,7 +5,7 @@ Lies im Buch **23.1.6 Zusammenfassung in einer einzelnen Datei** (Seite
 **23.2.1 Einzeldateianwendung** (Seite 1649) und **23.2.2
 ReadyToRun-Einzeldateianwendung** (Seite 1652). Das Buch veröffentlicht mit dem
 Assistenten und zusätzlich mit `PublishTrimmed`; du nutzt das
-Kommandozeilenkommando `dotnet publish` mit den Optionen aus dem Manifest
+Kommandozeilenkommando `dotnet publish` mit den Optionen aus der Tabelle unten
 (ohne Trimmen).
 
 Veröffentliche das Konsolenprogramm aus der vorigen Aufgabe in drei

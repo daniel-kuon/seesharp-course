@@ -13,5 +13,5 @@
   (Ohne `launchSettings.json` und ohne Umgebungsvariable ist die Umgebung
   Production.) Was ändert das? (Entwickler-Fehlerseite aus, `UseExceptionHandler`.)
 - Nachfrage: Wozu dient der Reverse Proxy (TLS-Zertifikat an einer Stelle,
-  mehrere Anwendungen hinter Port 443, Neustart einer Anwendung ohne Unterbruch
+  mehrere Anwendungen hinter Port 443, Neustart einer Anwendung ohne Unterbrechung
   der anderen)?

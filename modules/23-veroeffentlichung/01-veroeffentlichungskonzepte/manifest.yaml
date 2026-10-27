@@ -1,5 +1,5 @@
 id: publish-konzepte
-title: { de: "Veröffentlichungskonzepte: Quiz", en: "Publication Strategies: Quiz" }
+title: { de: "Veröffentlichungskonzepte: Quiz", en: "Publishing Concepts: Quiz" }
 reading:
   section: "23.1"
   title: { de: "Veröffentlichungsoptionen", en: "Publishing Options" }
@@ -19,7 +19,7 @@ items:
     id: debug-release
     prompt: { de: "Was unterscheidet die Konfigurationen `Debug` und `Release`?", en: "What is the difference between the `Debug` and `Release` configurations?" }
     options:
-      - { de: "Release erzeugt ein leistungsoptimiertes, aber schwerer zu debuggendes Assembly (zum Beispiel durch Inlining); Debug ist gut testbar und nicht optimiert. Ausgeliefert wird Release.", en: "The \"Release\" build generates assembly code that is performance-optimized but harder to debug (for example, due to inlining); the \"Debug\" build is easy to test and is not optimized. The \"Release\" build is the one shipped." }
+      - { de: "Release erzeugt ein leistungsoptimiertes, aber schwerer zu debuggendes Assembly (zum Beispiel durch Inlining); Debug ist gut testbar und nicht optimiert. Ausgeliefert wird Release.", en: "The \"Release\" build generates an assembly that is performance-optimized but harder to debug (for example, due to inlining); the \"Debug\" build is easy to test and is not optimized. The \"Release\" build is the one shipped." }
       - { de: "Debug ist schneller, weil es keine Prüfungen enthält; Release enthält zusätzliche Sicherheitsprüfungen.", en: "The Debug version is faster because it does not include any checks; the Release version includes additional security checks." }
       - { de: "Es gibt keinen Unterschied außer dem Namen des Ausgabeordners (bin/Debug, bin/Release).", en: "There is no difference other than the name of the output folder (bin/Debug, bin/Release)." }
     correct: [0]
@@ -48,7 +48,7 @@ items:
     options:
       - { de: "Nach Betriebssystem und CPU-Architektur des Zielrechners, zum Beispiel `win-x64` für ein 64-Bit-Windows, `linux-arm64` für einen ARM-Server unter Linux.", en: "Based on the target computer's operating system and CPU architecture; for example, `win-x64` for a 64-bit Windows system, or `linux-arm64` for an ARM server running Linux." }
       - { de: "Nach dem Betriebssystem des Entwicklungsrechners; das Programm wird dort gebaut und läuft deshalb überall.", en: "It depends on the operating system of the development computer; the program is built there and therefore runs everywhere." }
-      - { de: "Nach der .NET-Version; `net10.0` ist der RID für .NET 10.", en: "Based on the .NET version, `net10.0`, the RID for .NET 10 is." }
+      - { de: "Nach der .NET-Version; `net10.0` ist der RID für .NET 10.", en: "By the .NET version; `net10.0` is the RID for .NET 10." }
     correct: [0]
     explanation: { de: "23.1.4 (Seite 1643): Die Zielruntime bestimmt Betriebssystem und CPU-Architektur des ausführenden Rechners. Bei eigenständigen Programmen enthält die Auslieferung die Laufzeit für genau diese Zielruntime.", en: "23.1.4 (page 1643): The target runtime determines the operating system and CPU architecture of the computer on which the program is running. For standalone programs, the distribution includes the runtime for that specific target runtime." }
   - type: multipleChoice
@@ -56,7 +56,7 @@ items:
     prompt: { de: "Ein frameworkabhängiges Programm wird mit `-r win-x86` veröffentlicht. Was ändert der RID an der Auslieferung?", en: "A framework-dependent program is released with the `-r win-x86` flag. How does the RID affect the distribution?" }
     options:
       - { de: "Nur den mitgelieferten Starter (`.exe`, hier 32 Bit); die `.dll` mit dem IL-Code bleibt gleich.", en: "Just the included launcher (`.exe`, 32-bit in this case); the `.dll` file containing the IL code remains the same." }
-      - { de: "Er fügt die komplette Laufzeit zur Auslieferung hinzu.", en: "He adds the entire runtime to the delivery." }
+      - { de: "Er fügt die komplette Laufzeit zur Auslieferung hinzu.", en: "It adds the entire runtime to the delivery." }
       - { de: "Er übersetzt den IL-Code in Maschinencode für 32 Bit.", en: "It translates the IL code into 32-bit machine code." }
     correct: [0]
     explanation: { de: "23.1.4 und 23.1.5 (Seite 1644 und 1645): Bei einem normalen, von der Laufzeit abhängigen Assembly wirkt sich die Zielruntime nur auf den Starthelfer aus. Entscheidend wird sie bei eigenständigen und ReadyToRun-Programmen.", en: "23.1.4 and 23.1.5 (pages 1644 and 1645): In a normal, runtime-dependent assembly, the target runtime affects only the startup helper. It becomes critical for standalone and ReadyToRun programs." }

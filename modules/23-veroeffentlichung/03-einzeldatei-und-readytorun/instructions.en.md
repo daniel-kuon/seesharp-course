@@ -1,6 +1,6 @@
 # Single File and ReadyToRun
 
-Read section **23.1.6, “Compiling into a Single File”** (page 1646), **23.1.7 ReadyToRun Compilation** (page 1648), and the examples **23.2.1 Single-File Application** (page 1649) and **23.2.2 ReadyToRun Single-File Application** (page 1652). The book is published using the wizard and additionally with `PublishTrimmed`; you use the command-line command `dotnet publish` with the options from the manifest (without trimming).
+Read section **23.1.6, “Compiling into a Single File”** (page 1646), **23.1.7 ReadyToRun Compilation** (page 1648), and the examples **23.2.1 Single-File Application** (page 1649) and **23.2.2 ReadyToRun Single-File Application** (page 1652). The book publishes with the wizard and additionally with `PublishTrimmed`; you use the command `dotnet publish` with the options from the table below (without trimming).
 
 Publish the console program from the previous exercise in three versions and compare them:
 

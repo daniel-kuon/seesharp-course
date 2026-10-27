@@ -84,7 +84,7 @@ Typische Fehlvorstellungen: R2R mache die Datei kleiner; R2R sei portabel wie IL
 
 Wesentlich:
 - Erster Befehl: Kestrel lauscht auf `http://localhost:5000` (Standardport, nur HTTP). Zweiter Befehl: `--urls` überschreibt die Adresse, die Anwendung antwortet auf `http://localhost:5123` (Port 5000 ist dann nicht belegt).
-- `launchSettings.json` gilt nur für Starts aus der Entwicklungsumgebung (`dotnet run`, Rider) und wird nicht mit veröffentlicht; die Ports aus der Datei (im Beispiel der Vorlage ebenfalls 5000, bei anderen Projekten ein anderer Wert) gelten im Veröffentlichungsordner nicht mehr. Ohne Einstellung benutzt Kestrel Port 5000.
+- `launchSettings.json` gilt nur für Starts aus der Entwicklungsumgebung (`dotnet run`, Rider) und wird nicht mit veröffentlicht; die Ports aus der Datei (die Vorlage `webapp` trägt beim Anlegen einen zufälligen Port ein, etwa 5233) gelten im Veröffentlichungsordner nicht mehr. Ohne Einstellung benutzt Kestrel Port 5000.
 - Zusatz (nicht verlangt, nicht im Buch): Die Konsole meldet in diesem Fall „Hosting environment: Production".
 
 Typische Fehlvorstellungen: Die Anwendung benutze den Port aus `launchSettings.json` weiter; ohne `--urls` sei kein Start möglich; Port 5000 gelte auch bei `--urls`.

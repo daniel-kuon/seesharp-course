@@ -1,4 +1,4 @@
-# Extra: Release Quiz 2
+# Extra: Publishing Quiz 2
 
 Review **Section 23.1.4, “Target Runtime”** (page 1643), and read the examples in **Sections 23.2.1 and 23.2.2** (pages 1649–1658) again.
 

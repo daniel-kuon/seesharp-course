@@ -35,8 +35,8 @@ items:
     id: launchsettings
     prompt: { de: "Im Entwicklungsordner hört die Anwendung nach `dotnet run` auf `http://localhost:5194`. Aus dem Veröffentlichungsordner gestartet, antwortet dieser Port nicht; die Konsole nennt Port 5000. Warum?", en: "In the development folder, the application listens on `http://localhost:5194` after `dotnet run`. Started from the publish folder, this port does not respond; the console shows port 5000. Why?" }
     options:
-      - { de: "Die Ports stehen in `launchSettings.json`, und die Datei fehlt im Veröffentlichungsordner; ohne Einstellung benutzt Kestrel den Standardport 5000 (nur HTTP).", en: "The ports are specified in `launchSettings.json`, and the file is missing from the release folder; without this setting, Kestrel uses the default port 5000 (HTTP only)." }
-      - { de: "Die Veröffentlichung hat die Portnummer zufällig neu gewürfelt.", en: "The release randomly reassigned the port number." }
+      - { de: "Die Ports stehen in `launchSettings.json`, und die Datei fehlt im Veröffentlichungsordner; ohne Einstellung benutzt Kestrel den Standardport 5000 (nur HTTP).", en: "The ports are specified in `launchSettings.json`, and the file is missing from the publish folder; without this setting, Kestrel uses the default port 5000 (HTTP only)." }
+      - { de: "Die Veröffentlichung hat die Portnummer zufällig neu gewürfelt.", en: "Publishing randomly reassigned the port number." }
       - { de: "Release-Anwendungen dürfen nur Ports unter 1024 benutzen.", en: "Release applications may only use ports below 1024." }
     correct: [0]
     explanation: { de: "23.2.3.1 (Seite 1661): `launchSettings.json` gilt nur für Starts aus der Entwicklungsumgebung. Alternativen zum Ändern des Ports sind die Umgebungsvariable `ASPNETCORE_URLS` oder die Kommandozeilenoption `--urls`.", en: "23.2.3.1 (page 1661): `launchSettings.json` applies only to launches from the development environment. Alternatives for changing the port are the `ASPNETCORE_URLS` environment variable or the `--urls` command-line option." }
@@ -46,7 +46,7 @@ items:
     options:
       - { de: "`ASPNETCORE_URLS` nennt die Adressen und Ports, auf denen Kestrel lauscht (zum Beispiel `http://localhost:8080`); `ASPNETCORE_ENVIRONMENT` nennt die Umgebung (`Development`, `Production`), von der zum Beispiel abhängt, ob die Entwickler-Fehlerseite erscheint.", en: "`ASPNETCORE_URLS` specifies the addresses and ports on which Kestrel listens (for example, `http://localhost:8080`); `ASPNETCORE_ENVIRONMENT` specifies the environment (`Development`, `Production`), which determines, for example, whether the developer error page is displayed." }
       - { de: "`ASPNETCORE_URLS` legt fest, welche Internetseiten die Anwendung aufrufen darf; `ASPNETCORE_ENVIRONMENT` den Namen des Betriebssystems.", en: "`ASPNETCORE_URLS` specifies which websites the application is allowed to access; `ASPNETCORE_ENVIRONMENT` specifies the name of the operating system." }
-      - { de: "Beide nur, ob die Anwendung frameworkabhängig oder eigenständig ist.", en: "The only difference is whether the application is framework-dependent or standalone." }
+      - { de: "Beide nur, ob die Anwendung frameworkabhängig oder eigenständig ist.", en: "Both only control whether the application is framework-dependent or self-contained." }
     correct: [0]
     explanation: { de: "Ergänzung aus der Dokumentation (nicht im Buch). Im Buch (22.2.2, Seite 1553) steht die Umgebung `Development` in `launchSettings.json`, und `Program.cs` verzweigt mit `app.Environment.IsDevelopment()`.", en: "Additional information from the documentation (not included in the book). In the book (22.2.2, page 1553), the `Development` environment is specified in `launchSettings.json`, and `Program.cs` uses `app.Environment.IsDevelopment()` to branch the code." }
   - type: review

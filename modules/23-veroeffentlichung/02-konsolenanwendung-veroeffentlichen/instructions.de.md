@@ -4,8 +4,10 @@ Lies im Buch **23.2.1 Einzeldateianwendung** (Seite 1649) und
 **23.1.5 Bereitstellungsmodus** (Seite 1644, nur den Teil
 *frameworkabhängig*). Das Buch zeigt dort den Visual-Studio-Assistenten; in
 dieser Aufgabe benutzt du stattdessen das Kommando, das der Assistent im
-Hintergrund ausführt: `dotnet publish`. Auch die Buchaufgabe 4 in **3.7**
-fragt nach den Dateien einer Veröffentlichung.
+Hintergrund ausführt: `dotnet publish`. Die Buchaufgabe 4 in **3.7** (Seite 159)
+fragt, welche Dateien aus dem Ausgabeordner einer Projekterstellung
+(`bin/Release/net10.0`) man ausliefern muss; hier stellst du dieselbe Frage für den
+Veröffentlichungsordner.
 
 1. Wähle ein Konsolenprogramm aus einem früheren Level (oder lege mit
    `dotnet new console` ein neues an).

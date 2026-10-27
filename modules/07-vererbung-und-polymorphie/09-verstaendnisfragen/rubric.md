@@ -124,7 +124,8 @@ statischen Typ); `K2` für das Quadrat.
 ## code-record-vererbung
 
 Ausgabe, zwei Zeilen: `False`, `Kreis { X = 1, Y = 2, R = 5 }`
-- Die Wertgleichheit von Records berücksichtigt den **exakten Typ** (`EqualityContract`):
+- Die Wertgleichheit von Records berücksichtigt den **Laufzeittyp** (6.7.4); den Namen
+  `EqualityContract` muss niemand kennen (Bonus, Deep Dive):
   Ein `Kreis` ist nie gleich einem `Figur`, selbst wenn alle gemeinsamen Eigenschaften
   übereinstimmen: `False`.
 - `WriteLine(b)` verwendet das erzeugte `ToString()` des **dynamischen** Typs: `Kreis` mit

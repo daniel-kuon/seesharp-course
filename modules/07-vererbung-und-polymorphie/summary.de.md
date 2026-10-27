@@ -57,8 +57,8 @@ eine Figur verhalten.
 Auch Records vererben. Ein positionaler Record reicht seine Parameter mit
 `: Figur(X, Y)` an den primären Konstruktor der Basis weiter; fehlt die
 Argumentliste, läuft der parameterlose Basiskonstruktor und die Werte gehen
-verloren (Warnung CS8907). Die Wertgleichheit berücksichtigt den exakten Typ
-(`EqualityContract`): Ein Kreis ist nie gleich einer Figur mit derselben
+verloren (Warnung CS8907). Die Wertgleichheit berücksichtigt den Laufzeittyp
+(6.7.4, Seite 502): Ein Kreis ist nie gleich einer Figur mit derselben
 Position.
 
 ## Erweiterungsmitglieder (7.15, Seite 581)
@@ -78,3 +78,12 @@ die klassische Form mit `this`.
 Vertiefung im Buch: Kapitel 7, Abschnitte 7.1 bis 7.15 (Seite 543 bis 586);
 die Übungsaufgaben in 7.16 (Seite 586) liefern Reparatur, Quiz und
 Record-Übung dieses Levels.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **Wie Records den Typ vergleichen:** Der Compiler erzeugt in jedem Record
+  eine geschützte Eigenschaft `EqualityContract`, die den Laufzeittyp
+  liefert; das erzeugte `Equals` vergleicht sie zuerst. Im Decompiler (IL
+  Viewer in Rider) siehst du, wie viel Code hinter einer Record-Zeile steckt.

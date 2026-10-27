@@ -5,7 +5,7 @@
   Validierung verdoppelt; nachfragen.
 - Warnung CS8907 als Werkzeug: Warnungen lesen lohnt sich. Vergleich mit
   Level 0 (Compilerfehler lesen).
-- `EqualityContract`: mit dem Decompiler zeigen, warum `Figur == Kreis`
+- Bonus (Deep Dive): `EqualityContract` (nicht im Buch): mit dem Decompiler zeigen, warum `Figur == Kreis`
   trotz gleicher Position `false` ist.
 - `with` auf einen Kreis über eine `Figur`-Referenz liefert einen Kreis
   (virtuelle Klon-Methode, die den Kopierkonstruktor aufruft) — kleiner Bonus zum Ausprobieren.

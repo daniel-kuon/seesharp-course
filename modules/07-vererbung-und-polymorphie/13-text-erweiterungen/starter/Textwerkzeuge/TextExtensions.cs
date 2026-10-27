@@ -6,7 +6,7 @@ public static class TextExtensions {
         // Vorwärts wie rückwärts gleich? Nur Buchstaben und Ziffern zählen, Groß/klein egal.
         public bool IstPalindrom {
             get {
-                // TODO: char.IsLetterOrDigit, char.ToLower
+                // TODO: char.IsLetterOrDigit, char.ToUpper
                 throw new NotImplementedException();
             }
         }

@@ -20,10 +20,16 @@ An `abstract` class cannot be instantiated; abstract members have no body and mu
 
 ## Record Hierarchies (6.7.4, page 502; 7.16 Exercise 4)
 
-Records inherit too. A positional record passes its parameters on to the primary constructor of the base with `: Figur(X, Y)`; if the argument list is missing, the parameterless base constructor runs and the values are lost (warning CS8907). Value equality takes the exact type into account (`EqualityContract`): A circle is never equal to a figure with the same position.
+Records inherit too. A positional record passes its parameters on to the primary constructor of the base with `: Figur(X, Y)`; if the argument list is missing, the parameterless base constructor runs and the values are lost (warning CS8907). Value equality takes the runtime type into account (6.7.4, page 502): A circle is never equal to a figure with the same position.
 
 ## Extension Members (7.15, page 581)
 
 Extension members retrofit third-party types—including sealed types—without modifying them: `pi.High(2)` is actually `DoubleExtensions.High(pi, 2)`. The classic form is a static method with a `this` parameter (7.15.3, page 585). Since C# 14, an **extension block** `extension(double arg) { … }` bundles methods and properties and also allows static members and operators; since those need no receiver, the book puts them in a separate block `extension(double) { … }` without a receiver parameter (7.15.2, page 583). Real members always take precedence over extensions, and extensions have no access to private members of the extended type (7.15.1, page 582). This material is new; many sources on the web only know the classic form with `this`.
 
 Further study in the book: Chapter 7, Sections 7.1 through 7.15 (pages 543 through 586); the exercises in 7.16 (page 586) provide the correction, quiz, and record exercise for this level.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **How records compare the type:** The compiler generates a protected property `EqualityContract` in every record that returns the runtime type; the generated `Equals` compares it first. In the decompiler (IL Viewer in Rider) you can see how much code is behind one record line.

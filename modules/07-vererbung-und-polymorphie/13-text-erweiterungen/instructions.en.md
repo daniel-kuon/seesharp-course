@@ -5,7 +5,7 @@ Extra exercise: optional; it unlocks nothing. For further reading: **7.15.2 Exte
 `string` is sealed, so you can't create a subclass. However, you can still add properties, methods, and even an operator using extension members. Open `TextExtensions.cs`; the blocks and signatures are already there:
 
 1. In the `extension(string text)` block (instance members):
-   - `IstPalindrom` (property): `true` if the text is the same when read forward and backward. Case does not matter, and only letters and digits (`char.IsLetterOrDigit`) are counted: `"Ein Esel lese nie."` is a palindrome. So is an empty string.
+   - `IstPalindrom` (property): `true` if the text is the same when read forward and backward. Case does not matter, and only letters and digits (`char.IsLetterOrDigit`, not in the book, given here; to compare, use `char.ToUpper` as in 6.6) are counted: `"Ein Esel lese nie."` is a palindrome. So is an empty string.
    - `AnzahlWoerter` (property): Words are separated by spaces; multiple consecutive spaces count as one (`Split(' ', StringSplitOptions.RemoveEmptyEntries)`).
    - `Umgedreht()`: the text in reverse (a `StringBuilder` helps).
    - `WortanfaengeGross()`: Every letter at the beginning of the text or after a space is capitalized; everything else remains unchanged: `"hallo  welt"` becomes `"Hallo  Welt"`.

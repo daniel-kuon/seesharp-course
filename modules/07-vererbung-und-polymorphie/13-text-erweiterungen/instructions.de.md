@@ -12,7 +12,8 @@ Signaturen stehen schon:
 1. Im Block `extension(string text)` (Instanzmitglieder):
    - `IstPalindrom` (Eigenschaft): `true`, wenn der Text vorwärts und
      rückwärts gleich lautet. Groß-/Kleinschreibung zählt nicht, und es
-     zählen nur Buchstaben und Ziffern (`char.IsLetterOrDigit`):
+     zählen nur Buchstaben und Ziffern (`char.IsLetterOrDigit`, nicht im
+     Buch, hier vorgegeben; zum Vergleichen `char.ToUpper` wie in 6.6):
      `"Ein Esel lese nie."` ist ein Palindrom. Der leere Text auch.
    - `AnzahlWoerter` (Eigenschaft): Wörter sind durch Leerzeichen getrennt,
      mehrere Leerzeichen hintereinander zählen wie eines

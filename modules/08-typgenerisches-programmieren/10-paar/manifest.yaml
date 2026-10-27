@@ -1,5 +1,5 @@
 id: generics-paar
-title: { de: "Zusatz: Ein generisches Paar mit zwei Typparametern", en: "Extra: A generic pair with two type parameters" }
+title: { de: "Zusatz: Ein generisches Paar mit zwei Typformalparametern", en: "Extra: A generic pair with two type parameters" }
 optional: true
 reading:
   section: "8.5"

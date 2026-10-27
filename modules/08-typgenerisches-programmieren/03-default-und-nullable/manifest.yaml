@@ -21,10 +21,10 @@ items:
     testProject: "DefaultNullable Tests/DefaultNullable.Tests.csproj"
   - type: multipleChoice
     id: nullable-struct
-    prompt: { de: "int? ist eine Kurzschreibweise für Nullable<int>. Was gilt für eine Variable int? x = null;?", en: "int? is a shorthand notation for Nullable<int>. What happens when you declare a variable like this: int? x = null;?" }
+    prompt: { de: "int? ist eine Kurzschreibweise für Nullable<int>. Was gilt für eine Variable int? x = null;?", en: "int? is a shorthand for Nullable<int>. What is true of a variable int? x = null;?" }
     options:
       - { de: "x ist eine Struktur mit HasValue == false; x.Value würde eine InvalidOperationException werfen.", en: "x is a structure with HasValue == false; x.Value would throw an InvalidOperationException." }
       - { de: "x ist eine Referenz auf ein Objekt auf dem Heap.", en: "x is a reference to an object on the heap." }
       - { de: "Der Code kompiliert nicht, weil int kein null kennt.", en: "The code won't compile because `int` doesn't support null." }
     correct: [0]
-    explanation: { de: "Nullable<T> ist eine generische Struktur (8.3, Seite 598); null-Zuweisung setzt HasValue auf false. Mit ?? holt man sich sicher einen Ersatzwert (8.3.2, Seite 600).", en: "`Nullable<T>` is a generic structure (8.3, page 598); assigning `null` sets `HasValue` to `false`. Using `??` ensures that a default value is retrieved (8.3.2, page 600)." }
+    explanation: { de: "Nullable<T> ist eine generische Struktur (8.3, Seite 598), also ein Werttyp und keine Referenz auf ein Heap-Objekt; null-Zuweisung setzt HasValue auf false. Der Code kompiliert, weil x den Typ int? hat und nicht int. Mit ?? holt man sich sicher einen Ersatzwert (8.3.2, Seite 600).", en: "`Nullable<T>` is a generic struct (8.3, page 598), so a value type and not a reference to a heap object; assigning `null` sets `HasValue` to `false`. The code compiles because x has the type int?, not int. With `??` you safely get a replacement value (8.3.2, page 600)." }

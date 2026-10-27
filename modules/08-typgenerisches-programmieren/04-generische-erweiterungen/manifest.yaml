@@ -27,4 +27,4 @@ items:
       - { de: "Aus dem Rückgabetyp bool?.", en: "From the return type `bool?`." }
       - { de: "Gar nicht; man muss z.LeadingMin<int>() schreiben.", en: "Not at all; you have to write z.LeadingMin<int>()." }
     correct: [0]
-    explanation: { de: "Generische Methoden leiten ihre Typargumente aus den Argumenten ab (8.5, Seite 602); bei Erweiterungsmethoden zählt der Empfänger als erstes Argument.", en: "Generic methods derive their type arguments from the arguments (8.5, page 602); for extension methods, the receiver is the first argument." }
+    explanation: { de: "Generische Methoden leiten ihre Typargumente aus den Argumenten ab (8.5, Seite 602); bei Erweiterungsmethoden zählt der Empfänger als erstes Argument. Der Rückgabetyp spielt für die Typinferenz keine Rolle, und z.LeadingMin<int>() ist zwar erlaubt, aber unnötig.", en: "Generic methods infer their type arguments from the arguments (8.5, page 602); for extension methods, the receiver counts as the first argument. The return type plays no part in type inference, and z.LeadingMin<int>() is allowed but unnecessary." }

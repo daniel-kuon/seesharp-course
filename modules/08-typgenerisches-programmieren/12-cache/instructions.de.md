@@ -7,7 +7,7 @@ default-Operator** (Seite 605).
 Ein Cache merkt sich teuer berechnete Werte unter einem Schlüssel, aber nur
 eine begrenzte Anzahl. Ist er voll, muss ein Eintrag weichen, und zwar der,
 der **am längsten nicht benutzt** wurde (least recently used, LRU).
-`Cache<TKey, TValue>` hat zwei Typparameter und speichert Schlüssel und
+`Cache<TKey, TValue>` hat zwei Typformalparameter und speichert Schlüssel und
 Werte in zwei parallelen Arrays. Die Reihenfolge in den Arrays ist die
 Benutzungsreihenfolge: Index 0 ist am längsten unbenutzt, Index
 `anzahl - 1` zuletzt benutzt. Öffne `Cache.cs`:

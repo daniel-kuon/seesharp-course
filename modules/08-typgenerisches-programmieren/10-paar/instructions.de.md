@@ -1,4 +1,4 @@
-# Zusatz: Ein generisches Paar mit zwei Typparametern
+# Zusatz: Ein generisches Paar mit zwei Typformalparametern
 
 Zusatzaufgabe: freiwillig, sie schaltet nichts frei. Zum Nachlesen:
 **8.2.1 Generische Klassen: Definition** (Seite 591) und **8.5 Generische
@@ -14,11 +14,11 @@ Eine generische Klasse darf mehrere Typformalparameter haben:
    tauschen auch die Typen: Aus `Paar<int, string>` wird
    `Paar<string, int>`.
 3. `MitErstem<TNeu>(TNeu neu)` ist eine generische Methode in einer
-   generischen Klasse: Sie hat ihren eigenen Typparameter `TNeu` und
+   generischen Klasse: Sie hat ihren eigenen Typformalparameter `TNeu` und
    liefert ein neues Paar, dessen erster Wert ersetzt ist, auch durch einen
    Wert eines anderen Typs. Das ursprüngliche Paar bleibt unverändert.
 4. Die nicht generische statische Klasse `Paar` (gleicher Name, aber ohne
-   Typparameter, das ist erlaubt) bietet Fabrikmethoden:
+   Typformalparameter, das ist erlaubt) bietet Fabrikmethoden:
    `Paar.Von(1, "eins")` liefert ein `Paar<int, string>`, ohne dass du die
    Typargumente hinschreibst (Typinferenz).
    `Paar.Geordnet(a, b)` liefert ein Paar zweier gleichartiger Werte, das

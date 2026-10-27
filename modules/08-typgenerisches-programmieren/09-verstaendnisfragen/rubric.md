@@ -29,8 +29,8 @@ Wesentliche Punkte:
   `element.CompareTo(other)` oder `<` sind nicht erlaubt.
 - `where T : IComparable<T>` **sichert zu**, dass jedes `T` vergleichbar ist; dann darf die
   Klasse `CompareTo` aufrufen (Einfügen an der richtigen Stelle der sortierten Liste).
-- Zugleich **schließt** sie Typen aus, die das nicht können (`new SortedList<object>()` geht
-  nicht): Der Fehler tritt beim Übersetzen auf, nicht erst zur Laufzeit.
+- Zugleich **schließt** sie Typen aus, die das nicht können (`new SimpleSortedList<object>()`
+  geht nicht): Der Fehler tritt beim Übersetzen auf, nicht erst zur Laufzeit.
 
 Typische Missverständnisse: Die Klasse selbst müsse `IComparable` implementieren (es geht um
 den Typ `T`); die Einschränkung sei nur Dokumentation.
@@ -41,11 +41,14 @@ Wesentliche Punkte:
 - Wäre die Zuweisung erlaubt, könnte man über `lo` ein `int` (oder anderes
   Nicht-`string`-Objekt) in die Liste schreiben, die in Wahrheit eine `List<string>` ist:
   Typsicherheit verloren (Laufzeitfehler). Generische Klassen sind deshalb **invariant**.
-- Varianz gibt es nur bei **Interfaces und Delegaten**, die ein `T` ausdrücklich nur in
-  einer Richtung verwenden (`out` für nur Ausgabe: kovariant, `in` für nur Eingabe:
+- Generische Varianz gibt es nur bei **Interfaces und Delegaten**, die ein `T` ausdrücklich
+  nur in einer Richtung verwenden (`out` für nur Ausgabe: kovariant, `in` für nur Eingabe:
   kontravariant); Level 9 und 12. Beispiel: `IEnumerable<out T>`.
-- Klassen wie `List<T>` benutzen `T` in beiden Richtungen (Parameter und Rückgabe);
-  deshalb kann es für sie keine Varianz geben.
+- Klassen erlauben in C# grundsätzlich kein `out`/`in`; `List<T>` benutzt `T` ohnehin in
+  beiden Richtungen (Parameter und Rückgabe).
+- Ebenfalls richtig: **Arrays** sind kovariant (`object[] oa = new string[2];`), aber
+  unsicher; ein falscher Elementtyp fällt erst zur Laufzeit als
+  `ArrayTypeMismatchException` auf (8.2.3, Seite 597).
 
 Typische Missverständnisse: Die Beziehung `string` : `object` übertrage sich automatisch auf
 `List<string>` : `List<object>`; Invarianz sei ein Fehler oder eine Altlast der Sprache.
@@ -107,7 +110,7 @@ vergleichbar; `Birne` und `x` falsch herum (Vergleich verwechselt).
 
 Ausgabe, drei Zeilen: `7`, `0`, `True`
 - Erster `Pop()`: `7`.
-- Zweiter `Pop()` auf leerem `Stapel<int>`: `default!` ist `default(int)`, also `0`.
+- Zweiter `Pop()` auf leerem `Stapel<int>`: `default` ist hier `default(int)`, also `0`.
 - `b.Pop()` auf leerem `Stapel<string>`: `default(string)` ist `null`: `True`.
 - Der Stapel kennt `T` nicht und braucht `default`, um einen Wert zu erzeugen, der für jeden
   Typ passt; `new T()` wäre nur mit `new()`-Einschränkung möglich. `Stapel<int>` und

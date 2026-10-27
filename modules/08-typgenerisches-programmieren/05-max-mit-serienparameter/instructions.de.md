@@ -4,7 +4,7 @@ Lies im Buch **8.5 Generische Methoden** (Seite 602) und Aufgabe 3 in
 **8.8** (Seite 607). Zu Serienparametern (`params`) siehe **5.3.1.3.3** (Seite 321);
 die Einschränkungsarten stehen in **8.2.2** (Seite 593).
 
-Das Buch zeigt in 8.5 eine Methode `Max<T>(T a, T b)` für zwei Werte. Die
+Das Buch zeigt in 8.5 eine Methode `Max<T>(T x, T y)` für zwei Werte. Die
 Übung verlangt eine Fassung für beliebig viele. Öffne `Serie.cs`:
 
 1. `Max<T>(params T[] werte)` und `Min<T>(params T[] werte)`: Aufruf mit

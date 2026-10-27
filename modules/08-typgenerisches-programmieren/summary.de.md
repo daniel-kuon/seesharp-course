@@ -31,8 +31,11 @@ Generische Klassen können von anderen Klassen erben und beerbt werden (8.2.3,
 Seite 596); eine offene generische Basis braucht in der abgeleiteten Klasse
 einen eigenen Typformalparameter. Was nicht geht: `List<object> lo = new
 List<string>()`. Generische Klassen sind **invariant**; sonst könnte man über
-`lo` ein `int` in eine String-Liste schreiben. Varianz gibt es nur bei
-Interfaces und Delegaten (Level 9 und 12).
+`lo` ein `int` in eine String-Liste schreiben. Generische Varianz gibt es nur
+bei Interfaces und Delegaten (Level 9 und 12). Arrays sind dagegen kovariant
+(`object[] oa = new string[2];` kompiliert), und das Buch zeigt die Folge:
+Ein falscher Elementtyp fällt erst zur Laufzeit als
+`ArrayTypeMismatchException` auf (Seite 597).
 
 ## Nullable<T> (8.3, Seite 598)
 
@@ -47,7 +50,8 @@ Level 14.
 Auch eine einzelne Methode kann einen eigenen Typformalparameter haben:
 `static T Max<T>(params T[] werte) where T : IComparable<T>`. Beim Aufruf
 `Serie.Max(3, 9, 4)` leitet der Compiler `T = int` aus den Argumenten ab;
-nur bei leerer Argumentliste (`Serie.Max<int>()`) musst du ihn nennen. Eine
+nennen musst du ihn nur, wenn sich aus den Argumenten nichts ableiten lässt,
+etwa bei leerer Argumentliste (`Serie.Max<int>()`). Eine
 Methode, die bloß das `T` ihrer Klasse benutzt (`T Pop()`), ist dagegen
 nicht generisch (8.8 Aufgabe 1). Serienparameter (`params T[]`) nehmen
 beliebig viele Werte oder ein Array entgegen.
@@ -67,6 +71,6 @@ Der Empfänger zählt bei der Typinferenz als erstes Argument.
 generischer Code, der ein `T` initialisieren muss, ohne den Typ zu kennen;
 ein Objekt erzeugt nur `new T()` mit der Einschränkung `new()`.
 
-Vertiefung im Buch: Kapitel 8 (Seite 589 bis 608); die Übungsaufgaben in
+Vertiefung im Buch: Kapitel 8 (Seite 589 bis 607); die Übungsaufgaben in
 8.8 (Seite 607) liefern das Quiz und `Max<T>()` dieses Levels. `Listenwerte`
 im Beispielordner misst den Boxing-Aufwand von `ArrayList`.

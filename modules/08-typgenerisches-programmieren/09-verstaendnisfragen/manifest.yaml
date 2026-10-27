@@ -112,7 +112,7 @@ items:
             T[] data = new T[4];
             int n;
             public void Push(T x) => data[n++] = x;
-            public T Pop() => n > 0 ? data[--n] : default!;
+            public T Pop() => n > 0 ? data[--n] : default;
         }
         ```
       en: |
@@ -131,7 +131,7 @@ items:
             T[] data = new T[4];
             int n;
             public void Push(T x) => data[n++] = x;
-            public T Pop() => n > 0 ? data[--n] : default!;
+            public T Pop() => n > 0 ? data[--n] : default;
         }
         ```
   - type: open
@@ -281,5 +281,5 @@ items:
           ```
     correct: [0]
     explanation:
-      de: "Die Einschränkungen stehen in einer einzigen `where`-Klausel, durch Kommas getrennt; `class` (oder `struct`) kommt zuerst und `new()` zuletzt. Die zweite Variante verletzt die Reihenfolge (CS0401). Die dritte schreibt zwei `where`-Klauseln für dasselbe `T` (CS0409). Die vierte verwendet `&`, das es hier nicht gibt (Syntaxfehler). Siehe 8.2.2 (Seite 593)."
-      en: "The constraints go in a single `where` clause separated by commas; `class` (or `struct`) comes first and `new()` last. The second variant violates the order (CS0401). The third writes two `where` clauses for the same `T` (CS0409). The fourth uses `&`, which does not exist here (syntax error). See 8.2.2 (page 593)."
+      de: "Die Einschränkungen stehen in einer einzigen `where`-Klausel, durch Kommas getrennt; `class` (oder `struct`) kommt zuerst und `new()` zuletzt. Die zweite Variante verletzt die Reihenfolge (CS0449 und CS0401). Die dritte schreibt zwei `where`-Klauseln für dasselbe `T` (CS0409). Die vierte verwendet `&`, das es hier nicht gibt (Syntaxfehler). Siehe 8.2.2 (Seite 593)."
+      en: "The constraints go in a single `where` clause separated by commas; `class` (or `struct`) comes first and `new()` last. The second variant violates the order (CS0449 and CS0401). The third writes two `where` clauses for the same `T` (CS0409). The fourth uses `&`, which does not exist here (syntax error). See 8.2.2 (page 593)."

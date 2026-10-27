@@ -18,11 +18,11 @@ items:
     id: werttyp-argument
     prompt: { de: "Darf ein Typformalparameter durch einen Werttyp konkretisiert werden, z. B. SimpleStack<int>?", en: "Can a type formal parameter be instantiated with a value type, e.g., `SimpleStack<int>`?" }
     options:
-      - { de: "Ja; für jeden Werttyp erzeugt die Laufzeit eine eigene Konkretisierung ohne Boxing.", en: "Yes; for each value type, the runtime creates a separate instance without boxing." }
+      - { de: "Ja; für jeden Werttyp erzeugt die Laufzeit eine eigene Konkretisierung ohne Boxing.", en: "Yes; for each value type, the runtime creates a separate constructed type without boxing." }
       - { de: "Nein; Typargumente müssen Klassen sein.", en: "No; type arguments must be classes." }
       - { de: "Nur, wenn die Klasse where T : struct deklariert.", en: "Only if the class is declared as `where T : struct`." }
     correct: [0]
-    explanation: { de: "8.8 Aufgabe 1, Aussage 1 ist richtig. Genau das ist der Vorteil gegenüber ArrayList (Aussage 2 in Aufgabe 2).", en: "8.8 Exercise 1, Statement 1 is correct. That is precisely the advantage over ArrayList (Statement 2 in Exercise 2)." }
+    explanation: { de: "8.8 Aufgabe 1, Aussage 1 ist richtig. Genau das ist der Vorteil gegenüber ArrayList (Aufgabe 2). Typargumente müssen keine Klassen sein, und where T : struct ist keine Voraussetzung, sondern würde umgekehrt nur Werttypen zulassen.", en: "8.8 Exercise 1, Statement 1 is correct. That is precisely the advantage over ArrayList (Exercise 2). Type arguments need not be classes, and where T : struct is not a prerequisite; it would instead allow only value types." }
   - type: multipleChoice
     id: generische-methode
     prompt: { de: "Eine Methode einer generischen Klasse verwendet den Typformalparameter T aus dem Klassenkopf als Rückgabetyp (z. B. T Pop()). Ist Pop eine generische Methode?", en: "A method of a generic class uses the type parameter T from the class header as its return type (e.g., T Pop()). Is Pop a generic method?" }
@@ -39,7 +39,7 @@ items:
       - { de: "Ja; Vererbung überträgt sich auf Typargumente.", en: "Yes; inheritance applies to type arguments." }
       - { de: "Ja, aber nur mit einem expliziten Cast.", en: "Yes, but only with an explicit cast." }
     correct: [0]
-    explanation: { de: "8.8 Aufgabe 1, Aussage 3 ist falsch. Nur Interfaces und Delegaten können ko- oder kontravariant sein (9.1.5, Level 9).", en: "8.8 Exercise 1, Statement 3 is incorrect. Only interfaces and delegates can be co- or contravariant (9.1.5, Level 9)." }
+    explanation: { de: "8.8 Aufgabe 1, Aussage 3 ist falsch (8.2.3, Seite 597). Auch ein expliziter Cast hilft nicht, (List<object>)ls ist ebenfalls ein Compilerfehler. Typformalparameter können nur bei Interfaces und Delegaten ko- oder kontravariant sein (9.1.5, Level 9; 10.1.6, Level 12). Arrays sind dagegen kovariant, mit dem Risiko einer ArrayTypeMismatchException zur Laufzeit (Seite 597).", en: "8.8 Exercise 1, Statement 3 is incorrect (8.2.3, page 597). An explicit cast does not help either; (List<object>)ls is a compiler error too. Type parameters can be co- or contravariant only in interfaces and delegates (9.1.5, Level 9; 10.1.6, Level 12). Arrays, by contrast, are covariant, at the risk of an ArrayTypeMismatchException at run time (page 597)." }
   - type: multipleChoice
     id: vererbung
     prompt: { de: "Darf eine generische Klasse von einer nicht-generischen Klasse abstammen, z. B. class Lager<T> : Basis?", en: "May a generic class derive from a non-generic class, e.g. `class Lager<T> : Basis`?" }
@@ -64,13 +64,13 @@ items:
       - { de: "ArrayList ist nicht threadsicher.", en: "ArrayList is not thread-safe." }
       - { de: "List<int> hat eine feste Größe und muss nie wachsen.", en: "List<int> has a fixed size and never needs to grow." }
     correct: [0]
-    explanation: { de: "8.8 Aufgabe 2 misst das mit Stopwatch (Sample Listenwerte); Boxing ist aus 6.1.6 bekannt.", en: "8.8 Exercise 2 measures this using a stopwatch (sample list values); boxing is described in 6.1.6." }
+    explanation: { de: "8.8 Aufgabe 2 misst das mit Stopwatch (Sample Listenwerte); Boxing ist aus 6.1.6 bekannt. Dass ArrayList nicht threadsicher ist, stimmt zwar, erklärt aber keinen Zeitunterschied (List<T> ist es auch nicht). Und List<int> wächst genauso dynamisch wie ArrayList.", en: "8.8 Exercise 2 measures this with a Stopwatch (sample Listenwerte); boxing is known from 6.1.6. ArrayList is indeed not thread-safe, but that explains no time difference (List<T> is not thread-safe either). And List<int> grows just as dynamically as ArrayList." }
   - type: multipleChoice
     id: default-klasse
-    prompt: { de: "In einer generischen Klasse steht T x = default; Was enthält x, wenn T mit einer Klasse konkretisiert wurde?", en: "In a generic class, T x = default; what does x contain if T has been instantiated with a class?" }
+    prompt: { de: "In einer generischen Klasse steht T x = default; Was enthält x, wenn T mit einer Klasse konkretisiert wurde?", en: "In a generic class, T x = default; what does x contain if T has been made concrete with a class?" }
     options:
       - { de: "null", en: "null" }
       - { de: "Ein Objekt, das mit dem Standardkonstruktor erzeugt wurde.", en: "An object created using the default constructor." }
       - { de: "Compilerfehler ohne where T : new().", en: "Compiler error without `where T : new()`." }
     correct: [0]
-    explanation: { de: "default liefert für Referenztypen null, für Werttypen den Nullwert (8.7, Seite 605). Ein Objekt erzeugt nur new T() mit der Einschränkung new().", en: "`default` returns `null` for reference types and the null value for value types (8.7, page 605). An object is created only by `new T()`, with the restriction `new()`." }
+    explanation: { de: "default liefert für Referenztypen null, für Werttypen den typspezifischen Nullwert (8.7, Seite 605); das gilt ohne jede Einschränkung. Ein Objekt erzeugt nur new T() mit der Einschränkung new().", en: "`default` returns `null` for reference types and the type-specific zero value for value types (8.7, page 605); this works without any constraint. Only `new T()`, with the constraint `new()`, creates an object." }

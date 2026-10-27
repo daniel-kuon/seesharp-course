@@ -10,7 +10,7 @@ A circular buffer is a fixed-size queue: first-in, first-out. When it is full, a
 4. If the buffer is empty, `EntnehmenOderDefault()` returns `default(T)` instead of throwing an exception: 0 for `int`, `null` for `string`.
 5. The indexer starts counting from the oldest element (`[0]` is the oldest); indices outside the range `0 .. Count - 1` throw an `ArgumentOutOfRangeException`. `AlsArray()` returns all elements from the oldest to the newest.
 
-The following tests must be passed:
+These tests must pass:
 
 - `RingpufferTests.Neuer_Puffer_ist_leer`
 - `RingpufferTests.Ungueltige_Kapazitaet_wirft`

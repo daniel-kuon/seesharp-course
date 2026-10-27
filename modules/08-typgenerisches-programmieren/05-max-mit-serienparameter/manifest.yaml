@@ -21,10 +21,10 @@ items:
     testProject: "Serie Tests/Serie.Tests.csproj"
   - type: multipleChoice
     id: constraint-arten
-    prompt: { de: "Welche Einschränkung erlaubt new T() innerhalb einer generischen Klasse?", en: "What restriction does `new T()` allow within a generic class?" }
+    prompt: { de: "Welche Einschränkung erlaubt new T() innerhalb einer generischen Klasse?", en: "Which constraint allows `new T()` inside a generic class?" }
     options:
       - { de: "where T : new() — T muss einen öffentlichen parameterlosen Konstruktor haben.", en: "where T : new() — T must have a public, parameterless constructor." }
       - { de: "where T : class — Referenztypen haben immer einen Standardkonstruktor.", en: "where T : class — Reference types always have a default constructor." }
-      - { de: "where T : struct — Strukturen lassen sich immer erzeugen, Klassen nicht.", en: "where T : struct — Structures can always be created, but classes cannot." }
+      - { de: "where T : IComparable<T> — ein vergleichbarer Typ hat immer einen öffentlichen Konstruktor.", en: "where T : IComparable<T> — a comparable type always has a public constructor." }
     correct: [0]
-    explanation: { de: "Die Einschränkungsarten aus 8.2.2 (Seite 593): Basisklasse, Interface, class, struct, new(), notnull, unmanaged. Mehrere werden mit Komma kombiniert; class/struct stehen zuerst, new() zuletzt.", en: "The restriction types from 8.2.2 (page 593): base class, interface, class, struct, new(), notnull, unmanaged. Multiple types are separated by commas; class and struct come first, and new() comes last." }
+    explanation: { de: "new() verlangt für jede Konkretisierung einen öffentlichen parameterfreien Konstruktor; erst damit erlaubt der Compiler new T(). class reicht nicht: Eine Klasse kann etwa nur Konstruktoren mit Parametern haben oder abstrakt sein. Ein Interface wie IComparable<T> sagt nichts über Konstruktoren. (where T : struct schließt new() übrigens ein.) Die Einschränkungsarten aus 8.2.2 (Seite 595): Basisklasse, Interfaces, class, struct, new(); daneben kennt C# notnull und unmanaged. Mehrere werden mit Komma kombiniert; class/struct stehen zuerst, new() zuletzt.", en: "new() demands a public parameterless constructor for every type argument; only then does the compiler allow new T(). class is not enough: a class may, for example, have only constructors with parameters, or be abstract. An interface such as IComparable<T> says nothing about constructors. (where T : struct implies new(), by the way.) The kinds of constraint from 8.2.2 (page 595): base class, interfaces, class, struct, new(); C# also knows notnull and unmanaged. Several are combined with commas; class/struct come first, new() last." }

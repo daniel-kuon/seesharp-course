@@ -23,8 +23,8 @@ items:
     id: ohne-constraint
     prompt: { de: "Ohne die Einschränkung where T : IComparable<T> meldet der Compiler in Add() einen Fehler bei element.CompareTo(...). Warum?", en: "Without the restriction `where T : IComparable<T>`, the compiler reports an error in `Add()` at `element.CompareTo(...)`. Why?" }
     options:
-      - { de: "Ohne Einschränkung weiß der Compiler über T nur, was jedes object kann; CompareTo gehört nicht dazu.", en: "Without the `T` restriction, the compiler only knows what each `object` can do; `CompareTo` is not included." }
+      - { de: "Ohne Einschränkung weiß der Compiler über T nur, was jedes object kann; CompareTo gehört nicht dazu.", en: "Without a constraint, all the compiler knows about T is what every object can do; CompareTo is not part of that." }
       - { de: "CompareTo ist eine statische Methode und braucht den Klassennamen.", en: "CompareTo is a static method and requires the class name." }
       - { de: "Generische Klassen dürfen keine Methoden auf T aufrufen.", en: "Generic classes must not call methods on T." }
     correct: [0]
-    explanation: { de: "Einschränkungen (8.2.2, Seite 593) erweitern, was der Compiler über T annimmt, und schließen zugleich ungeeignete Konkretisierungen aus.", en: "Constraints (8.2.2, page 593) extend the compiler's assumptions about T and, at the same time, rule out inappropriate instantiations." }
+    explanation: { de: "Einschränkungen (8.2.2, Seite 593) erweitern, was der Compiler über T annimmt, und schließen zugleich ungeeignete Konkretisierungen aus. CompareTo ist keine statische, sondern eine Instanzmethode (element.CompareTo(...)). Und generische Klassen dürfen sehr wohl Methoden auf T aufrufen, aber nur solche, die der Compiler über T kennt.", en: "Constraints (8.2.2, page 593) extend what the compiler assumes about T and at the same time rule out unsuitable type arguments. CompareTo is not a static method but an instance method (element.CompareTo(...)). And generic classes may well call methods on T, but only those the compiler knows T has." }

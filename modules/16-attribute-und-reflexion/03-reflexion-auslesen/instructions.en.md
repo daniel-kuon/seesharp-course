@@ -8,7 +8,7 @@ The `[Autor("Name")]` attribute is specified (for classes and methods; multiple 
 2. `MethodenMitAutor(Type t)`: the names of **the public instance methods** with the `[Autor]` attribute, sorted. `GetMethods(BindingFlags.Public | BindingFlags.Instance)` already filters out static and non-public methods, while `IsDefined(typeof(AutorAttribute))` checks for the attribute without instantiating it.
 3. `Eigenschaften(Type t)`: For each public property, a text string in the format `"Name:Typ"` (e.g., `"Alter:Int32"`), sorted. `GetProperties()` returns `PropertyInfo` objects containing `Name` and `PropertyType`.
 4. `TypName(object o)` uses `o.GetType().Name`, while `TypNameStatisch<T>()` uses `typeof(T).Name`. The tests show when the two methods return different results: when a variable's runtime type is more specific than its declared type.
-5. `Veraltet(Type t)`: the value of the `[Obsolete]` attribute or `null`. `GetCustomAttribute<ObsoleteAttribute>()` returns `null` if the attribute is missing.
+5. `Veraltet(Type t)`: the message of the `[Obsolete]` attribute, or `null`. `GetCustomAttribute<ObsoleteAttribute>()` returns `null` if the attribute is missing.
 
 Sort using `List<string>.Sort(StringComparer.Ordinal)`; this ensures that the order is correct regardless of the computer's language settings.
 

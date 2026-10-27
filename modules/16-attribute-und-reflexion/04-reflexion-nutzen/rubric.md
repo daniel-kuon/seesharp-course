@@ -12,6 +12,9 @@
   `de-DE`; wer `ToString()` ohne Kultur nimmt, schreibt `2,5` und liest
   `1.5` falsch. Gesprächsanlass: Daten, die zwischen Programmen oder
   Sprachräumen wandern, immer invariant formatieren.
+- Reihenfolge: Laut Dokumentation garantiert `GetProperties()` keine
+  Reihenfolge; in der Praxis ist es die Deklarationsreihenfolge, und darauf
+  verlässt sich der Test. Ein echter Mapper würde nach Spaltennamen ordnen.
 - `GetMethod(name)` ohne Typenliste wirft `AmbiguousMatchException`, sobald es
   zwei Überladungen gibt (`Gruss()` und `Gruss(string)` im Test). Die
   parameterlose Überladung verlangt `Type.EmptyTypes`.

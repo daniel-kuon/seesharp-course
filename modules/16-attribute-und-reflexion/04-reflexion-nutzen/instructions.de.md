@@ -19,7 +19,8 @@ Dateien). Das Attribut `[Spalte("name")]` und die Klasse `Kunde` sind
 vorgegeben:
 
 1. `Mapper.NachZeilen(o)`: jede Eigenschaft mit `[Spalte]` als
-   `"name=wert"`, in Deklarationsreihenfolge, andere übersprungen. Zahlen
+   `"name=wert"`, in Deklarationsreihenfolge (die liefert `GetProperties()` in
+   der Praxis, garantiert ist sie laut Dokumentation nicht), andere übersprungen. Zahlen
    mit `CultureInfo.InvariantCulture` formatieren (`2.5`, nicht `2,5`).
 2. `Mapper.VonZeilen<T>(zeilen)`: mit `Activator.CreateInstance<T>()` ein
    `T` erzeugen und die Eigenschaften aus den Zeilen setzen. Unbekannte

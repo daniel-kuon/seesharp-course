@@ -3,7 +3,7 @@ title: { de: "Zusatz: Validierung per Attribut", en: "Extra: Validation by Attri
 optional: true
 reading:
   section: "14.6"
-  title: { de: "Attribute definieren", en: "Define Attributes" }
+  title: { de: "Attribute definieren", en: "Defining Attributes" }
   printedPage: 940
 teaches:
   - attributes.define-custom

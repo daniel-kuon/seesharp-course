@@ -13,7 +13,7 @@ Ein Attribut steht in eckigen Klammern vor Typ, Methode, Eigenschaft,
 Parameter oder Rückgabewert: `[Obsolete("Bitte Neu() verwenden")]`. Der
 Klassenname endet auf `Attribute`, beim Anwenden lässt man das Suffix weg.
 Parameter sind **positional** (Konstruktor) oder **benannt**
-(`Name = wert`, öffentliche schreibbare Eigenschaft). Mehrere Attribute
+(`Name = wert`, öffentliche schreibbare Eigenschaft oder öffentliches Feld). Mehrere Attribute
 dürfen untereinander oder durch Komma getrennt stehen, bei manchen sogar
 dasselbe mehrfach.
 
@@ -24,9 +24,9 @@ liefert den Laufzeittyp. `GetCustomAttribute<T>()` und `GetCustomAttributes<T>()
 holen die Attributobjekte (dabei läuft deren Konstruktor), `IsDefined`
 fragt nur, ob eines vorhanden ist. `GetProperties()` und `GetMethods()`
 zählen die Mitglieder eines Typs auf; mit `BindingFlags` grenzt man ein
-(öffentlich, Instanz, statisch). Für Assemblies gilt dasselbe, die Attribute
-stehen dort mit Ziel `assembly:` irgendwo auf oberster Ebene (14.3,
-Seite 929).
+(öffentlich, Instanz, statisch). Für Assemblies gilt dasselbe; ihre Attribute
+stehen mit der Zielangabe `assembly:` am Anfang einer beliebigen Quelldatei,
+hinter den using-Direktiven und vor allem anderen (14.3, Seite 929 bis 932).
 
 ## nameof (14.4, Seite 933)
 

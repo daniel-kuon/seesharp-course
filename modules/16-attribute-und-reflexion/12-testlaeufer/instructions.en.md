@@ -6,9 +6,9 @@ The testing tool that SeeSharp uses to check your tasks works essentially the sa
 
 `Laeufer.Starte(Type t)` executes all tests in class `t`:
 
-1. **An** instance of `t` is created (`Activator.CreateInstance`), and all tests run on it.
-2. Tests are the public instance methods without parameters that have the name `[MeinTest]`. All other methods are ignored.
-3. They are listed in the order of their names (using `StringComparer.Ordinal`).
+1. **One** instance of `t` is created (`Activator.CreateInstance`), and all tests run on it.
+2. Tests are the public instance methods without parameters that carry `[MeinTest]`. All other methods are ignored.
+3. They run in the order of their names (using `StringComparer.Ordinal`).
 4. If a method throws an exception, the test fails and the remaining tests continue to run. `MethodInfo.Invoke` wraps the exception in a `TargetInvocationException`: Catch it.
 5. The result is a list consisting of `(Name, Bestanden)`; without any tests, the list is empty.
 

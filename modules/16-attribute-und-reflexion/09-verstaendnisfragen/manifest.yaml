@@ -47,35 +47,35 @@ items:
         Was gibt dieses Programm aus, und warum?
 
         ```csharp
-        class Person
-        {
-            public string Name { get; set; } = "Ada";
-            public int Alter { get; set; } = 36;
-        }
-
         var p = new Person();
         var t = p.GetType();
         foreach (var prop in t.GetProperties().OrderBy(x => x.Name))
             Console.WriteLine($"{prop.Name} = {prop.GetValue(p)}");
         t.GetProperty("Alter")!.SetValue(p, 37);
         Console.WriteLine(p.Alter);
+
+        class Person
+        {
+            public string Name { get; set; } = "Ada";
+            public int Alter { get; set; } = 36;
+        }
         ```
       en: |
         What does this program print, and why?
 
         ```csharp
-        class Person
-        {
-            public string Name { get; set; } = "Ada";
-            public int Alter { get; set; } = 36;
-        }
-
         var p = new Person();
         var t = p.GetType();
         foreach (var prop in t.GetProperties().OrderBy(x => x.Name))
             Console.WriteLine($"{prop.Name} = {prop.GetValue(p)}");
         t.GetProperty("Alter")!.SetValue(p, 37);
         Console.WriteLine(p.Alter);
+
+        class Person
+        {
+            public string Name { get; set; } = "Ada";
+            public int Alter { get; set; } = 36;
+        }
         ```
   - type: open
     id: code-autor
@@ -84,6 +84,12 @@ items:
         Was gibt dieses Programm aus? (`using System.Reflection;` ist vorhanden.)
 
         ```csharp
+        var t = typeof(Rechner);
+        Console.WriteLine(t.GetCustomAttribute<AutorAttribute>()!.Version);
+        var flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
+        foreach (var m in t.GetMethods(flags).OrderBy(m => m.Name))
+            Console.WriteLine($"{m.Name}: {m.GetCustomAttribute<AutorAttribute>()?.Name ?? "-"}");
+
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
         class AutorAttribute : Attribute
         {
@@ -99,17 +105,17 @@ items:
             public int Addiere(int a, int b) => a + b;
             public int Minus(int a, int b) => a - b;
         }
-
-        var t = typeof(Rechner);
-        Console.WriteLine(t.GetCustomAttribute<AutorAttribute>()!.Version);
-        var flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
-        foreach (var m in t.GetMethods(flags).OrderBy(m => m.Name))
-            Console.WriteLine($"{m.Name}: {m.GetCustomAttribute<AutorAttribute>()?.Name ?? "-"}");
         ```
       en: |
         What does this program print? (`using System.Reflection;` is present.)
 
         ```csharp
+        var t = typeof(Rechner);
+        Console.WriteLine(t.GetCustomAttribute<AutorAttribute>()!.Version);
+        var flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
+        foreach (var m in t.GetMethods(flags).OrderBy(m => m.Name))
+            Console.WriteLine($"{m.Name}: {m.GetCustomAttribute<AutorAttribute>()?.Name ?? "-"}");
+
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
         class AutorAttribute : Attribute
         {
@@ -125,12 +131,6 @@ items:
             public int Addiere(int a, int b) => a + b;
             public int Minus(int a, int b) => a - b;
         }
-
-        var t = typeof(Rechner);
-        Console.WriteLine(t.GetCustomAttribute<AutorAttribute>()!.Version);
-        var flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
-        foreach (var m in t.GetMethods(flags).OrderBy(m => m.Name))
-            Console.WriteLine($"{m.Name}: {m.GetCustomAttribute<AutorAttribute>()?.Name ?? "-"}");
         ```
   - type: open
     id: code-flags
@@ -139,37 +139,35 @@ items:
         Was geben die vier Ausgabezeilen aus? Was würde sich in der ersten Zeile ändern, wenn `[Flags]` fehlte?
 
         ```csharp
-        [Flags]
-        enum Recht { Kein = 0, Lesen = 1, Schreiben = 2, Loeschen = 4 }
-
         var r = Recht.Lesen | Recht.Loeschen;
         Console.WriteLine(r);
         Console.WriteLine((int)r);
         Console.WriteLine(r.HasFlag(Recht.Schreiben));
         Console.WriteLine(r & ~Recht.Lesen);
+
+        [Flags]
+        enum Recht { Kein = 0, Lesen = 1, Schreiben = 2, Loeschen = 4 }
         ```
       en: |
         What do the four output lines print? What would change in the first line if `[Flags]` were missing?
 
         ```csharp
-        [Flags]
-        enum Recht { Kein = 0, Lesen = 1, Schreiben = 2, Loeschen = 4 }
-
         var r = Recht.Lesen | Recht.Loeschen;
         Console.WriteLine(r);
         Console.WriteLine((int)r);
         Console.WriteLine(r.HasFlag(Recht.Schreiben));
         Console.WriteLine(r & ~Recht.Lesen);
+
+        [Flags]
+        enum Recht { Kein = 0, Lesen = 1, Schreiben = 2, Loeschen = 4 }
         ```
   - type: open
     id: code-invoke
     prompt:
       de: |
-        Was gibt dieses Programm aus, und warum fängt der erste `catch`-Block die Ausnahme?
+        Was gibt dieses Programm aus, und warum fängt der erste `catch`-Block die Ausnahme? (`using System.Reflection;` ist vorhanden.)
 
         ```csharp
-        class Demo { public int Teile(int a, int b) => a / b; }
-
         var m = typeof(Demo).GetMethod("Teile")!;
         Console.WriteLine(m.Invoke(new Demo(), new object[] { 10, 2 }));
         try { m.Invoke(new Demo(), new object[] { 1, 0 }); }
@@ -181,13 +179,13 @@ items:
         {
             Console.WriteLine("direkt");
         }
+
+        class Demo { public int Teile(int a, int b) => a / b; }
         ```
       en: |
-        What does this program print, and why does the first `catch` block catch the exception?
+        What does this program print, and why does the first `catch` block catch the exception? (`using System.Reflection;` is present.)
 
         ```csharp
-        class Demo { public int Teile(int a, int b) => a / b; }
-
         var m = typeof(Demo).GetMethod("Teile")!;
         Console.WriteLine(m.Invoke(new Demo(), new object[] { 10, 2 }));
         try { m.Invoke(new Demo(), new object[] { 1, 0 }); }
@@ -199,6 +197,8 @@ items:
         {
             Console.WriteLine("direkt");
         }
+
+        class Demo { public int Teile(int a, int b) => a / b; }
         ```
   - type: multipleChoice
     id: richtig-attribut

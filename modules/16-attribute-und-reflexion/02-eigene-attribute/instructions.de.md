@@ -7,7 +7,7 @@ Attributklasse leitet von `System.Attribute` ab und heißt üblicherweise auf
 `Attribute` endend; sie wird ohne dieses Suffix angewendet (`[Autor(...)]`).
 `[AttributeUsage]` legt fest, wo sie stehen darf. Positionale Parameter
 stammen aus dem Konstruktor, **benannte** aus öffentlichen, schreibbaren
-Eigenschaften (`Version = 2`).
+Eigenschaften oder Feldern (`Version = 2`).
 
 Die drei Attributklassen und die Klassen `Rechner` und `Person` sind
 angelegt, aber noch nicht fertig (Hinweise `// TODO` in den Dateien):

@@ -7,7 +7,7 @@ Instead of writing separate `if` chains in each class, you define the rules decl
 1. `PflichtAttribute.cs` and `BereichAttribute.cs`: Both attributes should only be allowed on properties and should not be applied multiple times to the same property (`[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]`).
 2. `Validierer.Pruefe(object o)` returns the error messages for all public properties in the order they are declared (an empty list means everything is OK):
    - `[Pflicht]`, and the value is `null`, or the text is empty or consists only of spaces: `"Name: ist ein Pflichtfeld"`.
-   - `[Bereich(min, max)]` and the value is outside the range (including the limits): `"Alter: muss zwischen 0 und 120 liegen"`. A `null` value is not checked against the range; `[Pflicht]` is used for that purpose.
+   - `[Bereich(min, max)]` and the value is outside the range (the limits themselves are inside): `"Alter: muss zwischen 0 und 120 liegen"`. A `null` value is not checked against the range; `[Pflicht]` is used for that purpose.
    - If a property has both attributes, the required message comes first.
    - Properties without attributes are ignored.
 

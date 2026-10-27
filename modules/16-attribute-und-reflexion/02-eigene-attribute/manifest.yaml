@@ -2,7 +2,7 @@ id: attribute-eigene-attribute
 title: { de: "Eigene Attribute definieren", en: "Define Your Own Attributes" }
 reading:
   section: "14.6"
-  title: { de: "Attribute definieren", en: "Define Attributes" }
+  title: { de: "Attribute definieren", en: "Defining Attributes" }
   printedPage: 940
 teaches:
   - attributes.define-custom

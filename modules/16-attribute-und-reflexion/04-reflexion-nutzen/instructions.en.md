@@ -7,7 +7,7 @@ Read **section 14.7.1**, **“Traditional Compensation via Type Parameters”** 
 
 Add the following to `Mapper.cs`, `Aufrufer.cs`, and `PluginFabrik.cs` (see the notes in the files). The `[Spalte("name")]` attribute and the `Kunde` class are predefined:
 
-1. `Mapper.NachZeilen(o)`: every property with `[Spalte]` as `"name=wert"`, in the order they were declared; others are skipped. Format numbers using `CultureInfo.InvariantCulture` (`2.5`, not `2,5`).
+1. `Mapper.NachZeilen(o)`: every property with `[Spalte]` as `"name=wert"`, in the order they were declared (which is what `GetProperties()` returns in practice, although the documentation does not guarantee it); others are skipped. Format numbers using `CultureInfo.InvariantCulture` (`2.5`, not `2,5`).
 2. `Mapper.VonZeilen<T>(zeilen)`: Create a `T` using `Activator.CreateInstance<T>()` and set the properties based on the lines. Unknown keys and lines without `=` are ignored; the first `=` is used as a delimiter. If a value cannot be converted (`FormatException`, `OverflowException`), the property remains unchanged; the remaining lines are still read.
 3. `Aufrufer.Starte(o, methode)`: Call the public, parameterless instance method with this name. Return the result; return `null` if the method is `void`; return the text `"?"` if the name is unknown (no exception).
 4. `PluginFabrik.Erzeuge(typname)`: Retrieve the type using `Type.GetType(typname)`. If the type does not exist, does not implement `IPlugin` (`typeof(IPlugin).IsAssignableFrom`), or is abstract (including interfaces), the result is `null`. Otherwise, create an instance.

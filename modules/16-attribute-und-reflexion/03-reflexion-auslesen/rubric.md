@@ -5,9 +5,11 @@
   `IsDefined` fragt nur ab, ob sie vorhanden sind. Gesprächsanlass: Wann
   genügt `IsDefined`? (Wenn die Werte egal sind: billiger, kein Objekt.)
 - Typische Falle: `GetMethods()` ohne `BindingFlags` liefert auch statische
-  Methoden und die von `object` geerbten (`ToString`, `Equals`); der Test
-  enthält deshalb eine statische Methode mit `[Autor]`, die nicht erscheinen
-  darf. Private Methoden bleiben in beiden Varianten draußen.
+  Methoden; der Test enthält deshalb eine statische Methode mit `[Autor]`,
+  die nicht erscheinen darf. Die von `object` geerbten (`ToString`, `Equals`)
+  kommen in beiden Varianten mit (wie im Buch, Seite 928), stören aber nicht,
+  weil sie kein `[Autor]` tragen. Private Methoden bleiben in beiden
+  Varianten draußen.
 - `GetType()` vs. `typeof(T)`: Der Test mit `IEnumerable<int> folge = new
   List<int>()` ist das Herz der Aufgabe: Der Laufzeittyp ist `List<int>`, der
   deklarierte Typ `IEnumerable<int>`. Bei generischen Typen heißt der Name

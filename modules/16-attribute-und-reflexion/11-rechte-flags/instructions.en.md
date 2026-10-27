@@ -4,13 +4,13 @@ Extra exercise: optional; it unlocks nothing. For further reading: **14.5.4 Bit 
 
 A user can have multiple roles at the same time. Instead of four `bool` properties, a single bit field is sufficient: each role is represented by a bit, and a combination is the OR operation.
 
-1. `Rolle.cs`: Turn the enumeration with `[Flags]` into a bit field. The values (1, 2, 4, 8) are already powers of two; without `[Flags]`, `Rolle.Leser | Rolle.Autor` would be output as `3`.
+1. `Rolle.cs`: Use `[Flags]` to turn the enumeration into a bit field. The values (1, 2, 4, 8) are already powers of two; without `[Flags]`, `Rolle.Leser | Rolle.Autor` would be output as `3`.
 2. `Benutzer.cs`: Implement
    - `Vergib(rolle)`: Set bits (`|=`),
    - `Entziehe(rolle)`: Clear bits (`&= ~`),
    - `Darf(benoetigt)`: Are **all** the required bits set?
    - `Beschreibung()`: the roles as text, e.g., `"Leser, Autor"`,
-   - `Parse(text)`: the alternative approach using `Enum.Parse<Rolle>`, case-insensitive; an unknown name throws an `ArgumentException`.
+   - `Parse(text)`: the reverse direction using `Enum.Parse<Rolle>`, case-insensitive; an unknown name throws an `ArgumentException`.
 
 The following tests must be passed:
 

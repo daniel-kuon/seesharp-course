@@ -1,13 +1,13 @@
 # Define Your Own Attributes
 
-Read section **14.6**, **“Defining Attributes”** (page 940), **14.7 Generic Attributes** (page 942), specifically 14.7.1 (the old solution using the `typeof` parameter, page 942) and 14.7.2 (the generic version, page 944). An System.Attribute class derives from `System.Attribute` and is usually named with `Attribute` as a suffix; it is applied without this suffix (`[Autor(...)]`). `[AttributeUsage]` specifies where it may be placed. Positional parameters come from the constructor; **named** parameters come from public, writable properties (`Version = 2`).
+Read section **14.6**, **“Defining Attributes”** (page 940), **14.7 Generic Attributes** (page 942), specifically 14.7.1 (the old solution using the `typeof` parameter, page 942) and 14.7.2 (the generic version, page 944). An attribute class derives from `System.Attribute` and is usually named with `Attribute` as a suffix; it is applied without this suffix (`[Autor(...)]`). `[AttributeUsage]` specifies where it may be placed. Positional parameters come from the constructor; **named** parameters come from public, writable properties or fields (`Version = 2`).
 
 The three attribute classes and the `Rechner` and `Person` classes have been created but are not yet complete (`// TODO` notes in the files):
 
-1. `AutorAttribute`: an attribute with a positional `Name` and a named `Version` (Standard 1). It may only be applied to classes and methods and may be applied multiple times to the same target (`AllowMultiple = true`).
+1. `AutorAttribute`: an attribute with a positional `Name` and a named `Version` (default 1). It may only be applied to classes and methods and may be applied multiple times to the same target (`AllowMultiple = true`).
 2. `SpalteAttribute(name)`: Applies only to properties.
 3. `ImplementierungAttribute<T>`: generic, applies only to classes, with the type constraint `where T : IRechnung`. `Typ` returns `typeof(T)`. This eliminates the runtime check that the book performs in the constructor using `IsAssignableFrom`: the compiler rejects invalid types.
-4. Apply the attributes: The `Rechner` receives `[Autor("Anna", Version = 2)]`, `[Autor("Ben")]`, and `[Implementierung<StandardRechnung>]`; The `Addiere` method takes `[Autor("Ben", Version = 3)]`. In `Person`, the `Name` and `Alter` are stored in `[Spalte("name")]` and `[Spalte("alter")]`, `Passwort`: none.
+4. Apply the attributes: `Rechner` gets `[Autor("Anna", Version = 2)]`, `[Autor("Ben")]`, and `[Implementierung<StandardRechnung>]`; the method `Addiere` gets `[Autor("Ben", Version = 3)]`. In `Person`, `Name` and `Alter` carry `[Spalte("name")]` and `[Spalte("alter")]` respectively, `Passwort` carries none.
 
 The compiler determines whether an attribute is allowed at a given location; therefore, the tests read `AttributeUsageAttribute.ValidOn` and `AllowMultiple` via reflection, rather than triggering a compilation error.
 

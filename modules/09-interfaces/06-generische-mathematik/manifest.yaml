@@ -21,6 +21,13 @@ items:
     openFile: "b11 IAdditionOperators/Bruch.cs"
     openLine: 80
     testProject: "b11 Tests/b11.Tests.csproj"
+    requiredTests:
+      - GenerischeMathematikTests.Bruch_implementiert_IAdditionOperators
+      - GenerischeMathematikTests.Checked_Plus_wirft_bei_Ueberlauf
+      - GenerischeMathematikTests.Unchecked_Plus_laeuft_still_ueber
+      - GenerischeMathematikTests.Checked_Plus_rechnet_ohne_Ueberlauf_normal
+      - GenerischeMathematikTests.Summe_arbeitet_mit_eingebauten_Typen_und_mit_Bruch
+      - GenerischeMathematikTests.Statischer_abstrakter_Operator_im_eigenen_Interface
   - type: multipleChoice
     id: checked-default
     prompt: { de: "IAdditionOperators definiert operator checked + als statisches virtuelles Mitglied mit der Vorgabe left + right. Was bedeutet das für Bruch ohne eigene checked-Überladung?", en: "`IAdditionOperators` defines `operator checked +` as a static virtual member with the default `left + right`. What does that mean for `Bruch` without its own `checked` overload?" }

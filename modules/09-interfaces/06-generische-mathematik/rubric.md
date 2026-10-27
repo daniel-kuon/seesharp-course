@@ -7,6 +7,8 @@
   Interface spricht über den implementierenden Typ selbst.
 - `Rechner.Summe` mit `+=`: Der Compiler übersetzt `summe = summe + r` über
   den statischen abstrakten Operator; es gibt keinen virtuellen Aufruf.
+- Bonus (Deep Dive): `operator checked +=` (nicht im Buch). Nachfragen,
+  warum ohne ihn auch im `checked`-Block das normale `+=` läuft.
 - Stretch (nicht verlangt): `INumber<T>` und `T.Zero` wie im Beispiel
   `Generische Mathematik/Anwendung`.
 

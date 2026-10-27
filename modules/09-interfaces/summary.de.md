@@ -40,7 +40,7 @@ Fassung sichtbar bleibt.
 nicht-generischen vorzuziehen: typsicher, ohne Cast, ohne Boxing bei
 Strukturen (9.2.3, Seite 642). `ICloneable` ist so ein Altfall: Sein `object
 Clone()` zwingt zum Cast, deshalb bleibt die eigene typsichere `Klone()`
-daneben sinnvoll; `MemberwiseClone()` liefert die flache Kopie.
+daneben sinnvoll (zu `MemberwiseClone()` siehe Deep Dive).
 
 ## IEnumerable<T>, IEnumerator<T> und yield (9.5, Seite 647)
 
@@ -80,3 +80,15 @@ Vertiefung im Buch: Kapitel 9 (Seite 609 bis 656); die Übungsaufgaben in
 9.6 (Seite 655) liefern `IComparable`/`ICloneable`, `operator checked +`
 und `RangeItUpDown` dieses Levels. Statische Polymorphie (9.1.2.3) und
 das CRTP (9.1.3.3) sind Zusatzstoff.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- `MemberwiseClone()` ist eine geschützte Methode, die jede Klasse von
+  `Object` erbt. Sie liefert eine flache Kopie: Felder werden eins zu eins
+  kopiert, referenzierte Objekte also nicht mitkopiert. Damit lässt sich
+  `ICloneable.Clone()` in einer Zeile implementieren.
+- `public void operator checked +=(Bruch b)` verbindet den eigenen
+  `+=`-Operator aus 5.9 mit der checked-Variante aus 9.6. Ohne ihn wählt der
+  Compiler auch in einem `checked`-Block das normale `+=`.

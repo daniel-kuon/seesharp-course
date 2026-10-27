@@ -15,9 +15,8 @@ das Interface bereits durch `operator +` aus Level 4.
    Bruch b2)`. Sie rechnet Zähler und Nenner mit `checked(...)` und wirft
    dadurch `OverflowException` statt leise überzulaufen; das Etikett
    entsteht wie beim normalen `+` (`$"{b1.Etikett} + {b2.Etikett}"`), das
-   Ergebnis wird gekürzt. Ebenso `public void operator checked
-   +=(Bruch b)`. In einem `checked`-Block wählt der Compiler diese
-   Varianten.
+   Ergebnis wird gekürzt. In einem `checked`-Block wählt der Compiler diese
+   Variante.
 2. In `Rechner.cs`: `Summe<T>(T first, params T[] rest)` summiert mit `+=`;
    die Einschränkung `where T : IAdditionOperators<T, T, T>` macht das
    möglich, für `int`, `double`, `decimal` und `Bruch` gleichermaßen.
@@ -26,3 +25,12 @@ das Interface bereits durch `operator +` aus Level 4.
    Leerzeichen verbinden) und `Gras` (Größen addieren) und schreibe
    `Kombinierer.Combine<T>(params T[])`, das alle Elemente mit `+`
    verkettet.
+
+> **Deep Dive (optional):** Die checked-Fassung des Instanzoperators `+=`
+> steht nicht im Buch; sie verbindet `void operator +=` aus 5.9 (Seite 387)
+> mit der checked-Variante aus 9.6. Ergänze in `Bruch.cs`
+> `public void operator checked +=(Bruch b)`, das Zähler und Nenner mit
+> `checked(...)` aktualisiert. Ohne sie wählt der Compiler auch in einem
+> `checked`-Block das normale `+=`, und ein Überlauf bleibt unbemerkt. Das
+> prüft der Test `GenerischeMathematikTests.Checked_PlusGleich_wirft_bei_Ueberlauf`;
+> er ist zusätzlich und für das Bestehen der Übung nicht nötig.

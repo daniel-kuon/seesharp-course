@@ -46,7 +46,7 @@ public class GenerischeMathematikTests
     {
         var b1 = new Bruch(int.MaxValue, 1, "");
 
-        Assert.Throws<OverflowException>(() => { checked { b1 += new Bruch(1, 1, ""); } });
+        Assert.Throws<OverflowException>(() => { checked { b1 += new Bruch(2, 1, ""); } });
     }
 
     [Fact]

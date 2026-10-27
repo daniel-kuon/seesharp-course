@@ -12,7 +12,7 @@ If two interfaces require members with the same name but different meanings, or 
 
 ## IComparable<T> and ICloneable (9.2, page 640; 9.6, Exercise 1)
 
-`CompareTo` returns a negative, zero, or positive value and enables `Array.Sort` and `List<T>.Sort`; `Bruch` performs a comparison using cross-multiplication (in `long` to prevent overflow). Generic interfaces are preferable to the old non-generic ones: type-safe, no casting, no boxing for structures (9.2.3, page 642). `ICloneable` is one such legacy case: its `object Clone()` method requires a cast, so the custom, type-safe `Klone()` method remains useful alongside it; `MemberwiseClone()` returns a shallow copy.
+`CompareTo` returns a negative, zero, or positive value and enables `Array.Sort` and `List<T>.Sort`; `Bruch` performs a comparison using cross-multiplication (in `long` to prevent overflow). Generic interfaces are preferable to the old non-generic ones: type-safe, no casting, no boxing for structures (9.2.3, page 642). `ICloneable` is one such legacy case: its `object Clone()` method requires a cast, so the custom, type-safe `Klone()` method remains useful alongside it (for `MemberwiseClone()` see Deep Dive).
 
 ## IEnumerable<T>, IEnumerator<T>, and yield (9.5, page 647)
 
@@ -27,3 +27,10 @@ Since C# 11, an interface can require static abstract members and even operators
 Generic classes are invariant (Level 8). Generic interfaces may mark type formal parameters as `out` (output only) or `in` (input only): `IEnumerable<out T>` is **covariant**; a sequence of circles is treated as a sequence of figures (9.1.5.1); `IComparable<in T>` is **contravariant**: `Kreis` inherits only `IComparable<Figur>` from `Figur`, and `List<Kreis>.Sort()` still sorts the circles (9.1.5.2). If `T` appears in both positions (`IList<T>`), only invariance remains.
 
 Further reading in the book: Chapter 9 (pages 609–656); the exercises in 9.6 (page 655) supply `IComparable`/`ICloneable`, `operator checked +` and `RangeItUpDown` for this level. Static polymorphism (9.1.2.3) and the CRTP (9.1.3.3) are supplementary material.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- `MemberwiseClone()` is a protected method that every class inherits from `Object`. It returns a shallow copy: fields are copied one to one, so referenced objects are not copied along. With it, `ICloneable.Clone()` can be implemented in one line.
+- `public void operator checked +=(Bruch b)` combines the custom `+=` operator from 5.9 with the checked variant from 9.6. Without it, the compiler picks the normal `+=` even in a `checked` block.

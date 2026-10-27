@@ -28,7 +28,8 @@ sich so ergänzen, ohne den Rechner anzufassen. Öffne `Befehle.cs`;
    zurückgenommenen Befehl erneut aus. Beide liefern `false`, wenn es
    nichts zu tun gibt. Ein neuer Befehl über `Ausfuehren` leert den Stapel
    `zurueckgenommen`. `Protokoll()` liefert die Namen im Verlauf, mit
-   `", "` verbunden (`string.Join`).
+   `", "` verbunden (nicht im Buch, hier vorgegeben:
+   `string.Join(", ", namen)` verbindet die Strings des Arrays `namen`).
 
 Diese Tests müssen bestehen:
 

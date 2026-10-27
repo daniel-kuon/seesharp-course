@@ -89,7 +89,8 @@ public class Bruch : IComparable<Bruch>, ICloneable, IAdditionOperators<Bruch, B
     // TODO: checked-Variante des Plusoperators: rechnet mit checked(...) und wirft bei Überlauf OverflowException.
     //       public static Bruch operator checked +(Bruch b1, Bruch b2)
 
-    // TODO: checked-Variante des Instanzoperators += (public void operator checked +=(Bruch b))
+    // Deep Dive (optional, nicht im Buch): checked-Variante des Instanzoperators +=
+    //       public void operator checked +=(Bruch b)
 
     public void Multipliziere(Bruch b) {
         Zaehler *= b.Zaehler;

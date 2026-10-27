@@ -7,7 +7,7 @@ Every editor supports "Undo" and "Redo." A proven approach: Every action is an o
 1. `Multipliziere(faktor)`: The `Name` is, for example, `"Multipliziere 3"`. A factor of 0 cannot be undone and therefore throws an `ArgumentOutOfRangeException` in the constructor. Undoing the operation divides by the factor.
 2. `Negiere`: `Name` is `"Negiere"`; Execute and Undo flip the sign.
 3. `Makro(params IBefehl[] befehle)` combines multiple commands into one and is itself an `IBefehl` (so a macro can also contain macros). Execute applies the commands in sequence; Undo takes them back in **reverse** order. `Name`: `"Makro(Addiere 2, Multipliziere 3)"`.
-4. `Rechner`: `Ausfuehren(befehl)` applies the command to `Wert` and stores it in the history (`verlauf` is an array with a counter, like a stack). `Rueckgaengig()` undoes the last executed command and places it on the `zurueckgenommen` stack; `Wiederholen()` re-executes the last undone command. Both return `false` if there is nothing to do. A new command via `Ausfuehren` clears the `zurueckgenommen` stack. `Protokoll()` returns the names in the history, joined by `", "` (`string.Join`).
+4. `Rechner`: `Ausfuehren(befehl)` applies the command to `Wert` and stores it in the history (`verlauf` is an array with a counter, like a stack). `Rueckgaengig()` undoes the last executed command and places it on the `zurueckgenommen` stack; `Wiederholen()` re-executes the last undone command. Both return `false` if there is nothing to do. A new command via `Ausfuehren` clears the `zurueckgenommen` stack. `Protokoll()` returns the names in the history, joined by `", "` (not in the book, given here: `string.Join(", ", namen)` joins the strings of the array `namen`).
 
 The following tests must pass:
 

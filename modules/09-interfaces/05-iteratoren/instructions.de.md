@@ -18,7 +18,9 @@ läuft. Öffne `SimpleSortedList.cs`:
 3. `DownIt`: ein Iterator als **Eigenschaft**, alle Elemente absteigend.
 4. `RangeItUpDown(first, last)` (Buchaufgabe): wie `RangeIt`, aber bei
    `first > last` wird abwärts gezählt. Prüfe den Bereich mit `int.Min` und
-   `int.Max`, bevor du die Richtung wählst.
+   `int.Max`, bevor du die Richtung wählst (nicht im Buch, hier vorgegeben:
+   `int.Min(first, last)` liefert die kleinere, `int.Max(first, last)` die
+   größere Zahl).
 
 Beachte, dass Iteratoren **faul** sind: `si.RangeIt(1, 99)` wirft nichts und
 prüft nichts, solange niemand darüber iteriert. Der Test

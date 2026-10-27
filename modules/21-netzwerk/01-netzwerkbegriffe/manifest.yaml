@@ -65,7 +65,7 @@ items:
       - { de: "200 ist Umleitung, 301 Erfolg, 404 und 500 Fehler des Servers, 503 Fehler des Klienten.", en: "200 indicates a redirect, 301 indicates success, 404 and 500 indicate server errors, and 503 indicates a client error." }
       - { de: "Alle Codes ab 300 sind Fehler des Servers.", en: "All codes starting with 300 are server errors." }
     correct: [0]
-    explanation: { de: "21.3.2 (Seite 1509) und HttpResponseMessage.IsSuccessStatusCode: true genau für 200 bis 299. 4xx bedeutet: Die Anforderung war falsch; 5xx: Der Server hat versagt (ein erneuter Versuch kann sich lohnen, z. B. bei 503).", en: "21.3.2 (page 1509) and HttpResponseMessage.IsSuccessStatusCode: true specifically for 200 through 299. 4xx means: The request was invalid; 5xx: The server failed (it may be worth trying again, e.g., for a 503)." }
+    explanation: { de: "21.3.2 (Seite 1508 und 1509): EnsureSuccessStatusCode() wirft genau außerhalb von 200 bis 299. 4xx bedeutet: Die Anforderung war falsch; 5xx: Der Server hat versagt (ein erneuter Versuch kann sich lohnen, z. B. bei 503).", en: "21.3.2 (pages 1508 and 1509): EnsureSuccessStatusCode() throws exactly outside 200 through 299. 4xx means: The request was invalid; 5xx: The server failed (it may be worth trying again, e.g., for a 503)." }
   - type: multipleChoice
     id: httpclient-lebensdauer
     prompt:

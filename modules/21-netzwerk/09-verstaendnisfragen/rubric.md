@@ -20,15 +20,16 @@ Ausgabe:
 
 ```
 https example.org 8443
-/a/b.html ?x=1&y=zwei #kopf
-80 True
+/a/b.html?x=1&y=zwei ?x=1&y=zwei #kopf
+80 /start?x=a%20b
 ```
 
 Wesentlich:
-- `Uri` zerlegt die Adresse in Schema, Host, Port, Pfad (`AbsolutePath`), Abfrage (`Query`, mit führendem `?`) und Fragment (`Fragment`, mit führendem `#`).
-- Fehlt der Port, ergänzt `Uri` den Standardport des Schemas: 80 für `http`, 443 für `https`; `IsDefaultPort` ist dann `true`.
+- `Uri` zerlegt die Adresse in Schema, Host, Port, Pfad mit Abfrage (`PathAndQuery`), Abfrage (`Query`, mit führendem `?`) und Fragment (`Fragment`, mit führendem `#`; nicht in `PathAndQuery`).
+- Fehlt der Port, ergänzt `Uri` den Standardport des Schemas: 80 für `http`, 443 für `https` (21.2, Seite 1506).
+- Das Leerzeichen kodiert der `Uri`-Konstruktor selbst als `%20` (ebenfalls Seite 1506).
 
-Typische Fehlvorstellungen: `Query` ohne `?` oder `Fragment` ohne `#` erwartet; Port 0 oder eine Ausnahme bei fehlendem Port; Host mit Port (`example.org:8443`).
+Typische Fehlvorstellungen: `Query` ohne `?` oder `Fragment` ohne `#` erwartet; das Fragment in `PathAndQuery`; Port 0 oder eine Ausnahme bei fehlendem Port; Host mit Port (`example.org:8443`); eine Ausnahme wegen des Leerzeichens.
 
 ## uri-und-kodierung
 
@@ -36,9 +37,10 @@ Wesentlich:
 - Teile: Schema, Host, Port, Pfad, Abfrage (Query), Fragment.
 - In der Abfrage haben `&` (trennt Parameter), `=` (trennt Name und Wert), `?`, `#` und das Leerzeichen eine Bedeutung. Steckt solch ein Zeichen unkodiert im
   Wert, verändert es die Adresse: Aus `Tom & Jerry` würden zwei Parameter. Deshalb `Uri.EscapeDataString(wert)` (Prozentkodierung, auch für Umlaute und Leerzeichen); `Uri.UnescapeDataString` kehrt es um.
-- `new Uri(text)` wirft bei ungültigem Text eine `UriFormatException`; `Uri.TryCreate` liefert stattdessen `false` (Benutzereingaben); `UriBuilder` setzt Adressen aus Teilen zusammen (eine `Uri` ist unveränderlich).
+- `new Uri(text)` wirft bei ungültigem Text eine `UriFormatException`; `Uri.TryCreate` liefert stattdessen `false` (Benutzereingaben). `EscapeDataString` und `TryCreate` stehen nicht im Buch, Aufgabe 2 gibt sie vor.
+- Bonus (Deep Dive): `UriBuilder` setzt Adressen aus Teilen zusammen (eine `Uri` ist unveränderlich).
 
-Typische Fehlvorstellungen: Kodieren sei nur für Umlaute nötig; die ganze Adresse (nicht die Werte) kodieren; `Uri` sei veränderlich.
+Typische Fehlvorstellungen: Kodieren sei nur für Umlaute nötig; die ganze Adresse (nicht die Werte) kodieren; es reiche, Leerzeichen zu ersetzen.
 
 ## http-methoden-status
 
@@ -72,7 +74,8 @@ Typische Fehlvorstellungen: Schon `GetAsync` werfe bei 404 (dann gäbe es keine 
 Wesentlich:
 - Ein Client pro Aufruf verschwendet Verbindungen (jede neue Instanz baut eigene Verbindungen auf) und kann bei vielen Aufrufen die Ports erschöpfen; deshalb **ein** Objekt anlegen und weiterverwenden.
 - `Task<T>` steht für ein Ergebnis, das erst später fertig ist; `await` wartet darauf, **ohne den Thread zu blockieren**: Der Thread kann in der Zwischenzeit anderes tun, danach läuft die Methode weiter. Die Methode ist `async` und liefert selbst `Task<T>`.
-- JSON: `GetFromJsonAsync<T>(url)` liest die Antwort und wandelt sie in `T` um; `PostAsJsonAsync(url, objekt)` serialisiert das Objekt und sendet es per POST.
+- JSON (21.3.3, 16.5): Empfangen mit `GetStringAsync` und `JsonSerializer.Deserialize<T>(text, optionen)`; Senden mit `JsonSerializer.Serialize`, verpackt in `StringContent` (Kodierung UTF-8, Medientyp `application/json`), per `PostAsync`. Mit `PropertyNamingPolicy = JsonNamingPolicy.CamelCase` passen die JSON-Namen.
+- Bonus (Deep Dive): `GetFromJsonAsync<T>` und `PostAsJsonAsync` aus `System.Net.Http.Json` (nicht im Buch) erledigen beides in einem Aufruf.
 
 Typische Fehlvorstellungen: `await` blockiere den Thread, bis die Antwort da ist (wie `.Result`); `HttpClient` müsse per `using` bei jedem Aufruf neu erzeugt werden; `async` starte einen neuen Thread.
 

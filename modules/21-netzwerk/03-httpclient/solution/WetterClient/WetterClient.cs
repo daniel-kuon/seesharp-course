@@ -1,10 +1,12 @@
 using System.Net;
-using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 
 public record Wetter(string Stadt, double Temperatur);
 
 public class WetterClient
 {
+    private static readonly JsonSerializerOptions JsonOptionen = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
     private readonly HttpClient _http;
 
     // Den HttpClient bekommt der Konstruktor von außen (ein Client für das ganze Programm, in den Tests mit
@@ -13,12 +15,19 @@ public class WetterClient
 
     public Task<string> HoleTextAsync(string pfad) => _http.GetStringAsync(pfad);
 
+    // Buchweg (16.5, 21.3.3). Deep Dive: GetFromJsonAsync<Wetter>(...) und PostAsJsonAsync(...) aus
+    // System.Net.Http.Json erledigen dasselbe kürzer (Web-Voreinstellung: camelCase).
     public async Task<Wetter?> HoleWetterAsync(string stadt)
-        => await _http.GetFromJsonAsync<Wetter>($"wetter?stadt={Uri.EscapeDataString(stadt)}");
+    {
+        string json = await _http.GetStringAsync($"wetter?stadt={Uri.EscapeDataString(stadt)}");
+        return JsonSerializer.Deserialize<Wetter>(json, JsonOptionen);
+    }
 
     public async Task<bool> MeldeAsync(string stadt, double temperatur)
     {
-        using var antwort = await _http.PostAsJsonAsync("meldung", new Wetter(stadt, temperatur));
+        using StringContent inhalt = new(JsonSerializer.Serialize(new Wetter(stadt, temperatur), JsonOptionen),
+            Encoding.UTF8, "application/json");
+        using var antwort = await _http.PostAsync("meldung", inhalt);
         return antwort.IsSuccessStatusCode;
     }
 

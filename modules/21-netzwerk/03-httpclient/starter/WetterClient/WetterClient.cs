@@ -1,5 +1,6 @@
 using System.Net;
-using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 
 // ---------------------------------------------------------------------------------------------------
 // Mini-Einführung in async/await (nur das, was diese Aufgabe braucht)
@@ -24,6 +25,10 @@ public record Wetter(string Stadt, double Temperatur);
 
 public class WetterClient
 {
+    // Fertig: JSON-Namen in camelCase ("stadt", "temperatur"), wie in 16.5 (Seite 1046). Gilt beim
+    // Serialisieren und beim Deserialisieren.
+    private static readonly JsonSerializerOptions JsonOptionen = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+
     private readonly HttpClient _http;
 
     // Fertig: Den HttpClient bekommt der Konstruktor von außen (ein Client für das ganze Programm; die Tests
@@ -35,13 +40,15 @@ public class WetterClient
     // HttpRequestException aus; sie werden nicht abgefangen.
     public Task<string> HoleTextAsync(string pfad) => throw new NotImplementedException();
 
-    // TODO 2: GET auf "wetter?stadt=<Stadt kodiert mit Uri.EscapeDataString>", die Antwort als Wetter
-    // deserialisiert (GetFromJsonAsync<Wetter>). Tipp: "async" davorschreiben und await benutzen.
+    // TODO 2: GET auf "wetter?stadt=<Stadt kodiert mit Uri.EscapeDataString(stadt)>" (GetStringAsync), den
+    // JSON-Text mit JsonSerializer.Deserialize<Wetter>(json, JsonOptionen) in ein Wetter verwandeln.
+    // Tipp: "async" davorschreiben und await benutzen.
     public Task<Wetter?> HoleWetterAsync(string stadt) => throw new NotImplementedException();
 
-    // TODO 3: POST auf "meldung" mit new Wetter(stadt, temperatur) als JSON (PostAsJsonAsync).
-    // Ergebnis: true bei Statuscode 2xx, sonst false (IsSuccessStatusCode), ohne Ausnahme für 4xx/5xx.
-    // Die Antwort gibst du mit "using var" wieder frei.
+    // TODO 3: POST auf "meldung" mit new Wetter(stadt, temperatur) als JSON, wie in 21.3.3.2: JsonSerializer.Serialize
+    // (mit JsonOptionen), StringContent mit Encoding.UTF8 und "application/json", dann PostAsync.
+    // Ergebnis: true bei Statuscode 2xx, sonst false (antwort.IsSuccessStatusCode), ohne Ausnahme für 4xx/5xx.
+    // Inhalt und Antwort gibst du mit "using" wieder frei.
     public Task<bool> MeldeAsync(string stadt, double temperatur) => throw new NotImplementedException();
 
     // TODO 4: Sende eine HEAD-Anforderung (new HttpRequestMessage(HttpMethod.Head, pfad) mit SendAsync):

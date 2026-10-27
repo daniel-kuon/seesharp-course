@@ -20,7 +20,7 @@ public class VorhersageClient
     // TODO 4: Status 503: bis zu MaxVersuche Versuche INSGESAMT (der erste Versuch zählt mit). Gibt es nach
     // dem dritten Versuch noch 503, wirf die HttpRequestException (EnsureSuccessStatusCode). Es wird zwischen
     // den Versuchen nicht gewartet (die Tests zählen nur die Anforderungen).
-    // TODO 5: Bei Erfolg die JSON-Liste lesen (Content.ReadFromJsonAsync<List<Vorhersage>>()). Jeder andere
+    // TODO 5: Bei Erfolg die JSON-Liste lesen (await antwort.Content.ReadFromJsonAsync<List<Vorhersage>>(), nicht im Buch, hier vorgegeben). Jeder andere
     // Fehlerstatus (z. B. 500) wirft die HttpRequestException ohne Wiederholung.
     // Tipp: eine Schleife "for (var versuch = 1; ; versuch++)" mit await in der Schleife; die Antwort
     // gibst du mit "using var" frei.

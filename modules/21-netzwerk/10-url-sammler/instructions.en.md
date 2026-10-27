@@ -1,4 +1,6 @@
-# Extra: URL Collector
+# Deep Dive: URL Collector
+
+> **Deep Dive (optional):** This exercise goes beyond the book. It works with `Uri.TryCreate`, `UriBuilder`, `Uri.EscapeDataString` and `Uri.UnescapeDataString`, which the book does not cover (exercise 2 provided some of them). It is an example of what to look into next: the documentation of the classes `Uri` and `UriBuilder`.
 
 Extra exercise: optional; it unlocks nothing. For further reading: **21.2 URI or URL** (page 1505) and **21.3.3 Request Parameters** (page 1512).
 

@@ -4,7 +4,7 @@ Extra exercise: optional; it unlocks nothing. For further reading: **21.3.2 GET 
 
 A **Typed Client** is a class that takes an `HttpClient` as input and hides the addresses and JSON format of an interface from the rest of the program. Here, it is `VorhersageClient` for a service that returns a forecast as a JSON list, again tested using a test handler without a network connection. Open `VorhersageClient.cs`: The `TageAsync(ort, anzahl)` method calls `vorhersage?ort=<Ort>&tage=<anzahl>`.
 
-- Answer 200: the JSON list as `Vorhersage` entries.
+- Answer 200: the JSON list as `Vorhersage` entries, read with `await antwort.Content.ReadFromJsonAsync<List<Vorhersage>>()` (not in the book, given here; the book way with `ReadAsStringAsync` and `JsonSerializer.Deserialize` with camelCase options works too).
 - Answer 404 (location unknown): an **empty list**, without exception.
 - Response 503 (Service Overloaded): Attempt **up to three times**, including the first attempt, with no wait time. After the third failure, a `HttpRequestException` is thrown.
 - Any other error status: `HttpRequestException`; no retry.

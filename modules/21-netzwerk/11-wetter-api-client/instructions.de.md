@@ -11,7 +11,10 @@ Dienst, der eine Vorhersage als JSON-Liste liefert, wieder getestet mit einem
 Test-Handler ohne Netzwerk. Öffne `VorhersageClient.cs`: Die Methode
 `TageAsync(ort, anzahl)` ruft `vorhersage?ort=<Ort>&tage=<anzahl>` auf.
 
-- Antwort 200: die JSON-Liste als `Vorhersage`-Einträge.
+- Antwort 200: die JSON-Liste als `Vorhersage`-Einträge, gelesen mit
+  `await antwort.Content.ReadFromJsonAsync<List<Vorhersage>>()` (nicht im Buch,
+  hier vorgegeben; der Buchweg mit `ReadAsStringAsync` und
+  `JsonSerializer.Deserialize` samt camelCase-Optionen geht auch).
 - Antwort 404 (Ort unbekannt): eine **leere Liste**, ohne Ausnahme.
 - Antwort 503 (Dienst überlastet): **bis zu dreimal** versuchen, den ersten
   Versuch mitgezählt, ohne Wartezeit. Nach dem dritten Fehlschlag wird die

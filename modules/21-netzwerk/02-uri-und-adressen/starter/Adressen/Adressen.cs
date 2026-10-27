@@ -13,9 +13,9 @@ public static class Adressen
 
     // TODO 2: Hänge die Parameter an die Basisadresse an: "http://h/p" + {q = "a b&c", n = "1"}
     // ergibt "http://h/p?q=a%20b%26c&n=1" (Einfügereihenfolge; Namen und Werte mit Uri.EscapeDataString
-    // kodieren). Ohne Parameter bleibt die Basis unverändert. Hat die Basis schon eine Abfrage, kommen die
-    // neuen Parameter mit "&" dahinter. Nimm UriBuilder (Eigenschaft Query, am Ende Uri.AbsoluteUri).
-    // Eine ungültige Basis wirft UriFormatException (nicht abfangen).
+    // kodieren). Ohne Parameter bleibt die Basis unverändert. Hat die Basis schon eine Abfrage ("?"), kommen die
+    // neuen Parameter mit "&" dahinter, sonst mit "?". Eine ungültige Basis wirft UriFormatException
+    // (einmal new Uri(basis) erzeugen, nicht abfangen). Deep Dive: dasselbe mit UriBuilder (siehe Aufgabe).
     public static string Baue(string basis, Dictionary<string, string> parameter) => throw new NotImplementedException();
 
     // TODO 3: Lies die Abfrage einer URL als Wörterbuch zurück: am ersten "?" trennen, ein "#Fragment" ignorieren,
@@ -29,6 +29,7 @@ public static class Adressen
     // TODO 5: true für Loopback-Adressen (IPAddress.IsLoopback) und die privaten IPv4-Bereiche
     // 10.0.0.0/8, 172.16.0.0/12 (172.16 bis 172.31) und 192.168.0.0/16. Ist ip keine gültige Adresse
     // (IPAddress.TryParse), ist das Ergebnis false. IPv6-Adressen außer ::1 sind hier nicht lokal.
+    // adresse.GetAddressBytes() liefert die Bytes: 4 bei IPv4, 16 bei IPv6.
     public static bool IstLokal(string ip) => throw new NotImplementedException();
 
     // TODO 6: Löse "localhost" mit Dns.GetHostAddresses auf und prüfe, ob eine der Adressen Loopback ist.

@@ -49,4 +49,4 @@ items:
       - { de: "GetAsync wirft sofort eine FileNotFoundException.", en: "GetAsync immediately throws a FileNotFoundException." }
       - { de: "Der Aufruf liefert null.", en: "The call returns null." }
     correct: [0]
-    explanation: { de: "21.3.2.1 (Seite 1509). Dagegen werfen GetStringAsync und GetFromJsonAsync bei Fehlerstatus selbst eine HttpRequestException mit gesetztem StatusCode (seit .NET 5).", en: "21.3.2.1 (page 1509). In contrast, GetStringAsync and GetFromJsonAsync throw an HttpRequestException with a set StatusCode in the event of an error (since .NET 5)." }
+    explanation: { de: "21.3.2.1 (Seite 1508 und 1509). Dagegen ruft GetStringAsync EnsureSuccessStatusCode() von selbst auf und wirft bei Fehlerstatus eine HttpRequestException mit gesetztem StatusCode. IsSuccessStatusCode steht nicht im Buch; Aufgabe 3 gibt es vor.", en: "21.3.2.1 (pages 1508 and 1509). In contrast, GetStringAsync calls EnsureSuccessStatusCode() on its own and throws an HttpRequestException with a set StatusCode in the event of an error status. IsSuccessStatusCode is not in the book; exercise 3 provides it." }

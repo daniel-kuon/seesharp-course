@@ -22,11 +22,12 @@ Hostnamen in IP-Adressen. C# bietet zu allem passende Klassen im Namensraum
 
 Die Klasse `Uri` zerlegt eine Adresse in Schema, Host, Port, Pfad, Abfrage
 und Fragment; fehlende Standardports ergänzt sie (80 für `http`, 443 für
-`https`). Eine ungültige Zeichenkette löst `UriFormatException` aus, mit
-`Uri.TryCreate` bekommt man stattdessen `false`. `UriBuilder` setzt
-Adressen aus Teilen zusammen. Parameter in der Abfrage müssen mit
-`Uri.EscapeDataString` kodiert werden (Leerzeichen, `&`, `=`, Umlaute),
-`Uri.UnescapeDataString` kehrt das um.
+`https`), Leerzeichen kodiert sie als `%20`. Eine ungültige Zeichenkette löst
+`UriFormatException` aus. Parameter in der Abfrage beginnen mit `?` und
+werden durch `&` getrennt; Zeichen wie `&` oder `=` in einem Wert müssen
+deshalb kodiert werden. Die Aufrufe dafür (`Uri.EscapeDataString`,
+`Uri.UnescapeDataString`, `Uri.TryCreate`) stehen nicht im Buch, Aufgabe 2
+gibt sie vor (siehe Deep Dive).
 
 ## HttpClient (21.3, Seite 1506 bis 1516)
 
@@ -38,16 +39,17 @@ und kann Ports erschöpfen. Anforderungsmethoden sind `GET` (lesen), `POST`
 Statuscode: 2xx Erfolg, 3xx Umleitung, 4xx Fehler des Klienten, 5xx Fehler
 des Servers. `EnsureSuccessStatusCode()` wirft bei Misserfolg
 `HttpRequestException` mit `StatusCode`. JSON überträgt das Buch mit `JsonSerializer`
-und `StringContent` (21.3.3); kürzer geht es mit `GetFromJsonAsync<T>` und
-`PostAsJsonAsync` aus `System.Net.Http.Json`. Die Methoden sind asynchron
+und `StringContent` (21.3.3); mit `PropertyNamingPolicy = JsonNamingPolicy.CamelCase`
+(16.5) passen die Namen zum üblichen JSON-Stil (kürzer: siehe Deep Dive). Die Methoden sind asynchron
 (`Task<T>`); mit `await` wartet man auf das Ergebnis, ohne einen Thread zu
 blockieren.
 
 ## IP-Adressen und Hostnamen (21.5, Seite 1523)
 
-`IPAddress.Parse` und `TryParse` lesen Adressen (IPv4 und IPv6),
-`IPAddress.IsLoopback` erkennt die lokale Schleife, `Dns.GetHostAddresses`
-löst einen Namen auf (`localhost` klappt auch ohne Internet).
+`Dns.GetHostEntryAsync` und `Dns.GetHostAddressesAsync` lösen einen Namen
+in IP-Adressen auf (`localhost` klappt auch ohne Internet); eine IPv4-Adresse
+hat 32 Bit, eine IPv6-Adresse 128 Bit. Die Klasse `IPAddress` stellt eine
+Adresse dar (`IPAddress.IPv6Any` für alle Adressen eines Servers, 21.6.1).
 
 ## Sockets (21.6, Seite 1525 bis 1536)
 
@@ -66,3 +68,20 @@ Verbindung eine eigene Task (21.6.3, Seite 1531).
 Das `WebView2`-Steuerelement bettet einen Browser in eine WPF-Anwendung ein.
 Es braucht Windows und die WebView2-Runtime; die Aufgabe dazu wird von der
 Betreuung geprüft.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **Adressen bearbeiten:** `Uri.EscapeDataString` und `Uri.UnescapeDataString`
+  kodieren Werte für die Abfrage und zurück, `Uri.TryCreate` liefert `false`
+  statt einer Ausnahme, `UriBuilder` setzt Adressen aus Teilen zusammen
+  (Aufgabe 2 und die Deep-Dive-Aufgabe URL-Sammler).
+- **IP-Adressen prüfen:** `IPAddress.TryParse`, `IPAddress.IsLoopback` und
+  `GetAddressBytes()` (Aufgabe 2 gibt sie vor).
+- **JSON in einem Aufruf:** `GetFromJsonAsync<T>`, `PostAsJsonAsync` und
+  `ReadFromJsonAsync<T>` aus `System.Net.Http.Json` ersetzen
+  `JsonSerializer` plus `StringContent`; sie nutzen von selbst camelCase-Namen.
+- **HttpClient ohne Netzwerk testen:** Ein eigener `HttpMessageHandler`, den
+  man dem `HttpClient` im Konstruktor mitgibt, zeichnet Anforderungen auf und
+  liefert vorbereitete Antworten; so arbeiten die Tests dieses Levels.

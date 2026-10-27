@@ -14,12 +14,18 @@ asynchron; eine kurze Einführung in `async`/`await` steht am Anfang von
 `WetterClient.cs`. Öffne die Datei:
 
 1. `HoleTextAsync(pfad)` holt den Text per GET (`GetStringAsync`).
-2. `HoleWetterAsync(stadt)` ruft `wetter?stadt=<Stadt>` auf (Stadt mit
-   `Uri.EscapeDataString` kodiert) und deserialisiert die JSON-Antwort zu
-   `Wetter` (`GetFromJsonAsync<Wetter>`).
-3. `MeldeAsync(stadt, temperatur)` sendet per POST ein `Wetter` als JSON
-   (`PostAsJsonAsync`) und liefert `true` bei 2xx, `false` sonst, ohne
-   Ausnahme.
+2. `HoleWetterAsync(stadt)` ruft `wetter?stadt=<Stadt>` mit `GetStringAsync` auf
+   und verwandelt den JSON-Text mit `JsonSerializer.Deserialize<Wetter>(json,
+   JsonOptionen)` in ein `Wetter` (16.5, Seite 1046; die Optionen mit
+   camelCase-Namen stehen fertig in der Datei). Die Stadt kodierst du mit
+   `Uri.EscapeDataString(stadt)` (nicht im Buch, hier vorgegeben): Aus `Köln`
+   wird `K%C3%B6ln`, aus `A&B=C` wird `A%26B%3DC`.
+3. `MeldeAsync(stadt, temperatur)` sendet per POST ein `Wetter` als JSON, wie
+   in 21.3.3.2 (Seite 1515): `JsonSerializer.Serialize`, `StringContent` mit
+   `Encoding.UTF8` und `"application/json"`, dann `PostAsync`. Ergebnis: `true`
+   bei 2xx, `false` sonst, ohne Ausnahme; dafür gibt es
+   `antwort.IsSuccessStatusCode` (nicht im Buch, hier vorgegeben: `true` genau
+   für 200 bis 299).
 4. `ExistiertAsync(pfad)` schickt eine HEAD-Anforderung: `true` bei Erfolg,
    `false` bei 404.
 5. `HoleOderNullAsync(pfad)` liefert den Text, bei Status 500 aber `null`
@@ -28,6 +34,13 @@ asynchron; eine kurze Einführung in `async`/`await` steht am Anfang von
 
 Die Tests prüfen auch, welche Methode, Adresse und welchen Inhalt der
 Handler aufgezeichnet hat.
+
+> **Deep Dive (optional):** Das Paket `System.Net.Http.Json` (im .NET-SDK
+> enthalten, nicht im Buch) kürzt Schritt 2 und 3 ab:
+> `await _http.GetFromJsonAsync<Wetter>(adresse)` holt und deserialisiert in
+> einem Schritt, `await _http.PostAsJsonAsync("meldung", wetter)` serialisiert
+> und sendet. Beide benutzen von selbst camelCase-Namen. Wer mag, schreibt die
+> beiden Methoden danach so um; die Tests bleiben dieselben.
 
 Diese Tests müssen bestehen:
 

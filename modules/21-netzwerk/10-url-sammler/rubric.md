@@ -1,6 +1,6 @@
 # Rubrik — Zusatz URL-Sammler (nur für die Betreuung)
 
-- Kern: Wiederholung von Aufgabe 2 ohne Vorgaben: `Uri.TryCreate` statt
+- Deep-Dive-Aufgabe (nicht im Buch), freiwillig. Kern: Wiederholung von Aufgabe 2 ohne Vorgaben: `Uri.TryCreate` statt
   Ausnahmen, `UriBuilder` und `EscapeDataString`. Typischer Fehler:
   Zeichenketten mit `Split('?')` und Verkettung statt `Uri`/`UriBuilder`;
   vorhandene Werte doppelt kodieren (`%2520`); Parameterreihenfolge

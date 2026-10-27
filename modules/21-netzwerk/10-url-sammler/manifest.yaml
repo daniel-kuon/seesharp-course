@@ -1,5 +1,5 @@
 id: netz-url-sammler
-title: { de: "Zusatz: URL-Sammler", en: "Extra: URL Collector" }
+title: { de: "Deep Dive: URL-Sammler", en: "Deep Dive: URL Collector" }
 optional: true
 reading:
   section: "21.2"

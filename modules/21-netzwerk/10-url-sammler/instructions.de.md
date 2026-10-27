@@ -1,4 +1,10 @@
-# Zusatz: URL-Sammler
+# Deep Dive: URL-Sammler
+
+> **Deep Dive (optional):** Diese Aufgabe geht über das Buch hinaus. Sie
+> arbeitet mit `Uri.TryCreate`, `UriBuilder`, `Uri.EscapeDataString` und
+> `Uri.UnescapeDataString`, die das Buch nicht behandelt (Aufgabe 2 hat einige
+> davon vorgegeben). Sie ist ein Beispiel dafür, was du dir als Nächstes ansehen
+> kannst: die Dokumentation der Klassen `Uri` und `UriBuilder`.
 
 Zusatzaufgabe: freiwillig, sie schaltet nichts frei. Zum Nachlesen:
 **21.2 URI bzw. URL** (Seite 1505) und **21.3.3 Anforderungsparameter**

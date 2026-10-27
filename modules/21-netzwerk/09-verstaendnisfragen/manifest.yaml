@@ -32,26 +32,26 @@ items:
     id: code-uri-zerlegen
     prompt:
       de: |
-        Was gibt das Programm aus (drei Zeilen)? Woher kommt der Port in der letzten Zeile, obwohl er in der Adresse nicht steht?
+        Was gibt das Programm aus (drei Zeilen)? Woher kommt der Port in der letzten Zeile, obwohl er in der Adresse nicht steht, und was ist aus dem Leerzeichen geworden?
 
         ```csharp
         var u = new Uri("https://example.org:8443/a/b.html?x=1&y=zwei#kopf");
         Console.WriteLine(u.Scheme + " " + u.Host + " " + u.Port);
-        Console.WriteLine(u.AbsolutePath + " " + u.Query + " " + u.Fragment);
+        Console.WriteLine(u.PathAndQuery + " " + u.Query + " " + u.Fragment);
 
-        var u2 = new Uri("http://example.org/start");
-        Console.WriteLine(u2.Port + " " + u2.IsDefaultPort);
+        var u2 = new Uri("http://example.org/start?x=a b");
+        Console.WriteLine(u2.Port + " " + u2.PathAndQuery);
         ```
       en: |
-        What does the program print (three lines)? Where does the port in the last line come from although it is not in the address?
+        What does the program print (three lines)? Where does the port in the last line come from although it is not in the address, and what has become of the space?
 
         ```csharp
         var u = new Uri("https://example.org:8443/a/b.html?x=1&y=zwei#kopf");
         Console.WriteLine(u.Scheme + " " + u.Host + " " + u.Port);
-        Console.WriteLine(u.AbsolutePath + " " + u.Query + " " + u.Fragment);
+        Console.WriteLine(u.PathAndQuery + " " + u.Query + " " + u.Fragment);
 
-        var u2 = new Uri("http://example.org/start");
-        Console.WriteLine(u2.Port + " " + u2.IsDefaultPort);
+        var u2 = new Uri("http://example.org/start?x=a b");
+        Console.WriteLine(u2.Port + " " + u2.PathAndQuery);
         ```
   - type: multipleChoice
     id: mc-url-bauen
@@ -69,18 +69,17 @@ items:
           ```
       - de: |
           ```csharp
-          var u = new Uri("https://example.org/s");
-          u.Query = "q=" + suche;
+          string url = "https://example.org/s?q=" + suche.Replace(" ", "%20");
           ```
     correct: [1]
     explanation:
-      de: "Option 1 setzt die Eingabe unkodiert ein: Das `&` in `Tom & Jerry` beginnt einen neuen Parameter, die Anfrage meint etwas anderes als gewollt. Option 3 lässt sich nicht kompilieren: `Uri.Query` ist schreibgeschützt (eine `Uri` ist unveränderlich; zum Zusammensetzen gibt es `UriBuilder`), und `suche` wäre auch hier nicht kodiert."
-      en: "Option 1 inserts the input unencoded: the `&` in `Tom & Jerry` starts a new parameter, so the request means something other than intended. Option 3 does not compile: `Uri.Query` is read-only (a `Uri` is immutable; to assemble one there is `UriBuilder`), and `suche` would not be encoded here either."
+      de: "Option 1 setzt die Eingabe unkodiert ein: Das `&` in `Tom & Jerry` beginnt einen neuen Parameter, die Anfrage meint etwas anderes als gewollt. Option 3 ersetzt nur die Leerzeichen: Es entsteht `q=Tom%20&%20Jerry`, und das `&` trennt weiterhin einen zweiten Parameter ab. `Uri.EscapeDataString` (in Aufgabe 2 vorgegeben) kodiert auch `&`, `=`, `#` und Umlaute."
+      en: "Option 1 inserts the input unencoded: the `&` in `Tom & Jerry` starts a new parameter, so the request means something other than intended. Option 3 only replaces the spaces: the result is `q=Tom%20&%20Jerry`, and the `&` still splits off a second parameter. `Uri.EscapeDataString` (given in exercise 2) also encodes `&`, `=`, `#` and umlauts."
   - type: open
     id: uri-und-kodierung
     prompt:
-      de: "Aus welchen Teilen besteht eine Adresse, die `Uri` zerlegt? Warum musst du Werte in der Abfrage mit `Uri.EscapeDataString` kodieren, und was geschieht sonst mit Zeichen wie Leerzeichen, `&`, `=` oder Umlauten? Wann verwendest du `new Uri(...)`, wann `Uri.TryCreate` und wann `UriBuilder`?"
-      en: "What parts does an address consist of that `Uri` breaks down? Why do you have to encode values in the query with `Uri.EscapeDataString`, and what happens otherwise to characters such as spaces, `&`, `=` or umlauts? When do you use `new Uri(...)`, when `Uri.TryCreate` and when `UriBuilder`?"
+      de: "Aus welchen Teilen besteht eine Adresse, die `Uri` zerlegt? Warum musst du Werte in der Abfrage mit `Uri.EscapeDataString` kodieren, und was geschieht sonst mit Zeichen wie Leerzeichen, `&`, `=` oder Umlauten? Wann verwendest du `new Uri(...)` und wann `Uri.TryCreate`?"
+      en: "What parts does an address consist of that `Uri` breaks down? Why do you have to encode values in the query with `Uri.EscapeDataString`, and what happens otherwise to characters such as spaces, `&`, `=` or umlauts? When do you use `new Uri(...)` and when `Uri.TryCreate`?"
   - type: open
     id: http-methoden-status
     prompt:
@@ -154,18 +153,18 @@ items:
   - type: open
     id: httpclient-und-async
     prompt:
-      de: "Warum legt man einen `HttpClient` einmal an und benutzt ihn weiter, statt für jeden Aufruf einen neuen zu erzeugen? Was bedeuten `Task<T>` und `await` bei `GetStringAsync`, und was geschieht mit dem Thread, während auf die Antwort gewartet wird? Wie überträgt man JSON mit `GetFromJsonAsync<T>` und `PostAsJsonAsync`?"
-      en: "Why do you create an `HttpClient` once and keep using it instead of creating a new one for every call? What do `Task<T>` and `await` mean for `GetStringAsync`, and what happens to the thread while the response is awaited? How do you transfer JSON with `GetFromJsonAsync<T>` and `PostAsJsonAsync`?"
+      de: "Warum legt man einen `HttpClient` einmal an und benutzt ihn weiter, statt für jeden Aufruf einen neuen zu erzeugen? Was bedeuten `Task<T>` und `await` bei `GetStringAsync`, und was geschieht mit dem Thread, während auf die Antwort gewartet wird? Wie empfängt und sendet man JSON mit `JsonSerializer` und `StringContent` (21.3.3)?"
+      en: "Why do you create an `HttpClient` once and keep using it instead of creating a new one for every call? What do `Task<T>` and `await` mean for `GetStringAsync`, and what happens to the thread while the response is awaited? How do you receive and send JSON with `JsonSerializer` and `StringContent` (21.3.3)?"
   - type: multipleChoice
     id: mc-json
     prompt:
-      de: "Der Server liefert JSON, das zur Klasse `Wetter` mit der Eigenschaft `Temperatur` passt. `client` ist ein `HttpClient`, `System.Net.Http.Json` ist eingebunden, der Code steht in einer `async`-Methode. Welcher Code gibt die Temperatur richtig aus?"
-      en: "The server returns JSON that matches the class `Wetter` with the property `Temperatur`. `client` is an `HttpClient`, `System.Net.Http.Json` is imported, and the code is in an `async` method. Which code prints the temperature correctly?"
+      de: "Der Server liefert JSON wie `{\"stadt\":\"Köln\",\"temperatur\":18.5}`, passend zum Record `Wetter(string Stadt, double Temperatur)`. `client` ist ein `HttpClient`, `optionen` sind `JsonSerializerOptions` mit `PropertyNamingPolicy = JsonNamingPolicy.CamelCase` (16.5), der Code steht in einer `async`-Methode. Welcher Code gibt die Temperatur richtig aus?"
+      en: "The server returns JSON such as `{\"stadt\":\"Köln\",\"temperatur\":18.5}`, matching the record `Wetter(string Stadt, double Temperatur)`. `client` is an `HttpClient`, `optionen` are `JsonSerializerOptions` with `PropertyNamingPolicy = JsonNamingPolicy.CamelCase` (16.5), and the code is in an `async` method. Which code prints the temperature correctly?"
     options:
       - de: |
           ```csharp
-          var w = client.GetFromJsonAsync<Wetter>(url);
-          Console.WriteLine(w.Temperatur);
+          var w = JsonSerializer.Deserialize<Wetter>(client.GetStringAsync(url), optionen);
+          Console.WriteLine(w?.Temperatur);
           ```
       - de: |
           ```csharp
@@ -174,13 +173,14 @@ items:
           ```
       - de: |
           ```csharp
-          var w = await client.GetFromJsonAsync<Wetter>(url);
+          string json = await client.GetStringAsync(url);
+          var w = JsonSerializer.Deserialize<Wetter>(json, optionen);
           Console.WriteLine(w?.Temperatur);
           ```
     correct: [2]
     explanation:
-      de: "Option 1 lässt sich nicht kompilieren: Ohne `await` ist `w` eine `Task<Wetter?>`, und die hat keine Eigenschaft `Temperatur`. Option 2 lässt sich nicht kompilieren: `GetStringAsync` ist nicht generisch; das Umwandeln von JSON in ein Objekt leistet `GetFromJsonAsync<T>`. Das Ergebnis ist nullable (`Wetter?`), deshalb `w?.Temperatur`."
-      en: "Option 1 does not compile: without `await`, `w` is a `Task<Wetter?>`, which has no property `Temperatur`. Option 2 does not compile: `GetStringAsync` is not generic; converting JSON into an object is what `GetFromJsonAsync<T>` does. The result is nullable (`Wetter?`), hence `w?.Temperatur`."
+      de: "Option 1 lässt sich nicht kompilieren: Ohne `await` liefert `GetStringAsync` eine `Task<string>`, und die nimmt `Deserialize` nicht an. Option 2 lässt sich nicht kompilieren: `GetStringAsync` ist nicht generisch; den Text in ein Objekt verwandelt erst `JsonSerializer.Deserialize<T>` (16.5). Das Ergebnis ist nullable (`Wetter?`), deshalb `w?.Temperatur`."
+      en: "Option 1 does not compile: without `await`, `GetStringAsync` returns a `Task<string>`, which `Deserialize` does not accept. Option 2 does not compile: `GetStringAsync` is not generic; turning the text into an object is the job of `JsonSerializer.Deserialize<T>` (16.5). The result is nullable (`Wetter?`), hence `w?.Temperatur`."
   - type: open
     id: code-tcp-schleife
     prompt:

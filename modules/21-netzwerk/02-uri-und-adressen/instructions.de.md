@@ -6,22 +6,43 @@ Das Beispielprojekt `Netzwerk/Uri` im Sample-Ordner des Buchs zeigt die
 Klasse `Uri`; `Netzwerk/DNS` ist eine WPF-Anwendung, von der hier nur die
 Logik interessiert. Diese Aufgabe braucht kein Netzwerk. Öffne `Adressen.cs`:
 
+Das Buch zeigt `new Uri(...)` mit seinen Eigenschaften und die
+`UriFormatException`. Die übrigen Aufrufe dieser Aufgabe stehen nicht im Buch;
+sie sind hier vorgegeben und genau so zu verwenden, wie sie unten stehen.
+
 1. `Zerlege(url)` zerlegt eine absolute URL mit `Uri` in Schema, Host, Port,
    Pfad und Abfrage (ohne `?`). Fehlende Ports ergänzt `Uri` (80 und 443).
-   Relative oder ungültige Zeichenketten lösen `UriFormatException` aus; die
-   Methode macht daraus `null`.
+   Den Pfad ohne Abfrage liefert `uri.AbsolutePath` (nicht im Buch, hier
+   vorgegeben). Relative oder ungültige Zeichenketten lösen
+   `UriFormatException` aus; die Methode macht daraus `null`.
 2. `Baue(basis, parameter)` hängt die Parameter in Einfügereihenfolge an die
-   Adresse an. Namen und Werte kodierst du mit `Uri.EscapeDataString`
-   (`"a b&c"` wird zu `a%20b%26c`). Verwende `UriBuilder`.
-3. `Parameter(url)` liest die Abfrage zurück in ein Wörterbuch
-   (`Uri.UnescapeDataString`).
-4. `TryAbsolut(s, out uri)` nutzt `Uri.TryCreate` mit `UriKind.Absolute`.
+   Adresse an: `?` vor den ersten, `&` zwischen den Paaren; hat die Basis schon
+   eine Abfrage (`?`), geht es mit `&` weiter. Namen und Werte kodierst du mit
+   `Uri.EscapeDataString(text)` (nicht im Buch, hier vorgegeben: `"a b&c"`
+   wird zu `a%20b%26c`). Eine ungültige Basis soll eine `UriFormatException`
+   auslösen: Erzeuge dazu einmal `new Uri(basis)`.
+3. `Parameter(url)` liest die Abfrage zurück in ein Wörterbuch; die Umkehrung
+   der Kodierung ist `Uri.UnescapeDataString(text)` (nicht im Buch, hier
+   vorgegeben).
+4. `TryAbsolut(s, out uri)` ist eine Zeile:
+   `Uri.TryCreate(s, UriKind.Absolute, out uri)` (nicht im Buch, hier
+   vorgegeben; liefert `false` statt einer Ausnahme).
 5. `IstLokal(ip)` meldet `true` für Loopback und die privaten IPv4-Bereiche
    (`10.x`, `172.16` bis `172.31`, `192.168.x`); unlesbare Eingaben ergeben
-   `false`. Hilfreich: `IPAddress.TryParse`, `IPAddress.IsLoopback`.
+   `false`. Vorgegeben (nicht im Buch): `IPAddress.TryParse(ip, out var adresse)`
+   liest die Adresse, `IPAddress.IsLoopback(adresse)` erkennt `127.x.x.x` und
+   `::1`, `adresse.GetAddressBytes()` liefert die Bytes (4 bei IPv4, 16 bei
+   IPv6).
 6. `LoopbackAufgeloest()` prüft, dass `Dns.GetHostAddresses("localhost")`
-   eine Loopback-Adresse enthält. `localhost` wird lokal aufgelöst; das
+   eine Loopback-Adresse enthält (die nicht asynchrone Form von
+   `GetHostAddressesAsync` aus 21.5). `localhost` wird lokal aufgelöst; das
    Internet wird nicht gebraucht.
+
+> **Deep Dive (optional):** Die Klasse `UriBuilder` (nicht im Buch) setzt
+> Adressen aus Teilen zusammen, statt Zeichenketten zu verketten:
+> `new UriBuilder(basis)`, dann die Eigenschaft `Query` setzen und am Ende
+> `builder.Uri.AbsoluteUri` lesen. Wer mag, schreibt `Baue` damit um; die
+> Tests bleiben dieselben.
 
 Diese Tests müssen bestehen:
 

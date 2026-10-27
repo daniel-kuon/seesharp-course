@@ -25,11 +25,10 @@ public static class Adressen
         if (parameter.Count == 0)
             return basis;
 
+        _ = new Uri(basis); // wirft UriFormatException bei ungültiger Basis
         var neu = string.Join("&", parameter.Select(p => $"{Uri.EscapeDataString(p.Key)}={Uri.EscapeDataString(p.Value)}"));
-        var builder = new UriBuilder(basis);
-        var alt = builder.Query.TrimStart('?');
-        builder.Query = alt.Length == 0 ? neu : alt + "&" + neu;
-        return builder.Uri.AbsoluteUri;
+        // Deep Dive: new UriBuilder(basis) { Query = ... }.Uri.AbsoluteUri leistet dasselbe ohne Verkettung.
+        return basis + (basis.Contains('?') ? "&" : "?") + neu;
     }
 
     // Liest die Abfrage einer URL als Wörterbuch (dekodiert). Doppelte Namen: der letzte gewinnt.

@@ -14,10 +14,12 @@ bleiben unverändert.
 3. `MoveToFront` stellt einen Eintrag an Index 0. Fehlt er, wird er eingefügt;
    doppelt darf er nie vorkommen.
 4. `Top3` liefert eine **neue** Liste mit den drei größten Werten, größter
-   zuerst. Das Argument bleibt unverändert.
+   zuerst; bei weniger als drei Werten kommen alle zurück. Das Argument bleibt
+   unverändert.
 5. `Rotate` liefert ein neues Array, das um `k` Stellen nach links gedreht
-   ist. Nimm eine `List<int>` als Arbeitsmittel und gib sie mit `ToArray()`
-   zurück.
+   ist; das Argument bleibt unverändert. `k` darf größer als die Länge sein,
+   ein leeres Array bleibt leer. Nimm eine `List<int>` als Arbeitsmittel und
+   gib sie mit `ToArray()` zurück.
 
 Beantworte danach die Frage zum `foreach` mit `Remove()`.
 

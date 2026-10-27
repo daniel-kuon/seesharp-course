@@ -1,7 +1,14 @@
 # Warteschlange, Stapel und verkettete Liste
 
-Lies im Buch **11.4.1** (Seite 697) zu `Queue<T>` und `Stack<T>` und
+Lies im Buch die Einleitung von **11.4 Verwaltung einer Liste** (Seite 697),
+wo `Queue<T>` und `Stack<T>` kurz genannt werden, und
 **11.4.2 Klasse LinkedList<T> mit doppelt verketteten Knoten** (Seite 700).
+Das Buch behandelt `Queue<T>` und `Stack<T>` nicht weiter (einen einfachen
+Stapel hast du in 8.2.1 selbst gebaut). Du brauchst: `Queue<T>` mit
+`Enqueue()`, `Dequeue()` (entnimmt das älteste Element), `Peek()` (zeigt es
+nur) und `Count`; `Stack<T>` mit `Push()`, `Pop()` (entnimmt das oberste
+Element), `Peek()`, `Count` und `Clear()`. `Dequeue()`, `Pop()` und `Peek()`
+lösen bei einer leeren Kollektion eine Ausnahme aus.
 
 Öffne `Warteschlangen.cs`. Dort stehen vier Klassen. Die Signaturen bleiben
 unverändert.

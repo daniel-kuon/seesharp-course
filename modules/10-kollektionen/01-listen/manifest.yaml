@@ -2,7 +2,7 @@ id: kollektionen-listen
 title: { de: "Listen verwalten", en: "Manage Lists" }
 reading:
   section: "11.4.1"
-  title: { de: "Klasse List<T> mit Array-Unterbau", en: "List<T> class with an array underlying structure" }
+  title: { de: "Klasse List<T> mit Array-Unterbau", en: "The List<T> class with an underlying array" }
   printedPage: 697
 teaches:
   - collections.list-add-remove
@@ -28,8 +28,8 @@ items:
     id: foreach-remove
     prompt: { de: "Warum bricht foreach (var x in liste) liste.Remove(x); zur Laufzeit ab?", en: "Why does `foreach (var x in liste) liste.Remove(x);` fail at runtime?" }
     options:
-      - { de: "Der Enumerator merkt, dass sich die Liste während der Aufzählung geändert hat, und löst eine Ausnahme aus; sicher geht es mit RemoveAll() oder einer Schleife, die rückwärts läuft.", en: "The enumerator detects that the list has changed during enumeration and throws an exception; a safer approach is to use `RemoveAll()` or a loop that runs backward." }
+      - { de: "Der Enumerator merkt, dass sich die Liste während der Aufzählung geändert hat, und löst eine Ausnahme aus; sicher geht es mit einer for-Schleife, die rückwärts läuft.", en: "The enumerator detects that the list has changed during enumeration and throws an exception; the safe way is a `for` loop that runs backward." }
       - { de: "Remove() ist in einer foreach-Schleife grundsätzlich verboten, der Compiler meldet einen Fehler.", en: "The use of `Remove()` is generally prohibited within a `foreach` loop; the compiler will report an error." }
       - { de: "Remove() löscht alle Elemente mit demselben Wert, deshalb ist die Schleife sofort zu Ende.", en: "Remove() deletes all elements with the same value, so the loop ends immediately." }
     correct: [0]
-    explanation: { de: "11.4.1 (Seite 697). Der Name der Ausnahme (InvalidOperationException) folgt in Level 11; wichtig ist hier die Regel: Eine Kollektion nicht während ihrer Aufzählung verändern.", en: "11.4.1 (page 697). The name of the exception (InvalidOperationException) follows in Level 11; the important rule here is: Do not modify a collection while iterating over it." }
+    explanation: { de: "4.7.3.2 (Seite 275) zeigt genau dieses Beispiel: Das Übersetzen klappt, die Ausführung scheitert mit einer InvalidOperationException (\"Collection was modified\"). Regel: Eine Kollektion nicht während ihrer Aufzählung verändern. Remove() entfernt nur das erste Vorkommen, und der Compiler meldet nichts.", en: "4.7.3.2 (page 275) shows exactly this example: it compiles, but running it fails with an InvalidOperationException (\"Collection was modified\"). Rule: do not modify a collection while enumerating it. Remove() removes only the first occurrence, and the compiler reports nothing." }

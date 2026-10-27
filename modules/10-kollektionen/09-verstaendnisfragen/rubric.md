@@ -41,8 +41,9 @@ Wesentliche Punkte:
   Aufzählung, erkennt `MoveNext()` das und löst eine **`InvalidOperationException`** aus
   ("Collection was modified"). Die Aufzählung wäre sonst unzuverlässig, weil Elemente
   verrutschen.
-- Sichere Wege (zwei genügen): **`RemoveAll()`** (mit Bedingung), eine **rückwärts laufende
-  `for`-Schleife** mit `RemoveAt(i)`, oder zuerst die Elemente einsammeln und danach entfernen.
+- Sichere Wege (zwei genügen): eine **rückwärts laufende `for`-Schleife** mit `RemoveAt(i)`,
+  zuerst die Elemente einsammeln und danach entfernen, oder **`RemoveAll()`** mit einer
+  Bedingung (Lambda-Ausdruck, erst Level 12; als Antwort trotzdem gültig).
 - Rückwärts: Das Entfernen verschiebt nur Elemente **hinter** `i`, die schon bearbeitet sind;
   die Indizes der noch zu prüfenden Elemente bleiben gültig. Vorwärts würde das nächste
   Element nach `RemoveAt(i)` auf Platz `i` rutschen und übersprungen.
@@ -69,11 +70,15 @@ Ausnahme; nur bei Bedarf ansprechen).
 
 Wesentliche Punkte:
 - `IReadOnlyList<T>` bzw. `AsReadOnly()` gibt nur eine **Sicht** auf die Liste heraus: Der
-  Empfänger kann nichts ändern, **sieht** aber spätere Änderungen des Besitzers.
+  Empfänger kann nichts ändern, **sieht** aber spätere Änderungen des Besitzers. (Ist es die
+  Liste selbst als `IReadOnlyList<T>`, kann der Empfänger sie per Cast doch ändern; ein
+  Pluspunkt, kein Pflichtpunkt.)
 - `ImmutableList<T>` ist **wirklich unveränderlich**: Der Empfänger hat einen festen Stand;
   `Add()` liefert eine **neue** Liste und lässt die alte unverändert.
-- Mehrere Threads, die lesen: Unveränderliche Daten ändern sich nie, deshalb braucht man keine
-  Synchronisierung (keine Sperren).
+- Mehrere Threads: Unveränderliche Daten ändern sich nie; wer liest, sieht einen festen Stand,
+  auch während die Klasse eine neue Fassung erzeugt. Deshalb braucht man keine
+  Synchronisierung (keine Sperren). Bei der Sicht dagegen kann sich die Liste mitten im
+  Lesen ändern.
 
 Typische Missverständnisse: Die Sicht sei eine Kopie (sie ist keine); "unveränderlich" heiße, die
 Elemente selbst dürften nie geändert werden (es geht um die Kollektion).

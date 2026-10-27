@@ -1,6 +1,6 @@
 # Sets with HashSet<T>
 
-Read section **11.5**, "**Collections**" (page 704), and pay particular attention to **11.5.2, "Hash Tables and the HashSet<T> Class**" (page 704).
+Read **11.5 Managing a Set** (page 702) in the book, and in particular **11.5.2 Hash Tables and the HashSet<T> Class** (page 704).
 
 The assignment consists of two files.
 

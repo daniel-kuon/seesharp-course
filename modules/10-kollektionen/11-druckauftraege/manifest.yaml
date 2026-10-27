@@ -2,8 +2,8 @@ id: kollektionen-druckauftraege
 title: { de: "Zusatz: Druckaufträge und Rückgängig-Stapel", en: "Extra: Print Jobs and Undo Stacks" }
 optional: true
 reading:
-  section: "11.4.1"
-  title: { de: "Klasse List<T> mit Array-Unterbau", en: "List<T> class with an array underlying structure" }
+  section: "11.4"
+  title: { de: "Verwaltung einer Liste", en: "Managing a list" }
   printedPage: 697
 teaches:
   - collections.queue-fifo

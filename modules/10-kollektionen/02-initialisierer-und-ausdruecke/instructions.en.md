@@ -1,14 +1,14 @@
 # Collection initializers and collection expressions
 
-Read Section **11.3, “Collection Initializers and Collection Expressions”** (page 695), and skim **Section 11.2** (page 692) on the `ICollection<T>` and `IEnumerable<T>` interfaces.
+Read **11.3 Collection Initializers and Collection Expressions** (page 695) in the book and skim **11.2** (page 693) on the `ICollection<T>` and `IEnumerable<T>` interfaces.
 
-Open `Sammler.cs`. The `Lager` class is provided and remains as is.
+Open `Sammler.cs`. The `Lager` class is provided and stays as it is.
 
-1. The `Wochentage()` method returns Monday through Sunday, built using a **collection initializer** (`new List<string> { ... }`).
-2. `Zusammen(a, b)` and `MitRand(mitte, rand)` use a **collection expression** with a spread element (`[..a, ..b]`).
-3. `Leer<T>()` returns an empty, read-only list `[]`.
-4. `NeuesLager()` creates a `Lager` using an object initializer that populates the Artikel property with a nested collection initializer: `Artikel = { "...", "..." }`. The name and `Artikel` are specified in the comment in the code.
-5. `FuelleAuf` writes to an `ICollection<int>` and is called by the tests with a `List<int>` and a `HashSet<int>`. `Zaehle<T>` uses `Count`; `Gesamt` only receives an `IEnumerable<int>` that does not support `Count` and must therefore enumerate it.
+1. `Wochentage()` returns Monday to Sunday, built with a **collection initializer** (`new List<string> { ... }`).
+2. `Zusammen(a, b)` and `MitRand(mitte, rand)` use a **collection expression** with a spread element (`[..a, ..b]`; the book calls `..` the range operator, "Bereichsoperator").
+3. `Leer<T>()` returns an empty read-only list using `[]`.
+4. `NeuesLager()` creates a `Lager` with an object initializer that fills the `Artikel` property with a nested collection initializer: `Artikel = { "...", "..." }`. The name and the articles are given in the comment in the code.
+5. `FuelleAuf` is written against `ICollection<int>`; the tests call it with a `List<int>` and a `HashSet<int>`. `Zaehle<T>` uses `Count`; `Gesamt` only gets an `IEnumerable<int>`, which has no `Count`, and therefore has to enumerate.
 
 Then answer the question about which lines compile.
 

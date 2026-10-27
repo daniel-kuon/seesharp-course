@@ -1,7 +1,8 @@
 # Zusatz: Druckaufträge und Rückgängig-Stapel
 
-Lies noch einmal **11.4.1** (Seite 697) und **11.4.2** (Seite 700) zu
-`Stack<T>` und `Queue<T>`.
+Lies noch einmal die Einleitung von **11.4 Verwaltung einer Liste** (Seite 697),
+wo `Stack<T>` und `Queue<T>` kurz genannt werden; die Methoden kennst du aus
+Aufgabe 3.
 
 Öffne `Druckauftraege.cs`. Dort stehen zwei Klassen.
 
@@ -12,7 +13,8 @@ Lies noch einmal **11.4.1** (Seite 697) und **11.4.2** (Seite 700) zu
 2. `Druckwarteschlange` druckt Aufträge strikt in Ankunftsreihenfolge, Seite
    für Seite. `Auftrag("Bericht", 3)` reiht die Seiten `"Bericht 1/3"`,
    `"Bericht 2/3"` und `"Bericht 3/3"` ein, `NaechsteSeite()` liefert die
-   nächste (oder `null`), `Wartend` zählt die offenen Seiten.
+   nächste (oder `null`), `Wartend` zählt die offenen Seiten. Bei weniger als
+   einer Seite wird nichts eingereiht.
 
 Tests (sie rufen die Methoden nacheinander auf und prüfen die Ergebnisse):
 `Rueckgaengig_nimmt_die_letzte_Aenderung_zurueck`,

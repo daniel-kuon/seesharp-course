@@ -2,7 +2,7 @@ public static class Listenwerkzeuge
 {
     // Entfernt alle geraden Zahlen aus der Liste selbst.
     // Achtung: Bei aufeinanderfolgenden geraden Zahlen versagen foreach und eine
-    // Vorwärtsschleife mit Remove(). Nimm RemoveAll() oder laufe rückwärts.
+    // Vorwärtsschleife mit RemoveAt(). Laufe mit einer for-Schleife rückwärts.
     public static void RemoveEvens(List<int> zahlen)
     {
         // TODO

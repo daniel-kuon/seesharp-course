@@ -42,8 +42,8 @@ items:
   - type: open
     id: sicht-oder-unveraenderlich
     prompt:
-      de: "Eine Klasse gibt ihre interne Liste einmal als `IReadOnlyList<T>` (bzw. `AsReadOnly()`) heraus und einmal als `ImmutableList<T>`. Worin unterscheiden sich die beiden für den Empfänger, wenn die Klasse ihre Liste später ändert? Warum hilft die unveränderliche Variante, wenn mehrere Threads lesen?"
-      en: "A class hands out its internal list once as an `IReadOnlyList<T>` (or `AsReadOnly()`) and once as an `ImmutableList<T>`. How do the two differ for the recipient if the class later changes its list? Why does the immutable variant help when several threads read?"
+      de: "Eine Klasse gibt ihre interne Liste einmal als `IReadOnlyList<T>` (bzw. `AsReadOnly()`) heraus und einmal als `ImmutableList<T>`. Worin unterscheiden sich die beiden für den Empfänger, wenn die Klasse ihre Liste später ändert? Warum hilft die unveränderliche Variante, wenn mehrere Threads mit der Liste arbeiten, während die Klasse sie ändert?"
+      en: "A class hands out its internal list once as an `IReadOnlyList<T>` (or `AsReadOnly()`) and once as an `ImmutableList<T>`. How do the two differ for the recipient if the class later changes its list? Why does the immutable variant help when several threads work with the list while the class changes it?"
   - type: open
     id: code-liste-rueckwaerts
     prompt:
@@ -192,8 +192,8 @@ items:
           ```
     correct: [3]
     explanation:
-      de: "Die erste Variante löst eine `InvalidOperationException` aus (\"Collection was modified\"): Eine Liste darf während `foreach` nicht verändert werden. Die zweite kompiliert und läuft, überspringt aber Elemente: Nach `RemoveAt(i)` rutscht das nächste Element auf Platz `i`, und `i++` übergeht es; es bleiben `4, 5, 8`. Die dritte kompiliert nicht, `List<T>` hat `Count` statt `Length` (CS1061). Die vierte ist richtig: Beim Rückwärtslaufen verschiebt das Entfernen nur Elemente, die schon abgearbeitet sind (11.4.1, Seite 697)."
-      en: "The first variant throws an `InvalidOperationException` (\"Collection was modified\"): a list must not be changed during `foreach`. The second compiles and runs but skips elements: after `RemoveAt(i)` the next element moves into position `i`, and `i++` steps over it; `4, 5, 8` remain. The third does not compile; `List<T>` has `Count`, not `Length` (CS1061). The fourth is correct: when running backward, removing only shifts elements that have already been processed (11.4.1, page 697)."
+      de: "Die erste Variante löst eine `InvalidOperationException` aus (\"Collection was modified\"): Eine Liste darf während `foreach` nicht verändert werden. Die zweite kompiliert und läuft, überspringt aber Elemente: Nach `RemoveAt(i)` rutscht das nächste Element auf Platz `i`, und `i++` übergeht es; es bleiben `4, 5, 8`. Die dritte kompiliert nicht, `List<T>` hat `Count` statt `Length` (CS1061). Die vierte ist richtig: Beim Rückwärtslaufen verschiebt das Entfernen nur Elemente, die schon abgearbeitet sind (4.7.3.2, Seite 275; 11.4.1, Seite 697)."
+      en: "The first variant throws an `InvalidOperationException` (\"Collection was modified\"): a list must not be changed during `foreach`. The second compiles and runs but skips elements: after `RemoveAt(i)` the next element moves into position `i`, and `i++` steps over it; `4, 5, 8` remain. The third does not compile; `List<T>` has `Count`, not `Length` (CS1061). The fourth is correct: when running backward, removing only shifts elements that have already been processed (4.7.3.2, page 275; 11.4.1, page 697)."
   - type: multipleChoice
     id: spread-richtig
     prompt:
@@ -267,5 +267,5 @@ items:
         en: "`LinkedList<int>`: inserting at a known position is cheap."
     correct: [2]
     explanation:
-      de: "Hier zählen Existenzprüfung und Eindeutigkeit, nicht die Reihenfolge: `HashSet<T>` (11.5, Seite 704; 11.8, Seite 723). `List<T>.Contains()` und `LinkedList<T>.Contains()` durchsuchen alle Elemente (O(n)), bei Millionen Aufrufen ein Unterschied von Sekunden zu Millisekunden. Eine `Queue<T>` ist für das Abarbeiten in Eintreffreihenfolge gedacht."
-      en: "What matters here are the existence check and uniqueness, not the order: `HashSet<T>` (11.5, page 704; 11.8, page 723). `List<T>.Contains()` and `LinkedList<T>.Contains()` search all elements (O(n)), which with millions of calls is the difference between seconds and milliseconds. A `Queue<T>` is meant for processing in order of arrival."
+      de: "Hier zählen Existenzprüfung und Eindeutigkeit, nicht die Reihenfolge: `HashSet<T>` (11.5, Seite 702; Messung in 11.5.2.3, Seite 710). `List<T>.Contains()` und `LinkedList<T>.Contains()` durchsuchen alle Elemente (O(n)), bei Millionen Aufrufen ein Unterschied von Sekunden zu Millisekunden. Eine `Queue<T>` ist für das Abarbeiten in Eintreffreihenfolge gedacht."
+      en: "What matters here are the existence check and uniqueness, not the order: `HashSet<T>` (11.5, page 702; measurement in 11.5.2.3, page 710). `List<T>.Contains()` and `LinkedList<T>.Contains()` search all elements (O(n)), which with millions of calls is the difference between seconds and milliseconds. A `Queue<T>` is meant for processing in order of arrival."

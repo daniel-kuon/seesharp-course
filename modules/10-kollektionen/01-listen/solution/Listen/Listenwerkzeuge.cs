@@ -3,7 +3,10 @@ public static class Listenwerkzeuge
     // Entfernt alle geraden Zahlen aus der Liste selbst.
     public static void RemoveEvens(List<int> zahlen)
     {
-        zahlen.RemoveAll(z => z % 2 == 0);
+        // Rückwärts: RemoveAt(i) verschiebt nur Elemente, die schon geprüft sind.
+        for (int i = zahlen.Count - 1; i >= 0; i--)
+            if (zahlen[i] % 2 == 0)
+                zahlen.RemoveAt(i);
     }
 
     // Fügt wert in eine aufsteigend sortierte Liste so ein, dass sie sortiert bleibt.

@@ -14,7 +14,9 @@ wird sie sehr kurz.
 2. `Treffer(tipp, ziehung)` zählt die gemeinsamen Zahlen. Keine der beiden
    Mengen darf verändert werden: Kopiere eine und wende `IntersectWith` an.
 3. `NaechsteZahl(s, x)` liefert die kleinste Zahl in `s`, die größer als `x`
-   ist, oder `-1`. Verwende `GetViewBetween`.
+   ist, oder `-1`. Verwende `GetViewBetween` (nicht im Buch:
+   `s.GetViewBetween(unten, oben)` liefert eine Sicht auf alle Elemente von
+   `unten` bis `oben`, beide eingeschlossen).
 4. `Spanne(s)` liefert `Max - Min` (bei einer leeren Menge 0).
 
 Tests: `Ziehe_mit_festem_Startwert_liefert_das_Ergebnis_der_Musterloesung`,

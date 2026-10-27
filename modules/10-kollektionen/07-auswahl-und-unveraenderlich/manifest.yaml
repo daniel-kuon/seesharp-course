@@ -1,5 +1,5 @@
 id: kollektionen-auswahl-und-unveraenderlich
-title: { de: "Die richtige Kollektion; schreibgeschützt und unveränderlich", en: "The correct collection; read-only and immutable" }
+title: { de: "Die richtige Kollektion; schreibgeschützt und unveränderlich", en: "The right collection; read-only and immutable" }
 reading:
   section: "11.7"
   title: { de: "Unveränderliche Kollektionen", en: "Immutable Collections" }
@@ -55,7 +55,7 @@ items:
       - { de: "SortedSet<T>", en: "SortedSet<T>" }
       - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [3]
-    explanation: { de: "Contains() kostet in einer Liste O(n), in einem HashSet<T> O(1) (11.5.2, Seite 704; 11.8, Seite 723).", en: "Contains() takes O(n) time in a list and O(1) time in a HashSet<T> (11.5.2, page 704; 11.8, page 723)." }
+    explanation: { de: "Contains() kostet in einer Liste O(n), in einem HashSet<T> O(1) (11.5.3, Seite 713; Messung in 11.5.2.3, Seite 710).", en: "Contains() takes O(n) time in a list and O(1) time in a HashSet<T> (11.5.3, page 713; measurement in 11.5.2.3, page 710)." }
   - type: multipleChoice
     id: szenario-sortiert
     prompt: { de: "Szenario: Zahlen sollen gesammelt werden, jede nur einmal, und immer in aufsteigender Reihenfolge verfügbar sein. Welche Kollektion passt am besten?", en: "Scenario: Numbers need to be collected—each one only once—and they must always be available in ascending order. Which collection is the best fit?" }
@@ -91,7 +91,7 @@ items:
       - { de: "SortedSet<T>", en: "SortedSet<T>" }
       - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [2]
-    explanation: { de: "Zuletzt hinein, zuerst heraus (LIFO): Stack<T> (11.4.2, Seite 700).", en: "Last In, First Out (LIFO): Stack<T> (11.4.2, page 700)." }
+    explanation: { de: "Zuletzt hinein, zuerst heraus (LIFO): Stack<T> (11.4, Seite 697).", en: "Last in, first out (LIFO): Stack<T> (11.4, page 697)." }
   - type: multipleChoice
     id: szenario-warteschlange
     prompt: { de: "Szenario: Druckaufträge sollen in der Reihenfolge ihres Eintreffens abgearbeitet werden. Welche Kollektion passt am besten?", en: "Scenario: Print jobs should be processed in the order in which they are received. Which collection is the best fit?" }
@@ -103,7 +103,7 @@ items:
       - { de: "SortedSet<T>", en: "SortedSet<T>" }
       - { de: "Dictionary<TKey,TValue>", en: "Dictionary<TKey,TValue>" }
     correct: [1]
-    explanation: { de: "Zuerst hinein, zuerst heraus (FIFO): Queue<T> (11.4.2, Seite 700). Eine Liste müsste beim Entnehmen am Anfang alle übrigen Elemente verschieben.", en: "First In, First Out (FIFO): Queue<T> (11.4.2, page 700). When an element is removed from a list, all remaining elements would have to be shifted to the front." }
+    explanation: { de: "Zuerst hinein, zuerst heraus (FIFO): Queue<T> (11.4, Seite 697). Eine Liste müsste beim Entnehmen am Anfang alle übrigen Elemente verschieben (11.4.1, Seite 697).", en: "First in, first out (FIFO): Queue<T> (11.4, page 697). A list would have to shift all remaining elements when removing at the front (11.4.1, page 697)." }
   - type: open
     id: monate
-    prompt: { de: "Du musst die zwölf Monatsnamen eines Jahres speichern. Nimmst du ein Array oder eine List<T>? Begründe mit Größenänderung und Zugriff (11.1, Seite 691).", en: "You need to store the twelve names of the months in a year. Should you use an array or a List<T>? Explain your choice in terms of scalability and access (11.1, page 691)." }
+    prompt: { de: "Du musst die zwölf Monatsnamen eines Jahres speichern. Nimmst du ein Array oder eine List<T>? Begründe mit Größenänderung und Zugriff (11.1, Seite 691).", en: "You need to store the twelve month names of a year. Do you use an array or a List<T>? Justify your choice with resizing and access (11.1, page 691)." }

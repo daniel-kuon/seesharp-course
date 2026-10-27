@@ -1,7 +1,7 @@
 # Kollektionsinitialisierer und Kollektionsausdrücke
 
 Lies im Buch **11.3 Kollektionsinitialisierer und Kollektionsausdrücke**
-(Seite 695) und überfliege **11.2** (Seite 692) zu den Interfaces
+(Seite 695) und überfliege **11.2** (Seite 693) zu den Interfaces
 `ICollection<T>` und `IEnumerable<T>`.
 
 Öffne `Sammler.cs`. Die Klasse `Lager` ist vorgegeben und bleibt, wie sie ist.
@@ -9,7 +9,8 @@ Lies im Buch **11.3 Kollektionsinitialisierer und Kollektionsausdrücke**
 1. `Wochentage()` liefert Montag bis Sonntag, gebaut mit einem
    **Kollektionsinitialisierer** (`new List<string> { ... }`).
 2. `Zusammen(a, b)` und `MitRand(mitte, rand)` verwenden einen
-   **Kollektionsausdruck** mit Spread-Element (`[..a, ..b]`).
+   **Kollektionsausdruck** mit Spread-Element (`[..a, ..b]`; das Buch nennt
+   `..` Bereichsoperator).
 3. `Leer<T>()` liefert mit `[]` eine leere, schreibgeschützte Liste.
 4. `NeuesLager()` erzeugt ein `Lager` mit einem Objektinitialisierer, der die
    Eigenschaft `Artikel` mit einem verschachtelten Kollektionsinitialisierer

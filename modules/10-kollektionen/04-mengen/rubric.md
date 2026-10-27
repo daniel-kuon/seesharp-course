@@ -10,7 +10,8 @@
   anwenden und damit das Argument verändern (der Test "…veraendern_die_
   Argumente_nicht" fängt das). Richtig ist die Kopie `new HashSet<string>(a)`.
 - `Equals`: `obj is Punkt p && …` erledigt `null` und fremde Typen in einem
-  Zug. Wer `(Punkt)obj` castet, erhält eine `InvalidCastException`.
+  Zug. Wer `(Punkt)obj` castet, erhält bei `Equals("x")` eine
+  `InvalidCastException` und bei `Equals(null)` eine `NullReferenceException`.
 - `GetHashCode`: `X ^ Y` funktioniert, ist aber schlecht ((1,2) und (2,1)
   kollidieren); `HashCode.Combine` ist besser. Nachfragen, warum veränderliche
   Felder als Grundlage für den Hashwert riskant sind (ein Punkt, der sich

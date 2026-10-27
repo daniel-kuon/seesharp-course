@@ -1,7 +1,8 @@
 # Rubrik: Die richtige Kollektion; schreibgeschützt und unveränderlich (nur für die Betreuung)
 
-- **Kernidee:** Schreibgeschützt ist nicht unveränderlich. `AsReadOnly()` und
-  `IReadOnlyList<T>` sperren nur den **Empfänger**; der Besitzer ändert weiter,
+- **Kernidee:** Schreibgeschützt ist nicht unveränderlich. `AsReadOnly()`
+  sperrt nur den **Empfänger** (die Liste selbst als `IReadOnlyList<T>` nicht
+  einmal den, siehe unten); der Besitzer ändert weiter,
   und die Sicht zeigt es. `ImmutableList<T>` kann **niemand** ändern;
   "Änderungen" liefern eine neue Liste, und ein Schnappschuss bleibt für immer
   gültig (thread-sicher ohne Sperren).

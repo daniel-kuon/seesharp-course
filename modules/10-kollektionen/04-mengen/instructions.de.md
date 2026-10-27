@@ -1,6 +1,6 @@
 # Mengen mit HashSet<T>
 
-Lies im Buch **11.5 Mengen** (Seite 704) und darin besonders
+Lies im Buch **11.5 Verwaltung einer Menge** (Seite 702) und darin besonders
 **11.5.2 Hashtabellen und die Klasse HashSet<T>** (Seite 704).
 
 Die Aufgabe hat zwei Dateien.

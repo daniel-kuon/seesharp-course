@@ -1,8 +1,14 @@
-# Zusatz: Druckaufträge und Rückgängig-Stapel
+# Deep Dive: Druckaufträge und Rückgängig-Stapel
 
-Lies noch einmal die Einleitung von **11.4 Verwaltung einer Liste** (Seite 697),
-wo `Stack<T>` und `Queue<T>` kurz genannt werden; die Methoden kennst du aus
-Aufgabe 3.
+> **Deep Dive (optional):** Das Buch nennt `Stack<T>` (Stapel, LIFO) und
+> `Queue<T>` (Warteschlange, FIFO) in der Einleitung von **11.4 Verwaltung
+> einer Liste** (Seite 697) nur, ihre Methoden stehen nicht im Buch. Diese
+> Aufgabe ist ein Hinweis darauf, was du dir als Nächstes ansehen kannst. Du
+> brauchst: `Stack<T>` mit `Push()`, `Pop()` (entnimmt das oberste Element),
+> `Count` und `Clear()`; `Queue<T>` mit `Enqueue()`, `Dequeue()` (entnimmt das
+> älteste Element) und `Count`. `Pop()` und `Dequeue()` lösen bei einer leeren
+> Kollektion eine Ausnahme aus. Den Deep-Dive-Teil von Aufgabe 3 hast du
+> vielleicht schon gemacht.
 
 Öffne `Druckauftraege.cs`. Dort stehen zwei Klassen.
 

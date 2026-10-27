@@ -14,9 +14,9 @@ wird sie sehr kurz.
 2. `Treffer(tipp, ziehung)` zählt die gemeinsamen Zahlen. Keine der beiden
    Mengen darf verändert werden: Kopiere eine und wende `IntersectWith` an.
 3. `NaechsteZahl(s, x)` liefert die kleinste Zahl in `s`, die größer als `x`
-   ist, oder `-1`. Verwende `GetViewBetween` (nicht im Buch:
-   `s.GetViewBetween(unten, oben)` liefert eine Sicht auf alle Elemente von
-   `unten` bis `oben`, beide eingeschlossen).
+   ist, oder `-1`. Ein `foreach` über ein `SortedSet<T>` liefert die Elemente
+   aufsteigend (11.5.3, Seite 711): Die erste Zahl größer als `x` ist die
+   gesuchte.
 4. `Spanne(s)` liefert `Max - Min` (bei einer leeren Menge 0).
 
 Tests: `Ziehe_mit_festem_Startwert_liefert_das_Ergebnis_der_Musterloesung`,
@@ -25,3 +25,9 @@ Tests: `Ziehe_mit_festem_Startwert_liefert_das_Ergebnis_der_Musterloesung`,
 `Treffer_veraendert_keine_der_Mengen`,
 `NaechsteZahl_liefert_die_kleinste_groessere_Zahl` und
 `Spanne_ist_Maximum_minus_Minimum`.
+
+> **Deep Dive (optional):** `SortedSet<T>` kann auch Bereiche abfragen, ohne
+> alle Elemente zu durchlaufen: `s.GetViewBetween(unten, oben)` liefert eine
+> Sicht auf alle Elemente von `unten` bis `oben`, beide eingeschlossen. Das
+> steht nicht im Buch; wenn du magst, löse `NaechsteZahl` ein zweites Mal
+> damit (Achtung bei `x == int.MaxValue`). Die Tests sind dieselben.

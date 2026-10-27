@@ -24,14 +24,14 @@ Spread-Element `..` (im Buch: Bereichsoperator) fügt man eine ganze Folge ein: 
 
 `List<T>` ruht auf einem Array, das bei Bedarf vergrößert wird. Sie bietet
 `Add`, `Insert`, `Remove`, `RemoveAt`, `Contains`, `IndexOf`,
-`Sort`, `Reverse`, `GetRange` und `ToArray`; der Indexer greift schnell
+`Sort` und `ToArray`; der Indexer greift schnell
 zu. Wichtig: Während eines `foreach` darf man die Liste nicht verändern, das
 löst zur Laufzeit eine `InvalidOperationException` aus (4.7.3.2, Seite 275).
-Sicher geht es mit einer `for`-Schleife, die rückwärts läuft (`RemoveAll()`
-braucht einen Lambda-Ausdruck, der erst in Level 12 kommt). `Queue<T>`
-(Warteschlange, FIFO: `Enqueue`, `Dequeue`, `Peek`) und `Stack<T>` (Stapel,
-LIFO: `Push`, `Pop`, `Peek`) sind Spezialisierungen für genau diese
-Reihenfolge; das Buch nennt sie in 11.4 (Seite 697) nur kurz. `LinkedList<T>`
+Sicher geht es mit einer `for`-Schleife, die rückwärts läuft. `Queue<T>`
+(Warteschlange, FIFO: wer zuerst kommt, kommt zuerst dran) und `Stack<T>`
+(Stapel, LIFO: das zuletzt Abgelegte kommt zuerst wieder heraus) sind
+Spezialisierungen für genau diese Reihenfolge; das Buch nennt sie in 11.4
+(Seite 697) nur kurz (ihre Methoden: siehe Deep Dive). `LinkedList<T>`
 verbindet Knoten (`LinkedListNode<T>`) in beide Richtungen; Einfügen und
 Entfernen an bekannter Stelle kostet kaum etwas (11.4.2, Seite 700).
 
@@ -44,8 +44,8 @@ keine feste Reihenfolge, sehr schnelle Existenzprüfung. `Add()` liefert
 fragen Beziehungen ab. Eigene Elementtypen brauchen passende `Equals()`- und
 `GetHashCode()`-Methoden, sonst gelten zwei gleiche Punkte als verschieden
 (11.5.2.1, Seite 704, und 11.5.2.3, Seite 708). `SortedSet<T>` speichert in einem balancierten
-Binärbaum, ist immer aufsteigend sortiert und kennt `Min`, `Max` und
-`GetViewBetween()` (11.5.3, Seite 711).
+Binärbaum, ist immer aufsteigend sortiert (ein `foreach` liefert die Elemente
+aufsteigend) und kennt `Min` und `Max` (11.5.3, Seite 711).
 
 ## Wörterbücher (11.6, Seite 714)
 
@@ -77,3 +77,21 @@ O(n), in einem `HashSet<T>` O(1) (11.5.3, Seite 713); bei großen Datenmengen is
 Unterschied zwischen Sekunden und Millisekunden (Messung im Buch: 11.5.2.3,
 Seite 710). Die Übungsaufgaben am
 Kapitelende (11.8, Seite 723) prüfen genau dieses Wissen.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **`Queue<T>` und `Stack<T>` benutzen:** `Enqueue()` reiht hinten ein,
+  `Dequeue()` entnimmt das älteste Element; `Push()` legt oben auf, `Pop()`
+  nimmt das oberste wieder ab. `Peek()` zeigt das nächste Element, ohne es zu
+  entnehmen. `Dequeue()`, `Pop()` und `Peek()` lösen bei einer leeren
+  Kollektion eine Ausnahme aus. Geübt im Deep-Dive-Teil von Aufgabe 3 und in
+  der Zusatzaufgabe "Deep Dive: Druckaufträge und Rückgängig-Stapel".
+- **Weitere `List<T>`-Methoden:** `Reverse()` kehrt die Liste an Ort und Stelle
+  um, `GetRange(index, anzahl)` liefert einen Ausschnitt als neue Liste, und
+  `RemoveAll(bedingung)` entfernt alle passenden Elemente in einem Aufruf (die
+  Bedingung ist ein Lambda-Ausdruck, Level 12).
+- **Bereichsabfragen mit `SortedSet<T>`:** `GetViewBetween(unten, oben)`
+  liefert eine Sicht auf alle Elemente von `unten` bis `oben` (beide
+  eingeschlossen), ohne die Menge zu kopieren.

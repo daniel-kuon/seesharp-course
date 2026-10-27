@@ -9,9 +9,10 @@ selbst aus (Lösungen: `gerade-entfernen` = Rückwärtsschleife mit `RemoveAt`,
 ## kollektion-waehlen
 
 Erwartet (je Fall Kollektion **und** Begründung):
-- (a) `Queue<T>`: Warteschlange, **FIFO**, `Enqueue`/`Dequeue`; der älteste Auftrag zuerst.
-- (b) `Stack<T>`: Stapel, **LIFO**, `Push`/`Pop`; die letzte Änderung wird zuerst
-  rückgängig gemacht.
+- (a) `Queue<T>`: Warteschlange, **FIFO**; der älteste Auftrag zuerst.
+- (b) `Stack<T>`: Stapel, **LIFO**; die letzte Änderung wird zuerst rückgängig gemacht.
+- Bonus (Deep Dive): die Methodennamen `Enqueue`/`Dequeue` bzw. `Push`/`Pop` (stehen nicht
+  im Buch, nur die Klassen und das Prinzip in 11.4, Seite 697).
 - (c) `HashSet<T>`: Existenzprüfung in nahezu konstanter Zeit (O(1)) statt O(n) wie bei
   `List<T>.Contains()`; keine Duplikate. (Ein `Dictionary<K,V>` mit `ContainsKey` wäre auch
   vertretbar, wenn zu der Nummer weitere Daten gehören.)
@@ -42,8 +43,9 @@ Wesentliche Punkte:
   ("Collection was modified"). Die Aufzählung wäre sonst unzuverlässig, weil Elemente
   verrutschen.
 - Sichere Wege (zwei genügen): eine **rückwärts laufende `for`-Schleife** mit `RemoveAt(i)`,
-  zuerst die Elemente einsammeln und danach entfernen, oder **`RemoveAll()`** mit einer
-  Bedingung (Lambda-Ausdruck, erst Level 12; als Antwort trotzdem gültig).
+  zuerst die Elemente einsammeln und danach entfernen, oder über eine Kopie der Liste
+  laufen und im Original entfernen. Bonus (Deep Dive): **`RemoveAll()`** mit einer Bedingung
+  (nicht im Buch, braucht einen Lambda-Ausdruck aus Level 12).
 - Rückwärts: Das Entfernen verschiebt nur Elemente **hinter** `i`, die schon bearbeitet sind;
   die Indizes der noch zu prüfenden Elemente bleiben gültig. Vorwärts würde das nächste
   Element nach `RemoveAt(i)` auf Platz `i` rutschen und übersprungen.
@@ -54,7 +56,8 @@ vorwärts laufende `for`-Schleife sei genauso sicher.
 ## woerterbuch-lesen
 
 Wesentliche Punkte:
-- Lesen eines fehlenden Schlüssels über den Indexer: **`KeyNotFoundException`**.
+- Lesen eines fehlenden Schlüssels über den Indexer: eine **Ausnahme** (11.6, Seite 714).
+  Bonus (Deep Dive): ihr Name `KeyNotFoundException` (steht nicht im Buch).
 - Schreiben `d["x"] = 1` mit fehlendem Schlüssel: der Eintrag wird **neu angelegt** (mit
   vorhandenem Schlüssel überschrieben); keine Ausnahme.
 - Sicher lesen: **`TryGetValue(key, out wert)`** (liefert `bool`) oder vorher
@@ -85,27 +88,28 @@ Elemente selbst dürften nie geändert werden (es geht um die Kollektion).
 
 ## code-liste-rueckwaerts
 
-Ausgabe: `5,3,9,1`
+Ausgabe: `1 9 5 `
 - Rückwärts läuft `i` von 5 bis 0; entfernt werden `6`, `4`, `2`; die Liste ist
   `[1, 3, 5]`.
 - `Insert(1, 9)` fügt `9` an Position 1 ein: `[1, 9, 3, 5]`.
-- `Reverse()` kehrt die Reihenfolge um: `[5, 3, 9, 1]`.
+- `Remove(3)` entfernt den **Wert** `3` (nicht die Position 3): `[1, 9, 5]`.
 - Die Schleife läuft rückwärts, damit das Entfernen keine noch zu prüfenden Elemente
   verschiebt (kein Überspringen).
 
-Typische Fehler: `1,9,3,5` (`Reverse` vergessen); `Insert` als Ersetzen gedeutet.
+Typische Fehler: `1 9 3` (`Remove(3)` wie `RemoveAt(3)` gelesen); `Insert` als Ersetzen
+gedeutet.
 
-## code-queue-stack
+## code-sortedset
 
-Ausgabe, drei Zeilen: `ac`, `bb`, `4`
-- Die Warteschlange gibt `a, b, c` in Einfügereihenfolge heraus (FIFO), der Stapel
-  `c, b, a` (LIFO).
-- `q.Dequeue()` = `a`, `s.Pop()` = `c`: `ac`.
-- Danach `q.Peek()` = `b` (nächstes, ohne zu entfernen), `s.Peek()` = `b`: `bb`.
-- `q.Count + s.Count` = 2 + 2 = `4` (Zahlen addiert, keine Verkettung).
+Ausgabe, drei Zeilen: `False True`, `1 3 5 9 `, `10`
+- `Add()` liefert `false`, wenn das Element schon da war (`1`), und `true` bei einem neuen
+  (`3`); eine Menge hat keine Duplikate (11.5, Seite 702).
+- Ein `SortedSet<T>` liefert seine Elemente beim Durchlaufen immer aufsteigend, egal in
+  welcher Reihenfolge sie eingefügt wurden (11.5.3, Seite 711).
+- `Min` ist `1`, `Max` ist `9`; `1 + 9` = `10` (Zahlen addiert, keine Verkettung).
 
-Typische Fehler: `aa` oder `cc` (Reihenfolgen verwechselt); `22` für die dritte Zeile
-(als Text verkettet).
+Typische Fehler: `5 1 9 3` (Einfügereihenfolge angenommen); `True True` (Duplikat nicht
+erkannt); `19` für die dritte Zeile (als Text verkettet).
 
 ## code-hashset-punkt
 
@@ -122,13 +126,13 @@ Typische Fehler: `False`/`1` (Wertgleichheit angenommen); nur `Equals()` ohne `G
 
 ## code-woerterbuch
 
-Ausgabe (vor dem Absturz), zwei Zeilen: `kein b`, `True 6`; die letzte Zeile endet mit
-`KeyNotFoundException`
+Ausgabe (vor dem Absturz), zwei Zeilen: `kein b`, `True 6`; die letzte Zeile löst eine
+Ausnahme aus
 - `d["a"] = 1;` legt den Schlüssel an, `d["a"] += 5;` liest und schreibt zurück: `6`.
 - `TryGetValue("b", ...)` liefert `false`, also der `else`-Zweig: `kein b`.
 - `d.ContainsKey("a")` ist `True`, `d["a"]` ist `6`: `True 6`.
-- `d["b"]` liest einen fehlenden Schlüssel über den Indexer: **`KeyNotFoundException`**; das
-  Programm bricht (unbehandelt) ab. Das lässt sich mit `TryGetValue` oder `ContainsKey` vermeiden.
+- `d["b"]` liest einen fehlenden Schlüssel über den Indexer: eine **Ausnahme**; das
+  Programm bricht (unbehandelt) ab. Bonus (Deep Dive): der Name `KeyNotFoundException`. Das lässt sich mit `TryGetValue` oder `ContainsKey` vermeiden.
 
 Typische Fehler: Es werde `0` ausgegeben (wie bei einem Array); die zweite Zeile als
 Fehler gedeutet (`+=` auf einem vorhandenen Schlüssel ist in Ordnung).

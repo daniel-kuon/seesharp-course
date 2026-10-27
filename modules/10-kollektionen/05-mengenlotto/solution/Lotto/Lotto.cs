@@ -21,10 +21,12 @@ public static class Lotto
     // Die kleinste Zahl in s, die größer als x ist, oder -1, wenn es keine gibt.
     public static int NaechsteZahl(SortedSet<int> s, int x)
     {
-        if (x == int.MaxValue)
-            return -1;
-        var groesser = s.GetViewBetween(x + 1, int.MaxValue);
-        return groesser.Count > 0 ? groesser.Min : -1;
+        // Aufsteigend durchlaufen: die erste Zahl größer als x ist die gesuchte.
+        // Deep Dive: s.GetViewBetween(x + 1, int.MaxValue).Min (vorher x == int.MaxValue abfangen).
+        foreach (int z in s)
+            if (z > x)
+                return z;
+        return -1;
     }
 
     // Größte minus kleinste Zahl; 0 bei einer leeren Menge.

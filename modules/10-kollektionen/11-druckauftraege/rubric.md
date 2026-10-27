@@ -1,4 +1,4 @@
-# Rubrik: Zusatz Druckaufträge und Rückgängig-Stapel (nur für die Betreuung)
+# Rubrik: Deep Dive Druckaufträge und Rückgängig-Stapel (nur für die Betreuung)
 
 - **Kernidee:** Rückgängig ist LIFO (der letzte Schritt wird zuerst
   zurückgenommen): `Stack<T>`. Ein Druckauftrag ist FIFO (wer zuerst kommt,

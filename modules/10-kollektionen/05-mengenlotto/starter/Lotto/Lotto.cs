@@ -19,8 +19,7 @@ public static class Lotto
     }
 
     // Die kleinste Zahl in s, die größer als x ist, oder -1, wenn es keine gibt.
-    // Tipp: GetViewBetween(x + 1, int.MaxValue) liefert eine Sicht auf die Zahlen
-    // ab x + 1; Achtung bei x == int.MaxValue.
+    // Tipp: foreach über ein SortedSet<int> liefert die Zahlen aufsteigend.
     public static int NaechsteZahl(SortedSet<int> s, int x)
     {
         // TODO

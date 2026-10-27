@@ -1,9 +1,13 @@
 # Rubrik: Warteschlange, Stapel und verkettete Liste (nur für die Betreuung)
 
-- **Kernidee:** Die Wahl der Kollektion drückt die Reihenfolge aus: `Queue<T>`
-  ist FIFO (Drucker), `Stack<T>` ist LIFO (Klammern, Zurück-Taste),
+- **Kernidee:** Die Wahl der Kollektion drückt die Reihenfolge aus:
   `LinkedList<T>` erlaubt Einfügen und Entfernen an bekannten Knoten ohne
-  Umkopieren und in beide Richtungen zu laufen.
+  Umkopieren und in beide Richtungen zu laufen. Pflicht sind nur die
+  `ZuletztGeoeffnet`-Tests (`requiredTests`).
+- **Bonus (Deep Dive):** `Queue<T>` ist FIFO (Drucker), `Stack<T>` ist LIFO
+  (Klammern, Zurück-Taste); das Buch nennt beide nur, die Methoden stehen in
+  der Anleitung. Die folgenden beiden Punkte gelten nur, wenn der Teilnehmer
+  den Deep-Dive-Teil gemacht hat.
 - `KlammernPruefer`: Typische Fehler sind `Pop()` auf leerem Stapel (bei `"}"`
   oder `")("`) und das Vergessen, am Ende auf `Count == 0` zu prüfen (bei
   `"(("`). Nur eine Zählvariable reicht für gemischte Klammern nicht

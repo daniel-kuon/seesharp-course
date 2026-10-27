@@ -8,11 +8,11 @@ A collection initializer fills a collection when it is created (`new List<string
 
 ## Lists, Queues, Stacks, Linked Lists (11.4, pages 697–702)
 
-`List<T>` is built on an array that is enlarged as needed. It provides `Add`, `Insert`, `Remove`, `RemoveAt`, `Contains`, `IndexOf`, `Sort`, `Reverse`, `GetRange` and `ToArray`; the indexer gives fast access. Important: you must not modify the list during a `foreach`; that throws an `InvalidOperationException` at run time (4.7.3.2, page 275). The safe way is a `for` loop that runs backward (`RemoveAll()` needs a lambda expression, which only comes in level 12). `Queue<T>` (queue, FIFO: `Enqueue`, `Dequeue`, `Peek`) and `Stack<T>` (stack, LIFO: `Push`, `Pop`, `Peek`) are specialized for exactly this order; the book only mentions them briefly in 11.4 (page 697). `LinkedList<T>` links nodes (`LinkedListNode<T>`) in both directions; inserting and removing at a known position costs next to nothing (11.4.2, page 700).
+`List<T>` is built on an array that is enlarged as needed. It provides `Add`, `Insert`, `Remove`, `RemoveAt`, `Contains`, `IndexOf`, `Sort` and `ToArray`; the indexer gives fast access. Important: you must not modify the list during a `foreach`; that throws an `InvalidOperationException` at run time (4.7.3.2, page 275). The safe way is a `for` loop that runs backward. `Queue<T>` (queue, FIFO: first come, first served) and `Stack<T>` (stack, LIFO: what was put on last comes out first) are specialized for exactly this order; the book only mentions them briefly in 11.4 (page 697) (their methods: see Deep Dive). `LinkedList<T>` links nodes (`LinkedListNode<T>`) in both directions; inserting and removing at a known position costs next to nothing (11.4.2, page 700).
 
 ## Sets (11.5, pages 702–714)
 
-`HashSet<T>` keeps its elements in a hash table: no duplicates, no fixed order, very fast existence checks. `Add()` returns `false` if the element was already there. Set operations such as `UnionWith`, `IntersectWith`, `ExceptWith` and `IsSubsetOf` modify the set or query relationships. Custom element types need matching `Equals()` and `GetHashCode()` methods; otherwise two equal points count as different (11.5.2.1, page 704, and 11.5.2.3, page 708). `SortedSet<T>` stores its elements in a balanced binary tree, is always sorted in ascending order and offers `Min`, `Max` and `GetViewBetween()` (11.5.3, page 711).
+`HashSet<T>` keeps its elements in a hash table: no duplicates, no fixed order, very fast existence checks. `Add()` returns `false` if the element was already there. Set operations such as `UnionWith`, `IntersectWith`, `ExceptWith` and `IsSubsetOf` modify the set or query relationships. Custom element types need matching `Equals()` and `GetHashCode()` methods; otherwise two equal points count as different (11.5.2.1, page 704, and 11.5.2.3, page 708). `SortedSet<T>` stores its elements in a balanced binary tree, is always sorted in ascending order (a `foreach` returns the elements in ascending order) and offers `Min` and `Max` (11.5.3, page 711).
 
 ## Dictionaries (11.6, page 714)
 
@@ -25,3 +25,11 @@ A collection initializer fills a collection when it is created (`new List<string
 ## Choosing the Right Collection
 
 Ask what is required: order and index access (`List<T>`), waiting in line (`Queue<T>`), undo history (`Stack<T>`), existence checks and set operations (`HashSet<T>`), sorted without duplicates (`SortedSet<T>`), access by key (`Dictionary<K,V>`). `Contains()` costs O(n) in a list and O(1) in a `HashSet<T>` (11.5.3, page 713); with large amounts of data, that is the difference between seconds and milliseconds (the book's measurement: 11.5.2.3, page 710). The exercises at the end of the chapter (11.8, page 723) test exactly this knowledge.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **Using `Queue<T>` and `Stack<T>`:** `Enqueue()` adds at the back, `Dequeue()` removes the oldest element; `Push()` puts on top, `Pop()` takes the top element off again. `Peek()` shows the next element without removing it. `Dequeue()`, `Pop()` and `Peek()` throw an exception on an empty collection. Practised in the Deep Dive part of exercise 3 and in the extra exercise "Deep Dive: Print Jobs and Undo Stacks".
+- **More `List<T>` methods:** `Reverse()` reverses the list in place, `GetRange(index, count)` returns a slice as a new list, and `RemoveAll(condition)` removes all matching elements in one call (the condition is a lambda expression, level 12).
+- **Range queries with `SortedSet<T>`:** `GetViewBetween(lower, upper)` returns a view of all elements from `lower` to `upper` (both inclusive) without copying the set.

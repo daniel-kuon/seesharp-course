@@ -1,6 +1,6 @@
-# Extra: Print Jobs and Undo Stacks
+# Deep Dive: Print Jobs and Undo Stacks
 
-Read the introduction to **11.4 Managing a List** (page 697) again, where `Stack<T>` and `Queue<T>` are briefly mentioned; you know their methods from exercise 3.
+> **Deep Dive (optional):** The book only mentions `Stack<T>` (stack, LIFO) and `Queue<T>` (queue, FIFO) in the introduction to **11.4 Managing a List** (page 697); their methods are not in the book. This exercise is a pointer to what to look into next. You need: `Stack<T>` with `Push()`, `Pop()` (removes the top element), `Count` and `Clear()`; `Queue<T>` with `Enqueue()`, `Dequeue()` (removes the oldest element) and `Count`. `Pop()` and `Dequeue()` throw an exception on an empty collection. You may already have done the Deep Dive part of exercise 3.
 
 Open `Druckauftraege.cs`. It contains two classes.
 

@@ -20,3 +20,9 @@ items:
     openFile: "Warteschlangen/Warteschlangen.cs"
     openLine: 13
     testProject: "Warteschlangen Tests/Warteschlangen.Tests.csproj"
+    requiredTests:
+      - WarteschlangenTests.Zuletzt_geoeffnet_stellt_den_neuesten_Namen_nach_vorn
+      - WarteschlangenTests.Zuletzt_geoeffnet_verschiebt_vorhandene_Namen
+      - WarteschlangenTests.Zuletzt_geoeffnet_wirft_den_aeltesten_Namen_bei_voller_Liste_raus
+      - WarteschlangenTests.Zuletzt_geoeffnet_erneutes_Oeffnen_bei_voller_Liste_wirft_nichts_raus
+      - WarteschlangenTests.Zuletzt_geoeffnet_rueckwaerts_ist_die_umgekehrte_Reihenfolge

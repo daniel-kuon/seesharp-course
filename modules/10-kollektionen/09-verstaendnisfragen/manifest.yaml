@@ -55,8 +55,9 @@ items:
         for (int i = l.Count - 1; i >= 0; i--)
             if (l[i] % 2 == 0) l.RemoveAt(i);
         l.Insert(1, 9);
-        l.Reverse();
-        Console.WriteLine(string.Join(",", l));
+        l.Remove(3);
+        foreach (int x in l)
+            Console.Write(x + " ");
         ```
       en: |
         What does the program print? Trace the list step by step and explain why the loop runs backward.
@@ -66,41 +67,34 @@ items:
         for (int i = l.Count - 1; i >= 0; i--)
             if (l[i] % 2 == 0) l.RemoveAt(i);
         l.Insert(1, 9);
-        l.Reverse();
-        Console.WriteLine(string.Join(",", l));
+        l.Remove(3);
+        foreach (int x in l)
+            Console.Write(x + " ");
         ```
   - type: open
-    id: code-queue-stack
+    id: code-sortedset
     prompt:
       de: |
-        Was geben die drei `WriteLine`-Zeilen aus? Begründe mit der Reihenfolge, in der `Queue<T>` und `Stack<T>` ihre Elemente herausgeben.
+        Was geben die drei Ausgabezeilen aus? Begründe mit den Eigenschaften eines `SortedSet<T>`.
 
         ```csharp
-        var q = new Queue<string>();
-        var s = new Stack<string>();
-        foreach (string x in new[] { "a", "b", "c" })
-        {
-            q.Enqueue(x);
-            s.Push(x);
-        }
-        Console.WriteLine(q.Dequeue() + s.Pop());
-        Console.WriteLine(q.Peek() + s.Peek());
-        Console.WriteLine(q.Count + s.Count);
+        var s = new SortedSet<int> { 5, 1, 9 };
+        Console.WriteLine(s.Add(1) + " " + s.Add(3));
+        foreach (int x in s)
+            Console.Write(x + " ");
+        Console.WriteLine();
+        Console.WriteLine(s.Min + s.Max);
         ```
       en: |
-        What do the three `WriteLine` lines print? Justify with the order in which `Queue<T>` and `Stack<T>` hand out their elements.
+        What do the three output lines print? Justify with the properties of a `SortedSet<T>`.
 
         ```csharp
-        var q = new Queue<string>();
-        var s = new Stack<string>();
-        foreach (string x in new[] { "a", "b", "c" })
-        {
-            q.Enqueue(x);
-            s.Push(x);
-        }
-        Console.WriteLine(q.Dequeue() + s.Pop());
-        Console.WriteLine(q.Peek() + s.Peek());
-        Console.WriteLine(q.Count + s.Count);
+        var s = new SortedSet<int> { 5, 1, 9 };
+        Console.WriteLine(s.Add(1) + " " + s.Add(3));
+        foreach (int x in s)
+            Console.Write(x + " ");
+        Console.WriteLine();
+        Console.WriteLine(s.Min + s.Max);
         ```
   - type: open
     id: code-hashset-punkt

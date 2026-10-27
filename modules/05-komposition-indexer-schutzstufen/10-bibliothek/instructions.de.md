@@ -25,7 +25,9 @@ Klasse; von außen sieht man nur `Buch`-Objekte.
    liefert sie `""`.
 
 Tipp: Eine Liste durchläuft man bequem mit
-`for (Knoten? k = erster; k != null; k = k.Next)`.
+`for (Knoten? k = erster; k != null; k = k.Next)`. Das Fragezeichen in
+`Buch?` und `Knoten?` heißt: `null` ist erlaubt (Buch Seite 338, Fußnote;
+ausführlich kommt das in Kapitel 15.1.1).
 
 Diese Tests müssen bestehen:
 

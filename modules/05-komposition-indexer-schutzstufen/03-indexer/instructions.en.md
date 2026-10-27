@@ -10,3 +10,5 @@ Read Section **5.12, “Indexers”** (page 393), in the book, including subsect
 4. The overloaded indexer `this[string vn]` returns the **first** person with that first name; if none exists, it throws an `ArgumentException`. Tip: You can reuse the `int` indexer for this.
 
 `PersListDemo.cs` shows how to use it: `pl[1]`, `pl[1] = …`, `pl["Ilse"]`.
+
+`first`, `last` and `Next` are declared as `Element?`: the question mark tells the compiler that `null` may be stored there (book page 338, footnote; it is covered in detail in chapter 15.1.1). The book example on page 394 writes just `Element`. If the compiler reports a warning (not an error) in your code because of this, you may leave it for now.

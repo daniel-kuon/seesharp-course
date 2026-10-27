@@ -30,5 +30,12 @@ Aufgaben:
 4. `Rechner.Mittel(...)`: Summe bilden, Nenner mit der Anzahl multiplizieren,
    kürzen, Etikett `"Mittel"`.
 
+`params Bruch[] brueche` ist ein **Serienparameter** (5.3.1.3.3, Seite 321):
+Der Aufrufer übergibt beliebig viele Brüche, `Rechner.Summe(a, b, c)`. Im
+Rumpf durchläufst du sie wie im Buchbeispiel `PrintSum` mit
+`foreach (Bruch b in brueche)`. Die Anzahl liefert `brueche.Length`. Dass
+`brueche` ein Array ist, kommt ausführlich erst in Kapitel 6.2; mehr als
+diese beiden Schreibweisen brauchst du hier nicht.
+
 Das Testprojekt referenziert beide Projekte und prüft per Reflection, dass
 `Ggt` nicht öffentlich ist.

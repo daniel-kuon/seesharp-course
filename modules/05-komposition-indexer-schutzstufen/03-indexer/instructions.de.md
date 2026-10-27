@@ -20,3 +20,9 @@ dich um die Liste selbst. Öffne `PersList.cs` und vervollständige:
    kannst dafür den `int`-Indexer wiederverwenden.
 
 `PersListDemo.cs` zeigt die Verwendung: `pl[1]`, `pl[1] = …`, `pl["Ilse"]`.
+
+`first`, `last` und `Next` sind als `Element?` deklariert: Das Fragezeichen
+sagt dem Compiler, dass dort `null` stehen darf (Buch Seite 338, Fußnote;
+ausführlich kommt das in Kapitel 15.1.1). Das Buchbeispiel auf Seite 394
+schreibt nur `Element`. Meldet der Compiler deswegen in deinem Code eine
+Warnung (kein Fehler), darfst du sie hier stehen lassen.

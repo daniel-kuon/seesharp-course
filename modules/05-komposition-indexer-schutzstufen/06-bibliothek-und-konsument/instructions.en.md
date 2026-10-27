@@ -14,4 +14,6 @@ Tasks:
 3. `Rechner.Summe(params Bruch[] brueche)` starts with `new Bruch(0, 1, "Summe")`, adds all fractions using `+=`, and returns the result with the label `"Summe"` (set it again after adding, because `+=` appends labels). The passed-in fractions remain unchanged.
 4. `Rechner.Mittel(...)`: Calculate the sum, multiply the denominator by the number, simplify, label `"Mittel"`.
 
+`params Bruch[] brueche` is a **parameter array** (5.3.1.3.3, page 321): the caller passes any number of fractions, `Rechner.Summe(a, b, c)`. In the method body you go through them as in the book example `PrintSum` with `foreach (Bruch b in brueche)`. The number of fractions is `brueche.Length`. That `brueche` is an array is covered in detail only in chapter 6.2; you need nothing beyond these two forms here.
+
 The test project references both projects and uses Reflection to verify that `Ggt` is not public.

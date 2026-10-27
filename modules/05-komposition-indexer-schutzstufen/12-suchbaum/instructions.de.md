@@ -29,9 +29,12 @@ Der `Knoten` ist eine private geschachtelte Klasse, von außen sieht man nur
 2. `Enthaelt(wert)`: genauso absteigen; `null` erreicht heißt "nicht da".
 3. `Anzahl` mit einer **rekursiven** privaten Hilfsmethode
    `static int Zaehle(Knoten? k)`: ein leerer Teilbaum hat 0 Knoten, sonst
-   1 plus die Knoten links plus die Knoten rechts.
+   1 plus die Knoten links plus die Knoten rechts. `Knoten?` heißt: `null`
+   ist erlaubt, hier für den leeren Teilbaum (Buch Seite 338, Fußnote;
+   ausführlich kommt das in Kapitel 15.1.1).
 4. `Hoehe` ebenso rekursiv: leer 0, sonst 1 plus die größere der beiden
-   Teilbaumhöhen (`Math.Max`).
+   Teilbaumhöhen (`Math.Max(a, b)` liefert die größere von zwei Zahlen; nicht
+   im Buch, hier vorgegeben, ein `?:` tut es auch).
 5. `ToString()` liefert alle Werte aufsteigend, getrennt durch ein
    Leerzeichen: rekursiv erst den linken Teilbaum, dann den Knoten, dann
    den rechten (In-Order). Achte auf die Leerzeichen bei leeren Teilbäumen.

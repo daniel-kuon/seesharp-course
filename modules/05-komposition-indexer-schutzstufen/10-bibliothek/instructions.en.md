@@ -12,7 +12,7 @@ The `Bibliothek` stores its books in a linked list, similar to the `PersList` fr
 6. A calculated property is `Verfuegbar`: It counts the number of books that are not checked out each time it is read.
 7. `VonAutor(autor)` returns the author's titles in the order they were entered, separated by `", "`, that is `"Der Process, Das Schloss"`. If no matches are found, it returns `""`.
 
-Tip: You can easily iterate through a list using `for (Knoten? k = erster; k != null; k = k.Next)`.
+Tip: You can easily iterate through a list using `for (Knoten? k = erster; k != null; k = k.Next)`. The question mark in `Buch?` and `Knoten?` means that `null` is allowed (book page 338, footnote; it is covered in detail in chapter 15.1.1).
 
 The following tests must be passed:
 

@@ -18,8 +18,8 @@ The `Knoten` is a private nested class; from the outside, you can only see `int`
 
 1. `Einfuegen(wert)`: If the tree is empty, the value becomes the root. Otherwise, traverse the tree downward from the root (left for smaller values, right for larger values) until the appropriate slot is `null`, and insert a new node there. If the value is already in the tree, the method returns `false`.
 2. `Enthaelt(wert)`: descend in exactly the same way; reaching `null` means "not there."
-3. `Anzahl` using a **recursive** private helper method `static int Zaehle(Knoten? k)`: an empty subtree has 0 nodes; otherwise, 1 plus the nodes on the left plus the nodes on the right.
-4. `Hoehe` is also recursive: 0 if empty, otherwise 1 plus the greater of the two subtree heights (`Math.Max`).
+3. `Anzahl` using a **recursive** private helper method `static int Zaehle(Knoten? k)`: an empty subtree has 0 nodes; otherwise, 1 plus the nodes on the left plus the nodes on the right. `Knoten?` means that `null` is allowed, here for the empty subtree (book page 338, footnote; it is covered in detail in chapter 15.1.1).
+4. `Hoehe` is also recursive: 0 if empty, otherwise 1 plus the greater of the two subtree heights (`Math.Max(a, b)` returns the larger of two numbers; not in the book, given here, a `?:` works as well).
 5. `ToString()` returns all values in ascending order, separated by a space: recursively, first the left subtree, then the node, then the right subtree (in-order). Watch out for superfluous spaces with empty subtrees.
 
 The following tests must be passed:

@@ -3,7 +3,7 @@ title: { de: "Verständnisfragen", en: "Comprehension questions" }
 reading:
   section: "5"
   title: { de: "Klassen und Objekte", en: "Classes and Objects" }
-  printedPage: 286
+  printedPage: 285
 teaches:
   - oop.object-initializer
   - oop.copy-values

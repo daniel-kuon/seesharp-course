@@ -3,7 +3,7 @@
 A **class** describes which data its objects carry (fields) and what can be done
 with them (methods, properties). An **object** is a concrete instance, created
 with `new`. In this level we build a class `Bruch` (fraction) step by step,
-exactly as the book does in chapter 5 (from page 286): first fields and
+exactly as the book does in chapter 5 (from page 285): first fields and
 properties with validation, then overloaded methods, constructors, static
 members, recursion and finally overloaded operators. Every exercise builds on
 the state of the previous one; the book's sample folder `Bruch/b0` to `b7` is

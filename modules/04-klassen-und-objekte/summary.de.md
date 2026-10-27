@@ -3,7 +3,7 @@
 Eine **Klasse** beschreibt, welche Daten ihre Objekte tragen (Felder) und was man
 mit ihnen tun kann (Methoden, Eigenschaften). Ein **Objekt** ist eine konkrete
 Instanz, erzeugt mit `new`. In diesem Level bauen wir eine Klasse `Bruch` Schritt
-für Schritt aus, genau wie das Buch in Kapitel 5 (ab Seite 286): erst Felder und
+für Schritt aus, genau wie das Buch in Kapitel 5 (ab Seite 285): erst Felder und
 Eigenschaften mit Validierung, dann überladene Methoden, Konstruktoren, statische
 Mitglieder, Rekursion und zuletzt überladene Operatoren. Jede Übung baut auf dem
 Stand der vorigen auf; der Sample-Ordner `Bruch/b0` bis `b7` des Buchs ist die

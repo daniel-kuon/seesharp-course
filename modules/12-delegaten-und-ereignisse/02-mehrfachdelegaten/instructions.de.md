@@ -8,7 +8,9 @@ eine Methode an, `-=` entfernt sie; ist die Liste leer, ist die Variable
 
 1. `Verteiler`: `Anmelden` und `Abmelden` ändern die Aufrufliste von `ziele`
    mit `+=` und `-=`. `Sende(text)` ruft alle Ziele in Anmeldereihenfolge auf
-   und darf ohne Ziele nicht abstürzen (`?.Invoke`). `AnzahlZiele()` zählt
+   und darf ohne Ziele nicht abstürzen: null-Test wie im Buch (Seite 664) oder
+   kürzer `ziele?.Invoke(text)` (null-bedingter Operator, Vorgriff auf
+   15.1.5.2, Seite 971). `AnzahlZiele()` zählt
    die Einträge der Aufrufliste (`GetInvocationList()`), ohne Ziele 0.
 2. `Ketten.Kette(params Schritt[] schritte)` fasst die Schritte zu einem
    Delegaten zusammen (ohne Schritte: `null`). Beobachte: Der Aufruf liefert

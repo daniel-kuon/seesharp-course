@@ -33,7 +33,7 @@ items:
       - { de: "Richtig", en: "Correct" }
       - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Die Signatur besteht aus Parameterliste und Rückgabetyp; nur die Namen von Methode und Parametern sind egal (10.1.1, Seite 659).", en: "The signature consists of a list of parameters and a return type; only the names of the method and parameters are irrelevant (10.1.1, page 659)." }
+    explanation: { de: "Die Signatur besteht aus Parameterliste und Rückgabetyp; nur die Namen von Methode und Parametern sind egal (10.1.1, Seite 659 f.).", en: "The signature consists of a list of parameters and a return type; only the names of the method and parameters are irrelevant (10.1.1, pages 659–660)." }
   - type: multipleChoice
     id: d3-einfangen
     prompt: { de: "Aussage: Bei einer anonymen Methode oder einem Lambda-Ausdruck kann man lokale Variablen und (statische) Felder der Umgebung verwenden (\"einfangen\"). (10.3 Aufgabe 1.3)", en: "Statement: In an anonymous method or lambda expression, you can use (capture) local variables and (static) fields from the surrounding scope. (10.3 Exercise 1.3)" }
@@ -41,7 +41,7 @@ items:
       - { de: "Richtig", en: "Correct" }
       - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "Das Einfangen behandelt 10.1.5.3; eingefangen wird die Variable selbst, nicht ihr Wert.", en: "Catching is covered in 10.1.5.3; it is the variable itself that is caught, not its value." }
+    explanation: { de: "Das Einfangen behandelt 10.1.5.3 (Seite 671); eingefangen wird die Variable selbst, nicht ihr Wert.", en: "Capturing is covered in 10.1.5.3 (page 671); what is captured is the variable itself, not its value." }
   - type: multipleChoice
     id: d4-varianz
     prompt: { de: "Aussage: C# unterstützt bei den Typformalparametern von generischen Delegaten die Ko- und Kontravarianz. (10.3 Aufgabe 1.4)", en: "Statement: C# supports covariance and contravariance for the formal type parameters of generic delegates. (10.3 Exercise 1.4)" }
@@ -65,7 +65,7 @@ items:
       - { de: "Richtig", en: "Correct" }
       - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Die auslösende Methode OnXyz() ist protected virtual; Erben überschreiben sie (10.2.3, Seite 684 bis 686).", en: "The triggering method OnXyz() is protected virtual; subclasses override it (10.2.3, pages 684–686)." }
+    explanation: { de: "Die auslösende Methode OnXyz() ist protected virtual; abgeleitete Klassen überschreiben sie (10.2.3, Seite 687 bis 688).", en: "The raising method OnXyz() is protected virtual; derived classes override it (10.2.3, pages 687–688)." }
   - type: multipleChoice
     id: e3-abmelden
     prompt: { de: "Aussage: Die Registrierung eines Ereignisempfängers wieder aufzuheben, lohnt sich nicht. (10.3 Aufgabe 4.3)", en: "Statement: It is not worth unregistering an event listener. (10.3 Exercise 4.3)" }
@@ -73,7 +73,7 @@ items:
       - { de: "Richtig", en: "Correct" }
       - { de: "Falsch", en: "Wrong" }
     correct: [1]
-    explanation: { de: "Über die Aufrufliste hält der Anbieter den Abonnenten am Leben und benachrichtigt ihn weiter, solange er nicht abgemeldet ist.", en: "Through the call list, the provider keeps the subscriber active and continues to send notifications as long as the subscriber has not unsubscribed." }
+    explanation: { de: "Über die Aufrufliste hält der Anbieter den Abonnenten am Leben und benachrichtigt ihn weiter, solange er nicht abgemeldet ist (10.2.2, Seite 684).", en: "Through the invocation list, the provider keeps the subscriber alive and keeps notifying it as long as it has not unsubscribed (10.2.2, page 684)." }
   - type: multipleChoice
     id: e4-versiegeln
     prompt: { de: "Aussage: Man kann ein Ereignis versiegeln. (10.3 Aufgabe 4.4)", en: "Statement: An event can be sealed. (10.3 Exercise 4.4)" }
@@ -81,7 +81,7 @@ items:
       - { de: "Richtig", en: "Correct" }
       - { de: "Falsch", en: "Wrong" }
     correct: [0]
-    explanation: { de: "Ein überschriebenes Ereignis darf mit sealed override versiegelt werden, wie jedes andere überschriebene Mitglied.", en: "An overridden event may be sealed with `sealed override`, just like any other overridden member." }
+    explanation: { de: "Ein überschriebenes Ereignis darf mit sealed override versiegelt werden, wie jedes andere überschriebene Mitglied (10.2.1, Seite 680).", en: "An overridden event may be sealed with `sealed override`, just like any other overridden member (10.2.1, page 680)." }
   - type: multipleChoice
     id: szenario-schnittstelle
     prompt: { de: "In welcher Lage ist eine Schnittstelle besser als ein Delegat? (10.1.4)", en: "In what situations is an interface better than a delegate? (10.1.4)" }
@@ -90,7 +90,7 @@ items:
       - { de: "Ein Sortierkriterium soll einmalig an Ort und Stelle als Einzeiler übergeben werden.", en: "A sort criterion should be passed as a single line of code right there on the spot." }
       - { de: "Eine einzelne statische Methode soll als Rückruf übergeben werden.", en: "A single static method should be passed as a callback." }
     correct: [0]
-    explanation: { de: "Eine Schnittstelle kann beliebig viele Methoden vorschreiben, ein Delegatentyp genau eine (10.1.4, Seite 665). Deshalb sind Kollektionen als Parameter- und Variablentypen mit Schnittstellen zu bevorzugen.", en: "An interface can define any number of methods, while a delegate type can define exactly one (10.1.4, page 665). Therefore, collections should be preferred as parameter and variable types for interfaces." }
+    explanation: { de: "Eine Schnittstelle kann beliebig viele Methoden vorschreiben, ein Delegatentyp genau eine (10.1.4, Seite 665). Deshalb beschreibt man Kollektionen als Parameter- und Variablentypen über Schnittstellen, nicht über Delegaten.", en: "An interface can define any number of methods, while a delegate type can define exactly one (10.1.4, page 665). That is why collections used as parameter and variable types are described by interfaces, not by delegates." }
   - type: multipleChoice
     id: szenario-delegat
     prompt: { de: "In welcher Lage ist ein Delegat besser als eine Schnittstelle? (10.1.4)", en: "In what situations is a delegate better than an interface? (10.1.4)" }
@@ -159,8 +159,8 @@ items:
     id: ereignis-versus-feld
     prompt: { de: "Ein öffentliches Delegatenfeld erlaubt von außen sowohl x.Changed = null als auch x.Changed(). Warum ist beides bei public event Changed nicht möglich?", en: "A public delegate field allows both `x.Changed = null` and `x.Changed()` from outside. Why aren't both possible with the public `Changed` event?" }
     options:
-      - { de: "Ein Ereignis legt die Delegatenvariable privat an und zeigt nach außen nur += und -= (add/remove); Überschreiben und Auslösen sind der eigenen Klasse (und über OnXyz den Erben) vorbehalten.", en: "An event declares the delegate variable as private and exposes only += and -= (add/remove) to the outside; overriding and invoking are reserved for its own class (and, via OnXyz, its subclasses)." }
+      - { de: "Ein Ereignis legt die Delegatenvariable privat an und zeigt nach außen nur += und -= (add/remove); Zuweisen (=) und Auslösen sind der eigenen Klasse (und über OnXyz den abgeleiteten Klassen) vorbehalten.", en: "An event declares the delegate variable as private and exposes only += and -= (add/remove) to the outside; assigning (=) and raising are reserved for its own class (and, via OnXyz, for derived classes)." }
       - { de: "Weil ein Ereignis intern ein Array von Delegaten ist, das schreibgeschützt ist.", en: "Because an event is internally an array of delegates that is read-only." }
       - { de: "Weil der Compiler Ereignisse nur in Konsolenanwendungen unterstützt.", en: "Because the compiler only supports events in console applications." }
     correct: [0]
-    explanation: { de: "10.2.1 (Seite 678): Hinter dem Ereignis steht stets eine private Delegatenvariable mit öffentlichen Methoden zum Erweitern und Verkürzen der Aufrufliste. Das schützt die Abonnenten voreinander.", en: "10.2.1 (page 678): Behind every event there is always a private delegate variable with public methods for extending and shortening the call list. This protects subscribers from interfering with one another." }
+    explanation: { de: "10.2.1 (Seite 678): Hinter dem Ereignis steht stets eine private Delegatenvariable mit öffentlichen Methoden zum Erweitern und Verkürzen der Aufrufliste. Das schützt die Abonnenten voreinander.", en: "10.2.1 (page 678): Behind every event there is always a private delegate variable with public methods for extending and shortening the invocation list. This protects subscribers from interfering with one another." }

@@ -1,6 +1,6 @@
 # Extra: Calculation Table
 
-See section **10.1.2**, **“Creating and Calling Delegate Objects”** (page 660). The predefined `Func<double, double, double>` is used as the delegate type here.
+Read **10.1.2 Creating and Calling Delegate Objects** (page 660) in the book. The predefined `Func<double, double, double>` is used as the delegate type here.
 
 The `Rechentabelle` class manages named arithmetic operations in a `Dictionary<string, Func<double, double, double>>`:
 

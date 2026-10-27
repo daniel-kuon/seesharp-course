@@ -1,7 +1,7 @@
 # Ereignisse abonnieren und abmelden
 
 Lies im Buch **10.2.2 Behandlungsmethoden registrieren** (Seite 681) und die
-Übungsaufgabe **10.3 Aufgabe 4** (Seite 688).
+Übungsaufgabe **10.3 Aufgabe 4** (Seite 689).
 
 Eine Behandlungsmethode für ein `EventHandler<TEventArgs>`-Ereignis hat die
 Parameter `(object? sender, TEventArgs e)`. `sender` ist das Objekt, das das

@@ -128,6 +128,10 @@ items:
         Was gibt dieses Programm aus, und in welcher Reihenfolge?
 
         ```csharp
+        var x = new Abgeleitet();
+        x.Fertig += (s, e) => Console.Write("Abo ");
+        x.Arbeite();
+
         class Basis
         {
             public event EventHandler? Fertig;
@@ -147,15 +151,15 @@ items:
                 base.OnFertig();
             }
         }
-
-        var x = new Abgeleitet();
-        x.Fertig += (s, e) => Console.Write("Abo ");
-        x.Arbeite();
         ```
       en: |
         What does this program print, and in what order?
 
         ```csharp
+        var x = new Abgeleitet();
+        x.Fertig += (s, e) => Console.Write("Abo ");
+        x.Arbeite();
+
         class Basis
         {
             public event EventHandler? Fertig;
@@ -175,10 +179,6 @@ items:
                 base.OnFertig();
             }
         }
-
-        var x = new Abgeleitet();
-        x.Fertig += (s, e) => Console.Write("Abo ");
-        x.Arbeite();
         ```
   - type: multipleChoice
     id: richtig-delegat
@@ -188,23 +188,23 @@ items:
     options:
       - de: |
           ```csharp
-          delegate bool Vergleich(int a, int b);
           Vergleich v = new Vergleich();
+          delegate bool Vergleich(int a, int b);
           ```
       - de: |
           ```csharp
-          delegate bool Vergleich(int a, int b);
           Vergleich v = (a, b) => a + b;
+          delegate bool Vergleich(int a, int b);
           ```
       - de: |
           ```csharp
-          delegate bool Vergleich(int a, int b);
           Vergleich v = (a, b) => a < b;
+          delegate bool Vergleich(int a, int b);
           ```
       - de: |
           ```csharp
-          delegate bool Vergleich(int a, int b);
           Vergleich v = a => a < 1;
+          delegate bool Vergleich(int a, int b);
           ```
     correct: [2]
     explanation:
@@ -287,5 +287,5 @@ items:
       - de: "`zahlen.RemoveAll(z => z % 2);`"
     correct: [1]
     explanation:
-      de: "Erste Option: Das Ändern der Liste während des `foreach` wirft eine `InvalidOperationException`. Dritte Option: `FindAll` liefert eine neue Liste mit den geraden Zahlen und verändert `zahlen` nicht; `1, 2, 3, 4` bleiben stehen. Vierte Option: Das Prädikat muss `bool` liefern, `z % 2` ist ein `int` (Fehler CS1662)."
-      en: "First option: Modifying the list during `foreach` throws an `InvalidOperationException`. Third option: `FindAll` returns a new list with the even numbers and does not change `zahlen`; `1, 2, 3, 4` remain. Fourth option: The predicate must return `bool`, but `z % 2` is an `int` (error CS1662)."
+      de: "Erste Option: Das Ändern der Liste während des `foreach` wirft eine `InvalidOperationException`. Dritte Option: `FindAll` liefert eine neue Liste mit den geraden Zahlen und verändert `zahlen` nicht; `1, 2, 3, 4` bleiben stehen. Vierte Option: Das Prädikat muss `bool` liefern, `z % 2` ist ein `int` (Fehler CS0029/CS1662)."
+      en: "First option: Modifying the list during `foreach` throws an `InvalidOperationException`. Third option: `FindAll` returns a new list with the even numbers and does not change `zahlen`; `1, 2, 3, 4` remain. Fourth option: The predicate must return `bool`, but `z % 2` is an `int` (errors CS0029/CS1662)."

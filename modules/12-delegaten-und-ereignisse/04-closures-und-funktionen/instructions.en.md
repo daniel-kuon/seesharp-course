@@ -1,6 +1,6 @@
 # Closures, Func, and Action
 
-Read the section in Chapter **10.1.5**, **“Creating Delegate Objects Using Anonymous Functions”** (page 665), specifically the section on variable capture, and complete Exercise **10.3, Task 3** (page 688, `ListLE(k)`).
+Read **10.1.5 Creating Delegate Objects Using Anonymous Functions** (page 665) including **10.1.5.3 Captured Context Variables** (page 671), and exercise **10.3, Task 3** (page 689, `ListLE(k)`) in the book.
 
 A lambda can use variables from the environment; these variables then exist for as long as the delegate object (closure). Open `Fabrik.cs`:
 

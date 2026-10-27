@@ -29,13 +29,13 @@ items:
       - { de: "Weil ein Ereignis nur in einer Methode mit dem Namen On... ausgelöst werden kann.", en: "Because an event can only be triggered in a method named On..." }
       - { de: "Weil die Methode dadurch schneller läuft.", en: "Because that makes the method run faster." }
     correct: [0]
-    explanation: { de: "10.2.3 (Seite 684 bis 686): Die Delegatenvariable zum Ereignis ist privat; mit OnXyz() bekommen Erben eine Kontrollstelle. Der Name folgt der Konvention On + Ereignisname.", en: "10.2.3 (pages 684–686): The delegate variable for the event is private; OnXyz() provides subclasses with a point of control. The name follows the convention \"On + event name.\"" }
+    explanation: { de: "10.2.1 (Seite 680) und 10.2.3 (Seite 687 bis 688): Die Delegatenvariable zum Ereignis ist privat; mit OnXyz() bekommen abgeleitete Klassen eine Kontrollstelle. Der Name On + Ereignisname ist nur eine Konvention, und mit Geschwindigkeit hat das nichts zu tun.", en: "10.2.1 (page 680) and 10.2.3 (pages 687–688): The delegate variable for the event is private; OnXyz() gives derived classes a point of control. The name On + event name is only a convention, and speed has nothing to do with it." }
   - type: multipleChoice
     id: null-pruefung
-    prompt: { de: "Ein Ereignis hat keinen einzigen Abonnenten. Was passiert bei ereignis(this, e)?", en: "An event does not have a single subscriber. What happens when event(this, e) is called?" }
+    prompt: { de: "Ein Ereignis hat keinen einzigen Abonnenten. Was passiert bei ereignis(this, e)?", en: "An event does not have a single subscriber. What happens when `ereignis(this, e)` is called?" }
     options:
-      - { de: "NullReferenceException; deshalb löst man mit ereignis?.Invoke(this, e) aus.", en: "NullReferenceException; that's why you trigger it using event?.Invoke(this, e)." }
+      - { de: "NullReferenceException; deshalb löst man mit ereignis?.Invoke(this, e) aus.", en: "NullReferenceException; that's why you raise it using `ereignis?.Invoke(this, e)`." }
       - { de: "Nichts; ein Ereignis ohne Abonnenten ist ein leeres Delegatenobjekt.", en: "Nothing; an event with no subscribers is an empty delegate object." }
       - { de: "Der Compiler weigert sich, solchen Code zu übersetzen.", en: "The compiler refuses to compile such code." }
     correct: [0]
-    explanation: { de: "Ohne Abonnenten ist die Delegatenvariable null (10.1.3, Seite 664); ?.Invoke(...) prüft das thread-sicher in einem Schritt.", en: "If there are no subscribers, the delegate variable is null (10.1.3, page 664); ?.Invoke(...) checks this in a single, thread-safe step." }
+    explanation: { de: "Ohne Abonnenten ist die Delegatenvariable null (10.1.3, Seite 664; 10.2.3, Seite 686); ?.Invoke(...) prüft das thread-sicher in einem Schritt (null-bedingter Operator, Vorgriff auf 15.1.5.2, Seite 971). Der Compiler übersetzt den ungeschützten Aufruf; im Nullable-Kontext warnt er nur (CS8602).", en: "If there are no subscribers, the delegate variable is null (10.1.3, page 664; 10.2.3, page 686); ?.Invoke(...) checks this in a single, thread-safe step (null-conditional operator, a preview of 15.1.5.2, page 971). The compiler accepts the unprotected call; in a nullable context it only warns (CS8602)." }

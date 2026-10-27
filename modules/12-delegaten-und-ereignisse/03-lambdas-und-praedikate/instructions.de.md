@@ -13,6 +13,7 @@ Stelle. Öffne `Filter.cs`:
    Einträge.
 3. `Existiert`: ist der Wert in der Liste (`Exists`)?
 4. `ErstesMit`: erstes Wort, das mit dem Zeichen beginnt (`Find`), sonst `null`.
+   Die Liste kann leere Wörter enthalten.
 5. `SortiereNachLaenge`: sortiert die Liste mit `Sort` und einem **Lambda mit
    Anweisungsblock**: erst nach Länge, bei gleicher Länge mit
    `string.CompareOrdinal`.

@@ -11,7 +11,8 @@ Zielobjekt). Öffne `Operation.cs` und `Rechner.cs`:
    double b);`. Lies sie und die Beschreibung im Kommentar genau.
 2. `Rechner`: Implementiere die statischen Methoden `Addiere`, `Subtrahiere`,
    `Multipliziere` und `Dividiere` und die Instanzmethode `Potenz`, die zum
-   Delegatentyp passen. `Potenz` berechnet `(a + b)` hoch `Exponent`.
+   Delegatentyp passen. `Potenz` berechnet `(a + b)` hoch `Exponent`. `Dividiere` rechnet wie
+   üblich mit `double`: Division durch 0 liefert Unendlich, keine Ausnahme.
 3. `Anwenden(op, a, b)` ruft den Delegaten auf; `Reduziere(op, werte)` faltet
    ein nichtleeres Array von links nach rechts mit `op` zu einem Wert
    (leeres Array: `ArgumentException`).

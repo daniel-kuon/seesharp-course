@@ -1,5 +1,5 @@
 id: delegaten-mehrfachdelegaten
-title: { de: "Mehrfachdelegaten", en: "Multiple delegates" }
+title: { de: "Mehrfachdelegaten", en: "Multicast delegates" }
 reading:
   section: "10.1.3"
   title: { de: "Delegatenobjekte kombinieren", en: "Combining Delegate Objects" }
@@ -25,13 +25,13 @@ items:
       - { de: "Die Summe aller drei Rückgabewerte.", en: "The sum of all three return values." }
       - { de: "Ein Array mit allen drei Rückgabewerten.", en: "An array containing all three return values." }
     correct: [0]
-    explanation: { de: "Bei einem Rückgabewert dominiert die zuletzt ausgeführte Methode (10.1.3, Seite 664). Wer alle Werte braucht, durchläuft GetInvocationList().", en: "In the case of a return value, the most recently executed method takes precedence (10.1.3, page 664). To obtain all values, call `GetInvocationList()`." }
+    explanation: { de: "Bei einem Rückgabewert dominiert die zuletzt ausgeführte Methode (10.1.3, Seite 664). Wer alle Werte braucht, durchläuft GetInvocationList(). Eine Summe oder ein Array bildet der Aufruf nicht.", en: "In the case of a return value, the most recently executed method takes precedence (10.1.3, page 664). To obtain all values, iterate over `GetInvocationList()`. The call builds neither a sum nor an array." }
   - type: multipleChoice
     id: leere-liste
-    prompt: { de: "Was ist der Wert einer Delegatenvariablen, nachdem die letzte Methode aus ihrer Aufrufliste mit -= entfernt wurde?", en: "What is the value of a delegate variable after the last method in its call list has been removed using -=?" }
+    prompt: { de: "Was ist der Wert einer Delegatenvariablen, nachdem die letzte Methode aus ihrer Aufrufliste mit -= entfernt wurde?", en: "What is the value of a delegate variable after the last method in its invocation list has been removed using -=?" }
     options:
       - { de: "null; der Aufruf muss deshalb mit ?.Invoke() oder einer null-Prüfung geschützt werden.", en: "null; the call must therefore be protected using ?.Invoke() or a null check." }
       - { de: "Ein leeres Delegatenobjekt; der Aufruf tut nichts.", en: "An empty delegate object; the call does nothing." }
       - { de: "Der Aufruf von -= wirft eine Ausnahme.", en: "Calling -= throws an exception." }
     correct: [0]
-    explanation: { de: "Beim Entleeren der Aufrufliste entsteht kein leeres Delegatenobjekt, sondern null (10.1.3, Seite 664).", en: "When clearing the call list, a null value is returned instead of an empty delegate object (10.1.3, page 664)." }
+    explanation: { de: "Beim Entleeren der Aufrufliste entsteht kein leeres Delegatenobjekt, sondern null (10.1.3, Seite 664). -= selbst wirft keine Ausnahme. Den Aufruf schützt ein null-Test oder ?.Invoke() (null-bedingter Operator, Vorgriff auf 15.1.5.2, Seite 971).", en: "Emptying the invocation list does not leave an empty delegate object; the variable becomes null (10.1.3, page 664). -= itself does not throw. The call is protected by a null check or ?.Invoke() (null-conditional operator, a preview of 15.1.5.2, page 971)." }

@@ -28,4 +28,4 @@ items:
       - { de: "Das Lambda erhält eine Kopie des Werts zum Zeitpunkt der Erzeugung.", en: "The lambda receives a copy of the value at the time it is created." }
       - { de: "Der Compiler verbietet den Zugriff auf lokale Variablen aus einem Lambda.", en: "The compiler does not allow access to local variables from within a lambda." }
     correct: [0]
-    explanation: { de: "Das Lambda greift auf die Variable selbst zu, nicht auf eine Kopie; Änderungen sind in beide Richtungen sichtbar (10.1.5.2, Seite 667 bis 675).", en: "The lambda accesses the variable itself, not a copy; changes are visible in both directions (10.1.5.2, pages 667–675)." }
+    explanation: { de: "Das Lambda greift auf die Variable selbst zu, nicht auf eine Kopie; Änderungen sind in beide Richtungen sichtbar (10.1.5.3, Seite 671 bis 675). Der Zugriff auf lokale Variablen ist ausdrücklich erlaubt.", en: "The lambda accesses the variable itself, not a copy; changes are visible in both directions (10.1.5.3, pages 671–675). Access to local variables is explicitly allowed." }

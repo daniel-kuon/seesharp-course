@@ -26,7 +26,7 @@ Typische Irrtümer: Das Lambda bekomme einen Wert zum Zeitpunkt der Erzeugung; d
 
 Kernpunkte:
 - Beim öffentlichen Feld kann fremder Code das Delegatenobjekt **auslösen** (`x.Meldung("…")`) und **überschreiben oder löschen** (`x.Meldung = null`, `x.Meldung = …` ersetzt alle anderen Abonnenten).
-- Beim Ereignis bleiben von außen nur `+=` und `-=` (anmelden und abmelden); Auslösen und Überschreiben sind der eigenen Klasse vorbehalten (Erben über die `OnXyz`-Methode). Technisch: private Delegatenvariable plus öffentliche add/remove-Zugriffe.
+- Beim Ereignis bleiben von außen nur `+=` und `-=` (anmelden und abmelden); Auslösen und Zuweisen sind der eigenen Klasse vorbehalten (abgeleitete Klassen über die `OnXyz`-Methode). Technisch: private Delegatenvariable plus öffentliche add/remove-Zugriffe.
 - Vorteil: Der Anbieter bestimmt, wann das Ereignis ausgelöst wird, und die Abonnenten können sich nicht gegenseitig abmelden oder stören.
 
 Typische Irrtümer: Ein Ereignis sei ein Datenobjekt oder ein Array von Delegaten; ein Ereignis sei schneller.

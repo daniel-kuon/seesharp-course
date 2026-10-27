@@ -1,8 +1,8 @@
 # Closures, Func und Action
 
 Lies im Buch **10.1.5 Delegatenobjekte durch anonyme Funktionen erstellen**
-(Seite 665) mit dem Abschnitt über das Einfangen von Variablen und die
-Übungsaufgabe **10.3 Aufgabe 3** (Seite 688, `ListLE(k)`).
+(Seite 665) mit **10.1.5.3 Eingefangene Kontextvariablen** (Seite 671) und die
+Übungsaufgabe **10.3 Aufgabe 3** (Seite 689, `ListLE(k)`).
 
 Ein Lambda darf Variablen der Umgebung benutzen; sie leben dann so lange
 wie das Delegatenobjekt (Closure). Öffne `Fabrik.cs`:

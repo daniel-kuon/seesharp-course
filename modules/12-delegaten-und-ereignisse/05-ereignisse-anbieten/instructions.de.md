@@ -3,8 +3,9 @@
 Lies im Buch **10.2 Ereignisse** (Seite 678) und **10.2.3 Ereignisse
 anbieten** (Seite 684 bis 686).
 
-Ein Ereignis (`event`) ist ein Delegat, den fremde Klassen nur mit `+=` und
-`-=` ändern, aber nicht selbst aufrufen dürfen. Öffne `Thermostat.cs`:
+Hinter einem Ereignis (`event`) steht eine private Delegatenvariable: Fremde
+Klassen können nur mit `+=` und `-=` an- und abmelden, das Ereignis aber nicht
+auslösen. Öffne `Thermostat.cs`:
 
 1. `TemperaturGeaendertEventArgs`: Die Klasse trägt `Alt` und `Neu`. Leite sie
    von `EventArgs` ab und schreibe den Konstruktor.
@@ -13,7 +14,9 @@ Ein Ereignis (`event`) ist ein Delegat, den fremde Klassen nur mit `+=` und
    (`event`): `EventHandler<TemperaturGeaendertEventArgs>` und
    `EventHandler`.
 3. `OnTemperaturGeaendert` und `OnUeberhitzt` (`protected virtual`) lösen
-   die Ereignisse mit `?.Invoke(this, e)` aus; `sender` ist das Thermostat.
+   die Ereignisse mit `?.Invoke(this, e)` aus (null-bedingter Operator, Vorgriff
+   auf 15.1.5.2, Seite 971; ein null-Test wie im Buch, Seite 680, geht auch);
+   `sender` ist das Thermostat.
 4. Der Setter von `Temperatur` tut nur etwas, wenn sich der Wert wirklich
    ändert: Er setzt den Wert, löst `TemperaturGeaendert` aus (mit altem und
    neuem Wert) und, wenn der neue Wert **größer** als `Grenze` ist, danach

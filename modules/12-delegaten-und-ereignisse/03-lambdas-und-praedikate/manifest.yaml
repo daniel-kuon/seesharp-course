@@ -30,7 +30,7 @@ items:
       - { de: "Action<int>", en: "Action<int>" }
       - { de: "Func<int, int, int>", en: "Func<int, int, int>" }
     correct: [0]
-    explanation: { de: "Exists erwartet ein Predicate<T>: ein Argument vom Typ T, Rückgabetyp bool (10.3 Aufgabe 2, Seite 688).", en: "`Exists` expects a `Predicate<T>`: an argument of type `T`, with a return type of `bool` (10.3 Exercise 2, page 688)." }
+    explanation: { de: "Exists erwartet ein Predicate<T>: ein Argument vom Typ T, Rückgabetyp bool (10.3 Aufgabe 2, Seite 688). Comparison<int> und Func<int, int, int> haben zwei Parameter und liefern int, Action<int> liefert nichts.", en: "`Exists` expects a `Predicate<T>`: an argument of type `T`, with a return type of `bool` (10.3 Exercise 2, page 688). `Comparison<int>` and `Func<int, int, int>` take two parameters and return `int`; `Action<int>` returns nothing." }
   - type: multipleChoice
     id: typ-vergleich
     prompt: { de: "Zu welchem Delegatentyp passt das Lambda  (a, b) => a.Length - b.Length  in  wörter.Sort((a, b) => a.Length - b.Length)  mit wörter vom Typ List<string>?", en: "Which delegate type does the lambda `(a, b) => a.Length - b.Length` fit in `wörter.Sort((a, b) => a.Length - b.Length)`, with `wörter` of type `List<string>`?" }
@@ -40,7 +40,7 @@ items:
       - { de: "Action<string, string>", en: "Action<string, string>" }
       - { de: "Func<string, bool>", en: "Func<string, bool>" }
     correct: [0]
-    explanation: { de: "Sort(Comparison<T>) verlangt zwei Argumente vom Typ T und einen int als Ergebnis (negativ, 0, positiv).", en: "`Sort(Comparison<T>)` takes two arguments of type `T` and returns an `int` (negative, 0, or positive)." }
+    explanation: { de: "Sort(Comparison<T>) verlangt zwei Argumente vom Typ T und einen int als Ergebnis (negativ, 0, positiv; 10.1.2, Seite 662). Predicate<string> und Func<string, bool> haben nur einen Parameter und liefern bool, Action<string, string> liefert nichts.", en: "`Sort(Comparison<T>)` takes two arguments of type `T` and returns an `int` (negative, 0, or positive; 10.1.2, page 662). `Predicate<string>` and `Func<string, bool>` take only one parameter and return `bool`; `Action<string, string>` returns nothing." }
   - type: multipleChoice
     id: typ-action
     prompt: { de: "Zu welchem Delegatentyp passt das Lambda  s => Console.WriteLine(s)  in  wörter.ForEach(s => Console.WriteLine(s))?", en: "Which delegate type does the lambda `s => Console.WriteLine(s)` fit in `wörter.ForEach(s => Console.WriteLine(s))`?" }
@@ -50,7 +50,7 @@ items:
       - { de: "Func<string, string>", en: "Func<string, string>" }
       - { de: "Comparison<string>", en: "Comparison<string>" }
     correct: [0]
-    explanation: { de: "ForEach erwartet eine Action<T>: ein Argument, kein Rückgabewert.", en: "ForEach expects an Action<T>: one argument, no return value." }
+    explanation: { de: "ForEach erwartet eine Action<T>: ein Argument, kein Rückgabewert. Console.WriteLine liefert void und passt daher weder zu Predicate<string> (bool) noch zu Func<string, string>; Comparison<string> hätte zwei Parameter.", en: "ForEach expects an Action<T>: one argument, no return value. Console.WriteLine returns void and therefore fits neither Predicate<string> (bool) nor Func<string, string>; Comparison<string> would take two parameters." }
   - type: multipleChoice
     id: ausdruck-oder-anweisung
     prompt: { de: "Welche Schreibweise ist ein Lambda mit Anweisungsblock (statement lambda)?", en: "What is the syntax for a lambda with a statement block (statement lambda)?" }

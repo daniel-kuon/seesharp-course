@@ -25,8 +25,9 @@ Mit `+=` und `-=` wächst oder schrumpft die **Aufrufliste** eines
 Delegaten; jede Änderung erzeugt ein neues Objekt. Der Aufruf startet alle
 Ziele in Anmeldereihenfolge; bei einem Rückgabewert zählt nur das **letzte**
 Ziel. Wer alle Ergebnisse braucht, durchläuft `GetInvocationList()`. Ist die
-Liste leer, ist die Variable `null`; sicher aufruft man deshalb mit
-`aktion?.Invoke(...)`. Ob man einen Delegaten oder ein Interface als
+Liste leer, ist die Variable `null`; vor dem Aufruf steht deshalb ein
+null-Test (Seite 664) oder kürzer `aktion?.Invoke(...)` (null-bedingter
+Operator, Vorgriff auf 15.1.5.2, Seite 971). Ob man einen Delegaten oder ein Interface als
 Rückrufmechanismus wählt, ist eine Entwurfsfrage (10.1.4): Ein Delegat
 schreibt genau eine Methode vor, der Methodenname ist egal, und ein Lambda
 erledigt die Aufgabe an Ort und Stelle. Ein Interface kann mehrere
@@ -52,29 +53,29 @@ musst du bei Schleifen: Fängt ein Lambda die Variable einer
 `for`-Schleife ein, teilen sich alle Lambdas sie; eine Kopie je Durchlauf
 oder `foreach` löst das.
 
-## Ko- und Kontravarianz (10.1.6, Seite 675)
+## Ko- und Kontravarianz (10.1.6, Seite 675 bis 677)
 
 Wie bei Interfaces (Level 9) gilt für generische Delegaten: `Func<out T>` ist
 kovariant (`Func<string>` passt als `Func<object>`), `Action<in T>` und
 `Comparison<in T>` sind kontravariant (`Action<object>` passt als
 `Action<string>`).
 
-## Ereignisse (10.2, Seite 678 bis 686)
+## Ereignisse (10.2, Seite 678 bis 688)
 
-Ein **Ereignis** (`event`) ist ein Delegat mit Zugriffsschutz: Hinter ihm
+Ein **Ereignis** (`event`) ist ein Klassenmitglied, das einen Delegaten schützt: Hinter ihm
 steht eine private Delegatenvariable, nach außen gibt es nur `+=` und `-=`
 (10.2.1). Fremde Klassen können sich also an- und abmelden, das Ereignis
-aber weder auslösen noch überschreiben. Ein öffentliches Delegatenfeld
+aber weder auslösen noch per Zuweisung (`=`) ersetzen. Ein öffentliches Delegatenfeld
 erlaubt beides, ist also kein Ersatz. Das Standardmuster:
 `EventHandler<TEventArgs>` als Typ, eine eigene `EventArgs`-Ableitung für
 Nutzdaten und eine `protected virtual void OnXyz(...)`-Methode, die mit
-`Xyz?.Invoke(this, e)` auslöst; Erben überschreiben sie, um die Auslösung zu
-steuern (10.2.3, Seite 684). Eine Behandlungsmethode hat die Parameter
-`(object? sender, TEventArgs e)` (10.2.2, Seite 681); `sender` ist der
-Auslöser und lässt sich zurückcasten, wenn mehrere Objekte dieselbe Methode
+`Xyz?.Invoke(this, e)` auslöst; abgeleitete Klassen überschreiben sie, um die
+Auslösung zu steuern (10.2.3, Seite 687 f.). Eine Behandlungsmethode hat die Parameter
+`(object? sender, TEventArgs e)` (10.2.2, Seite 682); `sender` ist die
+Ereignisquelle und lässt sich zurückcasten, wenn mehrere Objekte dieselbe Methode
 nutzen. Wer sich anmeldet, sollte sich wieder abmelden: Über die Aufrufliste
 hält der Anbieter den Abonnenten am Leben. Ein Lambda lässt sich nur
 abmelden, wenn man dasselbe Delegatenobjekt aufbewahrt hat.
 
 Vertiefung im Buch: Kapitel 10 (Seite 657 bis 689); die Übungsaufgaben
-in 10.3 (Seite 688) liefern die Quizfragen und `ListLE(k)` dieses Levels.
+in 10.3 (Seite 688 f.) liefern die Quizfragen und `ListLE(k)` dieses Levels.

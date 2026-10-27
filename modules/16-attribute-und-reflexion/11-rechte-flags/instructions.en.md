@@ -10,7 +10,7 @@ A user can have multiple roles at the same time. Instead of four `bool` properti
    - `Entziehe(rolle)`: Clear bits (`&= ~`),
    - `Darf(benoetigt)`: Are **all** the required bits set?
    - `Beschreibung()`: the roles as text, e.g., `"Leser, Autor"`,
-   - `Parse(text)`: the reverse direction using `Enum.Parse<Rolle>`, case-insensitive; an unknown name throws an `ArgumentException`.
+   - `Parse(text)`: the reverse direction using `Enum.Parse<Rolle>(text, ignoreCase: true)` (not in the book, given here), case-insensitive; an unknown name throws an `ArgumentException`.
 
 The following tests must be passed:
 

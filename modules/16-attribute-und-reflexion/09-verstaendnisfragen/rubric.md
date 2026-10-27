@@ -26,12 +26,14 @@ Typische Irrtümer: Beliebige Objekte oder Ausdrücke seien als Parameter mögli
 ## reflexion-wann
 
 Kernpunkte:
-- Reflexion = Ein Programm **untersucht zur Laufzeit seine eigenen Typen und Metadaten** (Eigenschaften, Methoden, Attribute auflisten, Werte lesen/setzen, Methoden aufrufen, Objekte per `Activator.CreateInstance` erzeugen).
-- Einsatzgebiete (zwei genügen): Serialisierer (JSON), Validierung per Attribut, Datenbank-Mapper, Plugin-Lader, Testläufer, Mapper zwischen Objekten.
-- Nachteile (zwei genügen): **langsamer** als direkter Zugriff; **umgeht die Typprüfung** des Compilers (Namen als Text, Fehler erst zur Laufzeit; Umbenennen bricht den Code); `TargetInvocationException` verpackt Ausnahmen.
-- Verzichten: wenn die Typen schon beim Schreiben feststehen (dann direkter Zugriff, ggf. generisch).
+- Reflexion = Ein Programm **ermittelt zur Laufzeit Informationen über Typen, Methoden usw.** und ihre Attribute (Seite 921, 14.2).
+- Zusammenspiel: Ein Attribut allein bewirkt nichts; Frameworks fragen per Reflexion ab, ob ein Attribut vorhanden ist (`IsDefined`) und welche Werte es trägt (`GetCustomAttribute`), und richten ihr Verhalten danach.
+- Einsatzgebiete (zwei genügen): Frameworks wie Entity Framework Core, Persistenz- oder Serialisierungshelfer, Plugin-Lader, Prüfung auf veraltete Mitglieder (`Obsolete`), Validierung per Attribut.
+- `Activator.CreateInstance(typ)` erzeugt ein Objekt eines Typs, der erst zur Laufzeit feststeht (14.7.1, Seite 943). Vorher prüft `typeof(ISchnittstelle).IsAssignableFrom(typ)`, ob der Typ die erwartete Schnittstelle erfüllt; sonst scheitert der spätere Cast oder Aufruf.
 
-Typische Irrtümer: Reflexion sei genauso schnell oder sicher; sie sei nur für Debugging.
+Typische Irrtümer: Ein Attribut ändere ohne Auswertung schon das Verhalten; `Activator` brauche den Typ zur Übersetzungszeit.
+
+Bonus (Deep Dive, nicht im Buch): Nachteile der Reflexion (langsamer als direkter Zugriff, umgeht die Typprüfung des Compilers, Fehler erst zur Laufzeit).
 
 ## conditional-caller
 
@@ -43,20 +45,23 @@ Typische Irrtümer: Die Methode werde zur Laufzeit übersprungen oder aus der As
 
 ## code-eigenschaften
 
-Ausgabe, drei Zeilen: `Alter = 36`, `Name = Ada`, `37`.
-Kernpunkte:
-- `GetProperties()` liefert die öffentlichen Eigenschaften `Name` und `Alter` (hier alphabetisch sortiert: Alter, Name); `GetValue(p)` liest den aktuellen Wert des Objekts `p`.
-- `GetProperty("Alter")!.SetValue(p, 37)` schreibt per Reflexion in das Objekt; `p.Alter` ist danach 37.
+(Die Item-ID stammt aus einer früheren Frage zu `GetProperties`; die Frage behandelt jetzt 14.4 und 14.5.1.)
 
-Typische Irrtümer: Reihenfolge Name, Alter (ohne `OrderBy` ist die Reihenfolge nicht garantiert, hier aber sortiert); `SetValue` ändere nur eine Kopie; Ausgabe `36` in der dritten Zeile.
+Ausgabe, zwei Zeilen: `Einzahlen: Saldo` und `Einzahlen: -`.
+Kernpunkte:
+- `[CallerMemberName]` an einem optionalen Parameter: Der **Compiler** setzt beim Aufruf den Namen des aufrufenden Mitglieds ein, hier `Einzahlen` (14.5.1, Seite 934).
+- `nameof(Saldo)` liefert zur Übersetzungszeit den Bezeichner als Text, `"Saldo"`, nicht den Wert 50 (14.4, Seite 933).
+- Beim zweiten Aufruf fehlt `was`; der Standardwert `null` führt über `??` zu `-`.
+
+Typische Irrtümer: `Melde: …` (Name der aufgerufenen statt der aufrufenden Methode); `Einzahlen: 50` (`nameof` liefere den Wert).
 
 ## code-autor
 
 Ausgabe, drei Zeilen: `2`, `Addiere: Bob`, `Minus: -`.
 Kernpunkte:
-- `GetCustomAttribute<AutorAttribute>()` an der Klasse liefert das Attributobjekt mit `Version = 2` (benannter Parameter überschreibt den Standardwert 1).
+- `Attribute.GetCustomAttribute(t, typeof(AutorAttribute))` an der Klasse liefert das Attributobjekt mit `Version = 2` (benannter Parameter überschreibt den Standardwert 1; 14.2, Seite 927 f.). Der Cast macht aus `Attribute` den eigenen Typ.
+- `FindMembers` mit `Type.FilterName` und dem Namen liefert genau die passende Methode als `MemberInfo` (Seite 925 f.).
 - `Addiere` trägt `[Autor("Bob")]` → "Bob"; `Minus` hat kein Attribut, `GetCustomAttribute` liefert `null`, `?.Name` bleibt `null`, `?? "-"` ergibt "-".
-- `DeclaredOnly` begrenzt auf die in `Rechner` deklarierten Methoden (ohne `ToString` usw.), `OrderBy` sortiert: Addiere vor Minus.
 
 Typische Irrtümer: `Minus` werfe eine Ausnahme (nein, `null`); Version sei 1; das Klassenattribut gelte automatisch für die Methoden.
 
@@ -73,9 +78,13 @@ Typische Irrtümer: `Lesen, Loeschen` auch ohne `[Flags]`; `6` oder `3` als Summ
 
 ## code-invoke
 
-Ausgabe, zwei Zeilen: `5`, `DivideByZeroException`.
-Kernpunkte:
-- `Invoke` ruft die Methode per Namen auf: `10 / 2` = 5 (Rückgabe als `object`).
-- Eine Ausnahme aus der **aufgerufenen** Methode kommt bei `Invoke` **eingepackt** in einer `TargetInvocationException` an; die ursprüngliche steht in `InnerException`. Deshalb greift der erste `catch`, und der Name der inneren Ausnahme ist `DivideByZeroException`; der zweite `catch` (`direkt`) wird nie erreicht.
+(Die Item-ID stammt aus einer früheren Frage zu `MethodInfo.Invoke`; die Frage behandelt jetzt 14.7.1.)
 
-Typische Irrtümer: Es erscheine `direkt` (die Ausnahme komme unverpackt an); die Ausgabe sei `TargetInvocationException` (das ist der äußere Typ, ausgegeben wird der innere).
+Ausgabe, zwei Zeilen: `Hund: Wuff` und `Stein: kein Tier`.
+Kernpunkte:
+- `typeof(ITier).IsAssignableFrom(typ)` fragt, ob ein Objekt von `typ` einer `ITier`-Variablen zugewiesen werden kann: für `Hund` ja, für `Stein` nein (14.7.1, Seite 943).
+- Nur für `Hund` erzeugt `Activator.CreateInstance(typ)` zur Laufzeit ein Objekt; der Cast auf `ITier` gelingt, `Laut()` liefert "Wuff".
+- `Stein` wird gar nicht erst erzeugt; ohne die Prüfung würde der Cast `(ITier)` mit einer `InvalidCastException` scheitern.
+
+Typische Irrtümer: `IsAssignableFrom` in falscher Richtung gelesen (`typ.IsAssignableFrom(typeof(ITier))`); `Activator` erzeuge Objekte nur für Typen, die zur Übersetzungszeit bekannt sind.
+

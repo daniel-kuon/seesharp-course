@@ -16,8 +16,8 @@ eine Kombination ist die ODER-Verknüpfung.
    - `Entziehe(rolle)`: Bits löschen (`&= ~`),
    - `Darf(benoetigt)`: sind **alle** benötigten Bits gesetzt?
    - `Beschreibung()`: die Rollen als Text, z. B. `"Leser, Autor"`,
-   - `Parse(text)`: der Gegenweg mit `Enum.Parse<Rolle>`, Groß- und
-     Kleinschreibung egal; ein unbekannter Name wirft `ArgumentException`.
+   - `Parse(text)`: der Gegenweg mit `Enum.Parse<Rolle>(text, ignoreCase: true)`
+     (nicht im Buch, hier vorgegeben), Groß- und Kleinschreibung egal; ein unbekannter Name wirft `ArgumentException`.
 
 Diese Tests müssen bestehen:
 

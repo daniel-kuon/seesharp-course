@@ -5,20 +5,22 @@
   erzeugen. Dahinter steckt das Muster jedes Frameworks (Serialisierer,
   Datenbank-Mapper, Plugin-Systeme): Typen werden zur Laufzeit entdeckt,
   nicht zur Übersetzungszeit festgelegt.
-- Das Buch zeigt nur `Activator` (Seite 943); `PropertyInfo.SetValue` und
-  `MethodInfo.Invoke` kommen aus der Aufgabenstellung. Bei Rückfragen auf die
-  Dokumentation verweisen lassen.
-- `CultureInfo.InvariantCulture`: Zwei Tests schalten die Kultur auf
+- Pflicht ist nur `PluginFabrik` (Buch 14.7.1: `IsAssignableFrom`, `Activator`;
+  `Type.GetType` und `IsAbstract` sind vorgegeben). `Mapper` und `Aufrufer`
+  sind Deep Dive: `PropertyInfo.GetValue/SetValue` und `MethodInfo.Invoke` stehen
+  nicht im Buch. Die folgenden Punkte zu Mapper und Aufrufer sind deshalb
+  Bonus (Deep Dive).
+- Bonus (Deep Dive) `CultureInfo.InvariantCulture`: Zwei Tests schalten die Kultur auf
   `de-DE`; wer `ToString()` ohne Kultur nimmt, schreibt `2,5` und liest
   `1.5` falsch. Gesprächsanlass: Daten, die zwischen Programmen oder
   Sprachräumen wandern, immer invariant formatieren.
-- Reihenfolge: Laut Dokumentation garantiert `GetProperties()` keine
+- Bonus (Deep Dive) Reihenfolge: Laut Dokumentation garantiert `GetProperties()` keine
   Reihenfolge; in der Praxis ist es die Deklarationsreihenfolge, und darauf
   verlässt sich der Test. Ein echter Mapper würde nach Spaltennamen ordnen.
-- `GetMethod(name)` ohne Typenliste wirft `AmbiguousMatchException`, sobald es
+- Bonus (Deep Dive): `GetMethod(name)` ohne Typenliste wirft `AmbiguousMatchException`, sobald es
   zwei Überladungen gibt (`Gruss()` und `Gruss(string)` im Test). Die
   parameterlose Überladung verlangt `Type.EmptyTypes`.
-- `Invoke` verpackt eine Ausnahme der Methode in `TargetInvocationException`;
+- Bonus (Deep Dive): `Invoke` verpackt eine Ausnahme der Methode in `TargetInvocationException`;
   die Aufgabe verlangt hier bewusst keine Behandlung (Zusatzaufgabe 12
   fängt sie ab). Kurz fragen, ob die Abgabe damit rechnet.
 - `PluginFabrik`: Das Erzeugen fremder Typen aus Text ist ein
@@ -26,7 +28,7 @@
   Typen, die ein bestimmtes Interface erfüllen. Die Frage "Was, wenn der
   Typ keinen parameterlosen Konstruktor hat?" lässt sich vertiefen
   (`MissingMethodException`).
-- Ergänzung zur Aufgabe: Der Fehlerfall "Wert nicht umwandelbar" ist
+- Bonus (Deep Dive), Ergänzung zur Aufgabe: Der Fehlerfall "Wert nicht umwandelbar" ist
   zusätzlich zur Reflexion eine kleine Übung zu `try/catch` mit
   Ausnahmefilter (`when`).
 

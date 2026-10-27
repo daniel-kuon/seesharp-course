@@ -17,6 +17,12 @@ requires:
 items:
   - type: coding
     id: reflexion-nutzen
-    openFile: "ReflexionNutzen/Mapper.cs"
+    openFile: "ReflexionNutzen/PluginFabrik.cs"
     openLine: 1
     testProject: "ReflexionNutzen Tests/ReflexionNutzen.Tests.csproj"
+    requiredTests:
+      - ReflexionNutzenTests.Erzeuge_instanziiert_ein_Plugin_aus_dem_Typnamen
+      - ReflexionNutzenTests.Erzeuge_liefert_bei_jedem_Aufruf_ein_neues_Objekt
+      - ReflexionNutzenTests.Erzeuge_liefert_null_fuer_unbekannte_Typen
+      - ReflexionNutzenTests.Erzeuge_liefert_null_fuer_Typen_ohne_IPlugin
+      - ReflexionNutzenTests.Erzeuge_liefert_null_fuer_abstrakte_Typen_und_Interfaces

@@ -6,8 +6,6 @@ reading:
   printedPage: 921
 teaches:
   - reflection.typeof-gettype
-  - reflection.get-set-property
-  - reflection.invoke
   - attributes.conditional
 requires:
   - attributes.apply
@@ -33,8 +31,8 @@ items:
   - type: open
     id: reflexion-wann
     prompt:
-      de: "Was ist Reflexion? Nenne zwei sinnvolle Einsatzgebiete und zwei Nachteile gegenüber dem direkten Zugriff auf Eigenschaften und Methoden. Wann würdest du trotzdem auf sie verzichten?"
-      en: "What is reflection? Name two useful areas of application and two disadvantages compared to accessing properties and methods directly. When would you avoid it anyway?"
+      de: "Was ist Reflexion, und wie wirkt sie mit Attributen zusammen? Nenne zwei Einsatzgebiete. Wozu dient `Activator.CreateInstance`, und warum prüft man vorher mit `IsAssignableFrom`?"
+      en: "What is reflection, and how does it work together with attributes? Name two areas of application. What is `Activator.CreateInstance` for, and why do you check with `IsAssignableFrom` first?"
   - type: open
     id: conditional-caller
     prompt:
@@ -44,37 +42,45 @@ items:
     id: code-eigenschaften
     prompt:
       de: |
-        Was gibt dieses Programm aus, und warum?
+        Was gibt dieses Programm aus, und warum? (`using System.Runtime.CompilerServices;` ist vorhanden.)
 
         ```csharp
-        var p = new Person();
-        var t = p.GetType();
-        foreach (var prop in t.GetProperties().OrderBy(x => x.Name))
-            Console.WriteLine($"{prop.Name} = {prop.GetValue(p)}");
-        t.GetProperty("Alter")!.SetValue(p, 37);
-        Console.WriteLine(p.Alter);
+        new Konto().Einzahlen(50);
 
-        class Person
+        class Konto
         {
-            public string Name { get; set; } = "Ada";
-            public int Alter { get; set; } = 36;
+            public int Saldo { get; private set; }
+
+            public void Einzahlen(int betrag)
+            {
+                Saldo += betrag;
+                Melde(nameof(Saldo));
+                Melde();
+            }
+
+            void Melde(string? was = null, [CallerMemberName] string wer = "")
+                => Console.WriteLine($"{wer}: {was ?? "-"}");
         }
         ```
       en: |
-        What does this program print, and why?
+        What does this program print, and why? (`using System.Runtime.CompilerServices;` is present.)
 
         ```csharp
-        var p = new Person();
-        var t = p.GetType();
-        foreach (var prop in t.GetProperties().OrderBy(x => x.Name))
-            Console.WriteLine($"{prop.Name} = {prop.GetValue(p)}");
-        t.GetProperty("Alter")!.SetValue(p, 37);
-        Console.WriteLine(p.Alter);
+        new Konto().Einzahlen(50);
 
-        class Person
+        class Konto
         {
-            public string Name { get; set; } = "Ada";
-            public int Alter { get; set; } = 36;
+            public int Saldo { get; private set; }
+
+            public void Einzahlen(int betrag)
+            {
+                Saldo += betrag;
+                Melde(nameof(Saldo));
+                Melde();
+            }
+
+            void Melde(string? was = null, [CallerMemberName] string wer = "")
+                => Console.WriteLine($"{wer}: {was ?? "-"}");
         }
         ```
   - type: open
@@ -85,10 +91,15 @@ items:
 
         ```csharp
         var t = typeof(Rechner);
-        Console.WriteLine(t.GetCustomAttribute<AutorAttribute>()!.Version);
-        var flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
-        foreach (var m in t.GetMethods(flags).OrderBy(m => m.Name))
-            Console.WriteLine($"{m.Name}: {m.GetCustomAttribute<AutorAttribute>()?.Name ?? "-"}");
+        var autor = (AutorAttribute)Attribute.GetCustomAttribute(t, typeof(AutorAttribute))!;
+        Console.WriteLine(autor.Version);
+        foreach (string name in new[] { "Addiere", "Minus" })
+        {
+            MemberInfo m = t.FindMembers(MemberTypes.Method,
+                BindingFlags.Public | BindingFlags.Instance, Type.FilterName, name)[0];
+            var a = (AutorAttribute?)Attribute.GetCustomAttribute(m, typeof(AutorAttribute));
+            Console.WriteLine($"{m.Name}: {a?.Name ?? "-"}");
+        }
 
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
         class AutorAttribute : Attribute
@@ -111,10 +122,15 @@ items:
 
         ```csharp
         var t = typeof(Rechner);
-        Console.WriteLine(t.GetCustomAttribute<AutorAttribute>()!.Version);
-        var flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly;
-        foreach (var m in t.GetMethods(flags).OrderBy(m => m.Name))
-            Console.WriteLine($"{m.Name}: {m.GetCustomAttribute<AutorAttribute>()?.Name ?? "-"}");
+        var autor = (AutorAttribute)Attribute.GetCustomAttribute(t, typeof(AutorAttribute))!;
+        Console.WriteLine(autor.Version);
+        foreach (string name in new[] { "Addiere", "Minus" })
+        {
+            MemberInfo m = t.FindMembers(MemberTypes.Method,
+                BindingFlags.Public | BindingFlags.Instance, Type.FilterName, name)[0];
+            var a = (AutorAttribute?)Attribute.GetCustomAttribute(m, typeof(AutorAttribute));
+            Console.WriteLine($"{m.Name}: {a?.Name ?? "-"}");
+        }
 
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
         class AutorAttribute : Attribute
@@ -165,40 +181,44 @@ items:
     id: code-invoke
     prompt:
       de: |
-        Was gibt dieses Programm aus, und warum fängt der erste `catch`-Block die Ausnahme? (`using System.Reflection;` ist vorhanden.)
+        Was gibt dieses Programm aus, und warum entsteht für `Stein` kein Objekt?
 
         ```csharp
-        var m = typeof(Demo).GetMethod("Teile")!;
-        Console.WriteLine(m.Invoke(new Demo(), new object[] { 10, 2 }));
-        try { m.Invoke(new Demo(), new object[] { 1, 0 }); }
-        catch (TargetInvocationException e)
+        Type[] typen = { typeof(Hund), typeof(Stein) };
+        foreach (Type typ in typen)
         {
-            Console.WriteLine(e.InnerException!.GetType().Name);
-        }
-        catch (DivideByZeroException)
-        {
-            Console.WriteLine("direkt");
+            if (typeof(ITier).IsAssignableFrom(typ))
+            {
+                var tier = (ITier)Activator.CreateInstance(typ)!;
+                Console.WriteLine($"{typ.Name}: {tier.Laut()}");
+            }
+            else
+                Console.WriteLine($"{typ.Name}: kein Tier");
         }
 
-        class Demo { public int Teile(int a, int b) => a / b; }
+        interface ITier { string Laut(); }
+        class Hund : ITier { public string Laut() => "Wuff"; }
+        class Stein { }
         ```
       en: |
-        What does this program print, and why does the first `catch` block catch the exception? (`using System.Reflection;` is present.)
+        What does this program print, and why is no object created for `Stein`?
 
         ```csharp
-        var m = typeof(Demo).GetMethod("Teile")!;
-        Console.WriteLine(m.Invoke(new Demo(), new object[] { 10, 2 }));
-        try { m.Invoke(new Demo(), new object[] { 1, 0 }); }
-        catch (TargetInvocationException e)
+        Type[] typen = { typeof(Hund), typeof(Stein) };
+        foreach (Type typ in typen)
         {
-            Console.WriteLine(e.InnerException!.GetType().Name);
-        }
-        catch (DivideByZeroException)
-        {
-            Console.WriteLine("direkt");
+            if (typeof(ITier).IsAssignableFrom(typ))
+            {
+                var tier = (ITier)Activator.CreateInstance(typ)!;
+                Console.WriteLine($"{typ.Name}: {tier.Laut()}");
+            }
+            else
+                Console.WriteLine($"{typ.Name}: kein Tier");
         }
 
-        class Demo { public int Teile(int a, int b) => a / b; }
+        interface ITier { string Laut(); }
+        class Hund : ITier { public string Laut() => "Wuff"; }
+        class Stein { }
         ```
   - type: multipleChoice
     id: richtig-attribut
@@ -259,33 +279,29 @@ items:
   - type: multipleChoice
     id: richtig-eigenschaften
     prompt:
-      de: "Welcher Code gibt die Namen aller öffentlichen Eigenschaften der Klasse `Person` aus?"
-      en: "Which code prints the names of all public properties of the class `Person`?"
+      de: "Welcher Code gibt `True` aus, wenn die Klasse `Teller` das Attribut `[Obsolete]` trägt?"
+      en: "Which code prints `True` if the class `Teller` carries the `[Obsolete]` attribute?"
     options:
       - de: |
           ```csharp
-          foreach (var p in typeof(Person).Properties)
-              Console.WriteLine(p.Name);
+          Console.WriteLine(Attribute.IsDefined(Teller, ObsoleteAttribute));
           ```
       - de: |
           ```csharp
-          foreach (var p in Person.GetProperties())
-              Console.WriteLine(p.Name);
+          Console.WriteLine(typeof(Teller) is ObsoleteAttribute);
           ```
       - de: |
           ```csharp
-          foreach (var p in typeof(Person).GetMethods())
-              Console.WriteLine(p.Name);
+          Console.WriteLine(Attribute.IsDefined(typeof(Teller), typeof(Obsolete)));
           ```
       - de: |
           ```csharp
-          foreach (var p in typeof(Person).GetProperties())
-              Console.WriteLine(p.Name);
+          Console.WriteLine(Attribute.IsDefined(typeof(Teller), typeof(ObsoleteAttribute)));
           ```
     correct: [3]
     explanation:
-      de: "Erste Option: `Type` hat keine Eigenschaft `Properties`; die Methode heißt `GetProperties()` (CS1061). Zweite Option: `GetProperties()` gehört zu `Type`, nicht zur Klasse `Person`; den `Type` liefert `typeof(Person)` (CS0117). Dritte Option: Das sind die Methoden, darunter `get_Name`, `set_Name` und `ToString`, nicht die Eigenschaften."
-      en: "First option: `Type` has no property `Properties`; the method is called `GetProperties()` (CS1061). Second option: `GetProperties()` belongs to `Type`, not to the class `Person`; `typeof(Person)` provides the `Type` (CS0117). Third option: These are the methods, including `get_Name`, `set_Name`, and `ToString`, not the properties."
+      de: "14.2 (Seite 924): `IsDefined` erwartet zwei `Type`-Objekte, die `typeof` liefert. Erste Option: Ein Typname allein ist kein Wert (CS0119). Zweite Option: Ein `Type`-Objekt ist nie ein `ObsoleteAttribute`; der Ausdruck ist immer `False` (Warnung CS0184). Dritte Option: Das Suffix `Attribute` darf man nur beim Anwenden in eckigen Klammern weglassen, in `typeof` nicht (CS0246)."
+      en: "14.2 (page 924): `IsDefined` expects two `Type` objects, which `typeof` provides. First option: A type name alone is not a value (CS0119). Second option: A `Type` object is never an `ObsoleteAttribute`; the expression is always `False` (warning CS0184). Third option: You may omit the `Attribute` suffix only when applying the attribute in square brackets, not in `typeof` (CS0246)."
   - type: multipleChoice
     id: richtig-caller
     prompt:

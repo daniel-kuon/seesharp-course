@@ -8,7 +8,7 @@ An attribute is placed in square brackets before a type, method, property, param
 
 ## Evaluation Through Reflection (14.2, page 924)
 
-The starting point is a `Type`: `typeof(Klasse)` is known to the compiler, `objekt.GetType()` returns the runtime type. `GetCustomAttribute<T>()` and `GetCustomAttributes<T>()` retrieve the attribute objects (which invokes their constructors), while `IsDefined` simply checks whether one exists. `GetProperties()` and `GetMethods()` list the members of a type; `BindingFlags` can be used to filter them (public, instance, static). The same applies to assemblies; their attributes carry the target `assembly:` and stand at the start of any source file, after the using directives and before everything else (14.3, pages 929 to 932).
+The starting point is a `Type`: `typeof(Klasse)` is known to the compiler, `objekt.GetType()` returns the runtime type. `Attribute.GetCustomAttribute(ziel, typeof(XyzAttribute))` and `Attribute.GetCustomAttributes(ziel, false)` retrieve the attribute objects (which invokes their constructors), while `Attribute.IsDefined` simply checks whether one exists. `FindMembers` lists the members of a type as `MemberInfo`; `BindingFlags` filter them (public, instance, static), and without `Public` or `NonPublic` nothing comes back. For shorter forms, see Deep Dive. The same applies to assemblies; their attributes carry the target `assembly:` and stand at the start of any source file, after the using directives and before everything else (14.3, pages 929 to 932).
 
 ## nameof (14.4, page 933)
 
@@ -24,8 +24,17 @@ An attribute class inherits from `Attribute`. `[AttributeUsage]` specifies the a
 
 ## Reflection in Practice
 
-The book shows how an object of a type is only created at runtime: `Activator.CreateInstance(typ)` (14.7.1, page 943). The summary adds two tools: `PropertyInfo.GetValue` and `SetValue` read and write properties by name, `MethodInfo.Invoke` calls methods by name. Exceptions from the invoked code come back as `TargetInvocationException`. Reflection is slower than direct access and bypasses the compiler's type checking; use it where types are really only known at runtime.
+The book shows how an object of a type is only created at runtime: `Activator.CreateInstance(typ)` (14.7.1, page 943); before that, `typeof(IPersistenceHelper).IsAssignableFrom(typ)` checks whether the type fulfils the interface. Frameworks such as Entity Framework Core evaluate attributes this way at runtime (page 921). For reading properties and calling methods via reflection, see Deep Dive.
 
 ## Exercises
 
-The exercises range from library attributes to custom attributes and reading them via reflection, all the way to a small mapper and plugin loader. A quiz covers `Conditional`, `[assembly: ...]`, and attribute targets, because this depends on the build and cannot be checked automatically. The optional tasks include: validation via attributes, permissions using `[Flags]`, and a mini test runner.
+The exercises range from library attributes to custom attributes and reading them via reflection, all the way to a small plugin loader (mapper and caller as Deep Dive). A quiz covers `Conditional`, `[assembly: ...]`, and attribute targets, because this depends on the build and cannot be checked automatically. The optional tasks include: validation via attributes, permissions using `[Flags]`, and a mini test runner (Deep Dive).
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **Shorter reflection calls:** `type.GetCustomAttribute<T>()` and `GetCustomAttributes<T>()` (namespace `System.Reflection`) save the cast and `typeof`; `member.IsDefined(typeof(T))` asks the `MemberInfo` itself. `GetMethods(BindingFlags)` and `GetProperties()` return `MethodInfo` or `PropertyInfo` objects without `FindMembers`.
+- **Values and calls via reflection:** `PropertyInfo.GetValue` and `SetValue` read and write properties by name, `MethodInfo.Invoke` calls methods by name. Exceptions from the invoked code come back as `TargetInvocationException` (the original is in `InnerException`). `Type.GetType(name)` finds a type by its name.
+- **Costs:** Reflection is slower than direct access and bypasses the compiler's type checking (names as text, errors only at runtime); use it where types are really only known at runtime.
+- `Enum.Parse<T>(text, ignoreCase: true)` turns a name back into an enum value, also with `[Flags]` (`"Leser, Autor"`).

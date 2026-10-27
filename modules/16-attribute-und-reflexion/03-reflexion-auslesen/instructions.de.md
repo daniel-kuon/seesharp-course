@@ -7,6 +7,14 @@ fragt zur Laufzeit die Metadaten seiner Typen ab. Einstieg ist immer ein
 `Type`-Objekt, entweder zur Übersetzungszeit mit `typeof(T)` oder zur
 Laufzeit mit `objekt.GetType()`.
 
+Das Buch arbeitet mit `Attribute.IsDefined`, `Attribute.GetCustomAttribute(s)`
+und `FindMembers`. Diese Aufgabe nutzt kürzere Schreibweisen derselben Ideen,
+die nicht im Buch stehen und hier vorgegeben sind: die generischen Methoden
+`GetCustomAttribute<T>()` und `GetCustomAttributes<T>()`, `IsDefined(typ)` am
+`MemberInfo`, `GetMethods(BindingFlags)` statt `FindMembers` sowie
+`GetProperties()` mit `PropertyInfo.Name` und `PropertyType`. Jede Teilaufgabe
+nennt den genauen Aufruf.
+
 Das Attribut `[Autor("Name")]` ist vorgegeben (Klassen und Methoden,
 mehrfach erlaubt). In `Dokumentation.cs` fehlen die Auswertungen:
 

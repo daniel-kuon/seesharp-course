@@ -4,6 +4,8 @@ Read Section **14.2, “Evaluating Attributes via Reflection”** (page 924), th
 
 The `[Autor("Name")]` attribute is specified (for classes and methods; multiple instances allowed). The following evaluations are missing from `Dokumentation.cs`:
 
+The book works with `Attribute.IsDefined`, `Attribute.GetCustomAttribute(s)` and `FindMembers`. This exercise uses shorter forms of the same ideas that are not in the book and are given here: the generic methods `GetCustomAttribute<T>()` and `GetCustomAttributes<T>()`, `IsDefined(type)` on the `MemberInfo`, `GetMethods(BindingFlags)` instead of `FindMembers`, and `GetProperties()` with `PropertyInfo.Name` and `PropertyType`. Each part names the exact call.
+
 1. `AutorenVon(Type t)`: the names of all `[Autor]` attributes of a class, sorted. `t.GetCustomAttributes<AutorAttribute>()` returns all attribute objects (`using System.Reflection;`).
 2. `MethodenMitAutor(Type t)`: the names of **the public instance methods** with the `[Autor]` attribute, sorted. `GetMethods(BindingFlags.Public | BindingFlags.Instance)` already filters out static and non-public methods, while `IsDefined(typeof(AutorAttribute))` checks for the attribute without instantiating it.
 3. `Eigenschaften(Type t)`: For each public property, a text string in the format `"Name:Typ"` (e.g., `"Alter:Int32"`), sorted. `GetProperties()` returns `PropertyInfo` objects containing `Name` and `PropertyType`.

@@ -1,5 +1,5 @@
 id: attribute-testlaeufer
-title: { de: "Zusatz: Ein Mini-Testläufer", en: "Extra: A Mini Test Runner" }
+title: { de: "Deep Dive: Ein Mini-Testläufer", en: "Deep Dive: A Mini Test Runner" }
 optional: true
 reading:
   section: "14.2"

@@ -20,11 +20,13 @@ dasselbe mehrfach.
 ## Auswerten per Reflexion (14.2, Seite 924)
 
 Einstieg ist ein `Type`: `typeof(Klasse)` kennt der Compiler, `objekt.GetType()`
-liefert den Laufzeittyp. `GetCustomAttribute<T>()` und `GetCustomAttributes<T>()`
-holen die Attributobjekte (dabei läuft deren Konstruktor), `IsDefined`
-fragt nur, ob eines vorhanden ist. `GetProperties()` und `GetMethods()`
-zählen die Mitglieder eines Typs auf; mit `BindingFlags` grenzt man ein
-(öffentlich, Instanz, statisch). Für Assemblies gilt dasselbe; ihre Attribute
+liefert den Laufzeittyp. `Attribute.GetCustomAttribute(ziel, typeof(XyzAttribute))`
+und `Attribute.GetCustomAttributes(ziel, false)` holen die Attributobjekte
+(dabei läuft deren Konstruktor), `Attribute.IsDefined` fragt nur, ob eines
+vorhanden ist. `FindMembers` zählt die Mitglieder eines Typs als `MemberInfo`
+auf; mit `BindingFlags` grenzt man ein (öffentlich, Instanz, statisch), ohne
+`Public` oder `NonPublic` kommt nichts zurück. Kürzere Schreibweisen siehe
+Deep Dive. Für Assemblies gilt dasselbe; ihre Attribute
 stehen mit der Zielangabe `assembly:` am Anfang einer beliebigen Quelldatei,
 hinter den using-Direktiven und vor allem anderen (14.3, Seite 929 bis 932).
 
@@ -60,19 +62,37 @@ Attribute tragen (14.8, Seite 945).
 ## Reflexion in der Praxis
 
 Das Buch zeigt, wie ein Objekt zu einem Typ erst zur Laufzeit entsteht:
-`Activator.CreateInstance(typ)` (14.7.1, Seite 943). Die Zusammenfassung
-ergänzt zwei Werkzeuge: `PropertyInfo.GetValue` und `SetValue` lesen und
-schreiben Eigenschaften nach Namen, `MethodInfo.Invoke` ruft Methoden nach
-Namen auf. Ausnahmen aus dem aufgerufenen Code kommen als
-`TargetInvocationException` zurück. Reflexion ist langsamer als direkter
-Zugriff und umgeht die Typprüfung des Compilers; setze sie dort ein, wo
-Typen wirklich erst zur Laufzeit feststehen.
+`Activator.CreateInstance(typ)` (14.7.1, Seite 943); vorher prüft
+`typeof(IPersistenceHelper).IsAssignableFrom(typ)`, ob der Typ die
+Schnittstelle erfüllt. Frameworks wie Entity Framework Core werten Attribute
+auf diese Weise zur Laufzeit aus (Seite 921). Eigenschaften lesen und
+Methoden aufrufen per Reflexion siehe Deep Dive.
 
 ## Übungen
 
 Die Aufgaben gehen von den Bibliotheksattributen über eigene Attribute und
-das Auslesen bis zu einem kleinen Mapper und Plugin-Lader. Ein Quiz
+das Auslesen bis zu einem kleinen Plugin-Lader (Mapper und Aufrufer als Deep Dive). Ein Quiz
 behandelt `Conditional`, `[assembly: ...]` und Attributziele, weil das vom
 Build abhängt und nicht automatisch geprüft werden kann. Die optionalen
 Aufgaben: Validierung per Attribut, Berechtigungen mit `[Flags]` und ein
-Mini-Testläufer.
+Mini-Testläufer (Deep Dive).
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **Kürzere Reflexionsaufrufe:** `typ.GetCustomAttribute<T>()` und
+  `GetCustomAttributes<T>()` (Namensraum `System.Reflection`) sparen Cast und
+  `typeof`; `member.IsDefined(typeof(T))` fragt am `MemberInfo` selbst.
+  `GetMethods(BindingFlags)` und `GetProperties()` liefern `MethodInfo`- bzw.
+  `PropertyInfo`-Objekte ohne `FindMembers`.
+- **Werte und Aufrufe per Reflexion:** `PropertyInfo.GetValue` und `SetValue`
+  lesen und schreiben Eigenschaften nach Namen, `MethodInfo.Invoke` ruft
+  Methoden nach Namen auf. Ausnahmen aus dem aufgerufenen Code kommen als
+  `TargetInvocationException` zurück (die ursprüngliche steht in
+  `InnerException`). `Type.GetType(name)` findet einen Typ über seinen Namen.
+- **Kosten:** Reflexion ist langsamer als direkter Zugriff und umgeht die
+  Typprüfung des Compilers (Namen als Text, Fehler erst zur Laufzeit); man setzt
+  sie dort ein, wo Typen wirklich erst zur Laufzeit feststehen.
+- `Enum.Parse<T>(text, ignoreCase: true)` macht aus einem Namen wieder einen
+  Aufzählungswert, auch bei `[Flags]` (`"Leser, Autor"`).

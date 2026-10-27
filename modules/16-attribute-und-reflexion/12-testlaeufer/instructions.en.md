@@ -1,4 +1,6 @@
-# Extra: A Mini Test Runner
+# Deep Dive: A Mini Test Runner
+
+> **Deep Dive (optional):** Calling methods via reflection (`MethodInfo.Invoke`, `TargetInvocationException`) and `GetMethods` are not in the book. This exercise is a pointer to what you could study next; the Deep Dive in Exercise 16/04 describes the tools.
 
 Extra exercise: optional; it unlocks nothing. For further reading: **14.2 Evaluating Attributes via Reflection** (page 924) and the `PersistenceHelper` example in **14.7.1** (page 942).
 

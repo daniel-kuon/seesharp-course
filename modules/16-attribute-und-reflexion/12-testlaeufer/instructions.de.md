@@ -1,4 +1,9 @@
-# Zusatz: Ein Mini-Testläufer
+# Deep Dive: Ein Mini-Testläufer
+
+> **Deep Dive (optional):** Methoden per Reflexion aufrufen (`MethodInfo.Invoke`,
+> `TargetInvocationException`) und `GetMethods` stehen nicht im Buch. Diese
+> Aufgabe ist ein Hinweis, womit du dich als Nächstes beschäftigen kannst; die
+> Werkzeuge beschreibt der Deep Dive in Aufgabe 16/04.
 
 Zusatzaufgabe: freiwillig, sie schaltet nichts frei. Zum Nachlesen:
 **14.2 Attribute per Reflexion auswerten** (Seite 924) und das Beispiel

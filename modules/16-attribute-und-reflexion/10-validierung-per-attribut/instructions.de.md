@@ -13,6 +13,10 @@ vieler Frameworks. In diesem Projekt gibt es `[Pflicht]` und
 1. `PflichtAttribute.cs` und `BereichAttribute.cs`: Beide Attribute sollen
    nur an Eigenschaften stehen dürfen und nicht mehrfach an derselben
    (`[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]`).
+> **Deep Dive (optional):** Den Wert einer Eigenschaft liest
+> `PropertyInfo.GetValue(o)`; die Eigenschaften liefert `o.GetType().GetProperties()`.
+> Beides ist nicht im Buch (siehe Aufgabe 16/04, Deep Dive).
+
 2. `Validierer.Pruefe(object o)` liefert die Fehlermeldungen aller
    öffentlichen Eigenschaften in Deklarationsreihenfolge (leere Liste =
    alles in Ordnung):

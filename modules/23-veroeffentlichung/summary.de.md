@@ -16,9 +16,7 @@ Fehlersuche; ausgeliefert wird Release. Das `TargetFramework` in der
 Projektdatei (der Target Framework Moniker, etwa `net10.0`) legt fest, gegen
 welche APIs das Projekt gebaut wird und welche .NET-Version mindestens nötig
 ist. Braucht das Programm Betriebssystem-APIs, gehört das Betriebssystem in den
-Moniker: `net10.0-windows` für eine WPF-Anwendung. Mit `TargetFrameworks`
-(Mehrzahl) kann ein Projekt für mehrere Ziele gebaut werden; das ist
-Zusatzwissen und steht nicht im Buch.
+Moniker: `net10.0-windows` für eine WPF-Anwendung.
 
 ## Zielruntime und Bereitstellungsmodus (23.1.4 und 23.1.5, Seite 1643 bis 1646)
 
@@ -53,6 +51,19 @@ Veröffentlichungsprofile (23.1.3, Seite 1639) ersetzen wir durch
 Ordner veröffentlicht und startet mit dem eingebauten Webserver Kestrel
 (Standardport 5000, nur HTTP); `launchSettings.json` fehlt im
 Veröffentlichungsordner. Für den Betrieb im Netz stellt man meist einen
-**Reverse Proxy** (IIS, Nginx, Apache) vor Kestrel (23.2.3.3, Seite 1662).
-Hosting-Optionen von IIS und die Umgebungsvariablen `ASPNETCORE_URLS` und
-`ASPNETCORE_ENVIRONMENT` sind Zusatzstoff aus der Microsoft-Dokumentation.
+**Reverse Proxy** (IIS, Nginx, Apache) vor Kestrel (23.2.3.3, Seite 1662): Er
+empfängt die HTTP(S)-Anforderungen aus dem Internet und leitet sie an Kestrel weiter.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **`TargetFrameworks`** (Mehrzahl, etwa `net10.0;net10.0-windows`) baut ein Projekt für
+  mehrere Ziele.
+- **Hosting unter IIS:** im selben Prozess (in-process) oder als Reverse Proxy vor einem
+  eigenen Kestrel-Prozess (out-of-process). Ein Reverse Proxy übernimmt oft die
+  TLS-Verschlüsselung und verteilt mehrere Anwendungen hinter Port 443.
+- **Umgebungsvariablen** `ASPNETCORE_URLS` (Adressen und Ports, auf denen Kestrel lauscht)
+  und `ASPNETCORE_ENVIRONMENT` (`Development`, `Production`) steuern eine veröffentlichte
+  Anwendung ohne `launchSettings.json`; `--urls` auf der Kommandozeile setzt die Adressen
+  ebenfalls.

@@ -17,6 +17,8 @@ Varianten und vergleiche sie:
 | eigenständig, Einzeldatei | `-r win-x64 --self-contained -p:PublishSingleFile=true` |
 | eigenständig, Einzeldatei, ReadyToRun | zusätzlich `-p:PublishReadyToRun=true` |
 
+`--self-contained` ist die Kurzform von `-p:SelfContained=true` aus 23.2.2 (Seite 1656).
+
 Läuft dein Rechner nicht unter Windows x64, wähle den passenden
 Runtime Identifier (`linux-x64`, `osx-arm64`, ...). Die erste Veröffentlichung
 mit einer neuen Zielruntime kann Pakete aus dem Internet laden.

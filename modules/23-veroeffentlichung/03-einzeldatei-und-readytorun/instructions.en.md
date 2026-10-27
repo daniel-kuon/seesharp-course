@@ -10,6 +10,8 @@ Publish the console program from the previous exercise in three versions and com
 | Standalone, single file | `-r win-x64 --self-contained -p:PublishSingleFile=true` |
 | Standalone, single file, ReadyToRun | additionally `-p:PublishReadyToRun=true` |
 
+`--self-contained` is the short form of `-p:SelfContained=true` from 23.2.2 (page 1656).
+
 If your computer isn't running Windows x64, select the appropriate runtime identifier (`linux-x64`, `osx-arm64`, ...). The first release with a new target runtime can download packages from the Internet.
 
 Enter the number of files and their sizes into a table and explain the differences. There are no tests; the numbers depend on the SDK. The supervisor will compare them with the order-of-magnitude figures from 23.2.1 and 23.2.2.

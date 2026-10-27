@@ -32,7 +32,7 @@ Typische Fehlvorstellungen: Es entstehe eine einzelne `.exe` mit allem; die Lauf
 Wesentlich:
 - `TargetFramework` (Target Framework Moniker, `net10.0`) legt fest, gegen welche APIs das Projekt gebaut wird und welche .NET-Version mindestens nötig ist.
 - Braucht das Programm Betriebssystem-APIs, gehört das Betriebssystem in den Moniker: WPF läuft nur unter Windows, daher `net10.0-windows`.
-- `TargetFrameworks` (Mehrzahl) baut das Projekt für mehrere Ziele (Zusatzwissen, steht nicht im Buch).
+- Bonus (Deep Dive), nicht verlangt: `TargetFrameworks` (Mehrzahl) baut das Projekt für mehrere Ziele (steht nicht im Buch).
 - Ein Runtime Identifier (`win-x64`, `linux-x64`) nennt Betriebssystem **und CPU-Architektur** des Zielrechners für die Veröffentlichung (eigenständig/ReadyToRun), das Zielframework dagegen die API-Basis beim Bauen: zwei verschiedene Einstellungen.
 
 Typische Fehlvorstellungen: Zielframework und RID seien dasselbe; `net10.0` laufe auf jedem Betriebssystem mit jeder API (auch WPF); `TargetFramework` bestimme die Konfiguration Debug/Release.
@@ -85,7 +85,7 @@ Typische Fehlvorstellungen: R2R mache die Datei kleiner; R2R sei portabel wie IL
 Wesentlich:
 - Erster Befehl: Kestrel lauscht auf `http://localhost:5000` (Standardport, nur HTTP). Zweiter Befehl: `--urls` überschreibt die Adresse, die Anwendung antwortet auf `http://localhost:5123` (Port 5000 ist dann nicht belegt).
 - `launchSettings.json` gilt nur für Starts aus der Entwicklungsumgebung (`dotnet run`, Rider) und wird nicht mit veröffentlicht; die Ports aus der Datei (die Vorlage `webapp` trägt beim Anlegen einen zufälligen Port ein, etwa 5233) gelten im Veröffentlichungsordner nicht mehr. Ohne Einstellung benutzt Kestrel Port 5000.
-- Zusatz (nicht verlangt, nicht im Buch): Die Konsole meldet in diesem Fall „Hosting environment: Production".
+- Bonus (Deep Dive), nicht verlangt: Die Konsole meldet in diesem Fall „Hosting environment: Production".
 
 Typische Fehlvorstellungen: Die Anwendung benutze den Port aus `launchSettings.json` weiter; ohne `--urls` sei kein Start möglich; Port 5000 gelte auch bei `--urls`.
 
@@ -97,8 +97,8 @@ Typische Fehlvorstellungen: Die Anwendung benutze den Port aus `launchSettings.j
 
 Wesentlich:
 - Kestrel ist der in ASP.NET Core eingebaute Webserver; er führt die Anwendung aus und lauscht auf einem Port (Standard 5000, HTTP).
-- Im Netz steht meist ein Reverse Proxy (IIS, Nginx, Apache) davor: Er nimmt die Anforderungen aus dem Netz an und reicht sie an Kestrel weiter.
-- Aufgaben des Proxys (mindestens zwei, etwa aus der Dokumentation): TLS/HTTPS-Zertifikat an einer Stelle, mehrere Anwendungen hinter Port 443, statische Dateien, Lastverteilung, Absicherung, Neustart einer Anwendung, ohne die anderen zu stören.
+- Ein Reverse Proxy (IIS, Nginx, Apache) davor empfängt die HTTP(S)-Anforderungen aus dem Internet und leitet sie an Kestrel weiter (23.2.3.3); Kestrel kann aber auch eigenständig arbeiten.
+- Bonus (Deep Dive), nicht im Buch, nicht verlangt: Aufgaben des Proxys aus der Dokumentation, etwa TLS/HTTPS-Zertifikat an einer Stelle, mehrere Anwendungen hinter Port 443, statische Dateien, Lastverteilung, Absicherung, Neustart einer Anwendung, ohne die anderen zu stören.
 - Die Anwendung behält ihre Aufgabe: Anforderungen verarbeiten und HTML/Daten liefern.
 
 Typische Fehlvorstellungen: Der Proxy führe den C#-Code aus; Kestrel könne kein HTTP; ohne Proxy sei kein Betrieb möglich (zum Entwickeln und für interne Zwecke genügt Kestrel).

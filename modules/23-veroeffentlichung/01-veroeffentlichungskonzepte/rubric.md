@@ -6,5 +6,5 @@
   drei Begriffe an einem Beispiel auseinanderhalten lassen.
 - Frameworkabhängig gegen eigenständig ist die zentrale Entscheidung: Größe,
   Voraussetzungen am Zielrechner, wer Laufzeit-Updates einspielt.
-- `TargetFrameworks` (Mehrzahl) kommt im Buch nicht vor; bei Interesse kurz
+- Bonus (Deep Dive): `TargetFrameworks` (Mehrzahl) kommt im Buch nicht vor; bei Interesse kurz
   einordnen, nicht abfragen.

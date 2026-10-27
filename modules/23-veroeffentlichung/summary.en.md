@@ -4,7 +4,7 @@ A program that runs during development has not yet been delivered. Chapter 23 (p
 
 ## Configuration and Target Framework (23.1.1 and 23.1.2, page 1637)
 
-The compiler supports two configurations. **Debug** is the default for development: it’s easy to test, but not performance-optimized. **Release** is optimized (for example, by inlining short methods) but makes debugging more difficult; the Release build is the one that’s shipped. The `TargetFramework` in the project file (the Target Framework moniker, such as `net10.0`) specifies which APIs the project is built against and the minimum required .NET version. If the program requires operating system APIs, the operating system must be included in the moniker: `net10.0-windows` for a WPF application. With `TargetFrameworks` (plural), a project can be built for multiple targets; this is advanced knowledge and is not covered in the book.
+The compiler supports two configurations. **Debug** is the default for development: it’s easy to test, but not performance-optimized. **Release** is optimized (for example, by inlining short methods) but makes debugging more difficult; the Release build is the one that’s shipped. The `TargetFramework` in the project file (the Target Framework moniker, such as `net10.0`) specifies which APIs the project is built against and the minimum required .NET version. If the program requires operating system APIs, the operating system must be included in the moniker: `net10.0-windows` for a WPF application.
 
 ## Target Runtime and Deployment Mode (23.1.4 and 23.1.5, pages 1643–1646)
 
@@ -16,4 +16,12 @@ The self-contained publication in the book includes 191 files totaling 71.2 MB. 
 
 ## Examples (23.2, pages 1649–1662)
 
-The book publishes a console program as a trimmed single file and as an R2R single file for `win-x86`, `linux-x64`, and `osx-x64`; the command for the trimmed single file is `dotnet publish -r win-x86 -p:PublishSingleFile=true -p:PublishTrimmed=true` (23.2.1, page 1652). We replace the Visual Studio publishing profiles (23.1.3, page 1639) with `dotnet publish` in the terminal or in Rider. A web application is published locally as a folder and runs using the built-in Kestrel web server (default port 5000, HTTP only); the `launchSettings.json` file is missing from the publish folder. For online operation, a **reverse proxy** (IIS, Nginx, Apache) is usually set up in front of Kestrel (23.2.3.3, page 1662). IIS hosting options and the environment variables `ASPNETCORE_URLS` and `ASPNETCORE_ENVIRONMENT` are extra material from the Microsoft documentation.
+The book publishes a console program as a trimmed single file and as an R2R single file for `win-x86`, `linux-x64`, and `osx-x64`; the command for the trimmed single file is `dotnet publish -r win-x86 -p:PublishSingleFile=true -p:PublishTrimmed=true` (23.2.1, page 1652). We replace the Visual Studio publishing profiles (23.1.3, page 1639) with `dotnet publish` in the terminal or in Rider. A web application is published locally as a folder and runs using the built-in Kestrel web server (default port 5000, HTTP only); the `launchSettings.json` file is missing from the publish folder. For online operation, a **reverse proxy** (IIS, Nginx, Apache) is usually set up in front of Kestrel (23.2.3.3, page 1662): it receives the HTTP(S) requests from the Internet and forwards them to Kestrel.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **`TargetFrameworks`** (plural, for example `net10.0;net10.0-windows`) builds a project for several targets.
+- **Hosting under IIS:** in the same process (in-process) or as a reverse proxy in front of its own Kestrel process (out-of-process). A reverse proxy often handles TLS encryption and distributes several applications behind port 443.
+- **Environment variables** `ASPNETCORE_URLS` (addresses and ports Kestrel listens on) and `ASPNETCORE_ENVIRONMENT` (`Development`, `Production`) control a published application without `launchSettings.json`; `--urls` on the command line sets the addresses as well.

@@ -60,8 +60,8 @@ items:
   - type: open
     id: zielframework
     prompt:
-      de: "Was steht in `TargetFramework` (zum Beispiel `net10.0`), und was legt es fest? Warum heißt das Zielframework einer WPF-Anwendung `net10.0-windows`, und was bewirkt die Mehrzahl `TargetFrameworks`? Wie unterscheidet sich das von einem Runtime Identifier wie `win-x64`?"
-      en: "What does `TargetFramework` (for example `net10.0`) contain, and what does it determine? Why is the target framework of a WPF application called `net10.0-windows`, and what does the plural `TargetFrameworks` do? How is that different from a runtime identifier such as `win-x64`?"
+      de: "Was steht in `TargetFramework` (zum Beispiel `net10.0`), und was legt es fest? Warum heißt das Zielframework einer WPF-Anwendung `net10.0-windows`? Wie unterscheidet sich das von einem Runtime Identifier wie `win-x64`?"
+      en: "What does `TargetFramework` (for example `net10.0`) contain, and what does it determine? Why is the target framework of a WPF application called `net10.0-windows`? How is that different from a runtime identifier such as `win-x64`?"
   - type: open
     id: code-csproj-einzeldatei
     prompt:
@@ -186,5 +186,5 @@ items:
   - type: open
     id: kestrel-und-proxy
     prompt:
-      de: "Was ist Kestrel, und warum stellt man bei einer Webanwendung im Netz meist einen Reverse Proxy (IIS, Nginx, Apache) davor? Welche Aufgaben kann der Proxy übernehmen (nenne mindestens zwei), und welche Rolle behält die ASP.NET-Core-Anwendung?"
-      en: "What is Kestrel, and why do you usually put a reverse proxy (IIS, Nginx, Apache) in front of a web application on the network? What tasks can the proxy take over (name at least two), and what role does the ASP.NET Core application keep?"
+      de: "Was ist Kestrel, und was macht ein Reverse Proxy (IIS, Nginx, Apache), den man bei einer Webanwendung im Internet davorstellt? Welche Rolle behält die ASP.NET-Core-Anwendung?"
+      en: "What is Kestrel, and what does a reverse proxy (IIS, Nginx, Apache) do that you put in front of a web application on the Internet? What role does the ASP.NET Core application keep?"

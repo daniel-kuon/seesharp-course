@@ -11,8 +11,14 @@ Webanwendung und startest sie aus dem Veröffentlichungsordner:
 1. `dotnet new webapp -o MeineWeb`
 2. In `MeineWeb`: `dotnet publish -c Release`
 3. Im Ordner `bin/Release/net10.0/publish`:
-   `dotnet MeineWeb.dll --urls http://localhost:5123`
+   `dotnet MeineWeb.dll --urls http://localhost:5123` (die Option `--urls` setzt den Port;
+   nicht im Buch, hier vorgegeben)
 4. Browser öffnen, Screenshot der Seite und Konsolenausgabe aufheben.
 
-Die Fragen zu IIS-Hosting und zu den Umgebungsvariablen gehen über das Buch
-hinaus; die Erklärungen sagen, wo das der Fall ist. Es gibt keine Tests.
+Es gibt keine Tests.
+
+> **Deep Dive (optional):** Nicht im Buch, Stoff aus der Microsoft-Dokumentation zum
+> Weiterlesen: IIS kann eine ASP.NET-Core-Anwendung im selben Prozess (in-process) oder als
+> Reverse Proxy vor Kestrel (out-of-process) hosten. Die Umgebungsvariablen
+> `ASPNETCORE_URLS` (Adressen und Ports) und `ASPNETCORE_ENVIRONMENT` (`Development`,
+> `Production`) steuern eine veröffentlichte Anwendung ohne `launchSettings.json`.

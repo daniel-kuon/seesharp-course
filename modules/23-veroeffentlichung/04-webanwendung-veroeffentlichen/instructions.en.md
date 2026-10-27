@@ -8,7 +8,9 @@ Answer the quiz questions. Then publish a web application yourself and run it fr
 
 1. `dotnet new webapp -o MeineWeb`
 2. In `MeineWeb`: `dotnet publish -c Release`
-3. In the `bin/Release/net10.0/publish` folder: `dotnet MeineWeb.dll --urls http://localhost:5123`
+3. In the `bin/Release/net10.0/publish` folder: `dotnet MeineWeb.dll --urls http://localhost:5123` (the option `--urls` sets the port; not in the book, given here)
 4. Open the browser, take a screenshot of the page, and capture the console output.
 
-The questions about IIS hosting and environment variables go beyond the scope of the book; the explanations indicate where this is the case. There are no tests.
+There are no tests.
+
+> **Deep Dive (optional):** Not in the book, material from the Microsoft documentation for further reading: IIS can host an ASP.NET Core application in the same process (in-process) or as a reverse proxy in front of Kestrel (out-of-process). The environment variables `ASPNETCORE_URLS` (addresses and ports) and `ASPNETCORE_ENVIRONMENT` (`Development`, `Production`) control a published application without `launchSettings.json`.

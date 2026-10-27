@@ -3,7 +3,8 @@
 Lies im Buch **15.2.1 Konstantenmuster** (Seite 973), **15.2.3 Typ- und
 Deklarationsmuster** (Seite 975), **15.2.8 Relationsmuster** (Seite 983)
 und **15.2.9 Kombinatoren und logische Muster** (Seite 984).
-Die Übungsaufgabe 2 in 15.7 (Seite 1012) liefert die Altersgruppen.
+Die Übungsaufgabe 2 in 15.7 (Seite 1012) teilt das Alter ebenfalls per
+Musterabgleich in Kategorien ein, aber mit anderen Grenzen.
 
 Öffne `Muster.cs`. Schreibe jede Methode als **einen** `switch`-Ausdruck
 oder `is`-Ausdruck, ohne `if`:

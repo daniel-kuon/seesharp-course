@@ -3,8 +3,10 @@
 - Kern: Muster beschreiben die Form eines Werts; Relationsmuster und die
   Kombinatoren `and`, `or`, `not` ersetzen verschachtelte Vergleiche. Der
   `switch`-Ausdruck prüft die Arme von oben nach unten; `< 0 or > 150` muss
-  vor `< 13` stehen, sonst gilt −1 als Kind. Der Compiler warnt bei
-  unerreichbaren Armen (CS8510), das ist ein guter Gesprächsanlass.
+  vor `< 13` stehen, sonst gilt −1 als Kind. Einen ganz unerreichbaren Arm
+  lehnt der Compiler als Fehler ab (CS8510, Buch Seite 973); diese falsche
+  Reihenfolge bemerkt er aber nicht, weil `> 150` noch erreichbar ist. Guter
+  Gesprächsanlass.
 - Die Tests prüfen alle Grenzen (0, 12, 13, 17, 18, 64, 65, 150, 151, −1).
   Fehler bei 64/65 oder 17/18 meist durch `<=`-statt-`<`-Verwechslung.
 - `IstIdentifierZeichen('ä')` muss `false` liefern (`char.IsLetter` wäre hier

@@ -1,6 +1,6 @@
-# Extra: Secure Data Entry
+# Extra: Safe Input Handling
 
-Extra exercise: optional; it unlocks nothing. For further reading: **15.1.5 Zero Operators** (page 968) and **15.1.2 Steady-State Analysis** (page 953).
+Extra exercise: optional; it unlocks nothing. For further reading: **15.1.5 null operators** (page 968) and **15.1.2 Null-state analysis** (page 953).
 
 Real-world input is often `null`, empty, or incomplete. The three methods in `Eingaben.cs` only work with clean data. Make them robust without a single `!`; the project has `<WarningsAsErrors>nullable</WarningsAsErrors>`, so any unresolved null warning will break the build.
 

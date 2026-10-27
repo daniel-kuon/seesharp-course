@@ -2,11 +2,11 @@
 
 Extra exercise: optional; it unlocks nothing. For further reading: **15.4 Span<T> and ReadOnlySpan<T>** (page 991), including **15.4.1 Extracting a Memory Segment Without Creating an Object or Making a Copy**.
 
-The `Statistik` class in `Zeichenstatistik.cs` accepts its data as ranges so that strings, arrays, and slices of them all work equally well, and does not generate any substrings in the process.
+The `Statistik` class in `Zeichenstatistik.cs` accepts its data as spans so that strings, arrays, and slices of them all work equally well, and it creates no substrings in the process.
 
-1. `ZaehleVokale(ReadOnlySpan<char>)`: counts `a`, `e`, `i`, `o`, `u`, `ä`, `ö`, `ü`—both uppercase and lowercase.
-2. `ErstesWort(ReadOnlySpan<char>)`: Returns the first word as **a substring** of the input text (skipping leading spaces). The test verifies that the return span points to the same memory location.
-3. `Teilsumme(ReadOnlySpan<int>, int von, int bis)`: Sum of the values from index `von` (inclusive) to `bis` (exclusive). Invalid bounds throw a `ArgumentOutOfRangeException`.
+1. `ZaehleVokale(ReadOnlySpan<char>)`: counts `a`, `e`, `i`, `o`, `u`, `ä`, `ö`, `ü`, both uppercase and lowercase.
+2. `ErstesWort(ReadOnlySpan<char>)`: returns the first word as a **slice** of the input text (skipping leading spaces). The test checks that the returned span points into the same memory.
+3. `Teilsumme(ReadOnlySpan<int>, int von, int bis)`: sum of the values from index `von` (inclusive) to `bis` (exclusive). Invalid bounds throw `ArgumentOutOfRangeException`.
 
 The following tests must be passed:
 

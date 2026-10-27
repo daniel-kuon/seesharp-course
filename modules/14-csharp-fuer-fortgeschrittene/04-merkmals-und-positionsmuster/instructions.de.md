@@ -4,8 +4,9 @@ Lies im Buch **15.2.4 Merkmalsmuster** (Seite 976), **15.2.5 var-Muster**
 (Seite 978) und **15.2.7 Positions- bzw. Dekonstruktionsmuster**
 (Seite 981). Die Übungsaufgabe 3 in 15.7 (Seite 1012) ist `Zugelassen`.
 
-Öffne `Muster.cs`. Die Records stehen in `Modell.cs`; für jeden Record
-erzeugt der Compiler auch `Deconstruct`, das Positionsmuster brauchen.
+Öffne `Muster.cs`. Die Records stehen in `Modell.cs`; weil sie positionale
+Eigenschaften haben (`record Punkt(int X, int Y)`), erzeugt der Compiler
+auch `Deconstruct`, das Positionsmuster brauchen.
 
 1. `Zugelassen(PKW? p)`: Ein PKW ist zugelassen mit mindestens drei
    Passagieren **oder** als Elektroauto. Ein Merkmalsmuster, kombiniert mit

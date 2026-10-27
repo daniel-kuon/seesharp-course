@@ -1,15 +1,15 @@
 # Span<T>, ReadOnlySpan<T>, and ref returns
 
-See sections **15.3 "Methods with ref Variables and ref Return Values**" (page 988) and **15.4 "Span<T> and ReadOnlySpan<T>"** (page 991), including **15.4.1 “Extracting a Memory Segment Without Object Creation or Copying”** and **15.4.3 “Premium Language Support for Span Types Since C# 14”** (page 994).
+Read in the book **15.3 Methods with ref variables and ref return values** (page 988) and **15.4 Span<T> and ReadOnlySpan<T>** (page 991) with **15.4.1 Extracting a memory segment without object creation and copying** and **15.4.3 Premium language support for the span types since C# 14** (page 994).
 
-Open `Spans.cs`; `Messpunkt.cs` is a deliberately large structure (four `double` values). The signatures are provided; you write the bodies:
+Open `Spans.cs`; `Messpunkt.cs` is a deliberately large struct (four `double` values). The signatures are given; you write the bodies:
 
-1. `Summe(ReadOnlySpan<int>)` performs summation without copying. The test calls it with an array, a slice (`a.AsSpan(2, 3)`), and a `stackalloc` buffer: one parameter type, many sources.
-2. `ZaehleWoerter(ReadOnlySpan<char>)` counts words separated by spaces (multiple consecutive spaces are not counted twice). Split the text using substrings (`TrimStart`, `IndexOf`, `text[ende..]`), not with `Split` or `Substring`.
-3. `SpiegleInPlace(Span<int>)` reverses the elements. If a range is specified, only that portion of the array is modified.
-4. `Hoechster(int[])` returns a **reference** to the largest element (`ref int`): `Hoechster(a) = 0;` sets it to 0 in the array. You can use a local `ref` variable (`ref int m = ref a[0];`) to keep track of the location.
-5. `Hellster(Messpunkt[])` returns a `ref readonly` reference to the measurement point with the highest brightness, without copying the structure.
-6. `SpanErweiterungen`: The `extension` block (C# 14) makes `IstPalindrom()` a member of `ReadOnlySpan<char>`. Because strings and `char` arrays are implicitly converted to Spans, the test calls it on `"anna"` and on a `char[]`.
+1. `Summe(ReadOnlySpan<int>)` sums without copying. The test calls it with an array, a slice (`a.AsSpan(2, 3)`), and a `stackalloc` buffer: one parameter type, many sources. (`stackalloc` into a `Span<T>` does not need an `unsafe` context, even though the book suggests otherwise in 15.5.)
+2. `ZaehleWoerter(ReadOnlySpan<char>)` counts words separated by spaces (several consecutive spaces do not count twice). Take the text apart with slices (`TrimStart`, `IndexOf`, `text[ende..]`), not with `Split` or `Substring`.
+3. `SpiegleInPlace(Span<int>)` reverses the elements. If a slice is passed, only that part of the underlying array changes.
+4. `Hoechster(int[])` returns a **reference** to the largest element (`ref int`; if the maximum occurs more than once, to the first one): `Hoechster(a) = 0;` sets it to 0 in the array. A local `ref` variable (`ref int m = ref a[0];`) keeps track of the location.
+5. `Hellster(Messpunkt[])` returns a `ref readonly` reference to the measurement point with the highest brightness (the first one on a tie), without copying the struct.
+6. `SpanErweiterungen`: The `extension` block (C# 14) makes `IstPalindrom()` a member of `ReadOnlySpan<char>`. Case matters (`"Anna"` is not one), and the empty text is a palindrome. Because strings and `char` arrays convert implicitly to spans, the test calls it on `"anna"` and on a `char[]`.
 
 The following tests must be passed:
 

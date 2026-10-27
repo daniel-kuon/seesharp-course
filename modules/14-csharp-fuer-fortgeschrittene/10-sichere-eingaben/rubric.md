@@ -9,6 +9,6 @@
 - `Bereinige`: Nach `string.IsNullOrEmpty(t)` weiß der Compiler (Attribut
   `[NotNullWhen(false)]`), dass `t` im Else-Zweig nicht null ist.
 - Nachfrage: Warum liefert `ErstesWort(null)` `""` und nicht `null`? (Der Rückgabetyp
-  bleibt ohne Nullbehandlung für den Aufrufer.)
+  bleibt `string`, der Aufrufer braucht also keine Nullbehandlung.)
 
 Modellantwort: `solution/`.

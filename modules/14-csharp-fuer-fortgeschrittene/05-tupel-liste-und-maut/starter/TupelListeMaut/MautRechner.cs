@@ -18,7 +18,8 @@ public static class MautRechner
     //       Bus:         weniger als 50 % Auslastung (Fahrgaeste / Kapazitaet) +2,00;
     //                    mehr als 90 % -1,00; sonst 0   (when-Bedingung)
     //       Lieferwagen: Gewicht über 5000 +10,00; unter 3000 -2,00; sonst 0
-    //       null wirft ArgumentNullException, alles andere ArgumentException.
+    //       null wirft ArgumentNullException, alles andere ArgumentException
+    //       (auch ein Auto oder Taxi mit negativer Personenzahl).
     public static decimal FahrzeugZuschlag(Fahrzeug f)
     {
         throw new NotImplementedException();

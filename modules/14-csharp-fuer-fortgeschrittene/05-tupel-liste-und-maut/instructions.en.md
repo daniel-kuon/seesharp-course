@@ -1,13 +1,13 @@
 # Tuple and List Patterns; Toll Calculator
 
-Read sections **15.2.6 "Tuple Patterns**" (page 980) and **15.2.10 "List Patterns**" (page 985), along with **15.2.10.1 "Exclusion and Range Patterns**." The toll calculator is the concluding example for pattern matching: It combines tuple, type, attribute, relational, and logical patterns with the `when` keyword.
+Read in the book **15.2.6 Tuple patterns** (page 980) and **15.2.10 List patterns** (page 985) with **15.2.10.1 Discard and slice patterns**. The toll calculator is the closing example for pattern matching: it combines tuple, type, property, relational, and logical patterns with `when`.
 
 Open `Spiele.cs` and `MautRechner.cs`. The types are defined in `Modell.cs`.
 
-1. `SchereSteinPapier.Sieger(a, b)`: **A** `switch` expression over the tuple `(a, b)`. The three winning pairs take first place; `(var x, var y) when x == y` indicates a tie; the rest take second place.
-2. `Lauf.Langstrecke(minuten, maenner)`: Tuple patterns with relational patterns in the positions and `or` between the tuple patterns for men and women (limits specified in the `TODO` comments). Zero or fewer minutes throws a `ArgumentOutOfRangeException`, as the branch of the `switch`.
+1. `SchereSteinPapier.Sieger(a, b)`: **One** `switch` expression over the tuple `(a, b)`. The three pairs in which the first player wins, `(var x, var y) when x == y` for a draw, and everything else is a win for the second player.
+2. `Lauf.Langstrecke(minuten, maenner)`: Tuple patterns with relational patterns in the positions and `or` between the tuple patterns for men and women (limits in the `TODO` comments). Zero or fewer minutes throws `ArgumentOutOfRangeException`, as an arm of the `switch`.
 3. `Listen.Beschreibe(int[])`: List patterns `[]`, `[var x]`, `[1, .., 9]`, `[_, _]`, and `[_, _, .. var rest]`; the order is specified in the comment.
-4. `MautRechner`: `Band` divides the day using relational patterns. `FahrzeugZuschlag` distinguishes `Auto`, `Taxi`, `Bus`, and `Lieferwagen` with type and property patterns, using `when` for `Bus`. `ZeitZuschlag` is a tuple pattern over weekday, time band, and direction. `Berechne` adds the base fee and both surcharges.
+4. `MautRechner`: `Band` divides the day using relational patterns. `FahrzeugZuschlag` distinguishes `Auto`, `Taxi`, `Bus`, and `Lieferwagen` with type and property patterns, using `when` for `Bus` (amounts in the `TODO` comments). `null` throws `ArgumentNullException`; any other vehicle type or invalid data (an `Auto` or `Taxi` with a negative number of people) throws `ArgumentException`. `ZeitZuschlag` is a tuple pattern over weekday, time band, and direction. `Berechne` adds the base fee and both surcharges.
 
 The following tests must be passed:
 

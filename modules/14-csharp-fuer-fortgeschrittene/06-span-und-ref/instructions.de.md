@@ -11,7 +11,9 @@ sowie **15.4.3 Premium-Sprachunterstützung für die Span-Typen seit C# 14**
 
 1. `Summe(ReadOnlySpan<int>)` summiert ohne Kopie. Der Test ruft sie mit
    einem Array, einem Ausschnitt (`a.AsSpan(2, 3)`) und einem
-   `stackalloc`-Puffer auf: ein Parametertyp, viele Quellen.
+   `stackalloc`-Puffer auf: ein Parametertyp, viele Quellen. (`stackalloc`
+   in einen `Span<T>` braucht keinen `unsafe`-Kontext, auch wenn das Buch
+   in 15.5 anderes andeutet.)
 2. `ZaehleWoerter(ReadOnlySpan<char>)` zählt Wörter, die durch Leerzeichen
    getrennt sind (mehrere Leerzeichen hintereinander zählen nicht doppelt).
    Zerlege den Text durch Ausschnitte (`TrimStart`, `IndexOf`, `text[ende..]`),
@@ -19,12 +21,16 @@ sowie **15.4.3 Premium-Sprachunterstützung für die Span-Typen seit C# 14**
 3. `SpiegleInPlace(Span<int>)` kehrt die Elemente um. Bei einem Ausschnitt
    ändert sich nur dieser Teil des Arrays dahinter.
 4. `Hoechster(int[])` liefert einen **Verweis** auf das größte Element
-   (`ref int`): `Hoechster(a) = 0;` setzt es im Array auf 0. Mit einer lokalen
+   (`ref int`; gibt es den Höchstwert mehrfach, auf das erste):
+   `Hoechster(a) = 0;` setzt es im Array auf 0. Mit einer lokalen
    `ref`-Variable (`ref int m = ref a[0];`) merkst du dir die Fundstelle.
 5. `Hellster(Messpunkt[])` liefert einen `ref readonly`-Verweis auf den
-   Messpunkt mit der größten Helligkeit, ohne die Struktur zu kopieren.
+   Messpunkt mit der größten Helligkeit (bei Gleichstand den ersten), ohne
+   die Struktur zu kopieren.
 6. `SpanErweiterungen`: Der `extension`-Block (C# 14) macht
-   `IstPalindrom()` zu einem Mitglied von `ReadOnlySpan<char>`. Weil Strings
+   `IstPalindrom()` zu einem Mitglied von `ReadOnlySpan<char>`.
+   Groß-/Kleinschreibung zählt (`"Anna"` ist keins), der leere Text ist ein
+   Palindrom. Weil Strings
    und `char`-Arrays implizit in Spans übergehen, ruft der Test sie auf
    `"anna"` und auf einem `char[]` auf.
 

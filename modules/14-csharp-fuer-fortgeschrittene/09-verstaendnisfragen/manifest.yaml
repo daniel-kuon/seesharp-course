@@ -26,7 +26,7 @@ items:
   - type: open
     id: nullable-kontext
     prompt:
-      de: "Im aktivierten Nullable-Kontext darf ein `string` nicht null sein, ein `string?` schon. Was bewirkt diese Kennzeichnung beim Übersetzen und was zur Laufzeit? Wofür ist der Null-Vergebungs-Operator `!` gedacht, und wann ist er vertretbar?"
+      de: "Im aktivierten Nullable-Kontext darf ein `string` nicht null sein, ein `string?` schon. Was bewirkt diese Kennzeichnung beim Übersetzen und was zur Laufzeit? Wofür ist der null-Toleranzoperator `!` gedacht, und wann ist er vertretbar?"
       en: "In an enabled nullable context, a `string` must not be null, while a `string?` may be. What does this annotation do at compile time and what does it do at runtime? What is the null-forgiving operator `!` for, and when is it acceptable?"
   - type: open
     id: null-operatoren

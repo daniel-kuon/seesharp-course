@@ -26,7 +26,7 @@ items:
     options:
       - { de: "Nichts: Weder die Zuweisung noch der Aufruf von Berechne() findet statt.", en: "Nothing: Neither the assignment nor the call to Berechne() takes place." }
       - { de: "Berechne() wird aufgerufen, das Ergebnis aber verworfen.", en: "`Berechne()` is called, but the result is discarded." }
-      - { de: "Es gibt eine NullReferenceException.", en: "A NullReferenceException has occurred." }
-      - { de: "Der Compiler lehnt die Zeile ab: ?. ist nur lesend erlaubt.", en: "The compiler rejects the line: ?. is read-only." }
+      - { de: "Es gibt eine NullReferenceException.", en: "A NullReferenceException is thrown." }
+      - { de: "Der Compiler lehnt die Zeile ab: ?. ist nur lesend erlaubt.", en: "The compiler rejects the line: ?. is only allowed for reading." }
     correct: [0]
-    explanation: { de: "15.1.5.2 (Seite 969). Seit C# 14 darf ?. auch links vom Zuweisungsoperator stehen; die rechte Seite wird nur ausgewertet, wenn der Empfänger nicht null ist. Vor C# 14 war das ein Übersetzungsfehler.", en: "15.1.5.2 (page 969). Since C# 14, ?. may also appear to the left of the assignment operator; the right-hand side is evaluated only if the receiver is not null. Prior to C# 14, this was a compilation error." }
+    explanation: { de: "15.1.5.2 (Seite 969, die Zuweisung auf Seite 970 f.). Seit C# 14 darf ?. auch links vom Zuweisungsoperator stehen; die rechte Seite wird nur ausgewertet, wenn der Empfänger nicht null ist. Vor C# 14 war das ein Übersetzungsfehler.", en: "15.1.5.2 (page 969, the assignment on pages 970 f.). Since C# 14, ?. may also appear to the left of the assignment operator; the right-hand side is evaluated only if the receiver is not null. Prior to C# 14, this was a compilation error." }

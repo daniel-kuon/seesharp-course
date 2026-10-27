@@ -1,10 +1,10 @@
 # Null Operators: ?., ??, ??=, and Null-Conditional Assignment
 
-Read the section on **null operators** (page 968) in Chapter **15.1.5**, along with **15.1.5.2**, "**Null-Conditional Operators**" (page 969), and also the section on **null-conditional assignments** in C# 14.
+Read in the book **15.1.5 null operators** (page 968) with **15.1.5.2 null-conditional operator** (page 969), which also covers the **null-conditional assignment** of C# 14.
 
-Open `Auskunft.cs` (the classes `Adresse`, `Kunde`, and `Zaehler` are defined in `Modell.cs`). Break down each method using the operators and without the `if (x == null)` statement:
+Open `Auskunft.cs` (the classes `Adresse`, `Kunde`, and `Zaehler` are defined in `Modell.cs`). Solve each method with the operators and without `if (x == null)`:
 
-1. `Ortsname(Kunde? k)`: Place name in uppercase (`ToUpper()`); otherwise, `"unbekannt"`, regardless of the level in the chain where `null` appears. A line containing `?.` and `??`.
+1. `Ortsname(Kunde? k)`: the town (`Ort`) in uppercase (`ToUpper()`), otherwise `"unbekannt"`, no matter at which level of the chain `null` occurs. One line with `?.` and `??`.
 2. `Laenge(string[]? a)`: Length or 0. `Erstes(List<string>? l)`: First element or `null` (the index access is denoted by `?[ ]`).
 3. `Nachschlagen(Dictionary<string,string>? d, string schluessel)`: the value or `"(kein Eintrag)"` if the dictionary does not exist or the key is missing. Tip: `d?.TryGetValue(schluessel, out var wert) == true`.
 4. `Zaehler.Fuege(string)`: The list `Eintraege` is created only when the first entry is made, using `??=`.

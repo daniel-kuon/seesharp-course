@@ -13,9 +13,10 @@ mit Kollektionstyp** (Seite 1008) mit **15.6.1** und **15.6.2**
 2. `Puffer8Werkzeuge.Fuelle(ref Puffer8, int start)` schreibt `start`,
    `start + 1`, ... in die acht Plätze. `Summe(in Puffer8)` summiert über
    einen Span (`ReadOnlySpan<int> s = p;`). `Lies(in Puffer8, int)` liest
-   über den Indexer.
-3. `Serie` hat noch je zwei Überladungen: ein `params`-Array und eine
-   Variante für vorhandene Kollektionen. Seit C# 13 kann `params` auch einen
+   über den Indexer (ein ungültiger Index wirft `IndexOutOfRangeException`).
+3. `Serie` ist noch auf dem Stand vor C# 13: `Summe` hat ein
+   `params`-Array, `Verbinde` und `Zaehle` haben dazu je eine zweite
+   Überladung für vorhandene Kollektionen. Seit C# 13 kann `params` auch einen
    Kollektionstyp tragen. Ersetze die Überladungen durch jeweils **eine**
    Methode: `Summe(params ReadOnlySpan<int>)`, `Verbinde(params IEnumerable<string>)`
    (Teile mit `-` verbinden) und `Zaehle<T>(params List<T>)`. Dann klappen

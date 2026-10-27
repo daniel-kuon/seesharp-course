@@ -18,7 +18,10 @@ Tupel-, Typ-, Merkmals-, Relations- und logische Muster mit `when`.
    `[_, _]` und `[_, _, .. var rest]`; die Reihenfolge steht im Kommentar.
 4. `MautRechner`: `Band` teilt den Tag mit Relationsmustern ein.
    `FahrzeugZuschlag` unterscheidet `Auto`, `Taxi`, `Bus` und `Lieferwagen`
-   mit Typ- und Merkmalsmustern, beim `Bus` mit `when`. `ZeitZuschlag` ist ein
+   mit Typ- und Merkmalsmustern, beim `Bus` mit `when` (Beträge in den
+   `TODO`-Kommentaren). `null` wirft `ArgumentNullException`; ein anderer
+   Fahrzeugtyp oder eine ungültige Angabe (ein `Auto` oder `Taxi` mit
+   negativer Personenzahl) wirft `ArgumentException`. `ZeitZuschlag` ist ein
    Tupelmuster über Wochentag, Zeitband und Richtung. `Berechne` addiert
    Grundgebühr und beide Zuschläge.
 

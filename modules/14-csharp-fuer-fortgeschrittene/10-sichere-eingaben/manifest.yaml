@@ -1,5 +1,5 @@
 id: fortgeschritten-sichere-eingaben
-title: { de: "Zusatz: Sichere Eingaben", en: "Extra: Secure Data Entry" }
+title: { de: "Zusatz: Sichere Eingaben", en: "Extra: Safe Input Handling" }
 optional: true
 reading:
   section: "15.1.5"

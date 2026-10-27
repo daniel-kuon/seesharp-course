@@ -1,8 +1,8 @@
 namespace InlineUndParams;
 
-// C# 13 erlaubt Serienparameter mit Kollektionstyp (Buch 15.6). Bisher brauchte man für jeden Fall
-// eine eigene Überladung (15.6.2): ein params-Array für die Einzelwerte und eine Überladung für
-// vorhandene Kollektionen. Die Methoden hier sind noch so gebaut.
+// C# 13 erlaubt Serienparameter mit Kollektionstyp (Buch 15.6). Bis C# 12 brauchte man für jeden Fall
+// eine eigene Überladung (vgl. Loga in 15.6.1): ein params-Array für die Einzelwerte und eine
+// Überladung für vorhandene Kollektionen. Die Methoden hier sind noch so gebaut.
 //
 // TODO: Fasse jede Gruppe zu EINER Methode zusammen und lösche die überzähligen Überladungen:
 //       Summe:    params ReadOnlySpan<int> werte       (kann ohne Heap-Array auskommen)

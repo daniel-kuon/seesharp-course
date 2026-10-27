@@ -6,7 +6,10 @@ Unterstützung der Nullzustandsanalyse** (Seite 962).
 
 Im Projekt steht `<Nullable>enable</Nullable>` und zusätzlich
 `<WarningsAsErrors>nullable</WarningsAsErrors>`: Jede offene Warnung der
-Nullzustandsanalyse bricht den Build. Das Starterprojekt übersetzt deshalb
+Nullzustandsanalyse bricht den Build (15.1.3.3, Seite 961; das Buch zählt
+dort die einzelnen Warnungsnummern auf, `nullable` steht für alle
+Nullwarnungen). `Reverse` ist die Methode aus Übungsaufgabe 1 in 15.7
+(Seite 1012). Das Starterprojekt übersetzt deshalb
 noch nicht; ändere die `.csproj`-Datei nicht, sondern behebe die Ursachen
 im Code. Öffne `PalindromReverse.cs` und `Kunde.cs`:
 

@@ -25,20 +25,20 @@ items:
     testProject: "Nullsicherheit Tests/Nullsicherheit.Tests.csproj"
   - type: multipleChoice
     id: null-vergebung
-    prompt: { de: "Wann ist der Null-Vergebungs-Operator (name!) vertretbar?", en: "When is the zero-forgiveness operator (name!) appropriate?" }
+    prompt: { de: "Wann ist der null-Toleranzoperator (name!) vertretbar?", en: "When is the null-forgiving operator (name!) acceptable?" }
     options:
-      - { de: "Wenn nachweislich feststeht, dass der Wert nicht null ist, der Compiler das aber nicht erkennen kann, und du das in einem Kommentar begründest.", en: "If it can be proven that the value is not zero, but the compiler cannot detect this, and you explain why in a comment." }
-      - { de: "Immer, wenn eine Warnung der Nullzustandsanalyse nervt.", en: "Whenever a zero-state analysis warning gets on your nerves." }
+      - { de: "Wenn nachweislich feststeht, dass der Wert nicht null ist, der Compiler das aber nicht erkennen kann, und du das in einem Kommentar begründest.", en: "When it is certain that the value is not null, but the compiler cannot see this, and you justify it in a comment." }
+      - { de: "Immer, wenn eine Warnung der Nullzustandsanalyse nervt.", en: "Whenever a null-state analysis warning gets on your nerves." }
       - { de: "Er schützt zur Laufzeit vor einer NullReferenceException.", en: "It protects against a NullReferenceException at runtime." }
       - { de: "Er wandelt einen nullable Typ in einen Nicht-null-Typ um.", en: "It converts a nullable type to a non-null type." }
     correct: [0]
-    explanation: { de: "15.1.2.2 (Seite 955). Das ! unterdrückt nur die Warnung; zur Laufzeit prüft es nichts. Ist der Wert doch null, fällt die Ausnahme später und woanders.", en: "15.1.2.2 (page 955). The ! only suppresses the warning; it does not perform any checks at runtime. If the value is indeed zero, the exception will be thrown later and elsewhere." }
+    explanation: { de: "15.1.2.2 (Seite 955). Das ! unterdrückt nur die Warnung; zur Laufzeit prüft und wandelt es nichts. Ist der Wert doch null, fällt die Ausnahme später und woanders. Das Buch empfiehlt, wo möglich lieber Attribute (15.1.4) zu vergeben, statt Warnungen wegzudrücken.", en: "15.1.2.2 (page 955). The ! only suppresses the warning; at runtime it neither checks nor converts anything. If the value is null after all, the exception is thrown later and elsewhere. Where possible, the book recommends attributes (15.1.4) instead of silencing warnings." }
   - type: multipleChoice
     id: zur-laufzeit
     prompt: { de: "string? und string haben zur Laufzeit denselben Typ. Was folgt daraus?", en: "\"string?\" and \"string\" have the same type at runtime. What does this imply?" }
     options:
       - { de: "Die Annotation ist nur eine Information für den Compiler (und für Reflexion über Metadaten); null kann zur Laufzeit trotzdem in einer string-Variablen landen, etwa über Code ohne Nullable-Kontext.", en: "The annotation is merely information for the compiler (and for reflection on metadata); null can still end up in a string variable at runtime, for example, through code without a nullable context." }
       - { de: "Der Compiler garantiert, dass eine string-Variable nie null enthält.", en: "The compiler guarantees that a string variable will never contain null." }
-      - { de: "string? ist ein eigener Strukturtyp wie int?.", en: "\"string?\" is a distinct data type, just like \"int?\"." }
+      - { de: "string? ist ein eigener Strukturtyp wie int?.", en: "string? is a separate struct type, like int?." }
     correct: [0]
     explanation: { de: "15.1.1.1 (Seite 950). Nullable-Referenztypen sind eine statische Analyse, kein neuer Typ. Anders als bei int? gibt es keinen Wrapper.", en: "15.1.1.1 (page 950). Nullable reference types are a static analysis feature, not a new type. Unlike `int?`, there is no wrapper." }

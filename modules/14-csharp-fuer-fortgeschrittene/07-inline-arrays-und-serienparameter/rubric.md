@@ -13,8 +13,11 @@
   Array als **ein** Element (T wird `T[]`); beim `params`-Array wäre es die
   Normalform. Genau deshalb braucht man bei Kollektionstypen die passende
   Kollektion. Das lohnt eine Nachfrage.
-- Die Starterversion zeigt die Lage vor C# 13 (Überladungen für alle Fälle,
-  Buch 15.6.2); die Aufgabe ist das Zusammenführen. Der Reflexionstest
+- Die Starterversion zeigt die Lage vor C# 13 (`params`-Array plus eigene
+  Überladung für vorhandene Kollektionen, vgl. `Loga` im Buch 15.6.1); die
+  Aufgabe ist das Zusammenführen. Buch 15.6.2 („Überladungen für alle Fälle")
+  meint etwas anderes: zwei Serienparameter-Überladungen mit
+  `IEnumerable<T>` und `ReadOnlySpan<T>`. Der Reflexionstest
   `Serienparameter_haben_Kollektionstypen` prüft Typ und Attribut
   (`ParamCollectionAttribute`) und schlägt bei einer zweiten Überladung fehl.
 - Der Test prüft nur `Unsafe.SizeOf<Puffer8>() == 32`, keine Allokation.

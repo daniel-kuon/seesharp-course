@@ -9,7 +9,7 @@ Wortlaut und Fachbegriffe müssen nicht exakt stimmen.
 Kernpunkte:
 - Beim Übersetzen: `string?` und `string` sind eine **Information für den Compiler**; die Nullzustandsanalyse warnt bei Zuweisung von `null` an eine nicht-nullable Variable und beim Zugriff auf einen möglichen Nullwert.
 - Zur Laufzeit gibt es **keinen Unterschied**: Es sind dieselben Typen, nichts wird geprüft oder verhindert (ein `string` kann trotzdem `null` enthalten, z. B. durch Reflexion oder unsaubere Bibliotheken).
-- `!` (Null-Vergebung) **unterdrückt nur die Warnung**, er schützt nicht vor einer `NullReferenceException`. Vertretbar ist er, wenn man nachweisen kann, dass der Wert nicht null ist, der Compiler das aber nicht erkennt, am besten mit Kommentar. Normalerweise behebt man Warnungen durch Code (prüfen, `?`-Typ, anderes Modell).
+- `!` (null-Toleranzoperator, engl. null-forgiving operator) **unterdrückt nur die Warnung**, er schützt nicht vor einer `NullReferenceException`. Vertretbar ist er, wenn man nachweisen kann, dass der Wert nicht null ist, der Compiler das aber nicht erkennt, am besten mit Kommentar. Normalerweise behebt man Warnungen durch Code (prüfen, `?`-Typ, anderes Modell).
 
 Typische Irrtümer: `string?` sei ein eigener Typ zur Laufzeit; `!` prüfe auf null oder mache den Wert sicher; man solle Warnungen mit `!` wegmachen, wenn sie nerven.
 

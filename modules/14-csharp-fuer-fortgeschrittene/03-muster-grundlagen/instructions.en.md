@@ -1,6 +1,6 @@
 # Patterns: Constant, Type, Relational, Logical
 
-Read sections **15.2.1 "Constant Patterns**" (page 973), **15.2.3 "Type and Declaration Patterns**" (page 975), **15.2.8 Relational Patterns** (page 983), and **15.2.9 Combinators and Logical Patterns** (page 984). Exercise 2 in Section 15.7 (page 1012) provides the age groups.
+Read in the book **15.2.1 Constant patterns** (page 973), **15.2.3 Type and declaration patterns** (page 975), **15.2.8 Relational patterns** (page 983), and **15.2.9 Combinators and logical patterns** (page 984). Exercise 2 in 15.7 (page 1012) also sorts ages into categories by pattern matching, but with different boundaries.
 
 Open `Muster.cs`. Write each method as **a** `switch` expression or `is` expression, without using `if`:
 

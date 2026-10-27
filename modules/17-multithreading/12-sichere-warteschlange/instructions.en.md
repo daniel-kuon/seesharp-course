@@ -4,7 +4,7 @@ Extra exercise: optional; it unlocks nothing. For further reading: **17.2.1.1 Pr
 
 The collections in the class library (`List<T>`, `Queue<T>`, `Dictionary<K,V>`) are **not** designed for concurrent access. Two threads calling `Enqueue` simultaneously may lose elements, corrupt the data structure, or throw an exception. The solution is to use a `lock` around every access to the shared collection.
 
-`SichereWarteschlange<T>` wraps a `Queue<T>`:
+`SichereWarteschlange<T>` wraps a `Queue<T>` (the book only names it; given here: `Enqueue(x)` appends at the end, `Dequeue()` removes the front element, `Count` counts):
 
 - `Einreihen(element)` appends at the back,
 - `TryNaechster(out element)` retrieves the first element or returns `false` (with `default` as the value) if there is nothing there,

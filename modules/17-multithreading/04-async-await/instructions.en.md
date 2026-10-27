@@ -6,11 +6,11 @@ See the book, **17.6 C# Language Support for Asynchronous Operations** (page 116
 
 **The tests are deterministic** (`async Task` tests, no timing, no `Thread.Sleep`). They never wait for your methods in a blocking manner; the time limits are only there to prevent hangs. A method that blocks internally will therefore fail.
 
-1. `Dateien.LiesLaengeAsync(pfad)`: Turn this into an `async` method that reads the file using `await File.ReadAllTextAsync` and returns the number of characters.
+1. `Dateien.LiesLaengeAsync(pfad)`: Turn this into an `async` method that reads the file using `await File.ReadAllTextAsync(pfad)` and returns the number of characters (not in the book, given here: the asynchronous form of `File.ReadAllText`, returns a `Task<string>`; the book names its siblings such as `ReadAllLinesAsync`, page 1043).
 2. `Dateien.SpeichereAsync(pfad, text)`: This method is `async void`—a classic mistake. The caller cannot wait, and an exception will have no receiver. Change the return type to `Task`.
 3. `Asynchron.SummeAsync(aufgaben)`: `await Task.WhenAll`, then sum, without blocking.
 4. `Asynchron.MitWiederholung(aktion, versuche)`: at most `versuche` calls; `await` in `try/catch`. If the last one fails, its exception is propagated. `versuche < 1` is an `ArgumentOutOfRangeException`.
-5. `Asynchron.VerarbeiteAsync(daten, token)`: calls `ThrowIfCancellationRequested` before each element, then releases the thread using `await Task.Yield()`, and sums the elements. If canceled, the task ends as canceled.
+5. `Asynchron.VerarbeiteAsync(daten, token)`: calls `ThrowIfCancellationRequested` before each element, then releases the thread using `await Task.Yield()` (not in the book, given here: an awaitable that completes at once and lets the continuation run later), and sums the elements. If canceled, the task ends as canceled.
 6. `MeldungMitAwait` and `MeldungMitWait`: Both catch the exception from the given method `FehlerAsync` and return its message. With `await`, the `InvalidOperationException` is thrown directly; with `.Wait()`, it is wrapped in an `AggregateException`. The Wait variant is provided for comparison purposes only.
 7. Answer the quiz question about deadlock caused by blocking waits.
 

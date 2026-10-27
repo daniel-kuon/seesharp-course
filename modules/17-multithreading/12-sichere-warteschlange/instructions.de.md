@@ -10,7 +10,9 @@ Threads, die gleichzeitig `Enqueue` aufrufen, können Elemente verlieren,
 die Datenstruktur beschädigen oder eine Ausnahme auslösen. Die Lösung ist ein
 `lock` um jeden Zugriff auf die gemeinsame Sammlung.
 
-`SichereWarteschlange<T>` kapselt eine `Queue<T>`:
+`SichereWarteschlange<T>` kapselt eine `Queue<T>` (das Buch nennt sie nur; hier
+vorgegeben: `Enqueue(x)` hängt hinten an, `Dequeue()` entnimmt das vorderste
+Element, `Count` zählt):
 
 - `Einreihen(element)` hängt hinten an,
 - `TryNaechster(out element)` entnimmt das vorderste Element oder liefert

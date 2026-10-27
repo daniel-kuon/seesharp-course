@@ -19,7 +19,10 @@ Zeitgrenzen sind nur Hängerschutz. Eine Methode, die intern blockiert,
 fällt dadurch durch.
 
 1. `Dateien.LiesLaengeAsync(pfad)`: Mach daraus eine `async`-Methode, die
-   mit `await File.ReadAllTextAsync` liest und die Zeichenzahl liefert.
+   mit `await File.ReadAllTextAsync(pfad)` liest und die Zeichenzahl liefert
+   (nicht im Buch, hier vorgegeben: die asynchrone Form von `File.ReadAllText`,
+   liefert eine `Task<string>`; das Buch nennt die Geschwister wie
+   `ReadAllLinesAsync`, Seite 1043).
 2. `Dateien.SpeichereAsync(pfad, text)`: Diese Methode ist `async void`: ein
    klassischer Fehler. Der Aufrufer kann nicht warten, und eine Ausnahme
    findet keinen Empfänger. Ändere den Rückgabetyp in `Task`.
@@ -31,7 +34,8 @@ fällt dadurch durch.
    `ArgumentOutOfRangeException`.
 5. `Asynchron.VerarbeiteAsync(daten, token)`: prüft vor jedem Element
    `ThrowIfCancellationRequested`, gibt dann mit `await Task.Yield()`
-   den Thread frei und summiert die Elemente. Bei Abbruch endet die
+   den Thread frei (nicht im Buch, hier vorgegeben: eine sofort fertige
+   Aufgabe, deren Fortsetzung später weiterläuft) und summiert die Elemente. Bei Abbruch endet die
    Aufgabe als abgebrochen.
 6. `MeldungMitAwait` und `MeldungMitWait`: Beide fangen den Fehler aus der
    vorgegebenen Methode `FehlerAsync` und liefern seine Meldung. Bei `await` kommt die

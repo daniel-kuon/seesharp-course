@@ -15,7 +15,8 @@ Wertgleichheit, die der Compiler für Records erzeugt.
 1. `Einlagern(a, menge)`: Kopie mit `Bestand + menge` per
    `a with { ... }`. Bei `menge <= 0` wird `a` selbst zurückgegeben.
 2. `Reduziere(a, prozent)`: Kopie mit gesenktem Preis, kaufmännisch auf
-   Cent gerundet: `Math.Round(wert, 2, MidpointRounding.AwayFromZero)`.
+   Cent gerundet: `Math.Round(wert, 2, MidpointRounding.AwayFromZero)`
+   (nicht im Buch, hier vorgegeben).
    0,55 € minus 50 % sind 0,28 €.
 3. `Gesamtwert(artikel)`: Summe aus Preis mal Bestand.
 4. `Preisstatistik(artikel)`: liefert das **benannte Tupel**

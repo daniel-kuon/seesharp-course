@@ -78,7 +78,7 @@ items:
         string s = "abc";
         string t = s;
         s += "d";
-        Console.WriteLine(string.Join(",", a) + " " + t);
+        Console.WriteLine(a[0] + "," + a[1] + "," + a[2] + " " + t);
         ```
       en: |
         What does the program print, and why do the array and the string behave so differently?
@@ -90,7 +90,7 @@ items:
         string s = "abc";
         string t = s;
         s += "d";
-        Console.WriteLine(string.Join(",", a) + " " + t);
+        Console.WriteLine(a[0] + "," + a[1] + "," + a[2] + " " + t);
         ```
   - type: open
     id: code-record
@@ -129,7 +129,7 @@ items:
 
         ```csharp
         Ampel a = (Ampel)7;
-        Console.WriteLine(a);
+        Console.WriteLine((int)a);
         Console.WriteLine((int)Ampel.Gelb);
         Console.WriteLine(Enum.IsDefined(a));
 
@@ -140,7 +140,7 @@ items:
 
         ```csharp
         Ampel a = (Ampel)7;
-        Console.WriteLine(a);
+        Console.WriteLine((int)a);
         Console.WriteLine((int)Ampel.Gelb);
         Console.WriteLine(Enum.IsDefined(a));
 

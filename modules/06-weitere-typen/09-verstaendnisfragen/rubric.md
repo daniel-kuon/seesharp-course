@@ -111,10 +111,13 @@ Typische Fehler: `False` für die erste Zeile (Records wie Klassen vergleichen),
 Ausgabe, drei Zeilen: `7`, `1`, `False`
 - Ein `enum` ist im Kern eine Ganzzahl (hier `int`) mit Namen für einige Werte. Der Cast
   `(Ampel)7` gelingt immer, auch wenn kein Name zu 7 gehört; deshalb keine Ausnahme.
-- `Console.WriteLine(a)` kann keinen Namen finden und gibt die Zahl `7` aus.
+- `(int)a` holt die Zahl hinter dem Wert: `7`.
 - `(int)Ampel.Gelb` ist `1`, weil die Werte bei 0 beginnen (Rot 0, Gelb 1, Gruen 2).
 - `Enum.IsDefined(a)` prüft, ob es einen Namen zum Wert gibt: `False`. Wer gültige Werte
   braucht, prüft damit oder lässt einen validierenden Setter ablehnen.
 
 Typische Fehler: Es werde eine `InvalidCastException` oder `ArgumentException` erwartet;
 `2` für `(int)Ampel.Gelb` (Zählung bei 1).
+
+Bonus (Deep Dive): Auch `Console.WriteLine(a)` gäbe `7` aus, weil `ToString()` zu 7 keinen
+Namen findet (nicht im Buch).

@@ -15,7 +15,7 @@ public static class Lotto {
     // Zieht 6 verschiedene Zahlen aus 1..49 und liefert sie aufsteigend sortiert.
     // Gleicher Seed, gleiche Ziehung.
     public static int[] Ziehe(int seed) {
-        // TODO: Array 1..49 füllen, mit new Random(seed) mischen, die ersten 6 kopieren (Array.Copy), sortieren
+        // TODO: Array 1..49 füllen, mit new Random(seed) mischen, die ersten 6 kopieren (vektor[..6] oder Array.Copy), sortieren
         throw new NotImplementedException();
     }
 }

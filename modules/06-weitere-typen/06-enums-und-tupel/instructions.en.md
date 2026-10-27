@@ -6,8 +6,7 @@ Open `Temperament.cs`. The `Temperament` enum is declared; the `Person` class us
 
 1. `Temp`'s setter should only accept defined values: `(Temperament)13` is a valid cast, but not a valid value; `Enum.IsDefined(value)` checks this. Invalid values are ignored.
 2. `Person.Deconstruct(out vn, out nn)` returns the first name and last name so that `var (vn, nn) = person;` works.
-3. `Analyse.ParseTemperament(text)` converts the name of a value without regard to case (`Enum.TryParse` with `ignoreCase`; not in the book: `Enum.TryParse(text, true, out Temperament t)` returns `true` and the value in `t`) and throws an `ArgumentException` if the text is unknown. Note: `TryParse` also accepts numbers such as `"7"`; additionally check the result using `Enum.IsDefined`.
-4. `Analyse.Wert(t)` returns the integer behind the value (a cast is sufficient).
-5. `Analyse.AnalyzeName("Otto Rentner")` splits the string at the first space (`IndexOf`, `Substring`) and returns a **named tuple** `(First, Last, FirstPalin, LastPalin)`; the palindrome check is a local method that compares from both ends, ignoring case (`"Otto"` is a palindrome).
+3. `Analyse.Wert(t)` returns the integer behind the value (a cast is sufficient).
+4. `Analyse.AnalyzeName("Otto Rentner")` splits the string at the first space (`IndexOf`, `Substring`) and returns a **named tuple** `(First, Last, FirstPalin, LastPalin)`; the palindrome check is a local method that compares from both ends, ignoring case (`"Otto"` is a palindrome).
 
-Enum values can be converted to their names using `ToString()`; the test checks for this.
+> **Deep Dive (optional):** `Analyse.ParseTemperament(text)` converts the name of a value into the enum value without regard to case and throws an `ArgumentException` if the text is unknown. The book does not show the way from the name to the value; the BCL offers `Enum.TryParse(text, true, out Temperament t)`, which returns `true` and the value in `t`. Note: `TryParse` also accepts numbers such as `"7"`; additionally check the result using `Enum.IsDefined`. Conversely, `ToString()` returns the name of an enum value. The test `EnumsTupelTests.ParseTemperament_ignoriert_die_Schreibweise` belongs to this part and is an extra; the other five tests count towards passing.

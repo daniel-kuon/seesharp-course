@@ -9,7 +9,8 @@ Glückszahl und Zeilenumbruch.
 
 1. `WrapLine(text, ncol = 72, hypSep = false)` zerlegt den Text an
    Leerzeichen (`text.Split(' ', StringSplitOptions.RemoveEmptyEntries)`,
-   nicht im Buch: liefert die Wörter ohne leere Einträge) und füllt Zeilen von
+   aus dem Tipp zu Aufgabe 6 in 6.10, Seite 542: liefert die Wörter ohne leere
+   Einträge) und füllt Zeilen von
    höchstens `ncol` Zeichen: Passt das nächste Wort noch (mit dem trennenden
    Leerzeichen), kommt es in die Zeile, sonst beginnt eine neue. Ein Wort,
    das länger als `ncol` ist, wird hart geteilt. Die Zeilen kommen ohne
@@ -27,5 +28,5 @@ Glückszahl und Zeilenumbruch.
    String) und a, e, i, o, u in beiden Schreibweisen zählen.
 4. `Umkehren(s)`: mit einem `StringBuilder` von hinten nach vorn aufbauen.
 
-Denk daran: Strings sind unveränderlich. `text.Insert(...)` oder `ToUpper()`
+Denk daran: Strings sind unveränderlich. `text.Replace(...)` oder `ToUpper()`
 liefern neue Strings, das Original bleibt, wie es war.

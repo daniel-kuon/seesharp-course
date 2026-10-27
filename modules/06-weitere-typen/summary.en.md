@@ -12,11 +12,11 @@ An array has a fixed length and a fixed element type; `new int[49]` returns all 
 
 ## Strings (6.3, page 472)
 
-A `string` is **immutable**: `s.ToUpper()` does not modify `s` but returns a new string; `s += c` in a loop copies the entire text each time. `StringBuilder` with `Append` is available for constructing long texts (6.3.2, page 479). In 6.3.1.2 (page 473) the book shows, among others, `IndexOf`, `Substring`, `Replace`, `StartsWith`, `ToUpper`/`ToLower`, and `CompareTo`; `Split`, `Insert`, and `Trim` used in the exercises are not in the book but in the BCL documentation. `foreach (char c in s)` iterates through the characters, and a `char` is treated directly as an `int`.
+A `string` is **immutable**: `s.ToUpper()` does not modify `s` but returns a new string; `s += c` in a loop copies the entire text each time. `StringBuilder` with `Append` is available for constructing long texts (6.3.2, page 479). In 6.3.1.2 (page 473) the book shows, among others, `IndexOf`, `Substring`, `Replace`, `StartsWith`, `ToUpper`/`ToLower`, and `CompareTo`; `Split` with `StringSplitOptions.RemoveEmptyEntries` is introduced in the tip for exercise 6 in 6.10 (page 542). For more string methods, see Deep Dive. `foreach (char c in s)` iterates through the characters, and a `char` is treated directly as an `int`.
 
 ## Enumerations (6.4, page 480)
 
-An `enum` assigns names to a handful of integers. The cast `(Temperament)13` always succeeds, even if no such value exists; `Enum.IsDefined` checks for this, and a validating setter prevents it. `(int)t` retrieves the number. Beyond the book: `ToString()` returns the name, and `Enum.Parse` and `TryParse` read it (with `ignoreCase`).
+An `enum` assigns names to a handful of integers. The cast `(Temperament)13` always succeeds, even if no such value exists; `Enum.IsDefined` checks for this, and a validating setter prevents it. `(int)t` retrieves the number. The book does not show the way from the name to the value and back (see Deep Dive).
 
 ## Tuples (6.6, page 486)
 
@@ -31,3 +31,11 @@ A tuple `(string First, string Last, bool FirstPalin, bool LastPalin)` returns m
 `new { Name = "Otto", Alter = 35 }` creates an object of an anonymous class whose name is assigned by the compiler (it cannot be written in C#), with read-only properties; the variable must be declared as `var`. This is intended for short-lived intermediate results; you'll see it all the time in Level 13 (LINQ). `using Koordinate = (double X, double Y);` gives a long type a short name for a file without creating a new type.
 
 Further reading in the book: 6.1 through 6.8 (pages 431 through 505); 6.9 (RSS reader with WPF) is not part of the course. The exercises in 6.10 (page 537) serve as templates for the sieve, lotto, matrix, lucky number, and line wrapping.
+
+## Deep Dive (optional)
+
+> Not in the book. These topics are optional – examples of what to look into next.
+
+- **Enum values as text:** `ToString()` returns the name of an enum value (for an undefined value such as `(Temperament)13`, the number). `Enum.Parse` and `Enum.TryParse` read a name back, ignoring case with `ignoreCase: true`. `TryParse` also accepts numbers such as `"7"`, so check the result with `Enum.IsDefined` as well. Practised in the Deep Dive part of "Enumerations and Tuples".
+- **More string methods:** `Insert`, `Trim`/`TrimEnd`, `string.Join` and many more are described in the BCL documentation for the `String` class.
+- **More array methods:** `Array.Copy` copies a section into another array, an alternative to the range `vektor[..6]`.

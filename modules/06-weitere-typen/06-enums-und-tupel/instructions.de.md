@@ -13,18 +13,20 @@ Seite 494).
    `Enum.IsDefined(value)` prüft das. Ungültige Werte werden ignoriert.
 2. `Person.Deconstruct(out vn, out nn)` liefert Vorname und Name, damit
    `var (vn, nn) = person;` funktioniert.
-3. `Analyse.ParseTemperament(text)` wandelt den Namen eines Werts ohne
-   Rücksicht auf Groß-/Kleinschreibung (`Enum.TryParse` mit `ignoreCase`,
-   nicht im Buch: `Enum.TryParse(text, true, out Temperament t)` liefert
-   `true` und den Wert in `t`) und wirft bei unbekanntem Text `ArgumentException`. Achtung: `TryParse`
-   akzeptiert auch Zahlen wie `"7"`; prüfe das Ergebnis zusätzlich mit
-   `Enum.IsDefined`.
-4. `Analyse.Wert(t)` liefert die Ganzzahl hinter dem Wert (ein Cast genügt).
-5. `Analyse.AnalyzeName("Otto Rentner")` zerlegt am ersten Leerzeichen
+3. `Analyse.Wert(t)` liefert die Ganzzahl hinter dem Wert (ein Cast genügt).
+4. `Analyse.AnalyzeName("Otto Rentner")` zerlegt am ersten Leerzeichen
    (`IndexOf`, `Substring`) und liefert ein **benanntes Tupel**
    `(First, Last, FirstPalin, LastPalin)`; die Palindromprüfung ist eine
    lokale Methode, die von beiden Enden her vergleicht, ohne Rücksicht auf
    Groß-/Kleinschreibung (`"Otto"` ist ein Palindrom).
 
-Enum-Werte lassen sich mit `ToString()` in ihren Namen wandeln; der Test
-prüft das mit.
+> **Deep Dive (optional):** `Analyse.ParseTemperament(text)` wandelt den
+> Namen eines Werts ohne Rücksicht auf Groß-/Kleinschreibung in den
+> Enum-Wert und wirft bei unbekanntem Text `ArgumentException`. Den Weg vom
+> Namen zum Wert zeigt das Buch nicht; die BCL bietet
+> `Enum.TryParse(text, true, out Temperament t)`, das `true` und den Wert in
+> `t` liefert. Achtung: `TryParse` akzeptiert auch Zahlen wie `"7"`; prüfe
+> das Ergebnis zusätzlich mit `Enum.IsDefined`. Umgekehrt liefert
+> `ToString()` den Namen eines Enum-Werts. Der Test
+> `EnumsTupelTests.ParseTemperament_ignoriert_die_Schreibweise` gehört zu
+> diesem Teil und ist ein Extra; zum Bestehen zählen die anderen fünf Tests.

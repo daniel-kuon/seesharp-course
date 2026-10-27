@@ -23,7 +23,7 @@ public class Person(string vorname, string name, int alter, Temperament temp) {
 public static class Analyse {
     // "Sanguinisch" -> Temperament.Sanguinisch (Groß-/Kleinschreibung egal); unbekannt -> ArgumentException
     public static Temperament ParseTemperament(string text) {
-        // TODO: Enum.Parse / Enum.TryParse
+        // Deep Dive (optional, nicht im Buch): Enum.TryParse, siehe Anleitung
         throw new NotImplementedException();
     }
 

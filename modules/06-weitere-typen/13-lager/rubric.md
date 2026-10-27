@@ -8,7 +8,7 @@
   `Assert.Same`): Bei unveränderlichen Objekten ist das gefahrlos. Gute
   Gelegenheit, Referenz- und Wertgleichheit gegenüberzustellen
   (`Assert.Same` vs. `Assert.Equal`).
-- Rundung: `MidpointRounding.AwayFromZero` ist die kaufmännische Rundung;
+- Bonus (Deep Dive): Rundung: `MidpointRounding.AwayFromZero` ist die kaufmännische Rundung;
   der Standard von `Math.Round` ist "Banker's Rounding" (0,275 → 0,28, aber
   0,265 → 0,26). Kurz zeigen lassen.
 - `Preisstatistik`: Min/Max mit dem ersten Element initialisieren, nicht mit

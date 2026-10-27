@@ -38,17 +38,17 @@ liefert einen neuen String; `s += c` in einer Schleife kopiert jedes Mal den
 ganzen Text. Für den Aufbau langer Texte gibt es `StringBuilder` mit `Append`
 (6.3.2, Seite 479). Das Buch zeigt in 6.3.1.2 (Seite 473) u. a. `IndexOf`,
 `Substring`, `Replace`, `StartsWith`, `ToUpper`/`ToLower` und `CompareTo`;
-`Split`, `Insert` und `Trim` aus den Übungen stehen nicht im Buch, sondern in
-der BCL-Dokumentation. Mit `foreach (char c
+`Split` mit `StringSplitOptions.RemoveEmptyEntries` stellt der Tipp zu
+Aufgabe 6 in 6.10 vor (Seite 542). Weitere String-Methoden siehe Deep Dive.
+Mit `foreach (char c
 in s)` läuft man über die Zeichen, und ein `char` rechnet direkt als `int`.
 
 ## Enumerationen (6.4, Seite 480)
 
 Ein `enum` gibt einer Handvoll Ganzzahlen Namen. Der Cast `(Temperament)13`
 gelingt immer, auch wenn es keinen solchen Wert gibt; `Enum.IsDefined` prüft
-das, ein validierender Setter wehrt es ab. `(int)t` holt die Zahl. Über das
-Buch hinaus: `ToString()` liefert den Namen, `Enum.Parse`/`TryParse` lesen
-ihn (mit `ignoreCase`).
+das, ein validierender Setter wehrt es ab. `(int)t` holt die Zahl. Den Weg
+vom Namen zum Wert und zurück zeigt das Buch nicht (siehe Deep Dive).
 
 ## Tupel (6.6, Seite 486)
 
@@ -82,3 +82,19 @@ kurzen Namen für eine Datei, ohne einen neuen Typ zu erzeugen.
 Vertiefung im Buch: 6.1 bis 6.8 (Seite 431 bis 505); 6.9 (RSS-Reader mit WPF)
 ist nicht Teil des Kurses. Die Übungsaufgaben in 6.10 (Seite 537) sind die
 Vorlage für Sieb, Lotto, Matrix, Glückszahl und Zeilenumbruch.
+
+## Deep Dive (optional)
+
+> Nicht im Buch. Diese Themen sind optional – Beispiele dafür, was du dir als Nächstes ansehen kannst.
+
+- **Enum-Werte als Text:** `ToString()` liefert den Namen eines Enum-Werts
+  (bei einem undefinierten Wert wie `(Temperament)13` die Zahl).
+  `Enum.Parse` und `Enum.TryParse` lesen einen Namen zurück, mit
+  `ignoreCase: true` ohne Rücksicht auf Groß-/Kleinschreibung. `TryParse`
+  akzeptiert auch Zahlen wie `"7"`; deshalb das Ergebnis zusätzlich mit
+  `Enum.IsDefined` prüfen. Geübt im Deep-Dive-Teil von "Enumerationen und
+  Tupel".
+- **Weitere String-Methoden:** `Insert`, `Trim`/`TrimEnd`, `string.Join` und
+  viele mehr beschreibt die BCL-Dokumentation zur Klasse `String`.
+- **Weitere Array-Methoden:** `Array.Copy` kopiert einen Ausschnitt in ein
+  anderes Array, eine Alternative zum Bereich `vektor[..6]`.

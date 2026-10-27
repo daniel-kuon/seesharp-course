@@ -8,21 +8,23 @@ Zeichenfolgen** (Seite 472) und **6.2.6 Suchen und Sortieren** (Seite 463).
 
 1. `IstPalindrom(s)`: Ein Text ist ein Palindrom, wenn er vorwärts und
    rückwärts gleich lautet. Dabei zählen nur Buchstaben (`char.IsLetter`),
-   und Groß-/Kleinschreibung ist egal (`char.ToLower`). So ist auch
+   und Groß-/Kleinschreibung ist egal (`char.ToLower`); beide Methoden
+   stehen nicht im Buch und sind hier vorgegeben. So ist auch
    `"Eine güldne, gute Tugend: Lüge nie!"` ein Palindrom. Lauf mit zwei
    Indizes von beiden Enden aufeinander zu und überspringe
    Nicht-Buchstaben. Ein leerer Text ist ein Palindrom.
 2. `IstAnagramm(a, b)`: Zwei Texte sind Anagramme, wenn sie aus genau
    denselben Buchstaben bestehen (wieder nur Buchstaben, ohne
    Groß-/Kleinschreibung). Tipp: Die Buchstaben klein in ein `char[]`
-   sammeln, mit `Array.Sort` sortieren und mit `new string(...)` vergleichen.
+   sammeln, mit `Array.Sort` sortieren und mit `new string(...)` vergleichen
+   (macht aus einem `char[]` einen String; nicht im Buch, hier vorgegeben).
 3. `Kodiere(s)`: Lauflängenkodierung. Jeder Lauf gleicher Zeichen wird zu
    Anzahl und Zeichen: `"AAABCC"` wird `"3A1B2C"`. Der Text enthält keine
    Ziffern.
 4. `Dekodiere(code)`: die Umkehrung. Die Anzahl kann mehrstellig sein
-   (`"12x"`); sammle die Ziffern (`char.IsDigit`, `c - '0'`) zu einer Zahl,
+   (`"12x"`); sammle die Ziffern (`char.IsDigit`, nicht im Buch, hier vorgegeben; `c - '0'`) zu einer Zahl,
    bis ein Nicht-Ziffer-Zeichen kommt. `StringBuilder.Append(c, anzahl)`
-   hängt ein Zeichen mehrfach an.
+   hängt ein Zeichen mehrfach an (nicht im Buch, hier vorgegeben).
 
 Diese Tests müssen bestehen:
 

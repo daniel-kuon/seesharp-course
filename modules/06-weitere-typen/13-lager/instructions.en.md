@@ -7,7 +7,7 @@ An `Artikel` is a positional record with `Name`, `Preis` (`decimal`), and `Besta
 Open `Lager.cs` and implement the static methods:
 
 1. `Einlagern(a, menge)`: Copy with `Bestand + menge` using `a with { ... }`. If `menge <= 0`, `a` itself is returned.
-2. `Reduziere(a, prozent)`: Copy with a reduced price, rounded to the nearest cent: `Math.Round(wert, 2, MidpointRounding.AwayFromZero)`. 0.55 € minus 50% equals 0.28 €.
+2. `Reduziere(a, prozent)`: Copy with a reduced price, rounded to the nearest cent: `Math.Round(wert, 2, MidpointRounding.AwayFromZero)` (not in the book, given here). 0.55 € minus 50% equals 0.28 €.
 3. `Gesamtwert(artikel)`: sum of price times `Bestand`.
 4. `Preisstatistik(artikel)` returns the **named tuple** `(Min, Max, Schnitt)` of the prices, with the average rounded to the nearest cent. For an empty array, `(0, 0, 0)`.
 5. `Nachbestellen(artikel, mindestbestand)`: returns a **new** array. Items with a quantity below the minimum stock level are copied into the new array with `Bestand = mindestbestand`; all others remain unchanged (same object). The original array remains as is.

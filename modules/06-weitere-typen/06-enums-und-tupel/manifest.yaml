@@ -21,6 +21,12 @@ items:
     openFile: "EnumsTupel/Temperament.cs"
     openLine: 8
     testProject: "EnumsTupel Tests/EnumsTupel.Tests.csproj"
+    requiredTests:
+      - EnumsTupelTests.Enum_hat_die_vier_Temperamente_in_dieser_Reihenfolge
+      - EnumsTupelTests.Setter_ignoriert_undefinierte_Werte
+      - EnumsTupelTests.Person_laesst_sich_in_Vorname_und_Name_dekonstruieren
+      - EnumsTupelTests.AnalyzeName_liefert_ein_benanntes_Tupel
+      - EnumsTupelTests.AnalyzeName_laesst_sich_dekonstruieren
   - type: multipleChoice
     id: enum-cast
     prompt: { de: "enum Ampel { Rot, Gelb, Gruen } — was ergibt (Ampel)7?", en: "enum Ampel { Rot, Gelb, Gruen } — what does (Ampel)7 give?" }

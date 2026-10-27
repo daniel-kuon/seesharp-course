@@ -93,6 +93,7 @@ public class Bruch {
 
     // Vergleicht die Werte beider Brüche per Kreuzmultiplikation (long, damit nichts überläuft):
     // negativ, wenn dieser Bruch kleiner ist; 0 bei Gleichheit; positiv, wenn er größer ist.
+    // Achtung: Nenner dürfen negativ sein (1/-2).
     public int CompareTo(Bruch? b) {
         // TODO
         throw new NotImplementedException();

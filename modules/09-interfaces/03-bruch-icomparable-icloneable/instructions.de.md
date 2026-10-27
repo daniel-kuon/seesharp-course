@@ -12,6 +12,11 @@ Die Klasse `Bruch` aus Level 5 bekommt zwei Verträge:
    große Zähler nicht überlaufen (`(long)Zaehler * b.Nenner`). Liefere
    negativ, 0 oder positiv; `long` hat selbst eine `CompareTo`-Methode, die
    das erledigt. Ist `b` null, gilt dieser Bruch als größer.
+   **Achtung, negative Nenner:** `Bruch` erlaubt `1/-2`. Die Kreuzmultiplikation
+   multipliziert beide Seiten mit `Nenner · b.Nenner`; ist genau einer der beiden
+   Nenner negativ, ist dieses Produkt negativ und der Vergleich kehrt sich um
+   (wie bei Ungleichungen: Multiplikation mit einer negativen Zahl dreht das
+   Zeichen). Dreh das Ergebnis in diesem Fall um.
 3. `Clone()` ist von `ICloneable` als `object Clone()` vorgeschrieben.
    `MemberwiseClone()` (geerbt von `Object`) liefert eine flache Kopie, das
    reicht hier, weil `Bruch` nur Werttypen und einen String enthält.

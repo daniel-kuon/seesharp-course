@@ -100,7 +100,8 @@ public class Bruch : IComparable<Bruch>, ICloneable, IAdditionOperators<Bruch, B
     public int CompareTo(Bruch? b) {
         if (b is null)
             return 1;
-        return ((long)Zaehler * b.Nenner).CompareTo((long)b.Zaehler * Nenner);
+        int vergleich = ((long)Zaehler * b.Nenner).CompareTo((long)b.Zaehler * Nenner);
+        return (Nenner < 0) != (b.Nenner < 0) ? -vergleich : vergleich; // genau ein Nenner negativ: umdrehen
     }
 
     public object Clone() => MemberwiseClone();

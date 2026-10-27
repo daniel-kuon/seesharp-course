@@ -92,12 +92,15 @@ public class Bruch : IComparable<Bruch>, ICloneable {
 
     // Vergleicht die Werte beider Brüche per Kreuzmultiplikation (long, damit nichts überläuft):
     // negativ, wenn dieser Bruch kleiner ist; 0 bei Gleichheit; positiv, wenn er größer ist.
+    // Die Kreuzmultiplikation multipliziert beide Seiten mit Nenner · b.Nenner; ist dieses Produkt
+    // negativ (genau ein Nenner negativ), kehrt sich der Vergleich um.
     public int CompareTo(Bruch? b) {
         if (b is null)
             return 1;
         long z1hn = (long)Zaehler * b.Nenner;
         long z2hn = (long)b.Zaehler * Nenner;
-        return z1hn.CompareTo(z2hn);
+        int vergleich = z1hn.CompareTo(z2hn);
+        return (Nenner < 0) != (b.Nenner < 0) ? -vergleich : vergleich;
     }
 
     // ICloneable verlangt object Clone(); MemberwiseClone() liefert eine flache Kopie.

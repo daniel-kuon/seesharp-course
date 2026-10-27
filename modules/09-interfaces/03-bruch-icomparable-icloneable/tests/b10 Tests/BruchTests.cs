@@ -25,6 +25,16 @@ public class BruchTests
     }
 
     [Fact]
+    public void CompareTo_beachtet_negative_Nenner()
+    {
+        Assert.True(new Bruch(1, -2, "").CompareTo(new Bruch(1, 3, "")) < 0);
+        Assert.True(new Bruch(1, 3, "").CompareTo(new Bruch(1, -2, "")) > 0);
+        Assert.True(new Bruch(-1, -2, "").CompareTo(new Bruch(1, 3, "")) > 0);
+        Assert.Equal(0, new Bruch(-1, -2, "").CompareTo(new Bruch(1, 2, "")));
+        Assert.Equal(0, new Bruch(1, -2, "").CompareTo(new Bruch(-1, 2, "")));
+    }
+
+    [Fact]
     public void Array_Sort_nutzt_CompareTo()
     {
         Bruch[] b = [new Bruch(3, 5, "c"), new Bruch(1, 3, "a"), new Bruch(1, 2, "b")];

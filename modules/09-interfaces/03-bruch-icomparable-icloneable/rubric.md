@@ -8,9 +8,11 @@
   kurz einordnen.
 - Nachfrage: Warum ist `CompareTo` mit `Bruch?` deklariert? (Das Interface
   erlaubt null; Nullable-Annotation.)
-- Die Kreuzmultiplikation setzt positive Nenner voraus; `Bruch` erlaubt aber
-  negative (`1/-2`), dann kehrt sich der Vergleich um. Die Tests nutzen nur
-  positive Nenner; gute Nachfrage.
+- Negative Nenner (`1/-2`): Die Kreuzmultiplikation allein kehrt den Vergleich
+  um, wenn genau ein Nenner negativ ist. Der Test
+  `CompareTo_beachtet_negative_Nenner` prüft das. Alternative, die ebenfalls
+  besteht: beide Brüche vorher auf positiven Nenner bringen (Vorzeichen in den
+  Zähler). Nachfrage: Warum dreht ein negatives Produkt das Ergebnis?
 - `Array.Sort` ohne `IComparable<T>` wirft `InvalidOperationException`;
   einmal zeigen, indem man die Interface-Angabe entfernt.
 

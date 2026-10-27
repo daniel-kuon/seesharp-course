@@ -2,7 +2,7 @@ public static class Textvergleich
 {
     // Die verschiedenen Wörter eines Texts, klein geschrieben.
     // Trennzeichen: Leerzeichen und , . ; : ! ? -
-    // Tipp: text.Split(trennerArray, StringSplitOptions.RemoveEmptyEntries), ToLowerInvariant()
+    // Tipp: text.Split(trennerArray, StringSplitOptions.RemoveEmptyEntries), ToLower()
     public static HashSet<string> Woerter(string text)
     {
         // TODO

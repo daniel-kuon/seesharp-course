@@ -18,7 +18,7 @@ Die Klasse `Bruch` aus Level 5 bekommt zwei Verträge:
    (wie bei Ungleichungen: Multiplikation mit einer negativen Zahl dreht das
    Zeichen). Dreh das Ergebnis in diesem Fall um.
 3. `Clone()` ist von `ICloneable` als `object Clone()` vorgeschrieben.
-   `MemberwiseClone()` (geerbt von `Object`) liefert eine flache Kopie, das
+   `MemberwiseClone()` (geerbt von `Object`; nicht im Buch, hier vorgegeben) liefert eine flache Kopie, das
    reicht hier, weil `Bruch` nur Werttypen und einen String enthält.
 
 Danach sortiert `Array.Sort(b)` ein `Bruch[]` nach Wert, und `(Bruch)

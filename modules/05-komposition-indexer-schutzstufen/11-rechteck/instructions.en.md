@@ -10,7 +10,7 @@ Open `Rechteck.cs` and complete the following:
 2. `LinksUnten` and `RechtsOben` return **copies** (`Klone()`) to ensure that the getter doesn't open a backdoor either.
 3. `Breite`, `Hoehe`, `Flaeche`, and `Umfang` are calculated properties.
 4. `Enthaelt(p)`: Is `p` inside the rectangle? The border is included.
-5. `Verschiebe(dx, dy)` delegates to `Verschiebe`, which moves the two points.
+5. `Verschiebe(dx, dy)` delegates to `Verschiebe` of the two points.
 6. `Schnitt(r)` returns the overlap as a **new** rectangle: the left side is the larger of the two left ends, the right side is the smaller of the two right ends, and the top and bottom sides are determined accordingly. If there is no positive width or height remaining, the method returns `null`. Both rectangles remain unchanged.
 7. `ToString()` returns `"[(1; 2), (4; 6)]"` (use `Punkt.ToString`).
 

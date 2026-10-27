@@ -28,7 +28,7 @@ items:
     options:
       - { de: "Nur Code innerhalb der Assembly FractionLib.dll.", en: "Only code within the FractionLib.dll assembly." }
       - { de: "Jedes Projekt, das FractionLib referenziert.", en: "Any project that references FractionLib." }
-      - { de: "Nur die Klasse, in der sie steht.", en: "Just the class she's in." }
+      - { de: "Nur die Klasse, in der sie steht.", en: "Only the class it is declared in." }
       - { de: "Nur abgeleitete Klassen.", en: "Only derived classes." }
     correct: [0]
     explanation: { de: "internal bedeutet assembly-intern. Das Konsolenprojekt ist eine eigene Assembly und sieht die Methode nicht, obwohl es die Bibliothek referenziert.", en: "\"internal\" means \"internal to the assembly.\" The console project is a separate assembly and cannot see the method, even though it references the library." }

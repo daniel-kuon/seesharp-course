@@ -7,10 +7,10 @@ This time, there are two projects:
 - `FractionLib` is a **class library** (an `OutputType` library; it does not have a `Main` method). It contains the predefined `Bruch` class in the `de.bebagoe.fraction` namespace.
 - `Bruchrechnung` is a console project that **references** `FractionLib` (see `Bruchrechnung.csproj`).
 
-Responsibilities:
+Tasks:
 
 1. In `FractionLib/Bruch.cs`, the helper method `Ggt` is incorrectly marked as `public`. It is not part of the library's interface: Change the access modifier to `internal` so that only code within `FractionLib` can access it. Then, in `Bruchrechnung`, verify that `Bruch.Ggt(…)` no longer compiles there.
-2. Take a look at the `using` file in the `Bruchrechnung/Rechner.cs` project: Without `using de.bebagoe.fraction;`, the console project does not recognize the `Bruch` type, even though the project reference is set (namespace and assembly are two different things; see Level 1).
+2. Take a look at the `using` directive in `Bruchrechnung/Rechner.cs`: Without `using de.bebagoe.fraction;`, the console project does not recognize the `Bruch` type, even though the project reference is set (namespace and assembly are two different things; see Level 1).
 3. `Rechner.Summe(params Bruch[] brueche)` starts with `new Bruch(0, 1, "Summe")`, adds all fractions using `+=`, and returns the result with the label `"Summe"` (set it again after adding, because `+=` appends labels). The passed-in fractions remain unchanged.
 4. `Rechner.Mittel(...)`: Calculate the sum, multiply the denominator by the number, simplify, label `"Mittel"`.
 

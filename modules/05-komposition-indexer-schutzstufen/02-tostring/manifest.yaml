@@ -22,7 +22,7 @@ items:
     id: ohne-override
     prompt: { de: "Was gibt Console.WriteLine(new Bruch(7, 8, \"\")) aus, solange ToString() nicht überschrieben ist?", en: "What does `Console.WriteLine(new Bruch(7, 8, \"\"))` print as long as `ToString()` has not been overridden?" }
     options:
-      - { de: "Den Typnamen Bruch, weil die geerbte Object-Implementierung den Typnamen liefert.", en: "The type name is \"Bruch\" because the inherited `Object` implementation provides the type name." }
+      - { de: "Den Typnamen Bruch, weil die geerbte Object-Implementierung den Typnamen liefert.", en: "The type name Bruch, because the inherited `Object` implementation returns the type name." }
       - { de: "7/8, weil der Compiler die Eigenschaften zusammenbaut.", en: "7/8, because the compiler combines the properties." }
       - { de: "Einen Compilerfehler, weil Bruch kein string ist.", en: "A compiler error because \"Bruch\" is not a string." }
       - { de: "Die Speicheradresse des Objekts.", en: "The memory address of the object." }

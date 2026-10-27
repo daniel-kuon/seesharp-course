@@ -8,7 +8,7 @@ The `Bibliothek` stores its books in a linked list, similar to the `PersList` fr
 2. `Bibliothek.Add(buch)` adds a node and increments `Anzahl`.
 3. The `this[int i]` indexer returns the book at position `i` and throws an `ArgumentOutOfRangeException` if the index is invalid. It is read-only.
 4. The overloaded indexer `this[string titel]` returns the first book with exactly that title, or `null` if there isn't one (return type `Buch?`).
-5. `Ausleihen(titel)` and `Zurueckgeben(titel)` change to `Ausgeliehen` and return `true` if successful. If the book is missing, already checked out, or not checked out at all, they return `false`. Use the `string` indexer.
+5. `Ausleihen(titel)` and `Zurueckgeben(titel)` change `Ausgeliehen` and return `true` if successful. If the book is missing, already checked out, or not checked out at all, they return `false`. Use the `string` indexer.
 6. A calculated property is `Verfuegbar`: It counts the number of books that are not checked out each time it is read.
 7. `VonAutor(autor)` returns the author's titles in the order they were entered, separated by `", "`, that is `"Der Process, Das Schloss"`. If no matches are found, it returns `""`.
 

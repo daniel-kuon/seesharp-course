@@ -6,7 +6,10 @@
 - `Tochter` muss privat bleiben (der Reflection-Test prüft das); `Sohn` ist
   bewusst öffentlich, damit `new Familie.Sohn(...)` von außen geht. Die
   Schreibweise `Familie.Sohn` besprechen.
-- Primärkonstruktoren: Warum werden die Parameter in Felder kopiert? (Sonst
-  entstehen Capture-Felder mit Doppelspeicherung, siehe Buch 7.4.3.2.)
+- Primärkonstruktoren: Warum werden die Parameter in Felder kopiert? (Ein
+  Parameter, den eine Methode direkt benutzt, landet in einem versteckten,
+  veränderlichen Feld; die expliziten `readonly`-Felder machen den Zustand
+  sichtbar und unveränderlich. Wer den Parameter zusätzlich in einer Methode
+  benutzt, speichert ihn doppelt, Warnung CS9124, Buch 5.4.3.2.1, Seite 347.)
 
 Modellantwort: `solution/` bzw. `samples/Klassen und Objekte/Geschachtelte Klassen`.

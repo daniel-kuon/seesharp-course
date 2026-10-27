@@ -18,5 +18,5 @@ fertig und dient als Vorlage.
    Tochter, dann die des Sohns.
 
 Beachte die Primärkonstruktoren (`class Sohn(Familie f, string name, int alter)`):
-Die Parameter werden in `readonly`-Felder übernommen, damit sie nicht nur im
+`Sohn` übernimmt die Parameter ausdrücklich in `readonly`-Felder, damit sie nicht nur im
 Konstruktor, sondern in allen Methoden verfügbar sind.

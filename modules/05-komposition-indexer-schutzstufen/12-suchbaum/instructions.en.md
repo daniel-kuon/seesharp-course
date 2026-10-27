@@ -20,7 +20,7 @@ The `Knoten` is a private nested class; from the outside, you can only see `int`
 2. `Enthaelt(wert)`: descend in exactly the same way; reaching `null` means "not there."
 3. `Anzahl` using a **recursive** private helper method `static int Zaehle(Knoten? k)`: an empty subtree has 0 nodes; otherwise, 1 plus the nodes on the left plus the nodes on the right.
 4. `Hoehe` is also recursive: 0 if empty, otherwise 1 plus the greater of the two subtree heights (`Math.Max`).
-5. `ToString()` returns all values in ascending order, separated by a space: recursively, first the left subtree, then the node, then the right subtree (in-order). Be sure to include spaces for empty subtrees.
+5. `ToString()` returns all values in ascending order, separated by a space: recursively, first the left subtree, then the node, then the right subtree (in-order). Watch out for superfluous spaces with empty subtrees.
 
 The following tests must be passed:
 

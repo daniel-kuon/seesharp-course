@@ -33,8 +33,10 @@ sieht alle Mitglieder der äußeren, auch private, braucht für Instanzmitgliede
 aber eine Referenz auf ein Objekt der äußeren Klasse (`f.name`). Ohne
 Modifizierer ist eine geschachtelte Klasse privat und von außen unsichtbar;
 mit `public` wird sie als `Familie.Sohn` ansprechbar. Primärkonstruktoren
-(`class Sohn(Familie f, string name, int alter)`) sparen Boilerplate; die
-Parameter werden in `readonly`-Felder übernommen.
+(`class Sohn(Familie f, string name, int alter)`) sparen Boilerplate; im
+Buchbeispiel werden die Parameter ausdrücklich in `readonly`-Felder übernommen
+(anders als bei Records entstehen daraus keine Eigenschaften, siehe 5.4.3.2,
+Seite 344).
 
 ## Indexer (5.12, Seite 393)
 

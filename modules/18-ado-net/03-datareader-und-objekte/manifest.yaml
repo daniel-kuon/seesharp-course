@@ -21,7 +21,7 @@ items:
     openLine: 31
     testProject: "Artikelverwaltung Tests/Artikelverwaltung.Tests.csproj"
   - type: multipleChoice
-    id: getstring-null
+    id: indexer-null
     prompt: { de: "In der Spalte Kategorie steht für einen Artikel NULL. Was liefert der Indexer leser[\"Kategorie\"] für diese Zeile?", en: "In the `Kategorie` column, an item has NULL. What does the indexer `leser[\"Kategorie\"]` return for this row?" }
     options:
       - { de: "null, das passt zum Typ string?.", en: "null, which fits the type string?." }

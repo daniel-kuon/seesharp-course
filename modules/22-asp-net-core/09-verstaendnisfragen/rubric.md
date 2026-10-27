@@ -28,7 +28,7 @@ Wesentlich:
 
 Typische Fehlvorstellungen: Beide Aufrufe liefern `RedirectToPageResult` (die Prüfung wird übersehen); `a` speichere trotzdem (die Liste hätte 2 Einträge).
 
-## di-lebensdauer
+## dienst-registrieren
 
 Wesentlich:
 - Konstruktorinjektion: Die Klasse fordert ihre Abhängigkeiten als Konstruktorparameter an; der Service-Container erzeugt sie und reicht sie hinein (die Klasse erzeugt sie nicht selbst mit `new`, 22.3).

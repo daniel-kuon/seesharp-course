@@ -26,7 +26,7 @@ items:
     openLine: 14
     testProject: "Blogging Tests/Blogging.Tests.csproj"
   - type: multipleChoice
-    id: maxlength-sqlite
+    id: maxlength-minlength
     prompt: { de: "Die Eigenschaft Title einer Entität trägt [MaxLength(200), MinLength(5)]. Welchen Spaltentyp legt eine Migration für den SQL Server an?", en: "The property `Title` of an entity carries `[MaxLength(200), MinLength(5)]`. Which column type does a migration create for SQL Server?" }
     options:
       - { de: "nvarchar(max): Annotationen wirken sich nie auf das Schema aus.", en: "nvarchar(max): annotations never affect the schema." }

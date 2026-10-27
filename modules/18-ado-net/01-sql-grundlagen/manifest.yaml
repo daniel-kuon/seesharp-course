@@ -35,7 +35,7 @@ items:
       - SkripteTests.AnzahlProKategorie_gruppiert_und_zaehlt
       - SkripteTests.Preiserhoehung_erhoeht_nur_die_Kategorie_Garten
   - type: multipleChoice
-    id: where-having
+    id: where-group-by
     prompt: { de: "Du willst je Kategorie zählen, wie viele Artikel mehr als 10 kosten. Welche Abfrage liefert das?", en: "For each category you want to count how many items cost more than 10. Which query returns that?" }
     options:
       - { de: "SELECT KategorieId, COUNT(*) FROM Artikel WHERE Preis > 10 GROUP BY KategorieId", en: "SELECT KategorieId, COUNT(*) FROM Artikel WHERE Preis > 10 GROUP BY KategorieId" }

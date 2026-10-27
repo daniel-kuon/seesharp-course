@@ -34,7 +34,7 @@ items:
     correct: [0]
     explanation: { de: "22.7.2.4 (Seite 1581): Eine Typrestriktion verhindert die Abbildung der URL auf die Seite; es wird keine Behandlungsmethode aufgerufen.", en: "22.7.2.4 (page 1581): A type restriction prevents the URL from being mapped to the page; no handler is called." }
   - type: multipleChoice
-    id: singleton
+    id: zustand-im-pagemodel
     prompt: { de: "Statt im Dienst würde `UmfrageModel` die Stimmen in einem eigenen Feld `List<Stimme> _stimmen` sammeln. Was passiert?", en: "Instead of in the service, `UmfrageModel` would collect the votes in a field of its own, `List<Stimme> _stimmen`. What happens?" }
     options:
       - { de: "Bei der nächsten Anforderung sind die Stimmen weg: Das PageModel entsteht bei jeder Anforderung neu, sein Feld beginnt wieder leer.", en: "At the next request the votes are gone: the PageModel is created anew for every request, and its field starts empty again." }

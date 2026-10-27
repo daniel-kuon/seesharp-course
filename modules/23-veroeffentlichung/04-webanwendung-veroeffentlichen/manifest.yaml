@@ -14,7 +14,7 @@ requires:
   - publish.dotnet-publish
 items:
   - type: multipleChoice
-    id: kestrel-iis
+    id: kestrel
     prompt: { de: "Welcher Webserver führt eine ASP.NET-Core-Anwendung aus, die du aus dem Veröffentlichungsordner startest?", en: "Which web server runs an ASP.NET Core application that you start from the publish folder?" }
     options:
       - { de: "Kestrel, der in ASP.NET Core eingebaute Webserver; ein separat installierter Webserver ist dafür nicht nötig.", en: "Kestrel, the web server built into ASP.NET Core; no separately installed web server is needed." }
@@ -41,7 +41,7 @@ items:
     correct: [0]
     explanation: { de: "23.2.3.1 (Seite 1661): `launchSettings.json` gilt nur für Starts aus der Entwicklungsumgebung. Es gibt andere Wege, den Port 5000 zu ändern; die Aufgabe benutzt die Kommandozeilenoption `--urls` (nicht im Buch, hier vorgegeben). Deep Dive: auch die Umgebungsvariable `ASPNETCORE_URLS` setzt die Adressen.", en: "23.2.3.1 (page 1661): `launchSettings.json` applies only to launches from the development environment. There are other ways to change port 5000; the exercise uses the command-line option `--urls` (not in the book, given here). Deep Dive: the environment variable `ASPNETCORE_URLS` also sets the addresses." }
   - type: multipleChoice
-    id: umgebungsvariablen
+    id: umgebung-veroeffentlicht
     prompt: { de: "Im Projekt setzt `launchSettings.json` die Umgebungsvariable `ASPNETCORE_ENVIRONMENT` auf `Development`, und `Program.cs` enthält `if (!app.Environment.IsDevelopment()) { app.UseExceptionHandler(\"/Error\"); ... }` (22.2.2). Was gilt, wenn du die Anwendung aus dem Veröffentlichungsordner startest?", en: "In the project, `launchSettings.json` sets the environment variable `ASPNETCORE_ENVIRONMENT` to `Development`, and `Program.cs` contains `if (!app.Environment.IsDevelopment()) { app.UseExceptionHandler(\"/Error\"); ... }` (22.2.2). What applies when you start the application from the publish folder?" }
     options:
       - { de: "`launchSettings.json` fehlt im Veröffentlichungsordner, also ist die Umgebung nicht `Development`: Der `if`-Zweig läuft, und `UseExceptionHandler(\"/Error\")` ist aktiv.", en: "`launchSettings.json` is missing from the publish folder, so the environment is not `Development`: the `if` branch runs, and `UseExceptionHandler(\"/Error\")` is active." }

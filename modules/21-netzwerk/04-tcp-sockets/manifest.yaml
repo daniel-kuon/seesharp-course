@@ -40,7 +40,7 @@ items:
     correct: [0]
     explanation: { de: "21.6.2 (Seite 1530). Eine leere Zeile ist eine Zeichenkette der Länge 0, nicht null. Ein Server prüft deshalb auf null, um getrennte Klienten zu erkennen.", en: "21.6.2 (page 1530). An empty line is a string of length 0, not null. A server therefore checks for null to identify disconnected clients." }
   - type: multipleChoice
-    id: port-null
+    id: ipv6-dualmode
     prompt: { de: "Der Zeitserver im Buch legt seinen Listener so an: new TcpListener(IPAddress.IPv6Any, 55555) und danach listener.Server.DualMode = true. Was bewirkt das?", en: "The time server in the book creates its listener like this: `new TcpListener(IPAddress.IPv6Any, 55555)` followed by `listener.Server.DualMode = true`. What does that do?" }
     options:
       - { de: "Der Server lauscht auf Port 55555 über alle IPv6-Adressen des Rechners; mit DualMode = true ist er zusätzlich über die IPv4-Adresse erreichbar (Dual-Stack-Server). Lauschen beginnt erst mit Start().", en: "The server listens on port 55555 on all IPv6 addresses of the computer; with DualMode = true it can also be reached via the IPv4 address (dual-stack server). Listening only begins with Start()." }

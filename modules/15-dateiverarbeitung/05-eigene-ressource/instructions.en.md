@@ -1,13 +1,13 @@
 # A Custom IDisposable Class
 
-Read **sections 5.4.5 "Clearing Unneeded Objects**" (page 355), **16.2.1 "Dispose() or Close()**," and **16.2.2 "Garbage Collector**" (page 1026) in the book.
+Read **sections 5.4.5 "Clearing Unneeded Objects**" (page 355), **16.2.1 "Dispose() or Close()**," and **16.2.2 "Garbage Collector**" (pages 1026–1027) in the book.
 
-If you hold a file or another external resource in a field, you must allow your users to dispose of it `using` `IDisposable`. Then the using statement and `using` declaration will also work for your class. Open `Logbuch.cs`. The Logbook opens a file in the constructor and writes lines to it using `Eintrag(text)`:
+If you hold a file or another external resource in a field, you must let your users release it: through `IDisposable`. Then the `using` statement and the `using` declaration also work for your class. Open `Logbuch.cs`. The Logbook opens a file in the constructor and writes lines to it using `Eintrag(text)`:
 
 1. `Dispose()` closes the `StreamWriter` (and thus the file).
 2. `Dispose()` is **idempotent**: A second or third call has no effect.
 3. After `Dispose()`, `Eintrag(…)` throws an `ObjectDisposedException` (Tip: `ObjectDisposedException.ThrowIf(bedingung, this)`; it is derived from `InvalidOperationException`).
-4. The static property `Offene` counts log files that have been created but not yet released: It is incremented in the constructor after the file has been successfully opened (if the constructor fails, there is nothing to release) and decremented exactly once in `Dispose()`.
+4. The static property `Offene` counts logbooks that have been created but not yet released: It is incremented in the constructor after the file has been successfully opened (if the constructor fails, there is nothing to release) and decremented exactly once in `Dispose()`.
 
 You don't need a finalizer (`~Logbuch`): The class holds only one managed object, which handles the file on its own (16.2.2).
 

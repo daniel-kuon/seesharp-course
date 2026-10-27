@@ -22,10 +22,10 @@ items:
     testProject: "Dateiverwaltung Tests/Dateiverwaltung.Tests.csproj"
   - type: multipleChoice
     id: path-combine
-    prompt: { de: "Was liefert Path.Combine(\"Ordner\", \"/daten.txt\") auf einem System, auf dem / das Trennzeichen ist?", en: "What does Path.Combine(\"folder\", \"/data.txt\") return on a system where / is the separator?" }
+    prompt: { de: "Was liefert Path.Combine(\"Ordner\", \"/daten.txt\") auf einem System, auf dem / das Trennzeichen ist?", en: "What does Path.Combine(\"Ordner\", \"/daten.txt\") return on a system where / is the separator?" }
     options:
       - { de: "Nur \"/daten.txt\": Ein Teil, der mit einem Trennzeichen beginnt, gilt als absoluter Pfad und verwirft alles davor.", en: "Only \"/daten.txt\": Any part that begins with a separator is treated as an absolute path, and everything before it is ignored." }
-      - { de: "\"Ordner/daten.txt\": Das doppelte Trennzeichen wird entfernt.", en: "\"Folder/data.txt\": The duplicate separator is removed." }
+      - { de: "\"Ordner/daten.txt\": Das doppelte Trennzeichen wird entfernt.", en: "\"Ordner/daten.txt\": The duplicate separator is removed." }
       - { de: "\"Ordner//daten.txt\": Die Teile werden einfach aneinandergehängt.", en: "\"Ordner//daten.txt\": The parts are simply concatenated." }
       - { de: "Eine ArgumentException, weil der zweite Teil nicht relativ ist.", en: "An ArgumentException because the second part is not relative." }
     correct: [0]

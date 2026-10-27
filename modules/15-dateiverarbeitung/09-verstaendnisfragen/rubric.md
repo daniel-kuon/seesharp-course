@@ -18,9 +18,9 @@ Typische Irrtümer: Der GC schließe die Datei sofort, wenn die Variable den Gü
 Kernpunkte:
 - `FileStream` (mit `BinaryWriter`/`BinaryReader`) arbeitet mit **Bytes bzw. Werten im Binärformat** (ein `int` sind 4, ein `double` 8 Bytes); kompakt, aber nicht menschenlesbar, und man muss beim Lesen Typ und Reihenfolge kennen.
 - `StreamWriter`/`StreamReader` arbeiten mit **Text** (Zeilen, `WriteLine`, `ReadLine`); sie wandeln Zeichen in Bytes um und brauchen dafür eine **Zeichencodierung**.
-- Codierung: Ohne Angabe gilt **UTF-8**; die Codierung steht **nicht in der Datei**, man muss sie kennen. Wird eine Datei mit falscher Codierung gelesen (z. B. Windows-1252 als UTF-8), erscheinen Ersatzzeichen statt Umlauten.
+- Codierung: Ohne Angabe gilt **UTF-8**; die Codierung steht **nicht in der Datei** (höchstens ein BOM verrät UTF-8/UTF-16), man muss sie kennen. Wird eine Datei mit falscher Codierung gelesen (z. B. Windows-1252 als UTF-8), erscheinen Ersatzzeichen statt Umlauten.
 
-Typische Irrtümer: Der StreamReader erkenne die Codierung von selbst; Binärdateien seien immer kleiner/besser; `StreamWriter` schreibe Bytes ohne Codierung.
+Typische Irrtümer: Der StreamReader erkenne jede Codierung von selbst (er erkennt nur ein BOM, Windows-1252 nicht); Binärdateien seien immer kleiner/besser; `StreamWriter` schreibe Bytes ohne Codierung.
 
 ## kultur
 

@@ -6,7 +6,7 @@ A program stores its settings in a JSON file. The `Einstellungen(Sprache, Schrif
 
 1. Create the `JsonSerializerOptions`: indented (`WriteIndented`) and with camelCase names (`PropertyNamingPolicy`).
 2. `Speichere(pfad, einstellungen)` writes the settings to the file as JSON (`"schriftgroesse": 14`).
-3. `Lade(pfad)` reads it again. If the file is missing, its content is not valid JSON (in which case `Deserialize` throws a `JsonException`, even if the file is empty), or if it contains `null`, the program uses the default values. Be sure to catch the `JsonException` specifically; an incorrect file path is a different error.
+3. `Lade(pfad)` reads it again. If the file is missing, if its content is not valid JSON (then `Deserialize` throws a `JsonException`, even for an empty file), or if it contains `null`, the program gets the default values. Catch exactly the `JsonException`; a wrong file path is a different error.
 
 The following tests must be passed:
 

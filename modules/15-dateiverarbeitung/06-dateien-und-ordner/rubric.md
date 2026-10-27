@@ -20,7 +20,7 @@
   Anwendungsdaten. Diese Anwendungsfrage (wohin gehören die Dateien eines
   Programms?) mit dem Trainee besprechen: nicht ins Programmverzeichnis, nicht ins
   aktuelle Verzeichnis.
-- `FileSystemWatcher`, `DriveInfo` und `Directory.Move` sind Vorführstoff im
-  Buch und nicht bewertet.
+- `FileSystemWatcher` und `DriveInfo` sind Vorführstoff im Buch (16.6.5,
+  16.6.6); sie und `Directory.Move` werden nicht bewertet.
 
 Modellantwort: `solution/` bzw. `samples/Ein- und Ausgabe über Datenströme/{Dateiverwaltung,Ordnerverwaltung,Path}`.

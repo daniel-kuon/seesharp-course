@@ -4,8 +4,9 @@
   Einrückung steuert `JsonSerializerOptions`, einzelne Eigenschaften steuern
   Attribute (`[JsonPropertyName]`, `[JsonIgnore]`). Dieselben Optionen für
   Schreiben **und** Lesen: Wer beim Lesen die Optionen vergisst, bekommt leere
-  Objekte (die Namen passen nicht zu `Vorname`) oder eine Ausnahme beim Enum
-  (`"Aktiv"` statt Zahl).
+  Objekte (die Namen passen nicht zu `Vorname`); wer nur die Namensregel, aber
+  nicht den Enum-Konverter angibt, eine `JsonException` beim Enum (`"Aktiv"`
+  statt Zahl).
 - Das Passwort: `[JsonIgnore]` wirkt in beide Richtungen; der Test setzt
   `"passwort": "eingeschleust"` im JSON und erwartet `null`. Nachfrage: Wie
   speichert man Passwörter richtig? (Gar nicht im Klartext, Hash mit Salt;

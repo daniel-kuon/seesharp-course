@@ -5,10 +5,10 @@ Read section **16.2, “Releasing External Resources”** (page 1026), including
 The file `Freigabe.cs` contains five methods that work in the normal case but forget streams or only close them on the success path. So that the release can be observed, they receive a factory (`Func<Stream>`) instead of a path: The tests supply a stream that counts every `Dispose`. Rewrite them so that **exactly one** `Dispose` is called per stream, even when an exception passes through:
 
 1. `SchreibeText`: a `using` statement.
-2. `Kopiere`: two nested `using` statements. First, the stream (destination) that will be opened later is released, then the source. Even if `ziel()` throws an exception, the source must still be released.
+2. `Kopiere`: two nested `using` statements. The stream opened later (destination) is released first, then the source. Even if `ziel()` throws an exception, the source must still be released.
 3. `ZaehleBytes`: the **using declaration** (`using var s = quelle();`); the stream is released at the end of the method, even on `return`.
 4. `Verarbeite`: Releases the stream even if the passed-in action throws an exception.
-5. `SchreibeSicher(pfad, zeilen)`: `using` **within** `try`, `catch (IOException)` returns `false` (for example, because the folder does not exist). Even if an error occurs in the middle of writing, the file is closed; other exceptions continue to run.
+5. `SchreibeSicher(pfad, zeilen)`: `using` **within** `try`, `catch (IOException)` returns `false` (for example, because the folder does not exist). Even if an error occurs in the middle of writing, the file is closed; other exceptions propagate.
 
 `Logger.cs` is all about `AutoFlush`. The `Logger` writes to a stream; so far, `Log` has been calling `Flush()` manually after every line:
 

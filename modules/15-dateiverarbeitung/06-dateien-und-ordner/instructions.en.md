@@ -1,12 +1,12 @@
 # Files, Folders, and Paths
 
-See the book, **Section 16.6 Managing Files and Directories** (page 1052), including **16.6.1 File Management**, **16.6.2 Folder Management** (page 1055), **16.6.3 Special Folders** (page 1056), and **16.6.4 The Path Class** (page 1057). `FileSystemWatcher` and `DriveInfo` (16.6.5, 16.6.6) are not part of the assignment.
+See the book, **Section 16.6 Managing Files and Directories** (page 1052), including **16.6.1 File Management**, **16.6.2 Folder Management** (page 1055), **16.6.3 Special Folders** (page 1056), and **16.6.4 The Path Class** (page 1057). `DriveInfo` and `FileSystemWatcher` (16.6.5, 16.6.6) are not part of the assignment.
 
 Open `Dateien.cs`. Paths are constructed using `Path` and split using it; never use `+` or `\`. The tests are running again in a temp folder with spaces, commas, and umlauts in the name.
 
 1. `Sichere(datei, zielOrdner)`: Creates the destination folder if it does not exist and copies the file there as `<name>_backup<endung>` (`bericht.txt` becomes `bericht_backup.txt`). An existing backup will be overwritten. The function returns the new path.
-2. `ListeRekursiv(ordner, muster)`: All files within the folder (including those in subfolders) that match the pattern, listed as paths **relative** to the folder and sorted by index.
-3. `Verschiebe(von, nach)`: moves a file and creates the destination folder if necessary; if the source is missing, returns `false`.
+2. `ListeRekursiv(ordner, muster)`: All files within the folder (including those in subfolders) that match the pattern, listed as paths **relative** to the folder and sorted ordinally.
+3. `Verschiebe(von, nach)`: moves a file and creates the destination folder if necessary; an existing destination file is overwritten (`File.Move` with `overwrite: true`; without it, `Move` throws an `IOException`, page 1054). If the source is missing, returns `false`.
 4. `LoescheLeereOrdner(wurzel)`: Deletes empty folders from the bottom up (a folder that becomes empty only after its empty subfolders are deleted is included); the root folder remains. Return value: Number of folders deleted.
 5. `ErsetzeEndung(pfad, neu)`: `Path.ChangeExtension`.
 6. `NeuerArbeitsordner()` creates a unique folder within the Temp folder (`Path.GetTempPath`, `Path.GetRandomFileName`).

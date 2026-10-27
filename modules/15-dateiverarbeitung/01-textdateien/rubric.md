@@ -8,7 +8,8 @@
   die Datei ohne Mitbenutzung).
 - Lesen bis `null`: `ReadLine()` liefert `null` erst am Dateiende, eine leere
   Zeile ist `""`. Wer `while (!r.EndOfStream)` nimmt, löst ebenfalls richtig.
-- Codierung: Die Codierung steht nicht in der Datei. Ohne Angabe nimmt
+- Codierung: Die Codierung steht nicht in der Datei (höchstens ein BOM verrät
+  UTF-8/UTF-16; Windows-1252 erkennt niemand). Ohne Angabe nimmt
   .NET UTF-8; `Encoding.UTF8` als Argument schreibt dagegen ein BOM, während
   `new StreamWriter(pfad)` und `new UTF8Encoding(false)` es nicht tun. Diese
   Falle trifft viele; `SchreibeUtf8_schreibt_ohne_BOM` fängt sie.

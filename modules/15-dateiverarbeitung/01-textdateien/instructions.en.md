@@ -5,7 +5,7 @@ Read sections **16.3.2 "Writing and Reading in Text Format**" (page 1036) and **
 All tests run in their own temp folder, whose name contains a space, a comma, and an umlaut (`Schere, Stein, Prüfung`): Your code must not rely on any specific path format. You won't learn the `using` statement until Exercise 4: Close files here using `Close()` in a `finally` block. Open `Textdatei.cs`:
 
 1. `Schreibe(pfad, zeilen)`: Writes each line to the file using `WriteLine` (overwriting it). If the source of the lines throws an exception while writing, the file must still be closed.
-2. `LiesZeilen(pfad)`: reads using `ReadLine()` until `null` and returns a `List<string>`. `LiesOderLeer(pfad)` catches `FileNotFoundException` and `DirectoryNotFoundException` and then returns an empty list; other exceptions are ignored.
+2. `LiesZeilen(pfad)`: reads using `ReadLine()` until `null` and returns a `List<string>`. `LiesOderLeer(pfad)` catches `FileNotFoundException` and `DirectoryNotFoundException` and then returns an empty list; other exceptions are not caught.
 3. `Anhaengen(pfad, zeile)`: `new StreamWriter(pfad, append: true)`.
 4. `LiesAnsi(pfad)` and `SchreibeAnsi(pfad, text)`: Windows-1252 using `Encoding.GetEncoding(1252)` (the provider is already registered in the static constructor). The "ä" is represented by the byte `0xE4` there.
 5. `SchreibeUtf8(pfad, text)`: UTF-8 **without** a byte order mark. The test checks the raw bytes.

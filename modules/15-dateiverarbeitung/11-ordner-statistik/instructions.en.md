@@ -5,8 +5,8 @@ Extra exercise: optional; it unlocks nothing. For further reading: **16.6.1 File
 The `Ordnerstatistik` class in `Ordnerstatistik.cs` analyzes a folder tree. The tests create a small tree in a temporary folder with spaces and umlauts in the names, including `Büro Ordner` and `Übersicht.TXT`.
 
 1. `AnzahlDateien(ordner)`: all files, including those in subfolders.
-2. `GroessteDatei(ordner)`: Path to the largest file **relative** to the folder (`Path.GetRelativePath`, `FileInfo.Length`); in case of a tie, the path with the smaller ordinal number wins; `null` if no file exists.
-3. `ProEndung(ordner)`: A dictionary containing the number of files for each file extension; the key is the extension in lowercase followed by a period (`".txt"`), and files without an extension are counted under `"(keine)"`.
+2. `GroessteDatei(ordner)`: Path to the largest file **relative** to the folder (`Path.GetRelativePath`, `FileInfo.Length`); in case of a tie, the ordinally smaller path wins; `null` if no file exists.
+3. `ProEndung(ordner)`: A dictionary containing the number of files for each file extension; the key is the extension in lowercase, including the dot (`".txt"`), and files without an extension are counted under `"(keine)"`.
 4. `KopiereAlleTxt(quelle, ziel)`: Copies all `.txt` files (including `.TXT` files) along with their subfolder structure to `ziel`, creates any missing folders, and returns the number of copies.
 
 The following tests must be passed:

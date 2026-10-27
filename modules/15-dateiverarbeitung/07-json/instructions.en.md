@@ -6,9 +6,9 @@ See the **section “16.5 Serializing Instances in JSON Format”** (page 1043) 
 
 1. **Settings**: Create a `JsonSerializerOptions` object once and use it in all methods (so that writing and reading are consistent): `WriteIndented = true`, `PropertyNamingPolicy = JsonNamingPolicy.CamelCase`, and `Converters = { new JsonStringEnumConverter() }`.
 2. `ZuJson(person)` and `AusJson(json)`: `JsonSerializer.Serialize` and `Deserialize<Person>`. The JSON spans multiple lines; the names are in camelCase (`vorname`), and `Status` is stored as text (`"status": "Aktiv"`). Unknown properties in the JSON are ignored during parsing.
-3. **Attributes** in `Modell.cs`: The `Nachname` should be called `familienname` in the JSON (`[JsonPropertyName]`), and the `Passwort` must never appear in the JSON and is not set when the data is loaded (`[JsonIgnore]`).
+3. **Attributes** in `Modell.cs`: The `Nachname` should be called `familienname` in the JSON (`[JsonPropertyName]`), and the `Passwort` must never appear in the JSON and is not set when the data is loaded (`[JsonIgnore]`). The book shows `[JsonIgnore]` in 16.5.3.2 (page 1048); `[JsonPropertyName("familienname")]` from the same namespace `System.Text.Json.Serialization` is written the same way, with the new name as its argument. Attributes in general only come in level 16.
 4. `Speichern(person, pfad)` and `Laden(pfad)` using `File.WriteAllText` and `ReadAllText`; the test uses a folder name containing spaces, commas, and umlauts.
-5. `ZuJsonMitZyklen(abteilung)`: `Abteilung` and `Mitarbeiter` refer to each other. If left unhandled, `Serialize` throws a `JsonException`; `ReferenceHandler.IgnoreCycles` sets the back reference to `null`. `ZuJsonMitPreserve` shows the alternative `ReferenceHandler.Preserve` (metadata `$id` and `$ref`).
+5. `ZuJsonMitZyklen(abteilung)`: `Abteilung` and `Mitarbeiter` refer to each other. If left unhandled, `Serialize` throws a `JsonException`; `ReferenceHandler.IgnoreCycles` (not in the book) sets the back reference to `null`. `ZuJsonMitPreserve` shows the alternative `ReferenceHandler.Preserve` (metadata `$id` and `$ref`).
 
 Note: The default `System.Text.Json` encoder writes non-ASCII characters as `\uXXXX` (`ß` becomes `\u00DF`). This is valid JSON and is converted back when the data is read.
 

@@ -45,37 +45,37 @@ items:
         Was gibt dieses Programm aus, und in welcher Reihenfolge?
 
         ```csharp
-        class Wache : IDisposable
-        {
-            private readonly string name;
-            public Wache(string n) { name = n; Console.WriteLine($"auf {n}"); }
-            public void Dispose() => Console.WriteLine($"zu {name}");
-        }
-
         using (var a = new Wache("A"))
         {
             using var b = new Wache("B");
             Console.WriteLine("Arbeit");
         }
         Console.WriteLine("danach");
+
+        class Wache : IDisposable
+        {
+            private readonly string name;
+            public Wache(string n) { name = n; Console.WriteLine($"auf {n}"); }
+            public void Dispose() => Console.WriteLine($"zu {name}");
+        }
         ```
       en: |
         What does this program print, and in what order?
 
         ```csharp
-        class Wache : IDisposable
-        {
-            private readonly string name;
-            public Wache(string n) { name = n; Console.WriteLine($"auf {n}"); }
-            public void Dispose() => Console.WriteLine($"zu {name}");
-        }
-
         using (var a = new Wache("A"))
         {
             using var b = new Wache("B");
             Console.WriteLine("Arbeit");
         }
         Console.WriteLine("danach");
+
+        class Wache : IDisposable
+        {
+            private readonly string name;
+            public Wache(string n) { name = n; Console.WriteLine($"auf {n}"); }
+            public void Dispose() => Console.WriteLine($"zu {name}");
+        }
         ```
   - type: open
     id: code-schreiber

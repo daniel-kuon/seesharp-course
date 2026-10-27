@@ -1,7 +1,7 @@
 # Eine eigene IDisposable-Klasse
 
 Lies im Buch **5.4.5 Überflüssige Objekte abräumen** (Seite 355), **16.2.1
-Dispose() oder Close()** und **16.2.2 Garbage Collector** (Seite 1026).
+Dispose() oder Close()** und **16.2.2 Garbage Collector** (Seite 1026 f.).
 
 Wer eine Datei oder eine andere externe Ressource in einem Feld hält, muss
 seinen Benutzern das Freigeben ermöglichen: durch `IDisposable`. Dann

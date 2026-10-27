@@ -3,7 +3,7 @@
 Lies im Buch **16.6 Verwaltung von Dateien und Verzeichnissen**
 (Seite 1052) mit **16.6.1 Dateiverwaltung**, **16.6.2 Ordnerverwaltung**
 (Seite 1055), **16.6.3 Spezielle Ordner** (Seite 1056) und **16.6.4 Klasse
-Path** (Seite 1057). `FileSystemWatcher` und `DriveInfo` (16.6.5, 16.6.6) sind
+Path** (Seite 1057). `DriveInfo` und `FileSystemWatcher` (16.6.5, 16.6.6) sind
 nicht Teil der Aufgabe.
 
 Öffne `Dateien.cs`. Pfade setzt man mit `Path` zusammen und zerlegt sie
@@ -18,7 +18,9 @@ Leerzeichen, Komma und Umlaut im Namen.
    (auch in Unterordnern), die zum Muster passen, als Pfade **relativ** zum
    Ordner, ordinal sortiert.
 3. `Verschiebe(von, nach)`: verschiebt eine Datei und legt den Zielordner bei
-   Bedarf an; fehlt die Quelle, kommt `false` zurück.
+   Bedarf an; eine vorhandene Zieldatei wird überschrieben (`File.Move` mit
+   `overwrite: true`; ohne wirft `Move` eine `IOException`, Seite 1054). Fehlt
+   die Quelle, kommt `false` zurück.
 4. `LoescheLeereOrdner(wurzel)`: löscht leere Ordner von unten nach oben (ein
    Ordner, der erst durch das Löschen seiner leeren Unterordner leer wird,
    zählt mit); die Wurzel bleibt. Rückgabe: Zahl der gelöschten Ordner.

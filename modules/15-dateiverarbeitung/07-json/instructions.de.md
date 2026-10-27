@@ -17,13 +17,16 @@ und **16.5.5 Zirkuläre Referenzen** (Seite 1050).
    Eigenschaften im JSON werden beim Einlesen ignoriert.
 3. **Attribute** in `Modell.cs`: `Nachname` soll im JSON `familienname` heißen
    (`[JsonPropertyName]`), das `Passwort` darf nie im JSON stehen und wird
-   beim Einlesen nicht gesetzt (`[JsonIgnore]`).
+   beim Einlesen nicht gesetzt (`[JsonIgnore]`). Das Buch zeigt `[JsonIgnore]` in
+   16.5.3.2 (Seite 1048); `[JsonPropertyName("familienname")]` aus demselben
+   Namensraum `System.Text.Json.Serialization` schreibt man genauso, mit dem
+   neuen Namen als Argument. Attribute allgemein kommen erst in Level 16.
 4. `Speichern(person, pfad)` und `Laden(pfad)` mit `File.WriteAllText` und
    `ReadAllText`; der Test benutzt einen Ordner mit Leerzeichen, Komma und
    Umlaut.
 5. `ZuJsonMitZyklen(abteilung)`: `Abteilung` und `Mitarbeiter` verweisen
    aufeinander. Ohne Behandlung wirft `Serialize` eine `JsonException`;
-   mit `ReferenceHandler.IgnoreCycles` wird der Rückverweis `null`.
+   mit `ReferenceHandler.IgnoreCycles` (nicht im Buch) wird der Rückverweis `null`.
    `ZuJsonMitPreserve` zeigt die Alternative `ReferenceHandler.Preserve`
    (Metadaten `$id` und `$ref`).
 

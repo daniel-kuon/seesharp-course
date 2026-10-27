@@ -39,4 +39,4 @@ items:
       - { de: "Die Datei ist genau 1000 Bytes lang.", en: "The file is exactly 1,000 bytes long." }
       - { de: "Es wurden 4096 Bytes gelesen, 1000 davon sind gültig.", en: "4,096 bytes were read, 1,000 of which are valid." }
     correct: [0]
-    explanation: { de: "16.1.3.1 (Seite 1015). Read liefert die tatsächlich gelesene Zahl, 0 am Datenende. Wer immer den ganzen Puffer schreibt, hängt Müll an das Dateiende.", en: "16.1.3.1 (page 1015). The `Read` function returns the number that was actually read, with a 0 at the end of the data. Whoever writes the entire buffer appends garbage to the end of the file." }
+    explanation: { de: "16.1.3.1 (Seite 1015). Read liefert die tatsächlich gelesene Zahl, 0 am Datenende. Wer immer den ganzen Puffer schreibt, hängt Müll an das Dateiende.", en: "16.1.3.1 (page 1015). `Read` returns the number of bytes actually read, 0 at the end of the data. Anyone who always writes the entire buffer appends garbage to the end of the file." }

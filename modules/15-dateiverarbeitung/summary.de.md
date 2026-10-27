@@ -19,7 +19,7 @@ Wer immer den ganzen Puffer verwendet, schreibt Müll.
 
 Der Garbage Collector räumt Speicher auf, aber nicht zu einem bekannten
 Zeitpunkt; eine Datei bleibt gesperrt, bis jemand `Dispose()` (oder `Close()`)
-aufruft. Die **using-Anweisung** (16.2.3, Seite 1027) ist Kurzschreibweise für
+aufruft oder irgendwann der Garbage Collector aufräumt. Die **using-Anweisung** (16.2.3, Seite 1027) ist Kurzschreibweise für
 `try/finally` mit `Dispose()`, die **using-Deklaration** (16.2.4, Seite 1030)
 gilt bis zum Ende des umgebenden Blocks. Geschachtelte Ressourcen werden in
 umgekehrter Reihenfolge freigegeben. Eigene Klassen, die eine Ressource halten,
@@ -33,8 +33,10 @@ unverwaltete Ressourcen direkt hält.
 Werte elementarer Typen in ihrem Binärformat (ein `int` sind 4, ein `double`
 8 Bytes). `StreamWriter` und `StreamReader` (16.3.2, Seite 1036) arbeiten mit
 Text und einer Zeichencodierung: Ohne Angabe gilt UTF-8, die Codierung steht
-nicht in der Datei (Windows-1252 braucht `Encoding.GetEncoding(1252)`, 16.3.3,
-Seite 1040). `ReadLine()` liefert `null` am Dateiende. Ein `StreamWriter`
+nicht in der Datei (höchstens ein BOM verrät UTF-8 oder UTF-16). Windows-1252
+liefert erst der `CodePagesEncodingProvider` (16.3.3, Seite 1040): nach
+`Encoding.RegisterProvider(CodePagesEncodingProvider.Instance)` mit
+`Encoding.GetEncoding(1252)`. `ReadLine()` liefert `null` am Dateiende. Ein `StreamWriter`
 puffert; `Flush()` leert den Puffer, `AutoFlush = true` tut das nach jedem
 Schreiben (sicher, aber bei Massendaten langsam; Übung 16.7/2, Seite 1060).
 
@@ -60,10 +62,9 @@ oder `Preserve` (16.5.5, Seite 1050) einstellt.
 
 `File`, `Directory` und `Path` verwalten das Dateisystem: Kopieren,
 Verschieben, Löschen, Ordner anlegen und auflisten. Pfade setzt man mit
-`Path.Combine` zusammen und zerlegt sie mit `GetFileName`,
-`GetExtension`, `GetRelativePath` (ein absoluter Teil
-verwirft alles davor). Spezielle Ordner liefern `Path.GetTempPath()` und
-`Environment.GetFolderPath(…)`; `FileSystemWatcher` und `DriveInfo`
+`Path.Combine` zusammen (ein absoluter Teil verwirft alles davor) und zerlegt
+sie mit `GetFileName`, `GetExtension`, `GetRelativePath`. Spezielle Ordner liefern `Path.GetTempPath()` und
+`Environment.GetFolderPath(…)`; `DriveInfo` und `FileSystemWatcher`
 (16.6.5, 16.6.6) sind nur Vorführstoff. In den Aufgaben arbeitet jeder Test in
 einem eigenen Temp-Ordner, dessen Name Leerzeichen, Komma und Umlaut enthält.
 

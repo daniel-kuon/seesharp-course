@@ -8,7 +8,10 @@
   Gleitkomma ganz.
 - `Wochentag`: Der Discard `_` im switch-Ausdruck ist Pflicht, sonst wirft
   der Ausdruck bei 8.
-- `AnzahlVokale`: `char.ToLower(c)` oder `"aeiouAEIOU".Contains(c)`.
+- `AnzahlVokale`: Mit Buchmitteln reicht `text.ToLower()` (Seite 262) und ein
+  Vergleich per `||` oder `switch` mit gestapelten `case`-Marken. Bonus
+  (Deep Dive): `char.ToLower(c)` oder `"aeiouAEIOU".Contains(c)` wie in der
+  Modellantwort.
 
 Modellantwort (angelehnt an `Elementare Sprachelemente/PrimitivOBC` im
 Tool-Repository):

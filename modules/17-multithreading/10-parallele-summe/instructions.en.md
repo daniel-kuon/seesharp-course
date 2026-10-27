@@ -5,8 +5,8 @@ Extra exercise: optional; it unlocks nothing. For further reading: **17.5.11 The
 Three classic statistical functions, calculated in parallel and compared with the sequential result. The test array contains 100,000 random numbers between 0 and 99, generated using a fixed seed: each run tests the same data.
 
 1. `Statistik.Summe(int[])` using `Parallel.For`; each iteration adds to a shared `long` sum using `Interlocked.Add`.
-2. `Statistik.Maximum(int[])`: Divides the array into four sections; each section is processed in its own `Task.Run` task to find its maximum value, and the largest result is returned. For short arrays, some sections may be empty. An empty array results in an error (`InvalidOperationException`).
-3. `Statistik.Histogramm(int[] daten, int klassen)`: How many numbers fall into each of the `klassen` equally spaced classes? The class for `w` is `w * klassen / 100`. `Parallel.For`; each iteration increments its counter using `Interlocked.Increment(ref ergebnis[klasse])`.
+2. `Statistik.Maximum(int[])`: Divide the array into four sections; each section is processed in its own `Task.Run` task to find its maximum, then the largest partial result counts. For short arrays, some sections may be empty. An empty array results in an error (`InvalidOperationException`).
+3. `Statistik.Histogramm(int[] daten, int klassen)`: How many numbers fall into each of the `klassen` equally spaced classes? The class for `w` is `w * klassen / 100`. `Parallel.For`; each iteration increments its counter using `Interlocked.Increment(ref ergebnis[klasse])`. `klassen < 1` is an `ArgumentOutOfRangeException`.
 
 The following tests must be passed:
 

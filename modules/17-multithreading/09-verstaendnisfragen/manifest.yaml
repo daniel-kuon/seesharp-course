@@ -272,5 +272,5 @@ items:
       - de: "`static async int LadeAsync()`"
     correct: [1]
     explanation:
-      de: "Erste Option: Auf eine `async void`-Methode kann man nicht warten (CS4008), und ihre Ausnahmen lassen sich nicht abfangen; `async void` gehört nur zu Ereignishandlern. Dritte Option: Eine asynchrone Methode darf nur `void`, `Task` oder `Task<T>` (oder einen task-ähnlichen Typ) zurückgeben, nicht `int` (CS1983); für einen Wert wäre `Task<int>` richtig."
-      en: "First option: You cannot await an `async void` method (CS4008), and its exceptions cannot be caught; `async void` belongs only to event handlers. Third option: An asynchronous method may only return `void`, `Task`, or `Task<T>` (or a task-like type), not `int` (CS1983); for a value, `Task<int>` would be correct."
+      de: "Erste Option: Auf eine `async void`-Methode kann man nicht warten (CS4008), und ihre Ausnahmen lassen sich nicht abfangen; `async void` gehört nur zu Ereignishandlern. Dritte Option: Eine asynchrone Methode darf nur `void`, `Task`, `Task<T>`, einen task-ähnlichen Typ oder `IAsyncEnumerable<T>`/`IAsyncEnumerator<T>` zurückgeben, nicht `int` (CS1983); für einen Wert wäre `Task<int>` richtig."
+      en: "First option: You cannot await an `async void` method (CS4008), and its exceptions cannot be caught; `async void` belongs only to event handlers. Third option: An asynchronous method may only return `void`, `Task`, `Task<T>`, a task-like type, or `IAsyncEnumerable<T>`/`IAsyncEnumerator<T>`, not `int` (CS1983); for a value, `Task<int>` would be correct."

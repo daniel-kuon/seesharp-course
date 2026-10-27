@@ -1,7 +1,7 @@
 # Threads, lock und Interlocked
 
 Lies im Buch **17.1 Einführung** (Seite 1062), **17.2.1 Threads erzeugen**
-und **17.2.2 Threads starten** (Seite 1065 bis 1068), **17.2.4.1.1 Die
+und **17.2.2 Threads starten** (Seite 1065 bis 1072), **17.2.4.1.1 Die
 lock-Anweisung** (Seite 1073) und **17.2.4.2.3 Atomare Operationen** (Seite
 1084). Threads teilen sich den Heap, haben aber jeder einen eigenen Stapel.
 Genau das macht gemeinsame Daten gefährlich: Zwei Threads, die dieselbe
@@ -20,11 +20,11 @@ eine `Barrier` gleichzeitig starten, damit sich ihre Arbeit maximal
    jeden Block einen eigenen `Thread`, der seine Ergebnisse in ein
    gemeinsames Ergebnisarray schreibt, und warte mit `Join()` auf alle. Die
    Threads schreiben auf verschiedene Elemente, das Array braucht kein
-   `lock`. Beachte beim Lambda des Threads die Falle mit der Schleifenvariable
-   (Closure): Kopiere sie vorher in eine lokale Variable. `threads < 1` ist
+   `lock`. Beachte beim Lambda des Threads die Falle mit der Laufvariable
+   (Closure, 10.1.5.3): Kopiere sie vorher in eine lokale Variable. `threads < 1` ist
    ein `ArgumentOutOfRangeException`.
 2. `UnsichererZaehler` ist vorgegeben und absichtlich falsch. Lies den
-   Kommentar und starte das Programm: Der Wert liegt unter 400000, und zwar
+   Kommentar und starte das Programm: Der Wert liegt meist unter 400000, und zwar
    bei jedem Lauf anders.
 3. `SichererZaehler`: Schütze Erhöhen **und** Lesen mit `lock` auf einem
    privaten Sperrobjekt.

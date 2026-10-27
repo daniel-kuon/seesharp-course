@@ -25,8 +25,11 @@
   gleichzeitig laufen, nur dass sie parallel laufen dürfen (auf einer
   Einkern-Maschine nacheinander). Darum prüft der Test nur Vollständigkeit
   und die Rückkehr erst nach dem Ende aller drei.
-- `Primzahlen`: Ohne `AsOrdered()` kommen die Primzahlen in einer anderen
-  Reihenfolge, bei 100.000 auf einer Mehrkernmaschine praktisch sicher.
+- `Primzahlen`: Ohne `AsOrdered()` ist die Reihenfolge nicht zugesichert. Mit
+  `ToList()` auf einer `Range`-Quelle kommt sie in .NET 10 trotzdem meist
+  geordnet heraus (geprüft: 20 von 20 Läufen; mit `foreach` über dieselbe
+  Abfrage dagegen 20 von 20 durcheinander). Der Test erkennt ein
+  fehlendes `AsOrdered()` deshalb nicht zuverlässig: im Code nachsehen.
   Gesprächsanlass: Was kostet `AsOrdered`, und wann ist `ForAll` besser?
   (`ForAll` kennt keine Reihenfolge und vermeidet das Zusammenführen.)
 

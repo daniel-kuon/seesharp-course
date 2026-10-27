@@ -6,11 +6,11 @@ The collections in the class library (`List<T>`, `Queue<T>`, `Dictionary<K,V>`) 
 
 `SichereWarteschlange<T>` wraps a `Queue<T>`:
 
-- `Einreihen(element)` is attached at the back,
+- `Einreihen(element)` appends at the back,
 - `TryNaechster(out element)` retrieves the first element or returns `false` (with `default` as the value) if there is nothing there,
 - `Anzahl` returns the number of elements in the queue.
 
-All three members use the same private lock object. In `TryNaechster`, the check `Count > 0` and the `Dequeue` operation are grouped **together** under a single `lock`: Otherwise, another thread could remove the last element between these two steps.
+All three members use the same private lock object. In `TryNaechster`, the check `Count > 0` and the `Dequeue` belong **together** under a single `lock`: Otherwise, another thread could remove the last element between these two steps.
 
 The large-scale test starts four producers (2,500 elements each) and four consumers simultaneously. It uses `Join()` and verifies that each element has been consumed **exactly once**. It never sleeps and does not measure time; the consumers stop as soon as all producers are finished and the queue is empty.
 

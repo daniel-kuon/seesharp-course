@@ -26,8 +26,8 @@ Ergänze in `Berechnungen.cs`:
    fertig sind, und dann die sortierten Ergebnisse liefert. Die Methode
    blockiert nicht: `Task.WhenAll(...)`, dann `ContinueWith`.
 3. `ErsterFertiger(a, b)`: das Ergebnis der Aufgabe, die zuerst fertig wird
-   (`WhenAny`). Die andere Aufgabe darf nie fertig werden; auf sie zu warten wäre
-   ein Fehler.
+   (`WhenAny`). Die andere Aufgabe wird im Test womöglich nie fertig; auf sie zu
+   warten wäre ein Fehler.
 4. `Verdopple(t)`: eine Fortsetzung, die nach `t` das Doppelte von `t.Result`
    liefert. `Verdopple` blockiert nicht.
 5. `WartenAufMesswert(sensor)`: eine `Task<double>`, die vom

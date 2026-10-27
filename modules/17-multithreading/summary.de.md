@@ -5,16 +5,17 @@ Ein Programm, das mehrere Dinge zugleich erledigt, nutzt mehrere Threads
 anspruchsvollsten des Kurses, weil Fehler hier vom Zufall abhängen: Derselbe
 Code liefert mal das richtige, mal ein falsches Ergebnis.
 
-## Threads (17.1 und 17.2, Seite 1062 bis 1068)
+## Threads (17.1 und 17.2, Seite 1062 bis 1072)
 
 Alle Threads eines Prozesses teilen sich den Heap, jeder hat aber einen
 eigenen Stapel mit seinen lokalen Variablen (17.1.1). Das nutzt der
 Parallelität (mehrere Kerne, ein wartender Thread blockiert die anderen
 nicht) und kostet Komplexität: Gemeinsame Daten müssen geschützt werden. Ein
 `Thread` wird mit einem Delegaten erzeugt, mit `Start()` gestartet, und
-`Join()` wartet auf sein Ende (17.2.1 und 17.2.2). Ein Lambda, das eine
-Schleifenvariable benutzt, sollte sie vorher in eine lokale Variable
-kopieren, sonst sehen alle Threads denselben, späteren Wert.
+`Join()` wartet auf sein Ende (17.2.1 und 17.2.2). Ein Lambda fängt
+Variablen ein, nicht ihre Werte (10.1.5.3, Seite 671): Die Laufvariable einer
+`for`-Schleife kopiert man deshalb vorher in eine lokale Variable, sonst
+sehen die Threads ihren späteren Wert.
 
 ## Zugriff koordinieren (17.2.4, Seite 1072 bis 1085)
 
@@ -47,8 +48,8 @@ einem Ereignis oder einer beliebigen asynchronen Operation eine Aufgabe
 
 ## Parallel und PLINQ (17.5.11 und 18.5, Seite 1152 und 1245)
 
-`Parallel.Invoke`, `Parallel.For` und `Parallel.ForEach` verteilen
-Schleifeniterationen selbständig auf Threads (Seite 1153 bis 1157), mit
+`Parallel.Invoke` verteilt mehrere Aktionen, `Parallel.For` und
+`Parallel.ForEach` verteilen Schleifeniterationen selbständig auf Threads (Seite 1153 bis 1157), mit
 `ParallelOptions` lässt sich der Grad begrenzen. `AsParallel()` parallelisiert
 LINQ-Abfragen; `AsOrdered()` stellt die ursprüngliche Reihenfolge wieder
 her (18.5.5, Seite 1252). Alles, was die Iterationen gemeinsam benutzen,
@@ -61,8 +62,9 @@ braucht Schutz.
 den Thread frei und läuft nach dem Ende der erwarteten Aufgabe weiter
 (17.6.5). Ausnahmen kommen beim `await` im Originaltyp an (17.6.7),
 Abbruch läuft über ein durchgereichtes `CancellationToken` (17.6.8).
-Zwei Fallen (17.6.12): `async void` verliert Ausnahmen, es gehört nur zu
-Ereignishandlern; und das Blockieren mit `.Result` oder `.Wait()` kann in einer
+Zwei Fallen (17.6.12): Bei `async void` kann der Aufrufer weder warten
+noch Ausnahmen abfangen, eine Ausnahme beendet z. B. eine
+Konsolenanwendung; `async void` gehört nur zu Ereignishandlern; und das Blockieren mit `.Result` oder `.Wait()` kann in einer
 Anwendung mit Benutzeroberfläche zu einem Deadlock führen, weil die
 Fortsetzung auf den blockierten UI-Thread wartet.
 

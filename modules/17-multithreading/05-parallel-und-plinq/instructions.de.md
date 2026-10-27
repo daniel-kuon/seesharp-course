@@ -30,9 +30,9 @@ Ergänze in `ParallelRechner.cs`:
 4. `WiederholeParallel(anzahl, maxGrad, koerper)`: `Parallel.For` mit
    `ParallelOptions { MaxDegreeOfParallelism = maxGrad }`. Mit `maxGrad = 1`
    laufen die Iterationen nacheinander.
-5. `Primzahlen(bis)`: PLINQ mit `Enumerable.Range(2, bis - 1).AsParallel()
-   .AsOrdered().Where(IstPrim).ToList()`. `AsOrdered()` hält die Reihenfolge des
-   sequenziellen Ergebnisses ein. Für `bis < 2` ist die Liste leer.
+5. `Primzahlen(bis)`: PLINQ mit
+   `Enumerable.Range(2, bis - 1).AsParallel().AsOrdered().Where(IstPrim).ToList()`.
+   `AsOrdered()` hält die Reihenfolge des sequenziellen Ergebnisses ein. Für `bis < 2` ist die Liste leer.
 
 Diese Tests müssen bestehen:
 

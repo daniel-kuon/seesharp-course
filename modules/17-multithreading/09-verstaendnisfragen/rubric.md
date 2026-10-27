@@ -11,7 +11,7 @@ Kernpunkte:
 - Lösung 1: `lock` auf ein privates Objekt um den Zugriff (allgemein, auch für mehrere zusammengehörige Anweisungen und Sammlungen).
 - Lösung 2: `Interlocked.Increment(ref zaehler)` bzw. `Interlocked.Add` (genügt für einzelne Operationen auf Zahlen; schneller, kein Blockieren).
 
-Typische Irrtümer: `++` sei eine einzelne Anweisung und daher sicher; das Ergebnis sei immer mindestens 1.000.000 oder liege knapp unter dem Sollwert; `volatile` o. Ä. reiche (nicht Stoff).
+Typische Irrtümer: `++` sei eine einzelne Anweisung und daher sicher; der Verlust sei vorhersagbar (z. B. immer mindestens 1.000.000); `volatile` reiche (es sorgt nur dafür, dass alle Threads den aktuellen Wert sehen, macht `++` aber nicht unteilbar; 17.2.4.2.4, Seite 1085).
 
 ## lock-regeln
 
@@ -44,7 +44,7 @@ Typische Irrtümer: `Cancel()` beende den Thread sofort; die Aufgabe sei danach 
 
 Kernpunkte:
 - Bei `await` **gibt die Methode den Thread frei** und läuft, wenn die erwartete Aufgabe fertig ist, weiter (Fortsetzung); der Thread kann solange anderes tun, deshalb blockiert nichts.
-- `async void`: Ausnahmen gehen verloren bzw. landen beim Prozess/Synchronisierungskontext statt beim Aufrufer, man kann nicht darauf warten; nur für Ereignishandler, sonst `async Task`.
+- `async void`: Der Aufrufer kann nicht warten und ihre Ausnahmen nicht abfangen; sie werden im Synchronisierungskontext geworfen und beenden z. B. eine Konsolenanwendung (17.6.12.1, Seite 1197); nur für Ereignishandler, sonst `async Task`.
 - `.Result`/`.Wait()` in einer UI-Anwendung: Der UI-Thread blockiert und wartet auf die Aufgabe; deren Fortsetzung nach dem `await` will aber im UI-Thread weiterlaufen (Synchronisierungskontext) und kann das nicht, solange er blockiert ist: **Deadlock**. Lösung: durchgehend `await` verwenden.
 
 Typische Irrtümer: `await` starte einen neuen Thread oder blockiere den aktuellen; `async void` sei eine Kurzform für `async Task`; das Deadlock-Problem trete in Konsolenanwendungen genauso auf.
@@ -63,7 +63,7 @@ Typische Irrtümer: Ohne `Join` stimme die Ausgabe trotzdem; das Ergebnis sei 10
 Ausgabe: `0,10,20`.
 Kernpunkte:
 - Jeder Thread schreibt an seinen eigenen Index `kopie` des Arrays; `Join()` wartet auf alle, danach steht das Ergebnis fest.
-- `int kopie = i;` ist eine **neue Variable je Schleifendurchlauf**. Würde das Lambda `i` direkt benutzen, fingen alle Threads **dieselbe** Schleifenvariable ein; sie hat nach der Schleife den Wert 3 und die Threads laufen erst irgendwann später: Sie würden einen falschen, zufälligen Index sehen (bei Index 3 sogar eine `IndexOutOfRangeException`).
+- `int kopie = i;` ist eine **neue Variable je Schleifendurchlauf**. Würde das Lambda `i` direkt benutzen, fingen alle Threads **dieselbe** Schleifenvariable ein; die Threads lesen sie erst, wenn sie laufen, und bis dahin kann die Schleife weitergezählt haben (am Ende auf 3): Sie würden einen falschen, zufälligen Index sehen (bei Index 3 sogar eine `IndexOutOfRangeException`).
 
 Typische Irrtümer: `0,1,2` (Wert vergessen zu multiplizieren); die Kopie sei überflüssig, weil `i` ein Wert sei.
 
@@ -72,7 +72,7 @@ Typische Irrtümer: `0,1,2` (Wert vergessen zu multiplizieren); die Kopie sei ü
 Ausgabe, zwei Zeilen: `2` und `A,B`.
 Kernpunkte:
 - Beide Aufgaben scheitern unabhängig; `Task.WaitAll` wartet auf beide und wirft **eine** `AggregateException`, die **beide** Fehler in `InnerExceptions` enthält (Anzahl 2).
-- Die Reihenfolge der Fehler hängt vom Zufall ab, deshalb ist nach der Nachricht sortiert (A, B).
+- `WaitAll` sammelt die Fehler in der Reihenfolge der übergebenen Aufgaben (in .NET 10 geprüft), das ist aber nicht dokumentiert zugesichert; deshalb ist nach der Nachricht sortiert (A, B).
 
 Typische Irrtümer: Es werde nur die erste Ausnahme gemeldet (Anzahl 1); der `catch` nehme `InvalidOperationException` direkt entgegen; die Ausnahme erscheine schon bei `Task.Run`.
 

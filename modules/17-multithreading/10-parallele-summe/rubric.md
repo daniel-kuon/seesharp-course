@@ -1,6 +1,6 @@
 # Rubrik — Zusatz Parallele Summe (nur für die Betreuung)
 
-- Kern: Drei Muster, wie parallele Teilergebnisse zusammenkommen: ein
+- Kern: Zwei Muster, wie parallele Teilergebnisse zusammenkommen: ein
   gemeinsamer Zähler mit `Interlocked` (Summe, Histogramm), und
   Teilergebnisse je Aufgabe, die zuletzt zusammengeführt werden (Maximum).
   Das letzte Muster braucht keine Sperre, weil jede Aufgabe nur ihre

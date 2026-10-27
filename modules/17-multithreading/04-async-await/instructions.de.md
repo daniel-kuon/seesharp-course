@@ -11,7 +11,7 @@ sind dieselben.
 `async` und `await` schreiben asynchronen Code wie sequenziellen: Bei
 `await` gibt die Methode den Thread frei, bis die erwartete Aufgabe
 fertig ist, und läuft dann dort weiter. Ausnahmen kommen beim `await`
-ganz normal an, und die Methode liefert immer eine `Task`.
+ganz normal an, und die Methode liefert eine `Task` bzw. `Task<T>`.
 
 **Die Tests sind deterministisch** (`async Task`-Tests, keine Zeitmessung,
 kein `Thread.Sleep`). Sie warten nie blockierend auf deine Methoden; die
@@ -27,13 +27,14 @@ fällt dadurch durch.
    ohne zu blockieren.
 4. `Asynchron.MitWiederholung(aktion, versuche)`: höchstens `versuche`
    Aufrufe, `await` in `try/catch`. Scheitert der letzte, wird dessen
-   Ausnahme weitergegeben.
+   Ausnahme weitergegeben. `versuche < 1` ist eine
+   `ArgumentOutOfRangeException`.
 5. `Asynchron.VerarbeiteAsync(daten, token)`: prüft vor jedem Element
    `ThrowIfCancellationRequested`, gibt dann mit `await Task.Yield()`
    den Thread frei und summiert die Elemente. Bei Abbruch endet die
    Aufgabe als abgebrochen.
 6. `MeldungMitAwait` und `MeldungMitWait`: Beide fangen den Fehler aus der
-   vorgegebenen Methode `FehlerAsync`. Bei `await` kommt die
+   vorgegebenen Methode `FehlerAsync` und liefern seine Meldung. Bei `await` kommt die
    `InvalidOperationException` selbst an, bei `.Wait()` verpackt in eine
    `AggregateException`. Die Wait-Variante dient nur dem Vergleich.
 7. Beantworte die Quizfrage zum Deadlock durch blockierendes Warten.

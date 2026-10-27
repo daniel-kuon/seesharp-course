@@ -5,7 +5,8 @@
   `ContinueWith` hängt, blockiert nicht. Die Tests unterscheiden das:
   `AlleFertig` und `Verdopple` müssen mit einer noch nicht fertigen Quelle
   sofort zurückkehren (`IsCompleted` ist `false`). Eine Abgabe, die intern
-  `WaitAll` oder `.Result` benutzt, hängt und scheitert an der Zeitgrenze.
+  `WaitAll` oder `.Result` benutzt, hängt (der Aufruf kehrt nie zurück) und
+  scheitert erst an der Zeitgrenze der Bewertung, nicht an der des Tests.
 - `SummeParallel`: Das Muster Aufgaben in einer Liste sammeln und DANACH die
   Ergebnisse abholen ist wichtig. Wer in derselben Schleife `Task.Run(...).Result`
   schreibt, rechnet nacheinander: Das Ergebnis stimmt, der Sinn ist verfehlt.

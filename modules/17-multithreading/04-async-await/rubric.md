@@ -20,8 +20,8 @@
   schreibt, hat nicht begriffen, worum es geht.
 - `MitWiederholung`: Der Ausnahmefilter `when (nr < versuche)` ist die
   kürzeste Lösung. Gleichwertig: Variable `Exception? letzte` speichern und am
-  Ende `throw`. Warnen vor `throw ex;` (zerstört den Stapel) gegenüber
-  `throw;`. Ein weiterer Gesprächsanlass: Würde man einen
+  Ende `throw`. Warnen vor `throw ex;` (überschreibt den Stack-Trace) gegenüber
+  `throw;`. Ein weiterer Gesprächsanlass: Würde man eine
   `OperationCanceledException` auch wiederholen? (Nein.)
 - `VerarbeiteAsync`: Die Datenquelle im Test löst den Abbruch selbst aus,
   deshalb ist der Ablauf deterministisch. Wer `token.IsCancellationRequested`

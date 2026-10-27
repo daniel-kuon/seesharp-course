@@ -1,8 +1,8 @@
 # Ausnahmen und Abbruch bei Aufgaben
 
 Lies im Buch **17.5.6 Unbehandelte Ausnahmen bei der Aufgabenbearbeitung**
-(Seite 1129) mit **17.5.6.1 Erneutes Werfen auf höherer Ebene** und dem
-Abschnitt zu `Flatten()` sowie **17.5.10 Aufgaben abbrechen** (Seite 1145).
+(Seite 1129) mit **17.5.6.1 Erneutes Werfen auf höherer Ebene** (Seite 1130)
+und `Flatten()` in 17.5.6.1.2 (Seite 1132) sowie **17.5.10 Aufgaben abbrechen** (Seite 1145).
 
 Zwei Regeln sind neu gegenüber normalem Code:
 
@@ -17,8 +17,9 @@ Zwei Regeln sind neu gegenüber normalem Code:
   `CancellationTokenSource` auf, die Aufgabe fragt regelmäßig über das
   `CancellationToken` nach und beendet sich selbst. Der Normalfall ist
   `token.ThrowIfCancellationRequested()`. Die so entstehende
-  `OperationCanceledException` ist kein Fehler: Die Aufgabe endet im
-  Zustand "abgebrochen" (`IsCanceled`), nicht "fehlgeschlagen" (`IsFaulted`).
+  `OperationCanceledException` ist kein Fehler: Wurde die Aufgabe mit demselben
+  Token gestartet (`Task.Run(..., token)`), endet sie im Zustand "abgebrochen"
+  (`IsCanceled`), nicht "fehlgeschlagen" (`IsFaulted`).
 
 **Die Tests sind deterministisch:** keine Zeitmessung, kein `Thread.Sleep`.
 Der Abbruchtest wartet mit einem `ManualResetEventSlim`, bis die Aufgabe

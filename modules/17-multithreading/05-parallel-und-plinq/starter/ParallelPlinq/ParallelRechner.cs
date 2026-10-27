@@ -64,7 +64,7 @@ public static class ParallelRechner
     // Alle Primzahlen von 2 bis einschließlich 'bis', aufsteigend. Mit PLINQ:
     // Enumerable.Range(2, bis - 1).AsParallel().AsOrdered().Where(IstPrim).ToList()
     // AsOrdered() sorgt dafür, dass das parallele Ergebnis in derselben Reihenfolge wie das sequenzielle
-    // kommt (ohne AsOrdered kommt die Reihenfolge durcheinander). Für bis < 2 ist das Ergebnis leer.
+    // kommt (ohne AsOrdered ist die Reihenfolge nicht zugesichert). Für bis < 2 ist das Ergebnis leer.
     public static List<int> Primzahlen(int bis)
     {
         // TODO

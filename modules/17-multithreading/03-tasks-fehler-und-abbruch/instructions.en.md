@@ -1,20 +1,20 @@
 # Exceptions and Cancellation in Tasks
 
-Read section **17.5.6, “Unhandled Exceptions During Task Execution”** (page 1129), including **17.5.6.1, “Re-throwing at a Higher Level,”** and the section on `Flatten()`, as well as **17.5.10, “Aborting Tasks”** (page 1145).
+Read **17.5.6 Unhandled Exceptions During Task Execution** (page 1129), including **17.5.6.1 Re-throwing at a Higher Level** (page 1130) and `Flatten()` in 17.5.6.1.2 (page 1132), as well as **17.5.10 Cancelling Tasks** (page 1145).
 
 Two rules are new compared to standard code:
 
-- An exception in a task does not occur at the point where it happens, but is caught within the task. Anyone waiting on the task (`Wait`, `WaitAll`, `Result`) receives it as an `AggregateException`, which contains **all** errors. Multiple tasks, multiple errors. `Flatten()` resolves nested groups; the individual exceptions are contained in `InnerExceptions`.
-- A task cannot be stopped from the outside. It is canceled **cooperatively**: The caller invokes `Cancel()` on a `CancellationTokenSource`, the task periodically checks the `CancellationToken`, and terminates itself. The default behavior is `token.ThrowIfCancellationRequested()`. The resulting `OperationCanceledException` is not an error: the task ends in the "canceled" state (`IsCanceled`), not "failed" (`IsFaulted`).
+- An exception in a task is not thrown where it happens but is stored in the task. Anyone waiting on the task (`Wait`, `WaitAll`, `Result`) receives it as an `AggregateException`, which contains **all** errors. Multiple tasks, multiple errors. `Flatten()` resolves nested groups; the individual exceptions are contained in `InnerExceptions`.
+- A task cannot be stopped from the outside. It is canceled **cooperatively**: The caller invokes `Cancel()` on a `CancellationTokenSource`, the task periodically checks the `CancellationToken` and ends itself. The usual way is `token.ThrowIfCancellationRequested()`. The resulting `OperationCanceledException` is not an error: if the task was started with the same token (`Task.Run(..., token)`), it ends in the "canceled" state (`IsCanceled`), not "failed" (`IsFaulted`).
 
-**The tests are deterministic:** no timing, no `Thread.Sleep`. The termination test uses a `ManualResetEventSlim` to wait until the task is actually running, and only then terminates. Wait times are only used to prevent hangs.
+**The tests are deterministic:** no timing, no `Thread.Sleep`. The cancellation test uses a `ManualResetEventSlim` to wait until the task is actually running, and only then cancels. Wait times are only used to prevent hangs.
 
 Add:
 
-1. `Fehler.Sammle(params Func<int>[] aufgaben)` (`Fehler.cs`): every function uses `Task.Run`, followed by `Task.WaitAll` in a `try/catch (AggregateException)` block. Return the sorted messages of all exceptions (using `Flatten()`); if successful, return an empty list.
+1. `Fehler.Sammle(params Func<int>[] aufgaben)` (`Fehler.cs`): run each function with `Task.Run`, then `Task.WaitAll` in a `try/catch (AggregateException)` block. Return the sorted messages of all exceptions (using `Flatten()`); if successful, return an empty list.
 2. `Fehler.ErsteMeldung(Task t)`: the message of the first exception thrown by a failed task; otherwise, `null`.
-3. `Zaehler.ZaehleHoch` (`Zaehler.cs`): counts indefinitely, triggers a signal at 1,000, and checks for `ThrowIfCancellationRequested` on every pass.
-4. `Suche.ErstenTreffer` (`Suche.cs`): searches for the first matching element and checks before each element whether the search has been aborted. If the token has already been aborted when the function is called, the predicate must not run even once.
+3. `Zaehler.ZaehleHoch` (`Zaehler.cs`): counts without end, sets the signal at 1,000, and checks with `ThrowIfCancellationRequested` on every iteration.
+4. `Suche.ErstenTreffer` (`Suche.cs`): searches for the first matching element and checks before each element whether it has been cancelled. If the token is already cancelled when the method is called, the predicate must not run even once.
 
 The following tests must be passed:
 

@@ -6,8 +6,8 @@
   Wer das Muster versteht, kann auch erklären, warum
   `catch (InvalidOperationException)` um ein `Task.Wait()` nie trifft.
 - `Sammle`: Der Test mit der verschachtelten `AggregateException` zeigt
-  `Flatten()`; ohne den Aufruf käme eine einzige Meldung ("One or more errors
-  occurred..."). `WaitAll` wartet auf ALLE Aufgaben, auch wenn eine
+  `Flatten()`; ohne den Aufruf stünde statt "C" und "D" die Sammelmeldung der
+  inneren Gruppe in der Liste ("One or more errors occurred. (C) (D)"). `WaitAll` wartet auf ALLE Aufgaben, auch wenn eine
   früh scheitert: Der Test mit dem Zähler prüft es. Wer stattdessen jede Task
   einzeln mit `Wait()` abfragt und beim ersten Fehler abbricht, besteht
   nicht.
@@ -18,8 +18,8 @@
   "abgebrochen" nicht dasselbe wie "fehlgeschlagen"? (Der Aufrufer wollte es
   so; es ist kein Fehler, der protokolliert werden müsste.)
 - Abbruch ist kooperativ: Eine Schleife ohne Abfrage ließe sich nie
-  beenden. `Thread.Abort` gibt es in .NET nicht mehr; Abschnitt 17.2.5
-  (Seite 1091) behandelt die kooperative Terminierung von Threads.
+  beenden. `Thread.Abort` wirft seit .NET Core eine
+  `PlatformNotSupportedException`; Abschnitt 17.2.5 (Seite 1091) behandelt die kooperative Terminierung von Threads.
 - `ErstenTreffer`: Die Prüfung gehört VOR den Aufruf des Prädikats. Der
   Test mit dem Abbruch beim dritten Element zeigt, dass der Abbruch
   mitten in der Arbeit bemerkt wird; die Tests brauchen dafür keinen zweiten

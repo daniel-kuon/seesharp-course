@@ -38,7 +38,7 @@ public static class Berechnungen
     }
 
     // Verpackt das nächste Messwert-Ereignis des Sensors in eine Aufgabe.
-    // - Die Aufgabe ist beim Rückgabe noch nicht fertig und wird mit dem ersten Messwert fertig.
+    // - Die Aufgabe ist bei der Rückgabe noch nicht fertig und wird mit dem ersten Messwert fertig.
     // - Danach meldet sich die Methode vom Ereignis wieder ab (Sensor.Abonnenten ist dann 0), und
     //   weitere Messwerte ändern nichts mehr.
     // Hinweis: TaskCompletionSource<double>; tcs.Task ist die Aufgabe, tcs.SetResult(wert) beendet sie.

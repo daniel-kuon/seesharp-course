@@ -3,7 +3,8 @@
 - Kern: Eine Sammlung, die mehrere Threads benutzen, braucht einen
   einzigen Schutz für ALLE Zugriffe, auch fürs Lesen (`Anzahl`). Ein
   `lock` nur in `Einreihen` genügt nicht. Prüfen: Sind alle drei Mitglieder
-  unter derselben Sperre?
+  unter derselben Sperre? (Ab .NET 9 ist auch ein `private readonly Lock`
+  als Sperrobjekt richtig.)
 - Der klassische Fehler heißt "Check-then-act": `if (q.Count > 0) return
   q.Dequeue();` mit zwei getrennten gesperrten Schritten (oder gar ungesperrt)
   lässt einen anderen Thread dazwischen. Der Test fängt ihn nur mit einer

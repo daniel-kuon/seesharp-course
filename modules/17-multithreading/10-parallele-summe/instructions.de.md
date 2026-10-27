@@ -20,7 +20,8 @@ prüft dieselben Daten.
 3. `Statistik.Histogramm(int[] daten, int klassen)`: wie viele Zahlen fallen in
    jede von `klassen` gleich breiten Klassen? Die Klasse von `w` ist
    `w * klassen / 100`. `Parallel.For`, jede Iteration erhöht ihren
-   Zähler mit `Interlocked.Increment(ref ergebnis[klasse])`.
+   Zähler mit `Interlocked.Increment(ref ergebnis[klasse])`. `klassen < 1` ist
+   eine `ArgumentOutOfRangeException`.
 
 Diese Tests müssen bestehen:
 

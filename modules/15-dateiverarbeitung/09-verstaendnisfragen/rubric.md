@@ -22,9 +22,8 @@ Kernpunkte:
 
 Typische Irrtümer: Der StreamReader erkenne jede Codierung von selbst (er erkennt nur ein BOM, Windows-1252 nicht); Binärdateien seien immer kleiner/besser; `StreamWriter` schreibe Bytes ohne Codierung.
 
-## kultur
+## datei-oder-stream
 
-(Die Item-ID stammt aus einer früheren Frage zur Kultur; die Frage behandelt jetzt 16.4.)
 
 Kernpunkte:
 - Die `File`-Methoden eignen sich für **kleine Dateien**, die ganz in den Hauptspeicher passen: ein Aufruf statt Öffnen, Lesen bzw. Schreiben und Schließen (16.4, Seite 1041 f.).
@@ -64,9 +63,8 @@ Kernpunkte:
 
 Typische Irrtümer: `eins|zwei|drei|neu` (Standard hänge an); die Datei sei nach dem ersten Block noch leer (ohne `using` stimmt das tatsächlich, mit `using` nicht).
 
-## code-kultur
+## code-write-append
 
-(Die Item-ID stammt aus einer früheren Frage zur Kultur; die Frage behandelt jetzt 16.4.)
 
 Ausgabe, zwei Zeilen: `3` und `d,e,f`.
 Kernpunkte:

@@ -28,7 +28,7 @@ items:
       - AuswertungTests.SpeicherProEndung_bricht_Gleichstand_nach_Endung
       - AuswertungTests.Mengenoperatoren_auf_Tags
   - type: multipleChoice
-    id: countby-oder-groupby
+    id: haeufigkeit-groupby
     prompt: { de: "Welcher Ausdruck liefert für  string[] werte = { \"a\", \"b\", \"a\" };  die Häufigkeit jedes Werts, also (a, 2) und (b, 1)?", en: "Which expression returns the frequency of each value for `string[] werte = { \"a\", \"b\", \"a\" };`, that is (a, 2) and (b, 1)?" }
     options:
       - { de: "werte.GroupBy(w => w).Select(g => (g.Key, g.Count()))", en: "werte.GroupBy(w => w).Select(g => (g.Key, g.Count()))" }

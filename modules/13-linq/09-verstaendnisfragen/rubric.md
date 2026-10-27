@@ -13,7 +13,7 @@ Kernpunkte:
 
 Typische Irrtümer: `Where` filtere sofort bei der Zeile selbst; die Abfrage speichere ihr Ergebnis; ein zweites `foreach` sei „gratis“.
 
-## groupby-countby
+## groupby-lesen
 
 Kernpunkte:
 - `GroupBy` liefert eine Folge von Gruppen (`IGrouping<TKey, T>`); jede Gruppe ist selbst eine Sequenz der zugehörigen Elemente (mit `foreach`, `Count()`, `Select` … durchlaufbar) und trägt ihren Schlüssel in der Eigenschaft `Key`.

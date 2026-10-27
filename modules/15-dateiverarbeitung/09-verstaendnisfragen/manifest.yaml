@@ -28,7 +28,7 @@ items:
       de: "Worin unterscheiden sich ein `FileStream` mit `BinaryWriter` und ein `StreamWriter`? Wann wählst du welchen, und was musst du bei Textdateien in Bezug auf die Zeichencodierung beachten?"
       en: "How do a `FileStream` with a `BinaryWriter` and a `StreamWriter` differ? When do you choose which, and what do you have to keep in mind about character encoding with text files?"
   - type: open
-    id: kultur
+    id: datei-oder-stream
     prompt:
       de: "Wann liest oder schreibst du eine Datei mit `File.ReadAllLines` bzw. `File.WriteAllLines` statt mit `StreamReader` bzw. `StreamWriter`? Was nehmen dir die `File`-Methoden ab, und wann sind sie ungeeignet?"
       en: "When do you read or write a file with `File.ReadAllLines` or `File.WriteAllLines` instead of a `StreamReader` or `StreamWriter`? What do the `File` methods do for you, and when are they unsuitable?"
@@ -122,7 +122,7 @@ items:
         Console.WriteLine(File.ReadAllText(pfad));
         ```
   - type: open
-    id: code-kultur
+    id: code-write-append
     prompt:
       de: |
         Was geben die beiden Ausgabezeilen aus, und warum?

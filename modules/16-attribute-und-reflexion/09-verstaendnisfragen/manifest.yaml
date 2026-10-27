@@ -39,7 +39,7 @@ items:
       de: "Was bewirkt `[Conditional(\"DEBUG\")]` an einer Methode genau: Was wird entfernt, und was passiert mit den Argumenten der Aufrufe? Wie funktioniert `[CallerMemberName]` an einem optionalen Parameter: Wer setzt den Wert ein, und wann?"
       en: "What exactly does `[Conditional(\"DEBUG\")]` do on a method: What is removed, and what happens to the arguments of the calls? How does `[CallerMemberName]` work on an optional parameter: Who inserts the value, and when?"
   - type: open
-    id: code-eigenschaften
+    id: code-nameof
     prompt:
       de: |
         Was gibt dieses Programm aus, und warum? (`using System.Runtime.CompilerServices;` ist vorhanden.)
@@ -178,7 +178,7 @@ items:
         enum Recht { Kein = 0, Lesen = 1, Schreiben = 2, Loeschen = 4 }
         ```
   - type: open
-    id: code-invoke
+    id: code-activator
     prompt:
       de: |
         Was gibt dieses Programm aus, und warum entsteht für `Stein` kein Objekt?
@@ -277,7 +277,7 @@ items:
       de: "Erste Option: Das Attribut ist nur für Klassen erlaubt (`AttributeTargets.Class`), steht hier aber an einer Methode (CS0592). Dritte Option: Eine Attributklasse muss von `Attribute` erben (CS0616). Vierte Option: Attributparameter müssen Konstanten sein (oder `typeof`-Ausdrücke, Aufzählungswerte, Arrays davon); `DateTime.Now.ToString()` entsteht erst zur Laufzeit (CS0182)."
       en: "First option: The attribute is only allowed on classes (`AttributeTargets.Class`), but is placed on a method here (CS0592). Third option: An attribute class must inherit from `Attribute` (CS0616). Fourth option: Attribute parameters must be constants (or `typeof` expressions, enum values, arrays of those); `DateTime.Now.ToString()` only exists at runtime (CS0182)."
   - type: multipleChoice
-    id: richtig-eigenschaften
+    id: richtig-isdefined
     prompt:
       de: "Welcher Code gibt `True` aus, wenn die Klasse `Teller` das Attribut `[Obsolete]` trägt?"
       en: "Which code prints `True` if the class `Teller` carries the `[Obsolete]` attribute?"

@@ -24,7 +24,7 @@ items:
       de: "Erkläre den Unterschied zwischen zurückgestellter und sofortiger Ausführung bei LINQ und nenne je zwei Operatoren. Was passiert, wenn man dieselbe Abfrage zweimal aufzählt, und was, wenn sich die Quelle zwischen dem Bauen der Abfrage und dem Aufzählen ändert?"
       en: "Explain the difference between deferred and immediate execution in LINQ and name two operators for each. What happens when you enumerate the same query twice, and what happens if the source changes between building the query and enumerating it?"
   - type: open
-    id: groupby-countby
+    id: groupby-lesen
     prompt:
       de: "Was liefert `GroupBy` genau, und wie liest du den Schlüssel und die Elemente einer Gruppe? Wie zählst du damit, wie oft jeder Schlüssel vorkommt?"
       en: "What exactly does `GroupBy` return, and how do you read the key and the elements of a group? How do you use it to count how often each key occurs?"

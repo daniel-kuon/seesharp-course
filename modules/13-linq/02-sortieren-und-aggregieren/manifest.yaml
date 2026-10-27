@@ -30,7 +30,7 @@ items:
     correct: [0]
     explanation: { de: "Min, Max und Average werfen bei einer leeren Folge von Zahlen (int, decimal, double usw.) eine InvalidOperationException; Sum und Count liefern dagegen 0. Das Buch verhindert die Ausnahme im GroupJoin-Beispiel mit Any() (Seite 1227 und 1228).", en: "Min, Max, and Average throw an InvalidOperationException for an empty sequence of numbers (int, decimal, double, etc.); Sum and Count, on the other hand, return 0. In its GroupJoin example the book avoids the exception with Any() (pages 1227 and 1228)." }
   - type: multipleChoice
-    id: stabil
+    id: orderby-thenby
     prompt: { de: "Produkte sollen nach Kategorie und innerhalb einer Kategorie nach Preis sortiert werden. Was leistet  produkte.OrderBy(p => p.Kategorie).OrderBy(p => p.Preis)  ?", en: "Products are to be sorted by category and, within a category, by price. What does `produkte.OrderBy(p => p.Kategorie).OrderBy(p => p.Preis)` do?" }
     options:
       - { de: "Es sortiert am Ende nach dem Preis; das zweite OrderBy sortiert neu. Für das zweite Kriterium braucht man ThenBy: OrderBy(p => p.Kategorie).ThenBy(p => p.Preis).", en: "In the end it sorts by price; the second OrderBy sorts anew. The second criterion needs ThenBy: OrderBy(p => p.Kategorie).ThenBy(p => p.Preis)." }

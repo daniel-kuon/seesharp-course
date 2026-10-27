@@ -43,9 +43,8 @@ Kernpunkte:
 
 Typische Irrtümer: Die Methode werde zur Laufzeit übersprungen oder aus der Assembly entfernt; Argumente würden trotzdem berechnet; der Name werde zur Laufzeit per Reflexion ermittelt.
 
-## code-eigenschaften
+## code-nameof
 
-(Die Item-ID stammt aus einer früheren Frage zu `GetProperties`; die Frage behandelt jetzt 14.4 und 14.5.1.)
 
 Ausgabe, zwei Zeilen: `Einzahlen: Saldo` und `Einzahlen: -`.
 Kernpunkte:
@@ -76,9 +75,8 @@ Kernpunkte:
 
 Typische Irrtümer: `Lesen, Loeschen` auch ohne `[Flags]`; `6` oder `3` als Summe; `HasFlag` liefere `True`.
 
-## code-invoke
+## code-activator
 
-(Die Item-ID stammt aus einer früheren Frage zu `MethodInfo.Invoke`; die Frage behandelt jetzt 14.7.1.)
 
 Ausgabe, zwei Zeilen: `Hund: Wuff` und `Stein: kein Tier`.
 Kernpunkte:

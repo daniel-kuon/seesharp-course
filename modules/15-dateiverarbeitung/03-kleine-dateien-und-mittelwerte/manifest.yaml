@@ -22,7 +22,7 @@ items:
     openLine: 17
     testProject: "Mittelwertrechnung Tests/Mittelwertrechnung.Tests.csproj"
   - type: multipleChoice
-    id: kultur
+    id: writealllines-ueberschreibt
     prompt: { de: "Die Datei daten.txt existiert schon und hat 10 Zeilen. Was passiert bei File.WriteAllLines(\"daten.txt\", [\"a\", \"b\"])?", en: "The file daten.txt already exists and has 10 lines. What happens with File.WriteAllLines(\"daten.txt\", [\"a\", \"b\"])?" }
     options:
       - { de: "Die Datei wird überschrieben und enthält danach nur die zwei Zeilen a und b. Zum Anhängen gibt es AppendAllLines.", en: "The file is overwritten and afterwards contains only the two lines a and b. To append, there is AppendAllLines." }

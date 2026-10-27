@@ -7,8 +7,8 @@ Der Record `Produkt` kennst du aus der vorigen Aufgabe. Öffne
 `Statistik.cs`; alle Methoden bekommen eine `IEnumerable<Produkt>` und
 lassen die Quelle unverändert:
 
-1. `Teuerste(produkte, n)`: die `n` teuersten Produkte, teuerstes zuerst
-   (`OrderByDescending`, `Take`).
+1. `Teuerste(produkte, n)`: die `n` teuersten Produkte, teuerstes zuerst,
+   bei gleichem Preis in der Reihenfolge der Quelle (`OrderByDescending`, `Take`).
 2. `NachKategorieDannPreis(produkte)`: nach Kategorie aufsteigend, innerhalb
    der Kategorie nach Preis absteigend (`OrderBy`, `ThenByDescending`).
 3. `Seite(produkte, seite, groesse)`: eine Seite der Liste in der gegebenen

@@ -25,11 +25,11 @@ items:
     id: let-uebersetzung
     prompt: { de: "from p in produkte  let brutto = p.Preis * 1.19m  where brutto > 20m  select (p.Name, brutto)  — In welche Methodenaufrufe übersetzt der Compiler das?", en: "`from p in produkte let brutto = p.Preis * 1.19m where brutto > 20m select (p.Name, brutto)` — Which method calls does the compiler translate this into?" }
     options:
-      - { de: "Ein Select, das p und brutto in einem anonymen Typ bündelt (transparenter Bezeichner), gefolgt von Where und einem weiteren Select, das darauf zugreift.", en: "A `Select` that bundles `p` and `brutto` into an anonymous type (transparent identifier), followed by `Where` and another `Select` that accesses it." }
-      - { de: "Ein einziges Where; let wird dabei weggelassen.", en: "A single \"where; let\" is omitted here." }
-      - { de: "Ein Aggregate-Aufruf, der brutto als Akkumulator führt.", en: "An aggregate call that acts as an accumulator in the gross sense." }
+      - { de: "Ein Select, das p und brutto in einem anonymen Typ bündelt (transparenter Identifikator), gefolgt von Where und einem weiteren Select, das darauf zugreift.", en: "A `Select` that bundles `p` and `brutto` into an anonymous type (transparent identifier), followed by `Where` and another `Select` that accesses it." }
+      - { de: "Ein einziges Where; let wird dabei weggelassen.", en: "A single `Where`; `let` is simply dropped." }
+      - { de: "Ein Aggregate-Aufruf, der brutto als Akkumulator führt.", en: "An `Aggregate` call that carries `brutto` as its accumulator." }
     correct: [0]
-    explanation: { de: "18.3 (Seite 1235 bis 1243): Die Abfragesyntax ist nur Zucker; der Compiler schreibt sie in Methodenaufrufe um. let wird zu einem Select mit anonymem Typ { p, brutto }, den die folgenden Klauseln unter dem Namen der Bereichsvariablen ansprechen.", en: "18.3 (pages 1235–1243): Query syntax is just sugar; the compiler rewrites it into method calls. `let` becomes a `Select` with the anonymous type `{ p, brutto }`, which the following clauses address under the name of the range variable." }
+    explanation: { de: "18.3.10 (Seite 1242 bis 1244): Die Abfragesyntax ist nur Zucker; der Compiler schreibt sie in Methodenaufrufe um. let wird zu einem Select mit anonymem Typ { p, brutto }, den die folgenden Klauseln unter dem Namen der Bereichsvariablen ansprechen.", en: "18.3.10 (pages 1242–1244): Query syntax is just sugar; the compiler rewrites it into method calls. `let` becomes a `Select` with the anonymous type `{ p, brutto }`, which the following clauses address under the name of the range variable." }
   - type: multipleChoice
     id: kein-schluesselwort
     prompt: { de: "Welche dieser Operationen hat in der Abfragesyntax kein eigenes Schlüsselwort und wird deshalb mit dem Methodenaufruf auf der geklammerten Abfrage geschrieben?", en: "Which of these operations does not have its own keyword in the query syntax and is therefore written as part of the method call in the query enclosed in parentheses?" }

@@ -23,8 +23,9 @@ materialisiert es einmal mit `ToList()`.
 
 `Where` filtert, `OfType<T>()` filtert nach Laufzeittyp, `Select` formt in
 einen neuen Elementtyp um, auch in Tupel oder anonyme Typen. `OrderBy`,
-`ThenBy` und die `...Descending`-Varianten sortieren **stabil** (18.2.7,
-Seite 1218). `SelectMany` flacht eine Sequenz von Sequenzen ab (18.2.8.2,
+`ThenBy` und die `...Descending`-Varianten sortieren (18.2.7, Seite 1218),
+und zwar **stabil**: Elemente mit gleichem Schlüssel behalten ihre
+Quellreihenfolge (das Buch erwähnt das nicht, .NET garantiert es). `SelectMany` flacht eine Sequenz von Sequenzen ab (18.2.8.2,
 Seite 1220).
 
 ## Gruppieren und Verknüpfen (18.2.9 und 18.2.10, Seite 1222 bis 1228)
@@ -32,14 +33,17 @@ Seite 1220).
 `GroupBy` liefert Gruppen (`IGrouping<TKey, T>`), die selbst Sequenzen sind
 und ihren Schlüssel in `Key` tragen. `Join` ist ein innerer Join; `GroupJoin`
 hängt jedem Element der äußeren Sequenz die (auch leere) Gruppe seiner Partner
-an; `Zip` paart zwei Sequenzen elementweise.
+an (das Buch nennt das einen Left Outer Join, Seite 1228; seit .NET 10 gibt
+es dafür auch `LeftJoin`). `Zip` paart zwei Sequenzen elementweise
+(18.2.8.3, Seite 1221).
 
 ## Weitere Operatoren (18.2.11, Seite 1228)
 
 Quantoren (`Any`, `All`, `Contains`), Elementoperatoren (`First`,
 `FirstOrDefault`, `Single`, `Last`, `ElementAt`), Mengenoperatoren
 (`Distinct`, `Union`, `Intersect`, `Except`), Aggregate (`Count`, `Sum`,
-`Average`, `Min`, `Max`; `Average` und `Min` auf leerer Folge werfen) und
+`Average`, `Min`, `Max`; auf einer leeren Zahlenfolge werfen `Average`, `Min`
+und `Max`, `Sum` und `Count` liefern 0) und
 Teilfolgen (`Take`, `Skip`, `TakeWhile`, `Chunk`, Seite 1234). Das Buch ist
 auf dem Stand .NET 8: `CountBy`, `AggregateBy` und `Index` (ab .NET 9) fehlen
 dort. `CountBy(f)` zählt je Schlüssel in einem Durchlauf und ersetzt

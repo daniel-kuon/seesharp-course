@@ -2,7 +2,7 @@ id: linq-sortieren-und-aggregieren
 title: { de: "Sortieren, Aggregate und Teilfolgen", en: "Sorting, Aggregates, and Subsequences" }
 reading:
   section: "18.2.7"
-  title: { de: "Sortieren", en: "Sort" }
+  title: { de: "Sortieren", en: "Sorting" }
   printedPage: 1218
 teaches:
   - linq.orderby
@@ -28,7 +28,7 @@ items:
       - { de: "Das Ergebnis ist 0.", en: "The result is 0." }
       - { de: "Das Ergebnis ist double.NaN.", en: "The result is double.NaN." }
     correct: [0]
-    explanation: { de: "Min, Max und Average ohne Selektor-Standardwert werfen bei leeren Sequenzen InvalidOperationException; Sum liefert dagegen 0 und Count liefert 0.", en: "Min, Max, and Average—without a selector default value—throw an InvalidOperationException for empty sequences; Sum, on the other hand, returns 0, and Count returns 0." }
+    explanation: { de: "Min, Max und Average werfen bei einer leeren Folge von Zahlen (int, decimal, double usw.) eine InvalidOperationException; Sum und Count liefern dagegen 0. Das Buch verhindert die Ausnahme im GroupJoin-Beispiel mit Any() (Seite 1227 und 1228).", en: "Min, Max, and Average throw an InvalidOperationException for an empty sequence of numbers (int, decimal, double, etc.); Sum and Count, on the other hand, return 0. In its GroupJoin example the book avoids the exception with Any() (pages 1227 and 1228)." }
   - type: multipleChoice
     id: stabil
     prompt: { de: "Zwei Produkte haben denselben Preis. Wie steht es um ihre Reihenfolge nach  produkte.OrderByDescending(p => p.Preis)  ?", en: "Two products have the same price. What is their order after `produkte.OrderByDescending(p => p.Preis)`?" }
@@ -37,4 +37,4 @@ items:
       - { de: "Sie ist zufällig.", en: "It's random." }
       - { de: "Die beiden Produkte werden zu einem zusammengefasst.", en: "The two products will be combined into one." }
     correct: [0]
-    explanation: { de: "18.2.7 (Seite 1218): Weitere Kriterien hängt man mit ThenBy/ThenByDescending an; ohne sie bleibt die Quellreihenfolge erhalten.", en: "18.2.7 (page 1218): Additional criteria are appended using ThenBy/ThenByDescending; without them, the source order is retained." }
+    explanation: { de: "18.2.7 (Seite 1218): Weitere Kriterien hängt man mit ThenBy/ThenByDescending an; ohne sie bleibt bei gleichem Schlüssel die Quellreihenfolge erhalten. Das Buch erwähnt die Stabilität nicht, die .NET-Dokumentation garantiert sie.", en: "18.2.7 (page 1218): Additional criteria are appended using ThenBy/ThenByDescending; without them, elements with equal keys keep their source order. The book does not mention stability; the .NET documentation guarantees it." }

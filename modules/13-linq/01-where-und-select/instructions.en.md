@@ -1,13 +1,13 @@
 # Where, Select, and Chaining
 
-Read **Example 18.2.1** (page 1211), **18.2.3 Fluent API** (page 1213), and **18.2.6.1 Where()** (page 1217) in the book.
+Read **18.2.1 Example** (page 1211), **18.2.3 Fluent API** (page 1213), and **18.2.6.1 Where()** (page 1217) in the book.
 
 LINQ consists of extension methods on `IEnumerable<T>`; the lambda expressions provide the conditions and transformations. Open `Abfragen.cs` (the `Produkt` record and the `Euro` helper method are already provided):
 
 1. `Guenstige(produkte, max)`: all products with a `Preis <= max` (`Where`).
 2. `Namen(produkte)`: the names (`Select`).
-3. `Etiketten(produkte)`: a list of tuples `(Name, Preis)`, where the price is a text string in `Euro`, e.g., `"12,50 EUR"` (`Select` with tuples, `ToList()`).
-4. `VorraetigeGuenstige(produkte, max)`: Names of products with `Lager > 0` and `Preis <= max`; two `Where` clauses and one `Select` clause in succession.
+3. `Etiketten(produkte)`: a list of tuples `(Name, Preis)`, the price as text via `Euro`, e.g. `"12,50 EUR"` (`Select` with tuples, `ToList()`).
+4. `VorraetigeGuenstige(produkte, max)`: Names of products with `Lager > 0` and `Preis <= max`; two `Where` calls and one `Select` call in a row.
 5. `Preisliste(produkte)`: `Dictionary<string, decimal>` Name -> Price (`ToDictionary`).
 6. `Schnappschuss(produkte)`: an array containing the products (`ToArray`).
 

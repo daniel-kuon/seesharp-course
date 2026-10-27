@@ -6,8 +6,8 @@ Open `Auswertung.cs` (the `Mitarbeiter(Name, Gehalt)` record is predefined):
 
 1. `Woerter(saetze)`: all words of all sentences, in lowercase, without repetitions, in order of first occurrence (`SelectMany`, `Split` with the given `Trenner` separators, `Distinct`).
 2. `Kombinationen(a, b)`: the Cartesian product as text, e.g., `"1x"`, with **two `from` clauses** (query syntax).
-3. `UeberDemSchnitt(mitarbeiter)`: everyone who earns more than the average of all employees. The query `where m.Gehalt > liste.Average(...)` would recalculate the average for each element. Calculate it **once**: The source may be included at most twice (the tests count).
-4. `Spitzenverdiener(mitarbeiter)`: Names of all employees with the highest salaries, using a **subquery** in the query syntax: `where m.Gehalt == (from x in liste select x.Gehalt).Max()`
+3. `UeberDemSchnitt(mitarbeiter)`: everyone who earns more than the average of all employees. The query `where m.Gehalt > liste.Average(...)` would recalculate the average for each element. Calculate it **once**: The source may be enumerated at most twice (the tests count). An empty source yields an empty list (`Average` would throw).
+4. `Spitzenverdiener(mitarbeiter)`: the names of all employees with the highest salary, using a **subquery** in the query syntax: `where m.Gehalt == (from x in liste select x.Gehalt).Max()`
 5. `NurTexte(objekte)` and `NurGanzzahlen(objekte)`: using `OfType<T>()`.
 6. `MeineOperatoren` (Extension methods with `yield return`):
    - `TakeEvery(n)`: the first element, then every `n`-th element (positions 0, n, 2n, ...); for `n <= 0`, an `ArgumentOutOfRangeException` during enumeration. Must work with an **infinite** source and `Take(5)`.

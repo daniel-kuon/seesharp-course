@@ -14,12 +14,13 @@ Schlüssel zu einem Wert.
    in denen mehr als ein Eintrag steht, als `List<List<string>>` der
    **sortierten** Pfade (`StringComparer.Ordinal`); die Gruppen sind nach
    ihrem ersten Pfad geordnet (`GroupBy`, `Where`, `Select`, `OrderBy`).
-2. `SpeicherProEndung(eintraege)`: je Dateiendung (`Path.GetExtension`, klein
-   geschrieben) die Summe der Größen, größte Summe zuerst, bei Gleichstand
+2. `SpeicherProEndung(eintraege)`: je Dateiendung (`Path.GetExtension(pfad)`
+   liefert sie samt Punkt, z. B. `".PNG"`; klein geschrieben; die Klasse `Path`
+   behandelt Level 15 ausführlich) die Summe der Größen, größte Summe zuerst, bei Gleichstand
    nach Endung (`Ordinal`).
 3. `Haeufigkeiten(werte)`: `Dictionary<string, int>` mit `CountBy`.
-4. `GroesseProEndung(eintraege)`: `Dictionary<string, long>` mit
-   `AggregateBy`.
+4. `GroesseProEndung(eintraege)`: `Dictionary<string, long>` Endung (wie in 2.)
+   -> Summe der Größen, mit `AggregateBy`.
 5. `NeueTags(alt, neu)`: Tags aus `neu`, die in `alt` fehlen (`Except`);
    `AlleTags(a, b)` (`Union`); `GemeinsameTags(a, b)` (`Intersect`). Alle drei
    liefern eine **sortierte** Liste ohne Wiederholungen (`Order`).

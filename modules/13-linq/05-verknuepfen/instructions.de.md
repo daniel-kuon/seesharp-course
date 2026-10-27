@@ -1,7 +1,7 @@
 # Join, GroupJoin und Zip
 
 Lies im Buch **18.2.10 Verknüpfen von zwei Sequenzen** (Seite 1224) und
-die Übungsaufgabe **18.6 Aufgabe 1** (Seite 1255) zu `Zip`.
+**18.2.8.3 Zip()** (Seite 1221).
 
 Kunden und Bestellungen hängen über `Bestellung.KundeId = Kunde.Id`
 zusammen. Öffne `Verknuepfungen.cs` (die Records `Kunde(Id, Name)` und

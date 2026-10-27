@@ -1,8 +1,9 @@
 # Quantoren, Elementoperatoren und verzögerte Ausführung
 
 Lies im Buch **18.2.4 Zurückgestellte oder sofortige Ausführung** (Seite
-1215) bis **18.2.6** (Seite 1217) sowie den Abschnitt zu Quantoren und
-Elementoperatoren in **18.2.11** (Seite 1228).
+1215) bis **18.2.6** (Seite 1217) sowie aus **18.2.11** die Abschnitte
+**18.2.11.2 Extraktion einzelner Elemente** (Seite 1230) und **18.2.11.5
+Existenz oder Bedingung prüfen** (Seite 1232).
 
 Eine Abfrage wie `quelle.Where(...)` läuft erst, wenn jemand sie aufzählt.
 Das ist praktisch, aber tückisch. Öffne `Ausfuehrung.cs`:

@@ -35,7 +35,7 @@ items:
     prompt: { de: "Eine Folge enthält genau zwei Treffer. Was tun First(p) und Single(p)?", en: "A sequence contains exactly two matches. What do First(p) and Single(p) do?" }
     options:
       - { de: "First liefert den ersten Treffer; Single wirft InvalidOperationException, weil der Treffer nicht eindeutig ist.", en: "First returns the first match; Single throws an InvalidOperationException because the match is not unique." }
-      - { de: "Beide liefern den ersten Treffer.", en: "Both score the first goal." }
-      - { de: "First wirft; Single liefert den ersten Treffer.", en: "First throws; Single lands the first hit." }
+      - { de: "Beide liefern den ersten Treffer.", en: "Both return the first match." }
+      - { de: "First wirft; Single liefert den ersten Treffer.", en: "First throws; Single returns the first match." }
     correct: [0]
-    explanation: { de: "Single verlangt genau ein Element; ohne Treffer und bei mehreren Treffern wirft es InvalidOperationException. SingleOrDefault wirft nur bei mehreren.", en: "`Single` requires exactly one element; if there are no matches or multiple matches, it throws an `InvalidOperationException`. `SingleOrDefault` throws an exception only if there are multiple matches." }
+    explanation: { de: "18.2.11.2 (Seite 1230): Single verlangt genau ein Element; ohne Treffer und bei mehreren Treffern wirft es InvalidOperationException. SingleOrDefault wirft nur bei mehreren.", en: "18.2.11.2 (page 1230): `Single` requires exactly one element; if there are no matches or multiple matches, it throws an `InvalidOperationException`. `SingleOrDefault` throws an exception only if there are multiple matches." }

@@ -17,6 +17,7 @@ Aufgabe 1** (Seite 1255); ihre fünf Aussagen sind die Quizfragen.
    verdienen. Die Abfrage `where m.Gehalt > liste.Average(...)` würde den
    Durchschnitt für jedes Element neu berechnen. Berechne ihn **einmal**:
    Die Quelle darf höchstens zweimal aufgezählt werden (die Tests zählen).
+   Eine leere Quelle ergibt eine leere Liste (`Average` würde werfen).
 4. `Spitzenverdiener(mitarbeiter)`: Namen aller mit dem höchsten Gehalt, mit
    einer **Unterabfrage** in Abfragesyntax:
    `where m.Gehalt == (from x in liste select x.Gehalt).Max()`.

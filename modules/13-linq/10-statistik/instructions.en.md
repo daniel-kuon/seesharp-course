@@ -1,10 +1,10 @@
 # Extra: Grade Statistics
 
-Read the section "**18.2.11 Additional LINQ Operators**" (page 1228) in the book and review `GroupBy` from 18.2.9 (page 1222).
+Read **18.2.11 Additional LINQ Operators** (page 1228) in the book and review `GroupBy` from 18.2.9 (page 1222).
 
-The "Record `Pruefung(Fach, Student, Note)`" record stores a grade (1.0 is the best, 5.0 is the worst). `Notenstatistik` receives all exams in its constructor; write the following in `Notenstatistik.cs`:
+The record `Pruefung(Fach, Student, Note)` holds a grade (1.0 is the best, 5.0 is the worst). `Notenstatistik` receives all exams in its constructor; write the following in `Notenstatistik.cs`:
 
-1. `Durchschnitt(fach)`: the grade `Where` for the subject (`Average`); if there is no exam for the subject, `null`.
+1. `Durchschnitt(fach)`: the average grade in the subject (`Where`, `Average`); if there is no exam in the subject, `null`.
 2. `Bestenliste(n)`: the `n` best exams, best first; for equal grades by student, then by subject (`StringComparer.Ordinal`).
 3. `DurchschnittProFach()`: `(Fach, Durchschnitt)` per subject, sorted by subject (ordinal) (`GroupBy`).
 4. `Durchgefallene()`: All exams with a grade above 4.0, in their original order.

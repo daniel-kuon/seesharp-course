@@ -1,10 +1,10 @@
 # Sorting, Aggregates, and Subsequences
 
-Read sections **18.2.7 "Sorting**" (page 1218) and **18.2.11 "Additional LINQ Operators**" (page 1228; `Chunk` on page 1234) in the book.
+Read **18.2.7 Sorting** (page 1218) and **18.2.11 Additional LINQ Operators** (page 1228; `Chunk` on page 1234) in the book.
 
-You're already familiar with the Record `Produkt` from the previous exercise. Open `Statistik.cs`; all methods take an `IEnumerable<Produkt>` and leave the source unchanged:
+You already know the record `Produkt` from the previous exercise. Open `Statistik.cs`; all methods take an `IEnumerable<Produkt>` and leave the source unchanged:
 
-1. `Teuerste(produkte, n)`: the `n` most expensive products, sorted from most expensive to least expensive (`OrderByDescending`, `Take`).
+1. `Teuerste(produkte, n)`: the `n` most expensive products, most expensive first; equal prices keep the source order (`OrderByDescending`, `Take`).
 2. `NachKategorieDannPreis(produkte)`: by category in ascending order, then by price in descending order within each category (`OrderBy`, `ThenByDescending`).
 3. `Seite(produkte, seite, groesse)`: a page of the list in the given order; page numbering starts at 0 (`Skip`, `Take`).
 4. `Preisspanne(produkte)`: `(min, max, mittel)` of the prices (`Min`, `Max`, `Average`); if the sequence **is empty** `(0, 0, 0)` (otherwise `Average` throws an exception).

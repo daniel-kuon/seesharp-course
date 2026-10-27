@@ -45,7 +45,7 @@ public class PruefungenTests
         Assert.Equal("c", Zugriff.Dritte(["a", "b", "c", "d"]));
         Assert.Equal("d", Zugriff.Letzte(["a", "b", "c", "d"]));
 
-        // eine Abfrage als Quelle (kein Array oder Liste): ElementAt wirft dann ArgumentOutOfRangeException
+        // auch mit einer Abfrage als Quelle (kein Array oder Liste) wirft ElementAt ArgumentOutOfRangeException
         Assert.Throws<ArgumentOutOfRangeException>(() => Zugriff.Dritte(Enumerable.Range(1, 2).Select(i => "x" + i)));
         Assert.Throws<InvalidOperationException>(() => Zugriff.Letzte([]));
     }

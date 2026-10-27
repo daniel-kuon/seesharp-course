@@ -1,8 +1,8 @@
 # Query Syntax with `let`, `into`, and `join`
 
-Read section **18.3, "Query Syntax**" (pages 1235–1243), in the book, and take a look at the samples under `LINQ-to-Objects/Abfragesyntax/{Einstieg, let, into, Join}`.
+Read **18.3 Query Syntax** (pages 1235–1244) in the book and take a look at the samples under `LINQ-to-Objects/Abfragesyntax/{Einstieg, let, into, Join}`.
 
-There are two classes in `Abfragesyntax.cs`. `Methodensyntax` is complete and covered by tests; it shows the same queries in method syntax. In `Abfragesyntax`, you rewrite each query **in query syntax**; the result must be the same:
+The project contains two classes. `Methodensyntax` (in `Methodensyntax.cs`) is complete and covered by tests; it shows the same queries in method syntax. In `Abfragesyntax` (in `Abfragesyntax.cs`), you rewrite each query **in query syntax**; the result must be the same:
 
 1. `TeuerQ(produkte, grenze)`: `from ... where ... orderby ... select`; the names of the products above the threshold, in alphabetical order.
 2. `MitMehrwertsteuerQ(produkte)`: with `let brutto = p.Preis * 1.19m`, which is used in `where` and `select`; `(Name, Brutto)` for all products with a gross price over 20.

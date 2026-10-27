@@ -1,11 +1,11 @@
 # Abfragesyntax mit let, into und join
 
-Lies im Buch **18.3 Abfragesyntax** (Seite 1235 bis 1243) und schau dir
+Lies im Buch **18.3 Abfragesyntax** (Seite 1235 bis 1244) und schau dir
 die Samples `LINQ-to-Objects/Abfragesyntax/{Einstieg, let, into, Join}` an.
 
-In `Abfragesyntax.cs` stehen zwei Klassen. `Methodensyntax` ist fertig und
-von den Tests abgedeckt; sie zeigt dieselben Abfragen in Methodensyntax.
-In `Abfragesyntax` formulierst du jede Abfrage **in Abfragesyntax** neu;
+Das Projekt enthält zwei Klassen. `Methodensyntax` (in `Methodensyntax.cs`)
+ist fertig und von den Tests abgedeckt; sie zeigt dieselben Abfragen in
+Methodensyntax. In `Abfragesyntax` (in `Abfragesyntax.cs`) formulierst du jede Abfrage **in Abfragesyntax** neu;
 das Ergebnis muss dasselbe sein:
 
 1. `TeuerQ(produkte, grenze)`: `from ... where ... orderby ... select`; die

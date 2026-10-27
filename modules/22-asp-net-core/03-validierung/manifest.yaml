@@ -26,7 +26,7 @@ items:
     options:
       - { de: "ModelState.IsValid ist false: Ein null-unzulässiger Referenztyp wird behandelt, als stünde [Required] daran. Mit string? wäre das Feld optional.", en: "ModelState.IsValid is false: A reference type that does not allow null values is treated as if it had [Required] applied to it. If it were string?, the field would be optional." }
       - { de: "ModelState.IsValid ist true: Ohne Attribut gibt es keine Regel.", en: "ModelState.IsValid is true: Without an attribute, there is no rule." }
-      - { de: "Es wird eine Ausnahme geworfen, weil S1 null ist.", en: "An exception is thrown because S1 is zero." }
+      - { de: "Es wird eine Ausnahme geworfen, weil S1 null ist.", en: "An exception is thrown because S1 is null." }
     correct: [0]
     explanation: { de: "22.9.6 (Seite 1618): Das implizite Required für null-unzulässige Referenztypen; ein leeres Feld ergibt null, nicht String.Empty.", en: "22.9.6 (page 1618): The implicit `Required` for reference types that do not allow `null`; an empty field returns `null`, not `String.Empty`." }
   - type: multipleChoice

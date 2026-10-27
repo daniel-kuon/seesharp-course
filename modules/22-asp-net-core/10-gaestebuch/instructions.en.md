@@ -7,7 +7,7 @@ Open `Gaestebuch/Pages/GaestebuchModel.cs` and complete the PageModel for a gues
 1. The service is provided via constructor injection.
 2. `Neu` is now populated from the form using `[BindProperty]`.
 3. `OnGet()` populates `Eintraege` with the most recent entry first (`Alle()` returns the oldest entries first).
-4. `OnPost()`: If the input is invalid, populate the `Eintraege` and return `Page()`; do not save anything. Otherwise, save as `Neu` and redirect to the same page (`RedirectToPage()` without a page name).
+4. `OnPost()`: If the input is invalid, populate the `Eintraege` and return `Page()`; do not save anything. Otherwise, save `Neu` and redirect to the same page (`RedirectToPage()` without a page name).
 
 The tests are standard unit tests using a mock service; there is no web server.
 

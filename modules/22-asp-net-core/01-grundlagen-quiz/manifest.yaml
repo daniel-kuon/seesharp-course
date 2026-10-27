@@ -21,7 +21,7 @@ items:
       - { de: "MapRazorPages, UseAuthorization, UseRouting, UseStaticFiles, UseHttpsRedirection", en: "MapRazorPages, UseAuthorization, UseRouting, UseStaticFiles, UseHttpsRedirection" }
       - { de: "UseAuthorization, UseRouting, UseHttpsRedirection, MapRazorPages, UseStaticFiles", en: "UseAuthorization, UseRouting, UseHttpsRedirection, MapRazorPages, UseStaticFiles" }
     correct: [0]
-    explanation: { de: "22.2.1 (Seite 1553): Die Komponenten bearbeiten eine Anforderung in der Reihenfolge ihrer Vereinbarung. Erst auf HTTPS umleiten, dann statische Dateien ausliefern, dann die Route wählen, dann prüfen, ob der Zugriff auf das gewählte Ziel erlaubt ist, und zuletzt die Seite erzeugen.", en: "22.2.1 (page 1553): The components process a request in the order in which they were agreed upon. First, redirect to HTTPS; then, serve static files; then, select the route; then, check whether access to the selected destination is permitted; and finally, render the page." }
+    explanation: { de: "22.2.1 (Seite 1553): Die Komponenten bearbeiten eine Anforderung in der Reihenfolge ihrer Vereinbarung. Erst auf HTTPS umleiten, dann statische Dateien ausliefern, dann die Route wählen, dann prüfen, ob der Zugriff auf das gewählte Ziel erlaubt ist, und zuletzt die Seite erzeugen.", en: "22.2.1 (page 1553): The components process a request in the order in which they were registered. First, redirect to HTTPS; then, serve static files; then, select the route; then, check whether access to the selected destination is permitted; and finally, render the page." }
   - type: multipleChoice
     id: falsche-reihenfolge
     prompt: { de: "In einer Pipeline steht `UseAuthorization()` vor `UseRouting()`. Warum ist das ein Fehler?", en: "In a pipeline, `UseAuthorization()` comes before `UseRouting()`. Why is that an error?" }
@@ -42,11 +42,11 @@ items:
     explanation: { de: "22.5.4 (Seite 1571): Page- und PageModel-Objekte sind anforderungsbezogen. Zustand über Anforderungen hinweg gehört in eine Datenbank, ein Cookie, ein verstecktes Formularfeld oder einen Dienst mit langer Lebensdauer. Das gilt auch für ein Formular, das nach einem Fehler erneut angezeigt wird: Der Server weiß nichts mehr vom ersten Versuch, außer was die zweite Anforderung mitschickt.", en: "22.5.4 (page 1571): Page and PageModel objects are request-specific. State that spans requests belongs in a database, a cookie, a hidden form field, or a service with a long lifespan. This also applies to a form that is redisplayed after an error: The server no longer knows anything about the first attempt, except for what the second request sends along with it." }
   - type: multipleChoice
     id: get-post
-    prompt: { de: "Ein Benutzer gibt die Adresse einer Seite im Browser ein und füllt dort ein `<form method=\"post\">` aus. Welche Behandlungsmethoden laufen?", en: "A user enters a web address into the browser and fills out a `<form method=\"post\">` there. What processing methods are in use?" }
+    prompt: { de: "Ein Benutzer gibt die Adresse einer Seite im Browser ein und füllt dort ein `<form method=\"post\">` aus. Welche Behandlungsmethoden laufen?", en: "A user enters the address of a page into the browser and fills out a `<form method=\"post\">` there. Which handler methods run?" }
     options:
       - { de: "Das Aufrufen der Seite ruft `OnGet` auf, das Absenden des Formulars `OnPost`.", en: "When the page is loaded, `OnGet` is called; when the form is submitted, `OnPost` is called." }
       - { de: "Beides ruft `OnGet` auf; `OnPost` läuft nur bei JavaScript.", en: "Both call `OnGet`; `OnPost` runs only in JavaScript." }
-      - { de: "Das Aufrufen ruft `OnPost` auf, das Absenden `OnGet`.", en: "Calling the method triggers `OnPost`; sending it triggers `OnGet`." }
+      - { de: "Das Aufrufen ruft `OnPost` auf, das Absenden `OnGet`.", en: "Opening the page calls `OnPost`; submitting the form calls `OnGet`." }
     correct: [0]
     explanation: { de: "22.5.3 (Seite 1566): Die Behandlungsmethode `On<HTTP-Methode>` passt zur Methode der Anforderung: Adresse eingeben oder einem Link folgen ist GET, ein Formular mit `method=\"post\"` schickt POST.", en: "22.5.3 (page 1566): The handling method `On<HTTP-Methode>` corresponds to the request method: Entering an address or following a link is a GET request; a form with `method=\"post\"` sends a POST request." }
   - type: multipleChoice
@@ -55,7 +55,7 @@ items:
     options:
       - { de: "Eine InvalidOperationException (\"Multiple handlers matched\"): Pro HTTP-Methode darf nur eine passende Behandlungsmethode existieren.", en: "An InvalidOperationException (\"Multiple handlers matched\"): Only one matching handler may exist per HTTP method." }
       - { de: "Es läuft immer die asynchrone Variante.", en: "The asynchronous version always runs." }
-      - { de: "Es laufen beide nacheinander.", en: "They're both running one after the other." }
+      - { de: "Es laufen beide nacheinander.", en: "Both run one after the other." }
     correct: [0]
     explanation: { de: "22.5.3.1 (Seite 1566): Die Koexistenz einer synchronen und einer asynchronen Variante führt zu einem Ausnahmefehler.", en: "22.5.3.1 (page 1566): The coexistence of a synchronous and an asynchronous variant results in an exception error." }
   - type: multipleChoice
@@ -63,7 +63,7 @@ items:
     prompt: { de: "Die Eingabeklasse `Benutzer` hat die Eigenschaften `Name` und `bool IsAdmin`, und `[BindProperty] public Benutzer Neu { get; set; }` bindet sie. Das Formular enthält nur ein Feld `Neu.Name`. Wie kann ein Angreifer trotzdem `IsAdmin` auf `true` setzen?", en: "The `Benutzer` input class has the `Name` and `bool IsAdmin` properties, and `[BindProperty] public Benutzer Neu { get; set; }` binds them. The form contains only one field, `Neu.Name`. How can an attacker still set `IsAdmin` to `true`?" }
     options:
       - { de: "Er schickt die Anforderung mit einem zusätzlichen Name-Wert-Paar `Neu.IsAdmin=true` ab (HTML-Formular im Browser ändern oder die Anforderung selbst bauen); die Modellbindung schreibt jede bindbare Eigenschaft, nicht nur die im Formular sichtbaren.", en: "He sends the request with an additional name-value pair, `Neu.IsAdmin=true` (modify the HTML form in the browser or build the request yourself); the model binding writes every bindable property, not just those visible in the form." }
-      - { de: "Gar nicht: Was nicht im Formular steht, wird nie gebunden.", en: "Not at all: Anything not included in the form is never binding." }
+      - { de: "Gar nicht: Was nicht im Formular steht, wird nie gebunden.", en: "Not at all: anything not included in the form is never bound." }
       - { de: "Nur wenn er das Passwort des Servers kennt.", en: "Only if he knows the server's password." }
     correct: [0]
     explanation: { de: "22.8.7 (Seite 1606): Overposting. Der Angreifer muss nur den Namen der Eigenschaft kennen; die Modellbindung unterscheidet nicht, ob der Wert aus dem ausgelieferten Formular oder aus einer eigenen Anforderung stammt.", en: "22.8.7 (page 1606): Overposting. The attacker only needs to know the name of the property; the model binding does not distinguish whether the value comes from the submitted form or from a separate request." }

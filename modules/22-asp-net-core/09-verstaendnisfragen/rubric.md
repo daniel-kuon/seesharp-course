@@ -33,7 +33,7 @@ Typische Fehlvorstellungen: Beide Aufrufe liefern `RedirectToPageResult` (die Pr
 Wesentlich:
 - Konstruktorinjektion: Die Klasse fordert ihre Abhängigkeiten als Konstruktorparameter an; der Service-Container erzeugt sie und reicht sie hinein (die Klasse erzeugt sie nicht selbst mit `new`).
 - Als Schnittstelle: Die Klasse kennt nur den Vertrag, nicht die Implementierung; sie lässt sich austauschen (Speicher, Datenbank) und im Test durch einen **Fake** ersetzen, ohne die Seite zu ändern.
-- Lebensdauer: `AddSingleton`: eine Instanz für die ganze Anwendung; `AddScoped`: eine Instanz je Anforderung; `AddTransient`: eine neue Instanz bei jeder Anforderung des Dienstes.
+- Lebensdauer: `AddSingleton`: eine Instanz für die ganze Anwendung; `AddScoped`: eine Instanz je Anforderung; `AddTransient`: eine neue Instanz bei jedem Abruf des Dienstes (jeder Injektion).
   Der Speicher, der die Stimmen aller Besucher hält, muss `Singleton` sein, sonst beginnt jede Anforderung mit einem leeren Speicher.
 
 Typische Fehlvorstellungen: Scoped sei „ein Objekt je Benutzer"; Transient sei „der Standard und passe für den Speicher"; Konstruktorinjektion sei ein Entwurfsmuster nur für Tests.
@@ -46,7 +46,7 @@ Wesentlich:
 - `a` (Singleton, zwei Scopes): dieselbe Instanz: `True`.
 - `b` (Scoped, derselbe Scope): dieselbe Instanz: `True`.
 - `c` (Scoped, zwei Scopes, also zwei Anforderungen): verschiedene Instanzen: `False`.
-- `d` (Transient, derselbe Scope): bei jeder Anforderung eine neue Instanz: `False`.
+- `d` (Transient, derselbe Scope): bei jedem Abruf eine neue Instanz: `False`.
 
 Typische Fehlvorstellungen: `True True True False` (Scoped wie Singleton gedacht); `True False False False` (Scoped wie Transient gedacht); `==` vergleiche den Inhalt (bei Klassen ohne eigenen Operator vergleicht es die Referenz).
 

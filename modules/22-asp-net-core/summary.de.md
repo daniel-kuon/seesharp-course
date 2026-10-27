@@ -18,7 +18,8 @@ Anforderung in der Reihenfolge ihrer Vereinbarung durchläuft
 **Service-Container** erzeugt und entsorgt die Dienstobjekte; eine Klasse
 fordert ihre Abhängigkeiten im Konstruktor an (Konstruktorinjektion) und
 kennt dabei nur eine Schnittstelle. Registriert man den Typ mit `AddSingleton`,
-`AddScoped` oder `AddTransient`, legt man seine Lebensdauer fest.
+`AddScoped` oder `AddTransient`, legt man seine Lebensdauer fest (das Buch zeigt nur
+`AddTransient`; die Lebensdauern kommen in Aufgabe 4 und im Quiz vor).
 
 ## Seiten und PageModel (22.4 und 22.5, Seite 1556 bis 1572)
 
@@ -50,13 +51,13 @@ besser eine eigene Eingabemodellklasse.
 
 Regeln stehen als Attribute am Modell (`[Required]`, `[Range]`,
 `[StringLength]`, `[EmailAddress]`); Regeln über mehrere Eigenschaften
-implementieren `IValidatableObject`. Der Server prüft immer, die
+implementieren `IValidatableObject` (nicht im Buch, Aufgabe 3 erklärt es). Der Server prüft immer, die
 Klienten-seitige Validierung ist nur Komfort. `OnPost` fragt
 `ModelState.IsValid` ab. Ein null-unzulässiger Referenztyp gilt implizit als
 `[Required]` (22.9.6); `[BindRequired]` fordert dagegen, dass der Wert in der
 Anforderung überhaupt vorkommt (22.9.2).
 
-## Layout (22.10 und 22.11, Seite 1620 bis 1640)
+## Layout (22.10 und 22.11, Seite 1620 bis 1636)
 
 `_Layout.cshtml` enthält das gemeinsame Gerüst mit `@RenderBody()`,
 `_ViewStart.cshtml` wählt es aus, `_ViewImports.cshtml` registriert Tag-Helfer

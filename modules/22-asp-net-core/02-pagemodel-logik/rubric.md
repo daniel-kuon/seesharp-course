@@ -5,9 +5,10 @@
   man prüfen kann; HTTP, Routing und Razor sind dafür nicht nötig. Der
   Dienst kommt über den Konstruktor, deshalb lässt er sich durch ein Fake
   ersetzen.
-- Warum braucht der Test einen `PageContext`? `ModelState` liegt im Kontext;
-  ohne ihn gibt es eine NullReferenceException. Die Validierung selbst läuft
-  im Test nicht (keine Modellbindung), daher `AddModelError`.
+- Der Test setzt einen leeren `PageContext`, wie es sonst die Laufzeit tut;
+  `ModelState` liegt in diesem Kontext (ohne ausdrücklichen Kontext legt
+  `PageModel` selbst einen leeren an). Die Validierung selbst läuft im Test
+  nicht (keine Modellbindung), daher `AddModelError`.
 - Nachfrage: Warum füllt `OnPost` bei ungültiger Eingabe `Ergebnisse` noch
   einmal? (Die Seite wird neu gerendert, das PageModel-Objekt ist
   anforderungsbezogen; vgl. 22.5.4 Zustandslosigkeit.)

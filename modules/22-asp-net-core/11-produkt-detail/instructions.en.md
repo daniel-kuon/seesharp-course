@@ -5,7 +5,7 @@ Review **Section 22.7**, **“Routing”** (page 1577), particularly Section **2
 The `Shop` project displays products from a fixed catalog (`IProduktkatalog`). `Program.cs` and the list of products in the PageModel are complete. You write:
 
 1. `Pages/Produkte/Index.cshtml`: List of all products; each name is a link to `/Produkte/Detail/<Id>` (`asp-page` tag helper with `asp-route-id`).
-2. `Pages/Produkte/Detail.cshtml`: Route with `int` parameters `id`, Name, and Description to display.
+2. `Pages/Produkte/Detail.cshtml`: Route with an `int` parameter `id`; display name and description.
 3. `Pages/Produkte/Detail.cshtml.cs`: `OnGet(int id)` searches for the product; if none is found, the response is `NotFound()`.
 
 The tests launch the application using `WebApplicationFactory<Program>` (from the NuGet package `Microsoft.AspNetCore.Mvc.Testing`) and verify the HTML and status codes. One test replaces the catalog with a mock to verify that the pages use the registered service. The package requires network access on the first run.

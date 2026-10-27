@@ -4,7 +4,7 @@ Read Chapter **22.5**, **“PageModel Classes”** (page 1563), especially **Sec
 
 The `Umfrage` project is a Razor web application (`Microsoft.NET.Sdk.Web`) with an in-memory poll: `IUmfrageDienst` returns the votes and accepts new ones, while `SpeicherDienst` stores them in memory. Open `Pages/UmfrageModel.cs` and complete the `UmfrageModel` class:
 
-1. The service is provided via **constructor injection**; store it in an array.
+1. The service is provided via **constructor injection**; store it in a field.
 2. `Eingabe` is filled from the form via **model binding** (`[BindProperty]`).
 3. `OnGet()` populates `Ergebnisse` with the number of votes for each party, listing the highest totals first; in the event of a tie, the parties are listed alphabetically.
 4. `OnPost()` checks `ModelState.IsValid`. Invalid: Populate the `Ergebnisse` and return `Page()`; do not save anything. Valid: Save exactly once and redirect using `RedirectToPage("Danke", new { partei = ... })`.

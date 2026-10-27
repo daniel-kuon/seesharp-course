@@ -17,7 +17,9 @@ sowie **15.4.3 Premium-Sprachunterstützung für die Span-Typen seit C# 14**
 2. `ZaehleWoerter(ReadOnlySpan<char>)` zählt Wörter, die durch Leerzeichen
    getrennt sind (mehrere Leerzeichen hintereinander zählen nicht doppelt).
    Zerlege den Text durch Ausschnitte (`TrimStart`, `IndexOf`, `text[ende..]`),
-   nicht mit `Split` oder `Substring`.
+   nicht mit `Split` oder `Substring`. `text.TrimStart()` ist auf Spans nicht im
+   Buch, hier vorgegeben: Es liefert den Ausschnitt ohne führende Leerzeichen,
+   ohne etwas zu kopieren.
 3. `SpiegleInPlace(Span<int>)` kehrt die Elemente um. Bei einem Ausschnitt
    ändert sich nur dieser Teil des Arrays dahinter.
 4. `Hoechster(int[])` liefert einen **Verweis** auf das größte Element

@@ -1,6 +1,6 @@
 # Prime Number Test, switch Expression, foreach
 
-Read sections **4.7.3.1 "Counter-Controlled Loop (for)"** (page 271) and **4.7.3.2 "foreach"** (page 273) in the book, **4.7.3.6 “Terminating Loops Early”** (page 278, which includes the prime number program) and the section on the switch expression in **4.7.2** (page 253 ff.). The template is Exercise 3 in **4.7.4** (page 282).
+Read sections **4.7.3.1 "Counter-Controlled Loop (for)"** (page 271) and **4.7.3.2 "foreach"** (page 273) in the book, **4.7.3.6 “Terminating Loops Early”** (page 278, which includes the prime number program) and **4.7.2.4 "switch Expression"** (page 268). The template is Exercise 3 in **4.7.4** (page 282).
 
 Open `Schleifen.cs`:
 

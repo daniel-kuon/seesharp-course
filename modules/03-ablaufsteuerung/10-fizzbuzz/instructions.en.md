@@ -6,14 +6,14 @@ Read section **4.7.2.1**, **"if Statement**" (page 254), about the `else if` cha
 
 Open `FizzBuzz.cs`:
 
-1. `Wort(int zahl)` returns a positive number
+1. `Wort(int zahl)` returns for a positive number
    - `FizzBuzz` if it is divisible by 3 **and** by 5,
-   - `Fizz` if and only if it is divisible by 3,
-   - `Buzz` if it is divisible by 5,
+   - `Fizz` if it is divisible only by 3,
+   - `Buzz` if it is divisible only by 5,
    - otherwise, the number itself as text (`"7"`).
 
    Write this as an `if` / `else if` / `else` chain. Think about the order in which the cases should appear.
-2. `Folge(int bis)` returns the words for 1 `bis`, separated by a space: `Folge(5)` returns `1 2 Fizz 4 Buzz`. There are no spaces at the beginning or end. Build the string in a `for` loop and call `Wort()` within it.
+2. `Folge(int bis)` returns the words for 1 to `bis`, separated by one space each: `Folge(5)` returns `1 2 Fizz 4 Buzz`. There are no spaces at the beginning or end. Build the string in a `for` loop and call `Wort()` within it.
 
 The following tests must be passed:
 

@@ -5,7 +5,7 @@ Read Exercise 6 in Section **4.7.4** (page 282), which includes the statement ab
 Open `Euklid.cs`:
 
 1. `GgtModulo(int a, int b)` calculates the GCD using the modular version of Euclid's algorithm: Find the remainder of `a % b`, then set `b` to the new `a` and the remainder to the new `b`, and repeat until the remainder is 0. Use a `do … while` loop that calculates the remainder at least once. Both numbers are positive.
-2. `Kgv(int a, int b)` returns the least common multiple (GCD): `a / ggT * b`.
+2. `Kgv(int a, int b)` returns the least common multiple via the GCD: `a / ggT * b`.
 
 The following tests must be passed:
 

@@ -1,8 +1,8 @@
 # Fehlersuche in Verzweigungen
 
 Lies im Buch Abschnitt **4.7.2 Bedingte Anweisung und Fallunterscheidung**
-(Seite 253), vor allem 4.7.2.1 zur `if`-Anweisung und zum dangling else
-(Seite 254). Die Aufgaben 1, 2 und 4 in **4.7.4** (Seite 281) sind die
+(Seite 253), vor allem 4.7.2.1 und 4.7.2.2 zur `if`- und `if-else`-Anweisung
+und zum dangling else (Seite 254 bis 258). Die Aufgaben 1, 2 und 4 in **4.7.4** (Seite 281) sind die
 Vorlage.
 
 Öffne `Fehlersuche.cs`. Beide Methoden kompilieren, liefern aber falsche

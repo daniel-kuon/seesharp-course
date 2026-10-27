@@ -17,8 +17,9 @@ ist die zweite klassische Falle: Ein `else` gehört immer zum nächstgelegenen
 `if` ohne `else`, egal wie der Code eingerückt ist. Geschweifte Klammern
 machen die Absicht eindeutig.
 
-`switch` vergleicht einen Wert mit mehreren Konstanten; jeder Zweig endet mit
-`break` oder `return`. Der **switch-Ausdruck** (ab C# 8) liefert direkt einen
+`switch` vergleicht einen Wert mit mehreren Konstanten; jeder Fall endet mit
+einem Stopper, meist `break` (erlaubt sind auch `return` und `goto`). Der
+**switch-Ausdruck** (ab C# 8, 4.7.2.4, Seite 268) liefert direkt einen
 Wert: `tag switch { 1 => "Montag", …, _ => "ungültig" }`. Für Zuordnungen wie
 Wochentage oder Kategorien ist er kürzer und lesbarer als eine `if`-Kette.
 
@@ -29,7 +30,7 @@ Bedingung, Fortschaltung in einer Zeile. `foreach` (4.7.3.2, Seite 273) läuft
 über alle Elemente einer Kollektion, etwa die Zeichen eines Strings, ohne
 Index. `while` (4.7.3.3, Seite 275) prüft die Bedingung vor jedem Durchlauf,
 `do … while` erst danach, läuft also mindestens einmal. Eine Schleife, deren
-Bedingung nie falsch wird, ist eine Endlosschleife; die häufigste Ursache ist
+Bedingung nie falsch wird, ist eine Endlosschleife; eine tückische Ursache ist
 ein Semikolon direkt hinter dem Schleifenkopf, `while (i < 100);`, das als
 leere Anweisung den gesamten Schleifenkörper ersetzt.
 

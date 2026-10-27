@@ -1,6 +1,6 @@
 # Troubleshooting in Branches
 
-Read Section **4.7.2**, **“Conditional Statements and Case Distinctions”** (page 253), in the book, especially 4.7.2.1 on the `if` statement and the dangling else (page 254). Exercises 1, 2, and 4 in **Section 4.7.4** (page 281) serve as a template.
+Read Section **4.7.2**, **“Conditional Statements and Case Distinctions”** (page 253), in the book, especially 4.7.2.1 and 4.7.2.2 on the `if` and `if-else` statements and the dangling else (pages 254 to 258). Exercises 1, 2, and 4 in **Section 4.7.4** (page 281) serve as a template.
 
 Open *`Fehlersuche.cs`*. Both methods compile, but return incorrect results. Find the cause before making any changes:
 

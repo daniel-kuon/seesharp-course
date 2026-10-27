@@ -11,8 +11,8 @@ per `requires: algo.prime-test` als bestanden voraus.
 - `SindZwillinge`: Einzeiler mit `&&`. Wer `if (…) return true; else return
   false;` schreibt, darauf ansprechen.
 - `Primfaktoren`: Das Trennzeichen-Problem wie bei FizzBuzz. Nachfragen,
-  warum der Teiler nie eine zusammengesetzte Zahl sein kann, wenn er
-  aufgerufen wird (deren Primfaktoren wurden vorher schon herausgeteilt) —
+  warum der Teiler nie eine zusammengesetzte Zahl sein kann, wenn er `n`
+  teilt (deren Primfaktoren wurden vorher schon herausgeteilt) —
   deshalb braucht `Primfaktoren` `IstPrim` gar nicht.
 
 Modellantwort:

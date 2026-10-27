@@ -2,8 +2,8 @@
 
 Lies im Buch **4.7.3.1 Zählergesteuerte Schleife (for)** (Seite 271),
 **4.7.3.2 foreach** (Seite 273), **4.7.3.6 Schleifen vorzeitig beenden**
-(Seite 278, dort steht das Primzahlprogramm) und den Teil zum
-switch-Ausdruck in **4.7.2** (Seite 253 ff.). Vorlage ist Aufgabe 3 in
+(Seite 278, dort steht das Primzahlprogramm) und **4.7.2.4 switch-Ausdruck**
+(Seite 268). Vorlage ist Aufgabe 3 in
 **4.7.4** (Seite 282).
 
 Öffne `Schleifen.cs`:

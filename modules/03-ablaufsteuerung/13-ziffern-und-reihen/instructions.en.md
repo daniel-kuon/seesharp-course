@@ -6,7 +6,7 @@ Read **sections 4.7.3.1, "Counter-Controlled Loops (for)**" (page 271), and **4.
 
 Open `Zahlenreihen.cs`:
 
-1. `Einmaleins(int zahl)` returns the multiplication table for `zahl` times 1 through `zahl` times 10, separated by spaces: `Einmaleins(7)` returns `7 14 21 28 35 42 49 56 63 70` 21 28 35 42 49 56 63 70 (`for` loop).
+1. `Einmaleins(int zahl)` returns the multiplication table for `zahl` times 1 through `zahl` times 10, separated by spaces: `Einmaleins(7)` returns `7 14 21 28 35 42 49 56 63 70` (`for` loop).
 2. `Quersumme(long n)` returns the sum of the digits of any number starting from 0: `Quersumme(9045)` is 18. As long as there are still digits remaining: add the last digit, then truncate (`while` loop).
 3. `Umgedreht(long n)` reverses the digits: `1234` becomes `4321`, and `1230` becomes `321`.
 4. `IstPalindrom(long n)` returns `true` if the number is the same forward and backward (`12321`). Use `Umgedreht()`.

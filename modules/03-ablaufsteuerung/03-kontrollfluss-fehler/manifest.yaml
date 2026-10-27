@@ -33,7 +33,7 @@ items:
     prompt: { de: "Zu welchem if gehört ein else, wenn keine geschweiften Klammern gesetzt sind?", en: "Which \"if\" statement does an \"else\" belong to if there are no curly braces?" }
     options:
       - { de: "Zum nächstgelegenen vorangehenden if, das noch kein else hat, unabhängig von der Einrückung.", en: "To the nearest preceding `if` statement that does not yet have an `else` clause, regardless of indentation." }
-      - { de: "Zu dem if, das gleich eingerückt ist.", en: "Regarding the \"if\" statement that is indented." }
-      - { de: "Zum äußersten if.", en: "To the very end, if." }
+      - { de: "Zu dem if, das gleich eingerückt ist.", en: "To the `if` with the same indentation." }
+      - { de: "Zum äußersten if.", en: "To the outermost `if`." }
       - { de: "Der Compiler meldet einen Fehler, wenn es mehrdeutig ist.", en: "The compiler reports an error if there is ambiguity." }
     correct: [0]

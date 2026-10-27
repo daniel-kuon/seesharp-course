@@ -1,6 +1,6 @@
 # Extra: Counting and Factoring Prime Numbers
 
-Extra exercise: optional; it blocks nothing. You wrote the prime number test in the exercise "Prime Number Test, switch Statement, foreach"; here, it's already provided, and you'll build on it.
+Extra exercise: optional; it blocks nothing. You wrote the prime number test in the exercise "Prime Number Test, switch Expression, foreach"; here, it's already provided, and you'll build on it.
 
 Read **sections 4.7.3.1, "Counter-Controlled Loops (for)**" (page 271), and **4.7.3.3, "Conditional Loops**" (page 275), in the book to learn about the `do` loop.
 
